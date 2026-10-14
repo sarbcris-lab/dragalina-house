@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="720" viewBox="0 0 900 720">
+<rect width="100%" height="100%" fill="#fafafa"/>
+<text x="450" y="22" text-anchor="middle" font-size="13" font-weight="600">V47 A1 · zonă acces beci — DUPĂ +8 cm sud (plan cotat)</text>
+<text x="450" y="38" text-anchor="middle" font-size="8" fill="#666">poartă · alee 150 · trepte Y868–1036 · protecții · parcări Cloșca neschimbate</text>
+<rect x="199.1" y="56.8" width="136.5" height="0" stroke="#999"/>
+<rect x="50" y="-304.4" width="285.59999999999997" height="361.2" fill="none" stroke="#bbb" stroke-dasharray="3 2"/>
+<rect x="287.29999999999995" y="56.8" width="48.3" height="48.3" fill="#c4b496" fill-opacity="0.45" stroke="#8a7355"/>
+<line x1="287.29999999999995" y1="105.1" x2="335.59999999999997" y2="105.1" stroke="#c1121f" stroke-width="2"/>
+<text x="337.28" y="105.1" font-size="8" fill="#c1121f">muchie palier Y975</text>
+<rect x="287.29999999999995" y="118.96" width="48.3" height="11.76" fill="#f0e2b8" stroke="#333"/>
+<text x="288.14" y="124.84" font-size="6">T1 z=-15.8 H=—</text>
+<rect x="287.29999999999995" y="107.2" width="48.3" height="11.76" fill="#e0c888" stroke="#333"/>
+<text x="288.14" y="113.08" font-size="6">T2 z=-31.7 H=—</text>
+<rect x="287.29999999999995" y="95.44" width="48.3" height="11.76" fill="#f0e2b8" stroke="#333"/>
+<text x="288.14" y="101.32" font-size="6">T3 z=-47.5 H=195.5</text>
+<rect x="287.29999999999995" y="83.68" width="48.3" height="11.76" fill="#e0c888" stroke="#333"/>
+<text x="288.14" y="89.56" font-size="6">T4 z=-63.3 H=211.333</text>
+<rect x="287.29999999999995" y="71.92" width="48.3" height="11.76" fill="#f0e2b8" stroke="#333"/>
+<text x="288.14" y="77.8" font-size="6">T5 z=-79.2 H=227.167</text>
+<rect x="287.29999999999995" y="60.16" width="48.3" height="11.76" fill="#e0c888" stroke="#333"/>
+<text x="288.14" y="66.03999999999999" font-size="6">T6 z=-95.0 H=243</text>
+<text x="287.29999999999995" y="56.16" font-size="7">trepte Y868–1036</text>
+<rect x="287.29999999999995" y="31.6" width="48.3" height="28.56" fill="#8aa4b8" fill-opacity="0.5" stroke="#1d3557"/>
+<text x="288.14" y="36.64" font-size="7">palier −95 L=68 cm → Y868</text>
+<rect x="138.2" y="130.72" width="192.35999999999999" height="63" fill="#c5b89a" fill-opacity="0.55" stroke="#6b5e45"/>
+<text x="141.56" y="139.12" font-size="8">alee 150 cm Y1036–1186</text>
+<line x1="335.59999999999997" y1="130.72" x2="330.56" y2="130.72" stroke="#2d6a4f" stroke-width="1.5"/>
+<text x="296.96" y="124.72" font-size="7" fill="#2d6a4f">racord 0 cm (continuu)</text>
+<rect x="325.52" y="130.72" width="5.04" height="63" fill="#6aaf7a" stroke="#1b4332"/>
+<text x="323.84" y="162.22" text-anchor="end" font-size="7">poartă 150×190</text>
+<text x="66.8" y="191.2" font-size="8" fill="#555">parcări Cloșca: inset 0.25 m · from_west 1.55 m · gap 0.3 m — neschimbate</text>
+<text x="338.12" y="106.14999999999999" font-size="7" fill="#1d3557">T2 Y980–1008: 5 cm S de muchie</text>
+<text x="338.12" y="99.64" font-size="7" fill="#c1121f">T3 sub palier parțial: H nom. 195.5 cm (țintă ≥190, nu 200)</text>
+<text x="50" y="684" font-size="7" fill="#444">Justificare alee @ Y1036: fața sud rampă = Y1036; fără distanță arbitrară; staționare = dy alee 150 cm înaintea coborârii; poarta pe aceeași bandă Y.</text>
+<text x="50" y="700" font-size="7" fill="#444">Înainte: T2 Y972–1000 sub muchie → H=179,667 pe 3 cm. După: T2 în afara palierului. Studii / scară etaj / parcelă = neschimbate.</text>
+</svg>

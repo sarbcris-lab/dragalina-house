@@ -31,7 +31,7 @@
     "etaj_source": "v46_r7g — neschimbat",
     "concept_status": "temă cotată pentru discuție arhitect — NU autorizabil / NU verificat structural",
     "study_variant": "A1",
-    "rev_note_a1": "A1: goluri 100/palier 110 păstrate studiu; planșeu peste palier Y490–590; puț deschis doar Y590–860; transport geometric"
+    "rev_note_a1": "A1: goluri 100/palier 110; planșeu Y490–590; puț Y590–860; rampă curte Y868–1036 (+8 sud); alee/poartă racord Y1036; transport geometric"
   },
   "envelope_cm": {
     "ew": 680,
@@ -4142,21 +4142,22 @@
       "riser_cm": 15.833333333333334,
       "tread_cm": 28,
       "x": 565,
-      "y": 860,
+      "y": 868,
       "dx": 115,
       "dy": 168,
       "from_z_cm": 0,
       "to_z_cm": -95,
-      "status": "studiu_A1"
+      "status": "studiu_A1",
+      "note": "Y868–1036: +8 cm sud vs Y860 (elimină H=179,7 sub muchia podest_se Y975)"
     },
     "local_court_drop": {
       "x": 565,
-      "y": 780,
+      "y": 800,
       "dx": 115,
-      "dy": 80,
+      "dy": 68,
       "z_ff_cm": -95,
-      "status": "ipoteza_studiu",
-      "note": "alias palier/curte locală −95 sub rampă2"
+      "status": "studiu_A1",
+      "note": "alias palier −95 Y800–868 (continuu cu trepte)"
     },
     "entry_door": {
       "id": "usa_acces_subsol_ext",
@@ -4201,9 +4202,10 @@
       "x": 565,
       "y": 800,
       "dx": 115,
-      "dy": 60,
+      "dy": 68,
       "z_ff_cm": -95,
-      "status": "studiu_A1"
+      "status": "studiu_A1",
+      "note": "prelungit la Y868 (dy=68) — fără gol față de rampă"
     },
     "lower_landing": {
       "x": 565,
@@ -4668,8 +4670,11 @@
         "transport geometric (opțional dacă orientare corectă de la intrare)"
       ],
       "passes": [
-        "upper_landing → Y860",
+        "upper_landing → Y868 (continuu cu rampă curte)",
         "upper abut stair top",
+        "trepte curte Y868–1036 (6×28, 0→−95)",
+        "alee racord continuu @ Y1036 (dy=150)",
+        "alee lățime 150 cm păstrată",
         "palier jos N de ultima treaptă",
         "ușă pe palier Y500–600 (dy=100)",
         "ușă ∩ hol pe Y",
@@ -4678,8 +4683,9 @@
         "puț deschis nu intersectează poligonul living P",
         "zid N @ Y477.5–490 (N de palier)",
         "zid EST puț = 15 cm (JSON)",
-        "gabarit minim global = 220 cm @ Y490 X615 (intrados_placa_peste_palier_acoperit)",
-        "gabarit minim pe traseu acces = 220 cm @ Y490 (intrados_placa_peste_palier_acoperit)",
+        "gabarit minim (fără sub-podest curte) = 220 cm",
+        "gabarit minim pe traseu acces puț = 220 cm @ Y490 (intrados_placa_peste_palier_acoperit)",
+        "sub podest_se (lățime utilă): min 195.5 cm ≥ 190 — NU se declară 200",
         "ușă+buiandrug 215 ≤ clear zonă ușă 220",
         "transport: scară clear 100 ≥ 90 (studiu)",
         "transport: usa_subsol_camere: gol montaj 100 → clear 90 (toc 5+5) — păstrat studiu",
@@ -4697,6 +4703,7 @@
       "notes": [
         "Y470–590 pe bandă est: planșeu/palier acoperit — nu gol ignorat sub pardoseală",
         "sandwich sumă 62 cm închide span numeric, dar stratul residual_level_to_ff e ipoteză — straturi NECONFIRMATE structural",
+        "Acoperirea fixă nouă se dimensionează ulterior, fără reintroducerea unei înălțimi insuficiente sub podest_se.",
         "TRANSPORT NECONFIRMAT: există coliziuni în secvența geometrică sau spațiu manipulare insuficient — nu se folosește W+15 ca substitut",
         "poziții în conflict: intoarcere_15[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,treapta_7]; intoarcere_30[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,treapta_7]; intoarcere_45[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,foaie_deschisa_hol,treapta_7]; intoarcere_60[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,foaie_deschisa_hol,treapta_7]; intoarcere_75[toc_n,toc_s,foaie_deschisa_hol]",
         "TRANSPORT NECONFIRMAT — A1 nu poate fi declarată fezabilă pe transport",
@@ -4708,11 +4715,11 @@
       "pot_envelope_over_147": 39.78,
       "pot_note": "anvelopă/147 — confirmare limită admisă deschisă",
       "headroom_min": {
-        "x_cm": 615,
-        "y_cm": 490,
-        "element": "intrados_placa_peste_palier_acoperit",
-        "z_walk_cm": -250,
-        "z_obstacle_cm": -30
+        "x_cm": 570,
+        "y_cm": 963.5,
+        "element": "intrados_podest_se@călcare_3",
+        "z_walk_cm": -47.5,
+        "z_obstacle_cm": 148
       },
       "headroom_covered_landing": {
         "x_cm": 615,
@@ -5386,7 +5393,7 @@
       ]
     },
     "headroom_audit": {
-      "samples_count": 78,
+      "samples_count": 91,
       "samples_path": [
         {
           "x_cm": 615,
@@ -6139,14 +6146,210 @@
           "kind": "access_path"
         }
       ],
-      "min_clear_cm": 220,
+      "samples_court_under_podest": [
+        {
+          "x_cm": 570,
+          "y_cm": 963.5,
+          "y_overlap_cm": [
+            952,
+            975
+          ],
+          "tread_index": 3,
+          "z_walk_cm": -47.5,
+          "z_obstacle_cm": 148,
+          "clear_cm": 195.5,
+          "element": "intrados_podest_se@călcare_3",
+          "open": false,
+          "kind": "court_under_podest"
+        },
+        {
+          "x_cm": 622.5,
+          "y_cm": 963.5,
+          "y_overlap_cm": [
+            952,
+            975
+          ],
+          "tread_index": 3,
+          "z_walk_cm": -47.5,
+          "z_obstacle_cm": 148,
+          "clear_cm": 195.5,
+          "element": "intrados_podest_se@călcare_3",
+          "open": false,
+          "kind": "court_under_podest"
+        },
+        {
+          "x_cm": 675,
+          "y_cm": 963.5,
+          "y_overlap_cm": [
+            952,
+            975
+          ],
+          "tread_index": 3,
+          "z_walk_cm": -47.5,
+          "z_obstacle_cm": 148,
+          "clear_cm": 195.5,
+          "element": "intrados_podest_se@călcare_3",
+          "open": false,
+          "kind": "court_under_podest"
+        },
+        {
+          "x_cm": 622.5,
+          "y_cm": 975,
+          "tread_index": 3,
+          "z_walk_cm": -47.5,
+          "z_obstacle_cm": 148,
+          "clear_cm": 195.5,
+          "element": "intrados_podest_se_muchie_Y975@călcare_3",
+          "open": false,
+          "kind": "court_under_podest"
+        },
+        {
+          "x_cm": 570,
+          "y_cm": 938,
+          "y_overlap_cm": [
+            924,
+            952
+          ],
+          "tread_index": 4,
+          "z_walk_cm": -63.333,
+          "z_obstacle_cm": 148,
+          "clear_cm": 211.333,
+          "element": "intrados_podest_se@călcare_4",
+          "open": false,
+          "kind": "court_under_podest"
+        },
+        {
+          "x_cm": 622.5,
+          "y_cm": 938,
+          "y_overlap_cm": [
+            924,
+            952
+          ],
+          "tread_index": 4,
+          "z_walk_cm": -63.333,
+          "z_obstacle_cm": 148,
+          "clear_cm": 211.333,
+          "element": "intrados_podest_se@călcare_4",
+          "open": false,
+          "kind": "court_under_podest"
+        },
+        {
+          "x_cm": 675,
+          "y_cm": 938,
+          "y_overlap_cm": [
+            924,
+            952
+          ],
+          "tread_index": 4,
+          "z_walk_cm": -63.333,
+          "z_obstacle_cm": 148,
+          "clear_cm": 211.333,
+          "element": "intrados_podest_se@călcare_4",
+          "open": false,
+          "kind": "court_under_podest"
+        },
+        {
+          "x_cm": 570,
+          "y_cm": 910,
+          "y_overlap_cm": [
+            896,
+            924
+          ],
+          "tread_index": 5,
+          "z_walk_cm": -79.167,
+          "z_obstacle_cm": 148,
+          "clear_cm": 227.167,
+          "element": "intrados_podest_se@călcare_5",
+          "open": false,
+          "kind": "court_under_podest"
+        },
+        {
+          "x_cm": 622.5,
+          "y_cm": 910,
+          "y_overlap_cm": [
+            896,
+            924
+          ],
+          "tread_index": 5,
+          "z_walk_cm": -79.167,
+          "z_obstacle_cm": 148,
+          "clear_cm": 227.167,
+          "element": "intrados_podest_se@călcare_5",
+          "open": false,
+          "kind": "court_under_podest"
+        },
+        {
+          "x_cm": 675,
+          "y_cm": 910,
+          "y_overlap_cm": [
+            896,
+            924
+          ],
+          "tread_index": 5,
+          "z_walk_cm": -79.167,
+          "z_obstacle_cm": 148,
+          "clear_cm": 227.167,
+          "element": "intrados_podest_se@călcare_5",
+          "open": false,
+          "kind": "court_under_podest"
+        },
+        {
+          "x_cm": 570,
+          "y_cm": 882,
+          "y_overlap_cm": [
+            868,
+            896
+          ],
+          "tread_index": 6,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 148,
+          "clear_cm": 243,
+          "element": "intrados_podest_se@călcare_6",
+          "open": false,
+          "kind": "court_under_podest"
+        },
+        {
+          "x_cm": 622.5,
+          "y_cm": 882,
+          "y_overlap_cm": [
+            868,
+            896
+          ],
+          "tread_index": 6,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 148,
+          "clear_cm": 243,
+          "element": "intrados_podest_se@călcare_6",
+          "open": false,
+          "kind": "court_under_podest"
+        },
+        {
+          "x_cm": 675,
+          "y_cm": 882,
+          "y_overlap_cm": [
+            868,
+            896
+          ],
+          "tread_index": 6,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 148,
+          "clear_cm": 243,
+          "element": "intrados_podest_se@călcare_6",
+          "open": false,
+          "kind": "court_under_podest"
+        }
+      ],
+      "podest_se_intrados_cm": 148,
+      "podest_se_edge_y": 975,
+      "min_clear_cm": 195.5,
       "min_at": {
-        "x_cm": 615,
-        "y_cm": 490,
-        "element": "intrados_placa_peste_palier_acoperit",
-        "z_walk_cm": -250,
-        "z_obstacle_cm": -30
+        "x_cm": 570,
+        "y_cm": 963.5,
+        "element": "intrados_podest_se@călcare_3",
+        "z_walk_cm": -47.5,
+        "z_obstacle_cm": 148
       },
+      "min_clear_excluding_court_podest_cm": 220,
       "min_on_access_path_cm": 220,
       "min_on_access_path_at": {
         "x_cm": 615,
@@ -6154,6 +6357,20 @@
         "element": "intrados_placa_peste_palier_acoperit",
         "z_walk_cm": -250,
         "z_obstacle_cm": -30
+      },
+      "court_under_podest": {
+        "min_clear_cm": 195.5,
+        "min_at": {
+          "x_cm": 570,
+          "y_cm": 963.5,
+          "element": "intrados_podest_se@călcare_3",
+          "tread_index": 3,
+          "z_walk_cm": -47.5,
+          "z_obstacle_cm": 148
+        },
+        "target_min_cm": 190,
+        "claims_200_cm": false,
+        "note": "țintă test deplasare +8 cm = ≥190 pe lățimea utilizabilă; nu se declară 200"
       },
       "door_stack_vs_clear_at_door": {
         "opening_plus_lintel_cm": 215,
@@ -6180,13 +6397,13 @@
         "thickness_cm": 8,
         "local_cm": {
           "x": 656,
-          "y": 1038,
+          "y": 1036,
           "dx": 12,
           "dy": 150
         },
         "color": "#6aaf7a",
         "status": "ipoteza_studiu",
-        "note": "centrata pe alee Y1038–1188; pe linia gardului Dragalina (inset interior)"
+        "note": "centrată pe alee Y1036–1186; pe linia gardului Dragalina (inset interior)"
       },
       "path": {
         "id": "alee_pietonala_dragalina_scari",
@@ -6197,18 +6414,18 @@
           {
             "id": "alee_langa_scari",
             "x": 210,
-            "y": 1038,
+            "y": 1036,
             "dx": 458,
             "dy": 150,
-            "note": "alee 150cm — aceeasi banda Y ca poarta; X≤668"
+            "note": "alee 150cm Y1036–1186 — racord la trepte Y1036; aceeași bandă ca poarta"
           }
         ],
         "connects_to": [
-          "entry_steps_south_face",
+          "court_to_access_steps_south_face",
           "poarta_pietonala_dragalina"
         ],
         "status": "ipoteza_studiu",
-        "note": "alee + poarta aliniate (aceeasi banda Y)"
+        "note": "alee + poartă aliniate pe banda Y a racordului la rampă curte (fără gol, fără palier de acces fictiv)"
       },
       "path_to_stair": true,
       "path_to_parter": true,
@@ -6299,6 +6516,14 @@
         "clear_opening_m": 7.1,
         "clear_opening_cm": 710
       }
+    },
+    "court_access_shift_cm": {
+      "stairs_y0_before": 860,
+      "stairs_y0_after": 868,
+      "stairs_y1_after": 1036,
+      "alley_y0_after": 1036,
+      "alley_dy": 150,
+      "justification": "Deplasare rampă +8 cm sud elimină punctul H=179,7 sub Y975; aleea coboară la Y1036 ca racord continuu (nu distanță arbitrară). Lățime 150 păstrată. Poarta pe aceeași bandă Y. Staționare/manevră = adâncimea aleii 150 cm înaintea coborârii. Parcări Cloșca neschimbate."
     }
   },
   "open_issues_v47": [
@@ -6489,14 +6714,14 @@
       "x": 565,
       "y": 850,
       "dx": 105,
-      "dy": 114,
+      "dy": 186,
       "z_ff_cm": -48,
       "open_void": true,
       "no_soil_above": true,
       "steps": {
         "count": 6,
         "x": 565,
-        "y": 860,
+        "y": 868,
         "dx": 115,
         "dy": 168,
         "from_z_cm": 0,
@@ -6506,9 +6731,9 @@
       },
       "landing_access": {
         "x": 565,
-        "y": 780,
+        "y": 800,
         "dx": 115,
-        "dy": 80,
+        "dy": 68,
         "z_ff_cm": -95
       },
       "connects": [

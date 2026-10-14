@@ -30,7 +30,7 @@ Checks geometrice fără eșecuri critice: da · Fezabilitate A1: **nu**
 | FF subsol | -250 |
 | intrados (țintă studiu) | -30 |
 | clear **declarat** (țintă) | 220 |
-| clear **minim global** | **220** @ Y490 / intrados_placa_peste_palier_acoperit |
+| clear **minim global** | **195.5** @ Y963.5 / intrados_podest_se@călcare_3 |
 | clear **minim pe traseu acces** | **220** @ Y490 / intrados_placa_peste_palier_acoperit |
 | ușă + buiandrug | 200+15=215 |
 
@@ -51,13 +51,16 @@ straturi sumă 62 cm = FF(32) − intrados(-30)
 
 ## Headroom (calcul)
 
-- Minim: **220 cm** la X=615, Y=490, obstacol `intrados_placa_peste_palier_acoperit` (z_obs=-30, z_cale=-250)
+- Minim: **195.5 cm** la X=570, Y=963.5, obstacol `intrados_podest_se@călcare_3` (z_obs=148, z_cale=-47.5)
 - Ușă vs clear zonă: {"opening_plus_lintel_cm":215,"clear_at_door_zone_cm":220,"ok":true}
 
 ## Verificări
 ### PASS
-- upper_landing → Y860
+- upper_landing → Y868 (continuu cu rampă curte)
 - upper abut stair top
+- trepte curte Y868–1036 (6×28, 0→−95)
+- alee racord continuu @ Y1036 (dy=150)
+- alee lățime 150 cm păstrată
 - palier jos N de ultima treaptă
 - ușă pe palier Y500–600 (dy=100)
 - ușă ∩ hol pe Y
@@ -66,8 +69,9 @@ straturi sumă 62 cm = FF(32) − intrados(-30)
 - puț deschis nu intersectează poligonul living P
 - zid N @ Y477.5–490 (N de palier)
 - zid EST puț = 15 cm (JSON)
-- gabarit minim global = 220 cm @ Y490 X615 (intrados_placa_peste_palier_acoperit)
-- gabarit minim pe traseu acces = 220 cm @ Y490 (intrados_placa_peste_palier_acoperit)
+- gabarit minim (fără sub-podest curte) = 220 cm
+- gabarit minim pe traseu acces puț = 220 cm @ Y490 (intrados_placa_peste_palier_acoperit)
+- sub podest_se (lățime utilă): min 195.5 cm ≥ 190 — NU se declară 200
 - ușă+buiandrug 215 ≤ clear zonă ușă 220
 - transport: scară clear 100 ≥ 90 (studiu)
 - transport: usa_subsol_camere: gol montaj 100 → clear 90 (toc 5+5) — păstrat studiu
@@ -87,6 +91,7 @@ straturi sumă 62 cm = FF(32) − intrados(-30)
 ### Note
 - Y470–590 pe bandă est: planșeu/palier acoperit — nu gol ignorat sub pardoseală
 - sandwich sumă 62 cm închide span numeric, dar stratul residual_level_to_ff e ipoteză — straturi NECONFIRMATE structural
+- Acoperirea fixă nouă se dimensionează ulterior, fără reintroducerea unei înălțimi insuficiente sub podest_se.
 - TRANSPORT NECONFIRMAT: există coliziuni în secvența geometrică sau spațiu manipulare insuficient — nu se folosește W+15 ca substitut
 - poziții în conflict: intoarcere_15[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,treapta_7]; intoarcere_30[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,treapta_7]; intoarcere_45[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,foaie_deschisa_hol,treapta_7]; intoarcere_60[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,foaie_deschisa_hol,treapta_7]; intoarcere_75[toc_n,toc_s,foaie_deschisa_hol]
 - TRANSPORT NECONFIRMAT — A1 nu poate fi declarată fezabilă pe transport
@@ -170,10 +175,19 @@ Metodă: shoelace(interior_polygon) − reuniune pereți int (−goluri baie/dor
 
 Notă: coordonarea planșeului (gol doar Y590–860) nu modifică poligonul interior P/E; utilul e reafirmat prin recalcul independent, nu prin copiere.
 
+## Rampă curte + podest_se (test +8 cm sud)
+- Trepte: Y868–1036 (6×28, 0→−95)
+- Palier −95: Y800–868 (L=68 cm, continuu)
+- Alee/poartă: Y1036 (racord 0 cm)
+- Min H sub podest_se (lățime utilă): **195.5 cm** (țintă ≥190; **nu** se declară 200)
+- Intrados podest_se: +148 · muchie Y975
+
 ## Fișiere
 - `data/building/v47_a1_study.json`
 - `outputs/plans/31_v47_a1_subsol_plan.svg`
 - `outputs/plans/32_v47_a1_access_section.svg`
+- `outputs/plans/33_v47_a1_court_access_plan_after.svg`
+- `outputs/plans/34_v47_a1_court_access_section_before_after.svg`
 - `outputs/reports/v47_runda_a1.md`
 - `viewer/data/volume_v47_a1.json` → `?v=v47_a1`
 

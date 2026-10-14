@@ -689,6 +689,7 @@ function main() {
         color: "#5a6570",
         label: `Structură rampă ${st.ramp2_structure_cm || 20} cm`,
         opacity: 0.9,
+        site_layer: "structura",
       });
       meshes.push({
         id: `parapet_r2_${i}`,
@@ -1403,7 +1404,7 @@ function main() {
       const doorCt = intDoors.find((d) => d.id === "usa_hol_ct");
       const doorDep = intDoors.find((d) => d.id === "usa_hol_dep");
 
-      function pushWallFull(id, x, y, dx, dy, label) {
+      function pushWallFull(id, x, y, dx, dy, label, opts = {}) {
         if (dx < 1 || dy < 1) return;
         meshes.push({
           id,
@@ -1411,9 +1412,16 @@ function main() {
           polygon: rectPoly(x, y, dx, dy),
           z0_m: zB,
           z1_m: wallTopR,
-          color: "#d8d0c0",
+          color: opts.color || "#d8d0c0",
           opacity: 0.98,
           label: label || id,
+          ...(opts.site_layer ? { site_layer: opts.site_layer } : {}),
+        });
+      }
+      function pushStructWall(id, x, y, dx, dy, label) {
+        pushWallFull(id, x, y, dx, dy, label, {
+          color: "#b0a898",
+          site_layer: "structura",
         });
       }
       function pushDoorOpening(d) {
@@ -1441,12 +1449,25 @@ function main() {
       const thickX0p = 535;
       const thinEX0p = ewCm - shaftEast; // 665 dacă 15
 
-      pushWallFull("subsol_zid_perim_n", 30, 30 - wallPerim, 505, wallPerim, "perim N CT");
-      pushWallFull("subsol_zid_perim_w", 30 - wallPerim, 30, wallPerim, 600, "perim W");
-      pushWallFull("subsol_zid_perim_s_dep", 30, 630, 320, wallPerim, "perim S depozit");
-      pushWallFull("subsol_zid_perim_s_hol", 350, 685, 185, wallPerim, "perim S hol");
+      pushStructWall("subsol_zid_perim_n", 30, 30 - wallPerim, 505, wallPerim, "perim N CT");
+      pushStructWall("subsol_zid_perim_w", 30 - wallPerim, 30, wallPerim, 600, "perim W");
+      pushStructWall("subsol_zid_perim_s_dep", 30, 630, 320, wallPerim, "perim S depozit");
+      pushStructWall("subsol_zid_perim_s_hol", 350, 685, 185, wallPerim, "perim S hol");
+      // Colțuri / reintrant — umplere goluri L (audit: lipsă stâlpi/colțuri)
+      pushStructWall("subsol_zid_colt_nw", 0, 0, wallPerim, wallPerim, "colț NW 30×30");
+      pushStructWall("subsol_zid_colt_sw_dep", 0, 630, wallPerim, wallPerim, "colț SW depozit 30×30");
+      pushStructWall("subsol_zid_colt_ne_ct", 535, 0, wallPerim, wallPerim, "colț NE CT 30×30");
+      // Hol protrude S de depozit: față vest reintrantă X320–350 Y630–685
+      pushStructWall(
+        "subsol_zid_hol_vest_reintrant",
+        350 - wallPerim,
+        630,
+        wallPerim,
+        55,
+        "hol vest reintrant Y630–685"
+      );
       // est CT: continuare buc_est până la palier (închidere exterioară est CT)
-      pushWallFull(
+      pushStructWall(
         "subsol_zid_ct_est",
         thickX0p,
         30,
@@ -1512,6 +1533,7 @@ function main() {
         z1_m: zSoffit + m(lv.floor_slab_th_cm ?? 15),
         color: "#8b8680",
         opacity: 0.4,
+        site_layer: "structura",
         label: "intrados planșeu parter (gol sub r2)",
       });
 
@@ -1567,7 +1589,7 @@ function main() {
           z1_m: z1,
           color: "#a8a296",
           opacity: 0.97,
-          ...(layer ? { site_layer: layer } : {}),
+          site_layer: layer || "structura",
           label,
         });
       }
@@ -1634,7 +1656,7 @@ function main() {
         }
       }
 
-      // —— EST din JSON (15 cm studiu)
+      // —— EST din JSON (15 cm studiu) — pe puț + fântână până la noul capăt
       pushWallSeg(
         "subsol_put_zid_e_subtire",
         thinEX0,
@@ -1670,6 +1692,7 @@ function main() {
           z0_m: zSoffit - 0.25,
           z1_m: zSoffit,
           color: "#6a6358",
+          site_layer: "structura",
           label: "grindă reazem planșeu @ Y590 (studiu)",
         });
       }
@@ -1678,9 +1701,11 @@ function main() {
       // Canalul fântână→puț rămâne liber pe clar (orizontala −95 + pe verticală).
 
       // —— Fântână S de casă: fund + trepte; FĂRĂ zid pe clarul de intrare
-      if (cts?.count && shaftYWell1 > shaftYHouse1) {
-        const wellY = shaftYHouse1;
-        const wellDy = shaftYWell1 - shaftYHouse1;
+      // Origine trepte = court_to_access_steps.y (nu nsCm/Y860 fix)
+      const stepsY0 = cts?.y ?? shaftYHouse1;
+      if (cts?.count && shaftYWell1 > Math.min(shaftYHouse1, stepsY0)) {
+        const wellY = Math.min(shaftYHouse1, stepsY0);
+        const wellDy = shaftYWell1 - wellY;
         meshes.push({
           id: "subsol_curte_engleza_fund",
           type: "extrude",
@@ -1700,11 +1725,11 @@ function main() {
         const riserCm = Math.abs(toZcm - fromZcm) / nRisers;
         const stepDy = cts.tread_cm || 28;
         const runDy = nRisers * stepDy;
-        // coboară N: sud = trepte sus @ grade; nord @ Y=ns = jos pe palier −95
-        const stepsY0 = shaftYHouse1; // 860
+        const stepsSouth = stepsY0 + runDy;
+        // pereți laterali + coronamente până la noul capăt al coborârii
         for (const w of [
-          { id: "e", x: thinEX0, y: wellY, dx: thinEDx, dy: Math.max(wellDy, runDy) },
-          { id: "w", x: thickX0, y: wellY, dx: thickDx, dy: Math.max(wellDy, runDy) },
+          { id: "e", x: thinEX0, y: wellY, dx: thinEDx, dy: Math.max(wellDy, stepsSouth - wellY) },
+          { id: "w", x: thickX0, y: wellY, dx: thickDx, dy: Math.max(wellDy, stepsSouth - wellY) },
         ]) {
           meshes.push({
             id: `curte_engleza_coping_${w.id}`,
@@ -1731,7 +1756,7 @@ function main() {
             z1_m: zTop,
             color: i % 2 ? "#f0e2b8" : "#e0c888",
             site_layer: "curte",
-            label: `treaptă ${i + 1}/${nRisers} curte engleză z=${zTopCm.toFixed(1)}`,
+            label: `treaptă ${i + 1}/${nRisers} curte engleză z=${zTopCm.toFixed(1)} Y${yS}–${yS + stepDy}`,
           });
           meshes.push({
             id: `subsol_racord_riser_${i}`,
@@ -1744,30 +1769,32 @@ function main() {
             label: `contratrepă ${i + 1}/${nRisers}`,
           });
         }
-        // prag la cota teren, sud de prima treaptă
+        // prag subțire la cota teren — se oprește la sudul rampei (racord alee, nu palier fictiv)
         meshes.push({
           id: "subsol_curte_engleza_prag",
           type: "extrude",
-          polygon: rectPoly(stepX, stepsY0 + runDy - 6, stepDx, 30),
+          polygon: rectPoly(stepX, stepsSouth - 4, stepDx, 4),
           z0_m: zGrade - 0.02,
           z1_m: zGrade + 0.05,
           color: "#b8b09a",
           site_layer: "curte",
-          label: "prag acces fântână (cota teren)",
+          label: `prag racord @ Y${stepsSouth} (cota teren → alee)`,
         });
       }
 
-      // Palier −95 pe clar — continuă prin canal spre fântână (fără capac orizontal)
+      // Palier −95 pe clar — continuă până la originea treptelor (cts.y), fără gol 8 cm
       {
-        const upY = up?.y ?? 780;
+        const upY = up?.y ?? 800;
+        const landEndY = stepsY0;
         meshes.push({
           id: "subsol_palier_acces",
           type: "extrude",
-          polygon: rectPoly(clearX0, upY, clearDx, Math.max(up?.dy ?? 80, shaftYHouse1 - upY)),
+          polygon: rectPoly(clearX0, upY, clearDx, Math.max(up?.dy ?? 68, landEndY - upY)),
           z0_m: zAccess - 0.08,
           z1_m: zAccess,
           color: "#8aa4b8",
-          label: "palier −95 (canal deschis spre fântână)",
+          site_layer: "structura",
+          label: `palier −95 Y${upY}–${landEndY} (continuu cu trepte)`,
         });
       }
 
@@ -1915,6 +1942,7 @@ function main() {
           z1_m: foundZ1,
           color: "#6e6a62",
           opacity: 0.9,
+          site_layer: "structura",
           label: `fundație beton ${f.id} (finit−${insetFromFinished}, termo ${termoOut} afară)`,
         });
       }

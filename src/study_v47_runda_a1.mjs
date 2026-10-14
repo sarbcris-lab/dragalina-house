@@ -281,6 +281,71 @@ function computeHeadroomSamples(v) {
     });
   }
 
+  // Rampă curte sub podest_se (intrados = FF podest − floor_buildup)
+  const cts = bm.court_to_access_steps;
+  const pod = st.podest_se;
+  const zPodWalk = zParter + riser * n180;
+  const zPodIntrados = zPodWalk - floorTh; // tipic +148
+  const courtSamples = [];
+  if (cts?.count && pod) {
+    const nRisers = cts.count;
+    const riserC = Math.abs((cts.to_z_cm ?? -95) - (cts.from_z_cm ?? 0)) / nRisers;
+    const stepDy = cts.tread_cm || 28;
+    const stepsY0 = cts.y;
+    const runDy = nRisers * stepDy;
+    const clearX0 = cts.x;
+    const clearX1 = cts.x + cts.dx;
+    const usableInset = 5; // margini laterale — verifică pe lățimea utilizabilă, nu doar ax
+    const xLo = clearX0 + usableInset;
+    const xHi = clearX1 - usableInset;
+    const xSamples = [xLo, (xLo + xHi) / 2, xHi];
+    for (let i = 0; i < nRisers; i++) {
+      const yS = stepsY0 + runDy - (i + 1) * stepDy;
+      const yN = yS + stepDy;
+      const zWalk = (cts.from_z_cm ?? 0) - riserC * (i + 1);
+      const oy0 = Math.max(yS, pod.y);
+      const oy1 = Math.min(yN, pod.y + pod.dy);
+      if (oy1 <= oy0 + 0.01) continue; // fără suprapunere cu podest
+      const yMid = (oy0 + oy1) / 2;
+      for (const xS of xSamples) {
+        const clear = +(zPodIntrados - zWalk).toFixed(3);
+        courtSamples.push({
+          x_cm: +xS.toFixed(2),
+          y_cm: +yMid.toFixed(2),
+          y_overlap_cm: [+oy0.toFixed(2), +oy1.toFixed(2)],
+          tread_index: i + 1,
+          z_walk_cm: +zWalk.toFixed(3),
+          z_obstacle_cm: zPodIntrados,
+          clear_cm: clear,
+          element: `intrados_podest_se@călcare_${i + 1}`,
+          open: false,
+          kind: "court_under_podest",
+        });
+      }
+    }
+    // muchie sud podest (Y975): sample pe ax dacă treapta trece pe sub muchie
+    for (let i = 0; i < nRisers; i++) {
+      const yS = stepsY0 + runDy - (i + 1) * stepDy;
+      const yN = yS + stepDy;
+      const edgeY = pod.y + pod.dy;
+      if (yS < edgeY && yN > edgeY - 0.01) {
+        const zWalk = (cts.from_z_cm ?? 0) - riserC * (i + 1);
+        courtSamples.push({
+          x_cm: +(clearX0 + (clearX1 - clearX0) / 2).toFixed(2),
+          y_cm: edgeY,
+          tread_index: i + 1,
+          z_walk_cm: +zWalk.toFixed(3),
+          z_obstacle_cm: zPodIntrados,
+          clear_cm: +(zPodIntrados - zWalk).toFixed(3),
+          element: `intrados_podest_se_muchie_Y${edgeY}@călcare_${i + 1}`,
+          open: false,
+          kind: "court_under_podest",
+        });
+      }
+    }
+  }
+  samples.push(...courtSamples);
+
   const finite = samples.filter((s) => s.clear_cm != null && Number.isFinite(s.clear_cm));
   finite.sort((a, b) => a.clear_cm - b.clear_cm);
   const min = finite[0] || null;
@@ -289,9 +354,16 @@ function computeHeadroomSamples(v) {
   );
   pathOnly.sort((a, b) => a.clear_cm - b.clear_cm);
   const minPath = pathOnly[0] || null;
+  const finiteNoCourt = finite.filter((s) => s.kind !== "court_under_podest");
+  const minNoCourt = finiteNoCourt[0] || null;
+  courtSamples.sort((a, b) => a.clear_cm - b.clear_cm);
+  const minCourt = courtSamples[0] || null;
   return {
     samples_count: samples.length,
     samples_path: samples.filter((s) => s.kind === "access_path"),
+    samples_court_under_podest: courtSamples,
+    podest_se_intrados_cm: zPodIntrados,
+    podest_se_edge_y: pod?.y + pod?.dy,
     min_clear_cm: min?.clear_cm ?? null,
     min_at: min
       ? {
@@ -302,6 +374,7 @@ function computeHeadroomSamples(v) {
           z_obstacle_cm: min.z_obstacle_cm,
         }
       : null,
+    min_clear_excluding_court_podest_cm: minNoCourt?.clear_cm ?? null,
     min_on_access_path_cm: minPath?.clear_cm ?? null,
     min_on_access_path_at: minPath
       ? {
@@ -312,6 +385,22 @@ function computeHeadroomSamples(v) {
           z_obstacle_cm: minPath.z_obstacle_cm,
         }
       : null,
+    court_under_podest: minCourt
+      ? {
+          min_clear_cm: minCourt.clear_cm,
+          min_at: {
+            x_cm: minCourt.x_cm,
+            y_cm: minCourt.y_cm,
+            element: minCourt.element,
+            tread_index: minCourt.tread_index,
+            z_walk_cm: minCourt.z_walk_cm,
+            z_obstacle_cm: minCourt.z_obstacle_cm,
+          },
+          target_min_cm: 190,
+          claims_200_cm: false,
+          note: "țintă test deplasare +8 cm = ≥190 pe lățimea utilizabilă; nu se declară 200",
+        }
+      : { min_clear_cm: null, note: "fără suprapunere trepte/curte cu podest_se" },
     door_stack_vs_clear_at_door: null, // filled below
   };
 }
@@ -564,7 +653,7 @@ function applyA1(v47) {
   out.meta = out.meta || {};
   out.meta.study_variant = "A1";
   out.meta.rev_note_a1 =
-    "A1: goluri 100/palier 110 păstrate studiu; planșeu peste palier Y490–590; puț deschis doar Y590–860; transport geometric";
+    "A1: goluri 100/palier 110; planșeu Y490–590; puț Y590–860; rampă curte Y868–1036 (+8 sud); alee/poartă racord Y1036; transport geometric";
 
   const riser = 155 / 9;
   const tread = 25;
@@ -572,6 +661,16 @@ function applyA1(v47) {
   const risers = 9;
   const ySouth = 800;
   const yLast = ySouth - treads * tread; // 600
+  // Test H liber sub podest_se: deplasare rampă exterioară +8 cm sud
+  const courtStepsY0 = 868;
+  const courtTread = 28;
+  const courtRisers = 6;
+  const courtStepsDy = courtRisers * courtTread; // 168 → Y1036
+  const courtStepsY1 = courtStepsY0 + courtStepsDy;
+  const upperLandY0 = 800;
+  const upperLandDy = courtStepsY0 - upperLandY0; // 68 — continuu până la trepte
+  const alleyY0 = courtStepsY1; // racord continuu (fără gol 2 cm față de Y1038)
+  const alleyDy = 150;
   // toc 5+5 → clear 90 cere gol montaj 100; palier trebuie ≥ gol + pivot (W+15)
   const jamb = 5;
   const clearEff = 90;
@@ -690,25 +789,36 @@ function applyA1(v47) {
       note: "pereți puț/palier pe Y490–860; gol planșeu doar Y590+",
     },
     court_to_access_steps: {
-      count: 6,
+      count: courtRisers,
       delta_cm: 95,
-      riser_cm: 95 / 6,
-      tread_cm: 28,
+      riser_cm: 95 / courtRisers,
+      tread_cm: courtTread,
       x: 565,
-      y: 860,
+      y: courtStepsY0,
       dx: 115,
-      dy: 168,
+      dy: courtStepsDy,
       from_z_cm: 0,
       to_z_cm: d.access_landing_cm,
       status: "studiu_A1",
+      note: `Y${courtStepsY0}–${courtStepsY1}: +8 cm sud vs Y860 (elimină H=179,7 sub muchia podest_se Y975)`,
+    },
+    local_court_drop: {
+      x: 565,
+      y: upperLandY0,
+      dx: 115,
+      dy: upperLandDy,
+      z_ff_cm: d.access_landing_cm,
+      status: "studiu_A1",
+      note: `alias palier −95 Y${upperLandY0}–${courtStepsY0} (continuu cu trepte)`,
     },
     upper_landing: {
       x: 565,
-      y: 800,
+      y: upperLandY0,
       dx: 115,
-      dy: 60,
+      dy: upperLandDy,
       z_ff_cm: d.access_landing_cm,
       status: "studiu_A1",
+      note: `prelungit la Y${courtStepsY0} (dy=${upperLandDy}) — fără gol față de rampă`,
     },
     stair: {
       align: "along_ramp2",
@@ -841,6 +951,56 @@ function applyA1(v47) {
   out.basement_cm.areas = computeBasementAreas(out.basement_cm);
   out.basement_cm.transport_audit = transportAudit(out.basement_cm);
 
+  // Alee 150 + poartă pietonală: racord continuu la sudul rampei (Y1036), nu gol 2 cm
+  {
+    const ped = out.site_access_cm?.pedestrian;
+    if (ped?.path?.segments_cm?.[0]) {
+      for (const seg of ped.path.segments_cm) {
+        if (/alee|langa_scari/i.test(seg.id || "") || seg === ped.path.segments_cm[0]) {
+          seg.y = alleyY0;
+          seg.dy = alleyDy;
+          seg.note = `alee ${alleyDy}cm Y${alleyY0}–${alleyY0 + alleyDy} — racord la trepte Y${courtStepsY1}; aceeași bandă ca poarta`;
+        }
+      }
+      ped.path.note =
+        "alee + poartă aliniate pe banda Y a racordului la rampă curte (fără gol, fără palier de acces fictiv)";
+      ped.path.connects_to = ["court_to_access_steps_south_face", "poarta_pietonala_dragalina"];
+    }
+    if (ped?.gate?.local_cm) {
+      ped.gate.local_cm.y = alleyY0;
+      ped.gate.local_cm.dy = alleyDy;
+      ped.gate.note = `centrată pe alee Y${alleyY0}–${alleyY0 + alleyDy}; pe linia gardului Dragalina (inset interior)`;
+    }
+    if (out.site_access_cm) {
+      out.site_access_cm.court_access_shift_cm = {
+        stairs_y0_before: 860,
+        stairs_y0_after: courtStepsY0,
+        stairs_y1_after: courtStepsY1,
+        alley_y0_after: alleyY0,
+        alley_dy: alleyDy,
+        justification:
+          "Deplasare rampă +8 cm sud elimină punctul H=179,7 sub Y975; aleea coboară la Y1036 ca racord continuu (nu distanță arbitrară). Lățime 150 păstrată. Poarta pe aceeași bandă Y. Staționare/manevră = adâncimea aleii 150 cm înaintea coborârii. Parcări Cloșca neschimbate.",
+      };
+    }
+  }
+  // courtyard_cm.english_court — aliniat la court_to_access_steps
+  if (out.courtyard_cm?.english_court) {
+    const ec = out.courtyard_cm.english_court;
+    ec.y = courtStepsY0 - 18;
+    ec.dy = courtStepsDy + 18;
+    if (ec.steps) {
+      ec.steps.y = courtStepsY0;
+      ec.steps.dy = courtStepsDy;
+      ec.steps.from_z_cm = 0;
+      ec.steps.to_z_cm = d.access_landing_cm;
+    }
+    if (ec.landing_access) {
+      ec.landing_access.y = upperLandY0;
+      ec.landing_access.dy = upperLandDy;
+      ec.landing_access.z_ff_cm = d.access_landing_cm;
+    }
+  }
+
   const head = computeHeadroomSamples(out);
   const door = out.basement_cm.door_to_rooms;
   const clearAtDoorSample = head.samples_path.find(
@@ -876,11 +1036,31 @@ function verifyA1(v, volume) {
 
   const ySouth = st.y + st.dy;
   const yLast = st.y;
-  if (Math.abs(up.y + up.dy - 860) > 0.01) fails.push(`upper nu ajunge la Y860 (got ${up.y + up.dy})`);
-  else passes.push("upper_landing → Y860");
+  const cts = bm.court_to_access_steps;
+  const stepsY0 = cts?.y ?? 868;
+  if (Math.abs(up.y + up.dy - stepsY0) > 0.01)
+    fails.push(`upper nu ajunge la Y${stepsY0} origine trepte curte (got ${up.y + up.dy})`);
+  else passes.push(`upper_landing → Y${stepsY0} (continuu cu rampă curte)`);
 
   if (Math.abs(up.y - ySouth) > 0.01) fails.push(`upper.y ${up.y} ≠ stair south ${ySouth}`);
   else passes.push("upper abut stair top");
+
+  if (cts) {
+    const runEnd = cts.y + cts.dy;
+    if (Math.abs(cts.y - 868) > 0.01 || Math.abs(cts.dy - 168) > 0.01)
+      fails.push(`court steps așteptat Y868 dy168 (got Y${cts.y} dy=${cts.dy})`);
+    else passes.push(`trepte curte Y${cts.y}–${runEnd} (6×28, 0→−95)`);
+    const alley = v.site_access_cm?.pedestrian?.path?.segments_cm?.find((s) =>
+      /alee|langa_scari/i.test(s.id || "")
+    );
+    if (alley) {
+      if (Math.abs(alley.y - runEnd) > 0.01)
+        fails.push(`alee.y ${alley.y} ≠ sud trepte ${runEnd} (gol/racord)`);
+      else passes.push(`alee racord continuu @ Y${alley.y} (dy=${alley.dy})`);
+      if (Math.abs(alley.dy - 150) > 0.01) fails.push(`alee dy ${alley.dy} ≠ 150`);
+      else passes.push("alee lățime 150 cm păstrată");
+    }
+  }
 
   if (low.y + low.dy > yLast + 0.01) fails.push("palier jos se suprapune pe scară");
   else passes.push("palier jos N de ultima treaptă");
@@ -941,14 +1121,30 @@ function verifyA1(v, volume) {
   const hr = bm.headroom_audit;
   if (!hr?.min_clear_cm && hr?.min_clear_cm !== 0) fails.push("lipsește calcul headroom");
   else {
+    const minShaft = hr.min_clear_excluding_court_podest_cm ?? hr.min_clear_cm;
     passes.push(
-      `gabarit minim global = ${hr.min_clear_cm} cm @ Y${hr.min_at.y_cm} X${hr.min_at.x_cm} (${hr.min_at.element})`
+      `gabarit minim (fără sub-podest curte) = ${minShaft} cm`
     );
     passes.push(
-      `gabarit minim pe traseu acces = ${hr.min_on_access_path_cm} cm @ Y${hr.min_on_access_path_at?.y_cm} (${hr.min_on_access_path_at?.element})`
+      `gabarit minim pe traseu acces puț = ${hr.min_on_access_path_cm} cm @ Y${hr.min_on_access_path_at?.y_cm} (${hr.min_on_access_path_at?.element})`
     );
-    if (hr.min_clear_cm < 200)
-      fails.push(`gabarit minim ${hr.min_clear_cm} < 200 cm`);
+    if (minShaft < 200) fails.push(`gabarit puț/camere ${minShaft} < 200 cm`);
+    const courtHr = hr.court_under_podest;
+    if (courtHr?.min_clear_cm != null) {
+      const tMin = courtHr.target_min_cm ?? 190;
+      if (courtHr.min_clear_cm + 0.01 < tMin) {
+        fails.push(
+          `sub podest_se pe rampă curte: ${courtHr.min_clear_cm} < ${tMin} cm @ Y${courtHr.min_at?.y_cm} (${courtHr.min_at?.element})`
+        );
+      } else {
+        passes.push(
+          `sub podest_se (lățime utilă): min ${courtHr.min_clear_cm} cm ≥ ${tMin} — NU se declară 200`
+        );
+      }
+      notes.push(
+        "Acoperirea fixă nouă se dimensionează ulterior, fără reintroducerea unei înălțimi insuficiente sub podest_se."
+      );
+    }
     if (hr.door_stack_vs_clear_at_door && !hr.door_stack_vs_clear_at_door.ok) {
       fails.push(
         `ușă+buiandrug ${hr.door_stack_vs_clear_at_door.opening_plus_lintel_cm} > clear zonă ușă ${hr.door_stack_vs_clear_at_door.clear_at_door_zone_cm}`
@@ -1342,22 +1538,45 @@ function exportSectionFromModel(v, volume) {
     `<text x="${yx(door.y)}" y="${zy(d.basement_ff_cm + door.opening_h_cm) - 3}" font-size="7">gol ${door.opening_h_cm}+${door.lintel_reserve_cm} pe Y${door.y}–${door.y + door.dy}</text>`
   );
 
-  // trepte curte
-  for (let i = 0; i < 6; i++) {
-    const zTop = 0 - (95 / 6) * (i + 1);
-    const yS = 860 + 168 - (i + 1) * 28;
-    sp.push(`<rect x="${yx(yS)}" y="${zy(zTop)}" width="${28 * scY}" height="4" fill="#e0c888"/>`);
-  }
-
-  // min clear marker
-  const hr = bm.headroom_audit;
-  if (hr?.min_at) {
-    const m = hr.min_at;
+  // trepte curte din court_to_access_steps (origine = cts.y, nu Y860 fix)
+  const cts = bm.court_to_access_steps;
+  const stepsY0 = cts?.y ?? 868;
+  const stepDy = cts?.tread_cm ?? 28;
+  const nCourt = cts?.count ?? 6;
+  const runDy = nCourt * stepDy;
+  const riserC = Math.abs((cts?.to_z_cm ?? -95) - (cts?.from_z_cm ?? 0)) / nCourt;
+  for (let i = 0; i < nCourt; i++) {
+    const zTop = (cts?.from_z_cm ?? 0) - riserC * (i + 1);
+    const yS = stepsY0 + runDy - (i + 1) * stepDy;
+    sp.push(`<rect x="${yx(yS)}" y="${zy(zTop)}" width="${stepDy * scY}" height="4" fill="#e0c888"/>`);
     sp.push(
-      `<line x1="${yx(m.y_cm)}" y1="${zy(m.z_walk_cm)}" x2="${yx(m.y_cm)}" y2="${zy(m.z_obstacle_cm)}" stroke="#c1121f" stroke-width="2"/>`
+      `<text x="${yx(yS)}" y="${zy(zTop) - 2}" font-size="5" fill="#665">T${i + 1} z=${zTop.toFixed(1)}</text>`
+    );
+  }
+  // muchie podest_se Y975 + intrados
+  const podEdge = st.podest_se.y + st.podest_se.dy;
+  const zPodIntr = zPod - floorTh;
+  sp.push(
+    `<line x1="${yx(podEdge)}" y1="${zy(-100)}" x2="${yx(podEdge)}" y2="${zy(zPod + 40)}" stroke="#c1121f" stroke-dasharray="3 2"/>`
+  );
+  sp.push(
+    `<text x="${yx(podEdge) + 2}" y="${zy(zPodIntr)}" font-size="7" fill="#c1121f">muchie palier Y${podEdge} · intrados +${zPodIntr}</text>`
+  );
+  sp.push(
+    `<line x1="${yx(st.podest_se.y)}" y1="${zy(zPodIntr)}" x2="${yx(podEdge)}" y2="${zy(zPodIntr)}" stroke="#a67c52" stroke-width="1.5"/>`
+  );
+
+  // min clear marker — preferă min sub podest pe rampă curte
+  const hr = bm.headroom_audit;
+  const courtMin = hr?.court_under_podest?.min_at;
+  const mark = courtMin || hr?.min_at;
+  const markClear = courtMin ? hr.court_under_podest.min_clear_cm : hr?.min_clear_cm;
+  if (mark) {
+    sp.push(
+      `<line x1="${yx(mark.y_cm)}" y1="${zy(mark.z_walk_cm)}" x2="${yx(mark.y_cm)}" y2="${zy(mark.z_obstacle_cm)}" stroke="#c1121f" stroke-width="2"/>`
     );
     sp.push(
-      `<text x="${yx(m.y_cm) + 4}" y="${(zy(m.z_walk_cm) + zy(m.z_obstacle_cm)) / 2}" font-size="9" fill="#c1121f">min ${hr.min_clear_cm} cm @ Y${m.y_cm} (${svgEsc(m.element)})</text>`
+      `<text x="${yx(mark.y_cm) + 4}" y="${(zy(mark.z_walk_cm) + zy(mark.z_obstacle_cm)) / 2}" font-size="9" fill="#c1121f">min ${markClear} cm @ Y${mark.y_cm} (${svgEsc(mark.element)})</text>`
     );
   }
 
@@ -1369,6 +1588,192 @@ function exportSectionFromModel(v, volume) {
 
   write(
     "outputs/plans/32_v47_a1_access_section.svg",
+    `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${Ws}" height="${Hs}" viewBox="0 0 ${Ws} ${Hs}">\n<rect width="100%" height="100%" fill="#f7f7f5"/>\n${sp.join("\n")}\n</svg>\n`
+  );
+}
+
+/** Plan + secțiune înainte/după deplasarea +8 cm (test H liber sub podest_se) */
+function exportCourtAccessBeforeAfter(v) {
+  const bm = v.basement_cm;
+  const ht = v.heights_cm;
+  const st = v.stair_cm;
+  const ped = v.site_access_cm?.pedestrian;
+  const alley = ped?.path?.segments_cm?.find((s) => /alee|langa_scari/i.test(s.id || "")) ||
+    ped?.path?.segments_cm?.[0];
+  const gate = ped?.gate;
+  const park = v.site_access_cm?.auto?.parking;
+  const riser = ht.riser_cm || 16;
+  const n180 = st.risers_flight_180;
+  const zPod = (bm.absolute_from_grade_cm?.ff_parter_cm ?? 32) + riser * n180;
+  const floorTh = ht.floor_buildup_below_ff_cm ?? 12;
+  const zIntr = zPod - floorTh;
+  const pod = st.podest_se;
+  const podEdge = pod.y + pod.dy;
+
+  function treadGeom(y0, i) {
+    const stepDy = 28;
+    const runDy = 168;
+    const yS = y0 + runDy - (i + 1) * stepDy;
+    const zTop = 0 - (95 / 6) * (i + 1);
+    return { yS, yN: yS + stepDy, zTop, clear: +(zIntr - zTop).toFixed(3) };
+  }
+
+  // —— PLAN cotat zonă acces
+  const S = 0.42;
+  const M = 50;
+  const W = 900;
+  const H = 720;
+  const px = (x) => M + x * S;
+  const py = (y) => 40 + (y - 820) * S;
+  const pl = [];
+  pl.push(
+    `<text x="${W / 2}" y="22" text-anchor="middle" font-size="13" font-weight="600">V47 A1 · zonă acces beci — DUPĂ +8 cm sud (plan cotat)</text>`
+  );
+  pl.push(
+    `<text x="${W / 2}" y="38" text-anchor="middle" font-size="8" fill="#666">poartă · alee 150 · trepte Y868–1036 · protecții · parcări Cloșca neschimbate</text>`
+  );
+  // casă SE
+  pl.push(
+    `<rect x="${px(355)}" y="${py(860)}" width="${325 * S}" height="${0}" stroke="#999"/>`
+  );
+  pl.push(
+    `<rect x="${px(0)}" y="${py(0)}" width="${680 * S}" height="${860 * S}" fill="none" stroke="#bbb" stroke-dasharray="3 2"/>`
+  );
+  // podest_se
+  pl.push(
+    `<rect x="${px(pod.x)}" y="${py(pod.y)}" width="${pod.dx * S}" height="${pod.dy * S}" fill="#c4b496" fill-opacity="0.45" stroke="#8a7355"/>`
+  );
+  pl.push(
+    `<line x1="${px(pod.x)}" y1="${py(podEdge)}" x2="${px(pod.x + pod.dx)}" y2="${py(podEdge)}" stroke="#c1121f" stroke-width="2"/>`
+  );
+  pl.push(
+    `<text x="${px(pod.x + pod.dx + 4)}" y="${py(podEdge)}" font-size="8" fill="#c1121f">muchie palier Y${podEdge}</text>`
+  );
+  // trepte după
+  const cts = bm.court_to_access_steps;
+  for (let i = 0; i < 6; i++) {
+    const t = treadGeom(cts.y, i);
+    pl.push(
+      `<rect x="${px(cts.x)}" y="${py(t.yS)}" width="${cts.dx * S}" height="${28 * S}" fill="${i % 2 ? "#e0c888" : "#f0e2b8"}" stroke="#333"/>`
+    );
+    pl.push(
+      `<text x="${px(cts.x + 2)}" y="${py(t.yS + 14)}" font-size="6">T${i + 1} z=${t.zTop.toFixed(1)} H=${t.yN > pod.y && t.yS < podEdge ? t.clear : "—"}</text>`
+    );
+  }
+  pl.push(
+    `<text x="${px(cts.x)}" y="${py(cts.y) - 4}" font-size="7">trepte Y${cts.y}–${cts.y + cts.dy}</text>`
+  );
+  // palier −95
+  const up = bm.upper_landing;
+  pl.push(
+    `<rect x="${px(up.x)}" y="${py(up.y)}" width="${up.dx * S}" height="${up.dy * S}" fill="#8aa4b8" fill-opacity="0.5" stroke="#1d3557"/>`
+  );
+  pl.push(
+    `<text x="${px(up.x + 2)}" y="${py(up.y + 12)}" font-size="7">palier −95 L=${up.dy} cm → Y${up.y + up.dy}</text>`
+  );
+  // alee
+  if (alley) {
+    pl.push(
+      `<rect x="${px(alley.x)}" y="${py(alley.y)}" width="${alley.dx * S}" height="${alley.dy * S}" fill="#c5b89a" fill-opacity="0.55" stroke="#6b5e45"/>`
+    );
+    pl.push(
+      `<text x="${px(alley.x + 8)}" y="${py(alley.y + 20)}" font-size="8">alee ${alley.dy} cm Y${alley.y}–${alley.y + alley.dy}</text>`
+    );
+    // cotă racord
+    pl.push(
+      `<line x1="${px(cts.x + cts.dx)}" y1="${py(cts.y + cts.dy)}" x2="${px(alley.x + alley.dx)}" y2="${py(alley.y)}" stroke="#2d6a4f" stroke-width="1.5"/>`
+    );
+    pl.push(
+      `<text x="${px(alley.x + alley.dx - 80)}" y="${py(alley.y) - 6}" font-size="7" fill="#2d6a4f">racord 0 cm (continuu)</text>`
+    );
+  }
+  // poartă
+  if (gate?.local_cm) {
+    const g = gate.local_cm;
+    pl.push(
+      `<rect x="${px(g.x)}" y="${py(g.y)}" width="${g.dx * S}" height="${g.dy * S}" fill="#6aaf7a" stroke="#1b4332"/>`
+    );
+    pl.push(
+      `<text x="${px(g.x - 4)}" y="${py(g.y + g.dy / 2)}" text-anchor="end" font-size="7">poartă ${gate.width_cm}×${gate.height_cm}</text>`
+    );
+  }
+  // parcări — zone studiu pe sud (simbolic, cotate din site)
+  if (park) {
+    pl.push(
+      `<text x="${px(40)}" y="${py(1180)}" font-size="8" fill="#555">parcări Cloșca: inset ${park.inset_from_closca_m} m · from_west ${park.from_west_m} m · gap ${park.stall_gap_m} m — neschimbate</text>`
+    );
+  }
+  // cotă separare T2 față de muchie
+  const t2 = treadGeom(cts.y, 1);
+  pl.push(
+    `<text x="${px(cts.x + cts.dx + 6)}" y="${py((t2.yS + podEdge) / 2)}" font-size="7" fill="#1d3557">T2 Y${t2.yS}–${t2.yN}: ${t2.yS - podEdge} cm S de muchie</text>`
+  );
+  const t3 = treadGeom(cts.y, 2);
+  pl.push(
+    `<text x="${px(cts.x + cts.dx + 6)}" y="${py(t3.yS + 10)}" font-size="7" fill="#c1121f">T3 sub palier parțial: H nom. ${t3.clear} cm (țintă ≥190, nu 200)</text>`
+  );
+  pl.push(
+    `<text x="${M}" y="${H - 36}" font-size="7" fill="#444">Justificare alee @ Y${alley?.y}: fața sud rampă = Y${cts.y + cts.dy}; fără distanță arbitrară; staționare = dy alee ${alley?.dy} cm înaintea coborârii; poarta pe aceeași bandă Y.</text>`
+  );
+  pl.push(
+    `<text x="${M}" y="${H - 20}" font-size="7" fill="#444">Înainte: T2 Y972–1000 sub muchie → H=179,667 pe 3 cm. După: T2 în afara palierului. Studii / scară etaj / parcelă = neschimbate.</text>`
+  );
+  write(
+    "outputs/plans/33_v47_a1_court_access_plan_after.svg",
+    `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">\n<rect width="100%" height="100%" fill="#fafafa"/>\n${pl.join("\n")}\n</svg>\n`
+  );
+
+  // —— SECȚIUNE înainte | după
+  const Ws = 1100;
+  const Hs = 520;
+  const scZ = 0.9;
+  const scY = 0.55;
+  const zRef = 200;
+  const zy = (cm) => zRef - cm * scZ;
+  const yx = (ycm, ox) => ox + (ycm - 850) * scY;
+  const sp = [];
+  sp.push(
+    `<text x="${Ws / 2}" y="22" text-anchor="middle" font-size="13" font-weight="600">V47 A1 · secțiune înainte / după (+8 cm sud)</text>`
+  );
+  function drawHalf(ox, y0, title, minClear, minY) {
+    sp.push(`<text x="${ox + 40}" y="48" font-size="11" font-weight="600">${title}</text>`);
+    sp.push(`<line x1="${ox}" y1="${zy(0)}" x2="${ox + 480}" y2="${zy(0)}" stroke="#6d7f5c"/>`);
+    sp.push(
+      `<rect x="${yx(pod.y, ox)}" y="${zy(zPod)}" width="${pod.dy * scY}" height="5" fill="#c4b496"/>`
+    );
+    sp.push(
+      `<line x1="${yx(pod.y, ox)}" y1="${zy(zIntr)}" x2="${yx(podEdge, ox)}" y2="${zy(zIntr)}" stroke="#a67c52"/>`
+    );
+    sp.push(
+      `<line x1="${yx(podEdge, ox)}" y1="${zy(-100)}" x2="${yx(podEdge, ox)}" y2="${zy(180)}" stroke="#c1121f" stroke-dasharray="3 2"/>`
+    );
+    sp.push(`<text x="${yx(podEdge, ox) + 2}" y="${zy(zIntr) - 4}" font-size="7" fill="#c1121f">Y${podEdge}</text>`);
+    for (let i = 0; i < 6; i++) {
+      const t = treadGeom(y0, i);
+      sp.push(
+        `<rect x="${yx(t.yS, ox)}" y="${zy(t.zTop)}" width="${28 * scY}" height="4" fill="#e0c888" stroke="#333"/>`
+      );
+    }
+    if (minClear != null) {
+      sp.push(
+        `<line x1="${yx(minY, ox)}" y1="${zy(0 - (95 / 6) * (minY < y0 + 168 - 56 ? 2 : 3))}" x2="${yx(minY, ox)}" y2="${zy(zIntr)}" stroke="#c1121f" stroke-width="2"/>`
+      );
+      sp.push(
+        `<text x="${yx(minY, ox) + 4}" y="${zy(40)}" font-size="9" fill="#c1121f">min ${minClear} cm</text>`
+      );
+    }
+  }
+  // înainte: T2 overlap → 179.667 @ ~Y973.5
+  drawHalf(40, 860, "ÎNAINTE Y860–1028", 179.667, 973.5);
+  // după: T3 partial → 195.5
+  const afterMin = bm.headroom_audit?.court_under_podest?.min_clear_cm ?? 195.5;
+  const afterY = bm.headroom_audit?.court_under_podest?.min_at?.y_cm ?? 963.5;
+  drawHalf(560, 868, "DUPĂ Y868–1036", afterMin, afterY);
+  sp.push(
+    `<text x="40" y="${Hs - 24}" font-size="8" fill="#444">Intrados podest_se +${zIntr} cm · T2 înainte sub muchie (3 cm) · T2 după: 5 cm separare · T3 după: H nom. 195,5 pe lățimea utilă ≥190 · nu se declară 200</text>`
+  );
+  write(
+    "outputs/plans/34_v47_a1_court_access_section_before_after.svg",
     `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${Ws}" height="${Hs}" viewBox="0 0 ${Ws} ${Hs}">\n<rect width="100%" height="100%" fill="#f7f7f5"/>\n${sp.join("\n")}\n</svg>\n`
   );
 }
@@ -1489,10 +1894,19 @@ Metodă: ${v.areas_cm.useful_recalc_a1?.method}
 
 Notă: coordonarea planșeului (gol doar Y590–860) nu modifică poligonul interior P/E; utilul e reafirmat prin recalcul independent, nu prin copiere.
 
+## Rampă curte + podest_se (test +8 cm sud)
+- Trepte: Y${bm.court_to_access_steps.y}–${bm.court_to_access_steps.y + bm.court_to_access_steps.dy} (6×28, 0→−95)
+- Palier −95: Y${bm.upper_landing.y}–${bm.upper_landing.y + bm.upper_landing.dy} (L=${bm.upper_landing.dy} cm, continuu)
+- Alee/poartă: Y${v.site_access_cm?.pedestrian?.path?.segments_cm?.[0]?.y} (racord 0 cm)
+- Min H sub podest_se (lățime utilă): **${hr?.court_under_podest?.min_clear_cm ?? "n/a"} cm** (țintă ≥190; **nu** se declară 200)
+- Intrados podest_se: +${hr?.podest_se_intrados_cm} · muchie Y${hr?.podest_se_edge_y}
+
 ## Fișiere
 - \`data/building/v47_a1_study.json\`
 - \`outputs/plans/31_v47_a1_subsol_plan.svg\`
 - \`outputs/plans/32_v47_a1_access_section.svg\`
+- \`outputs/plans/33_v47_a1_court_access_plan_after.svg\`
+- \`outputs/plans/34_v47_a1_court_access_section_before_after.svg\`
 - \`outputs/reports/v47_runda_a1.md\`
 - \`viewer/data/volume_v47_a1.json\` → \`?v=v47_a1\`
 
@@ -1528,6 +1942,7 @@ function main() {
 
   exportPlan(study);
   exportSectionFromModel(study, volume);
+  exportCourtAccessBeforeAfter(study);
   writeReport(study, volume);
 
   console.log(
@@ -1542,10 +1957,15 @@ function main() {
         covered_clear: study.basement_cm.a1_checks.headroom_covered_landing,
         shaft: study.basement_cm.open_shaft_cm,
         useful: study.areas_cm.useful_geometric_m2,
+        court_under_podest: study.basement_cm.headroom_audit?.court_under_podest,
+        court_steps: study.basement_cm.court_to_access_steps,
+        alley_y: study.site_access_cm?.pedestrian?.path?.segments_cm?.[0]?.y,
         files: [
           "data/building/v47_a1_study.json",
           "outputs/plans/31_v47_a1_subsol_plan.svg",
           "outputs/plans/32_v47_a1_access_section.svg",
+          "outputs/plans/33_v47_a1_court_access_plan_after.svg",
+          "outputs/plans/34_v47_a1_court_access_section_before_after.svg",
           "outputs/reports/v47_runda_a1.md",
           "viewer/data/volume_v47_a1.json",
         ],
