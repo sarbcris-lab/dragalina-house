@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_study",
-    "generated": "2026-10-14T16:53:08.665Z",
+    "generated": "2026-10-14T17:34:42.553Z",
     "status": "3D_STUDIU_A1",
     "source_plan": "data/building/v47_a1_study.json",
     "based_on": "v47_exact (referință neatinsă)",
@@ -25678,6 +25678,38 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
+      "id": "structura_r180_0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.1634,
+          "y": 9.4902
+        },
+        {
+          "x": 5.4632,
+          "y": 9.503
+        },
+        {
+          "x": 5.508,
+          "y": 8.454
+        },
+        {
+          "x": 5.2082,
+          "y": 8.4412
+        },
+        {
+          "x": 5.1634,
+          "y": 9.4902
+        }
+      ],
+      "z0_m": 0.27999999999999997,
+      "z1_m": 0.42,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Structură rampă 1 20 cm"
+    },
+    {
       "id": "parapet_r180_0",
       "type": "extrude",
       "polygon": [
@@ -25736,6 +25768,38 @@
       "z1_m": 0.64,
       "color": "#5a7488",
       "label": "SCARĂ rampă 1 (nu terasă)"
+    },
+    {
+      "id": "structura_r180_1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.4632,
+          "y": 9.503
+        },
+        {
+          "x": 5.7629,
+          "y": 9.5159
+        },
+        {
+          "x": 5.8077,
+          "y": 8.4668
+        },
+        {
+          "x": 5.508,
+          "y": 8.454
+        },
+        {
+          "x": 5.4632,
+          "y": 9.503
+        }
+      ],
+      "z0_m": 0.44,
+      "z1_m": 0.5800000000000001,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Structură rampă 1 20 cm"
     },
     {
       "id": "parapet_r180_1",
@@ -25798,6 +25862,38 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
+      "id": "structura_r180_2",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.7629,
+          "y": 9.5159
+        },
+        {
+          "x": 6.0626,
+          "y": 9.5287
+        },
+        {
+          "x": 6.1074,
+          "y": 8.4797
+        },
+        {
+          "x": 5.8077,
+          "y": 8.4668
+        },
+        {
+          "x": 5.7629,
+          "y": 9.5159
+        }
+      ],
+      "z0_m": 0.6000000000000001,
+      "z1_m": 0.74,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Structură rampă 1 20 cm"
+    },
+    {
       "id": "parapet_r180_2",
       "type": "extrude",
       "polygon": [
@@ -25856,6 +25952,38 @@
       "z1_m": 0.96,
       "color": "#5a7488",
       "label": "SCARĂ rampă 1 (nu terasă)"
+    },
+    {
+      "id": "structura_r180_3",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.0626,
+          "y": 9.5287
+        },
+        {
+          "x": 6.3623,
+          "y": 9.5415
+        },
+        {
+          "x": 6.4071,
+          "y": 8.4925
+        },
+        {
+          "x": 6.1074,
+          "y": 8.4797
+        },
+        {
+          "x": 6.0626,
+          "y": 9.5287
+        }
+      ],
+      "z0_m": 0.76,
+      "z1_m": 0.8999999999999999,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Structură rampă 1 20 cm"
     },
     {
       "id": "parapet_r180_3",
@@ -25918,6 +26046,38 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
+      "id": "structura_r180_4",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.3623,
+          "y": 9.5415
+        },
+        {
+          "x": 6.6621,
+          "y": 9.5543
+        },
+        {
+          "x": 6.7069,
+          "y": 8.5053
+        },
+        {
+          "x": 6.4071,
+          "y": 8.4925
+        },
+        {
+          "x": 6.3623,
+          "y": 9.5415
+        }
+      ],
+      "z0_m": 0.9200000000000002,
+      "z1_m": 1.06,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Structură rampă 1 20 cm"
+    },
+    {
       "id": "parapet_r180_4",
       "type": "extrude",
       "polygon": [
@@ -25976,6 +26136,38 @@
       "z1_m": 1.28,
       "color": "#5a7488",
       "label": "SCARĂ rampă 1 (nu terasă)"
+    },
+    {
+      "id": "structura_r180_5",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.6621,
+          "y": 9.5543
+        },
+        {
+          "x": 6.9618,
+          "y": 9.5672
+        },
+        {
+          "x": 7.0066,
+          "y": 8.5181
+        },
+        {
+          "x": 6.7069,
+          "y": 8.5053
+        },
+        {
+          "x": 6.6621,
+          "y": 9.5543
+        }
+      ],
+      "z0_m": 1.08,
+      "z1_m": 1.22,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Structură rampă 1 20 cm"
     },
     {
       "id": "parapet_r180_5",
@@ -26038,6 +26230,38 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
+      "id": "structura_r180_6",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.9618,
+          "y": 9.5672
+        },
+        {
+          "x": 7.2615,
+          "y": 9.58
+        },
+        {
+          "x": 7.3063,
+          "y": 8.5309
+        },
+        {
+          "x": 7.0066,
+          "y": 8.5181
+        },
+        {
+          "x": 6.9618,
+          "y": 9.5672
+        }
+      ],
+      "z0_m": 1.2400000000000002,
+      "z1_m": 1.3800000000000001,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Structură rampă 1 20 cm"
+    },
+    {
       "id": "parapet_r180_6",
       "type": "extrude",
       "polygon": [
@@ -26095,6 +26319,7 @@
       "z0_m": 1.48,
       "z1_m": 1.6,
       "color": "#c4b496",
+      "site_layer": "structura",
       "label": "Podest SE (FF=+128 cm)"
     },
     {
@@ -27044,6 +27269,7 @@
       "z0_m": 3.0799999999999996,
       "z1_m": 3.1999999999999997,
       "color": "#e4ddd0",
+      "site_layer": "structura",
       "label": "Palier superior INTERIOR FF etaj"
     },
     {
@@ -30439,7 +30665,7 @@
       "z0_m": -0.304,
       "z1_m": -0.15833333333333333,
       "color": "#e0c888",
-      "site_layer": "curte",
+      "site_layer": "structura",
       "label": "treaptă 1/6 curte engleză z=-15.8 Y1008–1036"
     },
     {
@@ -30470,7 +30696,7 @@
       "z0_m": -0.31666666666666665,
       "z1_m": -0.15833333333333333,
       "color": "#c4b496",
-      "site_layer": "curte",
+      "site_layer": "structura",
       "label": "contratrepă 1/6"
     },
     {
@@ -30501,7 +30727,7 @@
       "z0_m": -0.4623333333333333,
       "z1_m": -0.31666666666666665,
       "color": "#f0e2b8",
-      "site_layer": "curte",
+      "site_layer": "structura",
       "label": "treaptă 2/6 curte engleză z=-31.7 Y980–1008"
     },
     {
@@ -30532,7 +30758,7 @@
       "z0_m": -0.475,
       "z1_m": -0.31666666666666665,
       "color": "#c4b496",
-      "site_layer": "curte",
+      "site_layer": "structura",
       "label": "contratrepă 2/6"
     },
     {
@@ -30563,7 +30789,7 @@
       "z0_m": -0.6206666666666667,
       "z1_m": -0.475,
       "color": "#e0c888",
-      "site_layer": "curte",
+      "site_layer": "structura",
       "label": "treaptă 3/6 curte engleză z=-47.5 Y952–980"
     },
     {
@@ -30594,7 +30820,7 @@
       "z0_m": -0.6333333333333333,
       "z1_m": -0.475,
       "color": "#c4b496",
-      "site_layer": "curte",
+      "site_layer": "structura",
       "label": "contratrepă 3/6"
     },
     {
@@ -30625,7 +30851,7 @@
       "z0_m": -0.7789999999999999,
       "z1_m": -0.6333333333333333,
       "color": "#f0e2b8",
-      "site_layer": "curte",
+      "site_layer": "structura",
       "label": "treaptă 4/6 curte engleză z=-63.3 Y924–952"
     },
     {
@@ -30656,7 +30882,7 @@
       "z0_m": -0.7916666666666666,
       "z1_m": -0.6333333333333333,
       "color": "#c4b496",
-      "site_layer": "curte",
+      "site_layer": "structura",
       "label": "contratrepă 4/6"
     },
     {
@@ -30687,7 +30913,7 @@
       "z0_m": -0.9373333333333334,
       "z1_m": -0.7916666666666667,
       "color": "#e0c888",
-      "site_layer": "curte",
+      "site_layer": "structura",
       "label": "treaptă 5/6 curte engleză z=-79.2 Y896–924"
     },
     {
@@ -30718,7 +30944,7 @@
       "z0_m": -0.9500000000000001,
       "z1_m": -0.7916666666666667,
       "color": "#c4b496",
-      "site_layer": "curte",
+      "site_layer": "structura",
       "label": "contratrepă 5/6"
     },
     {
@@ -30749,7 +30975,7 @@
       "z0_m": -1.0956666666666666,
       "z1_m": -0.95,
       "color": "#f0e2b8",
-      "site_layer": "curte",
+      "site_layer": "structura",
       "label": "treaptă 6/6 curte engleză z=-95.0 Y868–896"
     },
     {
@@ -30780,7 +31006,7 @@
       "z0_m": -1.1083333333333334,
       "z1_m": -0.95,
       "color": "#c4b496",
-      "site_layer": "curte",
+      "site_layer": "structura",
       "label": "contratrepă 6/6"
     },
     {
@@ -30873,6 +31099,7 @@
       "z0_m": -1.1822222222222223,
       "z1_m": -1.1222222222222222,
       "color": "#9aa3ad",
+      "site_layer": "structura",
       "label": "scară subsol călcare 1/8"
     },
     {
@@ -30903,6 +31130,7 @@
       "z0_m": -1.3544444444444446,
       "z1_m": -1.2944444444444445,
       "color": "#8a93a0",
+      "site_layer": "structura",
       "label": "scară subsol călcare 2/8"
     },
     {
@@ -30933,6 +31161,7 @@
       "z0_m": -1.5266666666666666,
       "z1_m": -1.4666666666666666,
       "color": "#9aa3ad",
+      "site_layer": "structura",
       "label": "scară subsol călcare 3/8"
     },
     {
@@ -30963,6 +31192,7 @@
       "z0_m": -1.698888888888889,
       "z1_m": -1.6388888888888888,
       "color": "#8a93a0",
+      "site_layer": "structura",
       "label": "scară subsol călcare 4/8"
     },
     {
@@ -30993,6 +31223,7 @@
       "z0_m": -1.8711111111111112,
       "z1_m": -1.8111111111111111,
       "color": "#9aa3ad",
+      "site_layer": "structura",
       "label": "scară subsol călcare 5/8"
     },
     {
@@ -31023,6 +31254,7 @@
       "z0_m": -2.043333333333333,
       "z1_m": -1.9833333333333332,
       "color": "#8a93a0",
+      "site_layer": "structura",
       "label": "scară subsol călcare 6/8"
     },
     {
@@ -31053,6 +31285,7 @@
       "z0_m": -2.2155555555555555,
       "z1_m": -2.1555555555555554,
       "color": "#9aa3ad",
+      "site_layer": "structura",
       "label": "scară subsol călcare 7/8"
     },
     {
@@ -31083,6 +31316,7 @@
       "z0_m": -2.3877777777777776,
       "z1_m": -2.3277777777777775,
       "color": "#8a93a0",
+      "site_layer": "structura",
       "label": "scară subsol călcare 8/8"
     },
     {
@@ -31113,6 +31347,7 @@
       "z0_m": -2.5,
       "z1_m": -2.3277777777777775,
       "color": "#7a8490",
+      "site_layer": "structura",
       "label": "contratrepă finală → -250"
     },
     {
@@ -31143,6 +31378,7 @@
       "z0_m": -2.65,
       "z1_m": -2.5,
       "color": "#e8c56a",
+      "site_layer": "structura",
       "label": "Y490–600 (110 cm) studiu; Y490–590 sub planșeu; Y590–600 în puț; zid N @ Y477.5"
     },
     {
@@ -31476,7 +31712,8 @@
       "z0_m": -0.3,
       "z1_m": -0.28,
       "color": "#cfc8bc",
-      "opacity": 0.35,
+      "opacity": 0.55,
+      "site_layer": "structura",
       "label": "sandwich intrados_finish 2 cm"
     },
     {
@@ -31586,7 +31823,8 @@
       "z0_m": -0.2,
       "z1_m": 0,
       "color": "#8b8680",
-      "opacity": 0.35,
+      "opacity": 0.55,
+      "site_layer": "structura",
       "label": "sandwich structural_slab 20 cm"
     },
     {
@@ -31881,6 +32119,1246 @@
       "opacity": 0.9,
       "site_layer": "structura",
       "label": "fundație beton E (finit−5, termo 10 afară)"
+    },
+    {
+      "id": "parter_stalp_nw",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.249,
+          "y": 17.9306
+        },
+        {
+          "x": 1.5488,
+          "y": 17.9435
+        },
+        {
+          "x": 1.5616,
+          "y": 17.6437
+        },
+        {
+          "x": 1.2619,
+          "y": 17.6309
+        },
+        {
+          "x": 1.249,
+          "y": 17.9306
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.0799999999999996,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P nw"
+    },
+    {
+      "id": "etaj_stalp_nw",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.249,
+          "y": 17.9306
+        },
+        {
+          "x": 1.5488,
+          "y": 17.9435
+        },
+        {
+          "x": 1.5616,
+          "y": 17.6437
+        },
+        {
+          "x": 1.2619,
+          "y": 17.6309
+        },
+        {
+          "x": 1.249,
+          "y": 17.9306
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E nw"
+    },
+    {
+      "id": "parter_stalp_n_mid",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.4461,
+          "y": 18.0674
+        },
+        {
+          "x": 4.7458,
+          "y": 18.0802
+        },
+        {
+          "x": 4.7587,
+          "y": 17.7805
+        },
+        {
+          "x": 4.4589,
+          "y": 17.7677
+        },
+        {
+          "x": 4.4461,
+          "y": 18.0674
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.0799999999999996,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P n_mid"
+    },
+    {
+      "id": "etaj_stalp_n_mid",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.4461,
+          "y": 18.0674
+        },
+        {
+          "x": 4.7458,
+          "y": 18.0802
+        },
+        {
+          "x": 4.7587,
+          "y": 17.7805
+        },
+        {
+          "x": 4.4589,
+          "y": 17.7677
+        },
+        {
+          "x": 4.4461,
+          "y": 18.0674
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E n_mid"
+    },
+    {
+      "id": "parter_stalp_ne",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.5941,
+          "y": 18.1593
+        },
+        {
+          "x": 6.8939,
+          "y": 18.1721
+        },
+        {
+          "x": 6.9067,
+          "y": 17.8724
+        },
+        {
+          "x": 6.607,
+          "y": 17.8596
+        },
+        {
+          "x": 6.5941,
+          "y": 18.1593
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.0799999999999996,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P ne"
+    },
+    {
+      "id": "etaj_stalp_ne",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.5941,
+          "y": 18.1593
+        },
+        {
+          "x": 6.8939,
+          "y": 18.1721
+        },
+        {
+          "x": 6.9067,
+          "y": 17.8724
+        },
+        {
+          "x": 6.607,
+          "y": 17.8596
+        },
+        {
+          "x": 6.5941,
+          "y": 18.1593
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E ne"
+    },
+    {
+      "id": "parter_stalp_w_ct",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.42,
+          "y": 13.9343
+        },
+        {
+          "x": 1.7197,
+          "y": 13.9471
+        },
+        {
+          "x": 1.7325,
+          "y": 13.6474
+        },
+        {
+          "x": 1.4328,
+          "y": 13.6346
+        },
+        {
+          "x": 1.42,
+          "y": 13.9343
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.0799999999999996,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P w_ct"
+    },
+    {
+      "id": "etaj_stalp_w_ct",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.42,
+          "y": 13.9343
+        },
+        {
+          "x": 1.7197,
+          "y": 13.9471
+        },
+        {
+          "x": 1.7325,
+          "y": 13.6474
+        },
+        {
+          "x": 1.4328,
+          "y": 13.6346
+        },
+        {
+          "x": 1.42,
+          "y": 13.9343
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E w_ct"
+    },
+    {
+      "id": "parter_stalp_e_ct",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.7651,
+          "y": 14.163
+        },
+        {
+          "x": 7.0648,
+          "y": 14.1758
+        },
+        {
+          "x": 7.0777,
+          "y": 13.8761
+        },
+        {
+          "x": 6.7779,
+          "y": 13.8632
+        },
+        {
+          "x": 6.7651,
+          "y": 14.163
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.0799999999999996,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P e_ct"
+    },
+    {
+      "id": "etaj_stalp_e_ct",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.7651,
+          "y": 14.163
+        },
+        {
+          "x": 7.0648,
+          "y": 14.1758
+        },
+        {
+          "x": 7.0777,
+          "y": 13.8761
+        },
+        {
+          "x": 6.7779,
+          "y": 13.8632
+        },
+        {
+          "x": 6.7651,
+          "y": 14.163
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E e_ct"
+    },
+    {
+      "id": "parter_stalp_sw",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5183,
+          "y": 11.6364
+        },
+        {
+          "x": 1.818,
+          "y": 11.6492
+        },
+        {
+          "x": 1.8309,
+          "y": 11.3495
+        },
+        {
+          "x": 1.5311,
+          "y": 11.3367
+        },
+        {
+          "x": 1.5183,
+          "y": 11.6364
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.0799999999999996,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P sw"
+    },
+    {
+      "id": "etaj_stalp_sw",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5183,
+          "y": 11.6364
+        },
+        {
+          "x": 1.818,
+          "y": 11.6492
+        },
+        {
+          "x": 1.8309,
+          "y": 11.3495
+        },
+        {
+          "x": 1.5311,
+          "y": 11.3367
+        },
+        {
+          "x": 1.5183,
+          "y": 11.6364
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E sw"
+    },
+    {
+      "id": "parter_stalp_rein",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.7154,
+          "y": 11.7732
+        },
+        {
+          "x": 5.0151,
+          "y": 11.786
+        },
+        {
+          "x": 5.0279,
+          "y": 11.4863
+        },
+        {
+          "x": 4.7282,
+          "y": 11.4734
+        },
+        {
+          "x": 4.7154,
+          "y": 11.7732
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.0799999999999996,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P rein"
+    },
+    {
+      "id": "etaj_stalp_rein",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.7154,
+          "y": 11.7732
+        },
+        {
+          "x": 5.0151,
+          "y": 11.786
+        },
+        {
+          "x": 5.0279,
+          "y": 11.4863
+        },
+        {
+          "x": 4.7282,
+          "y": 11.4734
+        },
+        {
+          "x": 4.7154,
+          "y": 11.7732
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E rein"
+    },
+    {
+      "id": "parter_stalp_se630",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.8634,
+          "y": 11.8651
+        },
+        {
+          "x": 7.1631,
+          "y": 11.8779
+        },
+        {
+          "x": 7.176,
+          "y": 11.5782
+        },
+        {
+          "x": 6.8762,
+          "y": 11.5653
+        },
+        {
+          "x": 6.8634,
+          "y": 11.8651
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.0799999999999996,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P se630"
+    },
+    {
+      "id": "etaj_stalp_se630",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.8634,
+          "y": 11.8651
+        },
+        {
+          "x": 7.1631,
+          "y": 11.8779
+        },
+        {
+          "x": 7.176,
+          "y": 11.5782
+        },
+        {
+          "x": 6.8762,
+          "y": 11.5653
+        },
+        {
+          "x": 6.8634,
+          "y": 11.8651
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E se630"
+    },
+    {
+      "id": "parter_stalp_s_hol_w",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.7389,
+          "y": 11.2237
+        },
+        {
+          "x": 5.0386,
+          "y": 11.2365
+        },
+        {
+          "x": 5.0514,
+          "y": 10.9368
+        },
+        {
+          "x": 4.7517,
+          "y": 10.9239
+        },
+        {
+          "x": 4.7389,
+          "y": 11.2237
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.0799999999999996,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P s_hol_w"
+    },
+    {
+      "id": "etaj_stalp_s_hol_w",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.7389,
+          "y": 11.2237
+        },
+        {
+          "x": 5.0386,
+          "y": 11.2365
+        },
+        {
+          "x": 5.0514,
+          "y": 10.9368
+        },
+        {
+          "x": 4.7517,
+          "y": 10.9239
+        },
+        {
+          "x": 4.7389,
+          "y": 11.2237
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E s_hol_w"
+    },
+    {
+      "id": "parter_stalp_s_hol_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.8869,
+          "y": 11.3156
+        },
+        {
+          "x": 7.1866,
+          "y": 11.3284
+        },
+        {
+          "x": 7.1995,
+          "y": 11.0287
+        },
+        {
+          "x": 6.8997,
+          "y": 11.0158
+        },
+        {
+          "x": 6.8869,
+          "y": 11.3156
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.0799999999999996,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P s_hol_e"
+    },
+    {
+      "id": "etaj_stalp_s_hol_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.8869,
+          "y": 11.3156
+        },
+        {
+          "x": 7.1866,
+          "y": 11.3284
+        },
+        {
+          "x": 7.1995,
+          "y": 11.0287
+        },
+        {
+          "x": 6.8997,
+          "y": 11.0158
+        },
+        {
+          "x": 6.8869,
+          "y": 11.3156
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E s_hol_e"
+    },
+    {
+      "id": "parter_stalp_se_env",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7431,
+          "y": 18.2085
+        },
+        {
+          "x": 8.0428,
+          "y": 18.2213
+        },
+        {
+          "x": 8.0556,
+          "y": 17.9215
+        },
+        {
+          "x": 7.7559,
+          "y": 17.9087
+        },
+        {
+          "x": 7.7431,
+          "y": 18.2085
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.0799999999999996,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P se_env"
+    },
+    {
+      "id": "etaj_stalp_se_env",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7431,
+          "y": 18.2085
+        },
+        {
+          "x": 8.0428,
+          "y": 18.2213
+        },
+        {
+          "x": 8.0556,
+          "y": 17.9215
+        },
+        {
+          "x": 7.7559,
+          "y": 17.9087
+        },
+        {
+          "x": 7.7431,
+          "y": 18.2085
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E se_env"
+    },
+    {
+      "id": "parter_stalp_sw_env",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6039,
+          "y": 9.6382
+        },
+        {
+          "x": 1.9036,
+          "y": 9.651
+        },
+        {
+          "x": 1.9164,
+          "y": 9.3513
+        },
+        {
+          "x": 1.6167,
+          "y": 9.3385
+        },
+        {
+          "x": 1.6039,
+          "y": 9.6382
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.0799999999999996,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P sw_env"
+    },
+    {
+      "id": "etaj_stalp_sw_env",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6039,
+          "y": 9.6382
+        },
+        {
+          "x": 1.9036,
+          "y": 9.651
+        },
+        {
+          "x": 1.9164,
+          "y": 9.3513
+        },
+        {
+          "x": 1.6167,
+          "y": 9.3385
+        },
+        {
+          "x": 1.6039,
+          "y": 9.6382
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E sw_env"
+    },
+    {
+      "id": "parter_stalp_se_s",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.949,
+          "y": 9.8669
+        },
+        {
+          "x": 7.2487,
+          "y": 9.8797
+        },
+        {
+          "x": 7.2615,
+          "y": 9.58
+        },
+        {
+          "x": 6.9618,
+          "y": 9.5672
+        },
+        {
+          "x": 6.949,
+          "y": 9.8669
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.0799999999999996,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P se_s"
+    },
+    {
+      "id": "etaj_stalp_se_s",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.949,
+          "y": 9.8669
+        },
+        {
+          "x": 7.2487,
+          "y": 9.8797
+        },
+        {
+          "x": 7.2615,
+          "y": 9.58
+        },
+        {
+          "x": 6.9618,
+          "y": 9.5672
+        },
+        {
+          "x": 6.949,
+          "y": 9.8669
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E se_s"
+    },
+    {
+      "id": "parter_stalp_ne_env",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.944,
+          "y": 13.5127
+        },
+        {
+          "x": 8.2437,
+          "y": 13.5256
+        },
+        {
+          "x": 8.2565,
+          "y": 13.2258
+        },
+        {
+          "x": 7.9568,
+          "y": 13.213
+        },
+        {
+          "x": 7.944,
+          "y": 13.5127
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.0799999999999996,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P ne_env"
+    },
+    {
+      "id": "etaj_stalp_ne_env",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.944,
+          "y": 13.5127
+        },
+        {
+          "x": 8.2437,
+          "y": 13.5256
+        },
+        {
+          "x": 8.2565,
+          "y": 13.2258
+        },
+        {
+          "x": 7.9568,
+          "y": 13.213
+        },
+        {
+          "x": 7.944,
+          "y": 13.5127
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E ne_env"
+    },
+    {
+      "id": "parter_grinda_n",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5488,
+          "y": 17.9435
+        },
+        {
+          "x": 6.5941,
+          "y": 18.1593
+        },
+        {
+          "x": 6.607,
+          "y": 17.8596
+        },
+        {
+          "x": 1.5616,
+          "y": 17.6437
+        },
+        {
+          "x": 1.5488,
+          "y": 17.9435
+        }
+      ],
+      "z0_m": 2.7299999999999995,
+      "z1_m": 3.0799999999999996,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "grindă P N"
+    },
+    {
+      "id": "parter_grinda_w",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2619,
+          "y": 17.6309
+        },
+        {
+          "x": 1.5616,
+          "y": 17.6437
+        },
+        {
+          "x": 1.818,
+          "y": 11.6492
+        },
+        {
+          "x": 1.5183,
+          "y": 11.6364
+        },
+        {
+          "x": 1.2619,
+          "y": 17.6309
+        }
+      ],
+      "z0_m": 2.7299999999999995,
+      "z1_m": 3.0799999999999996,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "grindă P W"
+    },
+    {
+      "id": "parter_grinda_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.607,
+          "y": 17.8596
+        },
+        {
+          "x": 6.9067,
+          "y": 17.8724
+        },
+        {
+          "x": 7.1866,
+          "y": 11.3284
+        },
+        {
+          "x": 6.8869,
+          "y": 11.3156
+        },
+        {
+          "x": 6.607,
+          "y": 17.8596
+        }
+      ],
+      "z0_m": 2.7299999999999995,
+      "z1_m": 3.0799999999999996,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "grindă P E X535"
+    },
+    {
+      "id": "parter_grinda_s",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.818,
+          "y": 11.6492
+        },
+        {
+          "x": 4.7154,
+          "y": 11.7732
+        },
+        {
+          "x": 4.7282,
+          "y": 11.4734
+        },
+        {
+          "x": 1.8309,
+          "y": 11.3495
+        },
+        {
+          "x": 1.818,
+          "y": 11.6492
+        }
+      ],
+      "z0_m": 2.7299999999999995,
+      "z1_m": 3.0799999999999996,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "grindă P S dep"
+    },
+    {
+      "id": "parter_grinda_s_hol",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.7389,
+          "y": 11.2237
+        },
+        {
+          "x": 6.8869,
+          "y": 11.3156
+        },
+        {
+          "x": 6.8997,
+          "y": 11.0158
+        },
+        {
+          "x": 4.7517,
+          "y": 10.9239
+        },
+        {
+          "x": 4.7389,
+          "y": 11.2237
+        }
+      ],
+      "z0_m": 2.7299999999999995,
+      "z1_m": 3.0799999999999996,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "grindă P S hol"
+    },
+    {
+      "id": "etaj_placa_structura",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.249,
+          "y": 17.9306
+        },
+        {
+          "x": 8.0428,
+          "y": 18.2213
+        },
+        {
+          "x": 8.4105,
+          "y": 9.6291
+        },
+        {
+          "x": 1.6167,
+          "y": 9.3385
+        },
+        {
+          "x": 1.249,
+          "y": 17.9306
+        }
+      ],
+      "holes": [
+        [
+          {
+            "x": 7.1669,
+            "y": 12.2584
+          },
+          {
+            "x": 7.2806,
+            "y": 9.6008
+          },
+          {
+            "x": 8.3896,
+            "y": 9.6483
+          },
+          {
+            "x": 8.2759,
+            "y": 12.3058
+          },
+          {
+            "x": 7.1669,
+            "y": 12.2584
+          }
+        ]
+      ],
+      "z0_m": 3.0799999999999996,
+      "z1_m": 3.1999999999999997,
+      "color": "#8b8680",
+      "opacity": 0.5,
+      "site_layer": "structura",
+      "label": "planșeu etaj (structură)"
+    },
+    {
+      "id": "etaj_grinda_n",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5488,
+          "y": 17.9435
+        },
+        {
+          "x": 7.7431,
+          "y": 18.2085
+        },
+        {
+          "x": 7.7559,
+          "y": 17.9087
+        },
+        {
+          "x": 1.5616,
+          "y": 17.6437
+        },
+        {
+          "x": 1.5488,
+          "y": 17.9435
+        }
+      ],
+      "z0_m": 5.46,
+      "z1_m": 5.81,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "grindă E N acoperiș"
+    },
+    {
+      "id": "etaj_grinda_w",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2619,
+          "y": 17.6309
+        },
+        {
+          "x": 1.5616,
+          "y": 17.6437
+        },
+        {
+          "x": 1.9036,
+          "y": 9.651
+        },
+        {
+          "x": 1.6039,
+          "y": 9.6382
+        },
+        {
+          "x": 1.2619,
+          "y": 17.6309
+        }
+      ],
+      "z0_m": 5.46,
+      "z1_m": 5.81,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "grindă E W acoperiș"
+    },
+    {
+      "id": "etaj_grinda_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7431,
+          "y": 18.2085
+        },
+        {
+          "x": 8.0428,
+          "y": 18.2213
+        },
+        {
+          "x": 8.2437,
+          "y": 13.5256
+        },
+        {
+          "x": 7.944,
+          "y": 13.5127
+        },
+        {
+          "x": 7.7431,
+          "y": 18.2085
+        }
+      ],
+      "z0_m": 5.46,
+      "z1_m": 5.81,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "grindă E est"
+    },
+    {
+      "id": "acoperis_structura_corp",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.249,
+          "y": 17.9306
+        },
+        {
+          "x": 7.7431,
+          "y": 18.2085
+        },
+        {
+          "x": 8.1107,
+          "y": 9.6163
+        },
+        {
+          "x": 1.6167,
+          "y": 9.3385
+        },
+        {
+          "x": 1.249,
+          "y": 17.9306
+        }
+      ],
+      "z0_m": 5.81,
+      "z1_m": 6.029999999999999,
+      "color": "#5c564e",
+      "opacity": 0.55,
+      "site_layer": "structura",
+      "label": "acoperiș structură (corp)"
     },
     {
       "id": "acces_treapta_0",

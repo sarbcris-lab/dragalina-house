@@ -606,6 +606,7 @@ function main() {
   // Rampă 1 (sud→est): NU e terasă — culoare scară, separat de placa terasă (X≤340)
   const tread = st.tread_cm || 30;
   const nTread180 = n180 - 1;
+  const rampStruct180 = m(st.ramp2_structure_cm || 20);
   for (let i = 0; i < nTread180; i++) {
     const xWest = f180.x + i * tread;
     const zTop = zParter + riser * (i + 1);
@@ -619,6 +620,17 @@ function main() {
       label: "SCARĂ rampă 1 (nu terasă)",
     });
     meshes.push({
+      id: `structura_r180_${i}`,
+      type: "extrude",
+      polygon: rectPoly(xWest, f180.y, tread, st.width_clear_cm),
+      z0_m: zTop - rampStruct180,
+      z1_m: zTop - treadTh,
+      color: "#5a6570",
+      opacity: 0.9,
+      site_layer: "structura",
+      label: `Structură rampă 1 ${st.ramp2_structure_cm || 20} cm`,
+    });
+    meshes.push({
       id: `parapet_r180_${i}`,
       type: "extrude",
       polygon: rectPoly(xWest, f180.y + f180.dy - parapetT, tread, parapetT),
@@ -629,7 +641,7 @@ function main() {
     });
   }
 
-  // Podest SE: față sus = FF + 128 cm (8×16)
+  // Podest SE: față sus = FF + 128 cm (8×16) — placă în Structură
   const zPod = zParter + riser * n180;
   meshes.push({
     id: "podest_se",
@@ -638,6 +650,7 @@ function main() {
     z0_m: zPod - floorTh,
     z1_m: zPod,
     color: "#c4b496",
+    site_layer: "structura",
     label: "Podest SE (FF=+128 cm)",
   });
   meshes.push({
@@ -730,7 +743,7 @@ function main() {
     opacity: 0.88,
   });
 
-  // Palier superior = vestibul INTERIOR sub acoperiș (puț scară), nu podest în aer
+  // Palier superior = vestibul INTERIOR sub acoperiș (puț scară) — în Structură
   meshes.push({
     id: "palier_superior",
     type: "extrude",
@@ -738,6 +751,7 @@ function main() {
     z0_m: zEtaj - floorTh,
     z1_m: zEtaj,
     color: "#e4ddd0",
+    site_layer: "structura",
     label: "Palier superior INTERIOR FF etaj",
   });
   const palWallT = 15;
@@ -1825,7 +1839,7 @@ function main() {
             z0_m: zTop - m(riserCm) * 0.92,
             z1_m: zTop,
             color: i % 2 ? "#f0e2b8" : "#e0c888",
-            site_layer: "curte",
+            site_layer: "structura",
             label: `treaptă ${i + 1}/${nRisers} curte engleză z=${zTopCm.toFixed(1)} Y${yS}–${yS + stepDy}`,
           });
           meshes.push({
@@ -1835,7 +1849,7 @@ function main() {
             z0_m: zTop - m(riserCm),
             z1_m: zTop,
             color: "#c4b496",
-            site_layer: "curte",
+            site_layer: "structura",
             label: `contratrepă ${i + 1}/${nRisers}`,
           });
         }
@@ -1887,6 +1901,7 @@ function main() {
             z0_m: zTop - treadTh,
             z1_m: zTop,
             color: i % 2 ? "#8a93a0" : "#9aa3ad",
+            site_layer: "structura",
             label: `scară subsol călcare ${i + 1}/${stB.treads}`,
           });
         }
@@ -1898,6 +1913,7 @@ function main() {
           z0_m: m(toZcm),
           z1_m: m(lastTopCm),
           color: "#7a8490",
+          site_layer: "structura",
           label: `contratrepă finală → ${toZcm}`,
         });
       }
@@ -1913,6 +1929,7 @@ function main() {
           z0_m: zB - floorThB,
           z1_m: zB,
           color: "#e8c56a",
+          site_layer: "structura",
           label: low?.note || "palier inferior",
         });
       }
@@ -1935,6 +1952,7 @@ function main() {
       const sandwich = bm.floor_sandwich_cm || abs.floor_sandwich_cm || [];
       for (const layer of sandwich) {
         if (!(layer.th_cm > 0)) continue;
+        const isStructSlab = /structural_slab|intrados/i.test(layer.id || "");
         meshes.push({
           id: `sandwich_${layer.id}`,
           type: "extrude",
@@ -1943,7 +1961,8 @@ function main() {
           z0_m: m(layer.z0_cm),
           z1_m: m(layer.z1_cm),
           color: layer.color || "#b0a090",
-          opacity: 0.35,
+          opacity: isStructSlab ? 0.55 : 0.35,
+          ...(isStructSlab ? { site_layer: "structura" } : {}),
           label: `sandwich ${layer.id} ${layer.th_cm} cm`,
         });
       }
@@ -2017,6 +2036,90 @@ function main() {
         });
       }
     }
+  }
+
+  // —— SCHELT PARTER + ETAJ (aceleași noduri ca subsolul; umplutură = zid_* în +Pereți)
+  {
+    const col = 30;
+    const beamH = 0.35;
+    const zBotP = -0.3; // soffit L-1 / capăt stâlpi subsol
+    const zTopP = zEtaj - floorTh; // intrados planșeu etaj
+    const zBotE = zEtaj;
+    const zTopE = roofZ0;
+    const nodes = [
+      { id: "nw", x: 0, y: 0 },
+      { id: "n_mid", x: 320, y: 0 },
+      { id: "ne", x: 535, y: 0 },
+      { id: "w_ct", x: 0, y: 400 },
+      { id: "e_ct", x: 535, y: 400 },
+      { id: "sw", x: 0, y: 630 },
+      { id: "rein", x: 320, y: 630 },
+      { id: "se630", x: 535, y: 630 },
+      { id: "s_hol_w", x: 320, y: 685 },
+      { id: "s_hol_e", x: 535, y: 685 },
+      // colțuri anvelopă sud/est pe bandă încălzită
+      { id: "se_env", x: 650, y: 0 },
+      { id: "sw_env", x: 0, y: 830 },
+      { id: "se_s", x: 535, y: 830 },
+      { id: "ne_env", x: 650, y: 470 },
+    ];
+    function pushPE(id, x, y, dx, dy, z0, z1, label, color) {
+      if (dx < 1 || dy < 1 || z1 <= z0 + 0.02) return;
+      meshes.push({
+        id,
+        type: "extrude",
+        polygon: rectPoly(x, y, dx, dy),
+        z0_m: z0,
+        z1_m: z1,
+        color: color || "#7a7670",
+        opacity: 0.95,
+        site_layer: "structura",
+        label,
+      });
+    }
+    for (const n of nodes) {
+      pushPE(`parter_stalp_${n.id}`, n.x, n.y, col, col, zBotP, zTopP, `stâlp P ${n.id}`, "#6e6a64");
+      pushPE(`etaj_stalp_${n.id}`, n.x, n.y, col, col, zBotE, zTopE, `stâlp E ${n.id}`, "#6e6a64");
+    }
+    // Grizi la intrados etaj (capăt nivel P)
+    const zB0 = zTopP - beamH;
+    pushPE("parter_grinda_n", col, 0, 535 - col, col, zB0, zTopP, "grindă P N", "#5a554e");
+    pushPE("parter_grinda_w", 0, col, col, 630 - col, zB0, zTopP, "grindă P W", "#5a554e");
+    pushPE("parter_grinda_e", 535, col, col, 685 - col, zB0, zTopP, "grindă P E X535", "#5a554e");
+    pushPE("parter_grinda_s", col, 630, 320 - col, col, zB0, zTopP, "grindă P S dep", "#5a554e");
+    pushPE("parter_grinda_s_hol", 320, 685, 215, col, zB0, zTopP, "grindă P S hol", "#5a554e");
+    // Planșeu etaj (FF−floorTh … FF) pe anvelopă, gol pe puț r2
+    const etajSlabHole =
+      rectHoleInside(r2.x + 2, r2.y + 2, r2.dx - 4, r2.dy - 4) ||
+      rectHole(r2.x + 5, r2.y + 5, r2.dx - 10, r2.dy - 10);
+    meshes.push({
+      id: "etaj_placa_structura",
+      type: "extrude",
+      polygon: rectPoly(0, 0, ewCm, nsCm),
+      holes: [etajSlabHole].filter(Boolean),
+      z0_m: zTopP,
+      z1_m: zEtaj,
+      color: "#8b8680",
+      opacity: 0.5,
+      site_layer: "structura",
+      label: "planșeu etaj (structură)",
+    });
+    // Grizi acoperiș + placă acoperiș simplă (corp)
+    const zRb0 = zTopE - beamH;
+    pushPE("etaj_grinda_n", col, 0, 650 - col, col, zRb0, zTopE, "grindă E N acoperiș", "#5a554e");
+    pushPE("etaj_grinda_w", 0, col, col, 830 - col, zRb0, zTopE, "grindă E W acoperiș", "#5a554e");
+    pushPE("etaj_grinda_e", 650, 0, col, 470, zRb0, zTopE, "grindă E est", "#5a554e");
+    meshes.push({
+      id: "acoperis_structura_corp",
+      type: "extrude",
+      polygon: rectPoly(0, 0, 650, 860),
+      z0_m: roofZ0,
+      z1_m: roofZ1,
+      color: "#5c564e",
+      opacity: 0.55,
+      site_layer: "structura",
+      label: "acoperiș structură (corp)",
+    });
   }
 
   // Treptele de acces — ultimele, ca să rămână vizibile peste placă/plintă

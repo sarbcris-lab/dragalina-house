@@ -288,7 +288,7 @@
         id.startsWith("poarta_")
       );
     }
-    /** Schelet beton legat — fără umplutură sono */
+    /** Schelet beton legat L-1 + P + E + scări — fără umplutură sono */
     function isStructuraMesh(m) {
       if (m.site_layer === "umplutura") return false;
       const id = m.id || "";
@@ -297,14 +297,27 @@
         m.site_layer === "structura" ||
         id.startsWith("fundatie_") ||
         id.startsWith("structura_r2_") ||
+        id.startsWith("structura_r180_") ||
         id.startsWith("subsol_stalp_") ||
         id.startsWith("subsol_grinda_") ||
         id.startsWith("subsol_fg_") ||
         id.startsWith("subsol_put_beton") ||
         id.startsWith("subsol_fantana_beton") ||
+        id.startsWith("subsol_scara") ||
+        id.startsWith("subsol_racord_") ||
+        id.startsWith("parter_stalp_") ||
+        id.startsWith("parter_grinda_") ||
+        id.startsWith("etaj_stalp_") ||
+        id.startsWith("etaj_grinda_") ||
+        id === "etaj_placa_structura" ||
+        id === "acoperis_structura_corp" ||
         id === "subsol_intrados_placa" ||
+        id === "subsol_palier_jos" ||
+        id === "podest_se" ||
+        id === "palier_superior" ||
         id.startsWith("subsol_grindă") ||
         id === "subsol_palier_acces" ||
+        id.startsWith("sandwich_structural") ||
         id === "teren_cf" ||
         id.startsWith("amprenta_")
       );
@@ -563,7 +576,7 @@
       tip.className = "meta";
       tip.style.color = "#c4b496";
       tip.innerHTML =
-        "<strong>Straturi subsol:</strong> <em>1 · Structură</em> = beton legat (stâlpi+grinzi+placă+fundație+puț) · <em>2 · + Pereți</em> = + umplutură sono · <em>Doar subsol</em> = tot (pardoseli, scări, curte).";
+        "<strong>Straturi:</strong> <em>1 · Structură</em> = beton L-1+P+E + scări (beci, curte, rampă1/2, podest) · <em>2 · + Pereți</em> = + umplutură sono · <em>Doar subsol</em> = tot L-1.";
       document.getElementById("meta")?.after(tip);
     } else if (isV47) {
       const tip = document.createElement("p");
