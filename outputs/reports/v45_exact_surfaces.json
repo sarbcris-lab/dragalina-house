@@ -1,0 +1,76 @@
+{
+  "envelopeShoelace": 39.125,
+  "wallPartsCm2": {
+    "perete_comun_est": 7687.5,
+    "nisa_dulap_spate": 1500,
+    "nisa_dulap_est": 1187.5,
+    "dorm_baie_nord": 2312.5
+  },
+  "wallsGross": 1.26875,
+  "wallsOverlaps": 0,
+  "openingsVoidCm2": {
+    "baie_usa": 1000,
+    "dorm_usa": 1125
+  },
+  "openingsVoid": 0.2125,
+  "wallsNet": 1.05625,
+  "usefulGeom": 38.06875,
+  "usefulRegulatoryNote": "egală cu util geometric din model; reguli autorizare (POT pe 147 etc.) separate",
+  "dormPrincipal": 11.509375,
+  "dormNisa": 0.84,
+  "bathBase": 7.62,
+  "nicheCut": 1.093125,
+  "bathNet": 6.526875,
+  "terracePlaca": 6.105,
+  "terraceLib": 5.6,
+  "stair": 4.37,
+  "env": 58.48,
+  "comparison_v44": {
+    "useful_net_m2": 37.618125,
+    "terrace_libera_m2": 6.08,
+    "bath_net_m2": 5.001875
+  },
+  "corrections": [
+    {
+      "id": "intrare_vs_frigider",
+      "problem": "Foaia/baleierea intrării (hinge N, sweep X450–535 Y485–570) intersecta frigiderul la Y544.3–609.3 X475–535",
+      "change": "Frigider mutat la X475–535 Y590–655 (+45.7 cm spre sud față de startul inițial Y544.3)",
+      "kept": "Intrare pe X535–565 Y485–575; fără pereți interiori de delimitare reintruși"
+    }
+  ],
+  "warnings": [
+    {
+      "id": "scaun_n_canapea_5",
+      "severity": "critical",
+      "dim_cm": 5,
+      "band": "Y215 canapea → Y220 scaun_n",
+      "note": "Rezerve scaune N la 5 cm de canapeaua închisă; utilizare reală/retragere înghesuită"
+    },
+    {
+      "id": "canapea_desfasurata",
+      "severity": "warn",
+      "note": "Dimensiuni desfăcute NECONFIRMATE — acces baie/dormitor cu canapea desfăcută neverificat"
+    },
+    {
+      "id": "wc_usa_proximitate",
+      "severity": "warn",
+      "note": "Foaie baie pe Y260 vs cadru WC Y255–270; clear cu mâner — schematic, nu «conform»"
+    },
+    {
+      "id": "buc_terasă_montaj",
+      "severity": "warn",
+      "note": "Gol Y680–770: 5 cm față de Y675; rezerve montaj/toc neconfirmate"
+    },
+    {
+      "id": "wc_install_15",
+      "severity": "info",
+      "note": "Grosime cadru 15 cm = ipoteză"
+    },
+    {
+      "id": "passage_vs_construction",
+      "severity": "info",
+      "note": "Goluri construcție ≠ trecere liberă (toc+foaie+mâner)"
+    }
+  ],
+  "generated": "2026-10-13T18:50:37.860Z"
+}

@@ -1,0 +1,180 @@
+{
+  "meta": {
+    "id": "proposals_v01",
+    "version": "0.1",
+    "date": "2026-10-12",
+    "status": "PROPUNERI_COMPARATIVE",
+    "footprint_ref": "footprint_v01",
+    "orientation": "N sus · Dragalina dreapta · Cloșca jos · curte sud",
+    "note": "Coordonate locale: origine = colț SV amprentă (vest × sud/Closca). X→est (Dragalina), Y→nord (vecin)."
+  },
+  "envelope": {
+    "length_ns_m": 9.3,
+    "depth_ew_m": 8.02,
+    "body_ns_m": 6.9,
+    "access_ns_m": 2.4,
+    "wall_ext_m": 0.35,
+    "wall_int_m": 0.15,
+    "levels": [
+      { "id": "parter", "z0_m": 0, "height_m": 3.0 },
+      { "id": "etaj", "z0_m": 3.0, "height_m": 3.0 }
+    ]
+  },
+  "access_zones": {
+    "scara": {
+      "x0": 5.12,
+      "y0": 0,
+      "x1": 8.02,
+      "y1": 2.4,
+      "label": "SCARĂ 6+5+6",
+      "area_m2": 6.96,
+      "note": "Lângă Dragalina, în bandă sud — acces independent fără traversarea terasei"
+    },
+    "palier": {
+      "x0": 3.89,
+      "y0": 0,
+      "x1": 5.12,
+      "y1": 2.4,
+      "label": "PALIER ACCES",
+      "area_m2": 2.95
+    },
+    "terasa": {
+      "x0": 0,
+      "y0": 0,
+      "x1": 3.89,
+      "y1": 2.4,
+      "label": "TERASĂ (semi-nișă)",
+      "area_gross_m2": 9.34,
+      "area_net_m2": 7.9,
+      "dims_net_m": "≈3.19 × 2.10 liber",
+      "note": "Terasă privată per nivel ≠ curtea Cloșca"
+    }
+  },
+  "variants": {
+    "A": {
+      "id": "A_terasa_din_dormitor",
+      "title": "A — Terasă din dormitor (apropiere de schiță)",
+      "summary": "Living+bucătărie pe Dragalina; dormitor spre vest/terasă; baie nord-est. Ușă terasă din dormitor. Scară în bandă sud, palier → ușă living (etaj).",
+      "pros": [
+        "Living luminat pe Dragalina (preferință)",
+        "Dormitor retras + ieșire directă pe terasă",
+        "Aproape de schița dimensională validată"
+      ],
+      "cons": [
+        "Terasă accesată din dormitor, nu din living (relaxare seara trece prin dormitor)",
+        "Baie pe calcan nord — lumină doar pe Dragalina/vest dacă se poate"
+      ],
+      "terrace_from": "dormitor",
+      "rooms": [
+        {
+          "id": "living_buc",
+          "label": "LIVING + BUCĂTĂRIE",
+          "x0": 3.89,
+          "y0": 2.75,
+          "x1": 7.67,
+          "y1": 8.95,
+          "area_m2": 23.42,
+          "note": "Geamuri pe Dragalina; bucătărie pe peretele est"
+        },
+        {
+          "id": "dormitor",
+          "label": "DORMITOR",
+          "x0": 0.35,
+          "y0": 2.75,
+          "x1": 3.89,
+          "y1": 6.55,
+          "area_m2": 13.45,
+          "note": "Ușă culisantă → terasă; vitraj fix spre terasă"
+        },
+        {
+          "id": "baie",
+          "label": "BAIE",
+          "x0": 0.35,
+          "y0": 6.55,
+          "x1": 3.89,
+          "y1": 8.95,
+          "area_m2": 8.5,
+          "note": "Walk-in + WC; mașină spălat în nișă"
+        }
+      ],
+      "doors": [
+        { "id": "usa_apt", "from": "palier", "to": "living_buc", "w_m": 0.9 },
+        { "id": "usa_dorm", "from": "living_buc", "to": "dormitor", "w_m": 0.8 },
+        { "id": "usa_baie", "from": "living_buc", "to": "baie", "w_m": 0.8 },
+        { "id": "usa_terasa", "from": "dormitor", "to": "terasa", "w_m": 1.2, "type": "culisantă" }
+      ],
+      "furniture": [
+        { "room": "living_buc", "name": "CANAPEA", "w": 2.1, "d": 0.9 },
+        { "room": "living_buc", "name": "MASĂ", "w": 1.6, "d": 0.8 },
+        { "room": "dormitor", "name": "PAT", "w": 1.6, "d": 2.0 },
+        { "room": "dormitor", "name": "DULAP", "w": 2.2, "d": 0.6 }
+      ]
+    },
+    "B": {
+      "id": "B_terasa_din_living",
+      "title": "B — Terasă din living (+ geam curte)",
+      "summary": "Living deschis și spre terasă/curte; dormitor pe nord (liniștit); baie între dormitor și living. Ușă terasă din living. Aceeași scară/palier.",
+      "pros": [
+        "Terasă folosită din living — mai natural pentru închiriere",
+        "Geam living și spre vest/curte (preferință CERINTE)",
+        "Dormitor pe nord, mai privat față de bandă acces"
+      ],
+      "cons": [
+        "Living trece pe lângă zona de noapte sau baia e tampon",
+        "Dormitor fără ieșire directă pe terasă"
+      ],
+      "terrace_from": "living",
+      "rooms": [
+        {
+          "id": "living_buc",
+          "label": "LIVING + BUCĂTĂRIE",
+          "x0": 0.35,
+          "y0": 2.75,
+          "x1": 7.67,
+          "y1": 5.85,
+          "area_m2": 22.69,
+          "note": "Geam Dragalina + ușă/geam spre terasă (sud-vest)"
+        },
+        {
+          "id": "dormitor",
+          "label": "DORMITOR",
+          "x0": 0.35,
+          "y0": 6.0,
+          "x1": 4.55,
+          "y1": 8.95,
+          "area_m2": 12.39,
+          "note": "Pe nord; vitraj vest dacă urbanismul permite"
+        },
+        {
+          "id": "baie",
+          "label": "BAIE",
+          "x0": 4.55,
+          "y0": 6.0,
+          "x1": 7.67,
+          "y1": 8.95,
+          "area_m2": 9.2,
+          "note": "Tampon între living și dormitor; lumină pe Dragalina"
+        }
+      ],
+      "doors": [
+        { "id": "usa_apt", "from": "palier", "to": "living_buc", "w_m": 0.9 },
+        { "id": "usa_dorm", "from": "living_buc", "to": "dormitor", "w_m": 0.8 },
+        { "id": "usa_baie", "from": "living_buc", "to": "baie", "w_m": 0.8 },
+        { "id": "usa_terasa", "from": "living_buc", "to": "terasa", "w_m": 1.2, "type": "culisantă" }
+      ],
+      "furniture": [
+        { "room": "living_buc", "name": "CANAPEA", "w": 2.1, "d": 0.9 },
+        { "room": "living_buc", "name": "MASĂ", "w": 1.6, "d": 0.8 },
+        { "room": "dormitor", "name": "PAT", "w": 1.6, "d": 2.0 },
+        { "room": "dormitor", "name": "DULAP", "w": 2.2, "d": 0.6 }
+      ]
+    }
+  },
+  "shared_rules": {
+    "two_independent_apts": true,
+    "private_terrace_each": true,
+    "stair_no_cross_terrace": true,
+    "courtyard_closca_not_shared_terrace": true,
+    "parking_preference": "1 Dragalina + 1 Cloșca — de validat geometric ulterior"
+  }
+}

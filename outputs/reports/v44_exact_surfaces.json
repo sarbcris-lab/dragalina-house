@@ -1,0 +1,37 @@
+{
+  "envelopeShoelace": 38.8025,
+  "wallPartsCm2": {
+    "dormitor_est": 4531.25,
+    "nisa_dulap_spate": 1500,
+    "nisa_dulap_est": 1062.5,
+    "dorm_baie_nord": 2312.5,
+    "baie_est": 2812.5,
+    "tv_wall": 1750
+  },
+  "wallsGross": 1.396875,
+  "wallsOverlaps": 0,
+  "openingsVoidCm2": {
+    "baie_usa": 1000,
+    "dorm_usa": 1125
+  },
+  "openingsVoid": 0.2125,
+  "wallsNet": 1.184375,
+  "usefulNet": 37.618125,
+  "dormPrincipal": 11.509375,
+  "dormNisa": 0.72,
+  "dormNisaWalls": 0.25625,
+  "dormNetApprox": 12.229375000000001,
+  "bathBase": 5.9625,
+  "nicheCut": 0.960625,
+  "bathNet": 5.001875,
+  "terracePlaca": 6.6,
+  "terraceLib": 6.08,
+  "stair": 4.37,
+  "env": 58.48,
+  "comparison_v43": {
+    "useful_net_m2": 39.21975,
+    "envelope_m2": 40.3535,
+    "terrace_libera_m2": 4.576
+  },
+  "generated": "2026-10-13T16:08:02.018Z"
+}

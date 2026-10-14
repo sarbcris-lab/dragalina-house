@@ -1,0 +1,312 @@
+{
+  "meta": {
+    "source_plan": "inputs/cadastru/plan_amplasament_54602.png",
+    "source_cf": "inputs/cadastru/CF_54602_Turda_extras_2026-10-07.pdf",
+    "streets": {
+      "dragalina": "DREAPTA (est) — latura 1-2-3-4-5; C1 pe limită",
+      "closca": "JOS (sud) — latura 10-1; curte către Cloșca"
+    },
+    "generated": "2026-10-12T11:48:31.961Z"
+  },
+  "metrics": {
+    "area_m2": 145.741,
+    "area_error_m2": 1.259,
+    "close_error_m": 0,
+    "bbox_m": {
+      "width": 8.822,
+      "depth": 18.521
+    },
+    "dragalina_edge": "1-2-3-4-5",
+    "dragalina_length_m": 18.538,
+    "closca_edge": "10-1",
+    "closca_length_m": 7.933,
+    "max_edge_length_error_m": 0.0008
+  },
+  "neighbors_from_plan": {
+    "51827": "NV",
+    "62808": "lângă Dragalina / E",
+    "66033": "lângă Cloșca / S"
+  },
+  "vertices_m": [
+    {
+      "id": 1,
+      "x": 8.822,
+      "y": 0
+    },
+    {
+      "id": 2,
+      "x": 8.804,
+      "y": 0.418
+    },
+    {
+      "id": 3,
+      "x": 8.375,
+      "y": 10.459
+    },
+    {
+      "id": 4,
+      "x": 8.363,
+      "y": 10.737
+    },
+    {
+      "id": 5,
+      "x": 8.03,
+      "y": 18.521
+    },
+    {
+      "id": 6,
+      "x": 7.804,
+      "y": 18.505
+    },
+    {
+      "id": 7,
+      "x": 0,
+      "y": 17.936
+    },
+    {
+      "id": 8,
+      "x": 0.011,
+      "y": 17.706
+    },
+    {
+      "id": 9,
+      "x": 0.625,
+      "y": 5.328
+    },
+    {
+      "id": 10,
+      "x": 0.889,
+      "y": 0
+    },
+    {
+      "id": 1,
+      "x": 8.822,
+      "y": 0
+    }
+  ],
+  "edges": [
+    {
+      "from": 1,
+      "to": 2,
+      "length_cf_m": 0.418,
+      "length_drawn_m": 0.418,
+      "length_error_m": 0.0004,
+      "role": "DRAGALINA",
+      "a": {
+        "x": 8.822,
+        "y": 0
+      },
+      "b": {
+        "x": 8.804,
+        "y": 0.418
+      }
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "length_cf_m": 10.051,
+      "length_drawn_m": 10.05,
+      "length_error_m": 0.0008,
+      "role": "DRAGALINA",
+      "a": {
+        "x": 8.804,
+        "y": 0.418
+      },
+      "b": {
+        "x": 8.375,
+        "y": 10.459
+      }
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "length_cf_m": 0.278,
+      "length_drawn_m": 0.278,
+      "length_error_m": 0.0003,
+      "role": "DRAGALINA",
+      "a": {
+        "x": 8.375,
+        "y": 10.459
+      },
+      "b": {
+        "x": 8.363,
+        "y": 10.737
+      }
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "length_cf_m": 7.791,
+      "length_drawn_m": 7.791,
+      "length_error_m": 0.0001,
+      "role": "DRAGALINA",
+      "a": {
+        "x": 8.363,
+        "y": 10.737
+      },
+      "b": {
+        "x": 8.03,
+        "y": 18.521
+      }
+    },
+    {
+      "from": 5,
+      "to": 6,
+      "length_cf_m": 0.226,
+      "length_drawn_m": 0.227,
+      "length_error_m": 0.0006,
+      "role": "NORD",
+      "a": {
+        "x": 8.03,
+        "y": 18.521
+      },
+      "b": {
+        "x": 7.804,
+        "y": 18.505
+      }
+    },
+    {
+      "from": 6,
+      "to": 7,
+      "length_cf_m": 7.825,
+      "length_drawn_m": 7.825,
+      "length_error_m": 0.0003,
+      "role": "NORD",
+      "a": {
+        "x": 7.804,
+        "y": 18.505
+      },
+      "b": {
+        "x": 0,
+        "y": 17.936
+      }
+    },
+    {
+      "from": 7,
+      "to": 8,
+      "length_cf_m": 0.23,
+      "length_drawn_m": 0.23,
+      "length_error_m": 0.0003,
+      "role": "VEST",
+      "a": {
+        "x": 0,
+        "y": 17.936
+      },
+      "b": {
+        "x": 0.011,
+        "y": 17.706
+      }
+    },
+    {
+      "from": 8,
+      "to": 9,
+      "length_cf_m": 12.393,
+      "length_drawn_m": 12.393,
+      "length_error_m": 0.0002,
+      "role": "VEST",
+      "a": {
+        "x": 0.011,
+        "y": 17.706
+      },
+      "b": {
+        "x": 0.625,
+        "y": 5.328
+      }
+    },
+    {
+      "from": 9,
+      "to": 10,
+      "length_cf_m": 5.335,
+      "length_drawn_m": 5.335,
+      "length_error_m": 0.0005,
+      "role": "VEST",
+      "a": {
+        "x": 0.625,
+        "y": 5.328
+      },
+      "b": {
+        "x": 0.889,
+        "y": 0
+      }
+    },
+    {
+      "from": 10,
+      "to": 1,
+      "length_cf_m": 7.933,
+      "length_drawn_m": 7.933,
+      "length_error_m": 0,
+      "role": "CLOSCA",
+      "a": {
+        "x": 0.889,
+        "y": 0
+      },
+      "b": {
+        "x": 8.822,
+        "y": 0
+      }
+    }
+  ],
+  "existing_building_c1": {
+    "vertices_m": [
+      {
+        "id": 5,
+        "x": 8.03,
+        "y": 18.521
+      },
+      {
+        "id": 6,
+        "x": 7.804,
+        "y": 18.505
+      },
+      {
+        "id": 7,
+        "x": 0,
+        "y": 17.936
+      },
+      {
+        "id": 8,
+        "x": 0.011,
+        "y": 17.706
+      },
+      {
+        "id": 9,
+        "x": 0.625,
+        "y": 5.328
+      },
+      {
+        "id": "B",
+        "x": 2.469,
+        "y": 8.325
+      },
+      {
+        "id": "C",
+        "x": 5.461,
+        "y": 8.543
+      },
+      {
+        "id": "D",
+        "x": 5.383,
+        "y": 10.241
+      },
+      {
+        "id": 3,
+        "x": 8.375,
+        "y": 10.459
+      },
+      {
+        "id": 4,
+        "x": 8.363,
+        "y": 10.737
+      },
+      {
+        "id": 5,
+        "x": 8.03,
+        "y": 18.521
+      }
+    ],
+    "area_m2": 76.05,
+    "area_cf_m2": 76,
+    "note": "C1 pe Dragalina (dreapta) + N + V; trepte către Cloșca (jos).",
+    "status": "DIN_PLAN_AMPLASAMENT"
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "envelopeShoelace": 39.01,
+  "wallPartsCm2": {
+    "perete_comun_est": 7687.5,
+    "nisa_dulap_spate": 1500,
+    "nisa_dulap_est": 1187.5,
+    "dorm_baie_nord": 2312.5,
+    "ecran_frigider": 750
+  },
+  "wallsGross": 1.34375,
+  "wallsOverlaps": 0,
+  "openingsVoidCm2": {
+    "baie_usa": 1000,
+    "dorm_usa": 1125
+  },
+  "openingsVoid": 0.2125,
+  "wallsNet": 1.13125,
+  "usefulGeom": 37.87875,
+  "usefulRegulatoryNote": "egală cu util geometric din model; reguli autorizare (POT pe 147 etc.) separate",
+  "dormPrincipal": 11.509375,
+  "dormNisa": 0.84,
+  "bathBase": 7.62,
+  "nicheCut": 1.093125,
+  "bathNet": 6.526875,
+  "terracePlaca": 16.95,
+  "terraceLib": 16.095,
+  "stair": 4.485,
+  "env": 58.48,
+  "comparison_v45": {
+    "useful_net_m2": 38.06875,
+    "terrace_libera_m2": 5.6,
+    "bath_net_m2": 6.526875
+  },
+  "corrections": [
+    {
+      "id": "palier_plus_10_nord",
+      "change": "palier superior Y470–590 (120 cm); living_palier Y440–470"
+    },
+    {
+      "id": "intrare_plus_10_nord",
+      "change": "gol intrare Y475–565"
+    },
+    {
+      "id": "dungile_albe_scara",
+      "change": "Identificat: goluri de desen (offset +10 vest pe trepte + inset palier). Corectat: trepte X565–670, parapet X670–680, palier X565."
+    },
+    {
+      "id": "ecran_frigider",
+      "change": "perete scurt X475–535 Y565–577.5 (60×12.5); maschează frigiderul dinspre intrare; fără vestibul"
+    },
+    {
+      "id": "v46r2_buc_est",
+      "change": "buc_est Y470–860; gol intrare Y475–565 pe racord corect"
+    },
+    {
+      "id": "v46r2_dining_45",
+      "change": "masă Ø100 @ 515,325; scaune pe diagonale (~45°); scaun W cardinal eliminat"
+    },
+    {
+      "id": "v46r2_dus_60",
+      "change": "glisantă est; privit est dreapta=sud; gol deschis 70 cm"
+    },
+    {
+      "id": "v46r2_clearances",
+      "change": "recalculate 2D; eliminate 290 cm / warning fals scaun N–canapea"
+    },
+    {
+      "id": "v46r3_pocket_study",
+      "change": "3 sisteme pocket modelate cu casete; fezabilitate: 1× NOT_FEASIBLE, 2× CONDITIONAL"
+    },
+    {
+      "id": "v46r3_dorm_fit",
+      "change": "noptiere 40×35; TV dorm Y500+; dulap glisant util~63; gol terasă X120–270"
+    },
+    {
+      "id": "v46r3_mep",
+      "change": "PRANA dorm+living; AC studiu; extract baie + hotă separate"
+    },
+    {
+      "id": "v46r4_fitout_mep",
+      "change": "baie/dorm/living/buc/terasă/intrare: fitout + MEP/hidro/electrice ca rezerve; canapea gabarit desfăcut; gol terasă rămâne PROBĂ; pocket neschimbat"
+    },
+    {
+      "id": "v46r5_geometry_fixes",
+      "change": "TV living consolă; noptiere N/S; duș acces sud+șine; WC vest+casetă dorm CONDITIONAL; TV/AC dorm fețe reale; intrare/buc în contur; dining AABB rotit; îngroșare 0.15375 m²"
+    },
+    {
+      "id": "v46r6_feedback",
+      "change": "AC out vest; TV≠casetă (regulă+consolă/solid); WC sud baie; bagaje SV; dulap intrare 30×70; podest=115 ca scara"
+    },
+    {
+      "id": "v46r6b_layout_tweaks",
+      "change": "pat−20N; fără bagaje; TV centrate+întărire; dulap_intrare vest de frigider (era overlap=«cocotat»); fără depozitare_baie_inalt"
+    },
+    {
+      "id": "v46r6c_entry_etaj",
+      "change": "gol_intrare si pe etaj; dulap_intrare Y410 (nu langa frigider)"
+    },
+    {
+      "id": "v46r6d_no_shoe_cabinet",
+      "change": "eliminat dulap_intrare (pantofi)"
+    },
+    {
+      "id": "v46r7_parter_terrace_entry",
+      "change": "intrare parter pe fost buc_terasa; terasă X0–565 Y675–975 (S neacoperit); parapet; etaj păstrează intrare scară"
+    },
+    {
+      "id": "v46r7b_landing_parapet_gap",
+      "change": "palier X210-340 Y680-975; parapet sud intrerupt pe latimea celor 2 scari"
+    },
+    {
+      "id": "v46r7c_etaj_freeze",
+      "change": "eliminat spill parapet/mobilier terasă parter pe etaj; etaj_frozen snapshot; terrace_by_level[1] lock"
+    },
+    {
+      "id": "v46r7d_terrace_south_socle",
+      "change": "terasă Y675-1055 peste trepte; soclu mozaic pe elevație; etaj neschimbat"
+    },
+    {
+      "id": "v46r7e_no_parapet_left_stairs_stay",
+      "change": "eliminat parapet sud-vest lângă scări; entry_steps readus Y975"
+    },
+    {
+      "id": "v46r7f_parapet_both_sides_steps_only",
+      "change": "parapet sud stânga restaurat; acces doar pe latimea treptelor"
+    },
+    {
+      "id": "v46r7g_steps_visible",
+      "change": "terasa opreste Y975; 2 trepte sud vizibile; fara entry_landing overlay"
+    },
+    {
+      "id": "restore_r7g",
+      "change": "restaurat ultima variantă bună r7g; anulat pachetul r8"
+    }
+  ],
+  "warnings": [
+    {
+      "id": "parter_etaj_entries_differ",
+      "severity": "info",
+      "note": "Parter și etaj au intrări pe fețe diferite (vest terasă vs est scară) — intenționat r7"
+    },
+    {
+      "id": "pocket_bath_dorm_wc",
+      "severity": "critical",
+      "note": "Pocket baie←dorm NEFEZABIL cu WC pe poziția aprobată; studiu batantă pe același gol"
+    },
+    {
+      "id": "fridge_gap_2_5",
+      "severity": "warn",
+      "dim_cm": 2.5,
+      "note": "2,5 cm ecran–frigider = ipoteză montaj, NECONFIRMATĂ"
+    },
+    {
+      "id": "path_entry_chairs",
+      "severity": "warn",
+      "note": "Traseu intrare cu scaune ocupate încă strâns (~51 cm în r2)"
+    },
+    {
+      "id": "wc_to_nisa_17_5",
+      "severity": "info",
+      "dim_cm": 17.5,
+      "note": "WC–lateral nișă dulap 17,5 cm"
+    },
+    {
+      "id": "assemblies_unconfirmed",
+      "severity": "warn",
+      "note": "Alcătuiri perete/planșeu/fonic — REZERVE NECONFIRMATE"
+    },
+    {
+      "id": "terrace_door_probe",
+      "severity": "info",
+      "note": "Gol dorm–terasă X120–270 = PROBĂ; baseline X140–290"
+    },
+    {
+      "id": "prana_ac_reserves",
+      "severity": "warn",
+      "note": "PRANA/AC = studiu/rezerve; extract baie + hotă separate obligatorii"
+    },
+    {
+      "id": "parcel_vs_cf",
+      "severity": "info",
+      "note": "Poligon ~145,7 m² vs 147 m² CF — problemă deschisă; amplasare/urbanism NECONFIRMATE"
+    },
+    {
+      "id": "fridge_gap_2_5",
+      "severity": "warn",
+      "dim_cm": 2.5,
+      "note": "gap ecran–frigider 2,5 cm IPOTEZĂ"
+    },
+    {
+      "id": "sofa_open_overlap_table",
+      "severity": "info",
+      "note": "Canapea desfăcută fără overlap masă"
+    },
+    {
+      "id": "assemblies_unconfirmed",
+      "severity": "warn",
+      "note": "Alcătuiri / Rw / structură NECONFIRMATE"
+    },
+    {
+      "id": "parcel_vs_cf",
+      "severity": "info",
+      "note": "Poligon≠CF — urbanism deschis"
+    },
+    {
+      "id": "tv_thicken_local",
+      "severity": "info",
+      "note": "TV pe casetă doar cu întărire locală perete (aplicată ca rezervă geometrică 15 cm)"
+    },
+    {
+      "id": "terrace_expand_urbanism",
+      "severity": "warn",
+      "note": "Terasă parter extinsă pe zona scării — verificare POT/amplasare/urbanism NECONFIRMATĂ"
+    }
+  ],
+  "open_issues": [
+    "pocket baie←dorm: batantă de detaliat (pocket nefezabil cu WC aprobat)",
+    "pocket living/dorm CONDITIONAL",
+    "TV: îngroșare locală dacă ecranul cere mai mult pe peretele comun",
+    "AC outdoor vest — distanțe vecini/PRANA NECONFIRMATE",
+    "gap frigider 2,5 cm IPOTEZĂ",
+    "gol terasă dorm = PROBĂ",
+    "alcătuiri/urbanism NECONFIRMATE",
+    "terasă parter extinsă — urbanism/POT deschis",
+    "parter vs etaj: intrări pe fețe diferite",
+    "pocket baie←dorm: batantă de detaliat",
+    "alcătuiri/urbanism NECONFIRMATE"
+  ],
+  "generated": "2026-10-14T05:14:34.959Z"
+}

@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "version": "1.0",
+    "status": "streets_dragalina_right_closca_bottom"
+  },
+  "confirmed": {
+    "cf": "54602 Turda",
+    "area_from_acts_m2": 172,
+    "area_measured_m2": 147,
+    "existing_built_ground_m2": 76,
+    "perimeter_segments_m": [
+      {
+        "from": 1,
+        "to": 2,
+        "length": 0.418
+      },
+      {
+        "from": 2,
+        "to": 3,
+        "length": 10.051
+      },
+      {
+        "from": 3,
+        "to": 4,
+        "length": 0.278
+      },
+      {
+        "from": 4,
+        "to": 5,
+        "length": 7.791
+      },
+      {
+        "from": 5,
+        "to": 6,
+        "length": 0.226
+      },
+      {
+        "from": 6,
+        "to": 7,
+        "length": 7.825
+      },
+      {
+        "from": 7,
+        "to": 8,
+        "length": 0.23
+      },
+      {
+        "from": 8,
+        "to": 9,
+        "length": 12.393
+      },
+      {
+        "from": 9,
+        "to": 10,
+        "length": 5.335
+      },
+      {
+        "from": 10,
+        "to": 1,
+        "length": 7.933
+      }
+    ]
+  },
+  "streets": {
+    "dragalina": "DREAPTA (est) — latura 1-2-3-4-5; C1 pe limită",
+    "closca": "JOS (sud) — latura 10-1; curte către Cloșca"
+  },
+  "metrics": {
+    "area_m2": 145.741,
+    "area_error_m2": 1.259,
+    "close_error_m": 0,
+    "bbox_m": {
+      "width": 8.822,
+      "depth": 18.521
+    },
+    "dragalina_edge": "1-2-3-4-5",
+    "dragalina_length_m": 18.538,
+    "closca_edge": "10-1",
+    "closca_length_m": 7.933,
+    "max_edge_length_error_m": 0.0008
+  },
+  "neighbors_from_plan": {
+    "51827": "NV",
+    "62808": "lângă Dragalina / E",
+    "66033": "lângă Cloșca / S"
+  }
+}

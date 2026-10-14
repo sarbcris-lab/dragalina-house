@@ -1,0 +1,934 @@
+{
+  "meta": {
+    "id": "v44_exact",
+    "based_on": "v43_exact rev3 geometry intent + V44 brief",
+    "status": "GEOMETRIE_V44",
+    "rev": 1,
+    "units_source": "cm",
+    "coords": "origine colț exterior NV; X→est (Dragalina); Y→sud (Cloșca)",
+    "envelope_preserved": "680 × 860 cm neschimbat — nu extins",
+    "ff_definition": "FF = fața SUPERIOARĂ a pardoselii finite; grosimile se modelează sub această cotă",
+    "parcel_polygon_status": "aproximativ (145,741 m² reconstruit vs 147 m² declarați) — ipoteză neschimbată",
+    "comparison_baseline": "v43_exact"
+  },
+  "envelope_cm": {
+    "ew": 680,
+    "ns": 860
+  },
+  "wall_ext_cm": 30,
+  "wall_int_cm": 12.5,
+  "levels": 2,
+  "heights_cm": {
+    "note": "FF→FF 288 = 255+6+15+3+2+5+2. FF = top finish. Neschimbat față de V43.",
+    "clear_to_false_ceiling_cm": 255,
+    "false_ceiling_cm": 6,
+    "structural_slab_cm": 15,
+    "structural_slab_status": "ipoteză structurist",
+    "insulation_under_screed_cm": 3,
+    "heating_pipes_zone_cm": 2,
+    "screed_above_pipes_cm": 5,
+    "finish_complete_cm": 2,
+    "floor_buildup_below_ff_cm": 12,
+    "ff_to_ff_cm": 288,
+    "ff_check_sum": "255+6+15+3+2+5+2=288",
+    "stair_risers_ff": 18,
+    "riser_cm": 16,
+    "wall_to_soffit_cm": 261,
+    "entry_steps_to_terrace": 2,
+    "entry_step_riser_cm": 16,
+    "entry_steps_status": "ipoteză — cotă teren neconfirmată; +32 cm față de teren dacă 2×16",
+    "z_parter_ff_note": "zParter = 2 × riser = ipoteză elevație, nu măsurătoare"
+  },
+  "envelope_notes": {
+    "palier_nord_wall_cm": 12.5,
+    "palier_nord_status": "alcătuire neconfirmată",
+    "palier_nord_if_30cm": "Impact +17,5 cm pe ușă/palier dacă se trece la 30 cm — neschimbat acum",
+    "dorm_separation": "Geometrie V44; încadrare garsonieră / separare — cu arhitectul"
+  },
+  "walls_cm": [
+    {
+      "id": "nord",
+      "x": 0,
+      "y": 0,
+      "dx": 680,
+      "dy": 30,
+      "kind": "ext"
+    },
+    {
+      "id": "vest",
+      "x": 0,
+      "y": 30,
+      "dx": 30,
+      "dy": 600,
+      "kind": "ext",
+      "note": "Y30–630; se racordează la dormitor_sud"
+    },
+    {
+      "id": "est_living",
+      "x": 650,
+      "y": 30,
+      "dx": 30,
+      "dy": 435,
+      "kind": "ext"
+    },
+    {
+      "id": "sud_bucatarie",
+      "x": 360,
+      "y": 830,
+      "dx": 175,
+      "dy": 30,
+      "kind": "ext"
+    },
+    {
+      "id": "dormitor_sud",
+      "x": 0,
+      "y": 630,
+      "dx": 360,
+      "dy": 30,
+      "kind": "ext",
+      "note": "V44: mutat la Y630; terasă începe Y660"
+    },
+    {
+      "id": "dormitor_est",
+      "x": 347.5,
+      "y": 267.5,
+      "dx": 12.5,
+      "dy": 362.5,
+      "kind": "int",
+      "note": "Scurtat: Y267.5–630; racord la dormitor_sud fără goluri duble"
+    },
+    {
+      "id": "nisa_dulap_spate",
+      "x": 30,
+      "y": 182.5,
+      "dx": 120,
+      "dy": 12.5,
+      "kind": "int",
+      "note": "spate nișă dulap (în fosta amprentă baie)"
+    },
+    {
+      "id": "nisa_dulap_est",
+      "x": 150,
+      "y": 182.5,
+      "dx": 12.5,
+      "dy": 85,
+      "kind": "int",
+      "note": "lateral est nișă; Y182.5–267.5"
+    },
+    {
+      "id": "dorm_baie_nord",
+      "x": 162.5,
+      "y": 255,
+      "dx": 185,
+      "dy": 12.5,
+      "kind": "int",
+      "note": "Rest perete N dormitor: X162.5–347.5; X30–150 eliminat (deschidere nișă)"
+    },
+    {
+      "id": "baie_est",
+      "x": 295,
+      "y": 30,
+      "dx": 12.5,
+      "dy": 225,
+      "kind": "int",
+      "note": "Mutat de la X230 la X295; baie bază 265×225"
+    },
+    {
+      "id": "tv_wall",
+      "x": 347.5,
+      "y": 115,
+      "dx": 12.5,
+      "dy": 140,
+      "kind": "int",
+      "note": "Perete TV pe linia dormitor_est; Y115–255 (după nișa mașinii Y30–105). hol_ne eliminat."
+    },
+    {
+      "id": "buc_est",
+      "x": 535,
+      "y": 480,
+      "dx": 30,
+      "dy": 380,
+      "kind": "ext"
+    },
+    {
+      "id": "palier_nord",
+      "x": 535,
+      "y": 465,
+      "dx": 145,
+      "dy": 12.5,
+      "kind": "ext",
+      "assembly_status": "neconfirmat"
+    },
+    {
+      "id": "terasa_est",
+      "x": 330,
+      "y": 660,
+      "dx": 30,
+      "dy": 200,
+      "kind": "ext",
+      "note": "Y660–860; gol buc_terasa Y670–760 lasă 10+90+10 până la blat Y770"
+    }
+  ],
+  "openings_cm": [
+    {
+      "id": "baie_usa",
+      "x": 295,
+      "y": 155,
+      "dx": 12.5,
+      "dy": 80,
+      "construction_clear_cm": 80,
+      "passage_clear_cm": 70,
+      "system": "batanta_TBD",
+      "leaf": {
+        "width_cm": 75,
+        "thickness_cm": 4,
+        "swing": "into_bath_west",
+        "hinge": "north",
+        "hinge_x": 295,
+        "hinge_y": 155,
+        "closed_along": "în gol, X295, Y155→230",
+        "open_leaf": {
+          "x0": 295,
+          "y0": 155,
+          "x1": 220,
+          "y1": 155
+        }
+      },
+      "access_check": {
+        "approach_corridor_cm": 40,
+        "approach_note": "culoar X307.5–347.5 (40 cm) între nișa MS și peretele TV — SUB 70 cm; semnalat",
+        "status": "trecere îngustă spre ușă — nu mascată"
+      }
+    },
+    {
+      "id": "dorm_usa",
+      "x": 347.5,
+      "y": 277,
+      "dx": 12.5,
+      "dy": 90,
+      "construction_clear_cm": 90,
+      "passage_clear_cm": 80,
+      "leaf": {
+        "width_cm": 85,
+        "thickness_cm": 4,
+        "swing": "into_bedroom_west",
+        "hinge": "north",
+        "hinge_x": 347.5,
+        "hinge_y": 277,
+        "closed_along": "în gol, X347.5, Y277→367",
+        "open_leaf": {
+          "x0": 347.5,
+          "y0": 277,
+          "x1": 262.5,
+          "y1": 277
+        },
+        "note": "Balama N; deschidere spre vest (dormitor); patul începe Y420 — gap ~53 cm"
+      },
+      "access_check": {
+        "vs_bed": "pat Y420–588; foaie deschisă pe Y277 — fără intersecție",
+        "clear_along_east_wall_cm": 53,
+        "status": "OK față de pat; vechiul gol N eliminat"
+      }
+    },
+    {
+      "id": "dorm_terasa",
+      "x": 140,
+      "y": 630,
+      "dx": 150,
+      "dy": 30,
+      "construction_clear_cm": 150,
+      "passage_clear_cm": 140,
+      "note": "pe noul dormitor_sud; X140 DX150 păstrat pentru test"
+    },
+    {
+      "id": "buc_terasa",
+      "x": 330,
+      "y": 670,
+      "dx": 30,
+      "dy": 90,
+      "construction_clear_cm": 90,
+      "passage_clear_cm": 80,
+      "frame_cm": 5,
+      "leaf": {
+        "width_cm": 85,
+        "thickness_cm": 4,
+        "swing": "into_kitchen",
+        "hinge": "north",
+        "hinge_x": 360,
+        "hinge_y": 670,
+        "closed_along": "pe fața est X360, Y670→755",
+        "open_leaf": {
+          "x0": 360,
+          "y0": 670,
+          "x1": 445,
+          "y1": 670
+        },
+        "note": "Balama N; foaie pe Y670 X360–445. Blat sud Y770 — fără intersecție. 10 cm zid Y660–670 + 90 gol + 10 cm Y760–770."
+      },
+      "access_check": {
+        "sweep_vs_blat_sud": "fără intersecție (foaie Y670 vs blat Y770)",
+        "sweep_vs_corner_L": "colț blat_est∩blat_sud X475–535 Y770 — în afara baleierii",
+        "construction_vs_passage": "gol montaj 90 ≠ trecere liberă 90; cu toc ~80 cm",
+        "status": "balama nord OK; blat pe toată lățimea bucătăriei restabilit"
+      }
+    },
+    {
+      "id": "intrare",
+      "x": 565,
+      "y": 465,
+      "dx": 95,
+      "dy": 12.5,
+      "construction_clear_cm": 95,
+      "passage_clear_cm": 80,
+      "leaf": {
+        "width_cm": 85,
+        "thickness_cm": 4,
+        "swing": "into_living_north",
+        "hinge": "west",
+        "hinge_x": 565,
+        "hinge_y": 465,
+        "closed_along": "în gol, pe Y465, X565→650",
+        "open_leaf": {
+          "x0": 565,
+          "y0": 465,
+          "x1": 565,
+          "y1": 380
+        }
+      }
+    },
+    {
+      "id": "geam_est",
+      "x": 650,
+      "y": 105,
+      "dx": 30,
+      "dy": 205
+    }
+  ],
+  "interior_polygon_cm": {
+    "note": "Contur INTERIOR anvelopă (include amprenta pereților interiori). Util net = shoelace − reuniune pereți int (−goluri).",
+    "vertices": [
+      [
+        30,
+        30
+      ],
+      [
+        650,
+        30
+      ],
+      [
+        650,
+        465
+      ],
+      [
+        535,
+        465
+      ],
+      [
+        535,
+        830
+      ],
+      [
+        360,
+        830
+      ],
+      [
+        360,
+        630
+      ],
+      [
+        30,
+        630
+      ],
+      [
+        30,
+        30
+      ]
+    ]
+  },
+  "rooms_cm": [
+    {
+      "id": "baie",
+      "label": "BAIE",
+      "x": 30,
+      "y": 30,
+      "dx": 265,
+      "dy": 225,
+      "floor": "#d4e6e9",
+      "note": "dreptunghi bază 265×225; net = bază − nișă dulap (vezi areas)"
+    },
+    {
+      "id": "nisa_dulap",
+      "label": "NIȘĂ DULAP",
+      "x": 30,
+      "y": 195,
+      "dx": 120,
+      "dy": 60,
+      "floor": "#e9e0d5",
+      "counts_as": "dormitor",
+      "note": "acces din dormitor spre sud; nu e hol"
+    },
+    {
+      "id": "nisa_ms",
+      "label": "NIȘĂ MS+US",
+      "x": 307.5,
+      "y": 30,
+      "dx": 65,
+      "dy": 75,
+      "floor": "#dde3e8",
+      "counts_as": "tehnic",
+      "not_storage": true,
+      "note": "rezervă 65×75 liberă; mascări în afara acestei amprente"
+    },
+    {
+      "id": "dormitor",
+      "label": "DORMITOR",
+      "x": 30,
+      "y": 267.5,
+      "dx": 317.5,
+      "dy": 362.5,
+      "floor": "#e9e0d5",
+      "note": "dreptunghi principal; + nișă dulap separat în areas"
+    },
+    {
+      "id": "living",
+      "label": "LIVING",
+      "x": 360,
+      "y": 30,
+      "dx": 290,
+      "dy": 435,
+      "floor": "#e8efe4",
+      "note": "fără hol; vest până la X360 (față est tv_wall / dormitor_est)"
+    },
+    {
+      "id": "culoar_baie",
+      "label": "CULOAR→BAIE",
+      "x": 307.5,
+      "y": 105,
+      "dx": 40,
+      "dy": 150,
+      "floor": "#e8e8e4",
+      "note": "X307.5–347.5 × Y105–255 = 40 cm — TRECere ÎNGUSTĂ semnalată"
+    },
+    {
+      "id": "legatura_lb",
+      "label": "LEGĂTURĂ L–B",
+      "x": 360,
+      "y": 465,
+      "dx": 175,
+      "dy": 85,
+      "floor": "#e8efe4"
+    },
+    {
+      "id": "bucatarie",
+      "label": "BUCĂTĂRIE",
+      "x": 360,
+      "y": 550,
+      "dx": 175,
+      "dy": 280,
+      "floor": "#efe4d8"
+    },
+    {
+      "id": "terasa",
+      "label": "TERASĂ",
+      "x": 0,
+      "y": 660,
+      "dx": 330,
+      "dy": 200,
+      "floor": "#dfe8d8",
+      "outdoor": true,
+      "measure": "contur_placa"
+    },
+    {
+      "id": "scara",
+      "label": "SCARĂ",
+      "x": 565,
+      "y": 480,
+      "dx": 115,
+      "dy": 380,
+      "floor": "#dde6e9",
+      "outdoor_access": true
+    }
+  ],
+  "parapets_cm": [
+    {
+      "id": "terasa_parapet_sud",
+      "x": 0,
+      "y": 850,
+      "dx": 330,
+      "dy": 10,
+      "h": 105,
+      "note": "latură liberă sud"
+    },
+    {
+      "id": "terasa_parapet_vest",
+      "x": 0,
+      "y": 660,
+      "dx": 10,
+      "dy": 190,
+      "h": 105,
+      "note": "latură liberă vest; N=dormitor_sud, E=terasa_est"
+    }
+  ],
+  "areas_cm": {
+    "method": "shoelace(anvelopă) − reuniune pereți int; camere din poligoane — nu valori preluate",
+    "useful_interior_m2": 37.618125,
+    "terrace_placa_m2": 6.6,
+    "terrace_libera_m2": 6.08,
+    "terrace_libera_formula": "(330−10)×(200−10)/10000 = 6,08",
+    "envelope_gross_m2": 58.48,
+    "envelope_interior_shoelace_m2": 38.8025,
+    "interior_walls_gross_m2": 1.396875,
+    "interior_walls_overlaps_m2": 0,
+    "interior_walls_openings_void_m2": 0.2125,
+    "interior_walls_net_m2": 1.184375,
+    "useful_interior_net_m2": 37.618125,
+    "decomposition": "38.8025 − 1.1844 = 37.6181 m²",
+    "dorm_principal_m2": 11.509375,
+    "dorm_nisa_m2": 0.72,
+    "bath_base_m2": 5.9625,
+    "bath_niche_cut_m2": 0.960625,
+    "bath_net_m2": 5.001875,
+    "stair_band_m2": 4.37,
+    "wall_parts_cm2": {
+      "dormitor_est": 4531.25,
+      "nisa_dulap_spate": 1500,
+      "nisa_dulap_est": 1062.5,
+      "dorm_baie_nord": 2312.5,
+      "baie_est": 2812.5,
+      "tv_wall": 1750
+    },
+    "openings_void_cm2": {
+      "baie_usa": 1000,
+      "dorm_usa": 1125
+    }
+  },
+  "furniture_cm": [
+    {
+      "id": "pat",
+      "x": 40,
+      "y": 420,
+      "dx": 208,
+      "dy": 168,
+      "h": 45,
+      "color": "#c4a882",
+      "zone": "dormitor",
+      "note": "Y420–588; ușă dorm Y277–367 — gap 53 cm"
+    },
+    {
+      "id": "dulap",
+      "x": 30,
+      "y": 195,
+      "dx": 120,
+      "dy": 60,
+      "h": 220,
+      "color": "#a89070",
+      "zone": "nisa_dulap",
+      "facing": "south",
+      "access": "din_dormitor_spre_sud",
+      "clear_front_cm": 12.5,
+      "note": "120×60 în nișă; uși spre sud; adâncime liberă până la Y267.5 = 12,5 cm prag/finisaj — STRÂMT pentru deschidere uși"
+    },
+    {
+      "id": "dus",
+      "x": 40,
+      "y": 40,
+      "dx": 120,
+      "dy": 90,
+      "h": 2,
+      "color": "#b8d4d8",
+      "zone": "baie",
+      "facing": "east",
+      "use_zone": {
+        "x": 160,
+        "y": 40,
+        "dx": 60,
+        "dy": 90
+      }
+    },
+    {
+      "id": "wc",
+      "x": 40,
+      "y": 140,
+      "dx": 70,
+      "dy": 40,
+      "h": 40,
+      "color": "#e8eef0",
+      "zone": "baie",
+      "facing": "east",
+      "parts": {
+        "tank_west_cm": 25,
+        "bowl_east_cm": 45
+      },
+      "use_zone": {
+        "x": 110,
+        "y": 135,
+        "dx": 75,
+        "dy": 50
+      },
+      "note": "70×40 pe X; use vs lavoar verificate"
+    },
+    {
+      "id": "lavoar",
+      "x": 200,
+      "y": 200,
+      "dx": 60,
+      "dy": 45,
+      "h": 85,
+      "color": "#d0d8dc",
+      "zone": "baie",
+      "facing": "north",
+      "use_zone": {
+        "x": 200,
+        "y": 155,
+        "dx": 60,
+        "dy": 45
+      },
+      "note": "SE baie; față nord; lângă ușă dar nu pe axul golului Y155–235"
+    },
+    {
+      "id": "masina_ms_us",
+      "x": 310,
+      "y": 35,
+      "dx": 60,
+      "dy": 65,
+      "h": 85,
+      "color": "#9aa3a8",
+      "zone": "nisa_ms",
+      "facing": "east",
+      "not_storage": true,
+      "niche_clear_cm": {
+        "x": 307.5,
+        "y": 30,
+        "dx": 65,
+        "dy": 75
+      },
+      "pull_out_cm": 65,
+      "note": "aparat inset în rezervă 65×75; hublou est; scoatere spre est în living; NU depozitare"
+    },
+    {
+      "id": "canapea",
+      "x": 555,
+      "y": 45,
+      "dx": 90,
+      "dy": 170,
+      "h": 75,
+      "color": "#7a8f6a",
+      "zone": "living"
+    },
+    {
+      "id": "tv",
+      "x": 360,
+      "y": 130,
+      "dx": 12,
+      "dy": 100,
+      "h": 80,
+      "color": "#2a2e33",
+      "zone": "living",
+      "note": "pe fața estică a tv_wall (X360)"
+    },
+    {
+      "id": "masa",
+      "x": 420,
+      "y": 280,
+      "dx": 70,
+      "dy": 110,
+      "h": 74,
+      "color": "#8b7355",
+      "zone": "living"
+    },
+    {
+      "id": "scaun_w",
+      "x": 375,
+      "y": 315,
+      "dx": 40,
+      "dy": 45,
+      "h": 45,
+      "color": "#7a6548",
+      "zone": "living",
+      "kind": "chair",
+      "pose": "in_use"
+    },
+    {
+      "id": "scaun_e1",
+      "x": 495,
+      "y": 295,
+      "dx": 45,
+      "dy": 45,
+      "h": 45,
+      "color": "#7a6548",
+      "zone": "living",
+      "kind": "chair",
+      "pose": "in_use"
+    },
+    {
+      "id": "scaun_e2",
+      "x": 495,
+      "y": 340,
+      "dx": 45,
+      "dy": 45,
+      "h": 45,
+      "color": "#7a6548",
+      "zone": "living",
+      "kind": "chair",
+      "pose": "in_use"
+    },
+    {
+      "id": "frigider",
+      "x": 475,
+      "y": 550,
+      "dx": 60,
+      "dy": 65,
+      "h": 180,
+      "color": "#c5c9cc",
+      "zone": "bucatarie"
+    },
+    {
+      "id": "blat_est",
+      "x": 475,
+      "y": 615,
+      "dx": 60,
+      "dy": 180,
+      "h": 90,
+      "color": "#d4c4a8",
+      "zone": "bucatarie",
+      "draw_order": 1
+    },
+    {
+      "id": "blat_sud",
+      "x": 360,
+      "y": 770,
+      "dx": 175,
+      "dy": 60,
+      "h": 90,
+      "color": "#d4c4a8",
+      "zone": "bucatarie",
+      "draw_order": 1,
+      "note": "V44 test: pe toată lățimea bucătăriei; colț L cu blat_est"
+    },
+    {
+      "id": "msv",
+      "x": 480,
+      "y": 625,
+      "dx": 50,
+      "dy": 50,
+      "h": 85,
+      "color": "#b0b6ba",
+      "zone": "bucatarie",
+      "draw_order": 2
+    },
+    {
+      "id": "chiuveta",
+      "x": 480,
+      "y": 690,
+      "dx": 50,
+      "dy": 40,
+      "h": 90,
+      "color": "#cfd6da",
+      "zone": "bucatarie",
+      "draw_order": 2
+    },
+    {
+      "id": "plita",
+      "x": 480,
+      "y": 745,
+      "dx": 50,
+      "dy": 45,
+      "h": 90,
+      "color": "#4a4e52",
+      "zone": "bucatarie",
+      "draw_order": 2
+    }
+  ],
+  "warnings_cm": [
+    {
+      "id": "culoar_baie_40",
+      "severity": "critical",
+      "dim_cm": 40,
+      "band": "X307.5–347.5 Y105–255",
+      "note": "Trecere living→ușă baie doar 40 cm — sub 70 cm util"
+    },
+    {
+      "id": "gap_ms_tv_10",
+      "severity": "critical",
+      "dim_cm": 10,
+      "band": "Y105–115 între nișa MS și tv_wall",
+      "note": "Nu e traseu nord util; circulația trebuie pe culoarul de 40 cm sau ocol est"
+    },
+    {
+      "id": "dulap_clear_12_5",
+      "severity": "warn",
+      "dim_cm": 12.5,
+      "band": "Y255–267.5 în fața dulapului",
+      "note": "Adâncime liberă în fața ușilor dulap = grosime perete eliminată; uși dulap necesită spațiu în dormitor la deschidere"
+    },
+    {
+      "id": "buc_gol_90_not_passage",
+      "severity": "info",
+      "dim_cm": 80,
+      "note": "Gol montaj 90 cm → trecere ~80 cm cu toc; nu 90 liber"
+    }
+  ],
+  "bath_check": {
+    "base_rect_m2": 5.9625,
+    "niche_cut_m2": 0.960625,
+    "net_approx_m2": 5.001875,
+    "wc_body_cm": "70×40 facing est",
+    "lavoar": "60×45 @ X200/Y200",
+    "door": "Y155–235 pe X295; swing vest în baie",
+    "verdict": "baie ~5,00 m² net după scăderea nișei; obiecte reorganizate"
+  },
+  "dorm_check": {
+    "principal_rect_cm": "317.5×362.5",
+    "principal_m2": 11.509375,
+    "niche_floor_m2": 0.72,
+    "note": "nu folosi 12,23/12,36 — recalcul din poligoane"
+  },
+  "washer_check": {
+    "niche_clear_cm": "65×75",
+    "appliance_cm": "60×65 inset",
+    "facing": "east",
+    "pull_out_into": "living",
+    "not_storage": true,
+    "connections": "rezervă — apă/evacuare pe perete baie_est sau N"
+  },
+  "storage_inventory": {
+    "interior": [
+      {
+        "id": "dulap_nisa",
+        "size_cm": "120×60"
+      },
+      {
+        "id": "blaturi_buc",
+        "note": "est + sud pe toată lățimea"
+      }
+    ],
+    "excluded": [
+      {
+        "id": "masina_ms_us",
+        "reason": "aparat — nu depozitare"
+      }
+    ],
+    "exterior_under_stair": {
+      "primary_door": {
+        "id": "gol_usa_depozit",
+        "clear_height_cm": 123,
+        "status": "acces jos"
+      },
+      "alternative_door": {
+        "id": "gol_usa_depozit_alt",
+        "y0": 620,
+        "dy": 90,
+        "w_cm": 90,
+        "clear_min_cm": 204,
+        "ramp_structure_cm": 20
+      }
+    }
+  },
+  "stair_cm": {
+    "note": "18×16. Neschimbat față de V43 (scara/bandă).",
+    "riser_cm": 16,
+    "risers_total_from_ff": 18,
+    "risers_flight_180": 8,
+    "risers_flight_330": 10,
+    "tread_cm": 30,
+    "width_clear_cm": 105,
+    "parapet_h_cm": 105,
+    "parapet_thick_cm": 10,
+    "band_x": 565,
+    "band_dx": 115,
+    "podest_height_above_ff_cm": 128,
+    "palier_sup_height_above_ff_cm": 288,
+    "entry_steps": {
+      "covered": false,
+      "steps": 2,
+      "riser_cm": 16,
+      "riser_status": "ipoteză",
+      "x": 210,
+      "y": 990,
+      "dx": 130,
+      "dy": 60
+    },
+    "palier_parter": {
+      "covered": false,
+      "z": "ff_parter",
+      "x": 0,
+      "y": 860,
+      "dx": 355,
+      "dy": 130,
+      "pre_flight_extra_cm": 15
+    },
+    "flight_180": {
+      "covered": false,
+      "going_length_cm": 210,
+      "treads_between_landings": 7,
+      "risers": 8,
+      "x": 355,
+      "y": 860,
+      "dx": 210,
+      "dy": 130
+    },
+    "podest_se": {
+      "covered": false,
+      "x": 565,
+      "y": 860,
+      "dx": 115,
+      "dy": 130,
+      "z_above_ff_cm": 128
+    },
+    "ramp2": {
+      "covered": true,
+      "going_length_cm": 270,
+      "treads_between_landings": 9,
+      "risers": 10,
+      "x": 565,
+      "y": 590,
+      "dx": 115,
+      "dy": 270
+    },
+    "palier_superior": {
+      "x": 567.5,
+      "y": 480,
+      "dx": 110,
+      "dy": 110,
+      "z_above_ff_cm": 288
+    },
+    "storage_under": {
+      "under_ramp2": true,
+      "under_palier_intrare": true,
+      "under_flight_180": false,
+      "under_podest_se": false,
+      "door_low": {
+        "w_cm": 90,
+        "clear_h_cm": 123,
+        "face": "sud"
+      },
+      "door_alt_high": {
+        "w_cm": 90,
+        "clear_h_cm_min": 204,
+        "clear_h_cm_max": 236,
+        "ramp_structure_cm": 20,
+        "face": "est",
+        "x": 668,
+        "y0": 620,
+        "dy": 90
+      },
+      "ramp2_structure_cm": 20
+    },
+    "ramp2_structure_cm": 20
+  },
+  "covers_cm": {
+    "terrace": true,
+    "kitchen": true,
+    "ramp2": true,
+    "entry_steps": false,
+    "palier_parter": false,
+    "flight_180": false,
+    "podest_se": false
+  },
+  "site_check": {
+    "parcel_area_reconstructed_m2": 145.741,
+    "parcel_area_declared_m2": 147,
+    "parcel_status": "aproximativ",
+    "claim_no_exit": "amplasare neschimbată față de V43; SE ambiguu pe contur"
+  }
+}

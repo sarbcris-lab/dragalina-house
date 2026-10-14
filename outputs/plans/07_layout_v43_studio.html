@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ro">
+<meta charset="utf-8"/>
+<title>Dragalina · Layout V43 iterativ</title>
+<style>
+  body{font:15px/1.5 "IBM Plex Sans",Segoe UI,sans-serif;margin:0;background:#f7f5ef;color:#26383c}
+  header{padding:1rem 1.25rem;background:#e5ece1;border-bottom:1px solid #c5d0bf}
+  main{display:grid;grid-template-columns:1fr 1fr;gap:0;height:calc(100vh - 64px)}
+  iframe,object{width:100%;height:100%;border:0;background:#fff}
+  .panel{overflow:auto;border-right:1px solid #ccc;padding:0}
+  .side{overflow:auto}
+  code{background:#eee;padding:0.1em 0.35em;border-radius:3px}
+  ol{margin:0.5rem 0 0 1.2rem}
+  .hint{padding:0.75rem 1.25rem;font-size:0.9rem;background:#fff8e7;border-bottom:1px solid #e8d9a8}
+</style>
+<header>
+  <strong>Layout V43 — iterare dimensiuni</strong>
+  · sursă <a href="../inputs/Audit_V43_dimensiuni_si_cazare.html" target="_blank">Audit_V43</a>
+  · plan regenerat <code>outputs/plans/07_layout_v43.svg</code>
+</header>
+<div class="hint">
+  <b>Cum modificăm:</b> editezi <code>data/building/layout_v43.json</code> → secțiunea <code>tune</code>
+  (ex. <code>envelope_ew_cm</code>, <code>dorm_d_cm</code>, <code>wall_ext_cm</code>) →
+  <code>npm run layout</code> → refresh aici.
+  Lanțurile sud/vest trebuie să închidă gabaritul (verificare pe plan).
+</div>
+<main>
+  <div class="panel"><object data="./07_layout_v43.svg" type="image/svg+xml">plan</object></div>
+  <div class="side"><iframe src="../inputs/Audit_V43_dimensiuni_si_cazare.html" title="Audit V43"></iframe></div>
+</main>
+</html>

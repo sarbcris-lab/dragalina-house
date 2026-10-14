@@ -1,0 +1,170 @@
+{
+  "meta": {
+    "id": "layout_v43",
+    "version": "0.1",
+    "status": "IPOTEZA_DE_LUCRU_ITERATIVA",
+    "source": "inputs/Audit_V43_dimensiuni_si_cazare.html",
+    "date": "2026-10-13",
+    "coords": "origine = colț exterior NV; X→est (Dragalina); Y→sud (Cloșca); unități cm în source, m în geometry",
+    "note": "Modifică valorile din `tune` (sau rooms/walls) → npm run layout. Nu e proiect autorizabil."
+  },
+  "tune": {
+    "comment": "Reglează aici — regenerează cu npm run layout",
+    "envelope_ew_cm": 680,
+    "envelope_ns_cm": 860,
+    "wall_ext_cm": 30,
+    "wall_int_cm": 15,
+    "stair_band_cm": 130,
+    "level_height_cm": 304,
+    "terrace_depth_cm": 153,
+    "dorm_w_cm": 300,
+    "dorm_d_cm": 407,
+    "bath_w_cm": 200,
+    "bath_d_cm": 225,
+    "kitchen_w_cm": 190,
+    "kitchen_d_cm": 280,
+    "living_main_w_cm": 270,
+    "living_main_d_cm": 375,
+    "hall_clear_cm": 120,
+    "entry_clear_cm": 95,
+    "door_clear_cm": 80,
+    "terrace_door_dorm_cm": 150,
+    "terrace_door_kitchen_cm": 95,
+    "east_window_cm": 205
+  },
+  "geometry": {
+    "envelope_m": {
+      "ew": 6.8,
+      "ns": 8.6,
+      "area_m2": 58.48
+    },
+    "walls_m": {
+      "ext": 0.3,
+      "int": 0.15
+    },
+    "level_height_m": 3.04,
+    "rooms": [
+      {
+        "id": "baie",
+        "label": "BAIE",
+        "x0": 0.3,
+        "y0": 0.3,
+        "x1": 2.3,
+        "y1": 2.55,
+        "area_m2": 4.5
+      },
+      {
+        "id": "hol",
+        "label": "HOL",
+        "x0": 2.45,
+        "y0": 0.3,
+        "x1": 3.65,
+        "y1": 2.55,
+        "note": "120 cm liber",
+        "area_m2": 2.7
+      },
+      {
+        "id": "dormitor",
+        "label": "DORMITOR",
+        "x0": 0.3,
+        "y0": 2.7,
+        "x1": 3.3,
+        "y1": 6.77,
+        "area_m2": 12.21
+      },
+      {
+        "id": "living",
+        "label": "LIVING",
+        "x0": 3.8,
+        "y0": 0.3,
+        "x1": 6.5,
+        "y1": 4.05,
+        "note": "principal 270×375 (+ extensii / circulație)",
+        "area_m2": 10.125
+      },
+      {
+        "id": "bucatarie",
+        "label": "BUCĂTĂRIE",
+        "x0": 3.45,
+        "y0": 3.97,
+        "x1": 5.35,
+        "y1": 6.77,
+        "area_m2": 5.32
+      },
+      {
+        "id": "terasa",
+        "label": "TERASĂ",
+        "x0": 0,
+        "y0": 7.07,
+        "x1": 3.45,
+        "y1": 8.6,
+        "clear": {
+          "x0": 0.075,
+          "y0": 7.145,
+          "x1": 3.3749999999999996,
+          "y1": 8.525
+        },
+        "area_m2": 5.279
+      },
+      {
+        "id": "scara",
+        "label": "SCARĂ + PALIER",
+        "x0": 5.5,
+        "y0": 3.9,
+        "x1": 6.8,
+        "y1": 8.6,
+        "palier": {
+          "w": 1.1,
+          "d": 1.15,
+          "note": "110×115 liber (audit)"
+        },
+        "area_m2": 6.11
+      }
+    ],
+    "checks": {
+      "chain_south_cm": 680,
+      "chain_south_ok": true,
+      "chain_west_cm": 860,
+      "chain_west_ok": true,
+      "useful_hint_m2": "Audit V43: 38.56 m² util model — recalculat la regenerare aproximativ din camere"
+    },
+    "openings": {
+      "entry_cm": 95,
+      "doors_cm": 80,
+      "terrace_dorm_cm": 150,
+      "terrace_kitchen_cm": 95,
+      "east_window_cm": 205
+    }
+  },
+  "site_placement": {
+    "note": "Amplasare schematică: origine V43 ≈ pct 7 (NV), X→Dragalina, Y→Cloșca",
+    "outer": [
+      {
+        "id": "NW",
+        "x": 0,
+        "y": 17.936
+      },
+      {
+        "id": "NE",
+        "x": 6.8,
+        "y": 18.229
+      },
+      {
+        "id": "SE",
+        "x": 6.8,
+        "y": 9.629
+      },
+      {
+        "id": "SW",
+        "x": 0,
+        "y": 9.336
+      },
+      {
+        "id": "NW",
+        "x": 0,
+        "y": 17.936
+      }
+    ]
+  },
+  "generated": "2026-10-13T11:36:17.729Z"
+}

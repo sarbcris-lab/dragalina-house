@@ -1,0 +1,95 @@
+{
+  "checks": [
+    {
+      "id": "stair_z_links_95_to_250",
+      "result": "pass",
+      "note": "călcări z1=[-1.122…-2.328] → bot -2.500; 9×17.22222222222222=155",
+      "method": "z1 trepte = from−(i+1)×riser; z0 final = to_z; sumă = |from−to|"
+    },
+    {
+      "id": "stair_in_ramp2_band",
+      "result": "pass",
+      "note": "scară X577.5 Y595 ⊆ ramp2",
+      "method": "AABB scară ⊆ ramp2±tol (nu doar align string)"
+    },
+    {
+      "id": "stair_landing_door_rooms",
+      "result": "pass",
+      "note": "palier−250 ↔ ușă; scară pe bandă rampă2",
+      "method": "AABB adjacency (P10)"
+    },
+    {
+      "id": "clear_height_matches",
+      "result": "pass",
+      "note": "-42−(-250)=208 = 208",
+      "method": "soffit − FF_subsol"
+    },
+    {
+      "id": "room_mesh_clear_height",
+      "result": "pass",
+      "note": "vol h=2.080 m",
+      "method": "z1−z0 mesh cameră"
+    },
+    {
+      "id": "equipment_no_overlap",
+      "result": "pass",
+      "note": "9 echipamente fără overlap gabarit",
+      "method": "AABB pair"
+    },
+    {
+      "id": "equipment_service_clearance",
+      "result": "pass",
+      "note": "fronturi service fără overlap pe alte gabarite",
+      "method": "AABB service_front vs body"
+    },
+    {
+      "id": "gate_width_consistent",
+      "result": "pass",
+      "note": "JSON=7.1 · volume.meta=7.1 · plan26=7.1 (≈front Cloșca)",
+      "method": "egalitate numerică JSON/meta/SVG"
+    },
+    {
+      "id": "entry_description_consistent",
+      "result": "pass",
+      "note": "lands_in+scheme+path+plan21 = HOL/PRIMIRE",
+      "method": "cross-check openings/scheme/path/SVG"
+    },
+    {
+      "id": "surfaces_per_level_data",
+      "result": "pass",
+      "note": "subsol 29.97 · P/E util 37.87875 (pe nivel)",
+      "method": "basement.areas pe camere + areas_cm util/nivel"
+    },
+    {
+      "id": "envelope_680x860",
+      "result": "pass",
+      "note": "680×860",
+      "method": "egalitate"
+    },
+    {
+      "id": "terrace_L1_frozen",
+      "result": "pass",
+      "note": "330×185",
+      "method": "egalitate"
+    },
+    {
+      "id": "court_to_access_link",
+      "result": "pass",
+      "note": "−48→−95 via 3 trepte",
+      "method": "delta = from−to"
+    },
+    {
+      "id": "structural_basement",
+      "result": "unknown",
+      "note": "fundații/subzidiri — structurist",
+      "method": "în afara modelului"
+    },
+    {
+      "id": "pot_cut_authorization",
+      "result": "unknown",
+      "note": "POT/CUT neconfirmate",
+      "method": "cadastru deschis"
+    }
+  ],
+  "generated": "2026-10-14T09:29:59.604Z"
+}

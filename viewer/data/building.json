@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "id": "concept_v01",
+    "version": "0.2",
+    "date": "2026-10-12",
+    "status": "IPOTEZA_DE_LUCRU",
+    "source_sketch": "inputs/sketches/plan_dimensional_parter_etaj.jpeg",
+    "warning": "Dimensiunile interioare vin din schiță. NU sunt geometrie cadastrală. Frontul schiță 9,30 m CONFLICTĂ cu frontul de lucru ~8,5 m.",
+    "audit_note": "v0.2: amplasare corectată — pe limita Dragalina, aliniere vecini, curte către Cloșca."
+  },
+  "placement": {
+    "on_dragalina_property_line": true,
+    "offset_x_m": 0,
+    "offset_y_m": 0,
+    "align_neighbors": true,
+    "courtyard_toward": "closca",
+    "sketch_width_m": 9.3,
+    "width_conflict": false,
+    "width_conflict_note": "Schiță 9.3 m > front CF undefined m",
+    "fit_depth_m": 7.8,
+    "fit_scale_x": null,
+    "note": "Pe limita Dragalina (y=0). Calcan est. Curte nord / către Cloșca. Fără retragere față de stradă.",
+    "dragalina_edge": "1-2-3-4-5"
+  },
+  "envelope": {
+    "overall_width_m": 9.3,
+    "overall_depth_m": 7.8,
+    "body_width_m": 6.9,
+    "access_band_width_m": 2.4,
+    "wall_ext_m": 0.35,
+    "wall_int_m": 0.15,
+    "levels": [
+      {
+        "id": "parter",
+        "z0_m": 0,
+        "height_m": 3
+      },
+      {
+        "id": "etaj",
+        "z0_m": 3,
+        "height_m": 3
+      }
+    ],
+    "parapet_m": 1.1,
+    "roof": {
+      "type": "flat_concept",
+      "overhang_m": 0,
+      "note": "Volumetrie simplă; acoperișul stilistic vine ulterior."
+    }
+  },
+  "bands": {
+    "access": {
+      "x0": 0,
+      "x1": 2.4,
+      "y0": 0,
+      "y1": 7.8,
+      "note": "Spre Cloșca / vest în ipoteza de orientare"
+    },
+    "body": {
+      "x0": 2.4,
+      "x1": 9.3,
+      "y0": 0,
+      "y1": 7.8
+    }
+  },
+  "zones": {
+    "scara": {
+      "x0": 0,
+      "y0": 0,
+      "x1": 2.4,
+      "y1": 2.9,
+      "label": "SCARĂ",
+      "area_m2": 6.96,
+      "status": "IPOTEZA_DE_LUCRU"
+    },
+    "palier": {
+      "x0": 0,
+      "y0": 2.9,
+      "x1": 2.4,
+      "y1": 4.13,
+      "label": "PALIER ACCES",
+      "area_m2": 2.95,
+      "status": "IPOTEZA_DE_LUCRU"
+    },
+    "terasa": {
+      "x0": 0,
+      "y0": 4.13,
+      "x1": 2.4,
+      "y1": 7.8,
+      "label": "TERASĂ (semi-nișă)",
+      "area_gross_m2": 8.81,
+      "area_net_m2": 7.52,
+      "note": "Terasă privată per nivel — distinctă de CURTEA de pe Cloșca.",
+      "status": "IPOTEZA_DE_LUCRU"
+    }
+  },
+  "interior": {
+    "clear": {
+      "x0": 2.75,
+      "y0": 0.35,
+      "x1": 8.95,
+      "y1": 7.45,
+      "width_m": 6.2,
+      "depth_m": 7.1
+    },
+    "rooms": [
+      {
+        "id": "living_buc",
+        "label": "LIVING + BUCĂTĂRIE",
+        "level": "both",
+        "x0": 2.75,
+        "y0": 0.35,
+        "x1": 8.95,
+        "y1": 4,
+        "area_m2": 22.63,
+        "area_note": "Recalcul dreptunghi; schița ≈25.89 — de reconciliat.",
+        "status": "IPOTEZA_DE_LUCRU"
+      },
+      {
+        "id": "dormitor",
+        "label": "DORMITOR",
+        "level": "both",
+        "x0": 2.75,
+        "y0": 4.15,
+        "x1": 6.825,
+        "y1": 7.45,
+        "w_m": 4.075,
+        "d_m": 3.3,
+        "area_m2": 13.45,
+        "sketch_area_m2": 12.8,
+        "status": "IPOTEZA_DE_LUCRU"
+      },
+      {
+        "id": "baie",
+        "label": "BAIE",
+        "level": "both",
+        "x0": 6.825,
+        "y0": 4.15,
+        "x1": 8.95,
+        "y1": 7.45,
+        "area_m2": 7.01,
+        "status": "IPOTEZA_DE_LUCRU"
+      }
+    ]
+  },
+  "openings": [
+    {
+      "id": "geam_living",
+      "wall": "south_dragalina",
+      "level": "both",
+      "cx": 5.5,
+      "width_m": 1.2,
+      "sill_m": 0.9,
+      "height_m": 1.5,
+      "status": "IPOTEZA"
+    },
+    {
+      "id": "geam_buc",
+      "wall": "south_dragalina",
+      "level": "both",
+      "cx": 7.6,
+      "width_m": 1.5,
+      "sill_m": 0.9,
+      "height_m": 1.5,
+      "status": "IPOTEZA"
+    },
+    {
+      "id": "usa_parter",
+      "wall": "access_band",
+      "level": "parter",
+      "cx": 1.2,
+      "cy": 3.5,
+      "width_m": 0.9,
+      "height_m": 2.1,
+      "status": "IPOTEZA"
+    },
+    {
+      "id": "usa_etaj",
+      "wall": "access_band",
+      "level": "etaj",
+      "cx": 1.2,
+      "cy": 3.5,
+      "width_m": 0.9,
+      "height_m": 2.1,
+      "status": "IPOTEZA"
+    },
+    {
+      "id": "usa_terasa_p",
+      "wall": "internal",
+      "level": "parter",
+      "from_room": "dormitor",
+      "width_m": 1.2,
+      "status": "IPOTEZA"
+    },
+    {
+      "id": "usa_terasa_e",
+      "wall": "internal",
+      "level": "etaj",
+      "from_room": "dormitor",
+      "width_m": 1.2,
+      "status": "IPOTEZA"
+    }
+  ],
+  "furniture_control": {
+    "note": "Gabarițe din schiță — control circulație, nu mobilier final",
+    "items": [
+      {
+        "room": "living_buc",
+        "name": "CANAPEA",
+        "w": 2.1,
+        "d": 0.9
+      },
+      {
+        "room": "living_buc",
+        "name": "MASĂ",
+        "w": 1.6,
+        "d": 0.8
+      },
+      {
+        "room": "dormitor",
+        "name": "PAT",
+        "w": 1.6,
+        "d": 2
+      },
+      {
+        "room": "dormitor",
+        "name": "DULAP",
+        "w": 2.2,
+        "d": 0.6
+      }
+    ]
+  },
+  "areas_summary": {
+    "footprint_gross_m2": 72.54,
+    "footprint_fit_on_site_m2": 66.3,
+    "body_gross_m2": 53.82,
+    "access_band_m2": 18.72,
+    "note": "9.30×7.80=72.54 schiță; pe sit FIT 8.50×7.80=66.3. 76 m² existent ≠ plafon maxim."
+  }
+}

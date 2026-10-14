@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620">
+  <rect width="100%" height="100%" fill="#f7f5f0"/>
+  <text x="550" y="26" text-anchor="middle" font-size="14" font-family="IBM Plex Sans,Segoe UI,sans-serif">V47 · secțiune subsol cotată</text>
+  <text x="40" y="50" font-size="12" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">Secțiune: curte → racord → palier −95 → scară → palier −250 → cameră · intrados · clear</text>
+<line x1="80" y1="332.8" x2="420" y2="332.8" stroke="#888"/>
+<text x="80" y="328.8" font-size="8">curte −48</text>
+<line x1="300" y1="384.5" x2="520" y2="384.5" stroke="#1d3557" stroke-width="2"/>
+<text x="300" y="380.5" font-size="8">palier −95</text>
+<rect x="200" y="350.0333333333333" width="26" height="17.233333333333334" fill="#b09050"/>
+<rect x="228" y="367.26666666666665" width="26" height="17.233333333333334" fill="#b09050"/>
+<rect x="256" y="384.5" width="26" height="17.233333333333334" fill="#b09050"/>
+<rect x="480" y="403.44444444444446" width="20" height="5" fill="#8a93a0" stroke="#333"/>
+<rect x="502" y="422.3888888888889" width="20" height="5" fill="#8a93a0" stroke="#333"/>
+<rect x="524" y="441.33333333333337" width="20" height="5" fill="#8a93a0" stroke="#333"/>
+<rect x="546" y="460.2777777777778" width="20" height="5" fill="#8a93a0" stroke="#333"/>
+<rect x="568" y="479.22222222222223" width="20" height="5" fill="#8a93a0" stroke="#333"/>
+<rect x="590" y="498.16666666666663" width="20" height="5" fill="#8a93a0" stroke="#333"/>
+<rect x="612" y="517.1111111111111" width="20" height="5" fill="#8a93a0" stroke="#333"/>
+<rect x="634" y="536.0555555555555" width="20" height="5" fill="#8a93a0" stroke="#333"/>
+<line x1="480" y1="555" x2="900" y2="555" stroke="#333" stroke-width="2"/>
+<text x="700" y="551" font-size="8">FF subsol −250</text>
+<line x1="560" y1="326.2" x2="980" y2="326.2" stroke="#c1121f" stroke-width="2"/>
+<text x="820" y="322.2" font-size="8" fill="#c1121f">intrados −42</text>
+<line x1="960" y1="326.2" x2="960" y2="555" stroke="#2d6a4f" stroke-width="1.5"/>
+<text x="966" y="440.6" font-size="10" fill="#2d6a4f" font-family="IBM Plex Sans,Segoe UI,sans-serif">clear 208 cm</text>
+<rect x="700" y="326.2" width="180" height="228.8" fill="#dce4ec" opacity="0.5" stroke="#1d3557"/>
+<text x="720" y="434" font-size="9">camera_tehnica</text>
+<text x="40" y="590" font-size="9" fill="#555" font-family="IBM Plex Sans,Segoe UI,sans-serif">9×17.222=155.000 cm = delta 155 · 8 călcări · ipoteză studiu</text>
+</svg>

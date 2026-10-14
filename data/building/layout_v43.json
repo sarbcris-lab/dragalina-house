@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "id": "layout_v43",
+    "version": "0.1",
+    "status": "IPOTEZA_DE_LUCRU_ITERATIVA",
+    "source": "inputs/Audit_V43_dimensiuni_si_cazare.html",
+    "date": "2026-10-13",
+    "coords": "origine = colț exterior NV; X→est (Dragalina); Y→sud (Cloșca); unități cm în source, m în geometry",
+    "note": "Modifică valorile din `tune` (sau rooms/walls) → npm run layout. Nu e proiect autorizabil."
+  },
+  "tune": {
+    "comment": "Reglează aici — regenerează cu npm run layout",
+    "envelope_ew_cm": 680,
+    "envelope_ns_cm": 860,
+    "wall_ext_cm": 30,
+    "wall_int_cm": 12.5,
+    "stair_band_cm": 115,
+    "level_height_cm": 304,
+    "terrace_depth_cm": 153,
+    "dorm_w_cm": 300,
+    "dorm_d_cm": 407,
+    "bath_w_cm": 200,
+    "bath_d_cm": 225,
+    "kitchen_w_cm": 175,
+    "kitchen_d_cm": 280,
+    "living_main_w_cm": 270,
+    "living_main_d_cm": 375,
+    "hall_clear_cm": 120,
+    "entry_clear_cm": 95,
+    "door_clear_cm": 80,
+    "terrace_door_dorm_cm": 150,
+    "terrace_door_kitchen_cm": 95,
+    "east_window_cm": 205
+  },
+  "placement_on_site": {
+    "align": "NV pe limita nord+vest (pct 7 ≈ origine V43)",
+    "dragalina": "est = X max",
+    "closca": "sud = Y max"
+  },
+  "derived_note": "Ext 30 la bucătărie (inclusiv spre scară); scară = parapet 10×105 pe est. Lanț sud: 330+30+175+30+115=680 (Δ buc↔scară 50/50)."
+}

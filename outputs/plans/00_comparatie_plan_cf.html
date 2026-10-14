@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comparație plan amplasament vs model</title>
+  <style>
+    body { margin: 0; font-family: "Segoe UI", sans-serif; background: #f0f0f0; }
+    h1 { font-size: 1rem; margin: 0; padding: 0.75rem 1rem; background: #fff; border-bottom: 1px solid #ccc; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0.75rem; }
+    figure { margin: 0; background: #fff; border: 1px solid #bbb; padding: 0.5rem; }
+    figcaption { font-size: 0.85rem; margin-bottom: 0.4rem; color: #333; }
+    img, object { width: 100%; height: auto; display: block; background: #fff; }
+    @media (max-width: 900px) { .row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <h1>Stânga = planul tău · Dreapta = model regenerat din plan + lungimi CF</h1>
+  <div class="row">
+    <figure>
+      <figcaption>inputs/cadastru/plan_amplasament_54602.png</figcaption>
+      <img src="../../inputs/cadastru/plan_amplasament_54602.png" alt="Plan amplasament original" />
+    </figure>
+    <figure>
+      <figcaption>outputs/plans/01_situatie_provisional.svg</figcaption>
+      <object data="01_situatie_provisional.svg" type="image/svg+xml" style="min-height:70vh"></object>
+    </figure>
+  </div>
+</body>
+</html>

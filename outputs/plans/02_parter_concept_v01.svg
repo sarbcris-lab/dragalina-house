@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="652" height="612" viewBox="0 0 652 612">
+  <rect width="100%" height="100%" fill="#fafafa"/>
+  <rect x="8" y="8" width="636" height="44" fill="#fff3cd" stroke="#c9a227" stroke-width="1"/>
+  <text x="326" y="28" text-anchor="middle" font-size="13" fill="#111" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="326" dy="0">DRAGALINA 131 — PLAN PARTER · concept_v01</tspan><tspan x="326" dy="16.25">IPOTEZĂ DE LUCRU din schiță — NU geometrie cadastrală</tspan></text><rect x="80" y="80" width="372" height="312" fill="#f7f4ef" stroke="#222" stroke-width="2.5" /><rect x="80" y="80" width="96" height="312" fill="#e8eef5" stroke="#445" stroke-width="1.2" /><rect x="80" y="276" width="96" height="116" fill="#d9dce3" stroke="#333" stroke-width="1" /><text x="128" y="334" text-anchor="middle" font-size="11" fill="#111" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="128" dy="0">SCARĂ</tspan><tspan x="128" dy="13.75">6.96 m²</tspan></text><rect x="80" y="226.8" width="96" height="49.2" fill="#eef2f7" stroke="#333" stroke-width="1" /><text x="128" y="251.4" text-anchor="middle" font-size="11" fill="#111" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="128" dy="0">PALIER ACCES</tspan><tspan x="128" dy="13.75">2.95 m²</tspan></text><rect x="80" y="80" width="96" height="146.8" fill="#d7e8d3" stroke="#333" stroke-width="1" /><text x="128" y="153.4" text-anchor="middle" font-size="11" fill="#111" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="128" dy="0">TERASĂ (semi-nișă)</tspan><tspan x="128" dy="13.75">7.52 m²</tspan></text><rect x="176" y="80" width="276" height="312" fill="none" stroke="#111" stroke-width="2.2" /><rect x="190" y="232" width="247.99999999999997" height="146" fill="#fffdf8" stroke="#222" stroke-width="1.4" /><text x="314" y="299" text-anchor="middle" font-size="11" fill="#111" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="314" dy="0">LIVING + BUCĂTĂRIE</tspan><tspan x="314" dy="13.75">22.63 m²</tspan></text><rect x="190" y="93.99999999999999" width="163" height="132" fill="#fffdf8" stroke="#222" stroke-width="1.4" /><text x="271.5" y="154" text-anchor="middle" font-size="11" fill="#111" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="271.5" dy="0">DORMITOR</tspan><tspan x="271.5" dy="13.75">13.45 m²</tspan></text><rect x="353" y="93.99999999999999" width="84.99999999999997" height="132" fill="#fffdf8" stroke="#222" stroke-width="1.4" /><text x="395.5" y="154" text-anchor="middle" font-size="11" fill="#111" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="395.5" dy="0">BAIE</tspan><tspan x="395.5" dy="13.75">7.01 m²</tspan></text><text x="266" y="414" text-anchor="middle" font-size="11" fill="#8b1e1e" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="266" dy="0">STR. DRAGALINA — pe limita de proprietate / aliniament vecini</tspan></text><text x="74" y="236" text-anchor="end" font-size="10" fill="#2d5a27" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="74" dy="0">→ Cloșca / CURTE</tspan></text>
+  <g class="dim" stroke="#1a1a1a" fill="#1a1a1a" stroke-width="0.8">
+    <line x1="80" y1="420" x2="452" y2="420" />
+    <line x1="80" y1="392" x2="80" y2="420" stroke-dasharray="2 2" />
+    <line x1="452" y1="392" x2="452" y2="420" stroke-dasharray="2 2" />
+    <text x="266" y="416" text-anchor="middle" font-size="11" font-family="IBM Plex Sans, Segoe UI, sans-serif">9.30 m</text>
+  </g>
+  <g class="dim" stroke="#1a1a1a" fill="#1a1a1a" stroke-width="0.8">
+    <line x1="44" y1="392" x2="44" y2="80" />
+    <line x1="80" y1="392" x2="44" y2="392" stroke-dasharray="2 2" />
+    <line x1="80" y1="80" x2="44" y2="80" stroke-dasharray="2 2" />
+    <text x="44" y="232" text-anchor="middle" font-size="11" font-family="IBM Plex Sans, Segoe UI, sans-serif">7.80 m</text>
+  </g>
+  <g class="dim" stroke="#1a1a1a" fill="#1a1a1a" stroke-width="0.8">
+    <line x1="80" y1="58" x2="176" y2="58" />
+    <line x1="80" y1="80" x2="80" y2="58" stroke-dasharray="2 2" />
+    <line x1="176" y1="80" x2="176" y2="58" stroke-dasharray="2 2" />
+    <text x="128" y="54" text-anchor="middle" font-size="11" font-family="IBM Plex Sans, Segoe UI, sans-serif">2.40</text>
+  </g>
+  <g class="dim" stroke="#1a1a1a" fill="#1a1a1a" stroke-width="0.8">
+    <line x1="176" y1="58" x2="452" y2="58" />
+    <line x1="176" y1="80" x2="176" y2="58" stroke-dasharray="2 2" />
+    <line x1="452" y1="80" x2="452" y2="58" stroke-dasharray="2 2" />
+    <text x="314" y="54" text-anchor="middle" font-size="11" font-family="IBM Plex Sans, Segoe UI, sans-serif">6.90</text>
+  </g>
+  <g transform="translate(602,70)">
+    <polygon points="0,-22 6,8 -6,8" fill="#111"/>
+    <text y="22" text-anchor="middle" font-size="11" font-family="IBM Plex Sans, Segoe UI, sans-serif">N</text>
+  </g><text x="80" y="562" text-anchor="start" font-size="10" fill="#333" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="80" dy="0">Status: IPOTEZA_DE_LUCRU · sursă schiță · amplasare: limită Dragalina + curte Cloșca</tspan><tspan x="80" dy="12.5">Pereți ext. 0.35 m · int. 0.15 m · nivel parter h=3 m</tspan><tspan x="80" dy="12.5">Două apt. independente · terasă privată ≠ curtea de pe Cloșca</tspan></text>
+</svg>

@@ -1,0 +1,60 @@
+# Registru dimensiuni — Dragalina 131
+# CONFIRMAT_DOCUMENTAR | DECLARAT | ESTIMAT | IPOTEZA_DE_LUCRU | DE_VERIFICAT
+
+meta:
+  version: "0.2"
+  date: "2026-10-12"
+  status: "concept_pipeline"
+  note: "Studiu conceptual; nu autorizabil."
+
+parcel_confirmed:
+  cf: "54602 Turda"
+  source: "inputs/cadastru/CF_54602_Turda_extras_2026-10-07.pdf"
+  address:
+    value: "Jud. Cluj, UAT Turda, Str. G-ral Dragalina nr. 131"
+    status: CONFIRMAT_DOCUMENTAR
+  area_from_acts_m2:
+    value: 172
+    status: CONFIRMAT_DOCUMENTAR
+  area_measured_m2:
+    value: 147
+    status: CONFIRMAT_DOCUMENTAR
+    note: "Suprafață cadastrală măsurată — bază pentru studiu; rectificare CF 2011"
+  existing_built_ground_m2:
+    value: 76
+    status: CONFIRMAT_DOCUMENTAR
+    note: "Amprenta existentă C1. NU este plafon maxim pentru construcția nouă."
+  perimeter_segments_m:
+    status: CONFIRMAT_DOCUMENTAR
+    note: "Lungimi Stereo 70; fără unghiuri → poligon Nedeterminat"
+    segments:
+      - { from: 1, to: 2, length: 0.418 }
+      - { from: 2, to: 3, length: 10.051 }
+      - { from: 3, to: 4, length: 0.278 }
+      - { from: 4, to: 5, length: 7.791 }
+      - { from: 5, to: 6, length: 0.226 }
+      - { from: 6, to: 7, length: 7.825 }
+      - { from: 7, to: 8, length: 0.230 }
+      - { from: 8, to: 9, length: 12.393 }
+      - { from: 9, to: 10, length: 5.335 }
+      - { from: 10, to: 1, length: 7.933 }
+
+parcel_geometry:
+  polygon_vertices: null
+  status: DE_VERIFICAT
+  warning: "Nu se inventează forma/unghiurile din segmentele CF."
+
+building_concept_v01:
+  status: IPOTEZA_DE_LUCRU
+  source: "inputs/sketches/plan_dimensional_parter_etaj.jpeg"
+  note: "Nu reprezintă geometria cadastrală a parcelei."
+  overall_m: { width: 9.30, depth: 7.80 }
+  body_m: { width: 6.90, depth: 7.80 }
+  access_band_m: { width: 2.40 }
+  wall_ext_m: 0.35
+  wall_int_m: 0.15
+
+program:
+  two_independent_apartments: CERINTA_FERMA
+  private_terrace_each: CERINTA_FERMA
+  no_shared_leisure_court: CERINTA_FERMA

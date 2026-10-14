@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="640.8" height="692" viewBox="0 0 640.8 692">
+  <rect width="100%" height="100%" fill="#fafafa"/>
+  <rect x="8" y="8" width="624.8" height="40" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1"/>
+  <text x="320.4" y="22" text-anchor="middle" font-size="12" fill="#111" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="320.4" dy="0">DRAGALINA 131 — A — Terasă din dormitor (apropiere de schiță)</tspan><tspan x="320.4" dy="15">PLAN ETAJ · propunere A · N↑ Dragalina→ Cloșca↓</tspan></text><rect x="80" y="80" width="320.79999999999995" height="372" fill="#f7f4ef" stroke="#222" stroke-width="2.5" /><rect x="80" y="356" width="320.79999999999995" height="96" fill="#e8eef5" stroke="#445" stroke-width="1" /><rect x="284.8" y="356" width="115.99999999999997" height="96" fill="#d9dce3" stroke="#333" stroke-width="1" /><text x="342.8" y="404.00000000000006" text-anchor="middle" font-size="10" fill="#111" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="342.8" dy="0">SCARĂ 6+5+6</tspan><tspan x="342.8" dy="12.5">7.0 m²</tspan></text><rect x="235.6" y="356" width="49.2" height="96" fill="#eef2f7" stroke="#333" stroke-width="1" /><text x="260.2" y="404.00000000000006" text-anchor="middle" font-size="10" fill="#111" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="260.2" dy="0">PALIER ACCES</tspan><tspan x="260.2" dy="12.5">3.0 m²</tspan></text><rect x="80" y="356" width="155.6" height="96" fill="#d7e8d3" stroke="#333" stroke-width="1" /><text x="157.8" y="404.00000000000006" text-anchor="middle" font-size="10" fill="#111" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="157.8" dy="0">TERASĂ (semi-nișă)</tspan><tspan x="157.8" dy="12.5">7.9 m²</tspan></text><rect x="235.6" y="94.00000000000006" width="151.2" height="247.99999999999997" fill="#fffdf8" stroke="#222" stroke-width="1.4" /><text x="311.20000000000005" y="214.00000000000006" text-anchor="middle" font-size="11" fill="#111" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="311.20000000000005" dy="0">LIVING + BUCĂTĂRIE</tspan><tspan x="311.20000000000005" dy="13.75">23.4 m²</tspan></text><rect x="94" y="190.00000000000003" width="141.6" height="152" fill="#fffdf8" stroke="#222" stroke-width="1.4" /><text x="164.8" y="262" text-anchor="middle" font-size="11" fill="#111" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="164.8" dy="0">DORMITOR</tspan><tspan x="164.8" dy="13.75">13.4 m²</tspan></text><rect x="94" y="94.00000000000006" width="141.6" height="95.99999999999997" fill="#fffdf8" stroke="#222" stroke-width="1.4" /><text x="164.8" y="138.00000000000003" text-anchor="middle" font-size="11" fill="#111" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="164.8" dy="0">BAIE</tspan><tspan x="164.8" dy="13.75">8.5 m²</tspan></text><line x1="143.8" y1="356" x2="171.8" y2="356" stroke="#1b5e20" stroke-width="3"/><text x="157.8" y="346" text-anchor="middle" font-size="9" fill="#1b5e20" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="157.8" dy="0">ușă terasă ← dormitor</tspan></text><text x="414.79999999999995" y="266" text-anchor="start" font-size="11" fill="#8b1e1e" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="414.79999999999995" dy="0">DRAGALINA</tspan><tspan x="414.79999999999995" dy="13.75">pe limită</tspan></text><text x="240.39999999999998" y="474.00000000000006" text-anchor="middle" font-size="11" fill="#2d5a27" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="240.39999999999998" dy="0">→ CURTE / CLOȘCA</tspan></text><text x="240.39999999999998" y="62.00000000000003" text-anchor="middle" font-size="10" fill="#333" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="240.39999999999998" dy="0">NORD — limita vecin (calcan)</tspan></text><text x="72" y="266" text-anchor="end" font-size="10" fill="#333" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="72" dy="0">VEST</tspan><tspan x="72" dy="12.5">pe limită</tspan></text>
+  <g class="dim" stroke="#1a1a1a" fill="#1a1a1a" stroke-width="0.8">
+    <line x1="80" y1="478" x2="400.79999999999995" y2="478" />
+    <line x1="80" y1="452" x2="80" y2="478" stroke-dasharray="2 2" />
+    <line x1="400.79999999999995" y1="452" x2="400.79999999999995" y2="478" stroke-dasharray="2 2" />
+    <text x="240.39999999999998" y="474" text-anchor="middle" font-size="11" font-family="IBM Plex Sans, Segoe UI, sans-serif">8.02 m (E–V)</text>
+  </g>
+  <g class="dim" stroke="#1a1a1a" fill="#1a1a1a" stroke-width="0.8">
+    <line x1="48" y1="452" x2="48" y2="80" />
+    <line x1="80" y1="452" x2="48" y2="452" stroke-dasharray="2 2" />
+    <line x1="80" y1="80" x2="48" y2="80" stroke-dasharray="2 2" />
+    <text x="48" y="262" text-anchor="middle" font-size="11" font-family="IBM Plex Sans, Segoe UI, sans-serif">9.30 m (N–S)</text>
+  </g>
+  <g class="dim" stroke="#1a1a1a" fill="#1a1a1a" stroke-width="0.8">
+    <line x1="58" y1="80" x2="58" y2="356" />
+    <line x1="80" y1="80" x2="58" y2="80" stroke-dasharray="2 2" />
+    <line x1="80" y1="356" x2="58" y2="356" stroke-dasharray="2 2" />
+    <text x="58" y="214" text-anchor="middle" font-size="11" font-family="IBM Plex Sans, Segoe UI, sans-serif">6.90 corp</text>
+  </g>
+  <g class="dim" stroke="#1a1a1a" fill="#1a1a1a" stroke-width="0.8">
+    <line x1="58" y1="356" x2="58" y2="452" />
+    <line x1="80" y1="356" x2="58" y2="356" stroke-dasharray="2 2" />
+    <line x1="80" y1="452" x2="58" y2="452" stroke-dasharray="2 2" />
+    <text x="58" y="400" text-anchor="middle" font-size="11" font-family="IBM Plex Sans, Segoe UI, sans-serif">2.40</text>
+  </g>
+  <g transform="translate(592.8,70)">
+    <polygon points="0,-22 6,8 -6,8" fill="#111"/>
+    <text y="22" text-anchor="middle" font-size="11" font-family="IBM Plex Sans, Segoe UI, sans-serif">N</text>
+  </g><text x="80" y="650" text-anchor="start" font-size="9" fill="#333" font-family="IBM Plex Sans, Segoe UI, sans-serif"><tspan x="80" dy="0">Terasă din: dormitor · apt. independent · scară fără traversarea terasei</tspan><tspan x="80" dy="11.25">Living+bucătărie pe Dragalina; dormitor spre vest/terasă; baie nord-est. Ușă terasă din dormitor. Scară în bandă sud, palier → ușă living (etaj).</tspan></text>
+</svg>

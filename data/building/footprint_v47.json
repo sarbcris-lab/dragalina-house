@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "id": "footprint_v01",
+    "version": "0.2",
+    "status": "CONFIRMAT_AMPLASARE_3_LIMITE",
+    "source_sketch": "inputs/sketches/plan_dimensional_parter_etaj.jpeg",
+    "note": "Pe 3 limite: Nord (vecin) + Dragalina + Vest. Curte sud → Cloșca.",
+    "generated": "2026-10-12T12:00:24.125Z",
+    "layout_v43_ref": "data/building/layout_v43.json",
+    "active_layout": "v46_exact"
+  },
+  "sketch": {
+    "along_dragalina_m": 8.6,
+    "depth_into_lot_m": 6.8,
+    "access_band_m": 2.4,
+    "body_along_m": 6.9,
+    "v43_envelope_ew_m": 6.8,
+    "v43_envelope_ns_m": 8.6,
+    "v43_note": "V43: 6.80 m E–V × 8.60 m N–S (include terasă pe vest). Diferit de schița 9.30×7.80."
+  },
+  "placement": {
+    "limits": [
+      "NORD_vecin",
+      "DRAGALINA_dreapta",
+      "VEST"
+    ],
+    "dragalina": "dreapta — pe limită",
+    "closca": "jos — curte către Cloșca",
+    "along_from_north_m": 0,
+    "along_span_m": 9.3,
+    "corners": {
+      "NE": "pct 5",
+      "NW": "pct 7",
+      "SE": "pe Dragalina la 9.30",
+      "SW": "pe vest"
+    },
+    "courtyard": "sud, între amprentă și Cloșca",
+    "fits_on_dragalina_length": true,
+    "dragalina_length_m": 18.538
+  },
+  "footprint": {
+    "outer": [
+      {
+        "x": 1.249,
+        "y": 17.9306
+      },
+      {
+        "x": 8.0428,
+        "y": 18.2213
+      },
+      {
+        "x": 8.4105,
+        "y": 9.6291
+      },
+      {
+        "x": 1.6167,
+        "y": 9.3385
+      },
+      {
+        "x": 1.249,
+        "y": 17.9306
+      }
+    ],
+    "access_band": [
+      {
+        "id": "AccSE",
+        "x": 8.325,
+        "y": 11.627
+      },
+      {
+        "id": "SE_drag",
+        "x": 8.428,
+        "y": 9.23
+      },
+      {
+        "id": "SW_west",
+        "x": 0.446,
+        "y": 8.938
+      },
+      {
+        "id": "AccSW",
+        "x": 0.331,
+        "y": 11.26
+      },
+      {
+        "id": "AccSE",
+        "x": 8.325,
+        "y": 11.627
+      }
+    ],
+    "body": [
+      {
+        "id": "NE_5",
+        "x": 8.03,
+        "y": 18.521
+      },
+      {
+        "id": "AccSE",
+        "x": 8.325,
+        "y": 11.627
+      },
+      {
+        "id": "AccSW",
+        "x": 0.331,
+        "y": 11.26
+      },
+      {
+        "id": "NW_7",
+        "x": 0,
+        "y": 17.936
+      },
+      {
+        "id": "NE_5",
+        "x": 8.03,
+        "y": 18.521
+      }
+    ]
+  },
+  "areas": {
+    "footprint_gross_m2": 58.48,
+    "body_m2": 54.51,
+    "access_band_m2": 18.88,
+    "parcel_measured_m2": 147,
+    "existing_c1_m2": 76
+  },
+  "checks": {
+    "along_ok": true,
+    "three_limits": true,
+    "depth_vs_parcel_width_note": "Adâncime medie 8.02 m = aproape toată lățimea (pe 3 limite N/E/V).",
+    "sketch_9_30_on_dragalina": "9.30 m pe Dragalina din 18.538 m — OK."
+  },
+  "levels": [
+    {
+      "id": "parter",
+      "z0_m": 0,
+      "height_m": 3
+    },
+    {
+      "id": "etaj",
+      "z0_m": 3,
+      "height_m": 3
+    }
+  ],
+  "proposals": {
+    "A": {
+      "id": "A_scara_spre_closca",
+      "title": "Scară + terasă în bandă spre Cloșca",
+      "summary": "Corpul locuit pe Dragalina+N; bandă 2.40 m sud (spre curte/Cloșca) cu scară, palier, terasă în semi-nișă. Living spre Dragalina; dormitor spre vest/curte.",
+      "terrace_from": "dormitor",
+      "stair": "în bandă sud, acces independent etaj fără traversarea terasei parter"
+    },
+    "B": {
+      "id": "B_living_spre_curte",
+      "title": "Living deschis și spre curte",
+      "summary": "Aceeași amprentă pe 3 limite. Living+bucătărie cu geam și spre curte (vest/sud); terasă accesibilă din living; dormitor pe nord. Scară tot în bandă 2.40.",
+      "terrace_from": "living",
+      "stair": "în bandă sud, ușă etaj de pe palier direct în living"
+    }
+  }
+}

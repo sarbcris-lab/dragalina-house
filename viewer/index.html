@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dragalina 131 — Viewer 3D · V47 / V46</title>
+  <style>
+    :root {
+      --bg: #1a1d22;
+      --panel: #242830;
+      --text: #e8eaed;
+      --muted: #9aa3ad;
+      --warn: #e8c547;
+      --accent: #7eb6d9;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; font-family: "IBM Plex Sans", "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
+    #app { display: grid; grid-template-columns: 340px 1fr; height: 100%; }
+    aside { background: var(--panel); padding: 1rem 1.1rem; overflow: auto; border-right: 1px solid #3a4150; }
+    h1 { font-size: 1.05rem; margin: 0 0 0.35rem; font-weight: 600; }
+    .warn { background: #3a3418; color: var(--warn); padding: 0.65rem 0.75rem; border-radius: 6px; font-size: 0.82rem; line-height: 1.35; margin: 0.75rem 0; }
+    .meta { font-size: 0.8rem; color: var(--muted); line-height: 1.45; }
+    .meta strong { color: var(--text); font-weight: 560; }
+    #c { width: 100%; height: 100%; display: block; }
+    .tabs { display: flex; gap: 0.4rem; margin: 1rem 0 0.6rem; flex-wrap: wrap; }
+    .tabs a { color: var(--accent); font-size: 0.8rem; text-decoration: none; border: 1px solid #3d4a5c; padding: 0.35rem 0.55rem; border-radius: 4px; }
+    .tabs a:hover { background: #323846; }
+    ul { padding-left: 1.1rem; font-size: 0.78rem; color: var(--muted); max-height: 40vh; overflow: auto; }
+    code { font-size: 0.78rem; color: #c7d2fe; }
+    .row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin: 0.6rem 0; }
+    button {
+      background: #323846; color: var(--text); border: 1px solid #4a5568;
+      padding: 0.4rem 0.65rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem;
+    }
+    button.active { background: #3d5a80; border-color: var(--accent); }
+    button:hover { background: #3a4250; }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <aside>
+      <h1 id="viewTitle">Dragalina 131 · Viewer</h1>
+      <div class="warn" id="warning">Încărcare…</div>
+      <div class="meta" id="meta"></div>
+      <div class="row">
+        <button type="button" id="btnClosed" class="active">Poartă închisă</button>
+        <button type="button" id="btnOpen">Poartă deschisă</button>
+      </div>
+      <div class="row">
+        <button type="button" id="btnBoth" class="active">P+E</button>
+        <button type="button" id="btnParter">Doar parter</button>
+        <button type="button" id="btnEtaj">Doar etaj</button>
+        <button type="button" id="btnSubsol">Doar subsol</button>
+        <button type="button" id="btnFence">Împrejmuire</button>
+        <button type="button" id="btnCurte">Curte</button>
+        <button type="button" id="btnCut">Secțiune interior</button>
+      </div>
+      <div class="tabs" id="tabsV47">
+        <a href="?v47"><strong>Model V47</strong></a>
+        <a href="../outputs/plans/21_v47_exact_plan.svg" target="_blank">Plan V47</a>
+        <a href="../outputs/plans/27_v47_subsol_plan.svg" target="_blank">Subsol V47</a>
+        <a href="../outputs/plans/28_v47_subsol_section.svg" target="_blank">Secț. subsol</a>
+        <a href="../outputs/plans/26_v47_site_plan.svg" target="_blank">Situație</a>
+        <a href="../outputs/plans/29_v47_imprejmuire.svg" target="_blank">Împrejmuire</a>
+        <a href="../outputs/plans/30_v47_curte.svg" target="_blank">Curte</a>
+        <a href="../outputs/plans/25_v47_sections.svg" target="_blank">Secțiuni V47</a>
+        <a href="../outputs/reports/v47_surfaces.md" target="_blank">Suprafețe</a>
+        <a href="../outputs/reports/v47_checks.md" target="_blank">Checks</a>
+      </div>
+      <div class="tabs" id="tabsV46">
+        <a href="?v=v46">Model V46 (r7g)</a>
+        <a href="../outputs/plans/11_v46_exact_plan.svg" target="_blank">Plan V46</a>
+        <a href="../outputs/plans/15_v46_sections.svg" target="_blank">Secțiuni V46</a>
+      </div>
+      <p class="meta" style="margin-top:1rem">Orbit · zoom · pan dreapta</p>
+      <p class="meta">V47 (L-1+P+E): <code>?v47</code> · V46 neschimbat: <code>?v=v46</code></p>
+      <p class="meta">Regen: <code>npm run build:v47</code> (nu atinge V46)</p>
+      <ul id="meshes"></ul>
+    </aside>
+    <canvas id="c"></canvas>
+  </div>
+  <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+    import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+
+    const canvas = document.getElementById("c");
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setClearColor(0x1a1d22);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.05;
+
+    const scene = new THREE.Scene();
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+    const camera = new THREE.PerspectiveCamera(42, 2, 0.1, 200);
+    camera.position.set(18, 14, 10);
+
+    const controls = new OrbitControls(camera, canvas);
+    controls.target.set(4, 2.5, -8);
+    controls.enableDamping = true;
+    controls.update();
+
+    const hemi = new THREE.HemisphereLight(0xddeeff, 0x444433, 0.55);
+    scene.add(hemi);
+    const sun = new THREE.DirectionalLight(0xfff2dd, 1.35);
+    sun.position.set(12, 22, 6);
+    sun.castShadow = true;
+    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.camera.near = 1;
+    sun.shadow.camera.far = 60;
+    sun.shadow.camera.left = -20;
+    sun.shadow.camera.right = 20;
+    sun.shadow.camera.top = 20;
+    sun.shadow.camera.bottom = -20;
+    scene.add(sun);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.22));
+
+    const grid = new THREE.GridHelper(40, 40, 0x3a4555, 0x2a313c);
+    grid.position.y = -0.02;
+    scene.add(grid);
+
+    function resize() {
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      if (canvas.width !== w || canvas.height !== h) {
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }
+    }
+
+    function ring2d(poly) {
+      const pts = poly.slice();
+      if (pts.length > 1) {
+        const a = pts[0], b = pts[pts.length - 1];
+        if (Math.abs(a.x - b.x) < 1e-9 && Math.abs(a.y - b.y) < 1e-9) pts.pop();
+      }
+      return pts;
+    }
+
+    function makeExtrude(m) {
+      const pts = ring2d(m.polygon);
+      if (pts.length < 3) return new THREE.Group();
+      const shape = new THREE.Shape();
+      shape.moveTo(pts[0].x, pts[0].y);
+      for (let i = 1; i < pts.length; i++) shape.lineTo(pts[i].x, pts[i].y);
+      shape.closePath();
+      // Goluri (ex. curte engleză): winding opus față de conturul exterior
+      for (const hole of m.holes || []) {
+        const hp = ring2d(hole);
+        if (hp.length < 3) continue;
+        const path = new THREE.Path();
+        path.moveTo(hp[0].x, hp[0].y);
+        for (let i = 1; i < hp.length; i++) path.lineTo(hp[i].x, hp[i].y);
+        path.closePath();
+        shape.holes.push(path);
+      }
+      const depth = Math.max(0.01, m.z1_m - m.z0_m);
+      const geo = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: false });
+      const isMosaic = m.finish === "mozaic" || m.id?.includes("mozaic") || m.id?.includes("soclu");
+      const mat = new THREE.MeshStandardMaterial({
+        color: m.color,
+        roughness: m.id?.startsWith("gol_") ? 0.15 : isMosaic ? 0.92 : 0.78,
+        metalness: m.id?.startsWith("gol_") ? 0.05 : isMosaic ? 0 : 0.02,
+        transparent: (m.opacity != null && m.opacity < 1) || !!m.id?.startsWith("gol_"),
+        opacity: m.opacity ?? (m.id?.startsWith("gol_") ? 0.4 : 1),
+        side: THREE.DoubleSide,
+      });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.rotation.x = -Math.PI / 2;
+      mesh.position.y = m.z0_m;
+      mesh.castShadow = !m.id?.startsWith("gol_") && !m.id?.startsWith("teren");
+      mesh.receiveShadow = true;
+      return mesh;
+    }
+
+    function makeRibbon(m) {
+      const line = m.centerline;
+      if (!line || line.length < 2) return new THREE.Group();
+      const half = (m.width_m || 0.08) / 2;
+      const left = [];
+      const right = [];
+      for (let i = 0; i < line.length; i++) {
+        const a = line[Math.max(0, i - 1)];
+        const b = line[i];
+        const c = line[Math.min(line.length - 1, i + 1)];
+        const dx = c.x - a.x;
+        const dy = c.y - a.y;
+        const len = Math.hypot(dx, dy) || 1;
+        const nx = -dy / len;
+        const ny = dx / len;
+        left.push({ x: b.x + nx * half, y: b.y + ny * half });
+        right.push({ x: b.x - nx * half, y: b.y - ny * half });
+      }
+      return makeExtrude({ ...m, polygon: [...left, ...right.reverse()] });
+    }
+
+    const qs = new URLSearchParams(location.search);
+    const isV47 = qs.has("v47") || (qs.get("v") || "").startsWith("v47");
+    const volFile = isV47 ? "./data/volume_v47.json" : "./data/volume.json";
+    const volume = await fetch(`${volFile}?${location.search.slice(1) || Date.now()}`, { cache: "no-store" }).then((r) => r.json());
+    document.getElementById("viewTitle").textContent = isV47 ? "Dragalina 131 · V47" : "Dragalina 131 · V46";
+    document.getElementById("warning").textContent = volume.meta.warning || volume.meta.status;
+    const env = volume.meta.envelope_m || {};
+    const srcLabel = isV47 ? "V47 concept (cm) · L-1+P+E" : "V46 exact (cm)";
+    document.getElementById("meta").innerHTML = `
+      <div><strong>Model:</strong> ${volume.meta.id}</div>
+      <div><strong>Sursă:</strong> ${srcLabel}</div>
+      <div><strong>Gabarit:</strong> ${(env.ew ?? 0).toFixed(2)} × ${(env.ns ?? 0).toFixed(2)} m = ${volume.building_summary.footprint_gross_m2} m²</div>
+      <div><strong>Nivel:</strong> ${volume.meta.level_height_m} m · ${volume.building_summary.levels}</div>
+      <div><strong>Pereți:</strong> ${volume.building_summary.walls}</div>
+      <div><strong>Util audit:</strong> ${volume.building_summary.useful_audit_m2} m²</div>
+    `;
+
+    const gateClosed = [];
+    const gateOpen = [];
+    const parterObjs = [];
+    const etajObjs = [];
+    const subsolObjs = [];
+    const alwaysObjs = [];
+    const fenceObjs = [];
+    const curteObjs = [];
+    const list = document.getElementById("meshes");
+    const root = new THREE.Group();
+    scene.add(root);
+
+    const H = volume.meta.level_height_m || 3.04;
+
+    function isImprejmuireMesh(m) {
+      const id = m.id || "";
+      return (
+        m.site_layer === "imprejmuire" ||
+        id.startsWith("gard_") ||
+        id.startsWith("limit_") ||
+        id.startsWith("poarta_") ||
+        id === "teren_cf" ||
+        id.startsWith("amprenta_")
+      );
+    }
+    function isCurteMesh(m) {
+      const id = m.id || "";
+      return (
+        m.site_layer === "curte" ||
+        id.startsWith("curte_") ||
+        id.startsWith("alee_") ||
+        id.startsWith("subsol_curte_engleza") ||
+        id.startsWith("subsol_racord_") ||
+        id === "subsol_palier_acces" ||
+        id.startsWith("auto_") ||
+        id === "teren_cf" ||
+        id.startsWith("amprenta_") ||
+        id.startsWith("gard_") ||
+        id.startsWith("poarta_")
+      );
+    }
+    /** pe fațadă EST/NORD împrejmuirea = zid casă — nu duplicăm gard în P+E */
+    function isFacadeLimitOnly(m) {
+      const id = m.id || "";
+      return m.imprejmuire_only === true || id.startsWith("limit_");
+    }
+    /** zone dale/verde studiu — doar view Curte */
+    function isCurteOnly(m) {
+      return m.curte_only === true || (m.id || "").startsWith("curte_zona_");
+    }
+
+    for (const m of volume.meshes) {
+      const li = document.createElement("li");
+      li.textContent = m.label ? `${m.id}` : m.id;
+      list.appendChild(li);
+
+      let obj;
+      if (m.type === "extrude") obj = makeExtrude(m);
+      else if (m.type === "ribbon") obj = makeRibbon(m);
+      else continue;
+
+      obj.name = m.id;
+      obj.userData.imprejmuire_only = isFacadeLimitOnly(m);
+      obj.userData.curte_only = isCurteOnly(m);
+      obj.userData.site_layer = m.site_layer || null;
+      root.add(obj);
+
+      if (m.state === "closed" || m.id === "poarta_inchisa") gateClosed.push(obj);
+      if (m.state === "open" || m.id === "poarta_deschisa") gateOpen.push(obj);
+
+      const zMid = ((m.z0_m ?? 0) + (m.z1_m ?? 0)) / 2;
+      const id = m.id || "";
+      if (isImprejmuireMesh(m)) fenceObjs.push(obj);
+      if (isCurteMesh(m)) curteObjs.push(obj);
+
+      // limit_* / imprejmuire_only: NU în P+E (apar doar în view Împrejmuire)
+      if (isFacadeLimitOnly(m)) {
+        obj.visible = false;
+        continue;
+      }
+      // zone dale/verde studiu: DOAR view Curte (nu sub sol în P+E)
+      if (isCurteOnly(m)) {
+        obj.visible = false;
+        continue;
+      }
+      // parapet curte engleză: context sit
+      if (id.startsWith("curte_engleza_")) {
+        alwaysObjs.push(obj);
+        continue;
+      }
+      if (id.startsWith("gard_")) {
+        // gard real (vest/Closca/Dragalina S): context sit în always
+        alwaysObjs.push(obj);
+      } else if (id === "teren_cf" || id.startsWith("auto") || id.startsWith("poarta") || id.startsWith("amprenta_") || id.startsWith("alee_")) {
+        alwaysObjs.push(obj);
+      } else if (id.startsWith("subsol_")) {
+        subsolObjs.push(obj);
+      } else if (zMid >= H - 0.05) etajObjs.push(obj);
+      else parterObjs.push(obj);
+    }
+
+    function setGate(state) {
+      for (const o of gateClosed) o.visible = state === "closed";
+      for (const o of gateOpen) o.visible = state === "open";
+      document.getElementById("btnClosed").classList.toggle("active", state === "closed");
+      document.getElementById("btnOpen").classList.toggle("active", state === "open");
+    }
+    let cutaway = false;
+    let levelMode = "both";
+
+    function isRoofOrCeiling(n) {
+      if (!n) return false;
+      return (
+        n.startsWith("acoperis") ||
+        n.includes("plafon") ||
+        n.includes("copertina") ||
+        n.includes("false_ceiling")
+      );
+    }
+
+    function applyCutaway() {
+      if (!cutaway) {
+        document.getElementById("btnCut").classList.toggle("active", false);
+        return;
+      }
+      root.traverse((o) => {
+        if (!o.isMesh || !o.name) return;
+        const n = o.name;
+        // Ascunde acoperiș + fațade ca să vezi compartimentarea
+        if (
+          isRoofOrCeiling(n) ||
+          n.includes("zid_nord") ||
+          n.includes("zid_est_living") ||
+          n.includes("zid_vest")
+        ) {
+          o.visible = false;
+        }
+      });
+      document.getElementById("btnCut").classList.toggle("active", true);
+    }
+
+    function frameObjects(objs) {
+      const box = new THREE.Box3();
+      for (const o of objs) {
+        if (o.visible) box.expandByObject(o);
+      }
+      if (box.isEmpty()) return;
+      const c = box.getCenter(new THREE.Vector3());
+      const s = box.getSize(new THREE.Vector3());
+      const r = Math.max(s.x, s.y, s.z) * 0.9;
+      controls.target.set(c.x, c.y, c.z);
+      camera.position.set(c.x + r * 0.45, c.y + r * 0.85, c.z + r * 0.55);
+      controls.update();
+    }
+
+    function setLevel(mode) {
+      levelMode = mode;
+      if (mode === "imprejmuire" || mode === "curte") {
+        root.traverse((o) => {
+          if (!o.isMesh) return;
+          o.visible = false;
+        });
+        const layer = mode === "imprejmuire" ? fenceObjs : curteObjs;
+        for (const o of layer) o.visible = true;
+        if (mode === "curte") {
+          // amprentă + împrejmuire light (gard/porți) deja în curteObjs; limit_* doar dacă e în fence+curte
+          for (const o of fenceObjs) {
+            if ((o.name || "").startsWith("limit_")) o.visible = false;
+            else if ((o.name || "").startsWith("gard_") || (o.name || "").startsWith("poarta_")) o.visible = true;
+          }
+          // scară beci + plan camere (pardoseli + ziduri int)
+          for (const o of subsolObjs) {
+            const n = o.name || "";
+            if (
+              n.startsWith("subsol_scara") ||
+              n === "subsol_palier_jos" ||
+              n === "subsol_palier_acces" ||
+              n.startsWith("subsol_pardoseala") ||
+              n.startsWith("subsol_zid_") ||
+              n === "subsol_prag_usa_hol" ||
+              n === "subsol_usa_camere"
+            ) {
+              o.visible = true;
+            }
+          }
+        }
+        // păstrează starea porții auto
+        for (const o of gateClosed) o.visible = document.getElementById("btnClosed").classList.contains("active");
+        for (const o of gateOpen) o.visible = document.getElementById("btnOpen").classList.contains("active");
+        document.getElementById("btnBoth").classList.toggle("active", false);
+        document.getElementById("btnParter").classList.toggle("active", false);
+        document.getElementById("btnEtaj").classList.toggle("active", false);
+        document.getElementById("btnSubsol").classList.toggle("active", false);
+        document.getElementById("btnFence").classList.toggle("active", mode === "imprejmuire");
+        document.getElementById("btnCurte")?.classList.toggle("active", mode === "curte");
+        if (cutaway) applyCutaway();
+        frameObjects(layer);
+        return;
+      }
+      for (const o of alwaysObjs) o.visible = true;
+      for (const o of parterObjs) {
+        o.visible = mode === "both" || mode === "parter";
+      }
+      for (const o of etajObjs) {
+        o.visible = mode === "both" || mode === "etaj";
+        if (mode === "etaj" && isRoofOrCeiling(o.name)) o.visible = false;
+      }
+      for (const o of subsolObjs) {
+        // both: show L-1; parter/etaj: hide; subsol: only these
+        o.visible = mode === "both" || mode === "subsol";
+      }
+      // niciodată pe fațadă EST/NORD ca „gard”; zone studiu curte doar în view Curte
+      root.traverse((o) => {
+        if (!o.isMesh) return;
+        if (o.userData?.imprejmuire_only) o.visible = false;
+        if (o.userData?.curte_only) o.visible = false;
+      });
+      if (mode === "etaj" || mode === "parter") {
+        root.traverse((o) => {
+          if (!o.isMesh) return;
+          if ((o.name || "").startsWith("subsol_")) o.visible = false;
+          if (mode === "etaj" && isRoofOrCeiling(o.name)) o.visible = false;
+          if (mode === "parter" && isRoofOrCeiling(o.name)) o.visible = false;
+        });
+      }
+      if (mode === "subsol") {
+        for (const o of parterObjs) o.visible = false;
+        for (const o of etajObjs) o.visible = false;
+        for (const o of subsolObjs) o.visible = true;
+        // fără teren/amprentă peste plan — altfel camerele dispar sub capac verde
+        for (const o of alwaysObjs) {
+          const n = o.name || "";
+          o.visible = !(n === "teren_cf" || n.startsWith("amprenta_") || n.startsWith("alee_"));
+        }
+        root.traverse((o) => {
+          if (!o.isMesh) return;
+          if (o.userData?.imprejmuire_only) o.visible = false;
+          const n = o.name || "";
+          if (n === "subsol_intrados_placa") o.visible = false;
+          if (n === "teren_cf" || n.startsWith("amprenta_")) o.visible = false;
+          // trepte + ziduri fântână (site_layer curte) rămân vizibile în Doar subsol
+          if (n.startsWith("subsol_racord_") || n.startsWith("subsol_curte_engleza") || n.startsWith("curte_engleza_")) {
+            o.visible = true;
+          }
+        });
+      }
+      document.getElementById("btnBoth").classList.toggle("active", mode === "both");
+      document.getElementById("btnParter").classList.toggle("active", mode === "parter");
+      document.getElementById("btnEtaj").classList.toggle("active", mode === "etaj");
+      document.getElementById("btnSubsol").classList.toggle("active", mode === "subsol");
+      document.getElementById("btnFence")?.classList.toggle("active", false);
+      document.getElementById("btnCurte")?.classList.toggle("active", false);
+      if (cutaway) applyCutaway();
+
+      if (mode === "etaj") frameObjects(etajObjs);
+      if (mode === "subsol") frameObjects(subsolObjs);
+    }
+    setGate(volume.meta.gate_default_state || "closed");
+    // V47: pornește pe Doar parter ca să nu se vadă bucătăria de pe etaj peste intrare
+    setLevel(isV47 ? "parter" : "both");
+    if (isV47) {
+      const tip = document.createElement("p");
+      tip.className = "meta";
+      tip.style.color = "#7dcea0";
+      tip.innerHTML =
+        "<strong>Parter:</strong> parapet <span style='color:#00ff22'>verde</span> închide terasa față de palier/rampă (gol sud = acces etaj) · sub palierul est = living deschis · bucătărie = NORD · verifică titlul <em>V47</em> (nu V46).";
+      document.getElementById("meta")?.after(tip);
+    }
+    document.getElementById("btnClosed").onclick = () => setGate("closed");
+    document.getElementById("btnOpen").onclick = () => setGate("open");
+    document.getElementById("btnBoth").onclick = () => setLevel("both");
+    document.getElementById("btnParter").onclick = () => setLevel("parter");
+    document.getElementById("btnEtaj").onclick = () => setLevel("etaj");
+    document.getElementById("btnSubsol").onclick = () => setLevel("subsol");
+    document.getElementById("btnFence").onclick = () => setLevel("imprejmuire");
+    document.getElementById("btnCurte").onclick = () => setLevel("curte");
+    document.getElementById("btnCut").onclick = () => {
+      cutaway = !cutaway;
+      setLevel(levelMode);
+    };
+
+    {
+      const box = new THREE.Box3().setFromObject(root);
+      if (!box.isEmpty()) {
+        const c = box.getCenter(new THREE.Vector3());
+        const s = box.getSize(new THREE.Vector3());
+        const r = Math.max(s.x, s.y, s.z) * 0.85;
+        controls.target.copy(c);
+        camera.position.set(c.x + r * 1.15, c.y + r * 0.75, c.z + r * 1.05);
+        controls.update();
+      }
+    }
+
+    function frame() {
+      resize();
+      controls.update();
+      renderer.render(scene, camera);
+      requestAnimationFrame(frame);
+    }
+    frame();
+  </script>
+</body>
+</html>

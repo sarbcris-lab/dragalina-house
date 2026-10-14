@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "id": "gate_poarta_v05",
+    "source": "inputs/Plan_integrat_poarta_v05.png",
+    "status": "DECLARAT_PLAN_INTEGRAT",
+    "title": "Poartă culisantă articulată 90° spre vest",
+    "note": "Poziții și cotări citite din planul integrat v05. De verificat pe teren / produs real."
+  },
+  "type": "articulated_sliding_curved_rail",
+  "height_m": 1.9,
+  "thickness_m": 0.08,
+  "panel_length_m": 7.9,
+  "clear_opening_m": 7.1,
+  "corner_radius_m": 0.75,
+  "tech_band_west_m": 0.35,
+  "retract_along_west_m": 7.5,
+  "closed": {
+    "label": "închisă pe Cloșca",
+    "edge": "10-1",
+    "y_offset_m": 0.12,
+    "note": "Panouri pe frontul Cloșca, gol liber ~7,0–7,2 m la deschidere"
+  },
+  "open": {
+    "label": "deschisă pe vest",
+    "edge": "vest",
+    "x_offset_m": 0.18,
+    "note": "Retrasă pe bandă tehnică vest, fără a intra pe Auto 1"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "envelope_shoelace_m2": 40.3535,
+  "walls_net_m2": 1.13375,
+  "useful_net_m2": 39.21975,
+  "decomposition": "40.3535 − 1.1338 = 39.2197 m²",
+  "wall_parts_cm2": {
+    "dormitor_est": 5118.75,
+    "dorm_baie_nord": 3968.75,
+    "baie_est": 2812.5,
+    "hol_ne": 1437.5
+  },
+  "openings_void_cm2": {
+    "baie_glisanta": 1000,
+    "dorm_glisanta": 1000
+  },
+  "terrace_libera_m2": 4.576,
+  "site_overflow": {
+    "NW": {
+      "inside": true,
+      "dist_m": 0,
+      "note": null
+    },
+    "NE": {
+      "inside": true,
+      "dist_m": 0,
+      "note": null
+    },
+    "SE": {
+      "inside": false,
+      "dist_m": 0,
+      "note": "PIP=false, dist≈0 (contur/numeric)"
+    },
+    "SW": {
+      "inside": true,
+      "dist_m": 0,
+      "note": null
+    }
+  },
+  "generated": "2026-10-13T15:25:07.071Z"
+}

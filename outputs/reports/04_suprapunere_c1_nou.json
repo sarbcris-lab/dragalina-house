@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "generated": "2026-10-12T17:31:21.722Z",
+    "note": "C1 din plan amplasament; casă nouă = footprint_v01 pe 3 limite."
+  },
+  "c1_m2": 76.05,
+  "c1_cf_m2": 76,
+  "new_footprint_m2": 73.4,
+  "new_body_m2": 54.51,
+  "overlap_m2": 69.8,
+  "only_c1_m2": 6.2,
+  "only_new_m2": 3.5,
+  "c1_covered_pct": 92,
+  "new_on_c1_pct": 95,
+  "reading": {
+    "geometry": "Ambele pe N+Dragalina+Vest. C1 coboară mai mult spre Cloșca (până la pct 9, trepte). Casa nouă e mai scurtă pe N–S (~9,3 m) și lasă curte mai mare sud.",
+    "strategy": "Demolare C1 integral → casă nouă pe nordul lotului, pe aceeași logică de 3 limite, dar amprentă mai compactă."
+  }
+}

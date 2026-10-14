@@ -1,0 +1,134 @@
+{
+  "summary": "FAIL 1",
+  "counts": {
+    "pass": 9,
+    "warn": 2,
+    "fail": 1,
+    "info": 6
+  },
+  "soft": [
+    {
+      "id": "hol_to_lower_landing",
+      "sev": "fail",
+      "note": "gapX=30 overlapY=17 (door @ X535)"
+    },
+    {
+      "id": "door_connects",
+      "sev": "warn",
+      "note": "toHol=false toLl=false door X535 Y600–680"
+    },
+    {
+      "id": "eq_count",
+      "sev": "info",
+      "note": "9 pieces in CT 505×400"
+    },
+    {
+      "id": "court_geometry",
+      "sev": "info",
+      "note": "steps X565–670 Y860–944 (outside envelope Y>860?) upper Y780–850"
+    },
+    {
+      "id": "court_outside_envelope_y",
+      "sev": "pass",
+      "note": "steps.y=860 ns=860 (curte engleză pe fațadă N)"
+    },
+    {
+      "id": "local_vs_upper",
+      "sev": "pass",
+      "note": "local 565,780 115×80 vs upper 565,780 115×70"
+    },
+    {
+      "id": "stair_on_lower",
+      "sev": "pass",
+      "note": "stair.y=595 lower.y=595"
+    },
+    {
+      "id": "put_z",
+      "sev": "info",
+      "note": "z0=-2.5 z1=0.3 clear≈280cm"
+    },
+    {
+      "id": "wall_meshes",
+      "sev": "warn",
+      "note": "no dedicated subsol wall meshes (rooms are floor+vol only?)"
+    },
+    {
+      "id": "floor_camera_tehnica",
+      "sev": "pass",
+      "note": "ok"
+    },
+    {
+      "id": "floor_depozit_subsol",
+      "sev": "pass",
+      "note": "ok"
+    },
+    {
+      "id": "floor_hol_subsol",
+      "sev": "pass",
+      "note": "ok"
+    },
+    {
+      "id": "ramp2_meshes",
+      "sev": "info",
+      "note": "copertina_rampa2 z5.81–6.03"
+    },
+    {
+      "id": "first_tread_z",
+      "sev": "info",
+      "note": "scara_1 z0=-1.3544444444444446 z1=-1.2944444444444445"
+    },
+    {
+      "id": "ct_dep_gap",
+      "sev": "pass",
+      "note": "gapY=0"
+    },
+    {
+      "id": "dep_hol_gap",
+      "sev": "pass",
+      "note": "gapX=0"
+    },
+    {
+      "id": "rooms_bbox",
+      "sev": "info",
+      "note": "X30–535 Y30–630 / env 680×860"
+    },
+    {
+      "id": "stair_in_ramp2_y",
+      "sev": "pass",
+      "note": "stair Y595–795 vs ramp2 Y590–860"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "camera_tehnica",
+      "x": 30,
+      "y": 30,
+      "dx": 505,
+      "dy": 400,
+      "m2": 20.2
+    },
+    {
+      "id": "depozit_subsol",
+      "x": 30,
+      "y": 430,
+      "dx": 320,
+      "dy": 200,
+      "m2": 6.4
+    },
+    {
+      "id": "hol_subsol",
+      "x": 350,
+      "y": 430,
+      "dx": 185,
+      "dy": 182,
+      "m2": 3.367
+    }
+  ],
+  "flow": {
+    "court": "565,860 105×84 Z-48→-95",
+    "upper": "565,780 115×70 Z-95",
+    "stair": "577.5,595 90×200 Z-95→-250",
+    "lower": "565,595 115×90 Z-250",
+    "door": "535,600"
+  }
+}

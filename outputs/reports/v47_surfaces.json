@@ -1,0 +1,18 @@
+{
+  "footprint_m2": 58.48,
+  "parter_util_geom_m2": 37.87875,
+  "etaj_util_geom_m2": 37.87875,
+  "note_util": "37,8787 m² = util geometric PE UN NIVEL (nu total casă)",
+  "subsol_brut_rooms_m2": 29.97,
+  "subsol_tehnica_m2": 20.2,
+  "subsol_depozit_m2": 6.4,
+  "subsol_hol_m2": 3.367,
+  "terrace_covered_m2": 6.105,
+  "terrace_uncovered_m2": 3.91,
+  "terrace_etaj_m2": 6.105,
+  "parking_m2": 25,
+  "status": "concept — POT/CUT neconfirmate",
+  "uncovered_terrace_m2": 4.082,
+  "uncovered_in_pot": false,
+  "pot_note": "Amprenta casă (POT candidat) = anvelopă 6,80×8,60. Zona neacoperită X0–355 Y860–975 = 4.082 m² este marcată exclude_from_pot — NU se adaugă la POT în acest model. Înainte (rev5) placa X0–565 până Y1035 îngloba și rampa 1 / zona treptelor — greșit ca aspect și ca semnal POT. POT/CUT oficial rămân neconfirmate (cadastru)."
+}

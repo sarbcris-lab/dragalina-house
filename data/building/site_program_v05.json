@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "id": "site_program_v05",
+    "source": "inputs/Plan_integrat_poarta_v05.png",
+    "status": "DECLARAT_PLAN_INTEGRAT",
+    "orientation": "N sus · Dragalina dreapta · Cloșca jos",
+    "note": "Program sit din planul cu poartă. Amprenta clădire = footprint_v01 (3 limite)."
+  },
+  "building": {
+    "body_along_ns_m": 6.9,
+    "access_band_ns_m": 2.4,
+    "depth_ew_m": 7.8,
+    "levels": [
+      { "id": "parter", "z0_m": 0, "height_m": 3.0 },
+      { "id": "etaj", "z0_m": 3.0, "height_m": 3.0 }
+    ],
+    "access_zones_ew": {
+      "terasa_m": 3.49,
+      "acces_m": 1.23,
+      "scara_m": 3.08,
+      "note": "De la vest spre Dragalina, în banda de 2,40 m"
+    }
+  },
+  "parking": {
+    "count": 2,
+    "stall_w_m": 2.5,
+    "stall_d_m": 5.0,
+    "from_closca": true,
+    "orientation": "N–S",
+    "clearance_west_tech_m": 0.35,
+    "maneuver_north_of_stalls_m": 2.7,
+    "note": "Auto 1 vest, Auto 2 est — acces independent din Cloșca"
+  },
+  "gate_ref": "data/site/gate_poarta_v05.json"
+}

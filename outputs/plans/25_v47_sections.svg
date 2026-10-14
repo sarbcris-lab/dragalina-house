@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="980" viewBox="0 0 1100 980">
+  <rect width="100%" height="100%" fill="#faf9f5"/>
+  <text x="550" y="28" text-anchor="middle" font-size="14" font-family="IBM Plex Sans,Segoe UI,sans-serif">V47 rev.22 · secțiuni (parter/etaj + subsol)</text>
+  <text x="550" y="46" text-anchor="middle" font-size="10" fill="#2d5a27" font-family="IBM Plex Sans,Segoe UI,sans-serif">P: terasă→PRIMIRE→living · L-1: −48→−95→scară→−250 · clear 208 · poartă 6 m</text>
+  <text x="40" y="52" font-size="11">Sec A — baie E–W @ Y100</text>
+  <rect x="40" y="60" width="432" height="264" fill="#f7f4ef" stroke="#333"/>
+  <rect x="76" y="321.59999999999997" width="108" height="2.4" fill="#c4b090" stroke="#333"/>
+  <text x="78" y="331.59999999999997" font-size="7" font-family="IBM Plex Sans,Segoe UI,sans-serif">duș</text>
+  <rect x="181.6" y="84" width="2.4" height="240" fill="#c4b090" stroke="#333"/>
+  <text x="183.6" y="94" font-size="7" font-family="IBM Plex Sans,Segoe UI,sans-serif">sticlă_fix</text>
+  <rect x="185.2" y="84" width="2.4" height="240" fill="#c4b090" stroke="#333"/>
+  <text x="187.2" y="94" font-size="7" font-family="IBM Plex Sans,Segoe UI,sans-serif">sticlă_mobil</text>
+  <rect x="202" y="216" width="243" height="6" fill="#c4b090" stroke="#333"/>
+  <text x="204" y="226" font-size="7" font-family="IBM Plex Sans,Segoe UI,sans-serif">blat</text>
+  <rect x="457" y="18" width="15" height="306" fill="#c4b090" stroke="#333"/>
+  <text x="459" y="28" font-size="7" font-family="IBM Plex Sans,Segoe UI,sans-serif">perete_est</text>
+  <text x="40" y="348" font-size="8" fill="#555">șine distincte X118 / X121 · blat X135+ · perete 347.5</text>
+  <text x="500" y="52" font-size="11">Sec B — living N–S @ X400</text>
+  <rect x="500" y="60" width="336" height="264" fill="#f7f4ef" stroke="#333"/>
+  <rect x="533" y="258" width="54" height="66" fill="#8a9a78" stroke="#333"/>
+  <text x="535" y="268" font-size="7">tv_consolă</text>
+  <rect x="665" y="235.2" width="60" height="88.8" fill="#8a9a78" stroke="#333"/>
+  <text x="667" y="245.2" font-size="7">masă</text>
+  <rect x="527" y="234" width="102" height="90" fill="#8a9a78" stroke="#333"/>
+  <text x="529" y="244" font-size="7">canapea</text>
+  <text x="40" y="352" font-size="11">Sec C — scară (schema)</text>
+  <rect x="40" y="440" width="28" height="12" fill="#b8a480" stroke="#333"/>
+  <rect x="68" y="428" width="28" height="12" fill="#b8a480" stroke="#333"/>
+  <rect x="96" y="416" width="28" height="12" fill="#b8a480" stroke="#333"/>
+  <rect x="124" y="404" width="28" height="12" fill="#b8a480" stroke="#333"/>
+  <rect x="152" y="392" width="28" height="12" fill="#b8a480" stroke="#333"/>
+  <rect x="180" y="380" width="28" height="12" fill="#b8a480" stroke="#333"/>
+  <rect x="208" y="368" width="28" height="12" fill="#b8a480" stroke="#333"/>
+  <rect x="236" y="356" width="28" height="12" fill="#b8a480" stroke="#333"/>
+  <text x="40" y="480" font-size="8" fill="#333">riser 16 · tread 30 · clear 105 · parapet 10 · FF→FF 288</text>
+  <text x="40" y="500" font-size="8" fill="#a33">Performanțe / alcătuiri = NECONFIRMATE</text>
+  <rect x="30" y="536" width="1020" height="400" fill="#fff" stroke="#333"/>
+  <text x="40" y="552" font-size="11" font-family="IBM Plex Sans,Segoe UI,sans-serif">Sec D — subsol: curte −48 → racord → palier −95 → scară (8×19,375) → palier −250 · intrados −42 · clear 208</text>
+  <line x1="60" y1="650.4" x2="240" y2="650.4" stroke="#888" stroke-width="1.5"/>
+  <text x="60" y="646.4" font-size="8">curte −48</text>
+  <rect x="140" y="666.85" width="20" height="16.45" fill="#b09050" stroke="#333"/>
+  <rect x="162" y="683.3" width="20" height="16.45" fill="#b09050" stroke="#333"/>
+  <rect x="184" y="699.75" width="20" height="16.45" fill="#b09050" stroke="#333"/>
+  <line x1="200" y1="699.75" x2="380" y2="699.75" stroke="#1d3557" stroke-width="2"/>
+  <text x="200" y="695.75" font-size="8">palier −95</text>
+  <rect x="360" y="717.8333333333334" width="24" height="5" fill="#8a93a0" stroke="#333"/>
+  <text x="360" y="715.8333333333334" font-size="5.5">-112.2</text>
+  <rect x="388" y="735.9166666666667" width="24" height="5" fill="#8a93a0" stroke="#333"/>
+  <text x="388" y="733.9166666666667" font-size="5.5">-129.4</text>
+  <rect x="416" y="754" width="24" height="5" fill="#8a93a0" stroke="#333"/>
+  <text x="416" y="752" font-size="5.5">-146.7</text>
+  <rect x="444" y="772.0833333333334" width="24" height="5" fill="#8a93a0" stroke="#333"/>
+  <text x="444" y="770.0833333333334" font-size="5.5">-163.9</text>
+  <rect x="472" y="790.1666666666667" width="24" height="5" fill="#8a93a0" stroke="#333"/>
+  <text x="472" y="788.1666666666667" font-size="5.5">-181.1</text>
+  <rect x="500" y="808.25" width="24" height="5" fill="#8a93a0" stroke="#333"/>
+  <text x="500" y="806.25" font-size="5.5">-198.3</text>
+  <rect x="528" y="826.3333333333334" width="24" height="5" fill="#8a93a0" stroke="#333"/>
+  <text x="528" y="824.3333333333334" font-size="5.5">-215.6</text>
+  <rect x="556" y="844.4166666666666" width="24" height="5" fill="#8a93a0" stroke="#333"/>
+  <text x="556" y="842.4166666666666" font-size="5.5">-232.8</text>
+  <line x1="360" y1="862.5" x2="920" y2="862.5" stroke="#333" stroke-width="2"/>
+  <text x="600" y="858.5" font-size="8">FF subsol −250</text>
+  <line x1="600" y1="644.1" x2="920" y2="644.1" stroke="#c1121f" stroke-width="2"/>
+  <text x="800" y="640.1" font-size="8" fill="#c1121f">intrados -42</text>
+  <rect x="600" y="644.1" width="200" height="218.4" fill="#dce4ec" opacity="0.55" stroke="#1d3557"/>
+  <text x="620" y="747" font-size="9">camere L-1</text>
+  <line x1="880" y1="644.1" x2="880" y2="862.5" stroke="#2d6a4f" stroke-width="1.5"/>
+  <text x="886" y="753.3" font-size="10" fill="#2d6a4f">clear 208</text>
+  <text x="40" y="920" font-size="8" fill="#555" font-family="IBM Plex Sans,Segoe UI,sans-serif">9×17.222=155.000 cm · 8 călcări · planșeu 15 cm · P10: terasă→PRIMIRE→living</text>
+</svg>

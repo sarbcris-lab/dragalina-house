@@ -1,0 +1,34 @@
+{
+  "name": "dragalina-house",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Model parametric conceptual Dragalina 131 — planuri + volumetrie din data/",
+  "type": "module",
+  "scripts": {
+    "reconstruct": "node src/reconstruct_parcel.mjs",
+    "place": "node src/place_building.mjs",
+    "generate": "node src/generate.mjs",
+    "volume": "node src/build_volume_3d.mjs",
+    "volume:v43": "node src/build_v43_3d.mjs",
+    "docs:v43": "node src/export_v43_docs.mjs",
+    "volume:v44": "node src/build_v44_3d.mjs",
+    "docs:v44": "node src/export_v44_docs.mjs",
+    "volume:v45": "node src/build_v45_3d.mjs",
+    "docs:v45": "node src/export_v45_docs.mjs",
+    "volume:v46": "node src/build_v46_3d.mjs",
+    "docs:v46": "node src/export_v46_docs.mjs",
+    "layout": "node src/generate_layout_v43.mjs",
+    "build": "npm run reconstruct && npm run place && npm run generate && npm run volume:v43 && npm run layout && npm run docs:v43",
+    "build:v44": "npm run volume:v44 && npm run docs:v44",
+    "build:v45": "npm run volume:v45 && npm run docs:v45",
+    "build:v46": "npm run volume:v46 && npm run docs:v46",
+    "volume:v47": "node src/build_v47_3d.mjs",
+    "docs:v47": "node src/export_v47_docs.mjs && node src/export_v47_deliverables.mjs",
+    "build:v47": "npm run volume:v47 && npm run docs:v47",
+    "restore:r7g": "node tmp_restore_r7g.mjs && npm run build:v46",
+    "viewer": "npx --yes serve . -p 5173"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

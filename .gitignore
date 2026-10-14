@@ -1,0 +1,25 @@
+# deps
+node_modules/
+
+# secrets / local env
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+.cursor/
+.idea/
+*.swp
+
+# scratch / agent dumps (nu pe GitHub)
+tmp/
+tmp_*.mjs
+
+# Vercel local
+.vercel/
+
+# documente cadastru / CF — nu pe GitHub public
+inputs/cadastru/
