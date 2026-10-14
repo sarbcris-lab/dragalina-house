@@ -4477,7 +4477,10 @@
         "note": "doar sub rampă2 / curte engleză — fără pardoseală living deasupra"
       },
       "edge_beam_y": 590,
-      "edge_beam_note": "reazem planșeu la sudul zonei acoperite / nordul puțului"
+      "edge_beam_note": "grindă UNICĂ pe Y575–590 (zonă acoperită). NU pe Y590–620 peste scară/ușă. Clear sub≈180 cm cu h grindă 40 — ipoteză, nu micșorată arbitrar.",
+      "edge_beam_clear_under_cm": 180,
+      "edge_beam_depth_cm": 40,
+      "edge_beam_depth_status": "ipoteză structurist"
     },
     "absolute_from_grade_cm": {
       "datum": "teren_amenajat_0",
@@ -4495,98 +4498,88 @@
       "floor_sandwich_cm": {
         "layers": [
           {
-            "id": "intrados_finish",
-            "th_cm": 2,
-            "color": "#cfc8bc",
+            "id": "structural_slab",
+            "th_cm": 15,
+            "color": "#8b8680",
             "z0_cm": -30,
-            "z1_cm": -28
+            "z1_cm": -15,
+            "note": "placă structurală unică — aliniază heights_cm.structural_slab_cm=15; modelată ca subsol_intrados_placa"
           },
           {
             "id": "services_plenum",
-            "th_cm": 8,
+            "th_cm": 5,
             "color": "#aeb8c4",
-            "z0_cm": -28,
-            "z1_cm": -20
-          },
-          {
-            "id": "structural_slab",
-            "th_cm": 20,
-            "color": "#8b8680",
-            "z0_cm": -20,
-            "z1_cm": 0
+            "z0_cm": -15,
+            "z1_cm": -10,
+            "note": "ipoteză plenum/instalații peste placă"
           },
           {
             "id": "insulation",
-            "th_cm": 5,
+            "th_cm": 3,
             "color": "#d4c49a",
-            "z0_cm": 0,
-            "z1_cm": 5
+            "z0_cm": -10,
+            "z1_cm": -7
           },
           {
             "id": "heating_screed_finish",
             "th_cm": 12,
             "color": "#c4b8a0",
-            "z0_cm": 5,
-            "z1_cm": 17
+            "z0_cm": -7,
+            "z1_cm": 5,
+            "note": "șapă+finisaj — cotă intermediară; FF+32 rămâne elevație pe scări/intrare"
           },
           {
-            "id": "residual_level_to_ff",
-            "th_cm": 15,
+            "id": "make_up_to_ff",
+            "th_cm": 27,
             "color": "#b0a898",
-            "note": "rest până la FF+32 — de confirmat structurist/finisaj",
-            "z0_cm": 17,
-            "z1_cm": 32
+            "z0_cm": 5,
+            "z1_cm": 32,
+            "note": "rest până la FF+32 = ipoteză elevație/terasă — NU strat structural; de clarificat cu structurist"
           }
         ],
         "sum_th_cm": 62,
         "span_soffit_to_ff_cm": 62,
         "closes_span": true,
-        "note": "straturi sumă 62 cm = FF(32) − intrados(-30)"
+        "note": "O singură placă structurală 15 cm (−30…−15). Fără strat structural 20 cm suprapus. make_up_to_ff = rest elevație, nu beton."
       },
       "clear_height_cm": 220
     },
     "floor_sandwich_cm": [
       {
-        "id": "intrados_finish",
-        "th_cm": 2,
-        "color": "#cfc8bc",
+        "id": "structural_slab",
+        "th_cm": 15,
+        "color": "#8b8680",
         "z0_cm": -30,
-        "z1_cm": -28
+        "z1_cm": -15,
+        "note": "unică; model = subsol_intrados_placa"
       },
       {
         "id": "services_plenum",
-        "th_cm": 8,
+        "th_cm": 5,
         "color": "#aeb8c4",
-        "z0_cm": -28,
-        "z1_cm": -20
-      },
-      {
-        "id": "structural_slab",
-        "th_cm": 20,
-        "color": "#8b8680",
-        "z0_cm": -20,
-        "z1_cm": 0
+        "z0_cm": -15,
+        "z1_cm": -10
       },
       {
         "id": "insulation",
-        "th_cm": 5,
+        "th_cm": 3,
         "color": "#d4c49a",
-        "z0_cm": 0,
-        "z1_cm": 5
+        "z0_cm": -10,
+        "z1_cm": -7
       },
       {
         "id": "heating_screed_finish",
         "th_cm": 12,
         "color": "#c4b8a0",
-        "z0_cm": 5,
-        "z1_cm": 17
+        "z0_cm": -7,
+        "z1_cm": 5
       },
       {
-        "id": "residual_level_to_ff",
-        "th_cm": 15,
+        "id": "make_up_to_ff",
+        "th_cm": 27,
         "color": "#b0a898",
-        "note": "rest până la FF+32 — de confirmat structurist/finisaj",
-        "z0_cm": 17,
+        "note": "rest elevație până FF+32 — nu structural",
+        "z0_cm": 5,
         "z1_cm": 32
       }
     ],
@@ -4595,9 +4588,11 @@
       "brick_sono_non_loadbearing_cm": 20,
       "insulation_cm": 8,
       "finish_cm": 2,
+      "concrete_column_cm": 20,
+      "concrete_column_note": "30 = finit (20+8+2). Stâlpul de beton = 20 pe falie structurală; termo 8+2 rămâne în afara betonului. IPOTZĂ până la structurist.",
       "structure": "beton_portant",
       "perimeter_structure_cm": 30,
-      "perimeter_note": "30 = finit casă (20 sono umplutură + 8 termo + 2 finisaj). View Structură = doar beton (fundație/placă/grinzi/stâlpi), fără ziduri umplutură.",
+      "perimeter_note": "30 = finit casă (20 sono umplutură + 8 termo + 2 finisaj). View Structură = beton COL=20 pe falie (fundație/placă/grinzi/stâlpi), fără ziduri umplutură.",
       "partition_cm": 12.5,
       "shaft_west_cm": 30,
       "shaft_east_cm": 15,
