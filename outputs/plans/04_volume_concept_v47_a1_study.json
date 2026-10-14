@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_study",
-    "generated": "2026-10-14T18:05:09.579Z",
+    "generated": "2026-10-14T18:09:25.661Z",
     "status": "3D_STUDIU_A1",
     "source_plan": "data/building/v47_a1_study.json",
     "based_on": "v47_exact (referință neatinsă)",
@@ -29405,70 +29405,6 @@
       "label": "talpă stâlp w_mid"
     },
     {
-      "id": "subsol_stalp_part_mid",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 4.6171,
-          "y": 14.0711
-        },
-        {
-          "x": 4.9168,
-          "y": 14.0839
-        },
-        {
-          "x": 4.9296,
-          "y": 13.7842
-        },
-        {
-          "x": 4.6299,
-          "y": 13.7713
-        },
-        {
-          "x": 4.6171,
-          "y": 14.0711
-        }
-      ],
-      "z0_m": -3.1,
-      "z1_m": -0.3,
-      "color": "#7a7670",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "stâlp part_mid"
-    },
-    {
-      "id": "subsol_stalp_part_mid_talpa",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 4.5129,
-          "y": 14.1667
-        },
-        {
-          "x": 5.0124,
-          "y": 14.1881
-        },
-        {
-          "x": 5.0338,
-          "y": 13.6885
-        },
-        {
-          "x": 4.5343,
-          "y": 13.6672
-        },
-        {
-          "x": 4.5129,
-          "y": 14.1667
-        }
-      ],
-      "z0_m": -3.1,
-      "z1_m": -2.65,
-      "color": "#5e5a54",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "talpă stâlp part_mid"
-    },
-    {
       "id": "subsol_stalp_w_dorm",
       "type": "extrude",
       "polygon": [
@@ -29915,6 +29851,70 @@
       "opacity": 0.97,
       "site_layer": "structura",
       "label": "talpă stâlp buc_y590 (puț — nu pe P)"
+    },
+    {
+      "id": "subsol_stalp_part_mid",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.6171,
+          "y": 14.0711
+        },
+        {
+          "x": 4.9168,
+          "y": 14.0839
+        },
+        {
+          "x": 4.9296,
+          "y": 13.7842
+        },
+        {
+          "x": 4.6299,
+          "y": 13.7713
+        },
+        {
+          "x": 4.6171,
+          "y": 14.0711
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -0.3,
+      "color": "#7a7670",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "stâlp part_mid (puț — nu pe P)"
+    },
+    {
+      "id": "subsol_stalp_part_mid_talpa",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.5129,
+          "y": 14.1667
+        },
+        {
+          "x": 5.0124,
+          "y": 14.1881
+        },
+        {
+          "x": 5.0338,
+          "y": 13.6885
+        },
+        {
+          "x": 4.5343,
+          "y": 13.6672
+        },
+        {
+          "x": 4.5129,
+          "y": 14.1667
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#5e5a54",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "talpă stâlp part_mid (puț — nu pe P)"
     },
     {
       "id": "subsol_grinda_n",
@@ -33016,70 +33016,6 @@
       "label": "stâlp E w_mid"
     },
     {
-      "id": "parter_stalp_part_mid",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 4.6171,
-          "y": 14.0711
-        },
-        {
-          "x": 4.9168,
-          "y": 14.0839
-        },
-        {
-          "x": 4.9296,
-          "y": 13.7842
-        },
-        {
-          "x": 4.6299,
-          "y": 13.7713
-        },
-        {
-          "x": 4.6171,
-          "y": 14.0711
-        }
-      ],
-      "z0_m": -0.3,
-      "z1_m": 3.0799999999999996,
-      "color": "#6e6a64",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "stâlp P part_mid"
-    },
-    {
-      "id": "etaj_stalp_part_mid",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 4.6171,
-          "y": 14.0711
-        },
-        {
-          "x": 4.9168,
-          "y": 14.0839
-        },
-        {
-          "x": 4.9296,
-          "y": 13.7842
-        },
-        {
-          "x": 4.6299,
-          "y": 13.7713
-        },
-        {
-          "x": 4.6171,
-          "y": 14.0711
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#6e6a64",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "stâlp E part_mid"
-    },
-    {
       "id": "parter_stalp_w_dorm",
       "type": "extrude",
       "polygon": [
@@ -33494,6 +33430,38 @@
       "opacity": 0.95,
       "site_layer": "structura",
       "label": "stâlp E buc_y590 (nu pe P)"
+    },
+    {
+      "id": "etaj_stalp_part_mid",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.6171,
+          "y": 14.0711
+        },
+        {
+          "x": 4.9168,
+          "y": 14.0839
+        },
+        {
+          "x": 4.9296,
+          "y": 13.7842
+        },
+        {
+          "x": 4.6299,
+          "y": 13.7713
+        },
+        {
+          "x": 4.6171,
+          "y": 14.0711
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E part_mid (nu pe P)"
     },
     {
       "id": "etaj_stalp_pal_nw",

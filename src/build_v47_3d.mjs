@@ -203,20 +203,22 @@ function main() {
     { id: "n_part", x: 320, y: 0 },
     { id: "n_buc", x: 535, y: 0 }, // în zid nord
     { id: "n_est", x: 650, y: 0 },
-    { id: "w_mid", x: 0, y: 400 },
-    { id: "part_mid", x: 320, y: 400 }, // pe ~perete_comun (vest de living)
-    // NU buc_n (535,400) — ar fi liber în living P
+    { id: "w_mid", x: 0, y: 400 }, // pe fațada vest (nu în living)
+    // NU part_mid (320,400) — ieșea în living la T-ul peretelui comun
+    // NU buc_n (535,400) — liber în living P
     { id: "w_dorm", x: 0, y: 645 },
-    { id: "part_dorm", x: 320, y: 645 },
+    { id: "part_dorm", x: 320, y: 645 }, // colț dorm / perete comun @ sud — în zid
     // NU buc_y590 pe P — vezi structNodesNoParter
     { id: "est_y440", x: 650, y: 440 }, // în zid est_living (capăt S)
     { id: "est_y590", x: 650, y: 590 }, // bandă est, S de living-sub-palier
     { id: "s_buc_w", x: 360, y: 830 },
     { id: "s_buc_e", x: 535, y: 830 },
   ];
-  // Subsol + etaj (nu parter): reazem puț / palier în ax X535 @ Y590
+  // Subsol (+etaj unde e cazul): noduri care pe P ar încurca livingul
   const structNodesNoParter = [
     { id: "buc_y590", x: 535, y: 590 },
+    // pe peretele comun, învestit spre dorm (nu spre living): X320 Y400
+    { id: "part_mid", x: 320, y: 400 },
   ];
   // Doar etaj: pe buc_est_etaj / living_palier (de la placa etaj în sus)
   const structNodesEtajOnly = [
