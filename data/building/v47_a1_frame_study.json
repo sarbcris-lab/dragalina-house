@@ -36,7 +36,7 @@
     "based_on_amenajare": "v47_a1_study (aprobat — neatins)",
     "structure_system": "cadre_BA",
     "declared_buildable": false,
-    "rev_note_frame": "FRAME corectat: stâlpi 30×40 + proeminență locală; C_E_SOLID_N / C_CASA_SCARA eliberează scară+ușă; grindă întoarsă studiu; util P/E separat. Neconstruibil."
+    "rev_note_frame": "FRAME: C_E_PAL Y450–490 (fără stâlp pe palier); ETICS continuă peste stâlpi sud; util P/E pe pereți de nivel; transport refăcut cu finisaje — fără PASS. Neconstruibil."
   },
   "envelope_cm": {
     "ew": 680,
@@ -249,7 +249,7 @@
         1
       ],
       "toward": "shaft_cold",
-      "note": "închidere termică living↔puț; în util P"
+      "note": "închidere termică living↔puț; scăzut din util pe nivelurile unde există"
     }
   ],
   "openings_cm": [
@@ -618,7 +618,7 @@
     }
   ],
   "interior_polygon_cm": {
-    "note": "Frame P: living sub palier inclus",
+    "note": "Frame P util: living sub palier inclus; EXCLUDE terasă/acces exterior",
     "vertices": [
       [
         30,
@@ -664,6 +664,13 @@
         30,
         30
       ]
+    ],
+    "excludes": [
+      "terasa",
+      "uncovered_south",
+      "entry_steps",
+      "curte_engleza",
+      "alee"
     ]
   },
   "rooms_cm": [
@@ -944,7 +951,7 @@
     "interior_walls_overlaps_m2": 0,
     "interior_walls_openings_void_m2": 0.2125,
     "interior_walls_net_m2": 1.13125,
-    "useful_geometric_m2": 38.549,
+    "useful_geometric_m2": 38.605,
     "useful_interior_net_m2": 37.87875,
     "decomposition": "39.0100 − 1.1313 = 37.8787 m²",
     "dorm_principal_m2": 11.509375,
@@ -976,20 +983,24 @@
     "useful_ref_copied_was": 37.87875,
     "useful_delta_vs_ref_m2": 0,
     "frame_study_areas": {
-      "method": "P: shoelace(polyP)−pereți_int_net−thermal−proeminențe; E: shoelace(polyE)−pereți_int_net−proeminențe (NU usefulE=usefulP)",
-      "useful_parter_m2": 38.549,
-      "useful_etaj_m2": 39.254,
-      "thermal_enclosure_m2": 0.255,
-      "column_protrusion_P_m2": 0.35,
-      "column_protrusion_E_m2": 0.35,
-      "walls_int_net_m2": 1.131,
+      "method": "P/E separate: shoelace(poly nivel) − pereți_int ai nivelului − thermal pe nivel − proeminențe stâlpi; fără terasă/acces exterior; NU usefulE=usefulP",
+      "useful_parter_m2": 38.605,
+      "useful_etaj_m2": 38.98,
+      "gross_parter_m2": 40.285,
+      "gross_etaj_m2": 40.735,
+      "thermal_enclosure_P_m2": 0.255,
+      "thermal_enclosure_E_m2": 0.255,
+      "column_protrusion_P_m2": 0.369,
+      "column_protrusion_E_m2": 0.369,
+      "walls_int_net_P_m2": 1.056,
+      "walls_int_net_E_m2": 1.131,
       "reference_threshold_m2": 37,
-      "delta_P_vs_37": 1.549,
-      "delta_E_vs_37": 2.254,
+      "delta_P_vs_37": 1.605,
+      "delta_E_vs_37": 1.98,
       "ref_a1_useful_was": 37.87875,
-      "passes_37_P": true,
-      "passes_37_E": true,
-      "note": "Nu folosi surplusul ca rezervă stâlpi până la reuniune CAD completă."
+      "status_util": "NECONFIRMAT",
+      "declared_pass_util": false,
+      "note": "Fără PASS pe util. Nu folosi Δ vs 37 ca rezervă stâlpi până la reuniune CAD."
     }
   },
   "furniture_cm": [
@@ -4399,7 +4410,7 @@
       ],
       "status": "studiu_A1_transport",
       "note": "gol montaj 100 cm Y500–600 → clear 90 după toc 5+5",
-      "frame_study_note": "Gol Y500–600 PĂSTRAT. C_CASA_SCARA @ Y610+. Grindă muchie = întoarsă din schemă X565–680."
+      "frame_study_note": "Gol Y500–600 PĂSTRAT. C_CASA_SCARA @ Y610+. C_E_PAL Y450–490 (nu pe palier). Grindă întoarsă X565."
     },
     "rooms": [
       {
@@ -6559,6 +6570,331 @@
         "clear_at_door_zone_cm": 220,
         "ok": true
       }
+    },
+    "frame_transport_audit": {
+      "status": "NECONFIRMAT",
+      "declared_pass": false,
+      "method": "poziții succesive AABB 80×70 (+inflate) vs pereți/toc/finisaje/stâlpi/trepte — fără W+15; fără PASS",
+      "finish_inflate_cm": 1,
+      "handling_inflate_cm": 5,
+      "clear_effective_min_cm": 90,
+      "columns_intersecting_landing": [],
+      "geometric": {
+        "status": "neconfirmat",
+        "ok": false,
+        "poses": [
+          {
+            "id": "coborare_t1",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 787.5,
+            "aabb": {
+              "x": 570,
+              "y": 747.5,
+              "dx": 90,
+              "dy": 80
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "coborare_t2",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 762.5,
+            "aabb": {
+              "x": 570,
+              "y": 722.5,
+              "dx": 90,
+              "dy": 80
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "coborare_t3",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 737.5,
+            "aabb": {
+              "x": 570,
+              "y": 697.5,
+              "dx": 90,
+              "dy": 80
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "coborare_t4",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 712.5,
+            "aabb": {
+              "x": 570,
+              "y": 672.5,
+              "dx": 90,
+              "dy": 80
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "coborare_t5",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 687.5,
+            "aabb": {
+              "x": 570,
+              "y": 647.5,
+              "dx": 90,
+              "dy": 80
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "coborare_t6",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 662.5,
+            "aabb": {
+              "x": 570,
+              "y": 622.5,
+              "dx": 90,
+              "dy": 80
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "coborare_t7",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 637.5,
+            "aabb": {
+              "x": 570,
+              "y": 597.5,
+              "dx": 90,
+              "dy": 80
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "coborare_t8",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 612.5,
+            "aabb": {
+              "x": 570,
+              "y": 572.5,
+              "dx": 90,
+              "dy": 80
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "palier_aliniat_scara",
+            "phase": "landing",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 545,
+            "aabb": {
+              "x": 570,
+              "y": 505,
+              "dx": 90,
+              "dy": 80
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "intoarcere_15",
+            "phase": "turn",
+            "angleDeg": 15,
+            "cx": 604.2,
+            "cy": 550,
+            "aabb": {
+              "x": 550.3,
+              "y": 499.7,
+              "dx": 107.6,
+              "dy": 100.6
+            },
+            "collisions": [
+              "zid_put_w_solid_n",
+              "zid_put_w_solid_s",
+              "toc_n",
+              "toc_s",
+              "finisaj_zid_w",
+              "treapta_7"
+            ],
+            "ok": false
+          },
+          {
+            "id": "intoarcere_30",
+            "phase": "turn",
+            "angleDeg": 30,
+            "cx": 593.3,
+            "cy": 550,
+            "aabb": {
+              "x": 534.4,
+              "y": 492.9,
+              "dx": 117.9,
+              "dy": 114.3
+            },
+            "collisions": [
+              "zid_put_w_solid_n",
+              "zid_put_w_solid_s",
+              "toc_n",
+              "toc_s",
+              "finisaj_zid_w",
+              "foaie_deschisa_hol",
+              "treapta_7"
+            ],
+            "ok": false
+          },
+          {
+            "id": "intoarcere_45",
+            "phase": "turn",
+            "angleDeg": 45,
+            "cx": 582.5,
+            "cy": 550,
+            "aabb": {
+              "x": 522.4,
+              "y": 489.9,
+              "dx": 120.2,
+              "dy": 120.2
+            },
+            "collisions": [
+              "zid_put_w_solid_n",
+              "zid_put_w_solid_s",
+              "toc_n",
+              "toc_s",
+              "finisaj_zid_w",
+              "zid_put_n",
+              "finisaj_zid_n",
+              "foaie_deschisa_hol",
+              "treapta_7",
+              "stalp_C_CASA_SCARA"
+            ],
+            "ok": false
+          },
+          {
+            "id": "intoarcere_60",
+            "phase": "turn",
+            "angleDeg": 60,
+            "cx": 571.7,
+            "cy": 550,
+            "aabb": {
+              "x": 514.5,
+              "y": 491,
+              "dx": 114.3,
+              "dy": 117.9
+            },
+            "collisions": [
+              "zid_put_w_solid_n",
+              "zid_put_w_solid_s",
+              "toc_n",
+              "toc_s",
+              "finisaj_zid_w",
+              "foaie_deschisa_hol",
+              "treapta_7"
+            ],
+            "ok": false
+          },
+          {
+            "id": "intoarcere_75",
+            "phase": "turn",
+            "angleDeg": 75,
+            "cx": 560.8,
+            "cy": 550,
+            "aabb": {
+              "x": 510.5,
+              "y": 496.2,
+              "dx": 100.6,
+              "dy": 107.6
+            },
+            "collisions": [
+              "zid_put_w_solid_n",
+              "zid_put_w_solid_s",
+              "toc_n",
+              "toc_s",
+              "finisaj_zid_w",
+              "foaie_deschisa_hol",
+              "treapta_7"
+            ],
+            "ok": false
+          },
+          {
+            "id": "intoarcere_90",
+            "phase": "turn",
+            "angleDeg": 90,
+            "cx": 550,
+            "cy": 550,
+            "aabb": {
+              "x": 510,
+              "y": 505,
+              "dx": 80,
+              "dy": 90
+            },
+            "collisions": [
+              "finisaj_zid_w",
+              "foaie_deschisa_hol"
+            ],
+            "ok": false
+          },
+          {
+            "id": "in_gol_usa",
+            "phase": "through_door",
+            "angleDeg": 90,
+            "cx": 550,
+            "cy": 550,
+            "aabb": {
+              "x": 510,
+              "y": 505,
+              "dx": 80,
+              "dy": 90
+            },
+            "collisions": [
+              "finisaj_zid_w",
+              "foaie_deschisa_hol"
+            ],
+            "ok": false
+          },
+          {
+            "id": "in_hol",
+            "phase": "hall",
+            "angleDeg": 90,
+            "cx": 485,
+            "cy": 550,
+            "aabb": {
+              "x": 445,
+              "y": 505,
+              "dx": 80,
+              "dy": 90
+            },
+            "collisions": [
+              "foaie_deschisa_hol"
+            ],
+            "ok": false
+          }
+        ]
+      },
+      "notes": [
+        "Niciun stâlp pe AABB palier inferior după mutarea C_E_PAL N de Y490",
+        "Coliziuni: intoarcere_15[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,finisaj_zid_w,treapta_7]; intoarcere_30[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,finisaj_zid_w,foaie_deschisa_hol,treapta_7]; intoarcere_45[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,finisaj_zid_w,zid_put_n,finisaj_zid_n,foaie_deschisa_hol,treapta_7,stalp_C_CASA_SCARA]; intoarcere_60[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,finisaj_zid_w,foaie_deschisa_hol,treapta_7]; intoarcere_75[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,finisaj_zid_w,foaie_deschisa_hol,treapta_7]; intoarcere_90[finisaj_zid_w,foaie_deschisa_hol]; in_gol_usa[finisaj_zid_w,foaie_deschisa_hol]; in_hol[foaie_deschisa_hol]",
+        "TRANSPORT / ACCES = NECONFIRMAT"
+      ]
     }
   },
   "site_access_cm": {
@@ -6954,11 +7290,15 @@
       "Y_N": 9.2,
       "Y_N_MID": 9.2,
       "Y_PAL_N": 470,
-      "Y_E_SOLID": 550,
+      "Y_E_PAL_END": 489,
+      "Y_LANDING_N": 490,
+      "Y_LANDING_S": 600,
       "Y_DOOR_END": 600,
       "Y_CASA_AFTER_DOOR": 610,
       "Y_DORM_S": 645,
-      "Y_INTRARE_S": 830
+      "Y_DORM_S_EXT": 675,
+      "Y_INTRARE_S": 830,
+      "Y_INTRARE_S_EXT": 860
     },
     "column_section_hypothesis_cm": {
       "through_wall_cm": 30,
@@ -6966,8 +7306,9 @@
       "local_protrusion_inward_cm": 10,
       "finished_wall_kept_cm": 30,
       "etics_continuous_outside": true,
+      "etics_outside_cm": 9.2,
       "status": "de confirmat prin calcul și verificarea cerințelor normative",
-      "note": "Nu declarăm cadrul convențional încadrat în banda de 20 cm. Îngroșări locale la stâlpi, nu pereți groși peste tot."
+      "note": "Beton nu înlocuiește banda ETICS exterioară. Sud: stâlpi inset; vată continuă pe Y exterior."
     },
     "columns": [
       {
@@ -6984,6 +7325,7 @@
         ],
         "support_below": "fundație_N/W",
         "protrusion_into_room_cm": 10,
+        "etics_outside": "N/W — vată pe fața exterioară a peretelui finit, nu înlocuită de beton",
         "wall": "nord+vest",
         "conflicts": []
       },
@@ -7041,7 +7383,12 @@
         "wall": "est N de geam",
         "conflicts": [
           "geam ~Y105–310 — doar în plin"
-        ]
+        ],
+        "etics_outside_band_cm": {
+          "x0": 670.8,
+          "x1": 680,
+          "th": 9.2
+        }
       },
       {
         "id": "C_W_MID",
@@ -7059,12 +7406,17 @@
         "protrusion_into_room_cm": 10,
         "section_cm": "30×40",
         "section_status": "de confirmat prin calcul și cerințe normative",
-        "wall": "vest"
+        "wall": "vest",
+        "etics_outside_band_cm": {
+          "x0": 0,
+          "x1": 9.2,
+          "th": 9.2
+        }
       },
       {
         "id": "C_W_DORM",
         "x": 9.2,
-        "y": 645,
+        "y": 635.8,
         "dx": 40,
         "dy": 30,
         "orient": "along_S",
@@ -7074,8 +7426,15 @@
           "E"
         ],
         "support_below": "fundație_S",
-        "protrusion_into_room_cm": 10,
-        "wall": "sud dorm W de gol terasă",
+        "protrusion_into_room_cm": 9.200000000000045,
+        "etics_outside_band_cm": {
+          "y0": 665.8,
+          "y1": 675,
+          "th": 9.2
+        },
+        "section_cm": "30×40",
+        "section_status": "de confirmat prin calcul și cerințe normative",
+        "wall": "sud dorm W — ETICS Y665.8–675 continuă peste stâlp",
         "conflicts": [
           "gol terasă X120–270"
         ]
@@ -7083,7 +7442,7 @@
       {
         "id": "C_S_DORM_E",
         "x": 330,
-        "y": 645,
+        "y": 635.8,
         "dx": 30,
         "dy": 30,
         "orient": "corner_S_dorm_E",
@@ -7093,8 +7452,15 @@
           "E"
         ],
         "support_below": "fundație_S",
-        "protrusion_into_room_cm": 10,
-        "wall": "capăt E perete sud dorm @ X360 — verifică intrare/mobilier",
+        "protrusion_into_room_cm": 9.200000000000045,
+        "etics_outside_band_cm": {
+          "y0": 665.8,
+          "y1": 675,
+          "th": 9.2
+        },
+        "section_cm": "30×40",
+        "section_status": "de confirmat prin calcul și cerințe normative",
+        "wall": "capăt E sud dorm @ X360 — ETICS continuă afară",
         "conflicts": [
           "proximitate circulație / ușă terasă"
         ]
@@ -7115,12 +7481,17 @@
         "protrusion_into_room_cm": 10,
         "section_cm": "30×40",
         "section_status": "de confirmat prin calcul și cerințe normative (P100 — aplicabilitate pe sistem/ductilitate)",
-        "wall": "est S de geam"
+        "wall": "est S de geam",
+        "etics_outside_band_cm": {
+          "x0": 670.8,
+          "x1": 680,
+          "th": 9.2
+        }
       },
       {
         "id": "C_E_PAL",
         "x": 640,
-        "y": 470,
+        "y": 449,
         "dx": 30,
         "dy": 40,
         "orient": "along_E",
@@ -7133,36 +7504,18 @@
         "protrusion_into_room_cm": 10,
         "section_cm": "30×40",
         "section_status": "de confirmat prin calcul și cerințe normative (P100 — aplicabilitate pe sistem/ductilitate)",
-        "wall": "est sub vestibul",
+        "wall": "est sub vestibul / N de palier inferior (Y450–490)",
         "replaces": [
-          "pal_ne"
-        ],
-        "conflicts": [
-          "înlocuiește pal_ne etaj-only"
-        ]
-      },
-      {
-        "id": "C_E_SOLID_N",
-        "x": 640,
-        "y": 550,
-        "dx": 30,
-        "dy": 40,
-        "orient": "along_E",
-        "levels": [
-          "S",
-          "P",
-          "E"
-        ],
-        "support_below": "fundație_E",
-        "protrusion_into_room_cm": 10,
-        "section_cm": "30×40",
-        "section_status": "de confirmat prin calcul și cerințe normative (P100 — aplicabilitate pe sistem/ductilitate)",
-        "wall": "est tronson plin N de rampă (înlocuiește C_E_PUT @ Y590)",
-        "replaces": [
-          "C_E_PUT@Y590"
+          "pal_ne",
+          "C_E_SOLID_N@Y550"
         ],
         "conflicts": [],
-        "clear_stair": "Y1=590 ≤ început rampă Y600; X în perete+proeminență living, nu în clar scară"
+        "clear_landing": "y1=490 = început lower_landing; fără proeminență pe Y490–600",
+        "etics_outside_band_cm": {
+          "x0": 670.8,
+          "x1": 680,
+          "th": 9.2
+        }
       },
       {
         "id": "C_CASA_SCARA",
@@ -7188,7 +7541,7 @@
       {
         "id": "C_S_INTRARE_W",
         "x": 360,
-        "y": 830,
+        "y": 820.8,
         "dx": 40,
         "dy": 30,
         "orient": "along_S",
@@ -7197,14 +7550,22 @@
           "P",
           "E"
         ],
-        "support_below": "fundație_S_intrare",
-        "wall": "sud X360–535",
+        "support_below": "fundație_S",
+        "protrusion_into_room_cm": 9.200000000000045,
+        "etics_outside_band_cm": {
+          "y0": 850.8,
+          "y1": 860,
+          "th": 9.2
+        },
+        "section_cm": "30×40",
+        "section_status": "de confirmat prin calcul și cerințe normative",
+        "wall": "sud intrare X360–535 — ETICS Y850.8–860 continuă",
         "conflicts": []
       },
       {
         "id": "C_S_INTRARE_E",
         "x": 535,
-        "y": 830,
+        "y": 820.8,
         "dx": 30,
         "dy": 30,
         "orient": "corner_S",
@@ -7214,7 +7575,15 @@
           "E"
         ],
         "support_below": "fundație_S",
-        "wall": "sud @ X535",
+        "protrusion_into_room_cm": 9.200000000000045,
+        "etics_outside_band_cm": {
+          "y0": 850.8,
+          "y1": 860,
+          "th": 9.2
+        },
+        "section_cm": "30×40",
+        "section_status": "de confirmat prin calcul și cerințe normative",
+        "wall": "sud @ X535 — ETICS continuă afară",
         "conflicts": []
       }
     ],
@@ -7248,12 +7617,12 @@
         "x": 640,
         "y": 9.2,
         "dx": 30,
-        "dy": 580.8,
+        "dy": 479.8,
         "levels": [
           "P",
           "E"
         ],
-        "note": "centură E pe C_NE…C_E_SOLID_N"
+        "note": "centură E până la Y490 (C_E_PAL); fără stâlp pe palier/scară"
       },
       {
         "id": "B_CASA_SCARA",
@@ -7291,7 +7660,7 @@
           "P",
           "E"
         ],
-        "note": "sud dorm — capăt E pe C_S_DORM_E"
+        "note": "sud dorm — pe axul peretelui; beton stâlpi inset pentru ETICS"
       },
       {
         "id": "B_Y830",
@@ -7303,7 +7672,7 @@
           "P",
           "E"
         ],
-        "note": "sud intrare"
+        "note": "sud intrare — ax perete; ETICS afară de stâlpi"
       },
       {
         "id": "B_Y470_VESTIBUL_CANTILEVER",
@@ -7314,7 +7683,7 @@
         "levels": [
           "E"
         ],
-        "note": "vestibul: grindă legată de cadrul E (C_E_PAL); consolă/legătură — fără stâlp în living @ X535 Y470 pe P",
+        "note": "vestibul: grindă legată de C_E_PAL; fără stâlp în living @ X535 Y470 pe P",
         "support": "C_E_PAL + B_E; vest = închidere ușoară / calcul consolă"
       }
     ],
@@ -7342,7 +7711,11 @@
       },
       {
         "id": "C_E_PUT@Y590",
-        "reason": "îngusta scara X565–665 pe Y590–630 — mutat N ca C_E_SOLID_N"
+        "reason": "îngusta scara — eliminat"
+      },
+      {
+        "id": "C_E_SOLID_N@Y550",
+        "reason": "intra în palierul inferior Y490–600 (X640–670 ∩ clar); retras — rol preluat de C_E_PAL Y450–490 N de palier"
       },
       {
         "id": "C_CASA_SCARA@Y590",
@@ -7381,9 +7754,14 @@
         }
       },
       {
+        "id": "east_landing_span",
+        "severity": "DESCHIS",
+        "detail": "Fără stâlp est pe palier inferior Y490–600 / scară Y600–800 (proeminența ar reduce clarul). Deschidere pe C_E_PAL (Y450–490) → sud — de dimensionat."
+      },
+      {
         "id": "column_30_protrusion_vs_37m2",
         "severity": "DESCHIS",
-        "detail": "Secțiuni preliminare 30×40 cu ~10 cm proeminență locală. Compatibilitatea cu pragul 37 m² se demonstrează după scăderea intruziunilor — nu pe baza vechiului 20×40 în falie 20."
+        "detail": "Secțiuni preliminare 30×40 cu ~10 cm proeminență locală. Compatibilitatea cu pragul 37 m² = NECONFIRMAT până la reuniune CAD."
       },
       {
         "id": "vestibule_cantilever",
@@ -7409,6 +7787,11 @@
         "id": "p100_min_section",
         "severity": "IPOTEZĂ",
         "detail": "30 cm pe direcție transversală = studiu preliminar legat de cerințe geometrice tip P100 pentru cadre; aplicabilitatea exactă depinde de sistem și clasa de ductilitate — nu validat."
+      },
+      {
+        "id": "etics_wrap_verify",
+        "severity": "DESCHIS",
+        "detail": "Stâlpi sud inset cu bandă ETICS 9,2 cm pe fața exterioară; 3D extrudează wrap vată peste stâlpi. Continuitate reală pe șantier = detalii (colțuri, plasă, dibluri) — neconfirmat."
       }
     ],
     "levels_cm": {
@@ -7431,26 +7814,41 @@
         "y0": 600,
         "y1": 800
       },
+      "lower_landing": {
+        "x0": 565,
+        "x1": 680,
+        "y0": 490,
+        "y1": 600
+      },
       "door": {
         "x0": 535,
         "x1": 565,
         "y0": 500,
         "y1": 600
       },
-      "C_E_SOLID_N": {
-        "y0": 550,
-        "y1": 590,
-        "note": "N de rampă"
+      "C_E_PAL": {
+        "y0": 450,
+        "y1": 490,
+        "note": "N de palier — nu pe clar transport"
       },
       "C_CASA_SCARA": {
         "y0": 610,
         "y1": 650,
         "note": "S de ușă + rezervă"
+      },
+      "C_E_SOLID_N": {
+        "removed": true,
+        "reason": "intra în palier inferior"
       }
+    },
+    "transport_status": {
+      "status": "NECONFIRMAT",
+      "declared_pass_access": false,
+      "audit_key": "basement_cm.frame_transport_audit"
     }
   },
   "interior_polygon_etaj_cm": {
-    "note": "Frame E: vestibul inclus; NU copiază usefulP",
+    "note": "Frame E util: vestibul inclus; EXCLUDE exterior; NU copiază usefulP",
     "vertices": [
       [
         30,
@@ -7488,6 +7886,11 @@
         30,
         30
       ]
+    ],
+    "excludes": [
+      "terasa",
+      "uncovered_south",
+      "rampă_exterioară"
     ]
   }
 }

@@ -2423,6 +2423,48 @@ function main() {
           );
         }
       }
+      // ETICS continuă pe fața exterioară a stâlpilor (mai ales sud) — vată + strat armat schematic
+      const eticsTh = THERMO_OUT;
+      for (const c of frameColumns) {
+        const band = c.etics_outside_band_cm;
+        if (!band) continue;
+        const lv = c.levels || [];
+        const zPairs = [];
+        if (lv.includes("P")) zPairs.push(["P", zBotP, zTopP]);
+        if (lv.includes("E")) zPairs.push(["E", zBotE, zTopE]);
+        for (const [suf, z0, z1] of zPairs) {
+          let x;
+          let y;
+          let dx;
+          let dy;
+          if (band.y0 != null && band.y1 != null) {
+            // sud — bandă pe Y exterior
+            x = c.x;
+            dx = c.dx;
+            y = band.y0;
+            dy = Math.max(0.05, band.y1 - band.y0);
+          } else if (band.x0 != null && band.x1 != null) {
+            x = band.x0;
+            dx = Math.max(0.05, band.x1 - band.x0);
+            y = c.y;
+            dy = c.dy;
+          } else {
+            continue;
+          }
+          meshes.push({
+            id: `etics_wrap_${c.id}_${suf}`,
+            type: "extrude",
+            polygon: rectPoly(x, y, dx, dy),
+            z0_m: z0,
+            z1_m: z1,
+            color: "#e2d18a",
+            opacity: 0.85,
+            site_layer: "umplutura",
+            wall_layer: "vata_isover_fassade",
+            label: `ETICS continuă peste ${c.id} (~${eticsTh} cm)`,
+          });
+        }
+      }
     } else {
       for (const n of structNodesContinuous) {
         pushPE(`parter_stalp_${n.id}`, n.x, n.y, col, col, zBotP, zTopP, `stâlp P ${n.id}`, "#6e6a64");
