@@ -1,14 +1,14 @@
 {
   "meta": {
     "id": "volume_v47_a1_study",
-    "generated": "2026-10-14T18:56:17.208Z",
+    "generated": "2026-10-14T19:12:36.397Z",
     "status": "3D_STUDIU_A1",
     "source_plan": "data/building/v47_a1_study.json",
     "based_on": "v47_exact (referință neatinsă)",
     "study_variant": "A1",
     "levels_note": "subsol (L-1) + parter + etaj",
-    "warning": "STUDIU A1: Structură studiu A1: COL_BETON=20 pe falie; anvelopă P/E EB20+ISOVER FASSADE (299/300 mm) — de confirmat ETICS/proiectant. Dimensiuni ipoteză; NP112 fundații. Clear țintă 220; sub grinzi beci ≈180 cm (intrados −70). Referință v47_exact neatinsă. Nu autorizabil / nu calcul rezistență.",
-    "structure_hypothesis": "Structură studiu A1: COL_BETON=20 pe falie; anvelopă P/E EB20+ISOVER FASSADE (299/300 mm) — de confirmat ETICS/proiectant. Dimensiuni ipoteză; NP112 fundații.",
+    "warning": "STUDIU A1: Structură studiu A1: COL_BETON=20 pe falie; EB20+ISOVER FASSADE. Dimensiuni ipoteză. Clear țintă 220; sub grinzi beci ≈180 cm. Nu autorizabil.",
+    "structure_hypothesis": "Structură studiu A1: COL_BETON=20 pe falie; EB20+ISOVER FASSADE. Dimensiuni ipoteză.",
     "finished_wall_vs_column_cm": {
       "finished_envelope_cm": 30,
       "finished_nominal_mm": 299,
@@ -32149,7 +32149,7 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "grindă Y400 (oprit la perete comun — nu traversează living)"
+      "label": "grindă Y400"
     },
     {
       "id": "subsol_grinda_y440",
@@ -32181,7 +32181,7 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "grindă Y440 (N living sub palier)"
+      "label": "grindă Y440"
     },
     {
       "id": "subsol_grinda_y645",
@@ -34537,7 +34537,7 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "stâlp P nw (20×20 beton)"
+      "label": "stâlp P nw"
     },
     {
       "id": "etaj_stalp_nw",
@@ -34601,7 +34601,7 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "stâlp P n_part (20×20 beton)"
+      "label": "stâlp P n_part"
     },
     {
       "id": "etaj_stalp_n_part",
@@ -34665,7 +34665,7 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "stâlp P n_buc (20×20 beton)"
+      "label": "stâlp P n_buc"
     },
     {
       "id": "etaj_stalp_n_buc",
@@ -34729,7 +34729,7 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "stâlp P n_est (20×20 beton)"
+      "label": "stâlp P n_est"
     },
     {
       "id": "etaj_stalp_n_est",
@@ -34793,7 +34793,7 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "stâlp P w_mid (20×20 beton)"
+      "label": "stâlp P w_mid"
     },
     {
       "id": "etaj_stalp_w_mid",
@@ -34857,7 +34857,7 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "stâlp P w_dorm (20×20 beton)"
+      "label": "stâlp P w_dorm"
     },
     {
       "id": "etaj_stalp_w_dorm",
@@ -34921,7 +34921,7 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "stâlp P part_dorm (20×20 beton)"
+      "label": "stâlp P part_dorm"
     },
     {
       "id": "etaj_stalp_part_dorm",
@@ -34985,7 +34985,7 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "stâlp P est_y440 (20×20 beton)"
+      "label": "stâlp P est_y440"
     },
     {
       "id": "etaj_stalp_est_y440",
@@ -35049,7 +35049,7 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "stâlp P est_y590 (20×20 beton)"
+      "label": "stâlp P est_y590"
     },
     {
       "id": "etaj_stalp_est_y590",
@@ -35113,7 +35113,7 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "stâlp P s_buc_w (20×20 beton)"
+      "label": "stâlp P s_buc_w"
     },
     {
       "id": "etaj_stalp_s_buc_w",
@@ -35177,7 +35177,7 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "stâlp P s_buc_e (20×20 beton)"
+      "label": "stâlp P s_buc_e"
     },
     {
       "id": "etaj_stalp_s_buc_e",
@@ -35305,7 +35305,7 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "stâlp E-only pal_nw (ipoteză transfer — neconfirmat)"
+      "label": "stâlp E-only pal_nw"
     },
     {
       "id": "etaj_stalp_pal_ne",
@@ -35337,7 +35337,7 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "stâlp E-only pal_ne (ipoteză transfer — neconfirmat)"
+      "label": "stâlp E-only pal_ne"
     },
     {
       "id": "parter_centura_n",
@@ -35465,7 +35465,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură P X535 doar pe buc_est Y590+"
+      "label": "centură P X535 Y590+"
     },
     {
       "id": "parter_centura_x650_n",
@@ -35497,7 +35497,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură P X650 N (oprit @ Y440)"
+      "label": "centură P X650 N"
     },
     {
       "id": "parter_centura_x650_s",
@@ -35529,7 +35529,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură P X650 S (de la Y590)"
+      "label": "centură P X650 S"
     },
     {
       "id": "parter_centura_y440",
@@ -35561,7 +35561,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură P Y440 (N living sub palier)"
+      "label": "centură P Y440"
     },
     {
       "id": "parter_centura_y590",
@@ -35593,7 +35593,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură P Y590 (muchie, pe falie)"
+      "label": "centură P Y590"
     },
     {
       "id": "parter_centura_y645",
@@ -35713,7 +35713,7 @@
       "color": "#8b8680",
       "opacity": 0.5,
       "site_layer": "structura",
-      "label": "planșeu etaj structural 15 cm (nu buildup pardoseală 12 cm)"
+      "label": "planșeu etaj structural 15 cm (nu buildup 12 cm)"
     },
     {
       "id": "etaj_centura_n",
@@ -35809,7 +35809,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E X535 puț"
+      "label": "centură E casă–scară"
     },
     {
       "id": "etaj_centura_x650",
@@ -35873,7 +35873,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E Y470 N palier"
+      "label": "centură E Y470 vestibul"
     },
     {
       "id": "etaj_centura_y590",
@@ -35905,7 +35905,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E Y590 S palier / N puț"
+      "label": "centură E Y590"
     },
     {
       "id": "acoperis_structura_corp",

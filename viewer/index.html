@@ -68,6 +68,10 @@
       <div class="tabs" id="tabsV47">
         <a href="?v47"><strong>Model V47</strong></a>
         <a href="?v=v47_a1">V47 A1 studiu</a>
+        <a href="?v=v47_a1_frame">V47 A1 FRAME (cadre)</a>
+        <a href="../outputs/plans/36_v47_a1_frame_structure_overlay.svg" target="_blank">Frame overlay</a>
+        <a href="../outputs/plans/37_v47_a1_frame_sections.svg" target="_blank">Frame secțiuni</a>
+        <a href="../outputs/reports/v47_a1_frame_structure.md" target="_blank">Frame raport</a>
         <a href="../outputs/plans/21_v47_exact_plan.svg" target="_blank">Plan V47</a>
         <a href="../outputs/plans/31_v47_a1_subsol_plan.svg" target="_blank">Subsol A1</a>
         <a href="../outputs/plans/33_v47_a1_court_access_plan_after.svg" target="_blank">Acces plan</a>
@@ -87,7 +91,7 @@
         <a href="../outputs/plans/15_v46_sections.svg" target="_blank">Secțiuni V46</a>
       </div>
       <p class="meta" style="margin-top:1rem">Orbit · zoom · pan dreapta</p>
-      <p class="meta">V47: <code>?v47</code> · A1 studiu: <code>?v=v47_a1</code> · V46: <code>?v=v46</code></p>
+      <p class="meta">V47: <code>?v47</code> · A1: <code>?v=v47_a1</code> · FRAME: <code>?v=v47_a1_frame</code> · V46: <code>?v=v46</code></p>
       <p class="meta">Regen: <code>npm run build:v47</code> (nu atinge V46)</p>
       <ul id="meshes"></ul>
     </aside>
@@ -216,26 +220,33 @@
 
     const qs = new URLSearchParams(location.search);
     const vParam = qs.get("v") || "";
-    const isV47A1 = vParam === "v47_a1" || qs.has("v47_a1");
-    const isV47 = isV47A1 || qs.has("v47") || vParam.startsWith("v47");
-    const volFile = isV47A1
-      ? "./data/volume_v47_a1.json"
-      : isV47
-        ? "./data/volume_v47.json"
-        : "./data/volume.json";
+    const isV47A1Frame = vParam === "v47_a1_frame" || qs.has("v47_a1_frame");
+    const isV47A1 = !isV47A1Frame && (vParam === "v47_a1" || qs.has("v47_a1"));
+    const isV47 = isV47A1Frame || isV47A1 || qs.has("v47") || vParam.startsWith("v47");
+    const volFile = isV47A1Frame
+      ? "./data/volume_v47_a1_frame.json"
+      : isV47A1
+        ? "./data/volume_v47_a1.json"
+        : isV47
+          ? "./data/volume_v47.json"
+          : "./data/volume.json";
     const volume = await fetch(`${volFile}?${location.search.slice(1) || Date.now()}`, { cache: "no-store" }).then((r) => r.json());
-    document.getElementById("viewTitle").textContent = isV47A1
-      ? "Dragalina 131 · V47 A1 studiu"
-      : isV47
-        ? "Dragalina 131 · V47"
-        : "Dragalina 131 · V46";
+    document.getElementById("viewTitle").textContent = isV47A1Frame
+      ? "Dragalina 131 · V47 A1 FRAME (cadre)"
+      : isV47A1
+        ? "Dragalina 131 · V47 A1 studiu"
+        : isV47
+          ? "Dragalina 131 · V47"
+          : "Dragalina 131 · V46";
     document.getElementById("warning").textContent = volume.meta.warning || volume.meta.status;
     const env = volume.meta.envelope_m || {};
-    const srcLabel = isV47A1
-      ? "V47 A1 studiu (cm) · referință neatinsă"
-      : isV47
-        ? "V47 concept (cm) · L-1+P+E"
-        : "V46 exact (cm)";
+    const srcLabel = isV47A1Frame
+      ? "V47 A1 FRAME · cadre BA · neconstruibil"
+      : isV47A1
+        ? "V47 A1 studiu (cm) · referință neatinsă"
+        : isV47
+          ? "V47 concept (cm) · L-1+P+E"
+          : "V46 exact (cm)";
     document.getElementById("meta").innerHTML = `
       <div><strong>Model:</strong> ${volume.meta.id}</div>
       <div><strong>Sursă:</strong> ${srcLabel}</div>
@@ -573,13 +584,20 @@
     }
     setGate(volume.meta.gate_default_state || "closed");
     // A1: pornește pe Structură ca să se vadă scheletul legat; V47: parter
-    setLevel(isV47A1 ? "structura" : isV47 ? "parter" : "both");
-    if (isV47A1) {
+    setLevel(isV47A1 || isV47A1Frame ? "structura" : isV47 ? "parter" : "both");
+    if (isV47A1Frame) {
+      const tip = document.createElement("p");
+      tip.className = "meta";
+      tip.style.color = "#e8a87c";
+      tip.innerHTML =
+        "<strong>FRAME:</strong> cadre BA (stâlpi+grinzi) · EB20 umplutură · <em>neconstruibil</em> · amenajarea A1 e separat pe <code>?v=v47_a1</code>.";
+      document.getElementById("meta")?.after(tip);
+    } else if (isV47A1) {
       const tip = document.createElement("p");
       tip.className = "meta";
       tip.style.color = "#c4b496";
       tip.innerHTML =
-        "<strong>Straturi:</strong> <em>1 · Structură</em> = beton L-1+P+E + scări (beci, curte, rampă1/2, podest) · <em>2 · + Pereți</em> = + umplutură sono · <em>Doar subsol</em> = tot L-1.";
+        "<strong>Straturi:</strong> <em>1 · Structură</em> = beton L-1+P+E + scări · <em>2 · + Pereți</em> = umplutură · amenajare aprobată (fără pereți structurali P/E).";
       document.getElementById("meta")?.after(tip);
     } else if (isV47) {
       const tip = document.createElement("p");

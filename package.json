@@ -25,6 +25,7 @@
     "volume:v47": "node src/build_v47_3d.mjs",
     "docs:v47": "node src/export_v47_docs.mjs && node src/export_v47_deliverables.mjs",
     "build:v47": "npm run volume:v47 && npm run docs:v47",
+    "study:frame": "node src/study_v47_frame_schema.mjs",
     "restore:r7g": "node tmp_restore_r7g.mjs && npm run build:v46",
     "viewer": "npx --yes serve . -p 5173"
   },
