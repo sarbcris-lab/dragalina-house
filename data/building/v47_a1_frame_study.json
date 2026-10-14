@@ -36,7 +36,7 @@
     "based_on_amenajare": "v47_a1_study (aprobat — neatins)",
     "structure_system": "cadre_BA",
     "declared_buildable": false,
-    "rev_note_frame": "FRAME: stâlpi continui prin nod; C_N_BUC scos din aparate; C_NW eliberează duș; C_CASA_SCARA spre încălzit; noduri B_Y830/B_X360/B_LINK_INVERTED_W; fundație S intrare; util/transport NECONFIRMAT. Neconstruibil."
+    "rev_note_frame": "FRAME: o fundație (fg pe axe); stâlpi un corp fundație→acoperiș; C_N_MID pe N gros X400; subsol alin. P X360/Y400; util/transport NECONFIRMAT. Neconstruibil."
   },
   "envelope_cm": {
     "ew": 680,
@@ -4418,28 +4418,30 @@
         "x": 30,
         "y": 30,
         "dx": 505,
-        "dy": 400,
+        "dy": 370,
         "z_ff_cm": -250,
-        "area_m2": 20.2
+        "area_m2": 18.68,
+        "note": "alin. parter: E@X535 separator, S@Y400"
       },
       {
         "id": "depozit_subsol",
         "x": 30,
-        "y": 430,
-        "dx": 320,
-        "dy": 200,
+        "y": 400,
+        "dx": 330,
+        "dy": 245,
         "z_ff_cm": -250,
-        "area_m2": 6.4
+        "area_m2": 8.09,
+        "note": "sub dorm P: X30–360 Y400–645"
       },
       {
         "id": "hol_subsol",
-        "x": 350,
-        "y": 430,
-        "dx": 185,
-        "dy": 255,
+        "x": 360,
+        "y": 400,
+        "dx": 175,
+        "dy": 245,
         "z_ff_cm": -250,
-        "area_m2": 4.7175,
-        "note": "față E = zid gros puț X535; ușă Y500–600"
+        "area_m2": 4.287,
+        "note": "alin. intrare/hol P: X360–535 Y400–645; ușă beci neschimbată"
       }
     ],
     "equipment": [
@@ -4576,25 +4578,25 @@
     "areas": {
       "rooms": {
         "camera_tehnica": {
-          "brut_m2": 20.2,
+          "brut_m2": 18.68,
           "x": 30,
           "y": 30,
           "dx": 505,
-          "dy": 400
+          "dy": 370
         },
         "depozit_subsol": {
-          "brut_m2": 6.4,
+          "brut_m2": 8.09,
           "x": 30,
-          "y": 430,
-          "dx": 320,
-          "dy": 200
+          "y": 400,
+          "dx": 330,
+          "dy": 245
         },
         "hol_subsol": {
-          "brut_m2": 4.7175,
-          "x": 350,
-          "y": 430,
-          "dx": 185,
-          "dy": 255
+          "brut_m2": 4.287,
+          "x": 360,
+          "y": 400,
+          "dx": 175,
+          "dy": 245
         }
       },
       "total_brut_rooms_m2": 31.3175,
@@ -4603,7 +4605,7 @@
         "partition": 12.5,
         "perimeter": 30
       },
-      "note": "recalculate din geometria A1 finală; util = estimat pe fețe"
+      "note": "FRAME: compartimentare subsol realiniată la axe parter — nu constrânge stâlpii"
     },
     "open_shaft_under_ramp2": true,
     "english_court_open_void": true,
@@ -4820,7 +4822,7 @@
         "id": "usa_hol_ct",
         "wall": "subsol_zid_ct_sud",
         "x": 375,
-        "y": 423.75,
+        "y": 393.75,
         "dx": 100,
         "dy": 12.5,
         "opening_h_cm": 200,
@@ -4832,12 +4834,12 @@
           "hol_subsol",
           "camera_tehnica"
         ],
-        "note": "gol montaj 100 → clear 90 către CT"
+        "note": "gol pe Y400 (alin. part. CT|hol)"
       },
       {
         "id": "usa_hol_dep",
         "wall": "subsol_zid_dep_hol",
-        "x": 343.75,
+        "x": 353.75,
         "y": 470,
         "dx": 12.5,
         "dy": 100,
@@ -4850,7 +4852,7 @@
           "hol_subsol",
           "depozit_subsol"
         ],
-        "note": "gol montaj 100 → clear 90 către depozit"
+        "note": "gol pe X360 (alin. dorm|hol P)"
       }
     ],
     "a1_checks": {
@@ -6571,6 +6573,7 @@
         "ok": true
       }
     },
+    "frame_alignment_note": "Partiții subsol mutate pe X360 / Y400 ca parterul; pot fi ajustate — nu dictează cadrul.",
     "frame_transport_audit": {
       "status": "NECONFIRMAT",
       "declared_pass": false,
@@ -7340,7 +7343,7 @@
       },
       {
         "id": "C_N_MID",
-        "x": 370,
+        "x": 400,
         "y": 9.2,
         "dx": 40,
         "dy": 30,
@@ -7352,7 +7355,7 @@
         ],
         "support_below": "fundație_N",
         "protrusion_into_room_cm": 10,
-        "wall": "nord living E de perete_comun (mutat din X280 — ieșea din blat baie)",
+        "wall": "nord living pe perete gros exterior (X400) — NU pe perete_comun 12,5",
         "conflicts": [
           "verificare goluri/ferestre nord living"
         ],

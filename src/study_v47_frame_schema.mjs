@@ -176,7 +176,7 @@ function buildFrameSchema() {
     },
     {
       id: "C_N_MID",
-      x: 370,
+      x: 400,
       y: ETICS,
       dx: COL_ALONG,
       dy: COL_THRU,
@@ -184,7 +184,7 @@ function buildFrameSchema() {
       levels: ["S", "P", "E"],
       support_below: "fundație_N",
       protrusion_into_room_cm: PROTRUSION_IN,
-      wall: "nord living E de perete_comun (mutat din X280 — ieșea din blat baie)",
+      wall: "nord living pe perete gros exterior (X400) — NU pe perete_comun 12,5",
       conflicts: ["verificare goluri/ferestre nord living"],
       continuous_through_floor: true,
     },
@@ -714,11 +714,70 @@ function applyFrameToStudy(base) {
     structure_system: "cadre_BA",
     declared_buildable: false,
     rev_note_frame:
-      "FRAME: stâlpi continui prin nod; C_N_BUC scos din aparate; C_NW eliberează duș; C_CASA_SCARA spre încălzit; noduri B_Y830/B_X360/B_LINK_INVERTED_W; fundație S intrare; util/transport NECONFIRMAT. Neconstruibil.",
+      "FRAME: o fundație (fg pe axe); stâlpi un corp fundație→acoperiș; C_N_MID pe N gros X400; subsol alin. P X360/Y400; util/transport NECONFIRMAT. Neconstruibil.",
   };
 
   out.structure_frame_study_cm = buildFrameSchema();
   const fr = out.structure_frame_study_cm;
+
+  // Compartimentare subsol aliniată la parter (nu blochează cadrul): X360 = dorm|intrare, Y400 = C_W_MID
+  if (out.basement_cm?.rooms) {
+    const roomsAligned = {
+      camera_tehnica: {
+        x: 30,
+        y: 30,
+        dx: 505,
+        dy: 370,
+        z_ff_cm: -250,
+        area_m2: +((505 * 370) / 10000).toFixed(2),
+        note: "alin. parter: E@X535 separator, S@Y400",
+      },
+      depozit_subsol: {
+        x: 30,
+        y: 400,
+        dx: 330,
+        dy: 245,
+        z_ff_cm: -250,
+        area_m2: +((330 * 245) / 10000).toFixed(2),
+        note: "sub dorm P: X30–360 Y400–645",
+      },
+      hol_subsol: {
+        x: 360,
+        y: 400,
+        dx: 175,
+        dy: 245,
+        z_ff_cm: -250,
+        area_m2: +((175 * 245) / 10000).toFixed(3),
+        note: "alin. intrare/hol P: X360–535 Y400–645; ușă beci neschimbată",
+      },
+    };
+    out.basement_cm.rooms = out.basement_cm.rooms.map((r) =>
+      roomsAligned[r.id] ? { ...r, ...roomsAligned[r.id] } : r
+    );
+    out.basement_cm.areas = {
+      ...(out.basement_cm.areas || {}),
+      rooms: Object.fromEntries(
+        Object.entries(roomsAligned).map(([id, r]) => [
+          id,
+          { brut_m2: r.area_m2, x: r.x, y: r.y, dx: r.dx, dy: r.dy },
+        ])
+      ),
+      note: "FRAME: compartimentare subsol realiniată la axe parter — nu constrânge stâlpii",
+    };
+    if (out.basement_cm.internal_doors) {
+      out.basement_cm.internal_doors = out.basement_cm.internal_doors.map((d) => {
+        if (d.id === "usa_hol_ct") {
+          return { ...d, x: 375, y: 400 - 12.5 / 2, dx: 100, dy: 12.5, note: "gol pe Y400 (alin. part. CT|hol)" };
+        }
+        if (d.id === "usa_hol_dep") {
+          return { ...d, x: 360 - 12.5 / 2, y: 470, dx: 12.5, dy: 100, note: "gol pe X360 (alin. dorm|hol P)" };
+        }
+        return d;
+      });
+    }
+    out.basement_cm.frame_alignment_note =
+      "Partiții subsol mutate pe X360 / Y400 ca parterul; pot fi ajustate — nu dictează cadrul.";
+  }
 
   const thermal = {
     id: "living_put_thermal_y590",

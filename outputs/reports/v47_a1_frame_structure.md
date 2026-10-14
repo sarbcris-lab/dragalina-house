@@ -34,7 +34,7 @@ Sistem: **cadre beton armat** + **EB20** + **vată 80 mm**. **Nu** pereți struc
 | ID | Poziție (cm) | Secțiune + proem. | Niveluri | Reazem inferior | Conflicte |
 |----|--------------|-------------------|----------|-----------------|-----------|
 | C_NW | X9.2–30 Y9.2–30 | 20.8×20.8 (proem. 0) | S–P–E | fundație_N/W | secțiune < 30×40 la colț — IPOTEZĂ amenajare |
-| C_N_MID | X370–410 Y9.2–39.2 | 40×30 (proem. 10) | S–P–E | fundație_N | verificare goluri/ferestre nord living |
+| C_N_MID | X400–440 Y9.2–39.2 | 40×30 (proem. 10) | S–P–E | fundație_N | verificare goluri/ferestre nord living |
 | C_NE | X640–670 Y9.2–49.2 | 30×40 (proem. 10) | S–P–E | fundație_E | proeminență în capăt blat_tail_p — integrare mobilier |
 | C_W_MID | X9.2–37.2 Y400–440 | 28×40 (proem. 7.2) | S–P–E | fundație_W | gap beton→pat ~2,8 cm înainte de finisaj — verifică tăblia |
 | C_W_DORM | X9.2–49.2 Y635.8–665.8 | 40×30 (proem. 9.200000000000045) | S–P–E | fundație_S | gol terasă X120–270 |

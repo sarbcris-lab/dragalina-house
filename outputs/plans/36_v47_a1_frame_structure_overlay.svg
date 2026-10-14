@@ -52,8 +52,8 @@
 <rect x="334.25" y="298.5" width="79.75" height="16.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
 <rect x="45.06" y="45.06" width="11.440000000000001" height="11.440000000000001" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
 <text x="46.06" y="43.06" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_NW</text>
-<rect x="243.50000000000003" y="45.06" width="22" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
-<text x="244.50000000000003" y="43.06" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_N_MID</text>
+<rect x="260" y="45.06" width="22" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
+<text x="261" y="43.06" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_N_MID</text>
 <rect x="392" y="45.06" width="16.5" height="22" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
 <text x="393" y="43.06" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_NE</text>
 <rect x="45.06" y="260" width="15.400000000000002" height="22" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
