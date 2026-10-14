@@ -307,13 +307,135 @@ function computeHeadroomSamples(v) {
   };
 }
 
+/** Transport echipamente: clear efectiv după toc ≥90; gol montaj = clear + 2×toc */
+function transportAudit(bm) {
+  const jamb = bm.transport_cm?.frame_jamb_each_side_cm ?? 5;
+  const clearMin = bm.transport_cm?.clear_effective_min_cm ?? 90;
+  const roughNeeded = clearMin + 2 * jamb;
+  const g = bm.transport_cm?.gabarit_cm;
+  const low = bm.lower_landing;
+  const st = bm.stair;
+  const door = bm.door_to_rooms;
+  const landClearX = st.width_clear_cm;
+  const landClearY = low.dy;
+  const diag = Math.hypot(g.length_along_approach_cm, g.width_across_cm);
+
+  function doorClear(roughAlong) {
+    return roughAlong - 2 * jamb;
+  }
+
+  const doors = [
+    {
+      id: door.id,
+      role: "scară→hol",
+      rough_cm: door.dy,
+      clear_after_frame_cm: doorClear(door.dy),
+      along: "Y",
+    },
+    ...bm.internal_doors.map((d) => ({
+      id: d.id,
+      role: d.id === "usa_hol_ct" ? "hol→CT" : "hol→depozit",
+      rough_cm: d.id === "usa_hol_ct" ? d.dx : d.dy,
+      clear_after_frame_cm: doorClear(d.id === "usa_hol_ct" ? d.dx : d.dy),
+      along: d.id === "usa_hol_ct" ? "X" : "Y",
+    })),
+  ];
+
+  const fails = [];
+  const passes = [];
+
+  // scară
+  if (st.width_clear_cm + 0.01 < clearMin)
+    fails.push(`scară clear ${st.width_clear_cm} < ${clearMin}`);
+  else passes.push(`scară clear ${st.width_clear_cm} ≥ ${clearMin}`);
+
+  for (const d of doors) {
+    if (d.rough_cm + 0.01 < roughNeeded)
+      fails.push(`${d.id} gol montaj ${d.rough_cm} < necesar ${roughNeeded} (pt clear ${clearMin})`);
+    else if (d.clear_after_frame_cm + 0.01 < clearMin)
+      fails.push(`${d.id} clear după toc ${d.clear_after_frame_cm} < ${clearMin}`);
+    else
+      passes.push(
+        `${d.id} (${d.role}): gol ${d.rough_cm} → clear ${d.clear_after_frame_cm} după toc ${jamb}+${jamb}`
+      );
+  }
+
+  // gabarit trece prin clear-uri
+  const maxAcross = Math.max(g.width_across_cm, Math.min(g.length_along_approach_cm, g.width_across_cm));
+  if (g.width_across_cm > clearMin + 0.01)
+    fails.push(`gabarit lățime ${g.width_across_cm} > clear min ${clearMin}`);
+  else passes.push(`gabarit lățime ${g.width_across_cm} ≤ clear ${clearMin}`);
+
+  // Întoarcere pe palier: de pe scară (N) către ușă vest
+  // 1) rotație liberă în dreptunghiul liber: diagonală ≤ min(Dx,Dy)
+  const freeRotate = diag <= Math.min(landClearX, landClearY) + 0.01;
+  // 2) pivot în golul ușii: dacă clear_ușă ≥ lungime, adâncime palier ≥ lățime + marjă manevră
+  const doorClearY = doorClear(door.dy);
+  const maneuverMargin = bm.transport_cm?.turn_maneuver_margin_cm ?? 15;
+  const pivotDepthNeeded =
+    doorClearY + 0.01 >= g.length_along_approach_cm
+      ? g.width_across_cm + maneuverMargin
+      : g.length_along_approach_cm - doorClearY + g.width_across_cm + maneuverMargin;
+  const pivotOk = landClearY + 0.01 >= pivotDepthNeeded;
+
+  const turn = {
+    landing_clear_x_cm: landClearX,
+    landing_clear_y_cm: landClearY,
+    gabarit_diagonal_cm: +diag.toFixed(2),
+    free_rotation_ok: freeRotate,
+    free_rotation_rule: `diag(${g.length_along_approach_cm}×${g.width_across_cm}=${diag.toFixed(1)}) ≤ min(${landClearX},${landClearY})`,
+    pivot_into_door_ok: pivotOk,
+    pivot_depth_needed_cm: +pivotDepthNeeded.toFixed(2),
+    pivot_rule:
+      doorClearY >= g.length_along_approach_cm
+        ? `clear_ușă ${doorClearY} ≥ L ${g.length_along_approach_cm} → Dy ≥ W+marjă = ${g.width_across_cm}+${maneuverMargin}`
+        : `clear_ușă ${doorClearY} < L → Dy ≥ L−C+W+marjă = ${pivotDepthNeeded.toFixed(1)}`,
+    note_80cm_legacy:
+      "Palierul vechi dy=80: pivot necesita ≥ W+15; cu W=70 → 85 > 80 → EȘEC întoarcere (chiar dacă golul trecea obiectul).",
+  };
+
+  if (!freeRotate && !pivotOk) {
+    fails.push(
+      `întoarcere pe palier EȘUATĂ: free_rot=${freeRotate}, pivot=${pivotOk} (Dy ${landClearY} < necesar pivot ${pivotDepthNeeded.toFixed(1)})`
+    );
+  } else if (pivotOk) {
+    passes.push(
+      `întoarcere pivot scară→ușă OK: Dy ${landClearY} ≥ ${pivotDepthNeeded.toFixed(1)} (gabarit ${g.length_along_approach_cm}×${g.width_across_cm})`
+    );
+    if (!freeRotate)
+      passes.push(
+        `rotație liberă NU (diag ${diag.toFixed(1)} > min latură); acceptat doar pivot în gol`
+      );
+  } else {
+    passes.push(`rotație liberă OK pe palier ${landClearX}×${landClearY}`);
+  }
+
+  // hol clear toward CT / dep (bandă)
+  const hol = bm.rooms.find((r) => r.id === "hol_subsol");
+  const holClearX = hol.dx; // până la fața zidului
+  if (holClearX < clearMin) fails.push(`hol lățime ${holClearX} < ${clearMin}`);
+  else passes.push(`hol lățime ${holClearX} ≥ ${clearMin} (către CT/depozit)`);
+
+  return {
+    clear_effective_min_cm: clearMin,
+    frame_jamb_each_side_cm: jamb,
+    rough_opening_needed_cm: roughNeeded,
+    gabarit_cm: g,
+    doors,
+    turn,
+    ok: fails.length === 0,
+    passes,
+    fails,
+  };
+}
+
 function applyA1(v47) {
   const out = clone(v47);
   const d = absoluteDatum(out.heights_cm || {});
   out.meta = out.meta || {};
   out.meta.study_variant = "A1";
   out.meta.rev_note_a1 =
-    "A1 corectat: puț Y520–860; zid N N de palier; gol ușă Y530–600; est 15 cm; clear prin intersecții; sandwich modelat";
+    "A1 transport: clear 90 după toc; goluri 100; palier ≥ pivot; gabarit explicit";
 
   const riser = 155 / 9;
   const tread = 25;
@@ -321,10 +443,18 @@ function applyA1(v47) {
   const risers = 9;
   const ySouth = 800;
   const yLast = ySouth - treads * tread; // 600
-  const landY0 = 520;
-  const landDy = yLast - landY0; // 80
-  const doorY0 = 530;
-  const doorDy = 70;
+  // toc 5+5 → clear 90 cere gol montaj 100; palier trebuie ≥ gol + pivot (W+15)
+  const jamb = 5;
+  const clearEff = 90;
+  const roughDoor = clearEff + 2 * jamb; // 100
+  const gabaritW = 70; // baterie / modul CT
+  const gabaritL = 80;
+  const turnMargin = 15;
+  const pivotNeed = gabaritW + turnMargin; // 85 când clear_ușă ≥ L
+  const landDy = Math.max(roughDoor, pivotNeed, 110); // 110: gol 100 + rezervă N + pivot
+  const landY0 = yLast - landDy; // 490
+  const doorDy = roughDoor; // 100
+  const doorY0 = yLast - doorDy; // 500 — pe tot golul până la baza scării
   const shaftEast = 15;
   const shaftWest = 30;
   const clearDx = 680 - shaftEast - 565; // 100
@@ -335,9 +465,24 @@ function applyA1(v47) {
 
   out.basement_cm = {
     ...out.basement_cm,
-    status: "studiu_A1_corectat",
+    status: "studiu_A1_transport",
     concept_note:
-      "A1: curte→trepte→palier−95→scară↓N→palier liber Y520–600→ușă Y530–600→hol. Puț deschis Y520–860.",
+      `A1 transport: palier Y${landY0}–${yLast} (${landDy} cm); gol scară→hol ${roughDoor}→clear ${clearEff}; CT/dep idem.`,
+    transport_cm: {
+      clear_effective_min_cm: clearEff,
+      frame_jamb_each_side_cm: jamb,
+      rough_opening_needed_cm: roughDoor,
+      turn_maneuver_margin_cm: turnMargin,
+      gabarit_cm: {
+        id: "gabarit_transport_beci",
+        length_along_approach_cm: gabaritL,
+        width_across_cm: gabaritW,
+        height_cm: 180,
+        based_on: "baterie 70×25×110 + marjă manipulare; L=80 pe direcția de coborâre",
+        note: "gabarit EXPLICIT de dimensionare traseu — nu doar „încape prin ușă”",
+      },
+      path: "curte→scară L-1→palier→ușă(clear90)→hol→usa_hol_ct|usa_hol_dep",
+    },
     absolute_from_grade_cm: {
       ...d,
       clear_height_cm: d.clear_height_declared_cm, // alias pentru build
@@ -371,7 +516,7 @@ function applyA1(v47) {
       y: landY0,
       dx: 115,
       dy: 860 - landY0,
-      note: "puț deschis coordonat cu palier jos Y520–860",
+      note: `puț deschis coordonat cu palier jos Y${landY0}–860`,
     },
     court_to_access_steps: {
       count: 6,
@@ -420,8 +565,8 @@ function applyA1(v47) {
       dx: 115,
       dy: landDy,
       z_ff_cm: d.basement_ff_cm,
-      status: "studiu_A1",
-      note: `Y${landY0}–${yLast} LIBER; zid N @ Y${landY0 - shaftNorth}`,
+      status: "studiu_A1_transport",
+      note: `Y${landY0}–${yLast} (${landDy} cm) — extins față de 80: gol 100 + pivot W+${turnMargin}; zid N @ Y${landY0 - shaftNorth}`,
     },
     door_to_rooms: {
       id: "usa_subsol_camere",
@@ -432,32 +577,43 @@ function applyA1(v47) {
       z_sill_cm: d.basement_ff_cm,
       opening_h_cm: d.door_to_rooms_opening_h_cm,
       lintel_reserve_cm: d.door_lintel_reserve_cm,
+      frame_jamb_each_side_cm: jamb,
+      clear_after_frame_cm: clearEff,
+      rough_opening_cm: roughDoor,
       connects: ["lower_landing", "hol_subsol"],
-      status: "studiu_A1",
-      note: "gol pe toată Y530–600 (70 cm), fără clamp la Y590",
+      status: "studiu_A1_transport",
+      note: `gol montaj ${roughDoor} cm Y${doorY0}–${doorY0 + doorDy} → clear ${clearEff} după toc ${jamb}+${jamb}`,
     },
     internal_doors: [
       {
         id: "usa_hol_ct",
         wall: "subsol_zid_ct_sud",
-        x: 380,
+        x: 375,
         y: 430 - 6.25,
-        dx: 90,
+        dx: roughDoor,
         dy: 12.5,
         opening_h_cm: 200,
         lintel_reserve_cm: 15,
+        frame_jamb_each_side_cm: jamb,
+        clear_after_frame_cm: clearEff,
+        rough_opening_cm: roughDoor,
         connects: ["hol_subsol", "camera_tehnica"],
+        note: `gol montaj ${roughDoor} → clear ${clearEff} către CT`,
       },
       {
         id: "usa_hol_dep",
         wall: "subsol_zid_dep_hol",
         x: 350 - 6.25,
-        y: 480,
+        y: 470,
         dx: 12.5,
-        dy: 80,
+        dy: roughDoor,
         opening_h_cm: 200,
         lintel_reserve_cm: 15,
+        frame_jamb_each_side_cm: jamb,
+        clear_after_frame_cm: clearEff,
+        rough_opening_cm: roughDoor,
         connects: ["hol_subsol", "depozit_subsol"],
+        note: `gol montaj ${roughDoor} → clear ${clearEff} către depozit`,
       },
     ],
     rooms: [
@@ -487,7 +643,7 @@ function applyA1(v47) {
         dy: 255,
         z_ff_cm: d.basement_ff_cm,
         area_m2: (185 * 255) / 10000,
-        note: "față E = zid gros puț X535; ușă Y530–600",
+        note: `față E = zid gros puț X535; ușă Y${doorY0}–${doorY0 + doorDy}`,
       },
     ],
     equipment: out.basement_cm.equipment,
@@ -512,6 +668,7 @@ function applyA1(v47) {
       refUseful != null ? +(studio.useful_geometric_m2 - refUseful).toFixed(6) : null,
   };
   out.basement_cm.areas = computeBasementAreas(out.basement_cm);
+  out.basement_cm.transport_audit = transportAudit(out.basement_cm);
 
   const head = computeHeadroomSamples(out);
   const door = out.basement_cm.door_to_rooms;
@@ -612,6 +769,20 @@ function verifyA1(v, volume) {
     }
   }
 
+  // transport echipamente
+  const tr = bm.transport_audit;
+  if (!tr) fails.push("lipsește transport_audit");
+  else {
+    for (const p of tr.passes) passes.push(`transport: ${p}`);
+    for (const f of tr.fails) fails.push(`transport: ${f}`);
+    notes.push(
+      `gabarit ${tr.gabarit_cm.length_along_approach_cm}×${tr.gabarit_cm.width_across_cm}×${tr.gabarit_cm.height_cm}; ` +
+        `întoarcere: free=${tr.turn.free_rotation_ok} pivot=${tr.turn.pivot_into_door_ok} ` +
+        `(Dy ${tr.turn.landing_clear_y_cm}, necesar pivot ${tr.turn.pivot_depth_needed_cm})`
+    );
+    notes.push(tr.turn.note_80cm_legacy);
+  }
+
   // arii recalculate
   const studio = v.areas_cm?.useful_recalc_a1;
   if (!studio) fails.push("lipsește recalcul util studii");
@@ -688,7 +859,16 @@ function verifyA1(v, volume) {
     pot_envelope_over_147: +(potRef * 100).toFixed(2),
     pot_note: "anvelopă/147 — confirmare limită admisă deschisă",
     headroom_min: hr?.min_at || null,
-    path: "curte(0) → trepte → palier−95(Y800–860) → scară(Y600–800↓N) → palier liber−250(Y520–600) → ușă Y530–600 → hol → CT/dep",
+    path: "curte(0) → trepte → palier−95(Y800–860) → scară(Y600–800↓N) → palier liber−250 → ușă (clear 90) → hol → CT/dep",
+    transport: tr
+      ? {
+          ok: tr.ok,
+          clear_min: tr.clear_effective_min_cm,
+          rough: tr.rough_opening_needed_cm,
+          gabarit: tr.gabarit_cm,
+          turn: tr.turn,
+        }
+      : null,
   };
 }
 
@@ -710,7 +890,7 @@ function exportPlan(v) {
   const py = (y) => M + y * S;
   const parts = [];
   parts.push(
-    `<text x="${W / 2}" y="28" text-anchor="middle" font-size="13" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">V47 A1 corectat · plan subsol</text>`
+    `<text x="${W / 2}" y="28" text-anchor="middle" font-size="13" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">V47 A1 · plan subsol + traseu transport</text>`
   );
   parts.push(
     `<text x="${W / 2}" y="44" text-anchor="middle" font-size="8" fill="#b08900">${svgEsc(bm.a1_checks.path)}</text>`
@@ -744,28 +924,42 @@ function exportPlan(v) {
   parts.push(
     `<text x="${px(600)}" y="${py(nY0 - 4)}" font-size="7" fill="#c1121f">zid N @ Y${nY0}–${bm.lower_landing.y}</text>`
   );
-  // est / vest puț
+  // est / vest puț (de la palier)
+  const shY0 = bm.open_shaft_cm.y;
+  const shDy = bm.open_shaft_cm.dy;
   parts.push(
-    `<rect x="${px(535)}" y="${py(520)}" width="${wt.shaft_west_cm * S}" height="${340 * S}" fill="#b8b0a0" opacity="0.7" stroke="#333"/>`
+    `<rect x="${px(535)}" y="${py(shY0)}" width="${wt.shaft_west_cm * S}" height="${shDy * S}" fill="#b8b0a0" opacity="0.55" stroke="#333"/>`
   );
   parts.push(
-    `<rect x="${px(680 - wt.shaft_east_cm)}" y="${py(520)}" width="${wt.shaft_east_cm * S}" height="${340 * S}" fill="#b8b0a0" opacity="0.7" stroke="#333"/>`
+    `<rect x="${px(680 - wt.shaft_east_cm)}" y="${py(shY0)}" width="${wt.shaft_east_cm * S}" height="${shDy * S}" fill="#b8b0a0" opacity="0.55" stroke="#333"/>`
   );
-  // gol ușă
+  // gol ușă scară→hol
   const door = bm.door_to_rooms;
   parts.push(
     `<rect x="${px(door.x)}" y="${py(door.y)}" width="${door.dx * S}" height="${door.dy * S}" fill="#2d6a4f" stroke="#000"/>`
   );
   parts.push(
-    `<text x="${px(door.x - 2)}" y="${py(door.y + door.dy / 2)}" text-anchor="end" font-size="7" fill="#2d6a4f">gol ${door.dy} cm Y${door.y}–${door.y + door.dy}</text>`
+    `<text x="${px(door.x - 2)}" y="${py(door.y + door.dy / 2)}" text-anchor="end" font-size="7" fill="#2d6a4f">gol ${door.rough_opening_cm}→clear ${door.clear_after_frame_cm}</text>`
   );
-  // goluri interne
+  // gabarit pe palier (întoarcere)
+  const g = bm.transport_cm.gabarit_cm;
+  const gx = 565 + (bm.stair.width_clear_cm - g.width_across_cm) / 2;
+  const gy = bm.lower_landing.y + 8;
   parts.push(
-    `<rect x="${px(380)}" y="${py(430 - 6)}" width="${90 * S}" height="${12 * S}" fill="#6aaf7a" stroke="#234"/>`
+    `<rect x="${px(gx)}" y="${py(gy)}" width="${g.width_across_cm * S}" height="${g.length_along_approach_cm * S}" fill="#e63946" fill-opacity="0.25" stroke="#c1121f" stroke-dasharray="3 2"/>`
   );
   parts.push(
-    `<rect x="${px(350 - 6)}" y="${py(480)}" width="${12 * S}" height="${80 * S}" fill="#6aaf7a" stroke="#234"/>`
+    `<text x="${px(gx)}" y="${py(gy) - 3}" font-size="7" fill="#c1121f">gabarit ${g.length_along_approach_cm}×${g.width_across_cm} · pivot ${bm.transport_audit?.turn.pivot_into_door_ok ? "OK" : "FAIL"}</text>`
   );
+  // goluri interne din JSON
+  for (const id of bm.internal_doors) {
+    parts.push(
+      `<rect x="${px(id.x)}" y="${py(id.y)}" width="${id.dx * S}" height="${id.dy * S}" fill="#6aaf7a" stroke="#234"/>`
+    );
+    parts.push(
+      `<text x="${px(id.x + id.dx / 2)}" y="${py(id.y) - 2}" text-anchor="middle" font-size="6" fill="#1b4332">${id.id} clear ${id.clear_after_frame_cm}</text>`
+    );
+  }
   const st = bm.stair;
   for (let i = 0; i < st.treads; i++) {
     const yS = st.y + st.dy - (i + 1) * st.tread_cm;
@@ -992,10 +1186,24 @@ ${c.fails.length ? c.fails.map((p) => `- ${p}`).join("\n") : "- (niciuna)"}
 ### Note
 ${(c.notes || []).map((p) => `- ${p}`).join("\n") || "-"}
 
+## Transport echipamente
+Gabarit explicit: **${bm.transport_cm.gabarit_cm.length_along_approach_cm}×${bm.transport_cm.gabarit_cm.width_across_cm}×${bm.transport_cm.gabarit_cm.height_cm} cm** — ${bm.transport_cm.gabarit_cm.based_on}
+
+| Prag | Gol montaj | Clear după toc (${bm.transport_cm.frame_jamb_each_side_cm}+${bm.transport_cm.frame_jamb_each_side_cm}) |
+|------|----------:|---:|
+${(bm.transport_audit?.doors || []).map((xd) => `| ${xd.role} | ${xd.rough_cm} | **${xd.clear_after_frame_cm}** |`).join("\n")}
+
+### Întoarcere pe palier
+- Palier liber: **${bm.transport_audit?.turn.landing_clear_x_cm}×${bm.transport_audit?.turn.landing_clear_y_cm} cm** (fost 80 cm — insuficient pentru pivot)
+- ${bm.transport_audit?.turn.free_rotation_rule} → free=${bm.transport_audit?.turn.free_rotation_ok}
+- ${bm.transport_audit?.turn.pivot_rule} → pivot=**${bm.transport_audit?.turn.pivot_into_door_ok}**
+- ${bm.transport_audit?.turn.note_80cm_legacy}
+- Verdict transport: **${bm.transport_audit?.ok ? "OK" : "FAIL"}**
+
 ## Puț / goluri / grosimi
 - open_shaft Y${bm.open_shaft_cm.y}–${bm.open_shaft_cm.y + bm.open_shaft_cm.dy}
-- zid N @ Y${bm.lower_landing.y - bm.wall_thickness_study_cm.shaft_north_cm}–${bm.lower_landing.y} (nu Y590)
-- gol palier–hol: Y${bm.door_to_rooms.y}–${bm.door_to_rooms.y + bm.door_to_rooms.dy} (dy=${bm.door_to_rooms.dy}), dx=${bm.door_to_rooms.dx}
+- zid N @ Y${bm.lower_landing.y - bm.wall_thickness_study_cm.shaft_north_cm}–${bm.lower_landing.y}
+- gol palier–hol: Y${bm.door_to_rooms.y}–${bm.door_to_rooms.y + bm.door_to_rooms.dy} (gol ${bm.door_to_rooms.rough_opening_cm} → clear ${bm.door_to_rooms.clear_after_frame_cm})
 - EST puț: ${bm.wall_thickness_study_cm.shaft_east_cm} cm · VEST: ${bm.wall_thickness_study_cm.shaft_west_cm} cm
 
 ## Fundație / parcelă

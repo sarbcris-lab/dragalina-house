@@ -31,7 +31,7 @@
     "etaj_source": "v46_r7g — neschimbat",
     "concept_status": "temă cotată pentru discuție arhitect — NU autorizabil / NU verificat structural",
     "study_variant": "A1",
-    "rev_note_a1": "A1 corectat: puț Y520–860; zid N N de palier; gol ușă Y530–600; est 15 cm; clear prin intersecții; sandwich modelat"
+    "rev_note_a1": "A1 transport: clear 90 după toc; goluri 100; palier ≥ pivot; gabarit explicit"
   },
   "envelope_cm": {
     "ew": 680,
@@ -4082,8 +4082,8 @@
     }
   ],
   "basement_cm": {
-    "status": "studiu_A1_corectat",
-    "concept_note": "A1: curte→trepte→palier−95→scară↓N→palier liber Y520–600→ușă Y530–600→hol. Puț deschis Y520–860.",
+    "status": "studiu_A1_transport",
+    "concept_note": "A1 transport: palier Y490–600 (110 cm); gol scară→hol 100→clear 90; CT/dep idem.",
     "ramp2_ref": {
       "x": 565,
       "y": 590,
@@ -4172,28 +4172,31 @@
     },
     "lower_landing": {
       "x": 565,
-      "y": 520,
+      "y": 490,
       "dx": 115,
-      "dy": 80,
+      "dy": 110,
       "z_ff_cm": -250,
-      "status": "studiu_A1",
-      "note": "Y520–600 LIBER; zid N @ Y507.5"
+      "status": "studiu_A1_transport",
+      "note": "Y490–600 (110 cm) — extins față de 80: gol 100 + pivot W+15; zid N @ Y477.5"
     },
     "door_to_rooms": {
       "id": "usa_subsol_camere",
       "x": 535,
-      "y": 530,
+      "y": 500,
       "dx": 30,
-      "dy": 70,
+      "dy": 100,
       "z_sill_cm": -250,
       "opening_h_cm": 200,
       "lintel_reserve_cm": 15,
+      "frame_jamb_each_side_cm": 5,
+      "clear_after_frame_cm": 90,
+      "rough_opening_cm": 100,
       "connects": [
         "lower_landing",
         "hol_subsol"
       ],
-      "status": "studiu_A1",
-      "note": "gol pe toată Y530–600 (70 cm), fără clamp la Y590"
+      "status": "studiu_A1_transport",
+      "note": "gol montaj 100 cm Y500–600 → clear 90 după toc 5+5"
     },
     "rooms": [
       {
@@ -4222,7 +4225,7 @@
         "dy": 255,
         "z_ff_cm": -250,
         "area_m2": 4.7175,
-        "note": "față E = zid gros puț X535; ușă Y530–600"
+        "note": "față E = zid gros puț X535; ușă Y500–600"
       }
     ],
     "equipment": [
@@ -4391,6 +4394,21 @@
     "open_shaft_under_ramp2": true,
     "english_court_open_void": true,
     "shaft_walls": true,
+    "transport_cm": {
+      "clear_effective_min_cm": 90,
+      "frame_jamb_each_side_cm": 5,
+      "rough_opening_needed_cm": 100,
+      "turn_maneuver_margin_cm": 15,
+      "gabarit_cm": {
+        "id": "gabarit_transport_beci",
+        "length_along_approach_cm": 80,
+        "width_across_cm": 70,
+        "height_cm": 180,
+        "based_on": "baterie 70×25×110 + marjă manipulare; L=80 pe direcția de coborâre",
+        "note": "gabarit EXPLICIT de dimensionare traseu — nu doar „încape prin ușă”"
+      },
+      "path": "curte→scară L-1→palier→ușă(clear90)→hol→usa_hol_ct|usa_hol_dep"
+    },
     "absolute_from_grade_cm": {
       "datum": "teren_amenajat_0",
       "grade_cm": 0,
@@ -4515,39 +4533,47 @@
     },
     "open_shaft_cm": {
       "x": 565,
-      "y": 520,
+      "y": 490,
       "dx": 115,
-      "dy": 340,
-      "note": "puț deschis coordonat cu palier jos Y520–860"
+      "dy": 370,
+      "note": "puț deschis coordonat cu palier jos Y490–860"
     },
     "internal_doors": [
       {
         "id": "usa_hol_ct",
         "wall": "subsol_zid_ct_sud",
-        "x": 380,
+        "x": 375,
         "y": 423.75,
-        "dx": 90,
+        "dx": 100,
         "dy": 12.5,
         "opening_h_cm": 200,
         "lintel_reserve_cm": 15,
+        "frame_jamb_each_side_cm": 5,
+        "clear_after_frame_cm": 90,
+        "rough_opening_cm": 100,
         "connects": [
           "hol_subsol",
           "camera_tehnica"
-        ]
+        ],
+        "note": "gol montaj 100 → clear 90 către CT"
       },
       {
         "id": "usa_hol_dep",
         "wall": "subsol_zid_dep_hol",
         "x": 343.75,
-        "y": 480,
+        "y": 470,
         "dx": 12.5,
-        "dy": 80,
+        "dy": 100,
         "opening_h_cm": 200,
         "lintel_reserve_cm": 15,
+        "frame_jamb_each_side_cm": 5,
+        "clear_after_frame_cm": 90,
+        "rough_opening_cm": 100,
         "connects": [
           "hol_subsol",
           "depozit_subsol"
-        ]
+        ],
+        "note": "gol montaj 100 → clear 90 către depozit"
       }
     ],
     "a1_checks": {
@@ -4556,15 +4582,23 @@
         "upper_landing → Y860",
         "upper abut stair top",
         "palier jos N de ultima treaptă",
-        "ușă pe palier Y530–600 (dy=70)",
+        "ușă pe palier Y500–600 (dy=100)",
         "ușă ∩ hol pe Y",
-        "puț deschis începe la Y520 (= palier)",
-        "zid N @ Y507.5–520 (N de palier, nu Y590)",
+        "puț deschis începe la Y490 (= palier)",
+        "zid N @ Y477.5–490 (N de palier, nu Y590)",
         "zid EST puț = 15 cm (JSON)",
         "sandwich modelat: 62 cm = FF(+32) − intrados(-30)",
         "gabarit minim global = 220 cm @ Y230 X282.5 (intrados_placa_parter@camera_tehnica)",
         "gabarit minim pe traseu acces = 251 cm @ Y830 (structura_r2_0)",
         "ușă+buiandrug 215 ≤ clear zonă ușă 558",
+        "transport: scară clear 100 ≥ 90",
+        "transport: usa_subsol_camere (scară→hol): gol 100 → clear 90 după toc 5+5",
+        "transport: usa_hol_ct (hol→CT): gol 100 → clear 90 după toc 5+5",
+        "transport: usa_hol_dep (hol→depozit): gol 100 → clear 90 după toc 5+5",
+        "transport: gabarit lățime 70 ≤ clear 90",
+        "transport: întoarcere pivot scară→ușă OK: Dy 110 ≥ 85.0 (gabarit 80×70)",
+        "transport: rotație liberă NU (diag 106.3 > min latură); acceptat doar pivot în gol",
+        "transport: hol lățime 185 ≥ 90 (către CT/depozit)",
         "util studii recalculat 37.87875 m² (Δ vs ref 0)",
         "arii subsol brut recalculate 31.3175 m²",
         "anvelopă 680×860 păstrată",
@@ -4573,6 +4607,8 @@
       "fails": [],
       "notes": [
         "clear_declared 220 NU e validat doar prin scădere; vezi headroom_audit.min_clear_cm",
+        "gabarit 80×70×180; întoarcere: free=false pivot=true (Dy 110, necesar pivot 85)",
+        "Palierul vechi dy=80: pivot necesita ≥ W+15; cu W=70 → 85 > 80 → EȘEC întoarcere (chiar dacă golul trecea obiectul).",
         "țintă fundație uniformă 15 cm EȘUEAZĂ PIP: target_NW +0.058m; target_NE +0.15m; target_SE +0.15m; target_E_mid +0.15m",
         "PIP=false dist≈0 pe clip_SE — același artefact numeric ca SE anvelopă",
         "proiecție redusă față de ținta 15 cm (est/Dragalina tipic limitat de contur CF)",
@@ -4587,11 +4623,154 @@
         "z_walk_cm": -250,
         "z_obstacle_cm": -30
       },
-      "path": "curte(0) → trepte → palier−95(Y800–860) → scară(Y600–800↓N) → palier liber−250(Y520–600) → ușă Y530–600 → hol → CT/dep"
+      "path": "curte(0) → trepte → palier−95(Y800–860) → scară(Y600–800↓N) → palier liber−250 → ușă (clear 90) → hol → CT/dep",
+      "transport": {
+        "ok": true,
+        "clear_min": 90,
+        "rough": 100,
+        "gabarit": {
+          "id": "gabarit_transport_beci",
+          "length_along_approach_cm": 80,
+          "width_across_cm": 70,
+          "height_cm": 180,
+          "based_on": "baterie 70×25×110 + marjă manipulare; L=80 pe direcția de coborâre",
+          "note": "gabarit EXPLICIT de dimensionare traseu — nu doar „încape prin ușă”"
+        },
+        "turn": {
+          "landing_clear_x_cm": 100,
+          "landing_clear_y_cm": 110,
+          "gabarit_diagonal_cm": 106.3,
+          "free_rotation_ok": false,
+          "free_rotation_rule": "diag(80×70=106.3) ≤ min(100,110)",
+          "pivot_into_door_ok": true,
+          "pivot_depth_needed_cm": 85,
+          "pivot_rule": "clear_ușă 90 ≥ L 80 → Dy ≥ W+marjă = 70+15",
+          "note_80cm_legacy": "Palierul vechi dy=80: pivot necesita ≥ W+15; cu W=70 → 85 > 80 → EȘEC întoarcere (chiar dacă golul trecea obiectul)."
+        }
+      }
+    },
+    "transport_audit": {
+      "clear_effective_min_cm": 90,
+      "frame_jamb_each_side_cm": 5,
+      "rough_opening_needed_cm": 100,
+      "gabarit_cm": {
+        "id": "gabarit_transport_beci",
+        "length_along_approach_cm": 80,
+        "width_across_cm": 70,
+        "height_cm": 180,
+        "based_on": "baterie 70×25×110 + marjă manipulare; L=80 pe direcția de coborâre",
+        "note": "gabarit EXPLICIT de dimensionare traseu — nu doar „încape prin ușă”"
+      },
+      "doors": [
+        {
+          "id": "usa_subsol_camere",
+          "role": "scară→hol",
+          "rough_cm": 100,
+          "clear_after_frame_cm": 90,
+          "along": "Y"
+        },
+        {
+          "id": "usa_hol_ct",
+          "role": "hol→CT",
+          "rough_cm": 100,
+          "clear_after_frame_cm": 90,
+          "along": "X"
+        },
+        {
+          "id": "usa_hol_dep",
+          "role": "hol→depozit",
+          "rough_cm": 100,
+          "clear_after_frame_cm": 90,
+          "along": "Y"
+        }
+      ],
+      "turn": {
+        "landing_clear_x_cm": 100,
+        "landing_clear_y_cm": 110,
+        "gabarit_diagonal_cm": 106.3,
+        "free_rotation_ok": false,
+        "free_rotation_rule": "diag(80×70=106.3) ≤ min(100,110)",
+        "pivot_into_door_ok": true,
+        "pivot_depth_needed_cm": 85,
+        "pivot_rule": "clear_ușă 90 ≥ L 80 → Dy ≥ W+marjă = 70+15",
+        "note_80cm_legacy": "Palierul vechi dy=80: pivot necesita ≥ W+15; cu W=70 → 85 > 80 → EȘEC întoarcere (chiar dacă golul trecea obiectul)."
+      },
+      "ok": true,
+      "passes": [
+        "scară clear 100 ≥ 90",
+        "usa_subsol_camere (scară→hol): gol 100 → clear 90 după toc 5+5",
+        "usa_hol_ct (hol→CT): gol 100 → clear 90 după toc 5+5",
+        "usa_hol_dep (hol→depozit): gol 100 → clear 90 după toc 5+5",
+        "gabarit lățime 70 ≤ clear 90",
+        "întoarcere pivot scară→ușă OK: Dy 110 ≥ 85.0 (gabarit 80×70)",
+        "rotație liberă NU (diag 106.3 > min latură); acceptat doar pivot în gol",
+        "hol lățime 185 ≥ 90 (către CT/depozit)"
+      ],
+      "fails": []
     },
     "headroom_audit": {
-      "samples_count": 72,
+      "samples_count": 78,
       "samples_path": [
+        {
+          "x_cm": 615,
+          "y_cm": 490,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 495,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 500,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 505,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 510,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 515,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
         {
           "x_cm": 615,
           "y_cm": 520,

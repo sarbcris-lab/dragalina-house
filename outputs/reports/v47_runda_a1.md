@@ -4,7 +4,7 @@
 **A1 FEZABIL (după corecții)** — `v47_exact.json` **neatins**.
 
 ## Traseu
-`curte(0) → trepte → palier−95(Y800–860) → scară(Y600–800↓N) → palier liber−250(Y520–600) → ușă Y530–600 → hol → CT/dep`
+`curte(0) → trepte → palier−95(Y800–860) → scară(Y600–800↓N) → palier liber−250 → ușă (clear 90) → hol → CT/dep`
 
 ## Datum absolut (teren = 0)
 
@@ -45,15 +45,23 @@ straturi sumă 62 cm = FF(32) − intrados(-30)
 - upper_landing → Y860
 - upper abut stair top
 - palier jos N de ultima treaptă
-- ușă pe palier Y530–600 (dy=70)
+- ușă pe palier Y500–600 (dy=100)
 - ușă ∩ hol pe Y
-- puț deschis începe la Y520 (= palier)
-- zid N @ Y507.5–520 (N de palier, nu Y590)
+- puț deschis începe la Y490 (= palier)
+- zid N @ Y477.5–490 (N de palier, nu Y590)
 - zid EST puț = 15 cm (JSON)
 - sandwich modelat: 62 cm = FF(+32) − intrados(-30)
 - gabarit minim global = 220 cm @ Y230 X282.5 (intrados_placa_parter@camera_tehnica)
 - gabarit minim pe traseu acces = 251 cm @ Y830 (structura_r2_0)
 - ușă+buiandrug 215 ≤ clear zonă ușă 558
+- transport: scară clear 100 ≥ 90
+- transport: usa_subsol_camere (scară→hol): gol 100 → clear 90 după toc 5+5
+- transport: usa_hol_ct (hol→CT): gol 100 → clear 90 după toc 5+5
+- transport: usa_hol_dep (hol→depozit): gol 100 → clear 90 după toc 5+5
+- transport: gabarit lățime 70 ≤ clear 90
+- transport: întoarcere pivot scară→ușă OK: Dy 110 ≥ 85.0 (gabarit 80×70)
+- transport: rotație liberă NU (diag 106.3 > min latură); acceptat doar pivot în gol
+- transport: hol lățime 185 ≥ 90 (către CT/depozit)
 - util studii recalculat 37.87875 m² (Δ vs ref 0)
 - arii subsol brut recalculate 31.3175 m²
 - anvelopă 680×860 păstrată
@@ -64,15 +72,33 @@ straturi sumă 62 cm = FF(32) − intrados(-30)
 
 ### Note
 - clear_declared 220 NU e validat doar prin scădere; vezi headroom_audit.min_clear_cm
+- gabarit 80×70×180; întoarcere: free=false pivot=true (Dy 110, necesar pivot 85)
+- Palierul vechi dy=80: pivot necesita ≥ W+15; cu W=70 → 85 > 80 → EȘEC întoarcere (chiar dacă golul trecea obiectul).
 - țintă fundație uniformă 15 cm EȘUEAZĂ PIP: target_NW +0.058m; target_NE +0.15m; target_SE +0.15m; target_E_mid +0.15m
 - PIP=false dist≈0 pe clip_SE — același artefact numeric ca SE anvelopă
 - proiecție redusă față de ținta 15 cm (est/Dragalina tipic limitat de contur CF)
 - colț SE anvelopă: PIP=false dist≈0 (numeric contur) — neschimbat vs referință
 
+## Transport echipamente
+Gabarit explicit: **80×70×180 cm** — baterie 70×25×110 + marjă manipulare; L=80 pe direcția de coborâre
+
+| Prag | Gol montaj | Clear după toc (5+5) |
+|------|----------:|---:|
+| scară→hol | 100 | **90** |
+| hol→CT | 100 | **90** |
+| hol→depozit | 100 | **90** |
+
+### Întoarcere pe palier
+- Palier liber: **100×110 cm** (fost 80 cm — insuficient pentru pivot)
+- diag(80×70=106.3) ≤ min(100,110) → free=false
+- clear_ușă 90 ≥ L 80 → Dy ≥ W+marjă = 70+15 → pivot=**true**
+- Palierul vechi dy=80: pivot necesita ≥ W+15; cu W=70 → 85 > 80 → EȘEC întoarcere (chiar dacă golul trecea obiectul).
+- Verdict transport: **OK**
+
 ## Puț / goluri / grosimi
-- open_shaft Y520–860
-- zid N @ Y507.5–520 (nu Y590)
-- gol palier–hol: Y530–600 (dy=70), dx=30
+- open_shaft Y490–860
+- zid N @ Y477.5–490
+- gol palier–hol: Y500–600 (gol 100 → clear 90)
 - EST puț: 15 cm · VEST: 30 cm
 
 ## Fundație / parcelă
