@@ -156,24 +156,27 @@ function buildFrameSchema() {
     Y_INTRARE_S_EXT: 860,
   };
 
+  // Colț NW: beton până la fața interioară X30/Y30 — nu intră în duș (X30+,Y30+)
+  const nwThru = 30 - ETICS; // ~20.8 cm în falie + zero proeminență în duș
   const columns = [
     {
       id: "C_NW",
       x: ETICS,
       y: ETICS,
-      dx: COL_ALONG,
-      dy: COL_THRU,
-      orient: "along_N",
+      dx: nwThru,
+      dy: nwThru,
+      orient: "corner_NW",
       levels: ["S", "P", "E"],
       support_below: "fundație_N/W",
-      protrusion_into_room_cm: PROTRUSION_IN,
-      etics_outside: "N/W — vată pe fața exterioară a peretelui finit, nu înlocuită de beton",
-      wall: "nord+vest",
-      conflicts: [],
+      protrusion_into_room_cm: 0,
+      etics_outside_band_cm: { x0: 0, x1: ETICS, y0: 0, y1: ETICS, th: ETICS },
+      wall: "colț N/W — secțiune redusă ca să elibereze dușul; de confirmat calcul",
+      conflicts: ["secțiune < 30×40 la colț — IPOTEZĂ amenajare"],
+      continuous_through_floor: true,
     },
     {
       id: "C_N_MID",
-      x: 280,
+      x: 370,
       y: ETICS,
       dx: COL_ALONG,
       dy: COL_THRU,
@@ -181,74 +184,78 @@ function buildFrameSchema() {
       levels: ["S", "P", "E"],
       support_below: "fundație_N",
       protrusion_into_room_cm: PROTRUSION_IN,
-      wall: "nord — reazem intermediar (compară cu grindă N pe deschidere mare)",
-      conflicts: ["verificare goluri/ferestre nord"],
-    },
-    {
-      id: "C_N_BUC",
-      x: ax.X_CASA_SCARA,
-      y: ETICS,
-      dx: COL_THRU,
-      dy: COL_THRU,
-      orient: "corner_N",
-      levels: ["S", "P", "E"],
-      support_below: "fundație_N",
-      wall: "nord @ X535",
-      conflicts: [],
+      wall: "nord living E de perete_comun (mutat din X280 — ieșea din blat baie)",
+      conflicts: ["verificare goluri/ferestre nord living"],
+      continuous_through_floor: true,
     },
     colEst("C_NE", ETICS, COL_ALONG, {
       wall: "est N de geam",
-      conflicts: ["geam ~Y105–310 — doar în plin"],
+      conflicts: ["proeminență în capăt blat_tail_p — integrare mobilier"],
       etics_outside_band_cm: { x0: 670.8, x1: 680, th: ETICS },
+      continuous_through_floor: true,
     }),
     colVest("C_W_MID", 400, COL_ALONG, {
-      wall: "vest",
+      dx: 28,
+      wall: "vest — dx=28 pt. rezervă montaj față de pat (X40)",
       etics_outside_band_cm: { x0: 0, x1: ETICS, th: ETICS },
+      protrusion_into_room_cm: 7.2,
+      conflicts: ["gap beton→pat ~2,8 cm înainte de finisaj — verifică tăblia"],
+      continuous_through_floor: true,
     }),
     colSud("C_W_DORM", ETICS, COL_ALONG, ax.Y_DORM_S, ax.Y_DORM_S_EXT, {
       wall: "sud dorm W — ETICS Y665.8–675 continuă peste stâlp",
       conflicts: ["gol terasă X120–270"],
+      continuous_through_floor: true,
     }),
     colSud("C_S_DORM_E", ax.X_DORM_E - COL_THRU, COL_THRU, ax.Y_DORM_S, ax.Y_DORM_S_EXT, {
       orient: "corner_S_dorm_E",
       wall: "capăt E sud dorm @ X360 — ETICS continuă afară",
       conflicts: ["proximitate circulație / ușă terasă"],
+      continuous_through_floor: true,
     }),
     colEst("C_E_GEAM_S", 310, COL_ALONG, {
       wall: "est S de geam",
       etics_outside_band_cm: { x0: 670.8, x1: 680, th: ETICS },
+      continuous_through_floor: true,
     }),
-    // Y450–490: N de palier inferior Y490 — fără intruziune pe clarul de transport
     colEst("C_E_PAL", ax.Y_E_PAL_END - COL_ALONG, COL_ALONG, {
-      wall: "est sub vestibul / N de palier inferior (Y450–490)",
+      wall: "est sub vestibul / N de palier inferior",
       support_below: "fundație_E continuu — NU pe placă 15",
       replaces: ["pal_ne", "C_E_SOLID_N@Y550"],
-      conflicts: [],
-      clear_landing: "y1=489 (+finisaj) ≤ început lower_landing Y490; fără proeminență pe Y490–600",
+      conflicts: ["proeminență pe palier etaj Y470–489 — recalcul lățime utilă"],
+      clear_landing: "y1=489 ≤ lower_landing Y490",
       etics_outside_band_cm: { x0: 670.8, x1: 680, th: ETICS },
+      continuous_through_floor: true,
     }),
+    // Beton spre încălzit (vest); bandă vată/separator pe fața rece (est)
     {
       id: "C_CASA_SCARA",
-      x: ax.X_CASA_SCARA,
+      x: ax.X_CASA_SCARA - PROTRUSION_IN,
       y: ax.Y_CASA_AFTER_DOOR,
       dx: COL_THRU,
       dy: COL_ALONG,
       orient: "along_separator",
       levels: ["S", "P", "E"],
       support_below: "fundație X535",
-      wall: "buc_est după ușă (Y610+) — gol Y500–600 integral liber",
-      replaces: ["buc_y590", "C_CASA_SCARA@Y590"],
-      conflicts: [],
-      door_clearance: "y0=610 ≥ door Y1=600 + 10 cm montant/finisaj",
+      protrusion_into_room_cm: PROTRUSION_IN,
+      etics_cold_band_cm: { x0: 555, x1: 565, th: 10, note: "față rece scară — vată/separator, nu beton" },
+      wall: "separator: beton X525–555 (încălzit); gol ușă Y500–600 liber",
+      replaces: ["buc_y590", "C_CASA_SCARA@Y590", "C_CASA_SCARA@X535"],
+      conflicts: ["verifică frigider/front bucătărie E față de X525"],
+      door_clearance: "y0=610 ≥ door Y1=600 + 10",
+      continuous_through_floor: true,
     },
     colSud("C_S_INTRARE_W", 360, COL_ALONG, ax.Y_INTRARE_S, ax.Y_INTRARE_S_EXT, {
-      wall: "sud intrare X360–535 — ETICS Y850.8–860 continuă",
+      wall: "sud intrare X360–535 — ETICS continuă",
+      support_below: "fundație_S_intrare (bandă dedicată)",
       conflicts: [],
+      continuous_through_floor: true,
     }),
     colSud("C_S_INTRARE_E", ax.X_CASA_SCARA, COL_THRU, ax.Y_INTRARE_S, ax.Y_INTRARE_S_EXT, {
       orient: "corner_S",
       wall: "sud @ X535 — ETICS continuă afară",
       conflicts: [],
+      continuous_through_floor: true,
     }),
   ];
 
@@ -259,13 +266,17 @@ function buildFrameSchema() {
     { id: "C_E_PUT@Y590", reason: "îngusta scara — eliminat" },
     {
       id: "C_E_SOLID_N@Y550",
+      reason: "intra în palierul inferior; rol pe C_E_PAL N de Y490",
+    },
+    {
+      id: "C_N_BUC@X535",
       reason:
-        "intra în palierul inferior Y490–600 (X640–670 ∩ clar); retras — rol preluat de C_E_PAL Y450–490 N de palier",
+        "suprapunere certă plită/cuptor/hotă/chiuvetă P — eliminat din grilă; B_N cu 3 reazeme (NW, N_MID, NE); repoziție în rost real = comparație viitoare",
     },
     { id: "C_CASA_SCARA@Y590", reason: "intersecta gol ușă — mutat la Y610+" },
     { id: "grinda_X320", reason: "nu pe fală compartimentare" },
     { id: "pereți_structurali_P_E", reason: "respins — doar cadre" },
-    { id: "20x40_in_20cm_leaf", reason: "nu demonstrăm încadrarea în banda de 20 cm; studiem 30 cm + proeminență locală" },
+    { id: "20x40_in_20cm_leaf", reason: "nu demonstrăm încadrarea în banda de 20 cm" },
   ];
 
   const beams = [
@@ -276,16 +287,18 @@ function buildFrameSchema() {
       dx: 650 - ETICS + COL_THRU,
       dy: COL_THRU,
       levels: ["P", "E"],
-      note: "centură N — reazeme C_NW, C_N_MID, C_N_BUC, C_NE",
+      supports: ["C_NW", "C_N_MID", "C_NE"],
+      note: "centură N — 3 reazeme (fără C_N_BUC); deschideri de dimensionat",
     },
     {
       id: "B_W",
       x: ETICS,
       y: ETICS,
       dx: COL_THRU,
-      dy: ax.Y_DORM_S - ETICS,
+      dy: ax.Y_DORM_S_EXT - ETICS - ETICS,
       levels: ["P", "E"],
-      note: "centură W",
+      supports: ["C_NW", "C_W_MID", "C_W_DORM"],
+      note: "centură W prin nodul C_W_DORM (nu se oprește la fața nord a stâlpului)",
     },
     {
       id: "B_E",
@@ -294,22 +307,35 @@ function buildFrameSchema() {
       dx: COL_THRU,
       dy: ax.Y_E_PAL_END - ETICS,
       levels: ["P", "E"],
-      note: "centură E până la Y490 (C_E_PAL); fără stâlp pe palier/scară",
+      supports: ["C_NE", "C_E_GEAM_S", "C_E_PAL"],
+      note: "centură E până la C_E_PAL; fără stâlp pe palier/scară",
     },
     {
       id: "B_CASA_SCARA",
-      x: ax.X_CASA_SCARA,
+      x: ax.X_CASA_SCARA - PROTRUSION_IN,
       y: ax.Y_CASA_AFTER_DOOR,
       dx: COL_THRU,
       dy: 860 - ax.Y_CASA_AFTER_DOOR,
       levels: ["S", "P", "E"],
-      note: "separator de la Y610 (după ușă) la sud",
+      supports: ["C_CASA_SCARA", "C_S_INTRARE_E"],
+      note: "separator încălzit Y610→sud; leagă de B_Y830 / C_S_INTRARE_E",
     },
     {
       id: "B_Y590_EDGE_INVERTED",
       ...INVERTED_BEAM,
       levels: ["S_inverted"],
+      supports: ["C_E_frame_via_slab", "B_LINK_INVERTED_W"],
       note: INVERTED_BEAM.note,
+    },
+    {
+      id: "B_LINK_INVERTED_W",
+      x: 535,
+      y: 575,
+      dx: 30,
+      dy: 15,
+      levels: ["S_inverted"],
+      supports: ["C_CASA_SCARA_zone", "slab_edge"],
+      note: "reazem/legătură capăt vest grindă întoarsă → separator/planșeu @ X535 — studiu, de dimensionat",
     },
     {
       id: "B_Y645",
@@ -318,16 +344,28 @@ function buildFrameSchema() {
       dx: ax.X_DORM_E - ETICS,
       dy: COL_THRU,
       levels: ["P", "E"],
-      note: "sud dorm — pe axul peretelui; beton stâlpi inset pentru ETICS",
+      supports: ["C_W_DORM", "C_S_DORM_E"],
+      note: "sud dorm — prin secțiunile stâlpilor de capăt",
+    },
+    {
+      id: "B_X360_DORM_INTRARE",
+      x: ax.X_DORM_E - COL_THRU,
+      y: ax.Y_DORM_S,
+      dx: COL_THRU,
+      dy: ax.Y_INTRARE_S - ax.Y_DORM_S,
+      levels: ["P", "E"],
+      supports: ["C_S_DORM_E", "C_S_INTRARE_W"],
+      note: "legătură longitudinală dorm sud → corp intrare (nod cadru transversal)",
     },
     {
       id: "B_Y830",
       x: 360,
       y: ax.Y_INTRARE_S,
-      dx: 175,
+      dx: 175 + COL_THRU,
       dy: COL_THRU,
       levels: ["P", "E"],
-      note: "sud intrare — ax perete; ETICS afară de stâlpi",
+      supports: ["C_S_INTRARE_W", "C_S_INTRARE_E"],
+      note: "sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA",
     },
     {
       id: "B_Y470_VESTIBUL_CANTILEVER",
@@ -336,8 +374,8 @@ function buildFrameSchema() {
       dx: 145,
       dy: COL_THRU,
       levels: ["E"],
-      note: "vestibul: grindă legată de C_E_PAL; fără stâlp în living @ X535 Y470 pe P",
-      support: "C_E_PAL + B_E; vest = închidere ușoară / calcul consolă",
+      supports: ["C_E_PAL", "B_E"],
+      note: "acoperire vestibul / consolă E — separat de placa palierului; sprijin placă palier = schemă proprie (DESCHIS)",
     },
   ];
 
@@ -346,30 +384,35 @@ function buildFrameSchema() {
       id: "inverted_beam_fit",
       severity: "DESCHIS_CALCUL",
       detail:
-        "Grindă întoarsă Y575–590 X565–680 (schema), z −30…−5: eliberează clear acces (fără intrados −70). Trebuie verificat dacă încape în pachetul −30…+32 fără obstacole în living. Nu e rezolvare garantată.",
+        "Grindă întoarsă + B_LINK_INVERTED_W @ X535: eliberează clear acces; fit sandwich −30…+32 și dimensionare legătură vest = calcul.",
       door_kept: { y0: 500, y1: 600 },
-      beam_schema: INVERTED_BEAM,
     },
     {
       id: "east_landing_span",
       severity: "DESCHIS",
       detail:
-        "Fără stâlp est pe palier inferior Y490–600 / scară Y600–800 (proeminența ar reduce clarul). Deschidere pe C_E_PAL (Y450–490) → sud — de dimensionat.",
+        "Un singur reazem est C_E_PAL (Y449–489). Deschidere spre sud fără stâlp pe palier/scară — de dimensionat.",
+    },
+    {
+      id: "north_three_supports",
+      severity: "COMPARȚIE",
+      detail:
+        "C_N_BUC eliminat (aparate). B_N pe C_NW–C_N_MID–C_NE. Alternativă: al 4-lea reazem doar în rost real între corpuri după redesen mobilier.",
+    },
+    {
+      id: "C_NW_reduced_section",
+      severity: "IPOTEZĂ",
+      detail: "C_NW redus ca să nu intre în duș; secțiune ≠ 30×40 — de confirmat sau duș decupat.",
     },
     {
       id: "column_30_protrusion_vs_37m2",
       severity: "DESCHIS",
-      detail: `Secțiuni preliminare ${COL_THRU}×${COL_ALONG} cu ~${PROTRUSION_IN} cm proeminență locală. Compatibilitatea cu pragul 37 m² = NECONFIRMAT până la reuniune CAD.`,
+      detail: `Proeminențe locale; util P/E = NECONFIRMAT — nu e rezervă stâlpi.`,
     },
     {
       id: "vestibule_cantilever",
       severity: "DESCHIS",
-      detail: "B_Y470 fără stâlp P în living: sprijin pe cadrul est continuu + consolă/legătură — de dimensionat.",
-    },
-    {
-      id: "north_span_option",
-      severity: "COMPARȚIE",
-      detail: "C_N_MID introdus pentru a reduce deschiderea N; alternativa = grindă N pe deschidere mai mare fără C_N_MID — alegere după calcul seismic/grinzi.",
+      detail: "B_Y470 = acoperire vestibul; placa palierului +320 necesită schemă de sprijin separată — neconfirmat.",
     },
     {
       id: "slab_span_without_X320",
@@ -384,13 +427,12 @@ function buildFrameSchema() {
     {
       id: "p100_min_section",
       severity: "IPOTEZĂ",
-      detail: "30 cm pe direcție transversală = studiu preliminar legat de cerințe geometrice tip P100 pentru cadre; aplicabilitatea exactă depinde de sistem și clasa de ductilitate — nu validat.",
+      detail: "30 cm transversal = studiu preliminar P100; aplicabilitate pe sistem/ductilitate — nu validat.",
     },
     {
       id: "etics_wrap_verify",
       severity: "DESCHIS",
-      detail:
-        "Stâlpi sud inset cu bandă ETICS 9,2 cm pe fața exterioară; 3D extrudează wrap vată peste stâlpi. Continuitate reală pe șantier = detalii (colțuri, plasă, dibluri) — neconfirmat.",
+      detail: "ETICS peste stâlpi în model; detalii șantier neconfirmate.",
     },
   ];
 
@@ -428,7 +470,8 @@ function buildFrameSchema() {
       beam_definition: "35 cm = înălțime totală grindă (inclusiv zona plăcii), NU coborâre suplimentară 35 sub placă",
       beam_soffit_over_parter: BEAM_SOFFIT_P,
       clear_parter_under_beam_cm: CLEAR_P_UNDER_BEAM,
-      note: "Extrudările 3D TREBUIE să folosească aceste cote: placă +293→+308; grindă intrados +273; FF +320; buildup 12 separat.",
+      note: "Placă +293→+308; grindă +273; FF +320; buildup 12. Stâlpi P+E = continui prin nod (beton până la FF etaj / mai sus); pardoseala se decupează.",
+      column_continuity: "stâlpi cu levels P+E traversează placa și buildup; fără gap +293…+320",
     },
     access_clearances: {
       basement_stair_clear: { x0: 565, x1: 665, y0: 600, y1: 800 },
@@ -671,7 +714,7 @@ function applyFrameToStudy(base) {
     structure_system: "cadre_BA",
     declared_buildable: false,
     rev_note_frame:
-      "FRAME: C_E_PAL Y450–490 (fără stâlp pe palier); ETICS continuă peste stâlpi sud; util P/E pe pereți de nivel; transport refăcut cu finisaje — fără PASS. Neconstruibil.",
+      "FRAME: stâlpi continui prin nod; C_N_BUC scos din aparate; C_NW eliberează duș; C_CASA_SCARA spre încălzit; noduri B_Y830/B_X360/B_LINK_INVERTED_W; fundație S intrare; util/transport NECONFIRMAT. Neconstruibil.",
   };
 
   out.structure_frame_study_cm = buildFrameSchema();
@@ -992,12 +1035,13 @@ function mdReport(study) {
 **NECONSTRUIBIL / NEVALIDAT.** Variantă separată față de A1 amenajare aprobată.
 Sistem: **cadre beton armat** + **EB20** + **vată 80 mm**. **Nu** pereți structurali P/E.
 
-## Priorități geometrie
-1. **Palier inferior liber:** \`C_E_SOLID_N\` eliminat; \`C_E_PAL\` Y450–490 (N de Y490); \`C_CASA_SCARA\` Y610+; ușă Y500–600 liberă.
-2. **ETICS:** stâlpi sud inset — bandă vată **${cs.etics_outside_cm ?? 9.2} cm** pe fața exterioară; wrap 3D.
-3. **Cote volum = JSON:** placă +293→+308; grindă intrados +273.
-4. **Util P ≠ E:** pereți pe nivel; fără terasă/acces exterior; **status NECONFIRMAT — fără PASS**.
-5. **Transport:** refăcut cu stâlpi + finisaje — **NECONFIRMAT / fără PASS acces**.
+## Priorități geometrie (implementate din audit confirmat)
+1. **Stâlpi continui** prin nod placă/pardoseală (fără gap +293…+320); pardoseala decupată la stâlpi.
+2. **C_N_BUC eliminat** (aparete bucătărie); B_N pe 3 reazeme; C_N_MID mutat X370 (în afara blatului baie).
+3. **C_NW** redus ca să elibereze dușul; **C_CASA_SCARA** beton spre încălzit + vată pe fața rece.
+4. **Noduri:** B_Y830 prin C_S_INTRARE_E; B_X360_DORM_INTRARE; B_LINK_INVERTED_W; B_W prin C_W_DORM.
+5. **Fundație S intrare** + benzi pe schema stâlpilor.
+6. **Util / transport = NECONFIRMAT** — fără PASS.
 
 ## Secțiuni stâlpi
 - Preliminar **${cs.through_wall_cm}×${cs.along_wall_cm} cm** + proeminență locală **${cs.local_protrusion_inward_cm} cm** spre interior.

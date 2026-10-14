@@ -4,12 +4,13 @@
 **NECONSTRUIBIL / NEVALIDAT.** Variantă separată față de A1 amenajare aprobată.
 Sistem: **cadre beton armat** + **EB20** + **vată 80 mm**. **Nu** pereți structurali P/E.
 
-## Priorități geometrie
-1. **Palier inferior liber:** `C_E_SOLID_N` eliminat; `C_E_PAL` Y450–490 (N de Y490); `C_CASA_SCARA` Y610+; ușă Y500–600 liberă.
-2. **ETICS:** stâlpi sud inset — bandă vată **9.2 cm** pe fața exterioară; wrap 3D.
-3. **Cote volum = JSON:** placă +293→+308; grindă intrados +273.
-4. **Util P ≠ E:** pereți pe nivel; fără terasă/acces exterior; **status NECONFIRMAT — fără PASS**.
-5. **Transport:** refăcut cu stâlpi + finisaje — **NECONFIRMAT / fără PASS acces**.
+## Priorități geometrie (implementate din audit confirmat)
+1. **Stâlpi continui** prin nod placă/pardoseală (fără gap +293…+320); pardoseala decupată la stâlpi.
+2. **C_N_BUC eliminat** (aparete bucătărie); B_N pe 3 reazeme; C_N_MID mutat X370 (în afara blatului baie).
+3. **C_NW** redus ca să elibereze dușul; **C_CASA_SCARA** beton spre încălzit + vată pe fața rece.
+4. **Noduri:** B_Y830 prin C_S_INTRARE_E; B_X360_DORM_INTRARE; B_LINK_INVERTED_W; B_W prin C_W_DORM.
+5. **Fundație S intrare** + benzi pe schema stâlpilor.
+6. **Util / transport = NECONFIRMAT** — fără PASS.
 
 ## Secțiuni stâlpi
 - Preliminar **30×40 cm** + proeminență locală **10 cm** spre interior.
@@ -21,31 +22,31 @@ Sistem: **cadre beton armat** + **EB20** + **vată 80 mm**. **Nu** pereți struc
 - `pal_nw`: etaj-only peste living — interzis
 - `pal_ne`: înlocuit de C_E_PAL continuu
 - `C_E_PUT@Y590`: îngusta scara — eliminat
-- `C_E_SOLID_N@Y550`: intra în palierul inferior Y490–600 (X640–670 ∩ clar); retras — rol preluat de C_E_PAL Y450–490 N de palier
+- `C_E_SOLID_N@Y550`: intra în palierul inferior; rol pe C_E_PAL N de Y490
+- `C_N_BUC@X535`: suprapunere certă plită/cuptor/hotă/chiuvetă P — eliminat din grilă; B_N cu 3 reazeme (NW, N_MID, NE); repoziție în rost real = comparație viitoare
 - `C_CASA_SCARA@Y590`: intersecta gol ușă — mutat la Y610+
 - `grinda_X320`: nu pe fală compartimentare
 - `pereți_structurali_P_E`: respins — doar cadre
-- `20x40_in_20cm_leaf`: nu demonstrăm încadrarea în banda de 20 cm; studiem 30 cm + proeminență locală
+- `20x40_in_20cm_leaf`: nu demonstrăm încadrarea în banda de 20 cm
 
 ## Tabel stâlpi
 
 | ID | Poziție (cm) | Secțiune + proem. | Niveluri | Reazem inferior | Conflicte |
 |----|--------------|-------------------|----------|-----------------|-----------|
-| C_NW | X9.2–49.2 Y9.2–39.2 | 40×30 (proem. 10) | S–P–E | fundație_N/W | — |
-| C_N_MID | X280–320 Y9.2–39.2 | 40×30 (proem. 10) | S–P–E | fundație_N | verificare goluri/ferestre nord |
-| C_N_BUC | X535–565 Y9.2–39.2 | 30×30 (proem. 0) | S–P–E | fundație_N | — |
-| C_NE | X640–670 Y9.2–49.2 | 30×40 (proem. 10) | S–P–E | fundație_E | geam ~Y105–310 — doar în plin |
-| C_W_MID | X9.2–39.2 Y400–440 | 30×40 (proem. 10) | S–P–E | fundație_W | — |
+| C_NW | X9.2–30 Y9.2–30 | 20.8×20.8 (proem. 0) | S–P–E | fundație_N/W | secțiune < 30×40 la colț — IPOTEZĂ amenajare |
+| C_N_MID | X370–410 Y9.2–39.2 | 40×30 (proem. 10) | S–P–E | fundație_N | verificare goluri/ferestre nord living |
+| C_NE | X640–670 Y9.2–49.2 | 30×40 (proem. 10) | S–P–E | fundație_E | proeminență în capăt blat_tail_p — integrare mobilier |
+| C_W_MID | X9.2–37.2 Y400–440 | 28×40 (proem. 7.2) | S–P–E | fundație_W | gap beton→pat ~2,8 cm înainte de finisaj — verifică tăblia |
 | C_W_DORM | X9.2–49.2 Y635.8–665.8 | 40×30 (proem. 9.200000000000045) | S–P–E | fundație_S | gol terasă X120–270 |
 | C_S_DORM_E | X330–360 Y635.8–665.8 | 30×30 (proem. 9.200000000000045) | S–P–E | fundație_S | proximitate circulație / ușă terasă |
 | C_E_GEAM_S | X640–670 Y310–350 | 30×40 (proem. 10) | S–P–E | fundație_E | — |
-| C_E_PAL | X640–670 Y449–489 | 30×40 (proem. 10) | S–P–E | fundație_E continuu — NU pe placă 15 | — |
-| C_CASA_SCARA | X535–565 Y610–650 | 30×40 (proem. 0) | S–P–E | fundație X535 | — |
-| C_S_INTRARE_W | X360–400 Y820.8–850.8 | 40×30 (proem. 9.200000000000045) | S–P–E | fundație_S | — |
+| C_E_PAL | X640–670 Y449–489 | 30×40 (proem. 10) | S–P–E | fundație_E continuu — NU pe placă 15 | proeminență pe palier etaj Y470–489 — recalcul lățime utilă |
+| C_CASA_SCARA | X525–555 Y610–650 | 30×40 (proem. 10) | S–P–E | fundație X535 | verifică frigider/front bucătărie E față de X525 |
+| C_S_INTRARE_W | X360–400 Y820.8–850.8 | 40×30 (proem. 9.200000000000045) | S–P–E | fundație_S_intrare (bandă dedicată) | — |
 | C_S_INTRARE_E | X535–565 Y820.8–850.8 | 30×30 (proem. 9.200000000000045) | S–P–E | fundație_S | — |
 
 ## Cote etaj / planșeu
-Extrudările 3D TREBUIE să folosească aceste cote: placă +293→+308; grindă intrados +273; FF +320; buildup 12 separat.
+Placă +293→+308; grindă +273; FF +320; buildup 12. Stâlpi P+E = continui prin nod (beton până la FF etaj / mai sus); pardoseala se decupează.
 
 | Cotă | cm |
 |------|---:|
@@ -60,12 +61,12 @@ Metodă: P/E separate: shoelace(poly nivel) − pereți_int ai nivelului − the
 
 | | m² |
 |--|---:|
-| Util parter (studiu) | 38.605 |
-| Util etaj (studiu) | 38.98 |
+| Util parter (studiu) | 38.616 |
+| Util etaj (studiu) | 38.991 |
 | Pereți int net P / E | 1.056 / 1.131 |
-| Proeminențe stâlpi P / E | 0.369 / 0.369 |
+| Proeminențe stâlpi P / E | 0.358 / 0.358 |
 | Thermal P / E | 0.255 / 0.255 |
-| Δ vs 37 (informativ) | 1.605 / 1.98 |
+| Δ vs 37 (informativ) | 1.616 / 1.991 |
 | Verdict util | **NECONFIRMAT** (declared_pass=false) |
 
 ## Transport palier (stâlpi + finisaje)
@@ -75,15 +76,16 @@ Status: **NECONFIRMAT** · declared_pass_access=false
 - TRANSPORT / ACCES = NECONFIRMAT
 
 ## Conflicte nerezolvate (păstrate explicit)
-- **inverted_beam_fit** (DESCHIS_CALCUL): Grindă întoarsă Y575–590 X565–680 (schema), z −30…−5: eliberează clear acces (fără intrados −70). Trebuie verificat dacă încape în pachetul −30…+32 fără obstacole în living. Nu e rezolvare garantată.
-- **east_landing_span** (DESCHIS): Fără stâlp est pe palier inferior Y490–600 / scară Y600–800 (proeminența ar reduce clarul). Deschidere pe C_E_PAL (Y450–490) → sud — de dimensionat.
-- **column_30_protrusion_vs_37m2** (DESCHIS): Secțiuni preliminare 30×40 cu ~10 cm proeminență locală. Compatibilitatea cu pragul 37 m² = NECONFIRMAT până la reuniune CAD.
-- **vestibule_cantilever** (DESCHIS): B_Y470 fără stâlp P în living: sprijin pe cadrul est continuu + consolă/legătură — de dimensionat.
-- **north_span_option** (COMPARȚIE): C_N_MID introdus pentru a reduce deschiderea N; alternativa = grindă N pe deschidere mai mare fără C_N_MID — alegere după calcul seismic/grinzi.
+- **inverted_beam_fit** (DESCHIS_CALCUL): Grindă întoarsă + B_LINK_INVERTED_W @ X535: eliberează clear acces; fit sandwich −30…+32 și dimensionare legătură vest = calcul.
+- **east_landing_span** (DESCHIS): Un singur reazem est C_E_PAL (Y449–489). Deschidere spre sud fără stâlp pe palier/scară — de dimensionat.
+- **north_three_supports** (COMPARȚIE): C_N_BUC eliminat (aparate). B_N pe C_NW–C_N_MID–C_NE. Alternativă: al 4-lea reazem doar în rost real între corpuri după redesen mobilier.
+- **C_NW_reduced_section** (IPOTEZĂ): C_NW redus ca să nu intre în duș; secțiune ≠ 30×40 — de confirmat sau duș decupat.
+- **column_30_protrusion_vs_37m2** (DESCHIS): Proeminențe locale; util P/E = NECONFIRMAT — nu e rezervă stâlpi.
+- **vestibule_cantilever** (DESCHIS): B_Y470 = acoperire vestibul; placa palierului +320 necesită schemă de sprijin separată — neconfirmat.
 - **slab_span_without_X320** (DESCHIS): Fără reazem pe compartimentarea 12,5 cm — placă/grinzi pe perimetru; grosime 15 cm neconfirmată.
 - **basement_retaining** (SEPARAT): Pereți subsol retenție teren — sistem separat de cadrele P/E.
-- **p100_min_section** (IPOTEZĂ): 30 cm pe direcție transversală = studiu preliminar legat de cerințe geometrice tip P100 pentru cadre; aplicabilitatea exactă depinde de sistem și clasa de ductilitate — nu validat.
-- **etics_wrap_verify** (DESCHIS): Stâlpi sud inset cu bandă ETICS 9,2 cm pe fața exterioară; 3D extrudează wrap vată peste stâlpi. Continuitate reală pe șantier = detalii (colțuri, plasă, dibluri) — neconfirmat.
+- **p100_min_section** (IPOTEZĂ): 30 cm transversal = studiu preliminar P100; aplicabilitate pe sistem/ductilitate — nu validat.
+- **etics_wrap_verify** (DESCHIS): ETICS peste stâlpi în model; detalii șantier neconfirmate.
 
 ## Fișiere
 - `data/building/v47_a1_frame_study.json`

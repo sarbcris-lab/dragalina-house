@@ -932,17 +932,42 @@ function main() {
     opacity: 0.88,
   });
 
-  // Palier superior = vestibul INTERIOR sub acoperiș (puț scară) — în Structură
-  meshes.push({
-    id: "palier_superior",
-    type: "extrude",
-    polygon: rectPoly(palSup.x, palSup.y, palSup.dx, palSup.dy),
-    z0_m: zEtaj - floorTh,
-    z1_m: zEtaj,
-    color: "#e4ddd0",
-    site_layer: "structura",
-    label: "Palier superior INTERIOR FF etaj",
-  });
+  // Palier superior = vestibul INTERIOR. FRAME: separă placa structurală de pardoseală (nu le confunda).
+  if (isFrameStudy && frameStudy?.levels_cm) {
+    const lvP = frameStudy.levels_cm;
+    meshes.push({
+      id: "palier_superior_placa",
+      type: "extrude",
+      polygon: rectPoly(palSup.x, palSup.y, palSup.dx, palSup.dy),
+      z0_m: m(lvP.slab_soffit_etaj),
+      z1_m: m(lvP.slab_top_etaj),
+      color: "#8b8680",
+      opacity: 0.55,
+      site_layer: "structura",
+      label: `Palier placă structurală +${lvP.slab_soffit_etaj}→+${lvP.slab_top_etaj} (nu pardoseală)`,
+    });
+    meshes.push({
+      id: "palier_superior_pardoseala",
+      type: "extrude",
+      polygon: rectPoly(palSup.x, palSup.y, palSup.dx, palSup.dy),
+      z0_m: zEtaj - floorTh,
+      z1_m: zEtaj,
+      color: "#e4ddd0",
+      site_layer: "finisaj",
+      label: "Palier pardoseală FF etaj (decupaj stâlpi — studiu)",
+    });
+  } else {
+    meshes.push({
+      id: "palier_superior",
+      type: "extrude",
+      polygon: rectPoly(palSup.x, palSup.y, palSup.dx, palSup.dy),
+      z0_m: zEtaj - floorTh,
+      z1_m: zEtaj,
+      color: "#e4ddd0",
+      site_layer: "structura",
+      label: "Palier superior INTERIOR FF etaj",
+    });
+  }
   const palWallT = 15;
   const palDoorW = 90;
   const palDoorX = palSup.x + (palSup.dx - palDoorW) / 2;
@@ -1826,11 +1851,45 @@ function main() {
       }
       const zFg0 = zFoundBot;
       const zFg1 = zFoundTop;
-      pushBeton("subsol_fg_n", I, I, 680 - 2 * I, col, zFg0, zFg1, "grindă fundație N (ipoteză)", "#5e5a54");
-      pushBeton("subsol_fg_w", I, I, col, 675 - I, zFg0, zFg1, "grindă fundație W (ipoteză)", "#5e5a54");
-      pushBeton("subsol_fg_e535", 535, I, col, 860 - I, zFg0, zFg1, "grindă fundație X535 (ipoteză)", "#5e5a54");
-      pushBeton("subsol_fg_e650", 650, I, col, 620 - I, zFg0, zFg1, "grindă fundație X650 (ipoteză)", "#5e5a54");
-      pushBeton("subsol_fg_s", I, 645, 360 - I, col, zFg0, zFg1, "grindă fundație S dorm (ipoteză)", "#5e5a54");
+      if (isFrameStudy && frameColumns) {
+        // Fundații din schema stâlpilor (benzi pe axe) — o singură logică studiu
+        pushBeton("subsol_fg_n", I, I, 650 - I + col, col, zFg0, zFg1, "fg N pe C_NW…C_NE", "#5e5a54");
+        pushBeton("subsol_fg_w", I, I, col, 675 - I, zFg0, zFg1, "fg W pe C_NW…C_W_DORM", "#5e5a54");
+        pushBeton("subsol_fg_e535", 525, I, col, 860 - I, zFg0, zFg1, "fg separator X525 (C_CASA_SCARA încălzit)", "#5e5a54");
+        pushBeton("subsol_fg_e650", 650 - 10, I, col, 489 - I, zFg0, zFg1, "fg E până la C_E_PAL Y489", "#5e5a54");
+        pushBeton("subsol_fg_s", I, 645, 360 - I, col, zFg0, zFg1, "fg S dorm", "#5e5a54");
+        pushBeton(
+          "subsol_fg_s_intrare",
+          360,
+          830,
+          175 + col,
+          col,
+          zFg0,
+          zFg1,
+          "fg S intrare sub C_S_INTRARE_W/E (lipsă corectată)",
+          "#5e5a54"
+        );
+        for (const c of frameColumns) {
+          if (!(c.levels || []).includes("S")) continue;
+          pushBeton(
+            `subsol_fg_sub_${c.id}`,
+            c.x - 5,
+            c.y - 5,
+            c.dx + 10,
+            c.dy + 10,
+            zFg0,
+            zFg1,
+            `talpă locală ${c.id}`,
+            "#5e5a54"
+          );
+        }
+      } else {
+        pushBeton("subsol_fg_n", I, I, 680 - 2 * I, col, zFg0, zFg1, "grindă fundație N (ipoteză)", "#5e5a54");
+        pushBeton("subsol_fg_w", I, I, col, 675 - I, zFg0, zFg1, "grindă fundație W (ipoteză)", "#5e5a54");
+        pushBeton("subsol_fg_e535", 535, I, col, 860 - I, zFg0, zFg1, "grindă fundație X535 (ipoteză)", "#5e5a54");
+        pushBeton("subsol_fg_e650", 650, I, col, 620 - I, zFg0, zFg1, "grindă fundație X650 (ipoteză)", "#5e5a54");
+        pushBeton("subsol_fg_s", I, 645, 360 - I, col, zFg0, zFg1, "grindă fundație S dorm (ipoteză)", "#5e5a54");
+      }
 
       // Umplutură sono pe contur camere (între stâlpi) — layer +Pereți
       pushUmpluturaWall("subsol_zid_perim_n", col, 0, 535 - col, wallPerim, "umplutură perim N");
@@ -2376,7 +2435,7 @@ function main() {
         : slabZ0 - beamH;
     const beamTopZ = isFrameStudy ? slabZ1 : slabZ0;
     const zBotP = -0.3;
-    const zTopP = slabZ0; // stâlpi P până la intrados placă
+    const zTopP = isFrameStudy ? zEtaj : slabZ0; // FRAME: prin placă+buildup până la FF etaj
     const zBotE = zEtaj;
     const zTopE = roofZ0;
     function pushPE(id, x, y, dx, dy, z0, z1, label, color) {
@@ -2393,81 +2452,106 @@ function main() {
         label,
       });
     }
+    const colHoles = [];
     if (isFrameStudy && frameColumns) {
       for (const c of frameColumns) {
         const lv = c.levels || [];
-        if (lv.includes("P")) {
+        const hasP = lv.includes("P");
+        const hasE = lv.includes("E");
+        if (hasP && hasE) {
+          // Un singur corp: fundație/P → prin placă+pardoseală → etaj (fără gap +293…+320)
           pushPE(
-            `parter_stalp_${c.id}`,
+            `stalp_continuu_${c.id}`,
             c.x,
             c.y,
             c.dx,
             c.dy,
             zBotP,
-            zTopP,
-            `stâlp P ${c.id} ${c.dx}×${c.dy} (de confirmat calcul)`,
-            "#6e6a64"
-          );
-        }
-        if (lv.includes("E")) {
-          pushPE(
-            `etaj_stalp_${c.id}`,
-            c.x,
-            c.y,
-            c.dx,
-            c.dy,
-            zBotE,
             zTopE,
-            `stâlp E ${c.id} (continuu — nu pe placă 15)`,
+            `stâlp continuu ${c.id} ${c.dx}×${c.dy} prin nod placă/FF (pardoseală decupată)`,
             "#6e6a64"
           );
+          colHoles.push(rectHole(c.x, c.y, c.dx, c.dy));
+        } else {
+          if (hasP) {
+            pushPE(
+              `parter_stalp_${c.id}`,
+              c.x,
+              c.y,
+              c.dx,
+              c.dy,
+              zBotP,
+              zTopP,
+              `stâlp P ${c.id}`,
+              "#6e6a64"
+            );
+          }
+          if (hasE) {
+            pushPE(
+              `etaj_stalp_${c.id}`,
+              c.x,
+              c.y,
+              c.dx,
+              c.dy,
+              zBotE,
+              zTopE,
+              `stâlp E ${c.id}`,
+              "#6e6a64"
+            );
+          }
+        }
+        const cold = c.etics_cold_band_cm;
+        if (cold) {
+          meshes.push({
+            id: `separator_vata_${c.id}`,
+            type: "extrude",
+            polygon: rectPoly(cold.x0, c.y, cold.x1 - cold.x0, c.dy),
+            z0_m: zBotP,
+            z1_m: zTopE,
+            color: "#e2d18a",
+            opacity: 0.8,
+            site_layer: "umplutura",
+            label: `vată față rece ${c.id} (nu beton în scară)`,
+          });
         }
       }
-      // ETICS continuă pe fața exterioară a stâlpilor (mai ales sud) — vată + strat armat schematic
       const eticsTh = THERMO_OUT;
       for (const c of frameColumns) {
         const band = c.etics_outside_band_cm;
         if (!band) continue;
-        const lv = c.levels || [];
-        const zPairs = [];
-        if (lv.includes("P")) zPairs.push(["P", zBotP, zTopP]);
-        if (lv.includes("E")) zPairs.push(["E", zBotE, zTopE]);
-        for (const [suf, z0, z1] of zPairs) {
-          let x;
-          let y;
-          let dx;
-          let dy;
-          if (band.y0 != null && band.y1 != null) {
-            // sud — bandă pe Y exterior
-            x = c.x;
-            dx = c.dx;
-            y = band.y0;
-            dy = Math.max(0.05, band.y1 - band.y0);
-          } else if (band.x0 != null && band.x1 != null) {
-            x = band.x0;
-            dx = Math.max(0.05, band.x1 - band.x0);
-            y = c.y;
-            dy = c.dy;
-          } else {
-            continue;
-          }
-          meshes.push({
-            id: `etics_wrap_${c.id}_${suf}`,
-            type: "extrude",
-            polygon: rectPoly(x, y, dx, dy),
-            z0_m: z0,
-            z1_m: z1,
-            color: "#e2d18a",
-            opacity: 0.85,
-            site_layer: "umplutura",
-            wall_layer: "vata_isover_fassade",
-            label: `ETICS continuă peste ${c.id} (~${eticsTh} cm)`,
-          });
+        let x;
+        let y;
+        let dx;
+        let dy;
+        if (band.y0 != null && band.y1 != null && band.x0 == null) {
+          x = c.x;
+          dx = c.dx;
+          y = band.y0;
+          dy = Math.max(0.05, band.y1 - band.y0);
+        } else if (band.x0 != null && band.x1 != null) {
+          x = band.x0;
+          dx = Math.max(0.05, band.x1 - band.x0);
+          y = band.y0 != null ? band.y0 : c.y;
+          dy = band.y1 != null ? Math.max(0.05, band.y1 - band.y0) : c.dy;
+        } else {
+          continue;
         }
+        meshes.push({
+          id: `etics_wrap_${c.id}`,
+          type: "extrude",
+          polygon: rectPoly(x, y, dx, dy),
+          z0_m: zBotP,
+          z1_m: zTopE,
+          color: "#e2d18a",
+          opacity: 0.85,
+          site_layer: "umplutura",
+          wall_layer: "vata_isover_fassade",
+          label: `ETICS continuă peste ${c.id} (~${eticsTh} cm)`,
+        });
       }
     } else {
       for (const n of structNodesContinuous) {
-        pushPE(`parter_stalp_${n.id}`, n.x, n.y, col, col, zBotP, zTopP, `stâlp P ${n.id}`, "#6e6a64");
+        pushPE(`parter_stalp_${n.id}`, n.x, n.y, col, col, zBotP, slabZ0, `stâlp P ${n.id}`, "#6e6a64");
         pushPE(`etaj_stalp_${n.id}`, n.x, n.y, col, col, zBotE, zTopE, `stâlp E ${n.id}`, "#6e6a64");
       }
       for (const n of structNodesNoParter) {
@@ -2513,7 +2597,7 @@ function main() {
       id: "etaj_placa_structura",
       type: "extrude",
       polygon: rectPoly(0, 0, ewCm, nsCm),
-      holes: [etajSlabHole].filter(Boolean),
+      holes: [etajSlabHole, ...colHoles].filter(Boolean),
       z0_m: slabZ0,
       z1_m: slabZ1,
       color: "#8b8680",
