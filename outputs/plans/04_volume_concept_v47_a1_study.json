@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_study",
-    "generated": "2026-10-14T16:06:47.934Z",
+    "generated": "2026-10-14T16:39:32.899Z",
     "status": "3D_STUDIU_A1",
     "source_plan": "data/building/v47_a1_study.json",
     "based_on": "v47_exact (referință neatinsă)",
@@ -28598,10 +28598,10 @@
       ],
       "z0_m": -2.5,
       "z1_m": -0.3,
-      "color": "#b0a898",
+      "color": "#d8d0c0",
       "opacity": 0.98,
-      "label": "perim N CT",
-      "site_layer": "structura"
+      "label": "umplutură perim N CT",
+      "site_layer": "umplutura"
     },
     {
       "id": "subsol_zid_perim_w",
@@ -28630,10 +28630,10 @@
       ],
       "z0_m": -2.5,
       "z1_m": -0.3,
-      "color": "#b0a898",
+      "color": "#d8d0c0",
       "opacity": 0.98,
-      "label": "perim W",
-      "site_layer": "structura"
+      "label": "umplutură perim W",
+      "site_layer": "umplutura"
     },
     {
       "id": "subsol_zid_perim_s_dep",
@@ -28662,10 +28662,10 @@
       ],
       "z0_m": -2.5,
       "z1_m": -0.3,
-      "color": "#b0a898",
+      "color": "#d8d0c0",
       "opacity": 0.98,
-      "label": "perim S depozit",
-      "site_layer": "structura"
+      "label": "umplutură perim S depozit",
+      "site_layer": "umplutura"
     },
     {
       "id": "subsol_zid_perim_s_hol",
@@ -28694,13 +28694,13 @@
       ],
       "z0_m": -2.5,
       "z1_m": -0.3,
-      "color": "#b0a898",
+      "color": "#d8d0c0",
       "opacity": 0.98,
-      "label": "perim S hol",
-      "site_layer": "structura"
+      "label": "umplutură perim S hol",
+      "site_layer": "umplutura"
     },
     {
-      "id": "subsol_zid_colt_nw",
+      "id": "subsol_stalp_nw",
       "type": "extrude",
       "polygon": [
         {
@@ -28726,13 +28726,13 @@
       ],
       "z0_m": -2.5,
       "z1_m": -0.3,
-      "color": "#b0a898",
+      "color": "#8a8580",
       "opacity": 0.98,
-      "label": "colț NW 30×30",
+      "label": "stâlp beton NW",
       "site_layer": "structura"
     },
     {
-      "id": "subsol_zid_colt_sw_dep",
+      "id": "subsol_stalp_sw_dep",
       "type": "extrude",
       "polygon": [
         {
@@ -28758,13 +28758,13 @@
       ],
       "z0_m": -2.5,
       "z1_m": -0.3,
-      "color": "#b0a898",
+      "color": "#8a8580",
       "opacity": 0.98,
-      "label": "colț SW depozit 30×30",
+      "label": "stâlp beton SW depozit",
       "site_layer": "structura"
     },
     {
-      "id": "subsol_zid_colt_ne_ct",
+      "id": "subsol_stalp_ne_ct",
       "type": "extrude",
       "polygon": [
         {
@@ -28790,13 +28790,13 @@
       ],
       "z0_m": -2.5,
       "z1_m": -0.3,
-      "color": "#b0a898",
+      "color": "#8a8580",
       "opacity": 0.98,
-      "label": "colț NE CT 30×30",
+      "label": "stâlp beton NE CT / buc_est",
       "site_layer": "structura"
     },
     {
-      "id": "subsol_zid_hol_vest_reintrant",
+      "id": "subsol_stalp_hol_sw",
       "type": "extrude",
       "polygon": [
         {
@@ -28808,12 +28808,12 @@
           "y": 11.786
         },
         {
-          "x": 5.0386,
-          "y": 11.2365
+          "x": 5.0279,
+          "y": 11.4863
         },
         {
-          "x": 4.7389,
-          "y": 11.2237
+          "x": 4.7282,
+          "y": 11.4734
         },
         {
           "x": 4.7154,
@@ -28822,10 +28822,42 @@
       ],
       "z0_m": -2.5,
       "z1_m": -0.3,
-      "color": "#b0a898",
+      "color": "#8a8580",
       "opacity": 0.98,
-      "label": "hol vest reintrant Y630–685",
+      "label": "stâlp beton hol reintrant SW",
       "site_layer": "structura"
+    },
+    {
+      "id": "subsol_zid_hol_vest_reintrant",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.7282,
+          "y": 11.4734
+        },
+        {
+          "x": 5.0279,
+          "y": 11.4863
+        },
+        {
+          "x": 5.0386,
+          "y": 11.2365
+        },
+        {
+          "x": 4.7389,
+          "y": 11.2237
+        },
+        {
+          "x": 4.7282,
+          "y": 11.4734
+        }
+      ],
+      "z0_m": -2.5,
+      "z1_m": -0.3,
+      "color": "#d8d0c0",
+      "opacity": 0.98,
+      "label": "umplutură hol vest reintrant Y660–685",
+      "site_layer": "umplutura"
     },
     {
       "id": "subsol_zid_ct_est",
@@ -28854,10 +28886,10 @@
       ],
       "z0_m": -2.5,
       "z1_m": -0.3,
-      "color": "#b0a898",
+      "color": "#d8d0c0",
       "opacity": 0.98,
-      "label": "CT est 30 cm (=buc_est)",
-      "site_layer": "structura"
+      "label": "umplutură CT est 30 cm (=buc_est)",
+      "site_layer": "umplutura"
     },
     {
       "id": "subsol_zid_ct_sud_w",
@@ -29158,7 +29190,7 @@
       "z1_m": 1.2,
       "color": "#a8a296",
       "opacity": 0.97,
-      "site_layer": "structura",
+      "site_layer": "umplutura",
       "label": "zid gros 30 cm W N de ușă"
     },
     {
@@ -29190,7 +29222,7 @@
       "z1_m": 1.2,
       "color": "#a8a296",
       "opacity": 0.97,
-      "site_layer": "structura",
+      "site_layer": "umplutura",
       "label": "zid gros 30 cm W S de ușă"
     },
     {
@@ -29222,7 +29254,7 @@
       "z1_m": -0.35,
       "color": "#a8a296",
       "opacity": 0.97,
-      "site_layer": "structura",
+      "site_layer": "umplutura",
       "label": "buiandrug ușă hol→puț Y500–600 (gol 200+15)"
     },
     {
@@ -29318,7 +29350,7 @@
       "z1_m": -0.3,
       "color": "#a8a296",
       "opacity": 0.97,
-      "site_layer": "structura",
+      "site_layer": "umplutura",
       "label": "zid puț N @ Y477.5–490 (palier liber S)"
     },
     {

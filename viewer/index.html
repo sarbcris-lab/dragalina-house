@@ -286,22 +286,20 @@
         id.startsWith("poarta_")
       );
     }
+    /** Schelet beton: fundație, placă, grinzi, stâlpi, structură scară — FĂRĂ ziduri umplutură */
     function isStructuraMesh(m) {
+      if (m.site_layer === "umplutura") return false;
       const id = m.id || "";
+      if (id.includes("zid_") || id.startsWith("subsol_zid") || id.startsWith("subsol_put_zid") || id.startsWith("subsol_fantana_zid"))
+        return false;
       return (
         m.site_layer === "structura" ||
         id.startsWith("fundatie_") ||
         id.startsWith("structura_r2_") ||
-        id.startsWith("subsol_zid_perim") ||
-        id.startsWith("subsol_zid_colt") ||
-        id.startsWith("subsol_zid_hol_vest") ||
-        id.startsWith("subsol_zid_ct_est") ||
-        id.startsWith("subsol_put_zid") ||
-        id.startsWith("subsol_fantana_zid") ||
+        id.startsWith("subsol_stalp_") ||
         id === "subsol_intrados_placa" ||
         id.startsWith("subsol_grindă") ||
         id === "subsol_palier_acces" ||
-        id === "podest_se" ||
         id === "teren_cf" ||
         id.startsWith("amprenta_")
       );
@@ -454,13 +452,8 @@
           }
         }
         if (mode === "structura") {
-          // context minim: scară beci + trepte curte ca referință față de beton
-          for (const o of subsolObjs) {
-            const n = o.name || "";
-            if (n.startsWith("subsol_scara") || n.startsWith("subsol_racord_") || n.startsWith("subsol_pardoseala")) {
-              o.visible = true;
-            }
-          }
+          // doar schelet: nu forța ziduri/pardoseli/trepte de umplutură în vizibilitate
+          for (const o of structObjs) o.visible = true;
         }
         // păstrează starea porții auto
         for (const o of gateClosed) o.visible = document.getElementById("btnClosed").classList.contains("active");

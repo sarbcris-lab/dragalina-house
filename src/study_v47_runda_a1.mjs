@@ -759,7 +759,8 @@ function applyA1(v47) {
       finish_cm: 2,
       structure: "beton_portant",
       perimeter_structure_cm: 30,
-      perimeter_note: "30 = finit casă; structura portantă = beton, nu cărămida sono",
+      perimeter_note:
+        "30 = finit casă (20 sono umplutură + 8 termo + 2 finisaj). View Structură = doar beton (fundație/placă/grinzi/stâlpi), fără ziduri umplutură.",
       partition_cm: 12.5,
       shaft_west_cm: shaftWest,
       shaft_east_cm: shaftEast,

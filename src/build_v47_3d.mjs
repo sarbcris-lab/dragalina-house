@@ -1418,9 +1418,17 @@ function main() {
           ...(opts.site_layer ? { site_layer: opts.site_layer } : {}),
         });
       }
-      function pushStructWall(id, x, y, dx, dy, label) {
+      // Umplutură sono (neumplutură portantă) — vizibilă în Subsol, NU în view Structură
+      function pushUmpluturaWall(id, x, y, dx, dy, label) {
         pushWallFull(id, x, y, dx, dy, label, {
-          color: "#b0a898",
+          color: "#d8d0c0",
+          site_layer: "umplutura",
+        });
+      }
+      // Stâlpi beton (schelet) — singurele „verticale” în view Structură
+      function pushStalp(id, x, y, dx, dy, label) {
+        pushWallFull(id, x, y, dx, dy, label, {
+          color: "#8a8580",
           site_layer: "structura",
         });
       }
@@ -1439,7 +1447,7 @@ function main() {
         });
       }
 
-      // perimetru structură (studiu) — contur complet camere + legătură CT est
+      // Contur camere: umplutură sono pe schelet beton (nu ziduri portante în view Structură)
       const lowLand = bm.lower_landing || { y: 520, dy: 80 };
       const shaftWest = th.shaft_west_cm ?? 30;
       const shaftEast = th.shaft_east_cm ?? 15;
@@ -1448,32 +1456,34 @@ function main() {
       const landY1 = landY0 + (lowLand.dy ?? 80);
       const thickX0p = 535;
       const thinEX0p = ewCm - shaftEast; // 665 dacă 15
+      const col = wallPerim; // stâlp studiu 30×30 = grosime finit / nod cadru
 
-      pushStructWall("subsol_zid_perim_n", 30, 30 - wallPerim, 505, wallPerim, "perim N CT");
-      pushStructWall("subsol_zid_perim_w", 30 - wallPerim, 30, wallPerim, 600, "perim W");
-      pushStructWall("subsol_zid_perim_s_dep", 30, 630, 320, wallPerim, "perim S depozit");
-      pushStructWall("subsol_zid_perim_s_hol", 350, 685, 185, wallPerim, "perim S hol");
-      // Colțuri / reintrant — umplere goluri L (audit: lipsă stâlpi/colțuri)
-      pushStructWall("subsol_zid_colt_nw", 0, 0, wallPerim, wallPerim, "colț NW 30×30");
-      pushStructWall("subsol_zid_colt_sw_dep", 0, 630, wallPerim, wallPerim, "colț SW depozit 30×30");
-      pushStructWall("subsol_zid_colt_ne_ct", 535, 0, wallPerim, wallPerim, "colț NE CT 30×30");
-      // Hol protrude S de depozit: față vest reintrantă X320–350 Y630–685
-      pushStructWall(
+      pushUmpluturaWall("subsol_zid_perim_n", 30, 30 - wallPerim, 505, wallPerim, "umplutură perim N CT");
+      pushUmpluturaWall("subsol_zid_perim_w", 30 - wallPerim, 30, wallPerim, 600, "umplutură perim W");
+      pushUmpluturaWall("subsol_zid_perim_s_dep", 30, 630, 320, wallPerim, "umplutură perim S depozit");
+      pushUmpluturaWall("subsol_zid_perim_s_hol", 350, 685, 185, wallPerim, "umplutură perim S hol");
+      // Stâlpi beton la noduri (schelet) — view Structură
+      pushStalp("subsol_stalp_nw", 0, 0, col, col, "stâlp beton NW");
+      pushStalp("subsol_stalp_sw_dep", 0, 630, col, col, "stâlp beton SW depozit");
+      pushStalp("subsol_stalp_ne_ct", 535, 0, col, col, "stâlp beton NE CT / buc_est");
+      pushStalp("subsol_stalp_hol_sw", 350 - col, 630, col, col, "stâlp beton hol reintrant SW");
+      // Hol protrude S: umplutură pe fața vest (între stâlpi)
+      pushUmpluturaWall(
         "subsol_zid_hol_vest_reintrant",
         350 - wallPerim,
-        630,
+        630 + col,
         wallPerim,
-        55,
-        "hol vest reintrant Y630–685"
+        Math.max(0, 55 - col),
+        "umplutură hol vest reintrant Y660–685"
       );
-      // est CT: continuare buc_est până la palier (închidere exterioară est CT)
-      pushStructWall(
+      // est CT: umplutură (=buc_est) între stâlpi — nu diafragmă în view Structură
+      pushUmpluturaWall(
         "subsol_zid_ct_est",
         thickX0p,
         30,
         shaftWest,
         Math.max(0, landY0 - shaftNorthTh - 30),
-        `CT est ${shaftWest} cm (=buc_est)`
+        `umplutură CT est ${shaftWest} cm (=buc_est)`
       );
       // CT | depozit+hol — cu gol ușă
       {
@@ -1589,7 +1599,8 @@ function main() {
           z1_m: z1,
           color: "#a8a296",
           opacity: 0.97,
-          site_layer: layer || "structura",
+          // ziduri puț/fântână = închideri / umplutură pe schelet — nu în view Structură
+          site_layer: layer || "umplutura",
           label,
         });
       }
