@@ -3,6 +3,15 @@
 ## Status
 **A1 NEFEZABIL / STUDIU DESCHIS** — `v47_exact.json` **neatins**.
 
+### Perete exterior P/E (înregistrat)
+**EB20 Akustik 200 mm + ISOVER FASSADE 80 mm** · straturi int→ext sumă **299 mm** (max finit **300 mm**).  
+Status: **de confirmat** cu furnizorul sistemului ETICS și proiectantul — **nu** validat structural / termic / acustic.  
+Anvelopă **680×860** și fețe interioare / goluri / util: **neschimbate**. Secțiune: `outputs/plans/35_v47_a1_exterior_wall_section.svg`.
+
+**Conflicte raportate (fără corectare automată plan):**
+- ETICS în afara cărămizii **9.2 cm** vs model anterior **10 cm**
+- Baie faianță: finisaj int. **19 mm** vs vopsit **7 mm** (Δ **+12 mm**) — depășește bugetul 300 mm dacă se păstrează EB20+ETICS
+
 Checks geometrice fără eșecuri critice: da · Fezabilitate A1: **nu**
 
 ### Observații deschise (blochează fezabilitatea)

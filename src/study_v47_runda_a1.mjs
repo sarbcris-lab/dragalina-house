@@ -752,26 +752,33 @@ function applyA1(v47) {
       note: "VALORI ABSOLUTE față de teren=0",
     },
     wall_thickness_study_cm: {
-      // Casă încălzită: 20 sono (neumplutură) + 8 termo + 2 finisaj = 30 finit
+      // Casă încălzită P/E: EB20 Akustik 200 + ISOVER FASSADE 80 → nom. 299 mm / max 300
       heated_finished_cm: 30,
+      heated_nominal_mm: 299,
+      heated_max_mm: 300,
       brick_sono_non_loadbearing_cm: 20,
+      brick_product: "EB20 Akustik 200 mm",
       insulation_cm: 8,
+      insulation_product: "ISOVER FASSADE 80 mm",
+      insulation_exact_mm: 80,
+      etics_outside_brick_mm: 92,
+      interior_finish_painted_mm: 7,
       finish_cm: 2,
       structure: "beton_portant",
       perimeter_structure_cm: 30,
       perimeter_note:
-        "30 = finit casă (20 sono umplutură + 8 termo + 2 finisaj). View Structură = doar beton (fundație/placă/grinzi/stâlpi), fără ziduri umplutură.",
+        "30 = finit max (EB20 200 + ISOVER FASSADE 80 + straturi; nom. 299 mm). De confirmat ETICS/proiectant. View Structură = beton COL=20.",
+      assembly_ref: "construction_assemblies.exterior_wall_heated",
       partition_cm: 12.5,
       shaft_west_cm: shaftWest,
       shaft_east_cm: shaftEast,
-      shaft_east_note: "scară rece — fără termosistem; 15 cm studiu",
+      shaft_east_note: "scară rece — fără ETICS; 15 cm studiu",
       shaft_north_cm: shaftNorth,
-      // Fundație pe beton: termosistem 10 cm ÎN AFARA liniei de talpă
-      foundation_thermosystem_outside_cm: 10,
+      foundation_thermosystem_outside_cm: 9.2,
       foundation_footing_beyond_structure_cm: 5,
       foundation_projection_beyond_wall_cm: 5,
       foundation_note:
-        "talpă beton față de fața structură/umplutură (finit−10); +5 cm talpă tipică — NU +15 față de finit",
+        "talpă beton față de fața cărămizii (finit−9.2 ETICS); +5 cm talpă tipică — NU +15 față de finit",
       cold_stair: true,
       cold_stair_note: "volum scară rece; casă izolată la buc_est",
     },
@@ -1861,6 +1868,14 @@ ${(bm.transport_audit?.doors || []).map((xd) => `| ${xd.role} | ${xd.rough_cm} |
 |------|------:|------|-----------|
 ${(bm.transport_audit?.geometric?.poses || []).map((p) => `| ${p.id} | ${p.angleDeg}° | ${p.aabb.dx.toFixed?.(0) ?? p.aabb.dx}×${p.aabb.dy.toFixed?.(0) ?? p.aabb.dy} @ (${p.aabb.x},${p.aabb.y}) | ${p.ok ? "—" : p.collisions.join(", ")} |`).join("\n")}
 
+## Perete exterior P/E (EB20 + ISOVER FASSADE)
+- Alcătuire: **EB20 Akustik 200 mm + ISOVER FASSADE 80 mm** · nom. **299 mm** / max finit **300 mm**
+- Status: **de confirmat** cu furnizorul sistemului ETICS și proiectantul — **nu** validat structural / termic / acustic
+- Anvelopă finită **680×860** și fețele interioare: **neschimbate**; goluri/util: **neschimbate**
+- Secțiune: \`outputs/plans/35_v47_a1_exterior_wall_section.svg\`
+- CONFLICT faianță (baie): finisaj int. 19 mm vs vopsit 7 mm (Δ +12 mm) — **fără corectare automată plan**
+- ETICS în afara cărămizii: 9.2 cm (înainte 10 cm)
+
 ## Puț / goluri / grosimi
 - open_shaft Y${bm.open_shaft_cm.y}–${bm.open_shaft_cm.y + bm.open_shaft_cm.dy}
 - zid N @ Y${bm.lower_landing.y - bm.wall_thickness_study_cm.shaft_north_cm}–${bm.lower_landing.y}
@@ -1868,7 +1883,7 @@ ${(bm.transport_audit?.geometric?.poses || []).map((p) => `| ${p.id} | ${p.angle
 - EST puț: ${bm.wall_thickness_study_cm.shaft_east_cm} cm · VEST: ${bm.wall_thickness_study_cm.shaft_west_cm} cm
 
 ## Fundație / parcelă
-Model: **talpă pe beton**; cărămidă sono = umplutură neportantă; **termosistem 8+2 în afara fundației**.
+Model: **talpă pe beton**; **EB20 Akustik 200** umplutură; **ISOVER FASSADE 80** în ETICS (92 mm în afara cărămizii). Alcătuire **de confirmat** cu furnizor ETICS și proiectant — nu validată structural/termic/acustic.
 
 - Inset față de finit: **${volume?.site?.foundation_inset_from_finished_cm ?? "?"} cm**
 - Clip: \`${JSON.stringify(volume?.site?.foundation_clip_cm)}\`
@@ -1906,6 +1921,7 @@ Notă: coordonarea planșeului (gol doar Y590–860) nu modifică poligonul inte
 - \`data/building/v47_a1_study.json\`
 - \`outputs/plans/31_v47_a1_subsol_plan.svg\`
 - \`outputs/plans/32_v47_a1_access_section.svg\`
+- \`outputs/plans/35_v47_a1_exterior_wall_section.svg\`
 - \`outputs/plans/33_v47_a1_court_access_plan_after.svg\`
 - \`outputs/plans/34_v47_a1_court_access_section_before_after.svg\`
 - \`outputs/reports/v47_runda_a1.md\`

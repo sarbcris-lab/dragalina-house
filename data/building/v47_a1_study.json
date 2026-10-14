@@ -31,7 +31,8 @@
     "etaj_source": "v46_r7g — neschimbat",
     "concept_status": "temă cotată pentru discuție arhitect — NU autorizabil / NU verificat structural",
     "study_variant": "A1",
-    "rev_note_a1": "A1: goluri 100/palier 110; planșeu Y490–590; puț Y590–860; rampă curte Y868–1036 (+8 sud); alee/poartă racord Y1036; transport geometric"
+    "rev_note_a1": "A1: goluri 100/palier 110; planșeu Y490–590; puț Y590–860; rampă curte Y868–1036 (+8 sud); alee/poartă racord Y1036; transport geometric",
+    "rev_note_wall_etics": "P/E: EB20 Akustik 200 + ISOVER FASSADE 80; straturi int→ext 299 mm (max 300). De confirmat ETICS/proiectant. Anvelopă 680×860 și fețe interioare neschimbate."
   },
   "envelope_cm": {
     "ew": 680,
@@ -75,7 +76,8 @@
       "dy": 30,
       "kind": "ext",
       "thermal": "mixed",
-      "note": "X0–565 casă încălzită (20+8+2); X565–680 bandă scară — de tratat cold_stair (fără termosistem)"
+      "note": "X0–565 casă încălzită (EB20 200 + ISOVER FASSADE 80, total nom. 299 mm); X565–680 bandă scară — cold_stair (fără ETICS)",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80"
     },
     {
       "id": "vest",
@@ -84,7 +86,9 @@
       "dx": 30,
       "dy": 615,
       "kind": "ext",
-      "note": "Y30–645"
+      "thermal": "heated_thermosystem",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "note": "Y30–645; alcătuire P/E încălzită EB20+ISOVER FASSADE — de confirmat ETICS/proiectant"
     },
     {
       "id": "est_living",
@@ -94,8 +98,8 @@
       "dy": 410,
       "kind": "ext",
       "thermal": "heated_thermosystem",
-      "assembly": "20_sono+8_termo+2_finisaj",
-      "note": "P+E: X650 Y30–440; finit la X680; cărămidă sono neumplutură portantă; structură beton"
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "note": "P+E: X650 Y30–440; finit la X680; EB20 200 + ETICS ISOVER 80; structură beton — neconfirmat"
     },
     {
       "id": "living_palier",
@@ -104,7 +108,9 @@
       "dx": 145,
       "dy": 30,
       "kind": "ext",
-      "note": "doar etaj (palier intrare); pe P spațiul de sub = living deschis",
+      "thermal": "heated_thermosystem",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "note": "doar etaj (palier intrare); pe P spațiul de sub = living deschis; alcătuire EB20+ISOVER — de confirmat",
       "levels": [
         1
       ]
@@ -116,7 +122,9 @@
       "dx": 175,
       "dy": 30,
       "kind": "ext",
-      "note": "fațadă SUD exterioară casă (P+E) — restaurat; nu = bucătărie pe P"
+      "thermal": "heated_thermosystem",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "note": "fațadă SUD exterioară casă (P+E) — restaurat; nu = bucătărie pe P; EB20+ISOVER FASSADE"
     },
     {
       "id": "dormitor_sud",
@@ -125,7 +133,9 @@
       "dx": 360,
       "dy": 30,
       "kind": "ext",
-      "note": "Y645–675; terasă de la Y675"
+      "thermal": "heated_thermosystem",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "note": "Y645–675; terasă de la Y675; EB20+ISOVER FASSADE — de confirmat ETICS/proiectant"
     },
     {
       "id": "perete_comun_est",
@@ -3624,28 +3634,88 @@
     }
   },
   "construction_assemblies": {
-    "status": "REZERVE — performanțe NECONFIRMATE până la documentare",
+    "status": "REZERVE — de confirmat cu furnizorul sistemului ETICS și proiectantul; NU validat structural, termic sau acustic",
     "exterior_wall_heated": {
-      "structure": "beton_portant",
-      "brick_sono_non_loadbearing_cm": 20,
-      "brick_role": "umplutură sono — termic + acustic; NU portantă",
-      "insulation_thermosystem_cm": 8,
-      "finish_cm": 2,
-      "thickness_finished_cm": 30,
-      "sum_check": "20+8+2=30",
-      "foundation": {
-        "bears_on": "beton_structura",
-        "thermosystem_outside_foundation_cm": 10,
-        "thermosystem_note": "8+2 nu stau pe talpă; în afara liniei de fundație",
-        "footing_beyond_structure_outer_cm": 5,
-        "footing_note": "mică ieșire talpă beton față de fața exterioară structură/umplutură sub termosistem — nu față de fața finită"
+      "id": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "applies_to": "P_E_heated_envelope",
+      "products": {
+        "brick": "EB20 Akustik 200 mm",
+        "insulation": "ISOVER FASSADE 80 mm",
+        "etics": "sistem ETICS pe vată — de confirmat furnizor"
       },
-      "note": "casă încălzită, izolată; termosistem pe fațade încălzite"
+      "structure_role": "beton_portant; cărămida = umplutură neportantă (acustic/termic studiu)",
+      "layers_interior_to_exterior_mm": [
+        { "id": "tencuiala_int", "name": "tencuială interioară", "th_mm": 6 },
+        { "id": "finisare_vopsea", "name": "finisare și vopsea", "th_mm": 1 },
+        { "id": "caramida_eb20", "name": "EB20 Akustik", "th_mm": 200, "product": "EB20 Akustik" },
+        { "id": "adeziv_etics", "name": "adeziv ETICS", "th_mm": 5 },
+        { "id": "vata_isover_fassade", "name": "vată minerală fațadă", "th_mm": 80, "product": "ISOVER FASSADE" },
+        { "id": "strat_armat", "name": "strat armat", "th_mm": 5 },
+        { "id": "grund_decorativa", "name": "grund și tencuială decorativă", "th_mm": 2 }
+      ],
+      "sum_layers_mm": 299,
+      "sum_check": "6+1+200+5+80+5+2=299",
+      "thickness_nominal_mm": 299,
+      "thickness_finished_max_mm": 300,
+      "thickness_finished_cm": 30,
+      "slack_to_max_mm": 1,
+      "envelope_kept_cm": { "ew": 680, "ns": 860 },
+      "interior_faces_kept": true,
+      "openings_unchanged": true,
+      "useful_areas_unchanged_by_this_update": true,
+      "etics_outside_brick_mm": 92,
+      "etics_outside_brick_cm": 9.2,
+      "interior_finish_painted_mm": 7,
+      "brick_mm": 200,
+      "legacy_simplified_was": "20_sono+8_termo+2_finisaj",
+      "validation_status": "de_confirmat_furnizor_ETICS_si_proiectant",
+      "not_validated": ["structural", "thermal", "acoustic"],
+      "foundation": {
+        "bears_on": "beton_structura_sub_caramida",
+        "thermosystem_outside_foundation_cm": 9.2,
+        "thermosystem_note": "ETICS 92 mm (5+80+5+2) în afara feței cărămizii/structurii; nu pe talpă. Finisajul interior 7 mm e spre încăpere.",
+        "footing_beyond_structure_outer_cm": 5,
+        "footing_note": "mică ieșire talpă față de fața cărămizii sub ETICS — nu față de fața finită exterioară",
+        "conflict_vs_prior_10cm": "înainte 10 cm (8+2); acum 9.2 cm — Δ −0.8 cm spre exterior pe falie; anvelopa finită neschimbată"
+      },
+      "interior_finish_tiled_zones": {
+        "note": "Finisaj interior calculat SEPARAT față de vopsea; nu înlocuiește automat straturile din bugetul 299 mm.",
+        "zones": ["baie"],
+        "layers_interior_to_wall_mm": [
+          { "id": "tencuiala_int", "name": "tencuială interioară", "th_mm": 6 },
+          { "id": "adeziv_faianata", "name": "adeziv faianță (ipoteză studiu)", "th_mm": 5 },
+          { "id": "faianata", "name": "faianță (ipoteză studiu)", "th_mm": 8 }
+        ],
+        "sum_interior_tiled_mm": 19,
+        "painted_interior_mm": 7,
+        "delta_vs_painted_mm": 12,
+        "conflict": "Faianța (19 mm) depășește finisajul vopsit (7 mm) cu +12 mm. Cu EB20+ETICS neschimbate, totalul ar trece peste 300 mm SAU ar reduce clarul încăperii. Planul/golurile/utilul NU au fost corectate automat — de rezolvat cu proiectantul (subțiere locală, nicșă, sau acceptare spațiu).",
+        "status": "CONFLICT_RAPORTAT_fara_corectare_plan"
+      },
+      "conflicts_reported": [
+        {
+          "id": "etics_outside_was_10_now_9_2",
+          "severity": "ETICS în afara cărămizii 9.2 cm vs model anterior 10 cm",
+          "action": "date actualizate; anvelopă/camere neschimbate"
+        },
+        {
+          "id": "tiled_interior_exceeds_painted_budget",
+          "severity": "baie: finisaj faianță 19 mm vs 7 mm vopsit (+12 mm)",
+          "action": "raportat; fără micșorare automată camere/goluri"
+        },
+        {
+          "id": "nominal_299_vs_wall_ext_30",
+          "severity": "sumă straturi 299 mm în buget max 300 mm (wall_ext_cm=30) — OK cu 1 mm holaj",
+          "action": "niciuna"
+        }
+      ],
+      "note": "Alcătuire P/E încălzită: EB20 Akustik 200 + ISOVER FASSADE 80. De confirmat cu furnizorul sistemului ETICS și proiectantul. Nu validată structural/termic/acustic."
     },
     "exterior_wall": {
       "alias_of": "exterior_wall_heated",
       "thickness_finished_cm": 30,
-      "note": "compatibil vechi; detalii în exterior_wall_heated"
+      "thickness_nominal_mm": 299,
+      "note": "compatibil vechi; detalii complete în exterior_wall_heated"
     },
     "stair_volume_cold": {
       "heated": false,
@@ -3705,9 +3775,9 @@
       "joinery": "praguri termice — REZERVĂ"
     },
     "envelope_zones": {
-      "heated_house": "corp P+E cu termosistem 8+2 pe fațade",
-      "cold_stair": "bandă scară est — rece, fără termosistem",
-      "note": "anvelopa 680×860 = fața FINITE; fundația nu se măsoară de la finit pe fațadele cu termosistem"
+      "heated_house": "corp P+E: EB20 Akustik 200 + ISOVER FASSADE 80 (ETICS) — de confirmat furnizor/proiectant",
+      "cold_stair": "bandă scară est — rece, fără ETICS",
+      "note": "anvelopa 680×860 = fața FINITE; fundația față de cărămidă (ETICS 9.2 cm afară), nu de la finit pe fațadele cu ETICS"
     }
   },
   "path_overlays_cm": [
@@ -4585,23 +4655,32 @@
     ],
     "wall_thickness_study_cm": {
       "heated_finished_cm": 30,
+      "heated_nominal_mm": 299,
+      "heated_max_mm": 300,
       "brick_sono_non_loadbearing_cm": 20,
+      "brick_product": "EB20 Akustik 200 mm",
       "insulation_cm": 8,
+      "insulation_product": "ISOVER FASSADE 80 mm",
+      "insulation_exact_mm": 80,
+      "etics_outside_brick_mm": 92,
+      "interior_finish_painted_mm": 7,
       "finish_cm": 2,
+      "finish_note": "grund+decorativă 2 mm pe ETICS; finisaj interior vopsit = 7 mm (6+1) — vezi construction_assemblies",
       "concrete_column_cm": 20,
-      "concrete_column_note": "30 = finit (20+8+2). Stâlpul de beton = 20 pe falie structurală; termo 8+2 rămâne în afara betonului. IPOTZĂ până la structurist.",
+      "concrete_column_note": "30 = finit max (nom. 299 mm). Stâlp beton = 20 pe falie în zona cărămizii; ETICS 92 mm în afara cărămizii. IPOTZĂ — de confirmat ETICS/proiectant/structurist.",
       "structure": "beton_portant",
       "perimeter_structure_cm": 30,
-      "perimeter_note": "30 = finit casă (20 sono umplutură + 8 termo + 2 finisaj). View Structură = beton COL=20 pe falie (fundație/placă/grinzi/stâlpi), fără ziduri umplutură.",
+      "perimeter_note": "30 = finit max casă (EB20 200 + ISOVER FASSADE 80 + straturi; nom. 299 mm). View Structură = beton COL=20 pe falie, fără umplutură/ETICS.",
+      "assembly_ref": "construction_assemblies.exterior_wall_heated",
       "partition_cm": 12.5,
       "shaft_west_cm": 30,
       "shaft_east_cm": 15,
       "shaft_east_note": "scară rece — fără termosistem; 15 cm studiu",
       "shaft_north_cm": 12.5,
-      "foundation_thermosystem_outside_cm": 10,
+      "foundation_thermosystem_outside_cm": 9.2,
       "foundation_footing_beyond_structure_cm": 5,
       "foundation_projection_beyond_wall_cm": 5,
-      "foundation_note": "talpă beton față de fața structură/umplutură (finit−10); +5 cm talpă tipică — NU +15 față de finit",
+      "foundation_note": "talpă beton față de fața cărămizii (finit−9.2 ETICS); +5 cm talpă tipică — NU +15 față de finit",
       "cold_stair": true,
       "cold_stair_note": "volum scară rece; casă izolată la buc_est"
     },

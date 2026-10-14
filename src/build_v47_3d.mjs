@@ -193,23 +193,23 @@ function main() {
   /**
    * Schelet studiu — IPOTZE până la structurist (nu dovadă de rezistență).
    *
-   * 30 cm = grosime FINITĂ anvelopă (20 sono + 8 termo + 2 finisaj), NU stâlpul.
-   * Beton stâlp = COL_BETON pe falie structurală (în interiorul finitului);
-   * termosistemul rămâne în afara betonului, spre exterior.
+   * Anvelopă P/E încălzită: EB20 Akustik 200 + ISOVER FASSADE 80 (nom. 299 mm / max 300).
+   * 30 cm = finit max; stâlpul ≠ 30. Beton COL pe falie în zona cărămizii;
+   * ETICS (92 mm) în afara cărămizii. De confirmat furnizor ETICS + proiectant.
    *
    * Living sub palier liber pe P: X535–650 × Y470–590.
    */
   const WALL_FINISHED = 30;
-  const THERMO_OUT = 10; // 8+2 în afara betonului/sono
+  const assy = v47.construction_assemblies?.exterior_wall_heated || {};
+  const THERMO_OUT = assy.etics_outside_brick_cm ?? 9.2; // ETICS în afara cărămizii
   const COL_BETON = 20; // falie structurală — IPOTZĂ studiu
   const COL = COL_BETON;
-  // Noduri = colțul interior al feței finite (inset termo pe fațadele exterioare)
-  const I = THERMO_OUT; // 10
+  const I = THERMO_OUT;
   const structNodesContinuous = [
     { id: "nw", x: I, y: I },
     { id: "n_part", x: 320, y: I },
     { id: "n_buc", x: 535, y: I },
-    { id: "n_est", x: 650, y: I }, // în falie est (finit 650–680 → beton 650–670)
+    { id: "n_est", x: 650, y: I },
     { id: "w_mid", x: I, y: 400 },
     { id: "w_dorm", x: I, y: 645 },
     { id: "part_dorm", x: 320, y: 645 },
@@ -218,19 +218,128 @@ function main() {
     { id: "s_buc_w", x: 360, y: 830 },
     { id: "s_buc_e", x: 535, y: 830 },
   ];
-  // Subsol + etaj: nu pe P (living / circulație)
   const structNodesNoParter = [
     { id: "buc_y590", x: 535, y: 590 },
-    // pe compartimentare: aliniat la X347.5−20 = 327.5 ≈ 328, spre dorm
     { id: "part_mid", x: 328, y: 400 },
   ];
-  // Doar etaj — necesită grindă de transfer / verificare structurist (marcat ipoteză)
   const structNodesEtajOnly = [
     { id: "pal_nw", x: 535, y: 470, note: "ipoteză: transfer pe placă/centură — neconfirmat" },
     { id: "pal_ne", x: 650, y: 470, note: "ipoteză: transfer pe placă/centură — neconfirmat" },
   ];
   const STRUCT_HYPOTHESIS =
-    "Structură studiu A1: COL_BETON=20 pe falie (finit 30=20+8+2). Dimensiuni ipoteză — nu micșorate ca să „salveze” planul; verificare structurist + NP112 fundații.";
+    "Structură studiu A1: COL_BETON=20 pe falie; anvelopă P/E EB20+ISOVER FASSADE (299/300 mm) — de confirmat ETICS/proiectant. Dimensiuni ipoteză; NP112 fundații.";
+
+  /** Straturi perete exterior încălzit — model fața exterioară → încăpere (mm din assembly). */
+  function exteriorWallLayersFromOutside() {
+    const listed = assy.layers_interior_to_exterior_mm;
+    if (Array.isArray(listed) && listed.length) {
+      // listă furnizor int→ext; pe model extrudăm de la exterior: reverse + vopsea pe fața încăperii
+      const rev = [...listed].reverse();
+      // dacă ultimele două după reverse sunt vopsea apoi tencuială, pune vopseaua spre încăpere
+      const paintIdx = rev.findIndex((L) => /vopsea|finisare/i.test(L.id || L.name || ""));
+      const plasIdx = rev.findIndex((L) => /tencuiala_int|tencuială interioară/i.test(L.id || L.name || ""));
+      if (paintIdx >= 0 && plasIdx >= 0 && paintIdx < plasIdx) {
+        const p = rev[paintIdx];
+        rev.splice(paintIdx, 1);
+        rev.splice(plasIdx, 0, p);
+      }
+      return rev;
+    }
+    return [
+      { id: "grund_decorativa", name: "grund și decorativă", th_mm: 2 },
+      { id: "strat_armat", name: "strat armat", th_mm: 5 },
+      { id: "vata_isover_fassade", name: "ISOVER FASSADE", th_mm: 80 },
+      { id: "adeziv_etics", name: "adeziv ETICS", th_mm: 5 },
+      { id: "caramida_eb20", name: "EB20 Akustik", th_mm: 200 },
+      { id: "tencuiala_int", name: "tencuială", th_mm: 6 },
+      { id: "finisare_vopsea", name: "finisare/vopsea", th_mm: 1 },
+    ];
+  }
+  const LAYER_COLORS = {
+    grund_decorativa: "#8a8680",
+    strat_armat: "#a8b0b8",
+    vata_isover_fassade: "#e2d18a",
+    adeziv_etics: "#b0a898",
+    caramida_eb20: "#c4a070",
+    tencuiala_int: "#e8e0d4",
+    finisare_vopsea: "#f4f0e8",
+  };
+  function wallOutward(w) {
+    const eps = 0.6;
+    if (w.y <= eps) return "north";
+    if (w.x <= eps) return "west";
+    if (Math.abs(w.x + w.dx - ewCm) <= eps) return "east";
+    if (Math.abs(w.y + w.dy - nsCm) <= eps) return "south";
+    // living_palier / reintrante: față nord a benzii
+    if (w.dy >= w.dx) return w.x + w.dx / 2 > ewCm / 2 ? "east" : "west";
+    return "north";
+  }
+  function isHeatedExteriorWall(w) {
+    if (w.kind !== "ext") return false;
+    if (w.thermal === "cold_stair" || w.assembly === "cold_stair") return false;
+    if (w.thermal === "heated_thermosystem") return true;
+    if (w.assembly && /EB20|ISOVER|FASSADE|20_sono/i.test(w.assembly)) return true;
+    // contur încălzit: nu banda scară X565–680 pe nord
+    if (w.id === "nord") return true; // layered doar pe segmentul încălzit — vezi split
+    return ["vest", "est_living", "sud_bucatarie", "dormitor_sud", "living_palier"].includes(w.id);
+  }
+  function pushLayeredExteriorWall(w, z0, z1, suffix, opts = {}) {
+    const layers = exteriorWallLayersFromOutside();
+    const outward = opts.outward || wallOutward(w);
+    const sumMm = layers.reduce((s, L) => s + (L.th_mm || 0), 0);
+    const wallThCm = outward === "north" || outward === "south" ? w.dy : w.dx;
+    const wallThMm = wallThCm * 10;
+    // păstrează bbox finit: scalează straturile în grosimea geometrică a zidului (30 cm)
+    const scale = wallThMm > 0 ? wallThMm / sumMm : 1;
+    let accMm = 0;
+    for (const L of layers) {
+      const thMm = (L.th_mm || 0) * scale;
+      if (thMm < 0.05) continue;
+      const aCm = accMm / 10;
+      const bCm = (accMm + thMm) / 10;
+      accMm += thMm;
+      let x = w.x;
+      let y = w.y;
+      let dx = w.dx;
+      let dy = w.dy;
+      if (outward === "north") {
+        y = w.y + aCm;
+        dy = Math.max(0.05, bCm - aCm);
+        dx = w.dx;
+        x = w.x;
+      } else if (outward === "south") {
+        y = w.y + w.dy - bCm;
+        dy = Math.max(0.05, bCm - aCm);
+        dx = w.dx;
+        x = w.x;
+      } else if (outward === "west") {
+        x = w.x + aCm;
+        dx = Math.max(0.05, bCm - aCm);
+        dy = w.dy;
+        y = w.y;
+      } else {
+        // east — exterior la x+dx
+        x = w.x + w.dx - bCm;
+        dx = Math.max(0.05, bCm - aCm);
+        dy = w.dy;
+        y = w.y;
+      }
+      meshes.push({
+        id: `zid_${w.id}_${L.id}_${suffix}`,
+        type: "extrude",
+        polygon: rectPoly(x, y, dx, dy),
+        z0_m: z0,
+        z1_m: z1,
+        color: LAYER_COLORS[L.id] || "#d8d2c6",
+        label: `${w.id}: ${L.name || L.id} (${L.th_mm} mm)`,
+        kind: "ext",
+        wall_layer: L.id,
+        assembly: "EB20_Akustik_200_ISOVER_FASSADE_80",
+        site_layer: /caramida|eb20/i.test(L.id) ? "umplutura" : undefined,
+        opacity: /vata|isover/i.test(L.id) ? 0.85 : 0.97,
+      });
+    }
+  }
   // până la fațada est (Dragalina), nu inset 670
   const pitX = shaftRef.x;
   const pitX1 = ewCm;
@@ -524,7 +633,6 @@ function main() {
       if (w.levels && !w.levels.includes(level)) continue;
       const isExt = w.kind === "ext";
       // Pe P: sub palierul de intrare etaj (est, Y470–590 X535–650) = living deschis.
-      // Păstrăm doar peretele pe limita de proprietate (est_recuperat_p).
       if (
         level === 0 &&
         w.id !== "est_recuperat_p" &&
@@ -533,6 +641,28 @@ function main() {
         w.y < 590 &&
         w.y + w.dy > 470
       ) {
+        continue;
+      }
+      // Perete N: straturi ETICS doar pe casă încălzită X0–565; X565–680 = scară rece (monolit)
+      if (isExt && w.id === "nord") {
+        const heated = { ...w, id: "nord_heated", x: 0, dx: 565, thermal: "heated_thermosystem" };
+        const cold = { ...w, id: "nord_cold_stair", x: 565, dx: 115, thermal: "cold_stair" };
+        pushLayeredExteriorWall(heated, zFf, z1, suffix, { outward: "north" });
+        meshes.push({
+          id: `zid_${cold.id}_${suffix}`,
+          type: "extrude",
+          polygon: rectPoly(cold.x, cold.y, cold.dx, cold.dy),
+          z0_m: zFf,
+          z1_m: z1,
+          color: "#c8c2b6",
+          label: "nord bandă scară (fără ETICS)",
+          kind: "ext",
+          assembly: "cold_stair",
+        });
+        continue;
+      }
+      if (isExt && isHeatedExteriorWall(w)) {
+        pushLayeredExteriorWall(w, zFf, z1, suffix);
         continue;
       }
       meshes.push({
@@ -2086,9 +2216,9 @@ function main() {
         });
       }
 
-      // Fundație pe BETON: termosistem 8+2 = 10 cm ÎN AFARA liniei de talpă.
+      // Fundație pe BETON: ETICS (92 mm) ÎN AFARA feței cărămizii/structurii.
       // Fața finită anvelopă ≠ fața pe care stă fundația.
-      const termoOut = th.foundation_thermosystem_outside_cm ?? 10;
+      const termoOut = th.foundation_thermosystem_outside_cm ?? THERMO_OUT ?? 9.2;
       const footBeyond = th.foundation_footing_beyond_structure_cm ?? th.foundation_projection_beyond_wall_cm ?? 5;
       // fața structură/umplutură sub termo = finit inset termoOut; talpa poate ieși footBeyond spre exterior
       // → fața exterioară talpă față de finit = termoOut - footBeyond (pozitiv = înăuntrul finitului)
@@ -2128,7 +2258,7 @@ function main() {
         thermosystem_outside_cm: termoOut,
         footing_beyond_structure_cm: footBeyond,
         target_cm: footBeyond,
-        note: "talpă beton; 8+2 în afara fundației",
+        note: "talpă beton; ETICS 9.2 cm în afara fundației (EB20+ISOVER — de confirmat)",
       };
       v47._foundation_clip_cm = foundClip;
       const ox0 = fx0 - foundClip.W;
@@ -2283,7 +2413,7 @@ function main() {
 
   // —— Audit fundație: talpă beton (finit − termosistem + mică ieșire), nu +15 peste finit
   const thFound = v47.basement_cm?.wall_thickness_study_cm || {};
-  const termoOutA = thFound.foundation_thermosystem_outside_cm ?? 10;
+  const termoOutA = thFound.foundation_thermosystem_outside_cm ?? THERMO_OUT ?? 9.2;
   const footA = thFound.foundation_footing_beyond_structure_cm ?? thFound.foundation_projection_beyond_wall_cm ?? 5;
   const insetA = Math.max(0, termoOutA - footA);
   const foundClip = v47._foundation_clip_cm || {
@@ -2343,7 +2473,27 @@ function main() {
         : "V47 concept: FF=față sus. Subsol scară −95→−250. Clear subsol 208→soffit −42 (ipoteză). Nu autorizabil / nu verificat structural. Elevație +32=ipoteză.",
       structure_hypothesis: isStudyA1 ? STRUCT_HYPOTHESIS : undefined,
       finished_wall_vs_column_cm: isStudyA1
-        ? { finished_envelope: WALL_FINISHED, concrete_column: COL_BETON, thermo_outside: THERMO_OUT, note: "30 = finit (20+8+2), nu stâlpul" }
+        ? {
+            finished_envelope_cm: WALL_FINISHED,
+            finished_nominal_mm: assy.thickness_nominal_mm ?? 299,
+            concrete_column_cm: COL_BETON,
+            etics_outside_brick_cm: THERMO_OUT,
+            assembly: "EB20_Akustik_200_ISOVER_FASSADE_80",
+            note: "30 = finit max (nom. 299 mm); stâlpul ≠ 30; de confirmat ETICS/proiectant",
+          }
+        : undefined,
+      exterior_wall_assembly: isStudyA1
+        ? {
+            ref: "construction_assemblies.exterior_wall_heated",
+            products: assy.products,
+            sum_mm: assy.sum_layers_mm ?? 299,
+            max_mm: assy.thickness_finished_max_mm ?? 300,
+            validation_status: assy.validation_status,
+            not_validated: assy.not_validated,
+            conflicts: assy.conflicts_reported,
+            tiled_interior: assy.interior_finish_tiled_zones,
+            envelope_kept_cm: { ew: ewCm, ns: nsCm },
+          }
         : undefined,
       gate_default_state: "closed",
       gate_clear_m: v47.site_access_cm?.auto?.gate?.clear_opening_m ?? 6,
@@ -2387,7 +2537,7 @@ function main() {
       stair_se_site: stairSeSite,
       stair_se_inside: stairSeInside,
       stair_se_overflow_m: stairSeOverflow_m,
-      foundation_model: "beton; termosistem 8+2 în afara talpii",
+      foundation_model: "beton; ETICS 9.2 cm (ISOVER FASSADE) în afara feței cărămizii — de confirmat",
       foundation_inset_from_finished_cm: insetA,
       foundation_clip_cm: foundClip,
       foundation_corners_legacy_plus15_finished: foundationLegacyWrong,
@@ -2402,7 +2552,7 @@ function main() {
       useful_interior_m2: v47.areas_cm?.useful_interior_m2 ?? null,
       terrace_libera_m2: v47.areas_cm?.terrace_libera_m2 ?? null,
       useful_note: "shoelace pe interior_polygon_cm — vezi docs:v47",
-      walls: "ext 30 / int 12.5 / palier 12.5 neconfirmat",
+      walls: "ext max 300 mm (EB20+ISOVER FASSADE nom. 299) / int 12.5 — de confirmat ETICS/proiectant",
       levels: "L-1 subsol + P + E; FF→FF 288 cm; subsol clear 208 cm (ipoteză soffit −42)",
       basement_m2: v47.basement_cm?.areas?.total_brut_rooms_m2 ?? null,
       parking: "2 × 2.50×5.00 Cloșca (studiu, departate)",
@@ -2416,6 +2566,61 @@ function main() {
     },
     meshes,
   };
+
+  // Secțiune straturi perete exterior P/E (date + model)
+  if (isStudyA1 && Array.isArray(assy.layers_interior_to_exterior_mm)) {
+    const layersIntExt = assy.layers_interior_to_exterior_mm;
+    const Wsvg = 920;
+    const Hsvg = 520;
+    const x0 = 80;
+    const y0 = 70;
+    const Hbar = 280;
+    const scale = 2.2; // px/mm
+    let x = x0;
+    const parts = [];
+    parts.push(`<?xml version="1.0" encoding="UTF-8"?>`);
+    parts.push(
+      `<svg xmlns="http://www.w3.org/2000/svg" width="${Wsvg}" height="${Hsvg}" viewBox="0 0 ${Wsvg} ${Hsvg}">`
+    );
+    parts.push(`<rect width="100%" height="100%" fill="#f7f4ef"/>`);
+    parts.push(
+      `<text x="40" y="28" font-size="14" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">V47 A1 · perete exterior P/E — EB20 Akustik 200 + ISOVER FASSADE 80</text>`
+    );
+    parts.push(
+      `<text x="40" y="48" font-size="10" fill="#444" font-family="IBM Plex Sans,Segoe UI,sans-serif">interior → exterior · sumă ${assy.sum_layers_mm ?? 299} mm · max finit ${assy.thickness_finished_max_mm ?? 300} mm · anvelopă 680×860 neschimbată · DE CONFIRMAT furnizor ETICS + proiectant (nu validat structural/termic/acustic)</text>`
+    );
+    for (const L of layersIntExt) {
+      const w = (L.th_mm || 0) * scale;
+      const col = LAYER_COLORS[L.id] || "#ccc";
+      parts.push(
+        `<rect x="${x}" y="${y0}" width="${w}" height="${Hbar}" fill="${col}" stroke="#333" stroke-width="0.8"/>`
+      );
+      parts.push(
+        `<text x="${x + w / 2}" y="${y0 + Hbar + 18}" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">${L.th_mm}</text>`
+      );
+      parts.push(
+        `<text x="${x + w / 2}" y="${y0 + Hbar / 2}" text-anchor="middle" font-size="7" transform="rotate(-90 ${x + w / 2} ${y0 + Hbar / 2})" font-family="IBM Plex Sans,Segoe UI,sans-serif">${(L.name || L.id).slice(0, 28)}</text>`
+      );
+      x += w;
+    }
+    parts.push(
+      `<text x="40" y="${y0 + Hbar + 48}" font-size="9" fill="#333" font-family="IBM Plex Sans,Segoe UI,sans-serif">← încăpere (finisaj vopsit 7 mm) · cărămidă 200 · ETICS 92 mm · exterior →</text>`
+    );
+    const tiled = assy.interior_finish_tiled_zones;
+    if (tiled) {
+      parts.push(
+        `<text x="40" y="${y0 + Hbar + 72}" font-size="9" fill="#8a2a2a" font-family="IBM Plex Sans,Segoe UI,sans-serif">CONFLICT faianță (baie): finisaj int. ${tiled.sum_interior_tiled_mm} mm vs vopsit ${tiled.painted_interior_mm} mm (Δ +${tiled.delta_vs_painted_mm} mm) — plan/goluri/util NECORECATE automat</text>`
+      );
+    }
+    parts.push(
+      `<text x="40" y="${Hsvg - 24}" font-size="8" fill="#555" font-family="IBM Plex Sans,Segoe UI,sans-serif">ETICS în afara cărămizii: ${assy.etics_outside_brick_mm ?? 92} mm (înainte model 100 mm / 8+2). Fundație: termosistem outside = ${assy.foundation?.thermosystem_outside_foundation_cm ?? 9.2} cm.</text>`
+    );
+    parts.push(`</svg>`);
+    const svgPath = "outputs/plans/35_v47_a1_exterior_wall_section.svg";
+    fs.mkdirSync(path.join(ROOT, "outputs/plans"), { recursive: true });
+    fs.writeFileSync(path.join(ROOT, svgPath), parts.join("\n"));
+    volume.meta.exterior_wall_section_svg = svgPath;
+  }
 
   if (outVolRel === "viewer/data/volume_v47.json") {
     write("outputs/plans/04_volume_concept_v47.json", volume);

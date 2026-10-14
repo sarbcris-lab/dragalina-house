@@ -1,19 +1,86 @@
 {
   "meta": {
     "id": "volume_v47_a1_study",
-    "generated": "2026-10-14T18:19:26.946Z",
+    "generated": "2026-10-14T18:56:17.208Z",
     "status": "3D_STUDIU_A1",
     "source_plan": "data/building/v47_a1_study.json",
     "based_on": "v47_exact (referință neatinsă)",
     "study_variant": "A1",
     "levels_note": "subsol (L-1) + parter + etaj",
-    "warning": "STUDIU A1: Structură studiu A1: COL_BETON=20 pe falie (finit 30=20+8+2). Dimensiuni ipoteză — nu micșorate ca să „salveze” planul; verificare structurist + NP112 fundații. Clear țintă 220; sub grinzi beci ≈180 cm (intrados −70). Referință v47_exact neatinsă. Nu autorizabil / nu calcul rezistență.",
-    "structure_hypothesis": "Structură studiu A1: COL_BETON=20 pe falie (finit 30=20+8+2). Dimensiuni ipoteză — nu micșorate ca să „salveze” planul; verificare structurist + NP112 fundații.",
+    "warning": "STUDIU A1: Structură studiu A1: COL_BETON=20 pe falie; anvelopă P/E EB20+ISOVER FASSADE (299/300 mm) — de confirmat ETICS/proiectant. Dimensiuni ipoteză; NP112 fundații. Clear țintă 220; sub grinzi beci ≈180 cm (intrados −70). Referință v47_exact neatinsă. Nu autorizabil / nu calcul rezistență.",
+    "structure_hypothesis": "Structură studiu A1: COL_BETON=20 pe falie; anvelopă P/E EB20+ISOVER FASSADE (299/300 mm) — de confirmat ETICS/proiectant. Dimensiuni ipoteză; NP112 fundații.",
     "finished_wall_vs_column_cm": {
-      "finished_envelope": 30,
-      "concrete_column": 20,
-      "thermo_outside": 10,
-      "note": "30 = finit (20+8+2), nu stâlpul"
+      "finished_envelope_cm": 30,
+      "finished_nominal_mm": 299,
+      "concrete_column_cm": 20,
+      "etics_outside_brick_cm": 9.2,
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "note": "30 = finit max (nom. 299 mm); stâlpul ≠ 30; de confirmat ETICS/proiectant"
+    },
+    "exterior_wall_assembly": {
+      "ref": "construction_assemblies.exterior_wall_heated",
+      "products": {
+        "brick": "EB20 Akustik 200 mm",
+        "insulation": "ISOVER FASSADE 80 mm",
+        "etics": "sistem ETICS pe vată — de confirmat furnizor"
+      },
+      "sum_mm": 299,
+      "max_mm": 300,
+      "validation_status": "de_confirmat_furnizor_ETICS_si_proiectant",
+      "not_validated": [
+        "structural",
+        "thermal",
+        "acoustic"
+      ],
+      "conflicts": [
+        {
+          "id": "etics_outside_was_10_now_9_2",
+          "severity": "ETICS în afara cărămizii 9.2 cm vs model anterior 10 cm",
+          "action": "date actualizate; anvelopă/camere neschimbate"
+        },
+        {
+          "id": "tiled_interior_exceeds_painted_budget",
+          "severity": "baie: finisaj faianță 19 mm vs 7 mm vopsit (+12 mm)",
+          "action": "raportat; fără micșorare automată camere/goluri"
+        },
+        {
+          "id": "nominal_299_vs_wall_ext_30",
+          "severity": "sumă straturi 299 mm în buget max 300 mm (wall_ext_cm=30) — OK cu 1 mm holaj",
+          "action": "niciuna"
+        }
+      ],
+      "tiled_interior": {
+        "note": "Finisaj interior calculat SEPARAT față de vopsea; nu înlocuiește automat straturile din bugetul 299 mm.",
+        "zones": [
+          "baie"
+        ],
+        "layers_interior_to_wall_mm": [
+          {
+            "id": "tencuiala_int",
+            "name": "tencuială interioară",
+            "th_mm": 6
+          },
+          {
+            "id": "adeziv_faianata",
+            "name": "adeziv faianță (ipoteză studiu)",
+            "th_mm": 5
+          },
+          {
+            "id": "faianata",
+            "name": "faianță (ipoteză studiu)",
+            "th_mm": 8
+          }
+        ],
+        "sum_interior_tiled_mm": 19,
+        "painted_interior_mm": 7,
+        "delta_vs_painted_mm": 12,
+        "conflict": "Faianța (19 mm) depășește finisajul vopsit (7 mm) cu +12 mm. Cu EB20+ETICS neschimbate, totalul ar trece peste 300 mm SAU ar reduce clarul încăperii. Planul/golurile/utilul NU au fost corectate automat — de rezolvat cu proiectantul (subțiere locală, nicșă, sau acceptare spațiu).",
+        "status": "CONFLICT_RAPORTAT_fara_corectare_plan"
+      },
+      "envelope_kept_cm": {
+        "ew": 680,
+        "ns": 860
+      }
     },
     "gate_default_state": "closed",
     "gate_clear_m": 7.1,
@@ -38,7 +105,8 @@
       "ew": 6.8,
       "ns": 8.6,
       "area_m2": 58.48
-    }
+    },
+    "exterior_wall_section_svg": "outputs/plans/35_v47_a1_exterior_wall_section.svg"
   },
   "site": {
     "polygon_metrics": {
@@ -193,18 +261,18 @@
     },
     "stair_se_inside": true,
     "stair_se_overflow_m": 0,
-    "foundation_model": "beton; termosistem 8+2 în afara talpii",
-    "foundation_inset_from_finished_cm": 5,
+    "foundation_model": "beton; ETICS 9.2 cm (ISOVER FASSADE) în afara feței cărămizii — de confirmat",
+    "foundation_inset_from_finished_cm": 4.199999999999999,
     "foundation_clip_cm": {
-      "N": 14.78,
+      "N": 13.95,
       "S": 20,
       "W": 20,
-      "E": 5,
-      "inset_from_finished_cm": 5,
-      "thermosystem_outside_cm": 10,
+      "E": 4.2,
+      "inset_from_finished_cm": 4.199999999999999,
+      "thermosystem_outside_cm": 9.2,
       "footing_beyond_structure_cm": 5,
       "target_cm": 5,
-      "note": "talpă beton; 8+2 în afara fundației"
+      "note": "talpă beton; ETICS 9.2 cm în afara fundației (EB20+ISOVER — de confirmat)"
     },
     "foundation_corners_legacy_plus15_finished": [
       {
@@ -317,12 +385,12 @@
       {
         "id": "concrete_footing_NW",
         "local_cm": {
-          "x": -15,
-          "y": -9.78
+          "x": -15.8,
+          "y": -9.75
         },
         "site_m": {
-          "x": 1.095,
-          "y": 18.0219
+          "x": 1.087,
+          "y": 18.0213
         },
         "inside": false,
         "overflow_m": 0.006
@@ -331,24 +399,24 @@
         "id": "concrete_footing_NE",
         "local_cm": {
           "x": 680,
-          "y": -9.78
+          "y": -9.75
         },
         "site_m": {
-          "x": 8.0386,
-          "y": 18.319
+          "x": 8.0387,
+          "y": 18.3187
         },
-        "inside": true,
+        "inside": false,
         "overflow_m": 0
       },
       {
         "id": "concrete_footing_SE",
         "local_cm": {
           "x": 680,
-          "y": 875
+          "y": 875.8
         },
         "site_m": {
-          "x": 8.4169,
-          "y": 9.4793
+          "x": 8.4172,
+          "y": 9.4713
         },
         "inside": false,
         "overflow_m": 0
@@ -356,12 +424,12 @@
       {
         "id": "concrete_footing_SW",
         "local_cm": {
-          "x": -15,
-          "y": 875
+          "x": -15.8,
+          "y": 875.8
         },
         "site_m": {
-          "x": 1.4732,
-          "y": 9.1822
+          "x": 1.4656,
+          "y": 9.1739
         },
         "inside": true,
         "overflow_m": 0
@@ -369,12 +437,12 @@
       {
         "id": "concrete_footing_N_mid",
         "local_cm": {
-          "x": 332.5,
-          "y": -9.78
+          "x": 332.1,
+          "y": -9.75
         },
         "site_m": {
-          "x": 4.5668,
-          "y": 18.1705
+          "x": 4.5628,
+          "y": 18.17
         },
         "inside": true,
         "overflow_m": 0
@@ -383,11 +451,11 @@
         "id": "concrete_footing_E_mid",
         "local_cm": {
           "x": 680,
-          "y": 432.61
+          "y": 433.025
         },
         "site_m": {
-          "x": 8.2277,
-          "y": 13.8991
+          "x": 8.2279,
+          "y": 13.895
         },
         "inside": true,
         "overflow_m": 0
@@ -395,12 +463,12 @@
       {
         "id": "concrete_footing_S_mid",
         "local_cm": {
-          "x": 332.5,
-          "y": 875
+          "x": 332.1,
+          "y": 875.8
         },
         "site_m": {
-          "x": 4.945,
-          "y": 9.3307
+          "x": 4.9414,
+          "y": 9.3226
         },
         "inside": true,
         "overflow_m": 0
@@ -408,12 +476,12 @@
       {
         "id": "concrete_footing_W_mid",
         "local_cm": {
-          "x": -15,
-          "y": 432.61
+          "x": -15.8,
+          "y": 433.025
         },
         "site_m": {
-          "x": 1.2841,
-          "y": 13.6021
+          "x": 1.2763,
+          "y": 13.5976
         },
         "inside": true,
         "overflow_m": 0
@@ -446,7 +514,7 @@
     "useful_interior_m2": 37.87875,
     "terrace_libera_m2": 9.57,
     "useful_note": "shoelace pe interior_polygon_cm — vezi docs:v47",
-    "walls": "ext 30 / int 12.5 / palier 12.5 neconfirmat",
+    "walls": "ext max 300 mm (EB20+ISOVER FASSADE nom. 299) / int 12.5 — de confirmat ETICS/proiectant",
     "levels": "L-1 subsol + P + E; FF→FF 288 cm; subsol clear 208 cm (ipoteză soffit −42)",
     "basement_m2": 31.3175,
     "parking": "2 × 2.50×5.00 Cloșca (studiu, departate)",
@@ -22262,12 +22330,251 @@
       "opacity": 0.92
     },
     {
-      "id": "zid_nord_p",
+      "id": "zid_nord_heated_grund_decorativa_p",
       "type": "extrude",
       "polygon": [
         {
           "x": 1.249,
           "y": 17.9306
+        },
+        {
+          "x": 6.8939,
+          "y": 18.1721
+        },
+        {
+          "x": 6.894,
+          "y": 18.1701
+        },
+        {
+          "x": 1.2491,
+          "y": 17.9286
+        },
+        {
+          "x": 1.249,
+          "y": 17.9306
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#8a8680",
+      "label": "nord_heated: grund și tencuială decorativă (2 mm)",
+      "kind": "ext",
+      "wall_layer": "grund_decorativa",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nord_heated_strat_armat_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2491,
+          "y": 17.9286
+        },
+        {
+          "x": 6.894,
+          "y": 18.1701
+        },
+        {
+          "x": 6.8942,
+          "y": 18.1651
+        },
+        {
+          "x": 1.2493,
+          "y": 17.9236
+        },
+        {
+          "x": 1.2491,
+          "y": 17.9286
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#a8b0b8",
+      "label": "nord_heated: strat armat (5 mm)",
+      "kind": "ext",
+      "wall_layer": "strat_armat",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nord_heated_vata_isover_fassade_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2493,
+          "y": 17.9236
+        },
+        {
+          "x": 6.8942,
+          "y": 18.1651
+        },
+        {
+          "x": 6.8976,
+          "y": 18.0849
+        },
+        {
+          "x": 1.2528,
+          "y": 17.8434
+        },
+        {
+          "x": 1.2493,
+          "y": 17.9236
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#e2d18a",
+      "label": "nord_heated: vată minerală fațadă (80 mm)",
+      "kind": "ext",
+      "wall_layer": "vata_isover_fassade",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.85
+    },
+    {
+      "id": "zid_nord_heated_adeziv_etics_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2528,
+          "y": 17.8434
+        },
+        {
+          "x": 6.8976,
+          "y": 18.0849
+        },
+        {
+          "x": 6.8978,
+          "y": 18.0799
+        },
+        {
+          "x": 1.253,
+          "y": 17.8384
+        },
+        {
+          "x": 1.2528,
+          "y": 17.8434
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#b0a898",
+      "label": "nord_heated: adeziv ETICS (5 mm)",
+      "kind": "ext",
+      "wall_layer": "adeziv_etics",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nord_heated_caramida_eb20_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.253,
+          "y": 17.8384
+        },
+        {
+          "x": 6.8978,
+          "y": 18.0799
+        },
+        {
+          "x": 6.9064,
+          "y": 17.8794
+        },
+        {
+          "x": 1.2616,
+          "y": 17.6379
+        },
+        {
+          "x": 1.253,
+          "y": 17.8384
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#c4a070",
+      "label": "nord_heated: EB20 Akustik (200 mm)",
+      "kind": "ext",
+      "wall_layer": "caramida_eb20",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "site_layer": "umplutura",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nord_heated_tencuiala_int_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2616,
+          "y": 17.6379
+        },
+        {
+          "x": 6.9064,
+          "y": 17.8794
+        },
+        {
+          "x": 6.9067,
+          "y": 17.8734
+        },
+        {
+          "x": 1.2618,
+          "y": 17.6319
+        },
+        {
+          "x": 1.2616,
+          "y": 17.6379
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#e8e0d4",
+      "label": "nord_heated: tencuială interioară (6 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_int",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nord_heated_finisare_vopsea_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2618,
+          "y": 17.6319
+        },
+        {
+          "x": 6.9067,
+          "y": 17.8734
+        },
+        {
+          "x": 6.9067,
+          "y": 17.8724
+        },
+        {
+          "x": 1.2619,
+          "y": 17.6309
+        },
+        {
+          "x": 1.2618,
+          "y": 17.6319
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#f4f0e8",
+      "label": "nord_heated: finisare și vopsea (1 mm)",
+      "kind": "ext",
+      "wall_layer": "finisare_vopsea",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nord_cold_stair_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.8939,
+          "y": 18.1721
         },
         {
           "x": 8.0428,
@@ -22278,22 +22585,23 @@
           "y": 17.9215
         },
         {
-          "x": 1.2619,
-          "y": 17.6309
+          "x": 6.9067,
+          "y": 17.8724
         },
         {
-          "x": 1.249,
-          "y": 17.9306
+          "x": 6.8939,
+          "y": 18.1721
         }
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
-      "color": "#d8d2c6",
-      "label": "nord",
-      "kind": "ext"
+      "color": "#c8c2b6",
+      "label": "nord bandă scară (fără ETICS)",
+      "kind": "ext",
+      "assembly": "cold_stair"
     },
     {
-      "id": "zid_vest_p",
+      "id": "zid_vest_grund_decorativa_p",
       "type": "extrude",
       "polygon": [
         {
@@ -22301,12 +22609,12 @@
           "y": 17.6309
         },
         {
-          "x": 1.5616,
-          "y": 17.6437
+          "x": 1.2639,
+          "y": 17.631
         },
         {
-          "x": 1.8244,
-          "y": 11.4994
+          "x": 1.5267,
+          "y": 11.4866
         },
         {
           "x": 1.5247,
@@ -22319,17 +22627,225 @@
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
-      "color": "#d8d2c6",
-      "label": "vest",
-      "kind": "ext"
+      "color": "#8a8680",
+      "label": "vest: grund și tencuială decorativă (2 mm)",
+      "kind": "ext",
+      "wall_layer": "grund_decorativa",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
     },
     {
-      "id": "zid_est_living_p",
+      "id": "zid_vest_strat_armat_p",
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.7559,
-          "y": 17.9087
+          "x": 1.2639,
+          "y": 17.631
+        },
+        {
+          "x": 1.2689,
+          "y": 17.6312
+        },
+        {
+          "x": 1.5317,
+          "y": 11.4868
+        },
+        {
+          "x": 1.5267,
+          "y": 11.4866
+        },
+        {
+          "x": 1.2639,
+          "y": 17.631
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#a8b0b8",
+      "label": "vest: strat armat (5 mm)",
+      "kind": "ext",
+      "wall_layer": "strat_armat",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_vest_vata_isover_fassade_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2689,
+          "y": 17.6312
+        },
+        {
+          "x": 1.3491,
+          "y": 17.6346
+        },
+        {
+          "x": 1.6119,
+          "y": 11.4903
+        },
+        {
+          "x": 1.5317,
+          "y": 11.4868
+        },
+        {
+          "x": 1.2689,
+          "y": 17.6312
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#e2d18a",
+      "label": "vest: vată minerală fațadă (80 mm)",
+      "kind": "ext",
+      "wall_layer": "vata_isover_fassade",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.85
+    },
+    {
+      "id": "zid_vest_adeziv_etics_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.3491,
+          "y": 17.6346
+        },
+        {
+          "x": 1.3541,
+          "y": 17.6349
+        },
+        {
+          "x": 1.6169,
+          "y": 11.4905
+        },
+        {
+          "x": 1.6119,
+          "y": 11.4903
+        },
+        {
+          "x": 1.3491,
+          "y": 17.6346
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#b0a898",
+      "label": "vest: adeziv ETICS (5 mm)",
+      "kind": "ext",
+      "wall_layer": "adeziv_etics",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_vest_caramida_eb20_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.3541,
+          "y": 17.6349
+        },
+        {
+          "x": 1.5546,
+          "y": 17.6434
+        },
+        {
+          "x": 1.8174,
+          "y": 11.4991
+        },
+        {
+          "x": 1.6169,
+          "y": 11.4905
+        },
+        {
+          "x": 1.3541,
+          "y": 17.6349
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#c4a070",
+      "label": "vest: EB20 Akustik (200 mm)",
+      "kind": "ext",
+      "wall_layer": "caramida_eb20",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "site_layer": "umplutura",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_vest_tencuiala_int_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5546,
+          "y": 17.6434
+        },
+        {
+          "x": 1.5606,
+          "y": 17.6437
+        },
+        {
+          "x": 1.8234,
+          "y": 11.4993
+        },
+        {
+          "x": 1.8174,
+          "y": 11.4991
+        },
+        {
+          "x": 1.5546,
+          "y": 17.6434
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#e8e0d4",
+      "label": "vest: tencuială interioară (6 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_int",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_vest_finisare_vopsea_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5606,
+          "y": 17.6437
+        },
+        {
+          "x": 1.5616,
+          "y": 17.6437
+        },
+        {
+          "x": 1.8244,
+          "y": 11.4994
+        },
+        {
+          "x": 1.8234,
+          "y": 11.4993
+        },
+        {
+          "x": 1.5606,
+          "y": 17.6437
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#f4f0e8",
+      "label": "vest: finisare și vopsea (1 mm)",
+      "kind": "ext",
+      "wall_layer": "finisare_vopsea",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_est_living_grund_decorativa_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.0536,
+          "y": 17.9215
         },
         {
           "x": 8.0556,
@@ -22338,6 +22854,211 @@
         {
           "x": 8.2309,
           "y": 13.8253
+        },
+        {
+          "x": 8.2289,
+          "y": 13.8252
+        },
+        {
+          "x": 8.0536,
+          "y": 17.9215
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#8a8680",
+      "label": "est_living: grund și tencuială decorativă (2 mm)",
+      "kind": "ext",
+      "wall_layer": "grund_decorativa",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_est_living_strat_armat_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.0486,
+          "y": 17.9212
+        },
+        {
+          "x": 8.0536,
+          "y": 17.9215
+        },
+        {
+          "x": 8.2289,
+          "y": 13.8252
+        },
+        {
+          "x": 8.2239,
+          "y": 13.825
+        },
+        {
+          "x": 8.0486,
+          "y": 17.9212
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#a8b0b8",
+      "label": "est_living: strat armat (5 mm)",
+      "kind": "ext",
+      "wall_layer": "strat_armat",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_est_living_vata_isover_fassade_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.9684,
+          "y": 17.9178
+        },
+        {
+          "x": 8.0486,
+          "y": 17.9212
+        },
+        {
+          "x": 8.2239,
+          "y": 13.825
+        },
+        {
+          "x": 8.1437,
+          "y": 13.8216
+        },
+        {
+          "x": 7.9684,
+          "y": 17.9178
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#e2d18a",
+      "label": "est_living: vată minerală fațadă (80 mm)",
+      "kind": "ext",
+      "wall_layer": "vata_isover_fassade",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.85
+    },
+    {
+      "id": "zid_est_living_adeziv_etics_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.9634,
+          "y": 17.9176
+        },
+        {
+          "x": 7.9684,
+          "y": 17.9178
+        },
+        {
+          "x": 8.1437,
+          "y": 13.8216
+        },
+        {
+          "x": 8.1387,
+          "y": 13.8213
+        },
+        {
+          "x": 7.9634,
+          "y": 17.9176
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#b0a898",
+      "label": "est_living: adeziv ETICS (5 mm)",
+      "kind": "ext",
+      "wall_layer": "adeziv_etics",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_est_living_caramida_eb20_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7629,
+          "y": 17.909
+        },
+        {
+          "x": 7.9634,
+          "y": 17.9176
+        },
+        {
+          "x": 8.1387,
+          "y": 13.8213
+        },
+        {
+          "x": 7.9382,
+          "y": 13.8128
+        },
+        {
+          "x": 7.7629,
+          "y": 17.909
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#c4a070",
+      "label": "est_living: EB20 Akustik (200 mm)",
+      "kind": "ext",
+      "wall_layer": "caramida_eb20",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "site_layer": "umplutura",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_est_living_tencuiala_int_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7569,
+          "y": 17.9088
+        },
+        {
+          "x": 7.7629,
+          "y": 17.909
+        },
+        {
+          "x": 7.9382,
+          "y": 13.8128
+        },
+        {
+          "x": 7.9322,
+          "y": 13.8125
+        },
+        {
+          "x": 7.7569,
+          "y": 17.9088
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#e8e0d4",
+      "label": "est_living: tencuială interioară (6 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_int",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_est_living_finisare_vopsea_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7559,
+          "y": 17.9087
+        },
+        {
+          "x": 7.7569,
+          "y": 17.9088
+        },
+        {
+          "x": 7.9322,
+          "y": 13.8125
         },
         {
           "x": 7.9312,
@@ -22350,12 +23071,220 @@
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
-      "color": "#d8d2c6",
-      "label": "est_living",
-      "kind": "ext"
+      "color": "#f4f0e8",
+      "label": "est_living: finisare și vopsea (1 mm)",
+      "kind": "ext",
+      "wall_layer": "finisare_vopsea",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
     },
     {
-      "id": "zid_sud_bucatarie_p",
+      "id": "zid_sud_bucatarie_grund_decorativa_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.2133,
+          "y": 9.4944
+        },
+        {
+          "x": 6.9617,
+          "y": 9.5692
+        },
+        {
+          "x": 6.9618,
+          "y": 9.5672
+        },
+        {
+          "x": 5.2134,
+          "y": 9.4924
+        },
+        {
+          "x": 5.2133,
+          "y": 9.4944
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#8a8680",
+      "label": "sud_bucatarie: grund și tencuială decorativă (2 mm)",
+      "kind": "ext",
+      "wall_layer": "grund_decorativa",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_sud_bucatarie_strat_armat_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.2131,
+          "y": 9.4994
+        },
+        {
+          "x": 6.9615,
+          "y": 9.5742
+        },
+        {
+          "x": 6.9617,
+          "y": 9.5692
+        },
+        {
+          "x": 5.2133,
+          "y": 9.4944
+        },
+        {
+          "x": 5.2131,
+          "y": 9.4994
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#a8b0b8",
+      "label": "sud_bucatarie: strat armat (5 mm)",
+      "kind": "ext",
+      "wall_layer": "strat_armat",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_sud_bucatarie_vata_isover_fassade_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.2097,
+          "y": 9.5796
+        },
+        {
+          "x": 6.9581,
+          "y": 9.6544
+        },
+        {
+          "x": 6.9615,
+          "y": 9.5742
+        },
+        {
+          "x": 5.2131,
+          "y": 9.4994
+        },
+        {
+          "x": 5.2097,
+          "y": 9.5796
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#e2d18a",
+      "label": "sud_bucatarie: vată minerală fațadă (80 mm)",
+      "kind": "ext",
+      "wall_layer": "vata_isover_fassade",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.85
+    },
+    {
+      "id": "zid_sud_bucatarie_adeziv_etics_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.2094,
+          "y": 9.5846
+        },
+        {
+          "x": 6.9578,
+          "y": 9.6594
+        },
+        {
+          "x": 6.9581,
+          "y": 9.6544
+        },
+        {
+          "x": 5.2097,
+          "y": 9.5796
+        },
+        {
+          "x": 5.2094,
+          "y": 9.5846
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#b0a898",
+      "label": "sud_bucatarie: adeziv ETICS (5 mm)",
+      "kind": "ext",
+      "wall_layer": "adeziv_etics",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_sud_bucatarie_caramida_eb20_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.2009,
+          "y": 9.7851
+        },
+        {
+          "x": 6.9493,
+          "y": 9.8599
+        },
+        {
+          "x": 6.9578,
+          "y": 9.6594
+        },
+        {
+          "x": 5.2094,
+          "y": 9.5846
+        },
+        {
+          "x": 5.2009,
+          "y": 9.7851
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#c4a070",
+      "label": "sud_bucatarie: EB20 Akustik (200 mm)",
+      "kind": "ext",
+      "wall_layer": "caramida_eb20",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "site_layer": "umplutura",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_sud_bucatarie_tencuiala_int_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.2006,
+          "y": 9.7911
+        },
+        {
+          "x": 6.949,
+          "y": 9.8659
+        },
+        {
+          "x": 6.9493,
+          "y": 9.8599
+        },
+        {
+          "x": 5.2009,
+          "y": 9.7851
+        },
+        {
+          "x": 5.2006,
+          "y": 9.7911
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#e8e0d4",
+      "label": "sud_bucatarie: tencuială interioară (6 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_int",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_sud_bucatarie_finisare_vopsea_p",
       "type": "extrude",
       "polygon": [
         {
@@ -22367,12 +23296,12 @@
           "y": 9.8669
         },
         {
-          "x": 6.9618,
-          "y": 9.5672
+          "x": 6.949,
+          "y": 9.8659
         },
         {
-          "x": 5.2134,
-          "y": 9.4924
+          "x": 5.2006,
+          "y": 9.7911
         },
         {
           "x": 5.2006,
@@ -22381,12 +23310,15 @@
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
-      "color": "#d8d2c6",
-      "label": "sud_bucatarie",
-      "kind": "ext"
+      "color": "#f4f0e8",
+      "label": "sud_bucatarie: finisare și vopsea (1 mm)",
+      "kind": "ext",
+      "wall_layer": "finisare_vopsea",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
     },
     {
-      "id": "zid_dormitor_sud_p",
+      "id": "zid_dormitor_sud_grund_decorativa_p",
       "type": "extrude",
       "polygon": [
         {
@@ -22394,12 +23326,12 @@
           "y": 11.4865
         },
         {
-          "x": 5.1214,
-          "y": 11.6404
+          "x": 1.5488,
+          "y": 11.4876
         },
         {
-          "x": 5.1342,
-          "y": 11.3407
+          "x": 1.5616,
+          "y": 11.1878
         },
         {
           "x": 1.5375,
@@ -22412,9 +23344,217 @@
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
-      "color": "#d8d2c6",
-      "label": "dormitor_sud",
-      "kind": "ext"
+      "color": "#8a8680",
+      "label": "dormitor_sud: grund și tencuială decorativă (2 mm)",
+      "kind": "ext",
+      "wall_layer": "grund_decorativa",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_dormitor_sud_strat_armat_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5488,
+          "y": 11.4876
+        },
+        {
+          "x": 1.6089,
+          "y": 11.4901
+        },
+        {
+          "x": 1.6217,
+          "y": 11.1904
+        },
+        {
+          "x": 1.5616,
+          "y": 11.1878
+        },
+        {
+          "x": 1.5488,
+          "y": 11.4876
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#a8b0b8",
+      "label": "dormitor_sud: strat armat (5 mm)",
+      "kind": "ext",
+      "wall_layer": "strat_armat",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_dormitor_sud_vata_isover_fassade_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6089,
+          "y": 11.4901
+        },
+        {
+          "x": 2.5712,
+          "y": 11.5313
+        },
+        {
+          "x": 2.5841,
+          "y": 11.2316
+        },
+        {
+          "x": 1.6217,
+          "y": 11.1904
+        },
+        {
+          "x": 1.6089,
+          "y": 11.4901
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#e2d18a",
+      "label": "dormitor_sud: vată minerală fațadă (80 mm)",
+      "kind": "ext",
+      "wall_layer": "vata_isover_fassade",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.85
+    },
+    {
+      "id": "zid_dormitor_sud_adeziv_etics_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.5712,
+          "y": 11.5313
+        },
+        {
+          "x": 2.6314,
+          "y": 11.5339
+        },
+        {
+          "x": 2.6442,
+          "y": 11.2341
+        },
+        {
+          "x": 2.5841,
+          "y": 11.2316
+        },
+        {
+          "x": 2.5712,
+          "y": 11.5313
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#b0a898",
+      "label": "dormitor_sud: adeziv ETICS (5 mm)",
+      "kind": "ext",
+      "wall_layer": "adeziv_etics",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_dormitor_sud_caramida_eb20_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.6314,
+          "y": 11.5339
+        },
+        {
+          "x": 5.0372,
+          "y": 11.6368
+        },
+        {
+          "x": 5.05,
+          "y": 11.3371
+        },
+        {
+          "x": 2.6442,
+          "y": 11.2341
+        },
+        {
+          "x": 2.6314,
+          "y": 11.5339
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#c4a070",
+      "label": "dormitor_sud: EB20 Akustik (200 mm)",
+      "kind": "ext",
+      "wall_layer": "caramida_eb20",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "site_layer": "umplutura",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_dormitor_sud_tencuiala_int_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.0372,
+          "y": 11.6368
+        },
+        {
+          "x": 5.1094,
+          "y": 11.6399
+        },
+        {
+          "x": 5.1222,
+          "y": 11.3402
+        },
+        {
+          "x": 5.05,
+          "y": 11.3371
+        },
+        {
+          "x": 5.0372,
+          "y": 11.6368
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#e8e0d4",
+      "label": "dormitor_sud: tencuială interioară (6 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_int",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_dormitor_sud_finisare_vopsea_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.1094,
+          "y": 11.6399
+        },
+        {
+          "x": 5.1214,
+          "y": 11.6404
+        },
+        {
+          "x": 5.1342,
+          "y": 11.3407
+        },
+        {
+          "x": 5.1222,
+          "y": 11.3402
+        },
+        {
+          "x": 5.1094,
+          "y": 11.6399
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#f4f0e8",
+      "label": "dormitor_sud: finisare și vopsea (1 mm)",
+      "kind": "ext",
+      "wall_layer": "finisare_vopsea",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
     },
     {
       "id": "zid_perete_comun_est_p",
@@ -24021,12 +25161,251 @@
       "label": "TERASĂ etaj FF"
     },
     {
-      "id": "zid_nord_e",
+      "id": "zid_nord_heated_grund_decorativa_e",
       "type": "extrude",
       "polygon": [
         {
           "x": 1.249,
           "y": 17.9306
+        },
+        {
+          "x": 6.8939,
+          "y": 18.1721
+        },
+        {
+          "x": 6.894,
+          "y": 18.1701
+        },
+        {
+          "x": 1.2491,
+          "y": 17.9286
+        },
+        {
+          "x": 1.249,
+          "y": 17.9306
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#8a8680",
+      "label": "nord_heated: grund și tencuială decorativă (2 mm)",
+      "kind": "ext",
+      "wall_layer": "grund_decorativa",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nord_heated_strat_armat_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2491,
+          "y": 17.9286
+        },
+        {
+          "x": 6.894,
+          "y": 18.1701
+        },
+        {
+          "x": 6.8942,
+          "y": 18.1651
+        },
+        {
+          "x": 1.2493,
+          "y": 17.9236
+        },
+        {
+          "x": 1.2491,
+          "y": 17.9286
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#a8b0b8",
+      "label": "nord_heated: strat armat (5 mm)",
+      "kind": "ext",
+      "wall_layer": "strat_armat",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nord_heated_vata_isover_fassade_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2493,
+          "y": 17.9236
+        },
+        {
+          "x": 6.8942,
+          "y": 18.1651
+        },
+        {
+          "x": 6.8976,
+          "y": 18.0849
+        },
+        {
+          "x": 1.2528,
+          "y": 17.8434
+        },
+        {
+          "x": 1.2493,
+          "y": 17.9236
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#e2d18a",
+      "label": "nord_heated: vată minerală fațadă (80 mm)",
+      "kind": "ext",
+      "wall_layer": "vata_isover_fassade",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.85
+    },
+    {
+      "id": "zid_nord_heated_adeziv_etics_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2528,
+          "y": 17.8434
+        },
+        {
+          "x": 6.8976,
+          "y": 18.0849
+        },
+        {
+          "x": 6.8978,
+          "y": 18.0799
+        },
+        {
+          "x": 1.253,
+          "y": 17.8384
+        },
+        {
+          "x": 1.2528,
+          "y": 17.8434
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#b0a898",
+      "label": "nord_heated: adeziv ETICS (5 mm)",
+      "kind": "ext",
+      "wall_layer": "adeziv_etics",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nord_heated_caramida_eb20_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.253,
+          "y": 17.8384
+        },
+        {
+          "x": 6.8978,
+          "y": 18.0799
+        },
+        {
+          "x": 6.9064,
+          "y": 17.8794
+        },
+        {
+          "x": 1.2616,
+          "y": 17.6379
+        },
+        {
+          "x": 1.253,
+          "y": 17.8384
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#c4a070",
+      "label": "nord_heated: EB20 Akustik (200 mm)",
+      "kind": "ext",
+      "wall_layer": "caramida_eb20",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "site_layer": "umplutura",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nord_heated_tencuiala_int_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2616,
+          "y": 17.6379
+        },
+        {
+          "x": 6.9064,
+          "y": 17.8794
+        },
+        {
+          "x": 6.9067,
+          "y": 17.8734
+        },
+        {
+          "x": 1.2618,
+          "y": 17.6319
+        },
+        {
+          "x": 1.2616,
+          "y": 17.6379
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#e8e0d4",
+      "label": "nord_heated: tencuială interioară (6 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_int",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nord_heated_finisare_vopsea_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2618,
+          "y": 17.6319
+        },
+        {
+          "x": 6.9067,
+          "y": 17.8734
+        },
+        {
+          "x": 6.9067,
+          "y": 17.8724
+        },
+        {
+          "x": 1.2619,
+          "y": 17.6309
+        },
+        {
+          "x": 1.2618,
+          "y": 17.6319
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#f4f0e8",
+      "label": "nord_heated: finisare și vopsea (1 mm)",
+      "kind": "ext",
+      "wall_layer": "finisare_vopsea",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nord_cold_stair_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.8939,
+          "y": 18.1721
         },
         {
           "x": 8.0428,
@@ -24037,22 +25416,23 @@
           "y": 17.9215
         },
         {
-          "x": 1.2619,
-          "y": 17.6309
+          "x": 6.9067,
+          "y": 17.8724
         },
         {
-          "x": 1.249,
-          "y": 17.9306
+          "x": 6.8939,
+          "y": 18.1721
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
-      "color": "#d8d2c6",
-      "label": "nord",
-      "kind": "ext"
+      "color": "#c8c2b6",
+      "label": "nord bandă scară (fără ETICS)",
+      "kind": "ext",
+      "assembly": "cold_stair"
     },
     {
-      "id": "zid_vest_e",
+      "id": "zid_vest_grund_decorativa_e",
       "type": "extrude",
       "polygon": [
         {
@@ -24060,12 +25440,12 @@
           "y": 17.6309
         },
         {
-          "x": 1.5616,
-          "y": 17.6437
+          "x": 1.2639,
+          "y": 17.631
         },
         {
-          "x": 1.8244,
-          "y": 11.4994
+          "x": 1.5267,
+          "y": 11.4866
         },
         {
           "x": 1.5247,
@@ -24078,17 +25458,225 @@
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
-      "color": "#d8d2c6",
-      "label": "vest",
-      "kind": "ext"
+      "color": "#8a8680",
+      "label": "vest: grund și tencuială decorativă (2 mm)",
+      "kind": "ext",
+      "wall_layer": "grund_decorativa",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
     },
     {
-      "id": "zid_est_living_e",
+      "id": "zid_vest_strat_armat_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.7559,
-          "y": 17.9087
+          "x": 1.2639,
+          "y": 17.631
+        },
+        {
+          "x": 1.2689,
+          "y": 17.6312
+        },
+        {
+          "x": 1.5317,
+          "y": 11.4868
+        },
+        {
+          "x": 1.5267,
+          "y": 11.4866
+        },
+        {
+          "x": 1.2639,
+          "y": 17.631
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#a8b0b8",
+      "label": "vest: strat armat (5 mm)",
+      "kind": "ext",
+      "wall_layer": "strat_armat",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_vest_vata_isover_fassade_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2689,
+          "y": 17.6312
+        },
+        {
+          "x": 1.3491,
+          "y": 17.6346
+        },
+        {
+          "x": 1.6119,
+          "y": 11.4903
+        },
+        {
+          "x": 1.5317,
+          "y": 11.4868
+        },
+        {
+          "x": 1.2689,
+          "y": 17.6312
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#e2d18a",
+      "label": "vest: vată minerală fațadă (80 mm)",
+      "kind": "ext",
+      "wall_layer": "vata_isover_fassade",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.85
+    },
+    {
+      "id": "zid_vest_adeziv_etics_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.3491,
+          "y": 17.6346
+        },
+        {
+          "x": 1.3541,
+          "y": 17.6349
+        },
+        {
+          "x": 1.6169,
+          "y": 11.4905
+        },
+        {
+          "x": 1.6119,
+          "y": 11.4903
+        },
+        {
+          "x": 1.3491,
+          "y": 17.6346
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#b0a898",
+      "label": "vest: adeziv ETICS (5 mm)",
+      "kind": "ext",
+      "wall_layer": "adeziv_etics",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_vest_caramida_eb20_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.3541,
+          "y": 17.6349
+        },
+        {
+          "x": 1.5546,
+          "y": 17.6434
+        },
+        {
+          "x": 1.8174,
+          "y": 11.4991
+        },
+        {
+          "x": 1.6169,
+          "y": 11.4905
+        },
+        {
+          "x": 1.3541,
+          "y": 17.6349
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#c4a070",
+      "label": "vest: EB20 Akustik (200 mm)",
+      "kind": "ext",
+      "wall_layer": "caramida_eb20",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "site_layer": "umplutura",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_vest_tencuiala_int_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5546,
+          "y": 17.6434
+        },
+        {
+          "x": 1.5606,
+          "y": 17.6437
+        },
+        {
+          "x": 1.8234,
+          "y": 11.4993
+        },
+        {
+          "x": 1.8174,
+          "y": 11.4991
+        },
+        {
+          "x": 1.5546,
+          "y": 17.6434
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#e8e0d4",
+      "label": "vest: tencuială interioară (6 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_int",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_vest_finisare_vopsea_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5606,
+          "y": 17.6437
+        },
+        {
+          "x": 1.5616,
+          "y": 17.6437
+        },
+        {
+          "x": 1.8244,
+          "y": 11.4994
+        },
+        {
+          "x": 1.8234,
+          "y": 11.4993
+        },
+        {
+          "x": 1.5606,
+          "y": 17.6437
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#f4f0e8",
+      "label": "vest: finisare și vopsea (1 mm)",
+      "kind": "ext",
+      "wall_layer": "finisare_vopsea",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_est_living_grund_decorativa_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.0536,
+          "y": 17.9215
         },
         {
           "x": 8.0556,
@@ -24097,6 +25685,211 @@
         {
           "x": 8.2309,
           "y": 13.8253
+        },
+        {
+          "x": 8.2289,
+          "y": 13.8252
+        },
+        {
+          "x": 8.0536,
+          "y": 17.9215
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#8a8680",
+      "label": "est_living: grund și tencuială decorativă (2 mm)",
+      "kind": "ext",
+      "wall_layer": "grund_decorativa",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_est_living_strat_armat_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.0486,
+          "y": 17.9212
+        },
+        {
+          "x": 8.0536,
+          "y": 17.9215
+        },
+        {
+          "x": 8.2289,
+          "y": 13.8252
+        },
+        {
+          "x": 8.2239,
+          "y": 13.825
+        },
+        {
+          "x": 8.0486,
+          "y": 17.9212
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#a8b0b8",
+      "label": "est_living: strat armat (5 mm)",
+      "kind": "ext",
+      "wall_layer": "strat_armat",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_est_living_vata_isover_fassade_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.9684,
+          "y": 17.9178
+        },
+        {
+          "x": 8.0486,
+          "y": 17.9212
+        },
+        {
+          "x": 8.2239,
+          "y": 13.825
+        },
+        {
+          "x": 8.1437,
+          "y": 13.8216
+        },
+        {
+          "x": 7.9684,
+          "y": 17.9178
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#e2d18a",
+      "label": "est_living: vată minerală fațadă (80 mm)",
+      "kind": "ext",
+      "wall_layer": "vata_isover_fassade",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.85
+    },
+    {
+      "id": "zid_est_living_adeziv_etics_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.9634,
+          "y": 17.9176
+        },
+        {
+          "x": 7.9684,
+          "y": 17.9178
+        },
+        {
+          "x": 8.1437,
+          "y": 13.8216
+        },
+        {
+          "x": 8.1387,
+          "y": 13.8213
+        },
+        {
+          "x": 7.9634,
+          "y": 17.9176
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#b0a898",
+      "label": "est_living: adeziv ETICS (5 mm)",
+      "kind": "ext",
+      "wall_layer": "adeziv_etics",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_est_living_caramida_eb20_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7629,
+          "y": 17.909
+        },
+        {
+          "x": 7.9634,
+          "y": 17.9176
+        },
+        {
+          "x": 8.1387,
+          "y": 13.8213
+        },
+        {
+          "x": 7.9382,
+          "y": 13.8128
+        },
+        {
+          "x": 7.7629,
+          "y": 17.909
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#c4a070",
+      "label": "est_living: EB20 Akustik (200 mm)",
+      "kind": "ext",
+      "wall_layer": "caramida_eb20",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "site_layer": "umplutura",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_est_living_tencuiala_int_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7569,
+          "y": 17.9088
+        },
+        {
+          "x": 7.7629,
+          "y": 17.909
+        },
+        {
+          "x": 7.9382,
+          "y": 13.8128
+        },
+        {
+          "x": 7.9322,
+          "y": 13.8125
+        },
+        {
+          "x": 7.7569,
+          "y": 17.9088
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#e8e0d4",
+      "label": "est_living: tencuială interioară (6 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_int",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_est_living_finisare_vopsea_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7559,
+          "y": 17.9087
+        },
+        {
+          "x": 7.7569,
+          "y": 17.9088
+        },
+        {
+          "x": 7.9322,
+          "y": 13.8125
         },
         {
           "x": 7.9312,
@@ -24109,17 +25902,20 @@
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
-      "color": "#d8d2c6",
-      "label": "est_living",
-      "kind": "ext"
+      "color": "#f4f0e8",
+      "label": "est_living: finisare și vopsea (1 mm)",
+      "kind": "ext",
+      "wall_layer": "finisare_vopsea",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
     },
     {
-      "id": "zid_living_palier_e",
+      "id": "zid_living_palier_grund_decorativa_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.7822,
-          "y": 13.7633
+          "x": 8.2212,
+          "y": 13.8249
         },
         {
           "x": 8.2309,
@@ -24128,6 +25924,211 @@
         {
           "x": 8.2437,
           "y": 13.5256
+        },
+        {
+          "x": 8.234,
+          "y": 13.5252
+        },
+        {
+          "x": 8.2212,
+          "y": 13.8249
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#8a8680",
+      "label": "living_palier: grund și tencuială decorativă (2 mm)",
+      "kind": "ext",
+      "wall_layer": "grund_decorativa",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_living_palier_strat_armat_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.197,
+          "y": 13.8238
+        },
+        {
+          "x": 8.2212,
+          "y": 13.8249
+        },
+        {
+          "x": 8.234,
+          "y": 13.5252
+        },
+        {
+          "x": 8.2098,
+          "y": 13.5241
+        },
+        {
+          "x": 8.197,
+          "y": 13.8238
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#a8b0b8",
+      "label": "living_palier: strat armat (5 mm)",
+      "kind": "ext",
+      "wall_layer": "strat_armat",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_living_palier_vata_isover_fassade_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.8094,
+          "y": 13.8073
+        },
+        {
+          "x": 8.197,
+          "y": 13.8238
+        },
+        {
+          "x": 8.2098,
+          "y": 13.5241
+        },
+        {
+          "x": 7.8222,
+          "y": 13.5075
+        },
+        {
+          "x": 7.8094,
+          "y": 13.8073
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#e2d18a",
+      "label": "living_palier: vată minerală fațadă (80 mm)",
+      "kind": "ext",
+      "wall_layer": "vata_isover_fassade",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.85
+    },
+    {
+      "id": "zid_living_palier_adeziv_etics_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7851,
+          "y": 13.8062
+        },
+        {
+          "x": 7.8094,
+          "y": 13.8073
+        },
+        {
+          "x": 7.8222,
+          "y": 13.5075
+        },
+        {
+          "x": 7.798,
+          "y": 13.5065
+        },
+        {
+          "x": 7.7851,
+          "y": 13.8062
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#b0a898",
+      "label": "living_palier: adeziv ETICS (5 mm)",
+      "kind": "ext",
+      "wall_layer": "adeziv_etics",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_living_palier_caramida_eb20_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.8161,
+          "y": 13.7648
+        },
+        {
+          "x": 7.7851,
+          "y": 13.8062
+        },
+        {
+          "x": 7.798,
+          "y": 13.5065
+        },
+        {
+          "x": 6.8289,
+          "y": 13.465
+        },
+        {
+          "x": 6.8161,
+          "y": 13.7648
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#c4a070",
+      "label": "living_palier: EB20 Akustik (200 mm)",
+      "kind": "ext",
+      "wall_layer": "caramida_eb20",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "site_layer": "umplutura",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_living_palier_tencuiala_int_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.7871,
+          "y": 13.7635
+        },
+        {
+          "x": 6.8161,
+          "y": 13.7648
+        },
+        {
+          "x": 6.8289,
+          "y": 13.465
+        },
+        {
+          "x": 6.7999,
+          "y": 13.4638
+        },
+        {
+          "x": 6.7871,
+          "y": 13.7635
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#e8e0d4",
+      "label": "living_palier: tencuială interioară (6 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_int",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_living_palier_finisare_vopsea_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.7822,
+          "y": 13.7633
+        },
+        {
+          "x": 6.7871,
+          "y": 13.7635
+        },
+        {
+          "x": 6.7999,
+          "y": 13.4638
         },
         {
           "x": 6.795,
@@ -24140,12 +26141,220 @@
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
-      "color": "#d8d2c6",
-      "label": "living_palier",
-      "kind": "ext"
+      "color": "#f4f0e8",
+      "label": "living_palier: finisare și vopsea (1 mm)",
+      "kind": "ext",
+      "wall_layer": "finisare_vopsea",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
     },
     {
-      "id": "zid_sud_bucatarie_e",
+      "id": "zid_sud_bucatarie_grund_decorativa_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.2133,
+          "y": 9.4944
+        },
+        {
+          "x": 6.9617,
+          "y": 9.5692
+        },
+        {
+          "x": 6.9618,
+          "y": 9.5672
+        },
+        {
+          "x": 5.2134,
+          "y": 9.4924
+        },
+        {
+          "x": 5.2133,
+          "y": 9.4944
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#8a8680",
+      "label": "sud_bucatarie: grund și tencuială decorativă (2 mm)",
+      "kind": "ext",
+      "wall_layer": "grund_decorativa",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_sud_bucatarie_strat_armat_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.2131,
+          "y": 9.4994
+        },
+        {
+          "x": 6.9615,
+          "y": 9.5742
+        },
+        {
+          "x": 6.9617,
+          "y": 9.5692
+        },
+        {
+          "x": 5.2133,
+          "y": 9.4944
+        },
+        {
+          "x": 5.2131,
+          "y": 9.4994
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#a8b0b8",
+      "label": "sud_bucatarie: strat armat (5 mm)",
+      "kind": "ext",
+      "wall_layer": "strat_armat",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_sud_bucatarie_vata_isover_fassade_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.2097,
+          "y": 9.5796
+        },
+        {
+          "x": 6.9581,
+          "y": 9.6544
+        },
+        {
+          "x": 6.9615,
+          "y": 9.5742
+        },
+        {
+          "x": 5.2131,
+          "y": 9.4994
+        },
+        {
+          "x": 5.2097,
+          "y": 9.5796
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#e2d18a",
+      "label": "sud_bucatarie: vată minerală fațadă (80 mm)",
+      "kind": "ext",
+      "wall_layer": "vata_isover_fassade",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.85
+    },
+    {
+      "id": "zid_sud_bucatarie_adeziv_etics_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.2094,
+          "y": 9.5846
+        },
+        {
+          "x": 6.9578,
+          "y": 9.6594
+        },
+        {
+          "x": 6.9581,
+          "y": 9.6544
+        },
+        {
+          "x": 5.2097,
+          "y": 9.5796
+        },
+        {
+          "x": 5.2094,
+          "y": 9.5846
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#b0a898",
+      "label": "sud_bucatarie: adeziv ETICS (5 mm)",
+      "kind": "ext",
+      "wall_layer": "adeziv_etics",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_sud_bucatarie_caramida_eb20_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.2009,
+          "y": 9.7851
+        },
+        {
+          "x": 6.9493,
+          "y": 9.8599
+        },
+        {
+          "x": 6.9578,
+          "y": 9.6594
+        },
+        {
+          "x": 5.2094,
+          "y": 9.5846
+        },
+        {
+          "x": 5.2009,
+          "y": 9.7851
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#c4a070",
+      "label": "sud_bucatarie: EB20 Akustik (200 mm)",
+      "kind": "ext",
+      "wall_layer": "caramida_eb20",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "site_layer": "umplutura",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_sud_bucatarie_tencuiala_int_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.2006,
+          "y": 9.7911
+        },
+        {
+          "x": 6.949,
+          "y": 9.8659
+        },
+        {
+          "x": 6.9493,
+          "y": 9.8599
+        },
+        {
+          "x": 5.2009,
+          "y": 9.7851
+        },
+        {
+          "x": 5.2006,
+          "y": 9.7911
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#e8e0d4",
+      "label": "sud_bucatarie: tencuială interioară (6 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_int",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_sud_bucatarie_finisare_vopsea_e",
       "type": "extrude",
       "polygon": [
         {
@@ -24157,12 +26366,12 @@
           "y": 9.8669
         },
         {
-          "x": 6.9618,
-          "y": 9.5672
+          "x": 6.949,
+          "y": 9.8659
         },
         {
-          "x": 5.2134,
-          "y": 9.4924
+          "x": 5.2006,
+          "y": 9.7911
         },
         {
           "x": 5.2006,
@@ -24171,12 +26380,15 @@
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
-      "color": "#d8d2c6",
-      "label": "sud_bucatarie",
-      "kind": "ext"
+      "color": "#f4f0e8",
+      "label": "sud_bucatarie: finisare și vopsea (1 mm)",
+      "kind": "ext",
+      "wall_layer": "finisare_vopsea",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
     },
     {
-      "id": "zid_dormitor_sud_e",
+      "id": "zid_dormitor_sud_grund_decorativa_e",
       "type": "extrude",
       "polygon": [
         {
@@ -24184,12 +26396,12 @@
           "y": 11.4865
         },
         {
-          "x": 5.1214,
-          "y": 11.6404
+          "x": 1.5488,
+          "y": 11.4876
         },
         {
-          "x": 5.1342,
-          "y": 11.3407
+          "x": 1.5616,
+          "y": 11.1878
         },
         {
           "x": 1.5375,
@@ -24202,9 +26414,217 @@
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
-      "color": "#d8d2c6",
-      "label": "dormitor_sud",
-      "kind": "ext"
+      "color": "#8a8680",
+      "label": "dormitor_sud: grund și tencuială decorativă (2 mm)",
+      "kind": "ext",
+      "wall_layer": "grund_decorativa",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_dormitor_sud_strat_armat_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5488,
+          "y": 11.4876
+        },
+        {
+          "x": 1.6089,
+          "y": 11.4901
+        },
+        {
+          "x": 1.6217,
+          "y": 11.1904
+        },
+        {
+          "x": 1.5616,
+          "y": 11.1878
+        },
+        {
+          "x": 1.5488,
+          "y": 11.4876
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#a8b0b8",
+      "label": "dormitor_sud: strat armat (5 mm)",
+      "kind": "ext",
+      "wall_layer": "strat_armat",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_dormitor_sud_vata_isover_fassade_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6089,
+          "y": 11.4901
+        },
+        {
+          "x": 2.5712,
+          "y": 11.5313
+        },
+        {
+          "x": 2.5841,
+          "y": 11.2316
+        },
+        {
+          "x": 1.6217,
+          "y": 11.1904
+        },
+        {
+          "x": 1.6089,
+          "y": 11.4901
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#e2d18a",
+      "label": "dormitor_sud: vată minerală fațadă (80 mm)",
+      "kind": "ext",
+      "wall_layer": "vata_isover_fassade",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.85
+    },
+    {
+      "id": "zid_dormitor_sud_adeziv_etics_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.5712,
+          "y": 11.5313
+        },
+        {
+          "x": 2.6314,
+          "y": 11.5339
+        },
+        {
+          "x": 2.6442,
+          "y": 11.2341
+        },
+        {
+          "x": 2.5841,
+          "y": 11.2316
+        },
+        {
+          "x": 2.5712,
+          "y": 11.5313
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#b0a898",
+      "label": "dormitor_sud: adeziv ETICS (5 mm)",
+      "kind": "ext",
+      "wall_layer": "adeziv_etics",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_dormitor_sud_caramida_eb20_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.6314,
+          "y": 11.5339
+        },
+        {
+          "x": 5.0372,
+          "y": 11.6368
+        },
+        {
+          "x": 5.05,
+          "y": 11.3371
+        },
+        {
+          "x": 2.6442,
+          "y": 11.2341
+        },
+        {
+          "x": 2.6314,
+          "y": 11.5339
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#c4a070",
+      "label": "dormitor_sud: EB20 Akustik (200 mm)",
+      "kind": "ext",
+      "wall_layer": "caramida_eb20",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "site_layer": "umplutura",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_dormitor_sud_tencuiala_int_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.0372,
+          "y": 11.6368
+        },
+        {
+          "x": 5.1094,
+          "y": 11.6399
+        },
+        {
+          "x": 5.1222,
+          "y": 11.3402
+        },
+        {
+          "x": 5.05,
+          "y": 11.3371
+        },
+        {
+          "x": 5.0372,
+          "y": 11.6368
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#e8e0d4",
+      "label": "dormitor_sud: tencuială interioară (6 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_int",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_dormitor_sud_finisare_vopsea_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.1094,
+          "y": 11.6399
+        },
+        {
+          "x": 5.1214,
+          "y": 11.6404
+        },
+        {
+          "x": 5.1342,
+          "y": 11.3407
+        },
+        {
+          "x": 5.1222,
+          "y": 11.3402
+        },
+        {
+          "x": 5.1094,
+          "y": 11.6399
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#f4f0e8",
+      "label": "dormitor_sud: finisare și vopsea (1 mm)",
+      "kind": "ext",
+      "wall_layer": "finisare_vopsea",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "opacity": 0.97
     },
     {
       "id": "zid_perete_comun_est_e",
@@ -29096,24 +31516,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         },
         {
-          "x": 1.553,
-          "y": 17.8435
+          "x": 1.5447,
+          "y": 17.8512
         },
         {
-          "x": 1.5616,
-          "y": 17.6437
+          "x": 1.5532,
+          "y": 17.6514
         },
         {
-          "x": 1.3618,
-          "y": 17.6352
+          "x": 1.3534,
+          "y": 17.6428
         },
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         }
       ],
       "z0_m": -3.1,
@@ -29128,24 +31548,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.4504,
-          "y": 17.9675
+          "x": 4.45,
+          "y": 17.9755
         },
         {
-          "x": 4.6502,
-          "y": 17.976
+          "x": 4.6499,
+          "y": 17.984
         },
         {
-          "x": 4.6588,
-          "y": 17.7762
+          "x": 4.6584,
+          "y": 17.7842
         },
         {
-          "x": 4.4589,
-          "y": 17.7677
+          "x": 4.4586,
+          "y": 17.7757
         },
         {
-          "x": 4.4504,
-          "y": 17.9675
+          "x": 4.45,
+          "y": 17.9755
         }
       ],
       "z0_m": -3.1,
@@ -29160,24 +31580,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.5984,
-          "y": 18.0594
+          "x": 6.5981,
+          "y": 18.0674
         },
         {
-          "x": 6.7982,
-          "y": 18.0679
+          "x": 6.7979,
+          "y": 18.0759
         },
         {
-          "x": 6.8068,
-          "y": 17.8681
+          "x": 6.8064,
+          "y": 17.8761
         },
         {
-          "x": 6.607,
-          "y": 17.8596
+          "x": 6.6066,
+          "y": 17.8676
         },
         {
-          "x": 6.5984,
-          "y": 18.0594
+          "x": 6.5981,
+          "y": 18.0674
         }
       ],
       "z0_m": -3.1,
@@ -29192,24 +31612,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         },
         {
-          "x": 7.9472,
-          "y": 18.1171
+          "x": 7.9468,
+          "y": 18.1251
         },
         {
-          "x": 7.9557,
-          "y": 17.9173
+          "x": 7.9554,
+          "y": 17.9253
         },
         {
-          "x": 7.7559,
-          "y": 17.9087
+          "x": 7.7556,
+          "y": 17.9167
         },
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         }
       ],
       "z0_m": -3.1,
@@ -29224,24 +31644,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.5199,
-          "y": 13.9386
+          "x": 1.5119,
+          "y": 13.9382
         },
         {
-          "x": 1.7197,
-          "y": 13.9471
+          "x": 1.7117,
+          "y": 13.9468
         },
         {
-          "x": 1.7283,
-          "y": 13.7473
+          "x": 1.7203,
+          "y": 13.747
         },
         {
-          "x": 1.5285,
-          "y": 13.7387
+          "x": 1.5205,
+          "y": 13.7384
         },
         {
-          "x": 1.5199,
-          "y": 13.9386
+          "x": 1.5119,
+          "y": 13.9382
         }
       ],
       "z0_m": -3.1,
@@ -29256,24 +31676,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6246,
-          "y": 11.4908
+          "x": 1.6166,
+          "y": 11.4905
         },
         {
-          "x": 1.8244,
-          "y": 11.4994
+          "x": 1.8164,
+          "y": 11.499
         },
         {
-          "x": 1.833,
-          "y": 11.2995
+          "x": 1.825,
+          "y": 11.2992
         },
         {
-          "x": 1.6332,
-          "y": 11.291
+          "x": 1.6252,
+          "y": 11.2906
         },
         {
-          "x": 1.6246,
-          "y": 11.4908
+          "x": 1.6166,
+          "y": 11.4905
         }
       ],
       "z0_m": -3.1,
@@ -29512,24 +31932,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.4531,
-          "y": 17.8393
+          "x": 1.4528,
+          "y": 17.8473
         },
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         },
         {
-          "x": 7.7559,
-          "y": 17.9087
+          "x": 7.7556,
+          "y": 17.9167
         },
         {
-          "x": 1.4617,
-          "y": 17.6395
+          "x": 1.4613,
+          "y": 17.6475
         },
         {
-          "x": 1.4531,
-          "y": 17.8393
+          "x": 1.4528,
+          "y": 17.8473
         }
       ],
       "z0_m": -0.7,
@@ -29544,24 +31964,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3575,
-          "y": 17.7351
+          "x": 1.3495,
+          "y": 17.7348
         },
         {
-          "x": 1.5573,
-          "y": 17.7436
+          "x": 1.5493,
+          "y": 17.7433
         },
         {
-          "x": 1.8244,
-          "y": 11.4994
+          "x": 1.8164,
+          "y": 11.499
         },
         {
-          "x": 1.6246,
-          "y": 11.4908
+          "x": 1.6166,
+          "y": 11.4905
         },
         {
-          "x": 1.3575,
-          "y": 17.7351
+          "x": 1.3495,
+          "y": 17.7348
         }
       ],
       "z0_m": -0.7,
@@ -29608,24 +32028,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.5984,
-          "y": 18.0594
+          "x": 6.5981,
+          "y": 18.0674
         },
         {
-          "x": 6.7982,
-          "y": 18.0679
+          "x": 6.7979,
+          "y": 18.0759
         },
         {
-          "x": 6.8111,
-          "y": 17.7682
+          "x": 6.8107,
+          "y": 17.7762
         },
         {
-          "x": 6.6112,
-          "y": 17.7597
+          "x": 6.6109,
+          "y": 17.7677
         },
         {
-          "x": 6.5984,
-          "y": 18.0594
+          "x": 6.5981,
+          "y": 18.0674
         }
       ],
       "z0_m": -0.7,
@@ -29672,12 +32092,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         },
         {
-          "x": 7.9472,
-          "y": 18.1171
+          "x": 7.9468,
+          "y": 18.1251
         },
         {
           "x": 8.1951,
@@ -29688,8 +32108,8 @@
           "y": 12.3138
         },
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         }
       ],
       "z0_m": -0.7,
@@ -29832,24 +32252,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         },
         {
-          "x": 7.9472,
-          "y": 18.1171
+          "x": 7.9548,
+          "y": 18.1254
         },
         {
-          "x": 7.9557,
-          "y": 17.9173
+          "x": 7.9634,
+          "y": 17.9256
         },
         {
-          "x": 1.3618,
-          "y": 17.6352
+          "x": 1.3534,
+          "y": 17.6428
         },
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         }
       ],
       "z0_m": -3.1,
@@ -29864,24 +32284,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         },
         {
-          "x": 1.553,
-          "y": 17.8435
+          "x": 1.5447,
+          "y": 17.8512
         },
         {
-          "x": 1.8373,
-          "y": 11.1996
+          "x": 1.8293,
+          "y": 11.1993
         },
         {
-          "x": 1.6374,
-          "y": 11.1911
+          "x": 1.6295,
+          "y": 11.1907
         },
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         }
       ],
       "z0_m": -3.1,
@@ -29896,12 +32316,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.5984,
-          "y": 18.0594
+          "x": 6.5981,
+          "y": 18.0674
         },
         {
-          "x": 6.7982,
-          "y": 18.0679
+          "x": 6.7979,
+          "y": 18.0759
         },
         {
           "x": 7.1616,
@@ -29912,8 +32332,8 @@
           "y": 9.5672
         },
         {
-          "x": 6.5984,
-          "y": 18.0594
+          "x": 6.5981,
+          "y": 18.0674
         }
       ],
       "z0_m": -3.1,
@@ -29928,12 +32348,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         },
         {
-          "x": 7.9472,
-          "y": 18.1171
+          "x": 7.9468,
+          "y": 18.1251
         },
         {
           "x": 8.2079,
@@ -29944,8 +32364,8 @@
           "y": 12.0141
         },
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         }
       ],
       "z0_m": -3.1,
@@ -29960,8 +32380,8 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6246,
-          "y": 11.4908
+          "x": 1.6166,
+          "y": 11.4905
         },
         {
           "x": 5.1214,
@@ -29972,12 +32392,12 @@
           "y": 11.4406
         },
         {
-          "x": 1.6332,
-          "y": 11.291
+          "x": 1.6252,
+          "y": 11.2906
         },
         {
-          "x": 1.6246,
-          "y": 11.4908
+          "x": 1.6166,
+          "y": 11.4905
         }
       ],
       "z0_m": -3.1,
@@ -31964,24 +34384,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.095,
-          "y": 18.0219
+          "x": 1.087,
+          "y": 18.0213
         },
         {
-          "x": 8.0386,
-          "y": 18.319
+          "x": 8.0387,
+          "y": 18.3187
         },
         {
-          "x": 8.045,
-          "y": 18.1713
+          "x": 8.0446,
+          "y": 18.1793
         },
         {
-          "x": 1.1013,
-          "y": 17.8743
+          "x": 1.093,
+          "y": 17.8819
         },
         {
-          "x": 1.095,
-          "y": 18.0219
+          "x": 1.087,
+          "y": 18.0213
         }
       ],
       "z0_m": -3.1,
@@ -31989,31 +34409,31 @@
       "color": "#6e6a62",
       "opacity": 0.9,
       "site_layer": "structura",
-      "label": "fundație beton N (finit−5, termo 10 afară)"
+      "label": "fundație beton N (finit−4.199999999999999, termo 9.2 afară)"
     },
     {
       "id": "fundatie_S",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.4647,
-          "y": 9.382
+          "x": 1.457,
+          "y": 9.3737
         },
         {
-          "x": 8.4083,
-          "y": 9.6791
+          "x": 8.4087,
+          "y": 9.6711
         },
         {
-          "x": 8.4169,
-          "y": 9.4793
+          "x": 8.4172,
+          "y": 9.4713
         },
         {
-          "x": 1.4732,
-          "y": 9.1822
+          "x": 1.4656,
+          "y": 9.1739
         },
         {
-          "x": 1.4647,
-          "y": 9.382
+          "x": 1.457,
+          "y": 9.3737
         }
       ],
       "z0_m": -3.1,
@@ -32021,31 +34441,31 @@
       "color": "#6e6a62",
       "opacity": 0.9,
       "site_layer": "structura",
-      "label": "fundație beton S (finit−5, termo 10 afară)"
+      "label": "fundație beton S (finit−4.199999999999999, termo 9.2 afară)"
     },
     {
       "id": "fundatie_W",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.1013,
-          "y": 17.8743
+          "x": 1.093,
+          "y": 17.8819
         },
         {
-          "x": 1.3011,
-          "y": 17.8828
+          "x": 1.2928,
+          "y": 17.8905
         },
         {
-          "x": 1.6645,
-          "y": 9.3906
+          "x": 1.6568,
+          "y": 9.3823
         },
         {
-          "x": 1.4647,
-          "y": 9.382
+          "x": 1.457,
+          "y": 9.3737
         },
         {
-          "x": 1.1013,
-          "y": 17.8743
+          "x": 1.093,
+          "y": 17.8819
         }
       ],
       "z0_m": -3.1,
@@ -32053,31 +34473,31 @@
       "color": "#6e6a62",
       "opacity": 0.9,
       "site_layer": "structura",
-      "label": "fundație beton W (finit−5, termo 10 afară)"
+      "label": "fundație beton W (finit−4.199999999999999, termo 9.2 afară)"
     },
     {
       "id": "fundatie_E",
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.995,
-          "y": 18.1692
+          "x": 8.0027,
+          "y": 18.1775
         },
         {
-          "x": 8.045,
-          "y": 18.1713
+          "x": 8.0446,
+          "y": 18.1793
         },
         {
-          "x": 8.4083,
-          "y": 9.6791
+          "x": 8.4087,
+          "y": 9.6711
         },
         {
-          "x": 8.3584,
-          "y": 9.677
+          "x": 8.3667,
+          "y": 9.6693
         },
         {
-          "x": 7.995,
-          "y": 18.1692
+          "x": 8.0027,
+          "y": 18.1775
         }
       ],
       "z0_m": -3.1,
@@ -32085,31 +34505,31 @@
       "color": "#6e6a62",
       "opacity": 0.9,
       "site_layer": "structura",
-      "label": "fundație beton E (finit−5, termo 10 afară)"
+      "label": "fundație beton E (finit−4.199999999999999, termo 9.2 afară)"
     },
     {
       "id": "parter_stalp_nw",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         },
         {
-          "x": 1.553,
-          "y": 17.8435
+          "x": 1.5447,
+          "y": 17.8512
         },
         {
-          "x": 1.5616,
-          "y": 17.6437
+          "x": 1.5532,
+          "y": 17.6514
         },
         {
-          "x": 1.3618,
-          "y": 17.6352
+          "x": 1.3534,
+          "y": 17.6428
         },
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         }
       ],
       "z0_m": -0.3,
@@ -32124,24 +34544,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         },
         {
-          "x": 1.553,
-          "y": 17.8435
+          "x": 1.5447,
+          "y": 17.8512
         },
         {
-          "x": 1.5616,
-          "y": 17.6437
+          "x": 1.5532,
+          "y": 17.6514
         },
         {
-          "x": 1.3618,
-          "y": 17.6352
+          "x": 1.3534,
+          "y": 17.6428
         },
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -32156,24 +34576,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.4504,
-          "y": 17.9675
+          "x": 4.45,
+          "y": 17.9755
         },
         {
-          "x": 4.6502,
-          "y": 17.976
+          "x": 4.6499,
+          "y": 17.984
         },
         {
-          "x": 4.6588,
-          "y": 17.7762
+          "x": 4.6584,
+          "y": 17.7842
         },
         {
-          "x": 4.4589,
-          "y": 17.7677
+          "x": 4.4586,
+          "y": 17.7757
         },
         {
-          "x": 4.4504,
-          "y": 17.9675
+          "x": 4.45,
+          "y": 17.9755
         }
       ],
       "z0_m": -0.3,
@@ -32188,24 +34608,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.4504,
-          "y": 17.9675
+          "x": 4.45,
+          "y": 17.9755
         },
         {
-          "x": 4.6502,
-          "y": 17.976
+          "x": 4.6499,
+          "y": 17.984
         },
         {
-          "x": 4.6588,
-          "y": 17.7762
+          "x": 4.6584,
+          "y": 17.7842
         },
         {
-          "x": 4.4589,
-          "y": 17.7677
+          "x": 4.4586,
+          "y": 17.7757
         },
         {
-          "x": 4.4504,
-          "y": 17.9675
+          "x": 4.45,
+          "y": 17.9755
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -32220,24 +34640,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.5984,
-          "y": 18.0594
+          "x": 6.5981,
+          "y": 18.0674
         },
         {
-          "x": 6.7982,
-          "y": 18.0679
+          "x": 6.7979,
+          "y": 18.0759
         },
         {
-          "x": 6.8068,
-          "y": 17.8681
+          "x": 6.8064,
+          "y": 17.8761
         },
         {
-          "x": 6.607,
-          "y": 17.8596
+          "x": 6.6066,
+          "y": 17.8676
         },
         {
-          "x": 6.5984,
-          "y": 18.0594
+          "x": 6.5981,
+          "y": 18.0674
         }
       ],
       "z0_m": -0.3,
@@ -32252,24 +34672,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.5984,
-          "y": 18.0594
+          "x": 6.5981,
+          "y": 18.0674
         },
         {
-          "x": 6.7982,
-          "y": 18.0679
+          "x": 6.7979,
+          "y": 18.0759
         },
         {
-          "x": 6.8068,
-          "y": 17.8681
+          "x": 6.8064,
+          "y": 17.8761
         },
         {
-          "x": 6.607,
-          "y": 17.8596
+          "x": 6.6066,
+          "y": 17.8676
         },
         {
-          "x": 6.5984,
-          "y": 18.0594
+          "x": 6.5981,
+          "y": 18.0674
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -32284,24 +34704,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         },
         {
-          "x": 7.9472,
-          "y": 18.1171
+          "x": 7.9468,
+          "y": 18.1251
         },
         {
-          "x": 7.9557,
-          "y": 17.9173
+          "x": 7.9554,
+          "y": 17.9253
         },
         {
-          "x": 7.7559,
-          "y": 17.9087
+          "x": 7.7556,
+          "y": 17.9167
         },
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         }
       ],
       "z0_m": -0.3,
@@ -32316,24 +34736,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         },
         {
-          "x": 7.9472,
-          "y": 18.1171
+          "x": 7.9468,
+          "y": 18.1251
         },
         {
-          "x": 7.9557,
-          "y": 17.9173
+          "x": 7.9554,
+          "y": 17.9253
         },
         {
-          "x": 7.7559,
-          "y": 17.9087
+          "x": 7.7556,
+          "y": 17.9167
         },
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -32348,24 +34768,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.5199,
-          "y": 13.9386
+          "x": 1.5119,
+          "y": 13.9382
         },
         {
-          "x": 1.7197,
-          "y": 13.9471
+          "x": 1.7117,
+          "y": 13.9468
         },
         {
-          "x": 1.7283,
-          "y": 13.7473
+          "x": 1.7203,
+          "y": 13.747
         },
         {
-          "x": 1.5285,
-          "y": 13.7387
+          "x": 1.5205,
+          "y": 13.7384
         },
         {
-          "x": 1.5199,
-          "y": 13.9386
+          "x": 1.5119,
+          "y": 13.9382
         }
       ],
       "z0_m": -0.3,
@@ -32380,24 +34800,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.5199,
-          "y": 13.9386
+          "x": 1.5119,
+          "y": 13.9382
         },
         {
-          "x": 1.7197,
-          "y": 13.9471
+          "x": 1.7117,
+          "y": 13.9468
         },
         {
-          "x": 1.7283,
-          "y": 13.7473
+          "x": 1.7203,
+          "y": 13.747
         },
         {
-          "x": 1.5285,
-          "y": 13.7387
+          "x": 1.5205,
+          "y": 13.7384
         },
         {
-          "x": 1.5199,
-          "y": 13.9386
+          "x": 1.5119,
+          "y": 13.9382
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -32412,24 +34832,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6246,
-          "y": 11.4908
+          "x": 1.6166,
+          "y": 11.4905
         },
         {
-          "x": 1.8244,
-          "y": 11.4994
+          "x": 1.8164,
+          "y": 11.499
         },
         {
-          "x": 1.833,
-          "y": 11.2995
+          "x": 1.825,
+          "y": 11.2992
         },
         {
-          "x": 1.6332,
-          "y": 11.291
+          "x": 1.6252,
+          "y": 11.2906
         },
         {
-          "x": 1.6246,
-          "y": 11.4908
+          "x": 1.6166,
+          "y": 11.4905
         }
       ],
       "z0_m": -0.3,
@@ -32444,24 +34864,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6246,
-          "y": 11.4908
+          "x": 1.6166,
+          "y": 11.4905
         },
         {
-          "x": 1.8244,
-          "y": 11.4994
+          "x": 1.8164,
+          "y": 11.499
         },
         {
-          "x": 1.833,
-          "y": 11.2995
+          "x": 1.825,
+          "y": 11.2992
         },
         {
-          "x": 1.6332,
-          "y": 11.291
+          "x": 1.6252,
+          "y": 11.2906
         },
         {
-          "x": 1.6246,
-          "y": 11.4908
+          "x": 1.6166,
+          "y": 11.4905
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -32924,24 +35344,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         },
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         },
         {
-          "x": 7.7559,
-          "y": 17.9087
+          "x": 7.7556,
+          "y": 17.9167
         },
         {
-          "x": 1.3618,
-          "y": 17.6352
+          "x": 1.3534,
+          "y": 17.6428
         },
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         }
       ],
       "z0_m": 2.6999999999999997,
@@ -32956,24 +35376,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         },
         {
-          "x": 1.553,
-          "y": 17.8435
+          "x": 1.5447,
+          "y": 17.8512
         },
         {
-          "x": 1.8244,
-          "y": 11.4994
+          "x": 1.8164,
+          "y": 11.499
         },
         {
-          "x": 1.6246,
-          "y": 11.4908
+          "x": 1.6166,
+          "y": 11.4905
         },
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         }
       ],
       "z0_m": 2.6999999999999997,
@@ -32988,12 +35408,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.4504,
-          "y": 17.9675
+          "x": 4.45,
+          "y": 17.9755
         },
         {
-          "x": 4.6502,
-          "y": 17.976
+          "x": 4.6499,
+          "y": 17.984
         },
         {
           "x": 4.9216,
@@ -33004,8 +35424,8 @@
           "y": 11.6233
         },
         {
-          "x": 4.4504,
-          "y": 17.9675
+          "x": 4.45,
+          "y": 17.9755
         }
       ],
       "z0_m": 2.6999999999999997,
@@ -33052,12 +35472,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         },
         {
-          "x": 7.9472,
-          "y": 18.1171
+          "x": 7.9468,
+          "y": 18.1251
         },
         {
           "x": 8.131,
@@ -33068,8 +35488,8 @@
           "y": 13.8125
         },
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         }
       ],
       "z0_m": 2.6999999999999997,
@@ -33180,8 +35600,8 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6246,
-          "y": 11.4908
+          "x": 1.6166,
+          "y": 11.4905
         },
         {
           "x": 4.7218,
@@ -33192,12 +35612,12 @@
           "y": 11.4235
         },
         {
-          "x": 1.6332,
-          "y": 11.291
+          "x": 1.6252,
+          "y": 11.2906
         },
         {
-          "x": 1.6246,
-          "y": 11.4908
+          "x": 1.6166,
+          "y": 11.4905
         }
       ],
       "z0_m": 2.6999999999999997,
@@ -33300,24 +35720,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         },
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         },
         {
-          "x": 7.7559,
-          "y": 17.9087
+          "x": 7.7556,
+          "y": 17.9167
         },
         {
-          "x": 1.3618,
-          "y": 17.6352
+          "x": 1.3534,
+          "y": 17.6428
         },
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         }
       ],
       "z0_m": 5.46,
@@ -33332,24 +35752,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         },
         {
-          "x": 1.553,
-          "y": 17.8435
+          "x": 1.5447,
+          "y": 17.8512
         },
         {
-          "x": 1.9036,
-          "y": 9.651
+          "x": 1.8956,
+          "y": 9.6507
         },
         {
-          "x": 1.7038,
-          "y": 9.6425
+          "x": 1.6958,
+          "y": 9.6422
         },
         {
-          "x": 1.3532,
-          "y": 17.835
+          "x": 1.3449,
+          "y": 17.8427
         }
       ],
       "z0_m": 5.46,
@@ -33364,12 +35784,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.5984,
-          "y": 18.0594
+          "x": 6.5981,
+          "y": 18.0674
         },
         {
-          "x": 6.7982,
-          "y": 18.0679
+          "x": 6.7979,
+          "y": 18.0759
         },
         {
           "x": 7.1616,
@@ -33380,8 +35800,8 @@
           "y": 9.5672
         },
         {
-          "x": 6.5984,
-          "y": 18.0594
+          "x": 6.5981,
+          "y": 18.0674
         }
       ],
       "z0_m": 5.46,
@@ -33396,12 +35816,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         },
         {
-          "x": 7.9472,
-          "y": 18.1171
+          "x": 7.9468,
+          "y": 18.1251
         },
         {
           "x": 8.1951,
@@ -33412,8 +35832,8 @@
           "y": 12.3138
         },
         {
-          "x": 7.7474,
-          "y": 18.1085
+          "x": 7.747,
+          "y": 18.1165
         }
       ],
       "z0_m": 5.46,
