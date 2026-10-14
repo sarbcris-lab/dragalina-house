@@ -23,3 +23,5 @@ tmp_*.mjs
 
 # documente cadastru / CF — nu pe GitHub public
 inputs/cadastru/
+
+.vercel
