@@ -1,29 +1,21 @@
 {
   "meta": {
     "id": "volume_v47_a1_study",
-    "generated": "2026-10-14T19:02:11.607Z",
+    "generated": "2026-10-14T18:56:17.208Z",
     "status": "3D_STUDIU_A1",
     "source_plan": "data/building/v47_a1_study.json",
     "based_on": "v47_exact (referință neatinsă)",
     "study_variant": "A1",
     "levels_note": "subsol (L-1) + parter + etaj",
-    "warning": "STUDIU A1: Structură perimetrală studiu: tronsoane BA în pereți (țintă 20 cm) + EB20 umplutură; fără grilă stâlpi / X320 / pal_nw|ne. Neconstruibil — calcul structurist. Clear țintă 220; sub grinzi beci ≈180 cm (intrados −70). Referință v47_exact neatinsă. Nu autorizabil / nu calcul rezistență.",
-    "structure_hypothesis": "Structură perimetrală studiu: tronsoane BA în pereți (țintă 20 cm) + EB20 umplutură; fără grilă stâlpi / X320 / pal_nw|ne. Neconstruibil — calcul structurist.",
-    "structure_variant": "perimeter_wall_piers_study",
-    "declared_buildable": false,
-    "structure_calc_pending": [
-      "grosime pile/tronsoane (țintă studiu 20 cm)",
-      "lungimi pile est/sud",
-      "grosime planșeu între studiouri (15 cm neconfirmat fără reazem interior)",
-      "reazeme rampe scară"
-    ],
+    "warning": "STUDIU A1: Structură studiu A1: COL_BETON=20 pe falie; anvelopă P/E EB20+ISOVER FASSADE (299/300 mm) — de confirmat ETICS/proiectant. Dimensiuni ipoteză; NP112 fundații. Clear țintă 220; sub grinzi beci ≈180 cm (intrados −70). Referință v47_exact neatinsă. Nu autorizabil / nu calcul rezistență.",
+    "structure_hypothesis": "Structură studiu A1: COL_BETON=20 pe falie; anvelopă P/E EB20+ISOVER FASSADE (299/300 mm) — de confirmat ETICS/proiectant. Dimensiuni ipoteză; NP112 fundații.",
     "finished_wall_vs_column_cm": {
       "finished_envelope_cm": 30,
       "finished_nominal_mm": 299,
-      "concrete_pier_cm": 20,
+      "concrete_column_cm": 20,
       "etics_outside_brick_cm": 9.2,
       "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "note": "30 = finit max; beton = tronsoane 20 cm țintă în falie (nu stâlpi pătrați); de confirmat"
+      "note": "30 = finit max (nom. 299 mm); stâlpul ≠ 30; de confirmat ETICS/proiectant"
     },
     "exterior_wall_assembly": {
       "ref": "construction_assemblies.exterior_wall_heated",
@@ -519,7 +511,7 @@
   },
   "building_summary": {
     "footprint_gross_m2": 58.48,
-    "useful_interior_m2": 38.89875,
+    "useful_interior_m2": 37.87875,
     "terrace_libera_m2": 9.57,
     "useful_note": "shoelace pe interior_polygon_cm — vezi docs:v47",
     "walls": "ext max 300 mm (EB20+ISOVER FASSADE nom. 299) / int 12.5 — de confirmat ETICS/proiectant",
@@ -7581,37 +7573,6 @@
       "color": "#a89878",
       "finish": "mozaic",
       "label": "soclu mozaic est_recuperat_p"
-    },
-    {
-      "id": "soclu_living_put_thermal_y590",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1332,
-          "y": 12.5772
-        },
-        {
-          "x": 7.9824,
-          "y": 12.6136
-        },
-        {
-          "x": 7.9953,
-          "y": 12.3138
-        },
-        {
-          "x": 7.146,
-          "y": 12.2775
-        },
-        {
-          "x": 7.1332,
-          "y": 12.5772
-        }
-      ],
-      "z0_m": 0,
-      "z1_m": 0.6,
-      "color": "#a89878",
-      "finish": "mozaic",
-      "label": "soclu mozaic living_put_thermal_y590"
     },
     {
       "id": "mozaic_fatada_sud_0_0",
@@ -23813,245 +23774,6 @@
       "kind": "ext"
     },
     {
-      "id": "zid_living_put_thermal_y590_grund_decorativa_p",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1332,
-          "y": 12.5772
-        },
-        {
-          "x": 7.9824,
-          "y": 12.6136
-        },
-        {
-          "x": 7.9825,
-          "y": 12.6116
-        },
-        {
-          "x": 7.1333,
-          "y": 12.5752
-        },
-        {
-          "x": 7.1332,
-          "y": 12.5772
-        }
-      ],
-      "z0_m": 0.32,
-      "z1_m": 2.9299999999999997,
-      "color": "#8a8680",
-      "label": "living_put_thermal_y590: grund și tencuială decorativă (2 mm)",
-      "kind": "ext",
-      "wall_layer": "grund_decorativa",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_put_thermal_y590_strat_armat_p",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1333,
-          "y": 12.5752
-        },
-        {
-          "x": 7.9825,
-          "y": 12.6116
-        },
-        {
-          "x": 7.9827,
-          "y": 12.6066
-        },
-        {
-          "x": 7.1335,
-          "y": 12.5702
-        },
-        {
-          "x": 7.1333,
-          "y": 12.5752
-        }
-      ],
-      "z0_m": 0.32,
-      "z1_m": 2.9299999999999997,
-      "color": "#a8b0b8",
-      "label": "living_put_thermal_y590: strat armat (5 mm)",
-      "kind": "ext",
-      "wall_layer": "strat_armat",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_put_thermal_y590_vata_isover_fassade_p",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1335,
-          "y": 12.5702
-        },
-        {
-          "x": 7.9827,
-          "y": 12.6066
-        },
-        {
-          "x": 7.9862,
-          "y": 12.5264
-        },
-        {
-          "x": 7.137,
-          "y": 12.49
-        },
-        {
-          "x": 7.1335,
-          "y": 12.5702
-        }
-      ],
-      "z0_m": 0.32,
-      "z1_m": 2.9299999999999997,
-      "color": "#e2d18a",
-      "label": "living_put_thermal_y590: vată minerală fațadă (80 mm)",
-      "kind": "ext",
-      "wall_layer": "vata_isover_fassade",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.85
-    },
-    {
-      "id": "zid_living_put_thermal_y590_adeziv_etics_p",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.137,
-          "y": 12.49
-        },
-        {
-          "x": 7.9862,
-          "y": 12.5264
-        },
-        {
-          "x": 7.9864,
-          "y": 12.5213
-        },
-        {
-          "x": 7.1372,
-          "y": 12.485
-        },
-        {
-          "x": 7.137,
-          "y": 12.49
-        }
-      ],
-      "z0_m": 0.32,
-      "z1_m": 2.9299999999999997,
-      "color": "#b0a898",
-      "label": "living_put_thermal_y590: adeziv ETICS (5 mm)",
-      "kind": "ext",
-      "wall_layer": "adeziv_etics",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_put_thermal_y590_caramida_eb20_p",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1372,
-          "y": 12.485
-        },
-        {
-          "x": 7.9864,
-          "y": 12.5213
-        },
-        {
-          "x": 7.995,
-          "y": 12.3209
-        },
-        {
-          "x": 7.1457,
-          "y": 12.2845
-        },
-        {
-          "x": 7.1372,
-          "y": 12.485
-        }
-      ],
-      "z0_m": 0.32,
-      "z1_m": 2.9299999999999997,
-      "color": "#c4a070",
-      "label": "living_put_thermal_y590: EB20 Akustik (200 mm)",
-      "kind": "ext",
-      "wall_layer": "caramida_eb20",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "site_layer": "umplutura",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_put_thermal_y590_tencuiala_int_p",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1457,
-          "y": 12.2845
-        },
-        {
-          "x": 7.995,
-          "y": 12.3209
-        },
-        {
-          "x": 7.9952,
-          "y": 12.3148
-        },
-        {
-          "x": 7.146,
-          "y": 12.2785
-        },
-        {
-          "x": 7.1457,
-          "y": 12.2845
-        }
-      ],
-      "z0_m": 0.32,
-      "z1_m": 2.9299999999999997,
-      "color": "#e8e0d4",
-      "label": "living_put_thermal_y590: tencuială interioară (6 mm)",
-      "kind": "ext",
-      "wall_layer": "tencuiala_int",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_put_thermal_y590_finisare_vopsea_p",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.146,
-          "y": 12.2785
-        },
-        {
-          "x": 7.9952,
-          "y": 12.3148
-        },
-        {
-          "x": 7.9953,
-          "y": 12.3138
-        },
-        {
-          "x": 7.146,
-          "y": 12.2775
-        },
-        {
-          "x": 7.146,
-          "y": 12.2785
-        }
-      ],
-      "z0_m": 0.32,
-      "z1_m": 2.9299999999999997,
-      "color": "#f4f0e8",
-      "label": "living_put_thermal_y590: finisare și vopsea (1 mm)",
-      "kind": "ext",
-      "wall_layer": "finisare_vopsea",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.97
-    },
-    {
       "id": "mob_pat_p",
       "type": "extrude",
       "polygon": [
@@ -27122,245 +26844,6 @@
       "kind": "ext"
     },
     {
-      "id": "zid_living_put_thermal_y590_grund_decorativa_e",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1332,
-          "y": 12.5772
-        },
-        {
-          "x": 7.9824,
-          "y": 12.6136
-        },
-        {
-          "x": 7.9825,
-          "y": 12.6116
-        },
-        {
-          "x": 7.1333,
-          "y": 12.5752
-        },
-        {
-          "x": 7.1332,
-          "y": 12.5772
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#8a8680",
-      "label": "living_put_thermal_y590: grund și tencuială decorativă (2 mm)",
-      "kind": "ext",
-      "wall_layer": "grund_decorativa",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_put_thermal_y590_strat_armat_e",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1333,
-          "y": 12.5752
-        },
-        {
-          "x": 7.9825,
-          "y": 12.6116
-        },
-        {
-          "x": 7.9827,
-          "y": 12.6066
-        },
-        {
-          "x": 7.1335,
-          "y": 12.5702
-        },
-        {
-          "x": 7.1333,
-          "y": 12.5752
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#a8b0b8",
-      "label": "living_put_thermal_y590: strat armat (5 mm)",
-      "kind": "ext",
-      "wall_layer": "strat_armat",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_put_thermal_y590_vata_isover_fassade_e",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1335,
-          "y": 12.5702
-        },
-        {
-          "x": 7.9827,
-          "y": 12.6066
-        },
-        {
-          "x": 7.9862,
-          "y": 12.5264
-        },
-        {
-          "x": 7.137,
-          "y": 12.49
-        },
-        {
-          "x": 7.1335,
-          "y": 12.5702
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#e2d18a",
-      "label": "living_put_thermal_y590: vată minerală fațadă (80 mm)",
-      "kind": "ext",
-      "wall_layer": "vata_isover_fassade",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.85
-    },
-    {
-      "id": "zid_living_put_thermal_y590_adeziv_etics_e",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.137,
-          "y": 12.49
-        },
-        {
-          "x": 7.9862,
-          "y": 12.5264
-        },
-        {
-          "x": 7.9864,
-          "y": 12.5213
-        },
-        {
-          "x": 7.1372,
-          "y": 12.485
-        },
-        {
-          "x": 7.137,
-          "y": 12.49
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#b0a898",
-      "label": "living_put_thermal_y590: adeziv ETICS (5 mm)",
-      "kind": "ext",
-      "wall_layer": "adeziv_etics",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_put_thermal_y590_caramida_eb20_e",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1372,
-          "y": 12.485
-        },
-        {
-          "x": 7.9864,
-          "y": 12.5213
-        },
-        {
-          "x": 7.995,
-          "y": 12.3209
-        },
-        {
-          "x": 7.1457,
-          "y": 12.2845
-        },
-        {
-          "x": 7.1372,
-          "y": 12.485
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#c4a070",
-      "label": "living_put_thermal_y590: EB20 Akustik (200 mm)",
-      "kind": "ext",
-      "wall_layer": "caramida_eb20",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "site_layer": "umplutura",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_put_thermal_y590_tencuiala_int_e",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1457,
-          "y": 12.2845
-        },
-        {
-          "x": 7.995,
-          "y": 12.3209
-        },
-        {
-          "x": 7.9952,
-          "y": 12.3148
-        },
-        {
-          "x": 7.146,
-          "y": 12.2785
-        },
-        {
-          "x": 7.1457,
-          "y": 12.2845
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#e8e0d4",
-      "label": "living_put_thermal_y590: tencuială interioară (6 mm)",
-      "kind": "ext",
-      "wall_layer": "tencuiala_int",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_put_thermal_y590_finisare_vopsea_e",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.146,
-          "y": 12.2785
-        },
-        {
-          "x": 7.9952,
-          "y": 12.3148
-        },
-        {
-          "x": 7.9953,
-          "y": 12.3138
-        },
-        {
-          "x": 7.146,
-          "y": 12.2775
-        },
-        {
-          "x": 7.146,
-          "y": 12.2785
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#f4f0e8",
-      "label": "living_put_thermal_y590: finisare și vopsea (1 mm)",
-      "kind": "ext",
-      "wall_layer": "finisare_vopsea",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.97
-    },
-    {
       "id": "mob_pat_e",
       "type": "extrude",
       "polygon": [
@@ -28622,6 +28105,38 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
+      "id": "structura_r180_0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.1634,
+          "y": 9.4902
+        },
+        {
+          "x": 5.4632,
+          "y": 9.503
+        },
+        {
+          "x": 5.508,
+          "y": 8.454
+        },
+        {
+          "x": 5.2082,
+          "y": 8.4412
+        },
+        {
+          "x": 5.1634,
+          "y": 9.4902
+        }
+      ],
+      "z0_m": 0.27999999999999997,
+      "z1_m": 0.42,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Structură rampă 1 20 cm"
+    },
+    {
       "id": "parapet_r180_0",
       "type": "extrude",
       "polygon": [
@@ -28680,6 +28195,38 @@
       "z1_m": 0.64,
       "color": "#5a7488",
       "label": "SCARĂ rampă 1 (nu terasă)"
+    },
+    {
+      "id": "structura_r180_1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.4632,
+          "y": 9.503
+        },
+        {
+          "x": 5.7629,
+          "y": 9.5159
+        },
+        {
+          "x": 5.8077,
+          "y": 8.4668
+        },
+        {
+          "x": 5.508,
+          "y": 8.454
+        },
+        {
+          "x": 5.4632,
+          "y": 9.503
+        }
+      ],
+      "z0_m": 0.44,
+      "z1_m": 0.5800000000000001,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Structură rampă 1 20 cm"
     },
     {
       "id": "parapet_r180_1",
@@ -28742,6 +28289,38 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
+      "id": "structura_r180_2",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.7629,
+          "y": 9.5159
+        },
+        {
+          "x": 6.0626,
+          "y": 9.5287
+        },
+        {
+          "x": 6.1074,
+          "y": 8.4797
+        },
+        {
+          "x": 5.8077,
+          "y": 8.4668
+        },
+        {
+          "x": 5.7629,
+          "y": 9.5159
+        }
+      ],
+      "z0_m": 0.6000000000000001,
+      "z1_m": 0.74,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Structură rampă 1 20 cm"
+    },
+    {
       "id": "parapet_r180_2",
       "type": "extrude",
       "polygon": [
@@ -28800,6 +28379,38 @@
       "z1_m": 0.96,
       "color": "#5a7488",
       "label": "SCARĂ rampă 1 (nu terasă)"
+    },
+    {
+      "id": "structura_r180_3",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.0626,
+          "y": 9.5287
+        },
+        {
+          "x": 6.3623,
+          "y": 9.5415
+        },
+        {
+          "x": 6.4071,
+          "y": 8.4925
+        },
+        {
+          "x": 6.1074,
+          "y": 8.4797
+        },
+        {
+          "x": 6.0626,
+          "y": 9.5287
+        }
+      ],
+      "z0_m": 0.76,
+      "z1_m": 0.8999999999999999,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Structură rampă 1 20 cm"
     },
     {
       "id": "parapet_r180_3",
@@ -28862,6 +28473,38 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
+      "id": "structura_r180_4",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.3623,
+          "y": 9.5415
+        },
+        {
+          "x": 6.6621,
+          "y": 9.5543
+        },
+        {
+          "x": 6.7069,
+          "y": 8.5053
+        },
+        {
+          "x": 6.4071,
+          "y": 8.4925
+        },
+        {
+          "x": 6.3623,
+          "y": 9.5415
+        }
+      ],
+      "z0_m": 0.9200000000000002,
+      "z1_m": 1.06,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Structură rampă 1 20 cm"
+    },
+    {
       "id": "parapet_r180_4",
       "type": "extrude",
       "polygon": [
@@ -28920,6 +28563,38 @@
       "z1_m": 1.28,
       "color": "#5a7488",
       "label": "SCARĂ rampă 1 (nu terasă)"
+    },
+    {
+      "id": "structura_r180_5",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.6621,
+          "y": 9.5543
+        },
+        {
+          "x": 6.9618,
+          "y": 9.5672
+        },
+        {
+          "x": 7.0066,
+          "y": 8.5181
+        },
+        {
+          "x": 6.7069,
+          "y": 8.5053
+        },
+        {
+          "x": 6.6621,
+          "y": 9.5543
+        }
+      ],
+      "z0_m": 1.08,
+      "z1_m": 1.22,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Structură rampă 1 20 cm"
     },
     {
       "id": "parapet_r180_5",
@@ -28982,6 +28657,38 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
+      "id": "structura_r180_6",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.9618,
+          "y": 9.5672
+        },
+        {
+          "x": 7.2615,
+          "y": 9.58
+        },
+        {
+          "x": 7.3063,
+          "y": 8.5309
+        },
+        {
+          "x": 7.0066,
+          "y": 8.5181
+        },
+        {
+          "x": 6.9618,
+          "y": 9.5672
+        }
+      ],
+      "z0_m": 1.2400000000000002,
+      "z1_m": 1.3800000000000001,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Structură rampă 1 20 cm"
+    },
+    {
       "id": "parapet_r180_6",
       "type": "extrude",
       "polygon": [
@@ -29010,38 +28717,6 @@
       "z1_m": 2.49,
       "color": "#4a6070",
       "label": "Parapet rampă 1 (scară)"
-    },
-    {
-      "id": "scara_rampa180_placa_continua",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 5.1634,
-          "y": 9.4902
-        },
-        {
-          "x": 7.2615,
-          "y": 9.58
-        },
-        {
-          "x": 7.3063,
-          "y": 8.5309
-        },
-        {
-          "x": 5.2082,
-          "y": 8.4412
-        },
-        {
-          "x": 5.1634,
-          "y": 9.4902
-        }
-      ],
-      "z0_m": 0.27999999999999997,
-      "z1_m": 1.3800000000000001,
-      "color": "#5a6570",
-      "opacity": 0.88,
-      "site_layer": "structura",
-      "label": "Placă rampă 1 continuă (studiu AABB; reazeme tip capete/lateral = calcul)"
     },
     {
       "id": "podest_se",
@@ -29165,6 +28840,38 @@
       "label": "Rampă est (FF treaptă = sus)"
     },
     {
+      "id": "structura_r2_0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.2487,
+          "y": 9.8797
+        },
+        {
+          "x": 8.3977,
+          "y": 9.9289
+        },
+        {
+          "x": 8.4105,
+          "y": 9.6291
+        },
+        {
+          "x": 7.2615,
+          "y": 9.58
+        },
+        {
+          "x": 7.2487,
+          "y": 9.8797
+        }
+      ],
+      "z0_m": 1.56,
+      "z1_m": 1.7,
+      "color": "#5a6570",
+      "label": "Structură rampă 20 cm",
+      "opacity": 0.9,
+      "site_layer": "structura"
+    },
+    {
       "id": "parapet_r2_0",
       "type": "extrude",
       "polygon": [
@@ -29223,6 +28930,38 @@
       "z1_m": 1.9200000000000002,
       "color": "#7a8390",
       "label": "Rampă est (FF treaptă = sus)"
+    },
+    {
+      "id": "structura_r2_1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.2359,
+          "y": 10.1794
+        },
+        {
+          "x": 8.3848,
+          "y": 10.2286
+        },
+        {
+          "x": 8.3977,
+          "y": 9.9289
+        },
+        {
+          "x": 7.2487,
+          "y": 9.8797
+        },
+        {
+          "x": 7.2359,
+          "y": 10.1794
+        }
+      ],
+      "z0_m": 1.7200000000000002,
+      "z1_m": 1.86,
+      "color": "#5a6570",
+      "label": "Structură rampă 20 cm",
+      "opacity": 0.9,
+      "site_layer": "structura"
     },
     {
       "id": "parapet_r2_1",
@@ -29285,6 +29024,38 @@
       "label": "Rampă est (FF treaptă = sus)"
     },
     {
+      "id": "structura_r2_2",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.2231,
+          "y": 10.4792
+        },
+        {
+          "x": 8.372,
+          "y": 10.5283
+        },
+        {
+          "x": 8.3848,
+          "y": 10.2286
+        },
+        {
+          "x": 7.2359,
+          "y": 10.1794
+        },
+        {
+          "x": 7.2231,
+          "y": 10.4792
+        }
+      ],
+      "z0_m": 1.8800000000000001,
+      "z1_m": 2.02,
+      "color": "#5a6570",
+      "label": "Structură rampă 20 cm",
+      "opacity": 0.9,
+      "site_layer": "structura"
+    },
+    {
       "id": "parapet_r2_2",
       "type": "extrude",
       "polygon": [
@@ -29343,6 +29114,38 @@
       "z1_m": 2.24,
       "color": "#7a8390",
       "label": "Rampă est (FF treaptă = sus)"
+    },
+    {
+      "id": "structura_r2_3",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.2102,
+          "y": 10.7789
+        },
+        {
+          "x": 8.3591,
+          "y": 10.828
+        },
+        {
+          "x": 8.372,
+          "y": 10.5283
+        },
+        {
+          "x": 7.2231,
+          "y": 10.4792
+        },
+        {
+          "x": 7.2102,
+          "y": 10.7789
+        }
+      ],
+      "z0_m": 2.04,
+      "z1_m": 2.18,
+      "color": "#5a6570",
+      "label": "Structură rampă 20 cm",
+      "opacity": 0.9,
+      "site_layer": "structura"
     },
     {
       "id": "parapet_r2_3",
@@ -29405,6 +29208,38 @@
       "label": "Rampă est (FF treaptă = sus)"
     },
     {
+      "id": "structura_r2_4",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1973,
+          "y": 11.0786
+        },
+        {
+          "x": 8.3463,
+          "y": 11.1278
+        },
+        {
+          "x": 8.3591,
+          "y": 10.828
+        },
+        {
+          "x": 7.2102,
+          "y": 10.7789
+        },
+        {
+          "x": 7.1973,
+          "y": 11.0786
+        }
+      ],
+      "z0_m": 2.2,
+      "z1_m": 2.3400000000000003,
+      "color": "#5a6570",
+      "label": "Structură rampă 20 cm",
+      "opacity": 0.9,
+      "site_layer": "structura"
+    },
+    {
       "id": "parapet_r2_4",
       "type": "extrude",
       "polygon": [
@@ -29463,6 +29298,38 @@
       "z1_m": 2.56,
       "color": "#7a8390",
       "label": "Rampă est (FF treaptă = sus)"
+    },
+    {
+      "id": "structura_r2_5",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1845,
+          "y": 11.3783
+        },
+        {
+          "x": 8.3335,
+          "y": 11.4275
+        },
+        {
+          "x": 8.3463,
+          "y": 11.1278
+        },
+        {
+          "x": 7.1973,
+          "y": 11.0786
+        },
+        {
+          "x": 7.1845,
+          "y": 11.3783
+        }
+      ],
+      "z0_m": 2.36,
+      "z1_m": 2.5,
+      "color": "#5a6570",
+      "label": "Structură rampă 20 cm",
+      "opacity": 0.9,
+      "site_layer": "structura"
     },
     {
       "id": "parapet_r2_5",
@@ -29525,6 +29392,38 @@
       "label": "Rampă est (FF treaptă = sus)"
     },
     {
+      "id": "structura_r2_6",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1717,
+          "y": 11.6781
+        },
+        {
+          "x": 8.3206,
+          "y": 11.7272
+        },
+        {
+          "x": 8.3335,
+          "y": 11.4275
+        },
+        {
+          "x": 7.1845,
+          "y": 11.3783
+        },
+        {
+          "x": 7.1717,
+          "y": 11.6781
+        }
+      ],
+      "z0_m": 2.52,
+      "z1_m": 2.66,
+      "color": "#5a6570",
+      "label": "Structură rampă 20 cm",
+      "opacity": 0.9,
+      "site_layer": "structura"
+    },
+    {
       "id": "parapet_r2_6",
       "type": "extrude",
       "polygon": [
@@ -29583,6 +29482,38 @@
       "z1_m": 2.88,
       "color": "#7a8390",
       "label": "Rampă est (FF treaptă = sus)"
+    },
+    {
+      "id": "structura_r2_7",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1589,
+          "y": 11.9778
+        },
+        {
+          "x": 8.3078,
+          "y": 12.0269
+        },
+        {
+          "x": 8.3206,
+          "y": 11.7272
+        },
+        {
+          "x": 7.1717,
+          "y": 11.6781
+        },
+        {
+          "x": 7.1589,
+          "y": 11.9778
+        }
+      ],
+      "z0_m": 2.6799999999999997,
+      "z1_m": 2.82,
+      "color": "#5a6570",
+      "label": "Structură rampă 20 cm",
+      "opacity": 0.9,
+      "site_layer": "structura"
     },
     {
       "id": "parapet_r2_7",
@@ -29645,6 +29576,38 @@
       "label": "Rampă est (FF treaptă = sus)"
     },
     {
+      "id": "structura_r2_8",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.146,
+          "y": 12.2775
+        },
+        {
+          "x": 8.295,
+          "y": 12.3267
+        },
+        {
+          "x": 8.3078,
+          "y": 12.0269
+        },
+        {
+          "x": 7.1589,
+          "y": 11.9778
+        },
+        {
+          "x": 7.146,
+          "y": 12.2775
+        }
+      ],
+      "z0_m": 2.84,
+      "z1_m": 2.98,
+      "color": "#5a6570",
+      "label": "Structură rampă 20 cm",
+      "opacity": 0.9,
+      "site_layer": "structura"
+    },
+    {
       "id": "parapet_r2_8",
       "type": "extrude",
       "polygon": [
@@ -29673,38 +29636,6 @@
       "z1_m": 4.09,
       "color": "#8a939e",
       "label": "Parapet rampa 2"
-    },
-    {
-      "id": "scara_rampa2_placa_continua",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.146,
-          "y": 12.2775
-        },
-        {
-          "x": 8.295,
-          "y": 12.3267
-        },
-        {
-          "x": 8.4105,
-          "y": 9.6291
-        },
-        {
-          "x": 7.2615,
-          "y": 9.58
-        },
-        {
-          "x": 7.146,
-          "y": 12.2775
-        }
-      ],
-      "z0_m": 1.56,
-      "z1_m": 2.98,
-      "color": "#5a6570",
-      "opacity": 0.55,
-      "site_layer": "structura",
-      "label": "Placă rampă 2 continuă (studiu; reazeme tip capete/lateral = calcul; clear beci de reverificat)"
     },
     {
       "id": "copertina_rampa2",
@@ -31581,7 +31512,7 @@
       "label": "FF subsol hol_subsol"
     },
     {
-      "id": "subsol_tronson_tronson_n",
+      "id": "subsol_stalp_nw",
       "type": "extrude",
       "polygon": [
         {
@@ -31589,12 +31520,12 @@
           "y": 17.8427
         },
         {
-          "x": 7.747,
-          "y": 18.1165
+          "x": 1.5447,
+          "y": 17.8512
         },
         {
-          "x": 7.7556,
-          "y": 17.9167
+          "x": 1.5532,
+          "y": 17.6514
         },
         {
           "x": 1.3534,
@@ -31610,151 +31541,151 @@
       "color": "#7a7670",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "tronson tronson_n (20 cm țintă — ipoteză)"
+      "label": "stâlp nw (20×20 beton)"
     },
     {
-      "id": "subsol_tronson_tronson_w",
+      "id": "subsol_stalp_n_part",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3449,
-          "y": 17.8427
+          "x": 4.45,
+          "y": 17.9755
         },
         {
-          "x": 1.5447,
-          "y": 17.8512
+          "x": 4.6499,
+          "y": 17.984
+        },
+        {
+          "x": 4.6584,
+          "y": 17.7842
+        },
+        {
+          "x": 4.4586,
+          "y": 17.7757
+        },
+        {
+          "x": 4.45,
+          "y": 17.9755
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -0.3,
+      "color": "#7a7670",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "stâlp n_part (20×20 beton)"
+    },
+    {
+      "id": "subsol_stalp_n_buc",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.5981,
+          "y": 18.0674
+        },
+        {
+          "x": 6.7979,
+          "y": 18.0759
+        },
+        {
+          "x": 6.8064,
+          "y": 17.8761
+        },
+        {
+          "x": 6.6066,
+          "y": 17.8676
+        },
+        {
+          "x": 6.5981,
+          "y": 18.0674
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -0.3,
+      "color": "#7a7670",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "stâlp n_buc (20×20 beton)"
+    },
+    {
+      "id": "subsol_stalp_n_est",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.747,
+          "y": 18.1165
+        },
+        {
+          "x": 7.9468,
+          "y": 18.1251
+        },
+        {
+          "x": 7.9554,
+          "y": 17.9253
+        },
+        {
+          "x": 7.7556,
+          "y": 17.9167
+        },
+        {
+          "x": 7.747,
+          "y": 18.1165
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -0.3,
+      "color": "#7a7670",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "stâlp n_est (20×20 beton)"
+    },
+    {
+      "id": "subsol_stalp_w_mid",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5119,
+          "y": 13.9382
+        },
+        {
+          "x": 1.7117,
+          "y": 13.9468
+        },
+        {
+          "x": 1.7203,
+          "y": 13.747
+        },
+        {
+          "x": 1.5205,
+          "y": 13.7384
+        },
+        {
+          "x": 1.5119,
+          "y": 13.9382
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -0.3,
+      "color": "#7a7670",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "stâlp w_mid (20×20 beton)"
+    },
+    {
+      "id": "subsol_stalp_w_dorm",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6166,
+          "y": 11.4905
         },
         {
           "x": 1.8164,
           "y": 11.499
         },
         {
-          "x": 1.6166,
-          "y": 11.4905
-        },
-        {
-          "x": 1.3449,
-          "y": 17.8427
-        }
-      ],
-      "z0_m": -3.1,
-      "z1_m": -0.3,
-      "color": "#7a7670",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "tronson tronson_w (20 cm țintă — ipoteză)"
-    },
-    {
-      "id": "subsol_tronson_pila_est_n_geam",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.7559,
-          "y": 17.9087
-        },
-        {
-          "x": 7.9557,
-          "y": 17.9173
-        },
-        {
-          "x": 7.9878,
-          "y": 17.168
-        },
-        {
-          "x": 7.788,
-          "y": 17.1594
-        },
-        {
-          "x": 7.7559,
-          "y": 17.9087
-        }
-      ],
-      "z0_m": -3.1,
-      "z1_m": -0.3,
-      "color": "#7a7670",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "tronson pila_est_n_geam (20 cm țintă — ipoteză)"
-    },
-    {
-      "id": "subsol_tronson_pila_est_s_geam",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.8756,
-          "y": 15.1113
-        },
-        {
-          "x": 8.0754,
-          "y": 15.1198
-        },
-        {
-          "x": 8.131,
-          "y": 13.821
-        },
-        {
-          "x": 7.9312,
-          "y": 13.8125
-        },
-        {
-          "x": 7.8756,
-          "y": 15.1113
-        }
-      ],
-      "z0_m": -3.1,
-      "z1_m": -0.3,
-      "color": "#7a7670",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "tronson pila_est_s_geam (20 cm țintă — ipoteză)"
-    },
-    {
-      "id": "subsol_tronson_pila_est_sub_palier",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.9312,
-          "y": 13.8125
-        },
-        {
-          "x": 8.131,
-          "y": 13.821
-        },
-        {
-          "x": 8.1951,
-          "y": 12.3224
-        },
-        {
-          "x": 7.9953,
-          "y": 12.3138
-        },
-        {
-          "x": 7.9312,
-          "y": 13.8125
-        }
-      ],
-      "z0_m": -3.1,
-      "z1_m": -0.3,
-      "color": "#7a7670",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "tronson pila_est_sub_palier (20 cm țintă — ipoteză)"
-    },
-    {
-      "id": "subsol_tronson_pila_sud_dorm_w",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 1.6166,
-          "y": 11.4905
-        },
-        {
-          "x": 2.7236,
-          "y": 11.5378
-        },
-        {
-          "x": 2.7322,
-          "y": 11.338
+          "x": 1.825,
+          "y": 11.2992
         },
         {
           "x": 1.6252,
@@ -31770,31 +31701,31 @@
       "color": "#7a7670",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "tronson pila_sud_dorm_w (20 cm țintă — ipoteză)"
+      "label": "stâlp w_dorm (20×20 beton)"
     },
     {
-      "id": "subsol_tronson_pila_sud_dorm_e",
+      "id": "subsol_stalp_part_dorm",
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.2222,
-          "y": 11.6019
+          "x": 4.7218,
+          "y": 11.6233
         },
         {
-          "x": 5.1214,
-          "y": 11.6404
+          "x": 4.9216,
+          "y": 11.6318
         },
         {
-          "x": 5.13,
-          "y": 11.4406
+          "x": 4.9302,
+          "y": 11.432
         },
         {
-          "x": 4.2308,
-          "y": 11.4021
+          "x": 4.7303,
+          "y": 11.4235
         },
         {
-          "x": 4.2222,
-          "y": 11.6019
+          "x": 4.7218,
+          "y": 11.6233
         }
       ],
       "z0_m": -3.1,
@@ -31802,10 +31733,74 @@
       "color": "#7a7670",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "tronson pila_sud_dorm_e (20 cm țintă — ipoteză)"
+      "label": "stâlp part_dorm (20×20 beton)"
     },
     {
-      "id": "subsol_tronson_tronson_sud_intrare",
+      "id": "subsol_stalp_est_y440",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.9312,
+          "y": 13.8125
+        },
+        {
+          "x": 8.131,
+          "y": 13.821
+        },
+        {
+          "x": 8.1395,
+          "y": 13.6212
+        },
+        {
+          "x": 7.9397,
+          "y": 13.6127
+        },
+        {
+          "x": 7.9312,
+          "y": 13.8125
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -0.3,
+      "color": "#7a7670",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "stâlp est_y440 (20×20 beton)"
+    },
+    {
+      "id": "subsol_stalp_est_y590",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.9953,
+          "y": 12.3138
+        },
+        {
+          "x": 8.1951,
+          "y": 12.3224
+        },
+        {
+          "x": 8.2036,
+          "y": 12.1226
+        },
+        {
+          "x": 8.0038,
+          "y": 12.114
+        },
+        {
+          "x": 7.9953,
+          "y": 12.3138
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -0.3,
+      "color": "#7a7670",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "stâlp est_y590 (20×20 beton)"
+    },
+    {
+      "id": "subsol_stalp_s_buc_w",
       "type": "extrude",
       "polygon": [
         {
@@ -31813,12 +31808,12 @@
           "y": 9.7921
         },
         {
-          "x": 6.949,
-          "y": 9.8669
+          "x": 5.4004,
+          "y": 9.8006
         },
         {
-          "x": 6.9575,
-          "y": 9.6671
+          "x": 5.4089,
+          "y": 9.6008
         },
         {
           "x": 5.2091,
@@ -31834,10 +31829,42 @@
       "color": "#7a7670",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "tronson tronson_sud_intrare (20 cm țintă — ipoteză)"
+      "label": "stâlp s_buc_w (20×20 beton)"
     },
     {
-      "id": "subsol_tronson_reazem_casa_scara",
+      "id": "subsol_stalp_s_buc_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.949,
+          "y": 9.8669
+        },
+        {
+          "x": 7.1488,
+          "y": 9.8754
+        },
+        {
+          "x": 7.1573,
+          "y": 9.6756
+        },
+        {
+          "x": 6.9575,
+          "y": 9.6671
+        },
+        {
+          "x": 6.949,
+          "y": 9.8669
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -0.3,
+      "color": "#7a7670",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "stâlp s_buc_e (20×20 beton)"
+    },
+    {
+      "id": "subsol_stalp_buc_y590",
       "type": "extrude",
       "polygon": [
         {
@@ -31845,16 +31872,16 @@
           "y": 12.2647
         },
         {
-          "x": 7.146,
-          "y": 12.2775
+          "x": 7.0461,
+          "y": 12.2732
         },
         {
-          "x": 7.2615,
-          "y": 9.58
+          "x": 7.0547,
+          "y": 12.0734
         },
         {
-          "x": 6.9618,
-          "y": 9.5672
+          "x": 6.8549,
+          "y": 12.0649
         },
         {
           "x": 6.8463,
@@ -31866,15 +31893,47 @@
       "color": "#7a7670",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "tronson reazem_casa_scara (20 cm țintă — ipoteză)"
+      "label": "stâlp buc_y590 (puț — nu pe P)"
+    },
+    {
+      "id": "subsol_stalp_part_mid",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.697,
+          "y": 14.0745
+        },
+        {
+          "x": 4.8968,
+          "y": 14.083
+        },
+        {
+          "x": 4.9054,
+          "y": 13.8832
+        },
+        {
+          "x": 4.7056,
+          "y": 13.8747
+        },
+        {
+          "x": 4.697,
+          "y": 14.0745
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -0.3,
+      "color": "#7a7670",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "stâlp part_mid (puț — nu pe P)"
     },
     {
       "id": "subsol_grinda_n",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3449,
-          "y": 17.8427
+          "x": 1.4528,
+          "y": 17.8473
         },
         {
           "x": 7.747,
@@ -31885,12 +31944,12 @@
           "y": 17.9167
         },
         {
-          "x": 1.3534,
-          "y": 17.6428
+          "x": 1.4613,
+          "y": 17.6475
         },
         {
-          "x": 1.3449,
-          "y": 17.8427
+          "x": 1.4528,
+          "y": 17.8473
         }
       ],
       "z0_m": -0.7,
@@ -31898,19 +31957,19 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "grindă N contur"
+      "label": "grindă N"
     },
     {
       "id": "subsol_grinda_w",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3449,
-          "y": 17.8427
+          "x": 1.3495,
+          "y": 17.7348
         },
         {
-          "x": 1.5447,
-          "y": 17.8512
+          "x": 1.5493,
+          "y": 17.7433
         },
         {
           "x": 1.8164,
@@ -31921,8 +31980,8 @@
           "y": 11.4905
         },
         {
-          "x": 1.3449,
-          "y": 17.8427
+          "x": 1.3495,
+          "y": 17.7348
         }
       ],
       "z0_m": -0.7,
@@ -31930,10 +31989,74 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "grindă W contur"
+      "label": "grindă W"
     },
     {
-      "id": "subsol_grinda_casa_scara",
+      "id": "subsol_grinda_part",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.4547,
+          "y": 17.8676
+        },
+        {
+          "x": 4.6545,
+          "y": 17.8761
+        },
+        {
+          "x": 4.9216,
+          "y": 11.6318
+        },
+        {
+          "x": 4.7218,
+          "y": 11.6233
+        },
+        {
+          "x": 4.4547,
+          "y": 17.8676
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "grindă ~perete_comun X320"
+    },
+    {
+      "id": "subsol_grinda_buc_n",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.5981,
+          "y": 18.0674
+        },
+        {
+          "x": 6.7979,
+          "y": 18.0759
+        },
+        {
+          "x": 6.8107,
+          "y": 17.7762
+        },
+        {
+          "x": 6.6109,
+          "y": 17.7677
+        },
+        {
+          "x": 6.5981,
+          "y": 18.0674
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "grindă X535 doar la N (în zid)"
+    },
+    {
+      "id": "subsol_grinda_buc_put",
       "type": "extrude",
       "polygon": [
         {
@@ -31941,12 +32064,12 @@
           "y": 12.2647
         },
         {
-          "x": 7.146,
-          "y": 12.2775
+          "x": 7.0461,
+          "y": 12.2732
         },
         {
-          "x": 7.2615,
-          "y": 9.58
+          "x": 7.1616,
+          "y": 9.5757
         },
         {
           "x": 6.9618,
@@ -31962,10 +32085,10 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "grindă separator casă–scară"
+      "label": "grindă X535 Y590+ (separator scară)"
     },
     {
-      "id": "subsol_grinda_est_pile",
+      "id": "subsol_grinda_est",
       "type": "extrude",
       "polygon": [
         {
@@ -31994,31 +32117,31 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "grindă pe pile est"
+      "label": "grindă X650 est"
     },
     {
-      "id": "subsol_grinda_y645",
+      "id": "subsol_grinda_y400",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6166,
-          "y": 11.4905
+          "x": 1.6198,
+          "y": 13.9428
         },
         {
-          "x": 5.1214,
-          "y": 11.6404
+          "x": 4.6171,
+          "y": 14.0711
         },
         {
-          "x": 5.13,
-          "y": 11.4406
+          "x": 4.6256,
+          "y": 13.8712
         },
         {
-          "x": 1.6252,
-          "y": 11.2906
+          "x": 1.6284,
+          "y": 13.743
         },
         {
-          "x": 1.6166,
-          "y": 11.4905
+          "x": 1.6198,
+          "y": 13.9428
         }
       ],
       "z0_m": -0.7,
@@ -32026,7 +32149,71 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "grindă Y645 sud dorm"
+      "label": "grindă Y400 (oprit la perete comun — nu traversează living)"
+    },
+    {
+      "id": "subsol_grinda_y440",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.6342,
+          "y": 13.6714
+        },
+        {
+          "x": 7.9312,
+          "y": 13.8125
+        },
+        {
+          "x": 7.9397,
+          "y": 13.6127
+        },
+        {
+          "x": 4.6427,
+          "y": 13.4716
+        },
+        {
+          "x": 4.6342,
+          "y": 13.6714
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "grindă Y440 (N living sub palier)"
+    },
+    {
+      "id": "subsol_grinda_y645",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.7245,
+          "y": 11.4951
+        },
+        {
+          "x": 4.7218,
+          "y": 11.6233
+        },
+        {
+          "x": 4.7303,
+          "y": 11.4235
+        },
+        {
+          "x": 1.7331,
+          "y": 11.2953
+        },
+        {
+          "x": 1.7245,
+          "y": 11.4951
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "grindă Y645 dorm S"
     },
     {
       "id": "subsol_grinda_y830",
@@ -32058,7 +32245,7 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "grindă Y830 sud intrare"
+      "label": "grindă Y830 sud buc"
     },
     {
       "id": "subsol_fg_n",
@@ -32090,7 +32277,7 @@
       "color": "#5e5a54",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "fundație N sub tronson (ipoteză)"
+      "label": "grindă fundație N (ipoteză)"
     },
     {
       "id": "subsol_fg_w",
@@ -32122,7 +32309,7 @@
       "color": "#5e5a54",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "fundație W sub tronson (ipoteză)"
+      "label": "grindă fundație W (ipoteză)"
     },
     {
       "id": "subsol_fg_e535",
@@ -32154,7 +32341,7 @@
       "color": "#5e5a54",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "fundație casă–scară (ipoteză)"
+      "label": "grindă fundație X535 (ipoteză)"
     },
     {
       "id": "subsol_fg_e650",
@@ -32186,7 +32373,7 @@
       "color": "#5e5a54",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "fundație est pile (ipoteză)"
+      "label": "grindă fundație X650 (ipoteză)"
     },
     {
       "id": "subsol_fg_s",
@@ -32218,39 +32405,7 @@
       "color": "#5e5a54",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "fundație S dorm (ipoteză)"
-    },
-    {
-      "id": "subsol_fg_s_intrare",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 5.2006,
-          "y": 9.7921
-        },
-        {
-          "x": 6.949,
-          "y": 9.8669
-        },
-        {
-          "x": 6.9575,
-          "y": 9.6671
-        },
-        {
-          "x": 5.2091,
-          "y": 9.5923
-        },
-        {
-          "x": 5.2006,
-          "y": 9.7921
-        }
-      ],
-      "z0_m": -3.1,
-      "z1_m": -2.65,
-      "color": "#5e5a54",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "fundație S intrare (ipoteză)"
+      "label": "grindă fundație S dorm (ipoteză)"
     },
     {
       "id": "subsol_zid_perim_n",
@@ -32425,12 +32580,12 @@
           "y": 17.9723
         },
         {
-          "x": 7.083,
-          "y": 13.7512
+          "x": 7.098,
+          "y": 13.4015
         },
         {
-          "x": 6.7833,
-          "y": 13.7383
+          "x": 6.7982,
+          "y": 13.3887
         },
         {
           "x": 6.6027,
@@ -32639,24 +32794,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.7929,
-          "y": 13.5135
+          "x": 6.8079,
+          "y": 13.1639
         },
         {
-          "x": 7.0926,
-          "y": 13.5264
+          "x": 7.1076,
+          "y": 13.1767
         },
         {
-          "x": 7.1354,
-          "y": 12.5273
+          "x": 7.1503,
+          "y": 12.1776
         },
         {
-          "x": 6.8356,
-          "y": 12.5145
+          "x": 6.8506,
+          "y": 12.1648
         },
         {
-          "x": 6.7929,
-          "y": 13.5135
+          "x": 6.8079,
+          "y": 13.1639
         }
       ],
       "z0_m": -2.65,
@@ -32725,24 +32880,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.7886,
-          "y": 13.6135
+          "x": 6.8036,
+          "y": 13.2638
         },
         {
-          "x": 7.0883,
-          "y": 13.6263
+          "x": 7.1033,
+          "y": 13.2766
         },
         {
-          "x": 7.0926,
-          "y": 13.5264
+          "x": 7.1076,
+          "y": 13.1767
         },
         {
-          "x": 6.7929,
-          "y": 13.5135
+          "x": 6.8079,
+          "y": 13.1639
         },
         {
-          "x": 6.7886,
-          "y": 13.6135
+          "x": 6.8036,
+          "y": 13.2638
         }
       ],
       "z0_m": -3.1,
@@ -32757,12 +32912,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.8356,
-          "y": 12.5145
+          "x": 6.8506,
+          "y": 12.1648
         },
         {
-          "x": 7.1354,
-          "y": 12.5273
+          "x": 7.1503,
+          "y": 12.1776
         },
         {
           "x": 7.2615,
@@ -32773,8 +32928,8 @@
           "y": 9.5672
         },
         {
-          "x": 6.8356,
-          "y": 12.5145
+          "x": 6.8506,
+          "y": 12.1648
         }
       ],
       "z0_m": -3.1,
@@ -32789,24 +32944,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.7929,
-          "y": 13.5135
+          "x": 6.8079,
+          "y": 13.1639
         },
         {
-          "x": 7.0926,
-          "y": 13.5264
+          "x": 7.1076,
+          "y": 13.1767
         },
         {
-          "x": 7.1354,
-          "y": 12.5273
+          "x": 7.1503,
+          "y": 12.1776
         },
         {
-          "x": 6.8356,
-          "y": 12.5145
+          "x": 6.8506,
+          "y": 12.1648
         },
         {
-          "x": 6.7929,
-          "y": 13.5135
+          "x": 6.8079,
+          "y": 13.1639
         }
       ],
       "z0_m": -0.5,
@@ -32814,7 +32969,7 @@
       "color": "#7a7670",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "buiandrug beton ușă hol→puț Y465–565"
+      "label": "buiandrug beton ușă hol→puț Y500–600"
     },
     {
       "id": "subsol_fantana_beton_w",
@@ -32853,12 +33008,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 8.0874,
-          "y": 13.669
+          "x": 8.1024,
+          "y": 13.3193
         },
         {
-          "x": 8.2373,
-          "y": 13.6754
+          "x": 8.2523,
+          "y": 13.3258
         },
         {
           "x": 8.4856,
@@ -32869,8 +33024,8 @@
           "y": 7.8643
         },
         {
-          "x": 8.0874,
-          "y": 13.669
+          "x": 8.1024,
+          "y": 13.3193
         }
       ],
       "z0_m": -3.1,
@@ -32885,24 +33040,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.7833,
-          "y": 13.7383
+          "x": 6.7982,
+          "y": 13.3887
         },
         {
-          "x": 8.232,
-          "y": 13.8003
+          "x": 8.2469,
+          "y": 13.4506
         },
         {
-          "x": 8.2373,
-          "y": 13.6754
+          "x": 8.2523,
+          "y": 13.3258
         },
         {
-          "x": 6.7886,
-          "y": 13.6135
+          "x": 6.8036,
+          "y": 13.2638
         },
         {
-          "x": 6.7833,
-          "y": 13.7383
+          "x": 6.7982,
+          "y": 13.3887
         }
       ],
       "z0_m": -3.1,
@@ -32910,7 +33065,7 @@
       "color": "#7a7670",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "diafragmă beton N @ Y442.5–455"
+      "label": "diafragmă beton N @ Y477.5–490"
     },
     {
       "id": "subsol_grindă_planșeu_y590",
@@ -33498,6 +33653,7 @@
       "z0_m": -1.1822222222222223,
       "z1_m": -1.1222222222222222,
       "color": "#9aa3ad",
+      "site_layer": "structura",
       "label": "scară subsol călcare 1/8"
     },
     {
@@ -33528,6 +33684,7 @@
       "z0_m": -1.3544444444444446,
       "z1_m": -1.2944444444444445,
       "color": "#8a93a0",
+      "site_layer": "structura",
       "label": "scară subsol călcare 2/8"
     },
     {
@@ -33558,6 +33715,7 @@
       "z0_m": -1.5266666666666666,
       "z1_m": -1.4666666666666666,
       "color": "#9aa3ad",
+      "site_layer": "structura",
       "label": "scară subsol călcare 3/8"
     },
     {
@@ -33588,6 +33746,7 @@
       "z0_m": -1.698888888888889,
       "z1_m": -1.6388888888888888,
       "color": "#8a93a0",
+      "site_layer": "structura",
       "label": "scară subsol călcare 4/8"
     },
     {
@@ -33618,6 +33777,7 @@
       "z0_m": -1.8711111111111112,
       "z1_m": -1.8111111111111111,
       "color": "#9aa3ad",
+      "site_layer": "structura",
       "label": "scară subsol călcare 5/8"
     },
     {
@@ -33648,6 +33808,7 @@
       "z0_m": -2.043333333333333,
       "z1_m": -1.9833333333333332,
       "color": "#8a93a0",
+      "site_layer": "structura",
       "label": "scară subsol călcare 6/8"
     },
     {
@@ -33678,6 +33839,7 @@
       "z0_m": -2.2155555555555555,
       "z1_m": -2.1555555555555554,
       "color": "#9aa3ad",
+      "site_layer": "structura",
       "label": "scară subsol călcare 7/8"
     },
     {
@@ -33708,39 +33870,8 @@
       "z0_m": -2.3877777777777776,
       "z1_m": -2.3277777777777775,
       "color": "#8a93a0",
-      "label": "scară subsol călcare 8/8"
-    },
-    {
-      "id": "subsol_scara_placa_continua",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1503,
-          "y": 12.1776
-        },
-        {
-          "x": 8.1494,
-          "y": 12.2203
-        },
-        {
-          "x": 8.235,
-          "y": 10.2222
-        },
-        {
-          "x": 7.2359,
-          "y": 10.1794
-        },
-        {
-          "x": 7.1503,
-          "y": 12.1776
-        }
-      ],
-      "z0_m": -2.55,
-      "z1_m": -1.1822222222222223,
-      "color": "#5a6570",
-      "opacity": 0.55,
       "site_layer": "structura",
-      "label": "Placă scară beci continuă (studiu; reazeme = calcul; clear sub podest de reverificat)"
+      "label": "scară subsol călcare 8/8"
     },
     {
       "id": "subsol_scara_riser_final",
@@ -33778,12 +33909,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.7886,
-          "y": 13.6135
+          "x": 6.8036,
+          "y": 13.2638
         },
         {
-          "x": 8.2373,
-          "y": 13.6754
+          "x": 8.2523,
+          "y": 13.3258
         },
         {
           "x": 8.2993,
@@ -33794,15 +33925,15 @@
           "y": 12.1648
         },
         {
-          "x": 6.7886,
-          "y": 13.6135
+          "x": 6.8036,
+          "y": 13.2638
         }
       ],
       "z0_m": -2.65,
       "z1_m": -2.5,
       "color": "#e8c56a",
       "site_layer": "structura",
-      "label": "Y455–600 (145 cm): extensie N pentru ușă înaintea grinzii; Y455–590 sub planșeu; Y590–600 în puț; zid N @ Y442.5"
+      "label": "Y490–600 (110 cm) studiu; Y490–590 sub planșeu; Y590–600 în puț; zid N @ Y477.5"
     },
     {
       "id": "subsol_eq_invertor_deye_15kw",
@@ -34084,61 +34215,6 @@
       "label": "Unitate degivrare"
     },
     {
-      "id": "sandwich_intrados_finish",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 1.249,
-          "y": 17.9306
-        },
-        {
-          "x": 8.0428,
-          "y": 18.2213
-        },
-        {
-          "x": 8.4105,
-          "y": 9.6291
-        },
-        {
-          "x": 1.6167,
-          "y": 9.3385
-        },
-        {
-          "x": 1.249,
-          "y": 17.9306
-        }
-      ],
-      "holes": [
-        [
-          {
-            "x": 7.1669,
-            "y": 12.2584
-          },
-          {
-            "x": 7.2806,
-            "y": 9.6008
-          },
-          {
-            "x": 8.3896,
-            "y": 9.6483
-          },
-          {
-            "x": 8.2759,
-            "y": 12.3058
-          },
-          {
-            "x": 7.1669,
-            "y": 12.2584
-          }
-        ]
-      ],
-      "z0_m": -0.3,
-      "z1_m": -0.28,
-      "color": "#cfc8bc",
-      "opacity": 0.35,
-      "label": "sandwich intrados_finish 2 cm (nestructural)"
-    },
-    {
       "id": "sandwich_services_plenum",
       "type": "extrude",
       "polygon": [
@@ -34187,11 +34263,11 @@
           }
         ]
       ],
-      "z0_m": -0.28,
-      "z1_m": -0.2,
+      "z0_m": -0.15,
+      "z1_m": -0.1,
       "color": "#aeb8c4",
       "opacity": 0.35,
-      "label": "sandwich services_plenum 8 cm (nestructural)"
+      "label": "sandwich services_plenum 5 cm (nestructural)"
     },
     {
       "id": "sandwich_insulation",
@@ -34242,11 +34318,11 @@
           }
         ]
       ],
-      "z0_m": 0,
-      "z1_m": 0.05,
+      "z0_m": -0.1,
+      "z1_m": -0.07,
       "color": "#d4c49a",
       "opacity": 0.35,
-      "label": "sandwich insulation 5 cm (nestructural)"
+      "label": "sandwich insulation 3 cm (nestructural)"
     },
     {
       "id": "sandwich_heating_screed_finish",
@@ -34297,8 +34373,8 @@
           }
         ]
       ],
-      "z0_m": 0.05,
-      "z1_m": 0.17,
+      "z0_m": -0.07,
+      "z1_m": 0.05,
       "color": "#c4b8a0",
       "opacity": 0.35,
       "label": "sandwich heating_screed_finish 12 cm (nestructural)"
@@ -34432,7 +34508,7 @@
       "label": "fundație beton E (finit−4.199999999999999, termo 9.2 afară)"
     },
     {
-      "id": "parter_tronson_tronson_n",
+      "id": "parter_stalp_nw",
       "type": "extrude",
       "polygon": [
         {
@@ -34440,12 +34516,12 @@
           "y": 17.8427
         },
         {
-          "x": 7.747,
-          "y": 18.1165
+          "x": 1.5447,
+          "y": 17.8512
         },
         {
-          "x": 7.7556,
-          "y": 17.9167
+          "x": 1.5532,
+          "y": 17.6514
         },
         {
           "x": 1.3534,
@@ -34461,10 +34537,10 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "tronson P tronson_n (20 cm țintă — ipoteză)"
+      "label": "stâlp P nw (20×20 beton)"
     },
     {
-      "id": "etaj_tronson_tronson_n",
+      "id": "etaj_stalp_nw",
       "type": "extrude",
       "polygon": [
         {
@@ -34472,12 +34548,12 @@
           "y": 17.8427
         },
         {
-          "x": 7.747,
-          "y": 18.1165
+          "x": 1.5447,
+          "y": 17.8512
         },
         {
-          "x": 7.7556,
-          "y": 17.9167
+          "x": 1.5532,
+          "y": 17.6514
         },
         {
           "x": 1.3534,
@@ -34493,279 +34569,279 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "tronson E tronson_n"
+      "label": "stâlp E nw"
     },
     {
-      "id": "parter_tronson_tronson_w",
+      "id": "parter_stalp_n_part",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3449,
-          "y": 17.8427
+          "x": 4.45,
+          "y": 17.9755
         },
         {
-          "x": 1.5447,
-          "y": 17.8512
+          "x": 4.6499,
+          "y": 17.984
+        },
+        {
+          "x": 4.6584,
+          "y": 17.7842
+        },
+        {
+          "x": 4.4586,
+          "y": 17.7757
+        },
+        {
+          "x": 4.45,
+          "y": 17.9755
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.05,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P n_part (20×20 beton)"
+    },
+    {
+      "id": "etaj_stalp_n_part",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.45,
+          "y": 17.9755
+        },
+        {
+          "x": 4.6499,
+          "y": 17.984
+        },
+        {
+          "x": 4.6584,
+          "y": 17.7842
+        },
+        {
+          "x": 4.4586,
+          "y": 17.7757
+        },
+        {
+          "x": 4.45,
+          "y": 17.9755
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E n_part"
+    },
+    {
+      "id": "parter_stalp_n_buc",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.5981,
+          "y": 18.0674
+        },
+        {
+          "x": 6.7979,
+          "y": 18.0759
+        },
+        {
+          "x": 6.8064,
+          "y": 17.8761
+        },
+        {
+          "x": 6.6066,
+          "y": 17.8676
+        },
+        {
+          "x": 6.5981,
+          "y": 18.0674
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.05,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P n_buc (20×20 beton)"
+    },
+    {
+      "id": "etaj_stalp_n_buc",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.5981,
+          "y": 18.0674
+        },
+        {
+          "x": 6.7979,
+          "y": 18.0759
+        },
+        {
+          "x": 6.8064,
+          "y": 17.8761
+        },
+        {
+          "x": 6.6066,
+          "y": 17.8676
+        },
+        {
+          "x": 6.5981,
+          "y": 18.0674
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E n_buc"
+    },
+    {
+      "id": "parter_stalp_n_est",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.747,
+          "y": 18.1165
+        },
+        {
+          "x": 7.9468,
+          "y": 18.1251
+        },
+        {
+          "x": 7.9554,
+          "y": 17.9253
+        },
+        {
+          "x": 7.7556,
+          "y": 17.9167
+        },
+        {
+          "x": 7.747,
+          "y": 18.1165
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.05,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P n_est (20×20 beton)"
+    },
+    {
+      "id": "etaj_stalp_n_est",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.747,
+          "y": 18.1165
+        },
+        {
+          "x": 7.9468,
+          "y": 18.1251
+        },
+        {
+          "x": 7.9554,
+          "y": 17.9253
+        },
+        {
+          "x": 7.7556,
+          "y": 17.9167
+        },
+        {
+          "x": 7.747,
+          "y": 18.1165
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E n_est"
+    },
+    {
+      "id": "parter_stalp_w_mid",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5119,
+          "y": 13.9382
+        },
+        {
+          "x": 1.7117,
+          "y": 13.9468
+        },
+        {
+          "x": 1.7203,
+          "y": 13.747
+        },
+        {
+          "x": 1.5205,
+          "y": 13.7384
+        },
+        {
+          "x": 1.5119,
+          "y": 13.9382
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.05,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P w_mid (20×20 beton)"
+    },
+    {
+      "id": "etaj_stalp_w_mid",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5119,
+          "y": 13.9382
+        },
+        {
+          "x": 1.7117,
+          "y": 13.9468
+        },
+        {
+          "x": 1.7203,
+          "y": 13.747
+        },
+        {
+          "x": 1.5205,
+          "y": 13.7384
+        },
+        {
+          "x": 1.5119,
+          "y": 13.9382
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E w_mid"
+    },
+    {
+      "id": "parter_stalp_w_dorm",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6166,
+          "y": 11.4905
         },
         {
           "x": 1.8164,
           "y": 11.499
         },
         {
-          "x": 1.6166,
-          "y": 11.4905
-        },
-        {
-          "x": 1.3449,
-          "y": 17.8427
-        }
-      ],
-      "z0_m": -0.3,
-      "z1_m": 3.05,
-      "color": "#6e6a64",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "tronson P tronson_w (20 cm țintă — ipoteză)"
-    },
-    {
-      "id": "etaj_tronson_tronson_w",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 1.3449,
-          "y": 17.8427
-        },
-        {
-          "x": 1.5447,
-          "y": 17.8512
-        },
-        {
-          "x": 1.8164,
-          "y": 11.499
-        },
-        {
-          "x": 1.6166,
-          "y": 11.4905
-        },
-        {
-          "x": 1.3449,
-          "y": 17.8427
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#6e6a64",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "tronson E tronson_w"
-    },
-    {
-      "id": "parter_tronson_pila_est_n_geam",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.7559,
-          "y": 17.9087
-        },
-        {
-          "x": 7.9557,
-          "y": 17.9173
-        },
-        {
-          "x": 7.9878,
-          "y": 17.168
-        },
-        {
-          "x": 7.788,
-          "y": 17.1594
-        },
-        {
-          "x": 7.7559,
-          "y": 17.9087
-        }
-      ],
-      "z0_m": -0.3,
-      "z1_m": 3.05,
-      "color": "#6e6a64",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "tronson P pila_est_n_geam (20 cm țintă — ipoteză)"
-    },
-    {
-      "id": "etaj_tronson_pila_est_n_geam",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.7559,
-          "y": 17.9087
-        },
-        {
-          "x": 7.9557,
-          "y": 17.9173
-        },
-        {
-          "x": 7.9878,
-          "y": 17.168
-        },
-        {
-          "x": 7.788,
-          "y": 17.1594
-        },
-        {
-          "x": 7.7559,
-          "y": 17.9087
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#6e6a64",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "tronson E pila_est_n_geam"
-    },
-    {
-      "id": "parter_tronson_pila_est_s_geam",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.8756,
-          "y": 15.1113
-        },
-        {
-          "x": 8.0754,
-          "y": 15.1198
-        },
-        {
-          "x": 8.131,
-          "y": 13.821
-        },
-        {
-          "x": 7.9312,
-          "y": 13.8125
-        },
-        {
-          "x": 7.8756,
-          "y": 15.1113
-        }
-      ],
-      "z0_m": -0.3,
-      "z1_m": 3.05,
-      "color": "#6e6a64",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "tronson P pila_est_s_geam (20 cm țintă — ipoteză)"
-    },
-    {
-      "id": "etaj_tronson_pila_est_s_geam",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.8756,
-          "y": 15.1113
-        },
-        {
-          "x": 8.0754,
-          "y": 15.1198
-        },
-        {
-          "x": 8.131,
-          "y": 13.821
-        },
-        {
-          "x": 7.9312,
-          "y": 13.8125
-        },
-        {
-          "x": 7.8756,
-          "y": 15.1113
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#6e6a64",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "tronson E pila_est_s_geam"
-    },
-    {
-      "id": "parter_tronson_pila_est_sub_palier",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.9312,
-          "y": 13.8125
-        },
-        {
-          "x": 8.131,
-          "y": 13.821
-        },
-        {
-          "x": 8.1951,
-          "y": 12.3224
-        },
-        {
-          "x": 7.9953,
-          "y": 12.3138
-        },
-        {
-          "x": 7.9312,
-          "y": 13.8125
-        }
-      ],
-      "z0_m": -0.3,
-      "z1_m": 3.05,
-      "color": "#6e6a64",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "tronson P pila_est_sub_palier (20 cm țintă — ipoteză)"
-    },
-    {
-      "id": "etaj_tronson_pila_est_sub_palier",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.9312,
-          "y": 13.8125
-        },
-        {
-          "x": 8.131,
-          "y": 13.821
-        },
-        {
-          "x": 8.1951,
-          "y": 12.3224
-        },
-        {
-          "x": 7.9953,
-          "y": 12.3138
-        },
-        {
-          "x": 7.9312,
-          "y": 13.8125
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#6e6a64",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "tronson E pila_est_sub_palier"
-    },
-    {
-      "id": "parter_tronson_pila_sud_dorm_w",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 1.6166,
-          "y": 11.4905
-        },
-        {
-          "x": 2.7236,
-          "y": 11.5378
-        },
-        {
-          "x": 2.7322,
-          "y": 11.338
+          "x": 1.825,
+          "y": 11.2992
         },
         {
           "x": 1.6252,
@@ -34781,10 +34857,10 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "tronson P pila_sud_dorm_w (20 cm țintă — ipoteză)"
+      "label": "stâlp P w_dorm (20×20 beton)"
     },
     {
-      "id": "etaj_tronson_pila_sud_dorm_w",
+      "id": "etaj_stalp_w_dorm",
       "type": "extrude",
       "polygon": [
         {
@@ -34792,12 +34868,12 @@
           "y": 11.4905
         },
         {
-          "x": 2.7236,
-          "y": 11.5378
+          "x": 1.8164,
+          "y": 11.499
         },
         {
-          "x": 2.7322,
-          "y": 11.338
+          "x": 1.825,
+          "y": 11.2992
         },
         {
           "x": 1.6252,
@@ -34813,31 +34889,31 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "tronson E pila_sud_dorm_w"
+      "label": "stâlp E w_dorm"
     },
     {
-      "id": "parter_tronson_pila_sud_dorm_e",
+      "id": "parter_stalp_part_dorm",
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.2222,
-          "y": 11.6019
+          "x": 4.7218,
+          "y": 11.6233
         },
         {
-          "x": 5.1214,
-          "y": 11.6404
+          "x": 4.9216,
+          "y": 11.6318
         },
         {
-          "x": 5.13,
-          "y": 11.4406
+          "x": 4.9302,
+          "y": 11.432
         },
         {
-          "x": 4.2308,
-          "y": 11.4021
+          "x": 4.7303,
+          "y": 11.4235
         },
         {
-          "x": 4.2222,
-          "y": 11.6019
+          "x": 4.7218,
+          "y": 11.6233
         }
       ],
       "z0_m": -0.3,
@@ -34845,31 +34921,31 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "tronson P pila_sud_dorm_e (20 cm țintă — ipoteză)"
+      "label": "stâlp P part_dorm (20×20 beton)"
     },
     {
-      "id": "etaj_tronson_pila_sud_dorm_e",
+      "id": "etaj_stalp_part_dorm",
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.2222,
-          "y": 11.6019
+          "x": 4.7218,
+          "y": 11.6233
         },
         {
-          "x": 5.1214,
-          "y": 11.6404
+          "x": 4.9216,
+          "y": 11.6318
         },
         {
-          "x": 5.13,
-          "y": 11.4406
+          "x": 4.9302,
+          "y": 11.432
         },
         {
-          "x": 4.2308,
-          "y": 11.4021
+          "x": 4.7303,
+          "y": 11.4235
         },
         {
-          "x": 4.2222,
-          "y": 11.6019
+          "x": 4.7218,
+          "y": 11.6233
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -34877,10 +34953,138 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "tronson E pila_sud_dorm_e"
+      "label": "stâlp E part_dorm"
     },
     {
-      "id": "parter_tronson_tronson_sud_intrare",
+      "id": "parter_stalp_est_y440",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.9312,
+          "y": 13.8125
+        },
+        {
+          "x": 8.131,
+          "y": 13.821
+        },
+        {
+          "x": 8.1395,
+          "y": 13.6212
+        },
+        {
+          "x": 7.9397,
+          "y": 13.6127
+        },
+        {
+          "x": 7.9312,
+          "y": 13.8125
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.05,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P est_y440 (20×20 beton)"
+    },
+    {
+      "id": "etaj_stalp_est_y440",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.9312,
+          "y": 13.8125
+        },
+        {
+          "x": 8.131,
+          "y": 13.821
+        },
+        {
+          "x": 8.1395,
+          "y": 13.6212
+        },
+        {
+          "x": 7.9397,
+          "y": 13.6127
+        },
+        {
+          "x": 7.9312,
+          "y": 13.8125
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E est_y440"
+    },
+    {
+      "id": "parter_stalp_est_y590",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.9953,
+          "y": 12.3138
+        },
+        {
+          "x": 8.1951,
+          "y": 12.3224
+        },
+        {
+          "x": 8.2036,
+          "y": 12.1226
+        },
+        {
+          "x": 8.0038,
+          "y": 12.114
+        },
+        {
+          "x": 7.9953,
+          "y": 12.3138
+        }
+      ],
+      "z0_m": -0.3,
+      "z1_m": 3.05,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp P est_y590 (20×20 beton)"
+    },
+    {
+      "id": "etaj_stalp_est_y590",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.9953,
+          "y": 12.3138
+        },
+        {
+          "x": 8.1951,
+          "y": 12.3224
+        },
+        {
+          "x": 8.2036,
+          "y": 12.1226
+        },
+        {
+          "x": 8.0038,
+          "y": 12.114
+        },
+        {
+          "x": 7.9953,
+          "y": 12.3138
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E est_y590"
+    },
+    {
+      "id": "parter_stalp_s_buc_w",
       "type": "extrude",
       "polygon": [
         {
@@ -34888,12 +35092,12 @@
           "y": 9.7921
         },
         {
-          "x": 6.949,
-          "y": 9.8669
+          "x": 5.4004,
+          "y": 9.8006
         },
         {
-          "x": 6.9575,
-          "y": 9.6671
+          "x": 5.4089,
+          "y": 9.6008
         },
         {
           "x": 5.2091,
@@ -34909,10 +35113,10 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "tronson P tronson_sud_intrare (20 cm țintă — ipoteză)"
+      "label": "stâlp P s_buc_w (20×20 beton)"
     },
     {
-      "id": "etaj_tronson_tronson_sud_intrare",
+      "id": "etaj_stalp_s_buc_w",
       "type": "extrude",
       "polygon": [
         {
@@ -34920,12 +35124,12 @@
           "y": 9.7921
         },
         {
-          "x": 6.949,
-          "y": 9.8669
+          "x": 5.4004,
+          "y": 9.8006
         },
         {
-          "x": 6.9575,
-          "y": 9.6671
+          "x": 5.4089,
+          "y": 9.6008
         },
         {
           "x": 5.2091,
@@ -34941,31 +35145,31 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "tronson E tronson_sud_intrare"
+      "label": "stâlp E s_buc_w"
     },
     {
-      "id": "parter_tronson_reazem_casa_scara",
+      "id": "parter_stalp_s_buc_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.8463,
-          "y": 12.2647
+          "x": 6.949,
+          "y": 9.8669
         },
         {
-          "x": 7.146,
-          "y": 12.2775
+          "x": 7.1488,
+          "y": 9.8754
         },
         {
-          "x": 7.2615,
-          "y": 9.58
+          "x": 7.1573,
+          "y": 9.6756
         },
         {
-          "x": 6.9618,
-          "y": 9.5672
+          "x": 6.9575,
+          "y": 9.6671
         },
         {
-          "x": 6.8463,
-          "y": 12.2647
+          "x": 6.949,
+          "y": 9.8669
         }
       ],
       "z0_m": -0.3,
@@ -34973,10 +35177,42 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "tronson P reazem_casa_scara (20 cm țintă — ipoteză)"
+      "label": "stâlp P s_buc_e (20×20 beton)"
     },
     {
-      "id": "etaj_tronson_reazem_casa_scara",
+      "id": "etaj_stalp_s_buc_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.949,
+          "y": 9.8669
+        },
+        {
+          "x": 7.1488,
+          "y": 9.8754
+        },
+        {
+          "x": 7.1573,
+          "y": 9.6756
+        },
+        {
+          "x": 6.9575,
+          "y": 9.6671
+        },
+        {
+          "x": 6.949,
+          "y": 9.8669
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E s_buc_e"
+    },
+    {
+      "id": "etaj_stalp_buc_y590",
       "type": "extrude",
       "polygon": [
         {
@@ -34984,16 +35220,16 @@
           "y": 12.2647
         },
         {
-          "x": 7.146,
-          "y": 12.2775
+          "x": 7.0461,
+          "y": 12.2732
         },
         {
-          "x": 7.2615,
-          "y": 9.58
+          "x": 7.0547,
+          "y": 12.0734
         },
         {
-          "x": 6.9618,
-          "y": 9.5672
+          "x": 6.8549,
+          "y": 12.0649
         },
         {
           "x": 6.8463,
@@ -35005,7 +35241,103 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "tronson E reazem_casa_scara"
+      "label": "stâlp E buc_y590 (nu pe P)"
+    },
+    {
+      "id": "etaj_stalp_part_mid",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.697,
+          "y": 14.0745
+        },
+        {
+          "x": 4.8968,
+          "y": 14.083
+        },
+        {
+          "x": 4.9054,
+          "y": 13.8832
+        },
+        {
+          "x": 4.7056,
+          "y": 13.8747
+        },
+        {
+          "x": 4.697,
+          "y": 14.0745
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E part_mid (nu pe P)"
+    },
+    {
+      "id": "etaj_stalp_pal_nw",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.795,
+          "y": 13.4636
+        },
+        {
+          "x": 6.9948,
+          "y": 13.4721
+        },
+        {
+          "x": 7.0034,
+          "y": 13.2723
+        },
+        {
+          "x": 6.8036,
+          "y": 13.2638
+        },
+        {
+          "x": 6.795,
+          "y": 13.4636
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E-only pal_nw (ipoteză transfer — neconfirmat)"
+    },
+    {
+      "id": "etaj_stalp_pal_ne",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.944,
+          "y": 13.5127
+        },
+        {
+          "x": 8.1438,
+          "y": 13.5213
+        },
+        {
+          "x": 8.1523,
+          "y": 13.3215
+        },
+        {
+          "x": 7.9525,
+          "y": 13.3129
+        },
+        {
+          "x": 7.944,
+          "y": 13.5127
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp E-only pal_ne (ipoteză transfer — neconfirmat)"
     },
     {
       "id": "parter_centura_n",
@@ -35037,7 +35369,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură P N (contur)"
+      "label": "centură P N"
     },
     {
       "id": "parter_centura_w",
@@ -35069,10 +35401,42 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură P W (contur)"
+      "label": "centură P W"
     },
     {
-      "id": "parter_centura_casa_scara",
+      "id": "parter_centura_x320",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.45,
+          "y": 17.9755
+        },
+        {
+          "x": 4.6499,
+          "y": 17.984
+        },
+        {
+          "x": 4.9216,
+          "y": 11.6318
+        },
+        {
+          "x": 4.7218,
+          "y": 11.6233
+        },
+        {
+          "x": 4.45,
+          "y": 17.9755
+        }
+      ],
+      "z0_m": 2.6999999999999997,
+      "z1_m": 3.05,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "centură P ~perete comun"
+    },
+    {
+      "id": "parter_centura_x535_put",
       "type": "extrude",
       "polygon": [
         {
@@ -35080,12 +35444,12 @@
           "y": 12.2647
         },
         {
-          "x": 7.146,
-          "y": 12.2775
+          "x": 7.0461,
+          "y": 12.2732
         },
         {
-          "x": 7.2615,
-          "y": 9.58
+          "x": 7.1616,
+          "y": 9.5757
         },
         {
           "x": 6.9618,
@@ -35101,10 +35465,10 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură P casă–scară"
+      "label": "centură P X535 doar pe buc_est Y590+"
     },
     {
-      "id": "parter_centura_est",
+      "id": "parter_centura_x650_n",
       "type": "extrude",
       "polygon": [
         {
@@ -35116,12 +35480,12 @@
           "y": 18.1251
         },
         {
-          "x": 8.1951,
-          "y": 12.3224
+          "x": 8.131,
+          "y": 13.821
         },
         {
-          "x": 7.9953,
-          "y": 12.3138
+          "x": 7.9312,
+          "y": 13.8125
         },
         {
           "x": 7.747,
@@ -35133,15 +35497,79 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură P est (pile)"
+      "label": "centură P X650 N (oprit @ Y440)"
     },
     {
-      "id": "parter_centura_y590_put",
+      "id": "parter_centura_x650_s",
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.1375,
-          "y": 12.4773
+          "x": 7.9953,
+          "y": 12.3138
+        },
+        {
+          "x": 8.1951,
+          "y": 12.3224
+        },
+        {
+          "x": 8.2977,
+          "y": 9.9246
+        },
+        {
+          "x": 8.0979,
+          "y": 9.916
+        },
+        {
+          "x": 7.9953,
+          "y": 12.3138
+        }
+      ],
+      "z0_m": 2.6999999999999997,
+      "z1_m": 3.05,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "centură P X650 S (de la Y590)"
+    },
+    {
+      "id": "parter_centura_y440",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.6342,
+          "y": 13.6714
+        },
+        {
+          "x": 7.9312,
+          "y": 13.8125
+        },
+        {
+          "x": 7.9397,
+          "y": 13.6127
+        },
+        {
+          "x": 4.6427,
+          "y": 13.4716
+        },
+        {
+          "x": 4.6342,
+          "y": 13.6714
+        }
+      ],
+      "z0_m": 2.6999999999999997,
+      "z1_m": 3.05,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "centură P Y440 (N living sub palier)"
+    },
+    {
+      "id": "parter_centura_y590",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.6897,
+          "y": 12.3726
         },
         {
           "x": 8.2864,
@@ -35152,12 +35580,12 @@
           "y": 12.3267
         },
         {
-          "x": 7.146,
-          "y": 12.2775
+          "x": 4.6983,
+          "y": 12.1728
         },
         {
-          "x": 7.1375,
-          "y": 12.4773
+          "x": 4.6897,
+          "y": 12.3726
         }
       ],
       "z0_m": 2.6999999999999997,
@@ -35165,7 +35593,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură P muchie puț Y590"
+      "label": "centură P Y590 (muchie, pe falie)"
     },
     {
       "id": "parter_centura_y645",
@@ -35176,12 +35604,12 @@
           "y": 11.4905
         },
         {
-          "x": 5.1214,
-          "y": 11.6404
+          "x": 4.7218,
+          "y": 11.6233
         },
         {
-          "x": 5.13,
-          "y": 11.4406
+          "x": 4.7303,
+          "y": 11.4235
         },
         {
           "x": 1.6252,
@@ -35285,7 +35713,7 @@
       "color": "#8b8680",
       "opacity": 0.5,
       "site_layer": "structura",
-      "label": "planșeu structural 15 cm (neconfirmat fără reazem int.; buildup pard. 12 cm separat)"
+      "label": "planșeu etaj structural 15 cm (nu buildup pardoseală 12 cm)"
     },
     {
       "id": "etaj_centura_n",
@@ -35352,28 +35780,28 @@
       "label": "centură E W"
     },
     {
-      "id": "etaj_centura_casa_scara",
+      "id": "etaj_centura_x535",
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.8463,
-          "y": 12.2647
+          "x": 6.5981,
+          "y": 18.0674
         },
         {
-          "x": 7.146,
-          "y": 12.2775
+          "x": 6.7979,
+          "y": 18.0759
         },
         {
-          "x": 7.2615,
-          "y": 9.58
+          "x": 7.1616,
+          "y": 9.5757
         },
         {
           "x": 6.9618,
           "y": 9.5672
         },
         {
-          "x": 6.8463,
-          "y": 12.2647
+          "x": 6.5981,
+          "y": 18.0674
         }
       ],
       "z0_m": 5.46,
@@ -35381,10 +35809,10 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E casă–scară"
+      "label": "centură E X535 puț"
     },
     {
-      "id": "etaj_centura_est",
+      "id": "etaj_centura_x650",
       "type": "extrude",
       "polygon": [
         {
@@ -35413,7 +35841,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E est"
+      "label": "centură E X650"
     },
     {
       "id": "etaj_centura_y470",
@@ -35445,7 +35873,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E Y470 N vestibul"
+      "label": "centură E Y470 N palier"
     },
     {
       "id": "etaj_centura_y590",
@@ -35477,7 +35905,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E Y590 S vestibul"
+      "label": "centură E Y590 S palier / N puț"
     },
     {
       "id": "acoperis_structura_corp",
