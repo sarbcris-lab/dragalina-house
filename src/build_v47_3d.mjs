@@ -190,6 +190,37 @@ function main() {
   const shaftRef = bmEarly?.open_shaft_cm || r2ref;
   const ewCm = v47.envelope_cm.ew;
   const nsCm = v47.envelope_cm.ns;
+  /**
+   * Grilă structurală aliniată pe planurile P/E (intersecții pereți).
+   * Living sub palier liber: X535–650 × Y470–590 — FĂRĂ stâlpi pe P în clar.
+   * Reazeme palier: centuri pe contur + stâlpi E doar de la placa etaj (nu prin P).
+   */
+  const COL = 30;
+  const structNodesContinuous = [
+    // nord
+    { id: "nw", x: 0, y: 0 },
+    { id: "n_part", x: 320, y: 0 }, // ~perete_comun
+    { id: "n_buc", x: 535, y: 0 }, // bandă scară
+    { id: "n_est", x: 650, y: 0 }, // est_living N
+    // mijloc
+    { id: "w_mid", x: 0, y: 400 },
+    { id: "part_mid", x: 320, y: 400 },
+    { id: "buc_n", x: 535, y: 400 }, // N de living-sub-palier (OK)
+    // sud dorm / muchie living
+    { id: "w_dorm", x: 0, y: 645 }, // dormitor_sud
+    { id: "part_dorm", x: 320, y: 645 },
+    { id: "buc_y590", x: 535, y: 590 }, // sud living liber / nord puț
+    { id: "est_y440", x: 650, y: 440 }, // sfârșit est_living — N de clar
+    { id: "est_y590", x: 650, y: 590 }, // S de clar, în bandă est
+    // fațadă sud buc
+    { id: "s_buc_w", x: 360, y: 830 },
+    { id: "s_buc_e", x: 535, y: 830 },
+  ];
+  // Doar etaj: reazeme palier în ziduri (nu coboară prin living P)
+  const structNodesEtajOnly = [
+    { id: "pal_nw", x: 535, y: 470 }, // buc_est_etaj @ N palier
+    { id: "pal_ne", x: 650, y: 470 }, // în zid est / living_palier — clar X<650 liber
+  ];
   // până la fațada est (Dragalina), nu inset 670
   const pitX = shaftRef.x;
   const pitX1 = ewCm;
@@ -1592,55 +1623,41 @@ function main() {
         pushBeton(id, x, y, dx, dy, zBeam0, zBeam1, label, "#6a6358");
       }
 
-      // —— SCHELT BETON LEGAT (camere încălzite + reazem puț) ——
-      // Noduri: CT / depozit / hol / axă buc_est (X535)
-      const grid = {
-        nw: { x: 0, y: 0 },
-        n_mid: { x: 320, y: 0 },
-        ne: { x: 535, y: 0 },
-        w_ct: { x: 0, y: 400 },
-        e_ct: { x: 535, y: 400 },
-        sw: { x: 0, y: 630 },
-        rein: { x: 320, y: 630 },
-        se630: { x: 535, y: 630 },
-        s_hol_w: { x: 320, y: 685 },
-        s_hol_e: { x: 535, y: 685 },
-      };
-      for (const [k, p] of Object.entries(grid)) {
-        pushStalp(`subsol_stalp_${k}`, p.x, p.y, `stâlp ${k}`);
+      // —— SCHELT BETON — aceleași noduri ca P/E (subsol adaptat după planul superior)
+      for (const p of structNodesContinuous) {
+        pushStalp(`subsol_stalp_${p.id}`, p.x, p.y, `stâlp ${p.id}`);
       }
-      // Grizi perimetru + legături (între fețele stâlpilor)
-      pushGrindă("subsol_grinda_n", col, 0, 535 - col, col, "grindă N CT");
-      pushGrindă("subsol_grinda_w", 0, col, col, 630 - col, "grindă W");
-      pushGrindă("subsol_grinda_s_dep", col, 630, 320 - col, col, "grindă S depozit");
-      pushGrindă("subsol_grinda_s_hol", 320, 685, 535 - 320, col, "grindă S hol");
-      pushGrindă("subsol_grinda_e_ct", 535, col, col, 685 - col, "grindă E (=buc_est / reazem puț)");
-      pushGrindă("subsol_grinda_reintrant_w", 320, 630 + col, col, 685 - 630 - col, "grindă hol vest reintrant");
-      pushGrindă("subsol_grinda_ct_dep", col, 400, 535 - col, col, "grindă CT|dep Y400");
-      pushGrindă("subsol_grinda_dep_hol", 320, 400 + col, col, 630 - 400 - col, "grindă dep|hol X320");
-      // Grindă de fundație pe aceleași axe (leagă tălpile)
+      // Grizi / centuri pe axe plan
+      pushGrindă("subsol_grinda_n", col, 0, 650 - col, col, "grindă N");
+      pushGrindă("subsol_grinda_w", 0, col, col, 645 - col, "grindă W");
+      pushGrindă("subsol_grinda_part", 320, col, col, 645 - col, "grindă ~perete_comun X320");
+      pushGrindă("subsol_grinda_buc", 535, col, col, 830 - col, "grindă X535 (separator scară)");
+      pushGrindă("subsol_grinda_est", 650, col, col, 590 - col, "grindă X650 est (oprit N de clar Y590)");
+      pushGrindă("subsol_grinda_y400", col, 400, 535 - col, col, "grindă Y400");
+      pushGrindă("subsol_grinda_y590", 535, 590, 145, col, "centură / grindă Y590 (muchie living↔puț)");
+      pushGrindă("subsol_grinda_y645", col, 645, 320 - col, col, "grindă Y645 dorm S");
+      pushGrindă("subsol_grinda_y830", 360, 830, 175, col, "grindă Y830 sud buc");
       const zFg0 = zFoundBot;
       const zFg1 = zFoundTop;
-      pushBeton("subsol_fg_n", 0, 0, 565, col, zFg0, zFg1, "grindă fundație N", "#5e5a54");
-      pushBeton("subsol_fg_w", 0, 0, col, 660, zFg0, zFg1, "grindă fundație W", "#5e5a54");
-      pushBeton("subsol_fg_s_dep", 0, 630, 350, col, zFg0, zFg1, "grindă fundație S dep", "#5e5a54");
-      pushBeton("subsol_fg_s_hol", 320, 685, 245, col, zFg0, zFg1, "grindă fundație S hol", "#5e5a54");
-      pushBeton("subsol_fg_e", 535, 0, col, 715, zFg0, zFg1, "grindă fundație E X535", "#5e5a54");
+      pushBeton("subsol_fg_n", 0, 0, 680, col, zFg0, zFg1, "grindă fundație N", "#5e5a54");
+      pushBeton("subsol_fg_w", 0, 0, col, 675, zFg0, zFg1, "grindă fundație W", "#5e5a54");
+      pushBeton("subsol_fg_e535", 535, 0, col, 860, zFg0, zFg1, "grindă fundație X535", "#5e5a54");
+      pushBeton("subsol_fg_e650", 650, 0, col, 620, zFg0, zFg1, "grindă fundație X650", "#5e5a54");
+      pushBeton("subsol_fg_s", 0, 645, 360, col, zFg0, zFg1, "grindă fundație S dorm", "#5e5a54");
 
-      // Umplutură sono pe contur (între stâlpi) — layer +Pereți
+      // Umplutură sono pe contur camere (între stâlpi) — layer +Pereți
       pushUmpluturaWall("subsol_zid_perim_n", col, 0, 535 - col, wallPerim, "umplutură perim N");
-      pushUmpluturaWall("subsol_zid_perim_w", 0, col, wallPerim, 630 - col, "umplutură perim W");
-      pushUmpluturaWall("subsol_zid_perim_s_dep", col, 630, 320 - col, wallPerim, "umplutură perim S dep");
-      pushUmpluturaWall("subsol_zid_perim_s_hol", 350, 685, 185, wallPerim, "umplutură perim S hol");
+      pushUmpluturaWall("subsol_zid_perim_w", 0, col, wallPerim, 645 - col, "umplutură perim W");
+      pushUmpluturaWall("subsol_zid_perim_s_dep", col, 645, 320 - col, wallPerim, "umplutură perim S (~dorm)");
+      pushUmpluturaWall("subsol_zid_perim_s_hol", 350, 685, 185, wallPerim, "umplutură perim S hol (studiu)");
       pushUmpluturaWall(
         "subsol_zid_hol_vest_reintrant",
         320,
-        630 + col,
+        645,
         wallPerim,
-        Math.max(0, 55 - col),
+        40,
         "umplutură hol vest reintrant"
       );
-      // est CT între stâlpi: umplutură față de grindă E (vizual în +Pereți; grindă e structura)
       pushUmpluturaWall(
         "subsol_zid_ct_est",
         thickX0p,
@@ -2127,31 +2144,14 @@ function main() {
     }
   }
 
-  // —— SCHELT PARTER + ETAJ (aceleași noduri ca subsolul; umplutură = zid_* în +Pereți)
+  // —— SCHELT PARTER + ETAJ — pe planul real; living sub palier liber pe P
   {
-    const col = 30;
+    const col = COL;
     const beamH = 0.35;
-    const zBotP = -0.3; // soffit L-1 / capăt stâlpi subsol
-    const zTopP = zEtaj - floorTh; // intrados planșeu etaj
+    const zBotP = -0.3;
+    const zTopP = zEtaj - floorTh;
     const zBotE = zEtaj;
     const zTopE = roofZ0;
-    const nodes = [
-      { id: "nw", x: 0, y: 0 },
-      { id: "n_mid", x: 320, y: 0 },
-      { id: "ne", x: 535, y: 0 },
-      { id: "w_ct", x: 0, y: 400 },
-      { id: "e_ct", x: 535, y: 400 },
-      { id: "sw", x: 0, y: 630 },
-      { id: "rein", x: 320, y: 630 },
-      { id: "se630", x: 535, y: 630 },
-      { id: "s_hol_w", x: 320, y: 685 },
-      { id: "s_hol_e", x: 535, y: 685 },
-      // colțuri anvelopă sud/est pe bandă încălzită
-      { id: "se_env", x: 650, y: 0 },
-      { id: "sw_env", x: 0, y: 830 },
-      { id: "se_s", x: 535, y: 830 },
-      { id: "ne_env", x: 650, y: 470 },
-    ];
     function pushPE(id, x, y, dx, dy, z0, z1, label, color) {
       if (dx < 1 || dy < 1 || z1 <= z0 + 0.02) return;
       meshes.push({
@@ -2166,21 +2166,32 @@ function main() {
         label,
       });
     }
-    for (const n of nodes) {
+    // Continuu P+E pe nodurile din plan (aceleași ca subsol)
+    for (const n of structNodesContinuous) {
       pushPE(`parter_stalp_${n.id}`, n.x, n.y, col, col, zBotP, zTopP, `stâlp P ${n.id}`, "#6e6a64");
       pushPE(`etaj_stalp_${n.id}`, n.x, n.y, col, col, zBotE, zTopE, `stâlp E ${n.id}`, "#6e6a64");
     }
-    // Grizi la intrados etaj (capăt nivel P)
+    // Doar etaj: stâlpi palier în ziduri — NU coboară prin living P (X535–650 × Y470–590)
+    for (const n of structNodesEtajOnly) {
+      pushPE(`etaj_stalp_${n.id}`, n.x, n.y, col, col, zBotE, zTopE, `stâlp E-only ${n.id} (palier)`, "#6e6a64");
+    }
+    // Centuri / grinzi la intrados planșeu etaj (pe axe P)
     const zB0 = zTopP - beamH;
-    pushPE("parter_grinda_n", col, 0, 535 - col, col, zB0, zTopP, "grindă P N", "#5a554e");
-    pushPE("parter_grinda_w", 0, col, col, 630 - col, zB0, zTopP, "grindă P W", "#5a554e");
-    pushPE("parter_grinda_e", 535, col, col, 685 - col, zB0, zTopP, "grindă P E X535", "#5a554e");
-    pushPE("parter_grinda_s", col, 630, 320 - col, col, zB0, zTopP, "grindă P S dep", "#5a554e");
-    pushPE("parter_grinda_s_hol", 320, 685, 215, col, zB0, zTopP, "grindă P S hol", "#5a554e");
-    // Planșeu etaj (FF−floorTh … FF) pe anvelopă, gol pe puț r2
+    pushPE("parter_centura_n", col, 0, 650 - col, col, zB0, zTopP, "centură P N", "#5a554e");
+    pushPE("parter_centura_w", 0, col, col, 645 - col, zB0, zTopP, "centură P W", "#5a554e");
+    pushPE("parter_centura_x320", 320, col, col, 645 - col, zB0, zTopP, "centură P ~perete comun", "#5a554e");
+    pushPE("parter_centura_x535", 535, col, col, 830 - col, zB0, zTopP, "centură P X535 separator scară", "#5a554e");
+    // Est: discontinuu — Y0–440 și Y590+ ; gol pe clar living Y440–590
+    pushPE("parter_centura_x650_n", 650, col, col, 440 - col, zB0, zTopP, "centură P X650 N (oprit @ Y440)", "#5a554e");
+    pushPE("parter_centura_x650_s", 650, 590, col, 240, zB0, zTopP, "centură P X650 S (de la Y590)", "#5a554e");
+    pushPE("parter_centura_y440", 535, 440, 145, col, zB0, zTopP, "centură P Y440 (N living sub palier)", "#5a554e");
+    pushPE("parter_centura_y590", 535, 590, 145, col, zB0, zTopP, "centură P Y590 (S living / N puț)", "#5a554e");
+    pushPE("parter_centura_y645", col, 645, 320 - col, col, zB0, zTopP, "centură P Y645", "#5a554e");
+    pushPE("parter_centura_y830", 360, 830, 175, col, zB0, zTopP, "centură P Y830", "#5a554e");
+    // Planșeu etaj: gol pe puț r2 (Y590–860); Y470–590 acoperit = living sub palier
     const etajSlabHole =
-      rectHoleInside(r2.x + 2, r2.y + 2, r2.dx - 4, r2.dy - 4) ||
-      rectHole(r2.x + 5, r2.y + 5, r2.dx - 10, r2.dy - 10);
+      rectHoleInside(r2.x + 2, r2.y + 2, r2.dx - 4, Math.min(r2.dy, nsCm - r2.y) - 4) ||
+      rectHole(r2.x + 5, r2.y + 5, r2.dx - 10, Math.min(r2.dy, nsCm - r2.y) - 10);
     meshes.push({
       id: "etaj_placa_structura",
       type: "extrude",
@@ -2191,13 +2202,16 @@ function main() {
       color: "#8b8680",
       opacity: 0.5,
       site_layer: "structura",
-      label: "planșeu etaj (structură)",
+      label: "planșeu etaj (structură) — acoperă living sub palier Y470–590",
     });
-    // Grizi acoperiș + placă acoperiș simplă (corp)
+    // Centuri etaj / acoperiș (inclusiv pe palier)
     const zRb0 = zTopE - beamH;
-    pushPE("etaj_grinda_n", col, 0, 650 - col, col, zRb0, zTopE, "grindă E N acoperiș", "#5a554e");
-    pushPE("etaj_grinda_w", 0, col, col, 830 - col, zRb0, zTopE, "grindă E W acoperiș", "#5a554e");
-    pushPE("etaj_grinda_e", 650, 0, col, 470, zRb0, zTopE, "grindă E est", "#5a554e");
+    pushPE("etaj_centura_n", col, 0, 650 - col, col, zRb0, zTopE, "centură E N", "#5a554e");
+    pushPE("etaj_centura_w", 0, col, col, 830 - col, zRb0, zTopE, "centură E W", "#5a554e");
+    pushPE("etaj_centura_x535", 535, col, col, 860 - col, zRb0, zTopE, "centură E X535 puț", "#5a554e");
+    pushPE("etaj_centura_x650", 650, col, col, 590 - col, zRb0, zTopE, "centură E X650", "#5a554e");
+    pushPE("etaj_centura_y470", 535, 470, 145, col, zRb0, zTopE, "centură E Y470 N palier", "#5a554e");
+    pushPE("etaj_centura_y590", 535, 590, 145, col, zRb0, zTopE, "centură E Y590 S palier / N puț", "#5a554e");
     meshes.push({
       id: "acoperis_structura_corp",
       type: "extrude",
