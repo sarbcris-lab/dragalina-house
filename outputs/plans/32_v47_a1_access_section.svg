@@ -62,7 +62,7 @@
 <rect x="243.12" y="226.5" width="11.76" height="4" fill="#e0c888"/>
 <rect x="231.35999999999999" y="243.125" width="11.76" height="4" fill="#e0c888"/>
 <rect x="219.6" y="259.75" width="11.76" height="4" fill="#e0c888"/>
-<line x1="-45" y1="422.5" x2="-45" y2="191.5" stroke="#c1121f" stroke-width="2"/>
-<text x="-41" y="307" font-size="9" fill="#c1121f">min 220 cm @ Y230 (intrados_placa_parter@camera_tehnica)</text>
-<text x="40" y="696" font-size="8" fill="#444">model 973 mesh-uri · sandwich sum 62 cm · util recalculat 37.87875 m²</text>
+<line x1="64.2" y1="422.5" x2="64.2" y2="191.5" stroke="#c1121f" stroke-width="2"/>
+<text x="68.2" y="307" font-size="9" fill="#c1121f">min 220 cm @ Y490 (intrados_placa_peste_palier_acoperit)</text>
+<text x="40" y="696" font-size="8" fill="#444">model 974 mesh-uri · sandwich sum 62 cm · util recalculat 37.87875 m²</text>
 </svg>

@@ -1529,9 +1529,13 @@ function main() {
       const r2b = bm.ramp2_ref || r2ref;
       const openSh = bm.open_shaft_cm || {
         x: r2b.x,
-        y: low?.y ?? r2b.y,
+        y: r2b.y,
         dx: r2b.dx,
-        dy: nsCm - (low?.y ?? r2b.y),
+        dy: r2b.dy,
+      };
+      const encSh = bm.shaft_enclosure_cm || {
+        y0: low?.y ?? openSh.y,
+        y1: nsCm,
       };
       const bucEst = (v47.walls_cm || []).find((w) => w.id === "buc_est");
       const thShaft = bm.wall_thickness_study_cm || {};
@@ -1543,8 +1547,8 @@ function main() {
       const thinEX0 = ewCm - thinEDx; // 665
       const clearDx = thinEX0 - clearX0;
       const stairX0 = clearX0;
-      // puț coordonat cu palierul jos — NU mai rămâne la Y590
-      const shaftY0 = openSh.y; // 520 A1
+      // pereți pe tot enclosure (palier+puț); gol planșeu = doar open_shaft
+      const shaftY0 = encSh.y0 ?? low?.y ?? openSh.y;
       const shaftYHouse1 = nsCm; // 860
       const shaftYWell1 = pitY1;
       const doorH = m(dr?.opening_h_cm ?? 200);
@@ -1655,6 +1659,20 @@ function main() {
         `zid puț N @ Y${shaftY0 - shaftNorthTh}–${shaftY0} (palier liber S)`,
         null
       );
+
+      // Reazem planșeu la Y590 (sud zonă acoperită / nord puț deschis)
+      if (bm.slab_coordination_cm?.edge_beam_y != null) {
+        const by = bm.slab_coordination_cm.edge_beam_y;
+        meshes.push({
+          id: "subsol_grindă_planșeu_y590",
+          type: "extrude",
+          polygon: rectPoly(thickX0, by - 15, thinEX0 + thinEDx - thickX0, 15),
+          z0_m: zSoffit - 0.25,
+          z1_m: zSoffit,
+          color: "#6a6358",
+          label: "grindă reazem planșeu @ Y590 (studiu)",
+        });
+      }
 
       // Fără închidere verticală la sud casă — bloca intrarea în puț.
       // Canalul fântână→puț rămâne liber pe clar (orizontala −95 + pe verticală).

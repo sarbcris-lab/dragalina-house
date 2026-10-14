@@ -1,10 +1,25 @@
-# V47 Runda A — studiu A1 (corectat)
+# V47 Runda A — studiu A1
 
 ## Status
-**A1 FEZABIL (după corecții)** — `v47_exact.json` **neatins**.
+**A1 NEFEZABIL / STUDIU DESCHIS** — `v47_exact.json` **neatins**.
+
+Checks geometrice fără eșecuri critice: da · Fezabilitate A1: **nu**
+
+### Observații deschise (blochează fezabilitatea)
+- fundație completă ±15 pe tot conturul (est CF)
+- straturi sandwich residual confirmate de structurist
+- înălțime liberă validată pe geometrie structurală finală (nu doar soffit țintă)
+- transport geometric fără coliziuni
 
 ## Traseu
-`curte(0) → trepte → palier−95(Y800–860) → scară(Y600–800↓N) → palier liber−250 → ușă (clear 90) → hol → CT/dep`
+`curte→palier−95→scară↓N→palier(sub planșeu Y490–590 + puț Y590–600)→ușă→hol→CT/dep`
+
+## Planșeu peste palierul inferior
+- Puț deschis în planșeu: **Y590–860** (sub rampă2)
+- Palier acoperit: **Y490–590** sub soffit -30 → clear țintă **220 cm**
+- Gabarit real pe palier acoperit (sample): 220 cm @ Y490 (intrados_placa_peste_palier_acoperit)
+- Grindă reazem studiu @ Y590
+
 
 ## Datum absolut (teren = 0)
 
@@ -16,8 +31,8 @@
 | FF subsol | -250 |
 | intrados (țintă studiu) | -30 |
 | clear **declarat** (țintă) | 220 |
-| clear **minim global** | **220** @ Y230 / intrados_placa_parter@camera_tehnica |
-| clear **minim pe traseu acces** | **251** @ Y830 / structura_r2_0 |
+| clear **minim global** | **220** @ Y490 / intrados_placa_peste_palier_acoperit |
+| clear **minim pe traseu acces** | **220** @ Y490 / intrados_placa_peste_palier_acoperit |
 | ușă + buiandrug | 200+15=215 |
 
 ## Sandwich intrados -30 → FF +32 (62 cm)
@@ -37,8 +52,8 @@ straturi sumă 62 cm = FF(32) − intrados(-30)
 
 ## Headroom (calcul)
 
-- Minim: **220 cm** la X=282.5, Y=230, obstacol `intrados_placa_parter@camera_tehnica` (z_obs=-30, z_cale=-250)
-- Ușă vs clear zonă: {"opening_plus_lintel_cm":215,"clear_at_door_zone_cm":558,"ok":true}
+- Minim: **220 cm** la X=615, Y=490, obstacol `intrados_placa_peste_palier_acoperit` (z_obs=-30, z_cale=-250)
+- Ușă vs clear zonă: {"opening_plus_lintel_cm":215,"clear_at_door_zone_cm":220,"ok":true}
 
 ## Verificări
 ### PASS
@@ -47,21 +62,19 @@ straturi sumă 62 cm = FF(32) − intrados(-30)
 - palier jos N de ultima treaptă
 - ușă pe palier Y500–600 (dy=100)
 - ușă ∩ hol pe Y
-- puț deschis începe la Y490 (= palier)
-- zid N @ Y477.5–490 (N de palier, nu Y590)
+- puț deschis în planșeu: doar Y590–860 (sub rampă2)
+- palier acoperit de planșeu Y490–590: clear țintă 220 sub soffit -30
+- puț deschis nu intersectează poligonul living P
+- zid N @ Y477.5–490 (N de palier)
 - zid EST puț = 15 cm (JSON)
-- sandwich modelat: 62 cm = FF(+32) − intrados(-30)
-- gabarit minim global = 220 cm @ Y230 X282.5 (intrados_placa_parter@camera_tehnica)
-- gabarit minim pe traseu acces = 251 cm @ Y830 (structura_r2_0)
-- ușă+buiandrug 215 ≤ clear zonă ușă 558
-- transport: scară clear 100 ≥ 90
-- transport: usa_subsol_camere (scară→hol): gol 100 → clear 90 după toc 5+5
-- transport: usa_hol_ct (hol→CT): gol 100 → clear 90 după toc 5+5
-- transport: usa_hol_dep (hol→depozit): gol 100 → clear 90 după toc 5+5
-- transport: gabarit lățime 70 ≤ clear 90
-- transport: întoarcere pivot scară→ușă OK: Dy 110 ≥ 85.0 (gabarit 80×70)
-- transport: rotație liberă NU (diag 106.3 > min latură); acceptat doar pivot în gol
-- transport: hol lățime 185 ≥ 90 (către CT/depozit)
+- gabarit minim global = 220 cm @ Y490 X615 (intrados_placa_peste_palier_acoperit)
+- gabarit minim pe traseu acces = 220 cm @ Y490 (intrados_placa_peste_palier_acoperit)
+- ușă+buiandrug 215 ≤ clear zonă ușă 220
+- transport: scară clear 100 ≥ 90 (studiu)
+- transport: usa_subsol_camere: gol montaj 100 → clear 90 (toc 5+5) — păstrat studiu
+- transport: usa_hol_ct: gol montaj 100 → clear 90 (toc 5+5) — păstrat studiu
+- transport: usa_hol_dep: gol montaj 100 → clear 90 (toc 5+5) — păstrat studiu
+- transport: hol lățime 185 ≥ 90
 - util studii recalculat 37.87875 m² (Δ vs ref 0)
 - arii subsol brut recalculate 31.3175 m²
 - anvelopă 680×860 păstrată
@@ -71,32 +84,54 @@ straturi sumă 62 cm = FF(32) − intrados(-30)
 - (niciuna)
 
 ### Note
-- clear_declared 220 NU e validat doar prin scădere; vezi headroom_audit.min_clear_cm
-- gabarit 80×70×180; întoarcere: free=false pivot=true (Dy 110, necesar pivot 85)
-- Palierul vechi dy=80: pivot necesita ≥ W+15; cu W=70 → 85 > 80 → EȘEC întoarcere (chiar dacă golul trecea obiectul).
+- Y470–590 pe bandă est: planșeu/palier acoperit — nu gol ignorat sub pardoseală
+- sandwich sumă 62 cm închide span numeric, dar stratul residual_level_to_ff e ipoteză — straturi NECONFIRMATE structural
+- TRANSPORT NECONFIRMAT: există coliziuni în secvența geometrică sau spațiu manipulare insuficient — nu se folosește W+15 ca substitut
+- poziții în conflict: intoarcere_15[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,treapta_7]; intoarcere_30[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,treapta_7]; intoarcere_45[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,foaie_deschisa_hol,treapta_7]; intoarcere_60[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,foaie_deschisa_hol,treapta_7]; intoarcere_75[toc_n,toc_s,foaie_deschisa_hol]
+- TRANSPORT NECONFIRMAT — A1 nu poate fi declarată fezabilă pe transport
+- fundație: ținta ±15 cm eșuează pe est Dragalina; clipul actual nu e „fundație completă” — observație DESCHISĂ
+- înălțime liberă 220 = țintă pe soffit studiu; validare structurală planșeu/grinzi = DESCHISĂ
 - țintă fundație uniformă 15 cm EȘUEAZĂ PIP: target_NW +0.058m; target_NE +0.15m; target_SE +0.15m; target_E_mid +0.15m
 - PIP=false dist≈0 pe clip_SE — același artefact numeric ca SE anvelopă
 - proiecție redusă față de ținta 15 cm (est/Dragalina tipic limitat de contur CF)
 - colț SE anvelopă: PIP=false dist≈0 (numeric contur) — neschimbat vs referință
 
 ## Transport echipamente
-Gabarit explicit: **80×70×180 cm** — baterie 70×25×110 + marjă manipulare; L=80 pe direcția de coborâre
+Gabarit: **80×70×180 cm** · Goluri montaj **100** / clear **90** (păstrate studiu)
 
-| Prag | Gol montaj | Clear după toc (5+5) |
+| Prag | Gol montaj | Clear după toc |
 |------|----------:|---:|
 | scară→hol | 100 | **90** |
 | hol→CT | 100 | **90** |
 | hol→depozit | 100 | **90** |
 
-### Întoarcere pe palier
-- Palier liber: **100×110 cm** (fost 80 cm — insuficient pentru pivot)
-- diag(80×70=106.3) ≤ min(100,110) → free=false
-- clear_ușă 90 ≥ L 80 → Dy ≥ W+marjă = 70+15 → pivot=**true**
-- Palierul vechi dy=80: pivot necesita ≥ W+15; cu W=70 → 85 > 80 → EȘEC întoarcere (chiar dacă golul trecea obiectul).
-- Verdict transport: **OK**
+### Verificare geometrică (nu W+15)
+- Status: **neconfirmat** · confirmed=false
+- Metodă: poziții succesive AABB 80×70 (+inflate manipulare) vs pereți/toc/foaie/trepte — nu formula W+15
+- Inflate manipulare: 5 cm · foaie: {"thickness_cm":4,"swing":"90° în hol, balama sud"}
+
+| Pose | unghi | AABB | coliziuni |
+|------|------:|------|-----------|
+| coborare_t1 | 0° | 80×90 @ (575,742.5) | — |
+| coborare_t2 | 0° | 80×90 @ (575,717.5) | — |
+| coborare_t3 | 0° | 80×90 @ (575,692.5) | — |
+| coborare_t4 | 0° | 80×90 @ (575,667.5) | — |
+| coborare_t5 | 0° | 80×90 @ (575,642.5) | — |
+| coborare_t6 | 0° | 80×90 @ (575,617.5) | — |
+| coborare_t7 | 0° | 80×90 @ (575,592.5) | — |
+| coborare_t8 | 0° | 80×90 @ (575,567.5) | — |
+| palier_aliniat_scara | 0° | 80×90 @ (575,500) | — |
+| intoarcere_15 | 15° | 98×105 @ (555,497.3) | zid_put_w_solid_n, zid_put_w_solid_s, toc_n, toc_s, treapta_7 |
+| intoarcere_30 | 30° | 111×114 @ (538,492.9) | zid_put_w_solid_n, zid_put_w_solid_s, toc_n, toc_s, treapta_7 |
+| intoarcere_45 | 45° | 116×116 @ (524.5,492) | zid_put_w_solid_n, zid_put_w_solid_s, toc_n, toc_s, foaie_deschisa_hol, treapta_7 |
+| intoarcere_60 | 60° | 114×111 @ (514.5,494.7) | zid_put_w_solid_n, zid_put_w_solid_s, toc_n, toc_s, foaie_deschisa_hol, treapta_7 |
+| intoarcere_75 | 75° | 105×98 @ (508.1,500.8) | toc_n, toc_s, foaie_deschisa_hol |
+| intoarcere_90 | 90° | 90×80 @ (505,510) | — |
+| in_gol_usa | 90° | 90×80 @ (505,510) | — |
+| in_hol | 90° | 90×80 @ (440,510) | — |
 
 ## Puț / goluri / grosimi
-- open_shaft Y490–860
+- open_shaft Y590–860
 - zid N @ Y477.5–490
 - gol palier–hol: Y500–600 (gol 100 → clear 90)
 - EST puț: 15 cm · VEST: 30 cm
@@ -115,15 +150,21 @@ Gabarit explicit: **80×70×180 cm** — baterie 70×25×110 + marjă manipulare
 | clip_S_mid | true | 0 |
 | clip_W_mid | true | 0 |
 
-## Arii (recalculate, nu copiate)
+## Arii P/E (recalculate după coordonare planșeu)
+Metodă: shoelace(interior_polygon) − reuniune pereți int (−goluri baie/dorm)
+
 | | m² |
 |--|---:|
-| util studii (recalcul) | **37.87875** |
-| util ref (înainte) | 37.87875 |
-| Δ | 0 |
+| util geometric P/E (recalcul) | **37.87875** |
+| util ref anterior | 37.87875 |
+| Δ după coordonare planșeu | 0 |
+| anvelopă shoelace | 39.01 |
+| pereți int net | 1.13125 |
 | subsol brut camere | 31.3175 |
 | subsol util estimat | 29.5194 |
 | POT anvelopă/147 | 39.78% (limită admisă = deschisă) |
+
+Notă: coordonarea planșeului (gol doar Y590–860) nu modifică poligonul interior P/E; utilul e reafirmat prin recalcul independent, nu prin copiere.
 
 ## Fișiere
 - `data/building/v47_a1_study.json`

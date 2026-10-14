@@ -31,7 +31,7 @@
     "etaj_source": "v46_r7g — neschimbat",
     "concept_status": "temă cotată pentru discuție arhitect — NU autorizabil / NU verificat structural",
     "study_variant": "A1",
-    "rev_note_a1": "A1 transport: clear 90 după toc; goluri 100; palier ≥ pivot; gabarit explicit"
+    "rev_note_a1": "A1: goluri 100/palier 110 păstrate studiu; planșeu peste palier Y490–590; puț deschis doar Y590–860; transport geometric"
   },
   "envelope_cm": {
     "ew": 680,
@@ -4082,8 +4082,8 @@
     }
   ],
   "basement_cm": {
-    "status": "studiu_A1_transport",
-    "concept_note": "A1 transport: palier Y490–600 (110 cm); gol scară→hol 100→clear 90; CT/dep idem.",
+    "status": "studiu_A1_slab_transport",
+    "concept_note": "A1: palier 110 cm / goluri 100 păstrate studiu; planșeu peste Y490–590; puț deschis Y590–860.",
     "ramp2_ref": {
       "x": 565,
       "y": 590,
@@ -4177,7 +4177,7 @@
       "dy": 110,
       "z_ff_cm": -250,
       "status": "studiu_A1_transport",
-      "note": "Y490–600 (110 cm) — extins față de 80: gol 100 + pivot W+15; zid N @ Y477.5"
+      "note": "Y490–600 (110 cm) studiu; Y490–590 sub planșeu; Y590–600 în puț; zid N @ Y477.5"
     },
     "door_to_rooms": {
       "id": "usa_subsol_camere",
@@ -4398,16 +4398,49 @@
       "clear_effective_min_cm": 90,
       "frame_jamb_each_side_cm": 5,
       "rough_opening_needed_cm": 100,
-      "turn_maneuver_margin_cm": 15,
+      "handling_inflate_cm": 5,
+      "door_leaf_thickness_cm": 4,
       "gabarit_cm": {
         "id": "gabarit_transport_beci",
         "length_along_approach_cm": 80,
         "width_across_cm": 70,
         "height_cm": 180,
-        "based_on": "baterie 70×25×110 + marjă manipulare; L=80 pe direcția de coborâre",
-        "note": "gabarit EXPLICIT de dimensionare traseu — nu doar „încape prin ușă”"
+        "based_on": "baterie 70×25×110 + marjă; L=80 pe coborâre",
+        "note": "verificare doar prin poziții succesive — fără W+15"
       },
       "path": "curte→scară L-1→palier→ușă(clear90)→hol→usa_hol_ct|usa_hol_dep"
+    },
+    "slab_coordination_cm": {
+      "living_parter": {
+        "x": 360,
+        "y": 90,
+        "dx": 290,
+        "dy": 380,
+        "y1": 470
+      },
+      "conflict_zone_y": [
+        470,
+        590
+      ],
+      "open_shaft_allowed_y0": 590,
+      "covered_landing": {
+        "x": 565,
+        "y": 490,
+        "dx": 115,
+        "dy": 100,
+        "soffit_cm": -30,
+        "clear_under_cm": 220,
+        "note": "palier inferior sub planșeu parter (sandwich) — nu gol structural"
+      },
+      "open_shaft": {
+        "x": 565,
+        "y": 590,
+        "dx": 115,
+        "dy": 270,
+        "note": "doar sub rampă2 / curte engleză — fără pardoseală living deasupra"
+      },
+      "edge_beam_y": 590,
+      "edge_beam_note": "reazem planșeu la sudul zonei acoperite / nordul puțului"
     },
     "absolute_from_grade_cm": {
       "datum": "teren_amenajat_0",
@@ -4533,10 +4566,15 @@
     },
     "open_shaft_cm": {
       "x": 565,
-      "y": 490,
+      "y": 590,
       "dx": 115,
-      "dy": 370,
-      "note": "puț deschis coordonat cu palier jos Y490–860"
+      "dy": 270,
+      "note": "puț deschis Y590–860 (=ramp2); palier Y490–590 sub planșeu"
+    },
+    "shaft_enclosure_cm": {
+      "y0": 490,
+      "y1": 860,
+      "note": "pereți puț/palier pe Y490–860; gol planșeu doar Y590+"
     },
     "internal_doors": [
       {
@@ -4578,27 +4616,33 @@
     ],
     "a1_checks": {
       "ok": true,
+      "feasible_a1": false,
+      "status_label": "A1 NEFEZABIL / STUDIU DESCHIS",
+      "open_issues": [
+        "fundație completă ±15 pe tot conturul (est CF)",
+        "straturi sandwich residual confirmate de structurist",
+        "înălțime liberă validată pe geometrie structurală finală (nu doar soffit țintă)",
+        "transport geometric fără coliziuni"
+      ],
       "passes": [
         "upper_landing → Y860",
         "upper abut stair top",
         "palier jos N de ultima treaptă",
         "ușă pe palier Y500–600 (dy=100)",
         "ușă ∩ hol pe Y",
-        "puț deschis începe la Y490 (= palier)",
-        "zid N @ Y477.5–490 (N de palier, nu Y590)",
+        "puț deschis în planșeu: doar Y590–860 (sub rampă2)",
+        "palier acoperit de planșeu Y490–590: clear țintă 220 sub soffit -30",
+        "puț deschis nu intersectează poligonul living P",
+        "zid N @ Y477.5–490 (N de palier)",
         "zid EST puț = 15 cm (JSON)",
-        "sandwich modelat: 62 cm = FF(+32) − intrados(-30)",
-        "gabarit minim global = 220 cm @ Y230 X282.5 (intrados_placa_parter@camera_tehnica)",
-        "gabarit minim pe traseu acces = 251 cm @ Y830 (structura_r2_0)",
-        "ușă+buiandrug 215 ≤ clear zonă ușă 558",
-        "transport: scară clear 100 ≥ 90",
-        "transport: usa_subsol_camere (scară→hol): gol 100 → clear 90 după toc 5+5",
-        "transport: usa_hol_ct (hol→CT): gol 100 → clear 90 după toc 5+5",
-        "transport: usa_hol_dep (hol→depozit): gol 100 → clear 90 după toc 5+5",
-        "transport: gabarit lățime 70 ≤ clear 90",
-        "transport: întoarcere pivot scară→ușă OK: Dy 110 ≥ 85.0 (gabarit 80×70)",
-        "transport: rotație liberă NU (diag 106.3 > min latură); acceptat doar pivot în gol",
-        "transport: hol lățime 185 ≥ 90 (către CT/depozit)",
+        "gabarit minim global = 220 cm @ Y490 X615 (intrados_placa_peste_palier_acoperit)",
+        "gabarit minim pe traseu acces = 220 cm @ Y490 (intrados_placa_peste_palier_acoperit)",
+        "ușă+buiandrug 215 ≤ clear zonă ușă 220",
+        "transport: scară clear 100 ≥ 90 (studiu)",
+        "transport: usa_subsol_camere: gol montaj 100 → clear 90 (toc 5+5) — păstrat studiu",
+        "transport: usa_hol_ct: gol montaj 100 → clear 90 (toc 5+5) — păstrat studiu",
+        "transport: usa_hol_dep: gol montaj 100 → clear 90 (toc 5+5) — păstrat studiu",
+        "transport: hol lățime 185 ≥ 90",
         "util studii recalculat 37.87875 m² (Δ vs ref 0)",
         "arii subsol brut recalculate 31.3175 m²",
         "anvelopă 680×860 păstrată",
@@ -4606,9 +4650,13 @@
       ],
       "fails": [],
       "notes": [
-        "clear_declared 220 NU e validat doar prin scădere; vezi headroom_audit.min_clear_cm",
-        "gabarit 80×70×180; întoarcere: free=false pivot=true (Dy 110, necesar pivot 85)",
-        "Palierul vechi dy=80: pivot necesita ≥ W+15; cu W=70 → 85 > 80 → EȘEC întoarcere (chiar dacă golul trecea obiectul).",
+        "Y470–590 pe bandă est: planșeu/palier acoperit — nu gol ignorat sub pardoseală",
+        "sandwich sumă 62 cm închide span numeric, dar stratul residual_level_to_ff e ipoteză — straturi NECONFIRMATE structural",
+        "TRANSPORT NECONFIRMAT: există coliziuni în secvența geometrică sau spațiu manipulare insuficient — nu se folosește W+15 ca substitut",
+        "poziții în conflict: intoarcere_15[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,treapta_7]; intoarcere_30[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,treapta_7]; intoarcere_45[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,foaie_deschisa_hol,treapta_7]; intoarcere_60[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,foaie_deschisa_hol,treapta_7]; intoarcere_75[toc_n,toc_s,foaie_deschisa_hol]",
+        "TRANSPORT NECONFIRMAT — A1 nu poate fi declarată fezabilă pe transport",
+        "fundație: ținta ±15 cm eșuează pe est Dragalina; clipul actual nu e „fundație completă” — observație DESCHISĂ",
+        "înălțime liberă 220 = țintă pe soffit studiu; validare structurală planșeu/grinzi = DESCHISĂ",
         "țintă fundație uniformă 15 cm EȘUEAZĂ PIP: target_NW +0.058m; target_NE +0.15m; target_SE +0.15m; target_E_mid +0.15m",
         "PIP=false dist≈0 pe clip_SE — același artefact numeric ca SE anvelopă",
         "proiecție redusă față de ținta 15 cm (est/Dragalina tipic limitat de contur CF)",
@@ -4617,15 +4665,26 @@
       "pot_envelope_over_147": 39.78,
       "pot_note": "anvelopă/147 — confirmare limită admisă deschisă",
       "headroom_min": {
-        "x_cm": 282.5,
-        "y_cm": 230,
-        "element": "intrados_placa_parter@camera_tehnica",
+        "x_cm": 615,
+        "y_cm": 490,
+        "element": "intrados_placa_peste_palier_acoperit",
         "z_walk_cm": -250,
         "z_obstacle_cm": -30
       },
-      "path": "curte(0) → trepte → palier−95(Y800–860) → scară(Y600–800↓N) → palier liber−250 → ușă (clear 90) → hol → CT/dep",
+      "headroom_covered_landing": {
+        "x_cm": 615,
+        "y_cm": 490,
+        "z_walk_cm": -250,
+        "z_obstacle_cm": -30,
+        "clear_cm": 220,
+        "element": "intrados_placa_peste_palier_acoperit",
+        "open": false,
+        "kind": "access_path"
+      },
+      "path": "curte→palier−95→scară↓N→palier(sub planșeu Y490–590 + puț Y590–600)→ușă→hol→CT/dep",
       "transport": {
-        "ok": true,
+        "confirmed": false,
+        "status": "neconfirmat",
         "clear_min": 90,
         "rough": 100,
         "gabarit": {
@@ -4633,19 +4692,305 @@
           "length_along_approach_cm": 80,
           "width_across_cm": 70,
           "height_cm": 180,
-          "based_on": "baterie 70×25×110 + marjă manipulare; L=80 pe direcția de coborâre",
-          "note": "gabarit EXPLICIT de dimensionare traseu — nu doar „încape prin ușă”"
+          "based_on": "baterie 70×25×110 + marjă; L=80 pe coborâre",
+          "note": "verificare doar prin poziții succesive — fără W+15"
         },
-        "turn": {
-          "landing_clear_x_cm": 100,
-          "landing_clear_y_cm": 110,
-          "gabarit_diagonal_cm": 106.3,
-          "free_rotation_ok": false,
-          "free_rotation_rule": "diag(80×70=106.3) ≤ min(100,110)",
-          "pivot_into_door_ok": true,
-          "pivot_depth_needed_cm": 85,
-          "pivot_rule": "clear_ușă 90 ≥ L 80 → Dy ≥ W+marjă = 70+15",
-          "note_80cm_legacy": "Palierul vechi dy=80: pivot necesita ≥ W+15; cu W=70 → 85 > 80 → EȘEC întoarcere (chiar dacă golul trecea obiectul)."
+        "geometric": {
+          "status": "neconfirmat",
+          "method": "poziții succesive AABB 80×70 (+inflate manipulare) vs pereți/toc/foaie/trepte — nu formula W+15",
+          "handling_inflate_cm": 5,
+          "door_leaf": {
+            "thickness_cm": 4,
+            "swing": "90° în hol, balama sud"
+          },
+          "poses": [
+            {
+              "id": "coborare_t1",
+              "phase": "descent",
+              "angleDeg": 0,
+              "cx": 615,
+              "cy": 787.5,
+              "aabb": {
+                "x": 575,
+                "y": 742.5,
+                "dx": 80,
+                "dy": 90
+              },
+              "collisions": [],
+              "ok": true
+            },
+            {
+              "id": "coborare_t2",
+              "phase": "descent",
+              "angleDeg": 0,
+              "cx": 615,
+              "cy": 762.5,
+              "aabb": {
+                "x": 575,
+                "y": 717.5,
+                "dx": 80,
+                "dy": 90
+              },
+              "collisions": [],
+              "ok": true
+            },
+            {
+              "id": "coborare_t3",
+              "phase": "descent",
+              "angleDeg": 0,
+              "cx": 615,
+              "cy": 737.5,
+              "aabb": {
+                "x": 575,
+                "y": 692.5,
+                "dx": 80,
+                "dy": 90
+              },
+              "collisions": [],
+              "ok": true
+            },
+            {
+              "id": "coborare_t4",
+              "phase": "descent",
+              "angleDeg": 0,
+              "cx": 615,
+              "cy": 712.5,
+              "aabb": {
+                "x": 575,
+                "y": 667.5,
+                "dx": 80,
+                "dy": 90
+              },
+              "collisions": [],
+              "ok": true
+            },
+            {
+              "id": "coborare_t5",
+              "phase": "descent",
+              "angleDeg": 0,
+              "cx": 615,
+              "cy": 687.5,
+              "aabb": {
+                "x": 575,
+                "y": 642.5,
+                "dx": 80,
+                "dy": 90
+              },
+              "collisions": [],
+              "ok": true
+            },
+            {
+              "id": "coborare_t6",
+              "phase": "descent",
+              "angleDeg": 0,
+              "cx": 615,
+              "cy": 662.5,
+              "aabb": {
+                "x": 575,
+                "y": 617.5,
+                "dx": 80,
+                "dy": 90
+              },
+              "collisions": [],
+              "ok": true
+            },
+            {
+              "id": "coborare_t7",
+              "phase": "descent",
+              "angleDeg": 0,
+              "cx": 615,
+              "cy": 637.5,
+              "aabb": {
+                "x": 575,
+                "y": 592.5,
+                "dx": 80,
+                "dy": 90
+              },
+              "collisions": [],
+              "ok": true
+            },
+            {
+              "id": "coborare_t8",
+              "phase": "descent",
+              "angleDeg": 0,
+              "cx": 615,
+              "cy": 612.5,
+              "aabb": {
+                "x": 575,
+                "y": 567.5,
+                "dx": 80,
+                "dy": 90
+              },
+              "collisions": [],
+              "ok": true
+            },
+            {
+              "id": "palier_aliniat_scara",
+              "phase": "landing",
+              "angleDeg": 0,
+              "cx": 615,
+              "cy": 545,
+              "aabb": {
+                "x": 575,
+                "y": 500,
+                "dx": 80,
+                "dy": 90
+              },
+              "collisions": [],
+              "ok": true
+            },
+            {
+              "id": "intoarcere_15",
+              "phase": "turn",
+              "angleDeg": 15,
+              "cx": 604.2,
+              "cy": 550,
+              "aabb": {
+                "x": 555,
+                "y": 497.3,
+                "dx": 98.3,
+                "dy": 105.4
+              },
+              "collisions": [
+                "zid_put_w_solid_n",
+                "zid_put_w_solid_s",
+                "toc_n",
+                "toc_s",
+                "treapta_7"
+              ],
+              "ok": false
+            },
+            {
+              "id": "intoarcere_30",
+              "phase": "turn",
+              "angleDeg": 30,
+              "cx": 593.3,
+              "cy": 550,
+              "aabb": {
+                "x": 538,
+                "y": 492.9,
+                "dx": 110.6,
+                "dy": 114.3
+              },
+              "collisions": [
+                "zid_put_w_solid_n",
+                "zid_put_w_solid_s",
+                "toc_n",
+                "toc_s",
+                "treapta_7"
+              ],
+              "ok": false
+            },
+            {
+              "id": "intoarcere_45",
+              "phase": "turn",
+              "angleDeg": 45,
+              "cx": 582.5,
+              "cy": 550,
+              "aabb": {
+                "x": 524.5,
+                "y": 492,
+                "dx": 116.1,
+                "dy": 116.1
+              },
+              "collisions": [
+                "zid_put_w_solid_n",
+                "zid_put_w_solid_s",
+                "toc_n",
+                "toc_s",
+                "foaie_deschisa_hol",
+                "treapta_7"
+              ],
+              "ok": false
+            },
+            {
+              "id": "intoarcere_60",
+              "phase": "turn",
+              "angleDeg": 60,
+              "cx": 571.7,
+              "cy": 550,
+              "aabb": {
+                "x": 514.5,
+                "y": 494.7,
+                "dx": 114.3,
+                "dy": 110.6
+              },
+              "collisions": [
+                "zid_put_w_solid_n",
+                "zid_put_w_solid_s",
+                "toc_n",
+                "toc_s",
+                "foaie_deschisa_hol",
+                "treapta_7"
+              ],
+              "ok": false
+            },
+            {
+              "id": "intoarcere_75",
+              "phase": "turn",
+              "angleDeg": 75,
+              "cx": 560.8,
+              "cy": 550,
+              "aabb": {
+                "x": 508.1,
+                "y": 500.8,
+                "dx": 105.4,
+                "dy": 98.3
+              },
+              "collisions": [
+                "toc_n",
+                "toc_s",
+                "foaie_deschisa_hol"
+              ],
+              "ok": false
+            },
+            {
+              "id": "intoarcere_90",
+              "phase": "turn",
+              "angleDeg": 90,
+              "cx": 550,
+              "cy": 550,
+              "aabb": {
+                "x": 505,
+                "y": 510,
+                "dx": 90,
+                "dy": 80
+              },
+              "collisions": [],
+              "ok": true
+            },
+            {
+              "id": "in_gol_usa",
+              "phase": "through_door",
+              "angleDeg": 90,
+              "cx": 550,
+              "cy": 550,
+              "aabb": {
+                "x": 505,
+                "y": 510,
+                "dx": 90,
+                "dy": 80
+              },
+              "collisions": [],
+              "ok": true
+            },
+            {
+              "id": "in_hol",
+              "phase": "hall",
+              "angleDeg": 90,
+              "cx": 485,
+              "cy": 550,
+              "aabb": {
+                "x": 440,
+                "y": 510,
+                "dx": 90,
+                "dy": 80
+              },
+              "collisions": [],
+              "ok": true
+            }
+          ],
+          "ok": false
         }
       }
     },
@@ -4658,8 +5003,8 @@
         "length_along_approach_cm": 80,
         "width_across_cm": 70,
         "height_cm": 180,
-        "based_on": "baterie 70×25×110 + marjă manipulare; L=80 pe direcția de coborâre",
-        "note": "gabarit EXPLICIT de dimensionare traseu — nu doar „încape prin ușă”"
+        "based_on": "baterie 70×25×110 + marjă; L=80 pe coborâre",
+        "note": "verificare doar prin poziții succesive — fără W+15"
       },
       "doors": [
         {
@@ -4684,29 +5029,318 @@
           "along": "Y"
         }
       ],
-      "turn": {
-        "landing_clear_x_cm": 100,
-        "landing_clear_y_cm": 110,
-        "gabarit_diagonal_cm": 106.3,
-        "free_rotation_ok": false,
-        "free_rotation_rule": "diag(80×70=106.3) ≤ min(100,110)",
-        "pivot_into_door_ok": true,
-        "pivot_depth_needed_cm": 85,
-        "pivot_rule": "clear_ușă 90 ≥ L 80 → Dy ≥ W+marjă = 70+15",
-        "note_80cm_legacy": "Palierul vechi dy=80: pivot necesita ≥ W+15; cu W=70 → 85 > 80 → EȘEC întoarcere (chiar dacă golul trecea obiectul)."
+      "geometric": {
+        "status": "neconfirmat",
+        "method": "poziții succesive AABB 80×70 (+inflate manipulare) vs pereți/toc/foaie/trepte — nu formula W+15",
+        "handling_inflate_cm": 5,
+        "door_leaf": {
+          "thickness_cm": 4,
+          "swing": "90° în hol, balama sud"
+        },
+        "poses": [
+          {
+            "id": "coborare_t1",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 787.5,
+            "aabb": {
+              "x": 575,
+              "y": 742.5,
+              "dx": 80,
+              "dy": 90
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "coborare_t2",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 762.5,
+            "aabb": {
+              "x": 575,
+              "y": 717.5,
+              "dx": 80,
+              "dy": 90
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "coborare_t3",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 737.5,
+            "aabb": {
+              "x": 575,
+              "y": 692.5,
+              "dx": 80,
+              "dy": 90
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "coborare_t4",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 712.5,
+            "aabb": {
+              "x": 575,
+              "y": 667.5,
+              "dx": 80,
+              "dy": 90
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "coborare_t5",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 687.5,
+            "aabb": {
+              "x": 575,
+              "y": 642.5,
+              "dx": 80,
+              "dy": 90
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "coborare_t6",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 662.5,
+            "aabb": {
+              "x": 575,
+              "y": 617.5,
+              "dx": 80,
+              "dy": 90
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "coborare_t7",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 637.5,
+            "aabb": {
+              "x": 575,
+              "y": 592.5,
+              "dx": 80,
+              "dy": 90
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "coborare_t8",
+            "phase": "descent",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 612.5,
+            "aabb": {
+              "x": 575,
+              "y": 567.5,
+              "dx": 80,
+              "dy": 90
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "palier_aliniat_scara",
+            "phase": "landing",
+            "angleDeg": 0,
+            "cx": 615,
+            "cy": 545,
+            "aabb": {
+              "x": 575,
+              "y": 500,
+              "dx": 80,
+              "dy": 90
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "intoarcere_15",
+            "phase": "turn",
+            "angleDeg": 15,
+            "cx": 604.2,
+            "cy": 550,
+            "aabb": {
+              "x": 555,
+              "y": 497.3,
+              "dx": 98.3,
+              "dy": 105.4
+            },
+            "collisions": [
+              "zid_put_w_solid_n",
+              "zid_put_w_solid_s",
+              "toc_n",
+              "toc_s",
+              "treapta_7"
+            ],
+            "ok": false
+          },
+          {
+            "id": "intoarcere_30",
+            "phase": "turn",
+            "angleDeg": 30,
+            "cx": 593.3,
+            "cy": 550,
+            "aabb": {
+              "x": 538,
+              "y": 492.9,
+              "dx": 110.6,
+              "dy": 114.3
+            },
+            "collisions": [
+              "zid_put_w_solid_n",
+              "zid_put_w_solid_s",
+              "toc_n",
+              "toc_s",
+              "treapta_7"
+            ],
+            "ok": false
+          },
+          {
+            "id": "intoarcere_45",
+            "phase": "turn",
+            "angleDeg": 45,
+            "cx": 582.5,
+            "cy": 550,
+            "aabb": {
+              "x": 524.5,
+              "y": 492,
+              "dx": 116.1,
+              "dy": 116.1
+            },
+            "collisions": [
+              "zid_put_w_solid_n",
+              "zid_put_w_solid_s",
+              "toc_n",
+              "toc_s",
+              "foaie_deschisa_hol",
+              "treapta_7"
+            ],
+            "ok": false
+          },
+          {
+            "id": "intoarcere_60",
+            "phase": "turn",
+            "angleDeg": 60,
+            "cx": 571.7,
+            "cy": 550,
+            "aabb": {
+              "x": 514.5,
+              "y": 494.7,
+              "dx": 114.3,
+              "dy": 110.6
+            },
+            "collisions": [
+              "zid_put_w_solid_n",
+              "zid_put_w_solid_s",
+              "toc_n",
+              "toc_s",
+              "foaie_deschisa_hol",
+              "treapta_7"
+            ],
+            "ok": false
+          },
+          {
+            "id": "intoarcere_75",
+            "phase": "turn",
+            "angleDeg": 75,
+            "cx": 560.8,
+            "cy": 550,
+            "aabb": {
+              "x": 508.1,
+              "y": 500.8,
+              "dx": 105.4,
+              "dy": 98.3
+            },
+            "collisions": [
+              "toc_n",
+              "toc_s",
+              "foaie_deschisa_hol"
+            ],
+            "ok": false
+          },
+          {
+            "id": "intoarcere_90",
+            "phase": "turn",
+            "angleDeg": 90,
+            "cx": 550,
+            "cy": 550,
+            "aabb": {
+              "x": 505,
+              "y": 510,
+              "dx": 90,
+              "dy": 80
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "in_gol_usa",
+            "phase": "through_door",
+            "angleDeg": 90,
+            "cx": 550,
+            "cy": 550,
+            "aabb": {
+              "x": 505,
+              "y": 510,
+              "dx": 90,
+              "dy": 80
+            },
+            "collisions": [],
+            "ok": true
+          },
+          {
+            "id": "in_hol",
+            "phase": "hall",
+            "angleDeg": 90,
+            "cx": 485,
+            "cy": 550,
+            "aabb": {
+              "x": 440,
+              "y": 510,
+              "dx": 90,
+              "dy": 80
+            },
+            "collisions": [],
+            "ok": true
+          }
+        ],
+        "ok": false
       },
-      "ok": true,
+      "turn": null,
+      "confirmed": false,
+      "ok": false,
       "passes": [
-        "scară clear 100 ≥ 90",
-        "usa_subsol_camere (scară→hol): gol 100 → clear 90 după toc 5+5",
-        "usa_hol_ct (hol→CT): gol 100 → clear 90 după toc 5+5",
-        "usa_hol_dep (hol→depozit): gol 100 → clear 90 după toc 5+5",
-        "gabarit lățime 70 ≤ clear 90",
-        "întoarcere pivot scară→ușă OK: Dy 110 ≥ 85.0 (gabarit 80×70)",
-        "rotație liberă NU (diag 106.3 > min latură); acceptat doar pivot în gol",
-        "hol lățime 185 ≥ 90 (către CT/depozit)"
+        "scară clear 100 ≥ 90 (studiu)",
+        "usa_subsol_camere: gol montaj 100 → clear 90 (toc 5+5) — păstrat studiu",
+        "usa_hol_ct: gol montaj 100 → clear 90 (toc 5+5) — păstrat studiu",
+        "usa_hol_dep: gol montaj 100 → clear 90 (toc 5+5) — păstrat studiu",
+        "hol lățime 185 ≥ 90"
       ],
-      "fails": []
+      "fails": [],
+      "notes": [
+        "TRANSPORT NECONFIRMAT: există coliziuni în secvența geometrică sau spațiu manipulare insuficient — nu se folosește W+15 ca substitut",
+        "poziții în conflict: intoarcere_15[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,treapta_7]; intoarcere_30[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,treapta_7]; intoarcere_45[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,foaie_deschisa_hol,treapta_7]; intoarcere_60[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,foaie_deschisa_hol,treapta_7]; intoarcere_75[toc_n,toc_s,foaie_deschisa_hol]"
+      ]
     },
     "headroom_audit": {
       "samples_count": 78,
@@ -4715,9 +5349,9 @@
           "x_cm": 615,
           "y_cm": 490,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4725,9 +5359,9 @@
           "x_cm": 615,
           "y_cm": 495,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4735,9 +5369,9 @@
           "x_cm": 615,
           "y_cm": 500,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4745,9 +5379,9 @@
           "x_cm": 615,
           "y_cm": 505,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4755,9 +5389,9 @@
           "x_cm": 615,
           "y_cm": 510,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4765,9 +5399,9 @@
           "x_cm": 615,
           "y_cm": 515,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4775,9 +5409,9 @@
           "x_cm": 615,
           "y_cm": 520,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4785,9 +5419,9 @@
           "x_cm": 615,
           "y_cm": 525,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4795,9 +5429,9 @@
           "x_cm": 615,
           "y_cm": 530,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4805,9 +5439,9 @@
           "x_cm": 615,
           "y_cm": 535,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4815,9 +5449,9 @@
           "x_cm": 615,
           "y_cm": 540,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4825,9 +5459,9 @@
           "x_cm": 615,
           "y_cm": 545,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4835,9 +5469,9 @@
           "x_cm": 615,
           "y_cm": 550,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4845,9 +5479,9 @@
           "x_cm": 615,
           "y_cm": 555,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4855,9 +5489,9 @@
           "x_cm": 615,
           "y_cm": 560,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4865,9 +5499,9 @@
           "x_cm": 615,
           "y_cm": 565,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4875,9 +5509,9 @@
           "x_cm": 615,
           "y_cm": 570,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4885,9 +5519,9 @@
           "x_cm": 615,
           "y_cm": 575,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4895,9 +5529,9 @@
           "x_cm": 615,
           "y_cm": 580,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -4905,9 +5539,9 @@
           "x_cm": 615,
           "y_cm": 585,
           "z_walk_cm": -250,
-          "z_obstacle_cm": 308,
-          "clear_cm": 558,
-          "element": "intrados_palier_superior_etaj",
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_peste_palier_acoperit",
           "open": false,
           "kind": "access_path"
         },
@@ -5460,47 +6094,27 @@
           "element": "structura_r2_0",
           "open": false,
           "kind": "access_path"
-        },
-        {
-          "x_cm": 190,
-          "y_cm": 530,
-          "z_walk_cm": -250,
-          "z_obstacle_cm": -30,
-          "clear_cm": 220,
-          "element": "intrados_placa_parter@depozit_subsol",
-          "open": false,
-          "kind": "room"
-        },
-        {
-          "x_cm": 442.5,
-          "y_cm": 557.5,
-          "z_walk_cm": -250,
-          "z_obstacle_cm": -30,
-          "clear_cm": 220,
-          "element": "intrados_placa_parter@hol_subsol",
-          "open": false,
-          "kind": "room"
         }
       ],
       "min_clear_cm": 220,
       "min_at": {
-        "x_cm": 282.5,
-        "y_cm": 230,
-        "element": "intrados_placa_parter@camera_tehnica",
+        "x_cm": 615,
+        "y_cm": 490,
+        "element": "intrados_placa_peste_palier_acoperit",
         "z_walk_cm": -250,
         "z_obstacle_cm": -30
       },
-      "min_on_access_path_cm": 251,
+      "min_on_access_path_cm": 220,
       "min_on_access_path_at": {
         "x_cm": 615,
-        "y_cm": 830,
-        "element": "structura_r2_0",
-        "z_walk_cm": -95,
-        "z_obstacle_cm": 156
+        "y_cm": 490,
+        "element": "intrados_placa_peste_palier_acoperit",
+        "z_walk_cm": -250,
+        "z_obstacle_cm": -30
       },
       "door_stack_vs_clear_at_door": {
         "opening_plus_lintel_cm": 215,
-        "clear_at_door_zone_cm": 558,
+        "clear_at_door_zone_cm": 220,
         "ok": true
       }
     }
