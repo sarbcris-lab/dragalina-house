@@ -1851,59 +1851,60 @@ function main() {
         });
       }
 
-      // Fundație: proiecție țintă din JSON, apoi clip pe muchii ca PIP=true
-      const foundTarget = th.foundation_projection_beyond_wall_cm ?? 15;
+      // Fundație pe BETON: termosistem 8+2 = 10 cm ÎN AFARA liniei de talpă.
+      // Fața finită anvelopă ≠ fața pe care stă fundația.
+      const termoOut = th.foundation_thermosystem_outside_cm ?? 10;
+      const footBeyond = th.foundation_footing_beyond_structure_cm ?? th.foundation_projection_beyond_wall_cm ?? 5;
+      // fața structură/umplutură sub termo = finit inset termoOut; talpa poate ieși footBeyond spre exterior
+      // → fața exterioară talpă față de finit = termoOut - footBeyond (pozitiv = înăuntrul finitului)
+      const insetFromFinished = Math.max(0, termoOut - footBeyond);
       const foundZ0 = zB - floorThB - 0.45;
       const foundZ1 = zB - floorThB;
-      function maxProjEdge(signX, signY, axis) {
-        // binary search proiecție 0…target cu colțurile muchiei în parcelă
+      // ring pe conturul talpii (înăuntrul feței finite pe fațade cu termosistem)
+      const fx0 = insetFromFinished;
+      const fy0 = insetFromFinished;
+      const fx1 = ewCm - insetFromFinished;
+      const fy1 = nsCm - insetFromFinished;
+      function maxExtraOut(axis) {
+        // eventuală ieșire suplimentară spre exterior față de talpa de bază, clipată în parcelă
         let lo = 0;
-        let hi = foundTarget;
-        for (let i = 0; i < 16; i++) {
+        let hi = 20;
+        for (let i = 0; i < 14; i++) {
           const mid = (lo + hi) / 2;
           const pts =
             axis === "N"
-              ? [
-                  toSite(-mid, -mid),
-                  toSite(ewCm / 2, -mid),
-                  toSite(ewCm + mid, -mid),
-                ]
+              ? [toSite(fx0, fy0 - mid), toSite((fx0 + fx1) / 2, fy0 - mid), toSite(fx1, fy0 - mid)]
               : axis === "S"
-                ? [
-                    toSite(-mid, nsCm + mid),
-                    toSite(ewCm / 2, nsCm + mid),
-                    toSite(ewCm + mid, nsCm + mid),
-                  ]
+                ? [toSite(fx0, fy1 + mid), toSite((fx0 + fx1) / 2, fy1 + mid), toSite(fx1, fy1 + mid)]
                 : axis === "W"
-                  ? [
-                      toSite(-mid, 0),
-                      toSite(-mid, nsCm / 2),
-                      toSite(-mid, nsCm),
-                    ]
-                  : [
-                      toSite(ewCm + mid, 0),
-                      toSite(ewCm + mid, nsCm / 2),
-                      toSite(ewCm + mid, nsCm),
-                    ];
+                  ? [toSite(fx0 - mid, fy0), toSite(fx0 - mid, (fy0 + fy1) / 2), toSite(fx0 - mid, fy1)]
+                  : [toSite(fx1 + mid, fy0), toSite(fx1 + mid, (fy0 + fy1) / 2), toSite(fx1 + mid, fy1)];
           if (pts.every((p) => insideParcel(p))) lo = mid;
           else hi = mid;
         }
         return +lo.toFixed(2);
       }
       const foundClip = {
-        N: maxProjEdge(0, -1, "N"),
-        S: maxProjEdge(0, 1, "S"),
-        W: maxProjEdge(-1, 0, "W"),
-        E: maxProjEdge(1, 0, "E"),
-        target_cm: foundTarget,
+        N: maxExtraOut("N"),
+        S: maxExtraOut("S"),
+        W: maxExtraOut("W"),
+        E: maxExtraOut("E"),
+        inset_from_finished_cm: insetFromFinished,
+        thermosystem_outside_cm: termoOut,
+        footing_beyond_structure_cm: footBeyond,
+        target_cm: footBeyond,
+        note: "talpă beton; 8+2 în afara fundației",
       };
-      // stocare pe v47 pentru audit (mutat pe volume.site mai jos via closure)
       v47._foundation_clip_cm = foundClip;
+      const ox0 = fx0 - foundClip.W;
+      const oy0 = fy0 - foundClip.N;
+      const ox1 = fx1 + foundClip.E;
+      const oy1 = fy1 + foundClip.S;
       const foundOuter = [
-        { id: "N", x: -foundClip.W, y: -foundClip.N, dx: ewCm + foundClip.W + foundClip.E, dy: foundClip.N },
-        { id: "S", x: -foundClip.W, y: nsCm, dx: ewCm + foundClip.W + foundClip.E, dy: foundClip.S },
-        { id: "W", x: -foundClip.W, y: 0, dx: foundClip.W, dy: nsCm },
-        { id: "E", x: ewCm, y: 0, dx: foundClip.E, dy: nsCm },
+        { id: "N", x: ox0, y: oy0, dx: ox1 - ox0, dy: fy0 - oy0 },
+        { id: "S", x: ox0, y: fy1, dx: ox1 - ox0, dy: oy1 - fy1 },
+        { id: "W", x: ox0, y: fy0, dx: fx0 - ox0, dy: fy1 - fy0 },
+        { id: "E", x: fx1, y: fy0, dx: ox1 - fx1, dy: fy1 - fy0 },
       ].filter((f) => f.dx >= 0.5 && f.dy >= 0.5);
       for (const f of foundOuter) {
         meshes.push({
@@ -1914,7 +1915,7 @@ function main() {
           z1_m: foundZ1,
           color: "#6e6a62",
           opacity: 0.9,
-          label: `fundație clip ${f.id} (țintă ${foundTarget} cm)`,
+          label: `fundație beton ${f.id} (finit−${insetFromFinished}, termo ${termoOut} afară)`,
         });
       }
     }
@@ -1952,25 +1953,31 @@ function main() {
   const isStudyA1 = (v47.meta?.study_variant === "A1") || inputRel.includes("a1_study");
   const absD = v47.basement_cm?.absolute_from_grade_cm;
 
-  // —— Audit A1: fundație țintă vs clipată (colțuri reale PIP)
-  const foundProjCm = v47.basement_cm?.wall_thickness_study_cm?.foundation_projection_beyond_wall_cm ?? 15;
+  // —— Audit fundație: talpă beton (finit − termosistem + mică ieșire), nu +15 peste finit
+  const thFound = v47.basement_cm?.wall_thickness_study_cm || {};
+  const termoOutA = thFound.foundation_thermosystem_outside_cm ?? 10;
+  const footA = thFound.foundation_footing_beyond_structure_cm ?? thFound.foundation_projection_beyond_wall_cm ?? 5;
+  const insetA = Math.max(0, termoOutA - footA);
   const foundClip = v47._foundation_clip_cm || {
-    N: foundProjCm,
-    S: foundProjCm,
-    W: foundProjCm,
-    E: foundProjCm,
-    target_cm: foundProjCm,
+    N: 0,
+    S: 0,
+    W: 0,
+    E: 0,
+    inset_from_finished_cm: insetA,
+    thermosystem_outside_cm: termoOutA,
+    footing_beyond_structure_cm: footA,
+    target_cm: footA,
   };
-  function auditFoundCorners(label, n, e, s, w) {
+  function auditFoundCorners(label, x0, y0, x1, y1) {
     const corners = [
-      { id: `${label}_NW`, x: -w, y: -n },
-      { id: `${label}_NE`, x: ewCm + e, y: -n },
-      { id: `${label}_SE`, x: ewCm + e, y: nsCm + s },
-      { id: `${label}_SW`, x: -w, y: nsCm + s },
-      { id: `${label}_N_mid`, x: ewCm / 2, y: -n },
-      { id: `${label}_E_mid`, x: ewCm + e, y: nsCm / 2 },
-      { id: `${label}_S_mid`, x: ewCm / 2, y: nsCm + s },
-      { id: `${label}_W_mid`, x: -w, y: nsCm / 2 },
+      { id: `${label}_NW`, x: x0, y: y0 },
+      { id: `${label}_NE`, x: x1, y: y0 },
+      { id: `${label}_SE`, x: x1, y: y1 },
+      { id: `${label}_SW`, x: x0, y: y1 },
+      { id: `${label}_N_mid`, x: (x0 + x1) / 2, y: y0 },
+      { id: `${label}_E_mid`, x: x1, y: (y0 + y1) / 2 },
+      { id: `${label}_S_mid`, x: (x0 + x1) / 2, y: y1 },
+      { id: `${label}_W_mid`, x: x0, y: (y0 + y1) / 2 },
     ];
     return corners.map((c) => {
       const site = toSite(c.x, c.y);
@@ -1984,22 +1991,15 @@ function main() {
       };
     });
   }
-  const foundationTargetParcel = auditFoundCorners(
-    "target",
-    foundProjCm,
-    foundProjCm,
-    foundProjCm,
-    foundProjCm
-  );
-  const foundationParcel = auditFoundCorners(
-    "clip",
-    foundClip.N,
-    foundClip.E,
-    foundClip.S,
-    foundClip.W
-  );
-  const foundationAllInside = foundationParcel.every((p) => p.inside);
-  const foundationTargetAllInside = foundationTargetParcel.every((p) => p.inside);
+  // țintă greșită veche: +15 peste finit (pentru comparație)
+  const foundationLegacyWrong = auditFoundCorners("legacy_plus15_finished", -15, -15, ewCm + 15, nsCm + 15);
+  const bx0 = insetA - (foundClip.W || 0);
+  const by0 = insetA - (foundClip.N || 0);
+  const bx1 = ewCm - insetA + (foundClip.E || 0);
+  const by1 = nsCm - insetA + (foundClip.S || 0);
+  const foundationParcel = auditFoundCorners("concrete_footing", bx0, by0, bx1, by1);
+  const foundationAllInside = foundationParcel.every((p) => p.inside || p.overflow_m < 0.02);
+  const foundationTargetAllInside = foundationLegacyWrong.every((p) => p.inside);
   delete v47._foundation_clip_cm;
   const volume = {
     meta: {
@@ -2055,10 +2055,11 @@ function main() {
       stair_se_site: stairSeSite,
       stair_se_inside: stairSeInside,
       stair_se_overflow_m: stairSeOverflow_m,
-      foundation_projection_cm: foundProjCm,
+      foundation_model: "beton; termosistem 8+2 în afara talpii",
+      foundation_inset_from_finished_cm: insetA,
       foundation_clip_cm: foundClip,
-      foundation_corners_target_15: foundationTargetParcel,
-      foundation_target_all_inside: foundationTargetAllInside,
+      foundation_corners_legacy_plus15_finished: foundationLegacyWrong,
+      foundation_legacy_plus15_all_inside: foundationTargetAllInside,
       foundation_corners: foundationParcel,
       foundation_all_inside: foundationAllInside,
       parcel_area_status: "aproximativ (reconstruit ≠ 147 m² declarați)",

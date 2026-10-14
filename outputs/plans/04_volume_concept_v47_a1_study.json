@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_study",
-    "generated": "2026-10-14T14:27:22.215Z",
+    "generated": "2026-10-14T15:31:41.697Z",
     "status": "3D_STUDIU_A1",
     "source_plan": "data/building/v47_a1_study.json",
     "based_on": "v47_exact (referință neatinsă)",
@@ -186,17 +186,22 @@
     },
     "stair_se_inside": true,
     "stair_se_overflow_m": 0,
-    "foundation_projection_cm": 15,
+    "foundation_model": "beton; termosistem 8+2 în afara talpii",
+    "foundation_inset_from_finished_cm": 5,
     "foundation_clip_cm": {
-      "N": 0,
-      "S": 0,
-      "W": 15,
-      "E": 0,
-      "target_cm": 15
+      "N": 14.78,
+      "S": 20,
+      "W": 20,
+      "E": 5,
+      "inset_from_finished_cm": 5,
+      "thermosystem_outside_cm": 10,
+      "footing_beyond_structure_cm": 5,
+      "target_cm": 5,
+      "note": "talpă beton; 8+2 în afara fundației"
     },
-    "foundation_corners_target_15": [
+    "foundation_corners_legacy_plus15_finished": [
       {
-        "id": "target_NW",
+        "id": "legacy_plus15_finished_NW",
         "local_cm": {
           "x": -15,
           "y": -15
@@ -209,7 +214,7 @@
         "overflow_m": 0.058
       },
       {
-        "id": "target_NE",
+        "id": "legacy_plus15_finished_NE",
         "local_cm": {
           "x": 695,
           "y": -15
@@ -222,7 +227,7 @@
         "overflow_m": 0.15
       },
       {
-        "id": "target_SE",
+        "id": "legacy_plus15_finished_SE",
         "local_cm": {
           "x": 695,
           "y": 875
@@ -235,7 +240,7 @@
         "overflow_m": 0.15
       },
       {
-        "id": "target_SW",
+        "id": "legacy_plus15_finished_SW",
         "local_cm": {
           "x": -15,
           "y": 875
@@ -248,7 +253,7 @@
         "overflow_m": 0
       },
       {
-        "id": "target_N_mid",
+        "id": "legacy_plus15_finished_N_mid",
         "local_cm": {
           "x": 340,
           "y": -15
@@ -261,7 +266,7 @@
         "overflow_m": 0
       },
       {
-        "id": "target_E_mid",
+        "id": "legacy_plus15_finished_E_mid",
         "local_cm": {
           "x": 695,
           "y": 430
@@ -274,7 +279,7 @@
         "overflow_m": 0.15
       },
       {
-        "id": "target_S_mid",
+        "id": "legacy_plus15_finished_S_mid",
         "local_cm": {
           "x": 340,
           "y": 875
@@ -287,7 +292,7 @@
         "overflow_m": 0
       },
       {
-        "id": "target_W_mid",
+        "id": "legacy_plus15_finished_W_mid",
         "local_cm": {
           "x": -15,
           "y": 430
@@ -300,114 +305,114 @@
         "overflow_m": 0
       }
     ],
-    "foundation_target_all_inside": false,
+    "foundation_legacy_plus15_all_inside": false,
     "foundation_corners": [
       {
-        "id": "clip_NW",
+        "id": "concrete_footing_NW",
         "local_cm": {
           "x": -15,
-          "y": 0
+          "y": -9.78
         },
         "site_m": {
-          "x": 1.0992,
-          "y": 17.9242
+          "x": 1.095,
+          "y": 18.0219
+        },
+        "inside": false,
+        "overflow_m": 0.006
+      },
+      {
+        "id": "concrete_footing_NE",
+        "local_cm": {
+          "x": 680,
+          "y": -9.78
+        },
+        "site_m": {
+          "x": 8.0386,
+          "y": 18.319
         },
         "inside": true,
         "overflow_m": 0
       },
       {
-        "id": "clip_NE",
+        "id": "concrete_footing_SE",
         "local_cm": {
           "x": 680,
-          "y": 0
+          "y": 875
         },
         "site_m": {
-          "x": 8.0428,
-          "y": 18.2213
-        },
-        "inside": true,
-        "overflow_m": 0
-      },
-      {
-        "id": "clip_SE",
-        "local_cm": {
-          "x": 680,
-          "y": 860
-        },
-        "site_m": {
-          "x": 8.4105,
-          "y": 9.6291
+          "x": 8.4169,
+          "y": 9.4793
         },
         "inside": false,
         "overflow_m": 0
       },
       {
-        "id": "clip_SW",
+        "id": "concrete_footing_SW",
         "local_cm": {
           "x": -15,
-          "y": 860
+          "y": 875
         },
         "site_m": {
-          "x": 1.4668,
-          "y": 9.3321
+          "x": 1.4732,
+          "y": 9.1822
         },
         "inside": true,
         "overflow_m": 0
       },
       {
-        "id": "clip_N_mid",
+        "id": "concrete_footing_N_mid",
         "local_cm": {
-          "x": 340,
-          "y": 0
+          "x": 332.5,
+          "y": -9.78
         },
         "site_m": {
-          "x": 4.6459,
-          "y": 18.076
+          "x": 4.5668,
+          "y": 18.1705
         },
         "inside": true,
         "overflow_m": 0
       },
       {
-        "id": "clip_E_mid",
+        "id": "concrete_footing_E_mid",
         "local_cm": {
           "x": 680,
-          "y": 430
+          "y": 432.61
         },
         "site_m": {
-          "x": 8.2266,
-          "y": 13.9252
+          "x": 8.2277,
+          "y": 13.8991
         },
         "inside": true,
         "overflow_m": 0
       },
       {
-        "id": "clip_S_mid",
+        "id": "concrete_footing_S_mid",
         "local_cm": {
-          "x": 340,
-          "y": 860
+          "x": 332.5,
+          "y": 875
         },
         "site_m": {
-          "x": 5.0136,
-          "y": 9.4838
+          "x": 4.945,
+          "y": 9.3307
         },
         "inside": true,
         "overflow_m": 0
       },
       {
-        "id": "clip_W_mid",
+        "id": "concrete_footing_W_mid",
         "local_cm": {
           "x": -15,
-          "y": 430
+          "y": 432.61
         },
         "site_m": {
-          "x": 1.283,
-          "y": 13.6282
+          "x": 1.2841,
+          "y": 13.6021
         },
         "inside": true,
         "overflow_m": 0
       }
     ],
-    "foundation_all_inside": false,
+    "foundation_all_inside": true,
     "parcel_area_status": "aproximativ (reconstruit ≠ 147 m² declarați)",
     "transform": {
       "P5": {
@@ -30635,35 +30640,128 @@
       "label": "sandwich residual_level_to_ff 15 cm"
     },
     {
-      "id": "fundatie_W",
+      "id": "fundatie_N",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.0992,
-          "y": 17.9242
+          "x": 1.095,
+          "y": 18.0219
         },
         {
-          "x": 1.249,
-          "y": 17.9306
+          "x": 8.0386,
+          "y": 18.319
         },
         {
-          "x": 1.6167,
-          "y": 9.3385
+          "x": 8.045,
+          "y": 18.1713
         },
         {
-          "x": 1.4668,
-          "y": 9.3321
+          "x": 1.1013,
+          "y": 17.8743
         },
         {
-          "x": 1.0992,
-          "y": 17.9242
+          "x": 1.095,
+          "y": 18.0219
         }
       ],
       "z0_m": -3.1,
       "z1_m": -2.65,
       "color": "#6e6a62",
       "opacity": 0.9,
-      "label": "fundație clip W (țintă 15 cm)"
+      "label": "fundație beton N (finit−5, termo 10 afară)"
+    },
+    {
+      "id": "fundatie_S",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.4647,
+          "y": 9.382
+        },
+        {
+          "x": 8.4083,
+          "y": 9.6791
+        },
+        {
+          "x": 8.4169,
+          "y": 9.4793
+        },
+        {
+          "x": 1.4732,
+          "y": 9.1822
+        },
+        {
+          "x": 1.4647,
+          "y": 9.382
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6e6a62",
+      "opacity": 0.9,
+      "label": "fundație beton S (finit−5, termo 10 afară)"
+    },
+    {
+      "id": "fundatie_W",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.1013,
+          "y": 17.8743
+        },
+        {
+          "x": 1.3011,
+          "y": 17.8828
+        },
+        {
+          "x": 1.6645,
+          "y": 9.3906
+        },
+        {
+          "x": 1.4647,
+          "y": 9.382
+        },
+        {
+          "x": 1.1013,
+          "y": 17.8743
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6e6a62",
+      "opacity": 0.9,
+      "label": "fundație beton W (finit−5, termo 10 afară)"
+    },
+    {
+      "id": "fundatie_E",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.995,
+          "y": 18.1692
+        },
+        {
+          "x": 8.045,
+          "y": 18.1713
+        },
+        {
+          "x": 8.4083,
+          "y": 9.6791
+        },
+        {
+          "x": 8.3584,
+          "y": 9.677
+        },
+        {
+          "x": 7.995,
+          "y": 18.1692
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6e6a62",
+      "opacity": 0.9,
+      "label": "fundație beton E (finit−5, termo 10 afară)"
     },
     {
       "id": "acces_treapta_0",

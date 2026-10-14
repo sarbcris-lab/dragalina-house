@@ -653,15 +653,27 @@ function applyA1(v47) {
       note: "VALORI ABSOLUTE față de teren=0",
     },
     wall_thickness_study_cm: {
+      // Casă încălzită: 20 sono (neumplutură) + 8 termo + 2 finisaj = 30 finit
+      heated_finished_cm: 30,
+      brick_sono_non_loadbearing_cm: 20,
+      insulation_cm: 8,
+      finish_cm: 2,
+      structure: "beton_portant",
       perimeter_structure_cm: 30,
-      perimeter_note: "studiu — de confirmat structurist",
+      perimeter_note: "30 = finit casă; structura portantă = beton, nu cărămida sono",
       partition_cm: 12.5,
       shaft_west_cm: shaftWest,
       shaft_east_cm: shaftEast,
-      shaft_east_note: "sprijin Dragalina — JSON 15 cm",
+      shaft_east_note: "scară rece — fără termosistem; 15 cm studiu",
       shaft_north_cm: shaftNorth,
-      foundation_projection_beyond_wall_cm: 15,
-      foundation_note: "proiecție 15 cm; verificare parcelă pe colțuri transformate",
+      // Fundație pe beton: termosistem 10 cm ÎN AFARA liniei de talpă
+      foundation_thermosystem_outside_cm: 10,
+      foundation_footing_beyond_structure_cm: 5,
+      foundation_projection_beyond_wall_cm: 5,
+      foundation_note:
+        "talpă beton față de fața structură/umplutură (finit−10); +5 cm talpă tipică — NU +15 față de finit",
+      cold_stair: true,
+      cold_stair_note: "volum scară rece; casă izolată la buc_est",
     },
     ramp2_ref: { x: 565, y: 590, dx: 115, dy: 270 },
     // IMPORTANT: gol în planșeu = doar sub rampă2, NU pe tot palierul Y490+
@@ -962,10 +974,19 @@ function verifyA1(v, volume) {
     }
   }
 
-  // fundație țintă incompletă pe est = observație deschisă
-  notes.push(
-    "fundație: ținta ±15 cm eșuează pe est Dragalina; clipul actual nu e „fundație completă” — observație DESCHISĂ"
-  );
+  // fundație beton (termo 10 cm afară) — legacy +15 pe finit e greșit
+  if (volume?.site?.foundation_all_inside) {
+    passes.push(
+      `fundație beton în parcelă (inset finit ${volume.site.foundation_inset_from_finished_cm} cm = termo−talpă)`
+    );
+  } else if (volume?.site?.foundation_corners) {
+    notes.push("fundație beton: verificare PIP — vezi volume.site.foundation_corners");
+  }
+  if (volume?.site && volume.site.foundation_legacy_plus15_all_inside === false) {
+    notes.push(
+      "legacy +15 cm peste fața FINITE eșuează pe est — ipoteză greșită (termo nu stă pe talpă); nu cere mutarea casei"
+    );
+  }
   notes.push(
     "înălțime liberă 220 = țintă pe soffit studiu; validare structurală planșeu/grinzi = DESCHISĂ"
   );
@@ -1042,13 +1063,12 @@ function verifyA1(v, volume) {
   // A1 fezabilă doar dacă: fără fails + transport confirmat + fundație țintă OK + straturi confirmate
   // Momentan straturi/fundație rămân deschise → forțăm nefezabil
   const openIssues = [
-    "fundație completă ±15 pe tot conturul (est CF)",
     "straturi sandwich residual confirmate de structurist",
     "înălțime liberă validată pe geometrie structurală finală (nu doar soffit țintă)",
-    ...(tr && !tr.confirmed ? ["transport geometric fără coliziuni"] : []),
+    ...(tr && !tr.confirmed ? ["transport geometric (opțional dacă orientare corectă de la intrare)"] : []),
   ];
-  const feasible =
-    fails.length === 0 && tr?.confirmed === true && openIssues.length === 0;
+  // fundație: nu mai blochează pe legacy +15 finit
+  const feasible = false; // studiu deschis până confirmări structurale / transport dacă e cazul
 
   return {
     ok: fails.length === 0,
@@ -1442,9 +1462,14 @@ ${(bm.transport_audit?.geometric?.poses || []).map((p) => `| ${p.id} | ${p.angle
 - EST puț: ${bm.wall_thickness_study_cm.shaft_east_cm} cm · VEST: ${bm.wall_thickness_study_cm.shaft_west_cm} cm
 
 ## Fundație / parcelă
-Țintă ${volume?.site?.foundation_projection_cm ?? 15} cm · clip \`${JSON.stringify(volume?.site?.foundation_clip_cm)}\` · clip_all_inside=${volume?.site?.foundation_all_inside} · target_all_inside=${volume?.site?.foundation_target_all_inside}
+Model: **talpă pe beton**; cărămidă sono = umplutură neportantă; **termosistem 8+2 în afara fundației**.
 
-| Punct (clip) | inside | overflow_m |
+- Inset față de finit: **${volume?.site?.foundation_inset_from_finished_cm ?? "?"} cm**
+- Clip: \`${JSON.stringify(volume?.site?.foundation_clip_cm)}\`
+- Talpă beton all_inside=${volume?.site?.foundation_all_inside}
+- Legacy greșit (+15 pe finit) all_inside=${volume?.site?.foundation_legacy_plus15_all_inside} — **nu mutați casa din cauza lui**
+
+| Punct (talpă beton) | inside | overflow_m |
 |-------|:------:|-----------:|
 ${found.map((f) => `| ${f.id} | ${f.inside} | ${f.overflow_m} |`).join("\n") || "| (volum lipsă) | | |"}
 

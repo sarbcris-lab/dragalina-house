@@ -73,7 +73,9 @@
       "y": 0,
       "dx": 680,
       "dy": 30,
-      "kind": "ext"
+      "kind": "ext",
+      "thermal": "mixed",
+      "note": "X0–565 casă încălzită (20+8+2); X565–680 bandă scară — de tratat cold_stair (fără termosistem)"
     },
     {
       "id": "vest",
@@ -91,7 +93,9 @@
       "dx": 30,
       "dy": 410,
       "kind": "ext",
-      "note": "P+E: X650 Y30–440; P10 continuă pe P cu est_recuperat_p"
+      "thermal": "heated_thermosystem",
+      "assembly": "20_sono+8_termo+2_finisaj",
+      "note": "P+E: X650 Y30–440; finit la X680; cărămidă sono neumplutură portantă; structură beton"
     },
     {
       "id": "living_palier",
@@ -166,7 +170,8 @@
       "dx": 30,
       "dy": 270,
       "kind": "ext",
-      "note": "P: vest scară doar Y590+; Y470–590 deschis (sub palier intrare etaj)",
+      "thermal": "house_stair_separator",
+      "note": "separator termic casă încălzită ↔ scară rece; P: vest scară Y590+; Y470–590 deschis (sub palier etaj)",
       "levels": [
         0
       ]
@@ -3620,15 +3625,40 @@
   },
   "construction_assemblies": {
     "status": "REZERVE — performanțe NECONFIRMATE până la documentare",
-    "exterior_wall": {
+    "exterior_wall_heated": {
+      "structure": "beton_portant",
+      "brick_sono_non_loadbearing_cm": 20,
+      "brick_role": "umplutură sono — termic + acustic; NU portantă",
+      "insulation_thermosystem_cm": 8,
+      "finish_cm": 2,
       "thickness_finished_cm": 30,
-      "layers_study": [
-        "finisaj interior",
-        "zidărie/structură",
-        "izolație",
-        "fațadă"
-      ],
-      "note": "alcătuire completă NECONFIRMATĂ; nu adăuga straturi peste net fără recalcul"
+      "sum_check": "20+8+2=30",
+      "foundation": {
+        "bears_on": "beton_structura",
+        "thermosystem_outside_foundation_cm": 10,
+        "thermosystem_note": "8+2 nu stau pe talpă; în afara liniei de fundație",
+        "footing_beyond_structure_outer_cm": 5,
+        "footing_note": "mică ieșire talpă beton față de fața exterioară structură/umplutură sub termosistem — nu față de fața finită"
+      },
+      "note": "casă încălzită, izolată; termosistem pe fațade încălzite"
+    },
+    "exterior_wall": {
+      "alias_of": "exterior_wall_heated",
+      "thickness_finished_cm": 30,
+      "note": "compatibil vechi; detalii în exterior_wall_heated"
+    },
+    "stair_volume_cold": {
+      "heated": false,
+      "thermosystem": false,
+      "thermal_separation_from_house": "buc_est / perete casă↔scară",
+      "typical_wall_cm": "10–15 zidărie/parapet — fără 8+2",
+      "foundation_note": "fără termosistem: linia fundației ≈ fața zidăriei reci, nu +10 inset finit",
+      "note": "casa scării = volum rece; casa izolată față de scară"
+    },
+    "parapet_no_thermosystem": {
+      "thermosystem": false,
+      "typical_cm": 10,
+      "note": "parapete scară/terasă — fără termosistem"
     },
     "interior_wall_pocket": {
       "current_cm": 12.5,
@@ -3671,8 +3701,13 @@
     },
     "thermal_bridges": {
       "terraces": "continuare izolație / prag — REZERVĂ",
-      "stair": "rupere punți — REZERVĂ",
+      "stair": "rupere punți casă↔scară rece (buc_est) — REZERVĂ detaliu",
       "joinery": "praguri termice — REZERVĂ"
+    },
+    "envelope_zones": {
+      "heated_house": "corp P+E cu termosistem 8+2 pe fațade",
+      "cold_stair": "bandă scară est — rece, fără termosistem",
+      "note": "anvelopa 680×860 = fața FINITE; fundația nu se măsoară de la finit pe fațadele cu termosistem"
     }
   },
   "path_overlays_cm": [
@@ -4554,15 +4589,24 @@
       }
     ],
     "wall_thickness_study_cm": {
+      "heated_finished_cm": 30,
+      "brick_sono_non_loadbearing_cm": 20,
+      "insulation_cm": 8,
+      "finish_cm": 2,
+      "structure": "beton_portant",
       "perimeter_structure_cm": 30,
-      "perimeter_note": "studiu — de confirmat structurist",
+      "perimeter_note": "30 = finit casă; structura portantă = beton, nu cărămida sono",
       "partition_cm": 12.5,
       "shaft_west_cm": 30,
       "shaft_east_cm": 15,
-      "shaft_east_note": "sprijin Dragalina — JSON 15 cm",
+      "shaft_east_note": "scară rece — fără termosistem; 15 cm studiu",
       "shaft_north_cm": 12.5,
-      "foundation_projection_beyond_wall_cm": 15,
-      "foundation_note": "proiecție 15 cm; verificare parcelă pe colțuri transformate"
+      "foundation_thermosystem_outside_cm": 10,
+      "foundation_footing_beyond_structure_cm": 5,
+      "foundation_projection_beyond_wall_cm": 5,
+      "foundation_note": "talpă beton față de fața structură/umplutură (finit−10); +5 cm talpă tipică — NU +15 față de finit",
+      "cold_stair": true,
+      "cold_stair_note": "volum scară rece; casă izolată la buc_est"
     },
     "open_shaft_cm": {
       "x": 565,
@@ -4619,10 +4663,9 @@
       "feasible_a1": false,
       "status_label": "A1 NEFEZABIL / STUDIU DESCHIS",
       "open_issues": [
-        "fundație completă ±15 pe tot conturul (est CF)",
         "straturi sandwich residual confirmate de structurist",
         "înălțime liberă validată pe geometrie structurală finală (nu doar soffit țintă)",
-        "transport geometric fără coliziuni"
+        "transport geometric (opțional dacă orientare corectă de la intrare)"
       ],
       "passes": [
         "upper_landing → Y860",
@@ -4643,10 +4686,12 @@
         "transport: usa_hol_ct: gol montaj 100 → clear 90 (toc 5+5) — păstrat studiu",
         "transport: usa_hol_dep: gol montaj 100 → clear 90 (toc 5+5) — păstrat studiu",
         "transport: hol lățime 185 ≥ 90",
+        "fundație beton în parcelă (inset finit 5 cm = termo−talpă)",
         "util studii recalculat 37.87875 m² (Δ vs ref 0)",
         "arii subsol brut recalculate 31.3175 m²",
         "anvelopă 680×860 păstrată",
-        "fundație MODELATĂ (clip N/E/S/W=0/0/0/15 cm): fără overflow ≥2 cm"
+        "țintă fundație ±undefined cm: toate punctele în parcelă",
+        "fundație MODELATĂ (clip N/E/S/W=14.78/5/20/20 cm): fără overflow ≥2 cm"
       ],
       "fails": [],
       "notes": [
@@ -4655,11 +4700,9 @@
         "TRANSPORT NECONFIRMAT: există coliziuni în secvența geometrică sau spațiu manipulare insuficient — nu se folosește W+15 ca substitut",
         "poziții în conflict: intoarcere_15[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,treapta_7]; intoarcere_30[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,treapta_7]; intoarcere_45[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,foaie_deschisa_hol,treapta_7]; intoarcere_60[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,foaie_deschisa_hol,treapta_7]; intoarcere_75[toc_n,toc_s,foaie_deschisa_hol]",
         "TRANSPORT NECONFIRMAT — A1 nu poate fi declarată fezabilă pe transport",
-        "fundație: ținta ±15 cm eșuează pe est Dragalina; clipul actual nu e „fundație completă” — observație DESCHISĂ",
+        "legacy +15 cm peste fața FINITE eșuează pe est — ipoteză greșită (termo nu stă pe talpă); nu cere mutarea casei",
         "înălțime liberă 220 = țintă pe soffit studiu; validare structurală planșeu/grinzi = DESCHISĂ",
-        "țintă fundație uniformă 15 cm EȘUEAZĂ PIP: target_NW +0.058m; target_NE +0.15m; target_SE +0.15m; target_E_mid +0.15m",
-        "PIP=false dist≈0 pe clip_SE — același artefact numeric ca SE anvelopă",
-        "proiecție redusă față de ținta 15 cm (est/Dragalina tipic limitat de contur CF)",
+        "PIP=false dist≈0 pe concrete_footing_NW, concrete_footing_SE — același artefact numeric ca SE anvelopă",
         "colț SE anvelopă: PIP=false dist≈0 (numeric contur) — neschimbat vs referință"
       ],
       "pot_envelope_over_147": 39.78,

@@ -6,10 +6,9 @@
 Checks geometrice fără eșecuri critice: da · Fezabilitate A1: **nu**
 
 ### Observații deschise (blochează fezabilitatea)
-- fundație completă ±15 pe tot conturul (est CF)
 - straturi sandwich residual confirmate de structurist
 - înălțime liberă validată pe geometrie structurală finală (nu doar soffit țintă)
-- transport geometric fără coliziuni
+- transport geometric (opțional dacă orientare corectă de la intrare)
 
 ## Traseu
 `curte→palier−95→scară↓N→palier(sub planșeu Y490–590 + puț Y590–600)→ușă→hol→CT/dep`
@@ -75,10 +74,12 @@ straturi sumă 62 cm = FF(32) − intrados(-30)
 - transport: usa_hol_ct: gol montaj 100 → clear 90 (toc 5+5) — păstrat studiu
 - transport: usa_hol_dep: gol montaj 100 → clear 90 (toc 5+5) — păstrat studiu
 - transport: hol lățime 185 ≥ 90
+- fundație beton în parcelă (inset finit 5 cm = termo−talpă)
 - util studii recalculat 37.87875 m² (Δ vs ref 0)
 - arii subsol brut recalculate 31.3175 m²
 - anvelopă 680×860 păstrată
-- fundație MODELATĂ (clip N/E/S/W=0/0/0/15 cm): fără overflow ≥2 cm
+- țintă fundație ±undefined cm: toate punctele în parcelă
+- fundație MODELATĂ (clip N/E/S/W=14.78/5/20/20 cm): fără overflow ≥2 cm
 
 ### FAIL
 - (niciuna)
@@ -89,11 +90,9 @@ straturi sumă 62 cm = FF(32) − intrados(-30)
 - TRANSPORT NECONFIRMAT: există coliziuni în secvența geometrică sau spațiu manipulare insuficient — nu se folosește W+15 ca substitut
 - poziții în conflict: intoarcere_15[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,treapta_7]; intoarcere_30[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,treapta_7]; intoarcere_45[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,foaie_deschisa_hol,treapta_7]; intoarcere_60[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,foaie_deschisa_hol,treapta_7]; intoarcere_75[toc_n,toc_s,foaie_deschisa_hol]
 - TRANSPORT NECONFIRMAT — A1 nu poate fi declarată fezabilă pe transport
-- fundație: ținta ±15 cm eșuează pe est Dragalina; clipul actual nu e „fundație completă” — observație DESCHISĂ
+- legacy +15 cm peste fața FINITE eșuează pe est — ipoteză greșită (termo nu stă pe talpă); nu cere mutarea casei
 - înălțime liberă 220 = țintă pe soffit studiu; validare structurală planșeu/grinzi = DESCHISĂ
-- țintă fundație uniformă 15 cm EȘUEAZĂ PIP: target_NW +0.058m; target_NE +0.15m; target_SE +0.15m; target_E_mid +0.15m
-- PIP=false dist≈0 pe clip_SE — același artefact numeric ca SE anvelopă
-- proiecție redusă față de ținta 15 cm (est/Dragalina tipic limitat de contur CF)
+- PIP=false dist≈0 pe concrete_footing_NW, concrete_footing_SE — același artefact numeric ca SE anvelopă
 - colț SE anvelopă: PIP=false dist≈0 (numeric contur) — neschimbat vs referință
 
 ## Transport echipamente
@@ -137,18 +136,23 @@ Gabarit: **80×70×180 cm** · Goluri montaj **100** / clear **90** (păstrate s
 - EST puț: 15 cm · VEST: 30 cm
 
 ## Fundație / parcelă
-Țintă 15 cm · clip `{"N":0,"S":0,"W":15,"E":0,"target_cm":15}` · clip_all_inside=false · target_all_inside=false
+Model: **talpă pe beton**; cărămidă sono = umplutură neportantă; **termosistem 8+2 în afara fundației**.
 
-| Punct (clip) | inside | overflow_m |
+- Inset față de finit: **5 cm**
+- Clip: `{"N":14.78,"S":20,"W":20,"E":5,"inset_from_finished_cm":5,"thermosystem_outside_cm":10,"footing_beyond_structure_cm":5,"target_cm":5,"note":"talpă beton; 8+2 în afara fundației"}`
+- Talpă beton all_inside=true
+- Legacy greșit (+15 pe finit) all_inside=false — **nu mutați casa din cauza lui**
+
+| Punct (talpă beton) | inside | overflow_m |
 |-------|:------:|-----------:|
-| clip_NW | true | 0 |
-| clip_NE | true | 0 |
-| clip_SE | false | 0 |
-| clip_SW | true | 0 |
-| clip_N_mid | true | 0 |
-| clip_E_mid | true | 0 |
-| clip_S_mid | true | 0 |
-| clip_W_mid | true | 0 |
+| concrete_footing_NW | false | 0.006 |
+| concrete_footing_NE | true | 0 |
+| concrete_footing_SE | false | 0 |
+| concrete_footing_SW | true | 0 |
+| concrete_footing_N_mid | true | 0 |
+| concrete_footing_E_mid | true | 0 |
+| concrete_footing_S_mid | true | 0 |
+| concrete_footing_W_mid | true | 0 |
 
 ## Arii P/E (recalculate după coordonare planșeu)
 Metodă: shoelace(interior_polygon) − reuniune pereți int (−goluri baie/dorm)
