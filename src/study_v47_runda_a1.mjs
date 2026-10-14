@@ -66,13 +66,22 @@ function computeStudioAreas(v47) {
     if (!voidIds.has(o.id)) continue;
     for (const w of ints) voidA += rectIntersectArea(w, o);
   }
-  const wallNet = gross - overlaps - voidA;
+  // închideri termice care mănâncă util (ex. living↔puț @ Y590)
+  let thermalDeduct = 0;
+  for (const w of v47.walls_cm || []) {
+    if (w.id === "living_put_thermal_y590" || w.toward === "shaft_cold") {
+      thermalDeduct += rectArea(w);
+    }
+  }
+  const wallNet = gross - overlaps - voidA + thermalDeduct;
   const usefulGeom = (envCm2 - wallNet) / 10000;
   return {
     envelope_shoelace_m2: +(envCm2 / 10000).toFixed(6),
     walls_net_m2: +(wallNet / 10000).toFixed(6),
+    thermal_enclosure_m2: +(thermalDeduct / 10000).toFixed(6),
     useful_geometric_m2: +usefulGeom.toFixed(6),
-    method: "shoelace(interior_polygon) − reuniune pereți int (−goluri baie/dorm)",
+    method:
+      "shoelace(interior_polygon) − pereți int (−goluri) − închidere termică living↔puț",
   };
 }
 
@@ -653,7 +662,15 @@ function applyA1(v47) {
   out.meta = out.meta || {};
   out.meta.study_variant = "A1";
   out.meta.rev_note_a1 =
-    "A1: goluri 100/palier 110; planșeu Y490–590; puț Y590–860; rampă curte Y868–1036 (+8 sud); alee/poartă racord Y1036; transport geometric";
+    "A1 perimeter-structure: tronsoane BA în pereți + EB20 umplutură; fără grilă stâlpi/X320; gol beci Y465–565 (înaintea grinzii Y575); living@Y590 termo; neconstruibil";
+  out.meta.structure_variant = "perimeter_wall_piers_study";
+  out.meta.declared_buildable = false;
+  out.meta.structure_calc_pending = [
+    "grosime pile/tronsoane (țintă studiu 20 cm)",
+    "lungimi pile est/sud",
+    "grosime planșeu între studiouri (15 cm neconfirmat fără reazem interior)",
+    "reazeme rampe scară",
+  ];
 
   const riser = 155 / 9;
   const tread = 25;
@@ -671,17 +688,22 @@ function applyA1(v47) {
   const upperLandDy = courtStepsY0 - upperLandY0; // 68 — continuu până la trepte
   const alleyY0 = courtStepsY1; // racord continuu (fără gol 2 cm față de Y1038)
   const alleyDy = 150;
-  // toc 5+5 → clear 90 cere gol montaj 100; palier trebuie ≥ gol + pivot (W+15)
+  // toc 5+5 → clear 90 cere gol montaj 100
   const jamb = 5;
   const clearEff = 90;
   const roughDoor = clearEff + 2 * jamb; // 100
   const gabaritW = 70; // baterie / modul CT
   const gabaritL = 80;
-  // păstrate ca variantă de studiu (cerință)
-  const landDy = 110;
-  const landY0 = yLast - landDy; // 490
+  // Test: golul se termină ÎNAINTE de grindă Y575–590 (fără îngustare 100 cm)
+  const edgeBeamY0 = 575;
+  const doorToBeamGapCm = 10; // montant / rezervă până la grindă
   const doorDy = roughDoor; // 100
-  const doorY0 = yLast - doorDy; // 500
+  const doorY1 = edgeBeamY0 - doorToBeamGapCm; // 565
+  const doorY0 = doorY1 - doorDy; // 465
+  // Palier: păstrează sosirea scării @ Y600; extensie nord pentru ușă
+  const landY1 = yLast; // 600
+  const landY0 = doorY0 - 10; // 455 — închidere N mutată nord
+  const landDy = landY1 - landY0; // 145
   const shaftEast = 15;
   const shaftWest = 30;
   const clearDx = 680 - shaftEast - 565; // 100
@@ -694,7 +716,7 @@ function applyA1(v47) {
     ...out.basement_cm,
     status: "studiu_A1_slab_transport",
     concept_note:
-      `A1: palier ${landDy} cm / goluri ${roughDoor} păstrate studiu; planșeu peste Y${landY0}–590; puț deschis Y590–860.`,
+      `A1 perimeter: palier Y${landY0}–${landY1} (${landDy} cm); gol ${roughDoor} cm Y${doorY0}–${doorY1} (înaintea grinzii ${edgeBeamY0}); puț Y590–860. Neconstruibil.`,
     transport_cm: {
       clear_effective_min_cm: clearEff,
       frame_jamb_each_side_cm: jamb,
@@ -733,7 +755,16 @@ function applyA1(v47) {
         note: "doar sub rampă2 / curte engleză — fără pardoseală living deasupra",
       },
       edge_beam_y: 590,
-      edge_beam_note: "reazem planșeu la sudul zonei acoperite / nordul puțului",
+      edge_beam_y0: edgeBeamY0,
+      edge_beam_note:
+        "grindă Y575–590; gol ușă se termină @ Y565 (gap 10 cm). Clear sub grindă ≈180 cm — adâncime ipoteză.",
+      door_north_of_beam_test: {
+        door_y0: doorY0,
+        door_y1: doorY1,
+        land_y0: landY0,
+        land_y1: landY1,
+        status: "studiu_geometric — neconfirmat vs hol/transport/reazem",
+      },
     },
     absolute_from_grade_cm: {
       ...d,
@@ -789,12 +820,12 @@ function applyA1(v47) {
       y: 590,
       dx: 115,
       dy: 270,
-      note: "puț deschis Y590–860 (=ramp2); palier Y490–590 sub planșeu",
+      note: `puț deschis Y590–860 (=ramp2); palier acoperit Y${landY0}–590`,
     },
     shaft_enclosure_cm: {
       y0: landY0,
       y1: 860,
-      note: "pereți puț/palier pe Y490–860; gol planșeu doar Y590+",
+      note: `pereți puț/palier pe Y${landY0}–860; gol planșeu doar Y590+`,
     },
     court_to_access_steps: {
       count: courtRisers,
@@ -854,8 +885,8 @@ function applyA1(v47) {
       dx: 115,
       dy: landDy,
       z_ff_cm: d.basement_ff_cm,
-      status: "studiu_A1_transport",
-      note: `Y${landY0}–${yLast} (${landDy} cm) studiu; Y${landY0}–590 sub planșeu; Y590–${yLast} în puț; zid N @ Y${landY0 - shaftNorth}`,
+      status: "studiu_A1_door_north_of_beam",
+      note: `Y${landY0}–${landY1} (${landDy} cm): extensie N pentru ușă înaintea grinzii; Y${landY0}–590 sub planșeu; Y590–${landY1} în puț; zid N @ Y${landY0 - shaftNorth}`,
     },
     door_to_rooms: {
       id: "usa_subsol_camere",
@@ -870,8 +901,8 @@ function applyA1(v47) {
       clear_after_frame_cm: clearEff,
       rough_opening_cm: roughDoor,
       connects: ["lower_landing", "hol_subsol"],
-      status: "studiu_A1_transport",
-      note: `gol montaj ${roughDoor} cm Y${doorY0}–${doorY0 + doorDy} → clear ${clearEff} după toc ${jamb}+${jamb}`,
+      status: "studiu_A1_door_north_of_beam",
+      note: `gol ${roughDoor} cm Y${doorY0}–${doorY1} (termină ${doorToBeamGapCm} cm N de grindă ${edgeBeamY0}); clear ${clearEff}; neconfirmat vs hol/transport`,
     },
     internal_doors: [
       {
@@ -943,6 +974,157 @@ function applyA1(v47) {
     shaft_walls: true,
     a1_checks: null,
   };
+
+  // —— Schemă structurală perimetrală (studiu) — separat de dimensiuni de calcul ——
+  const STRUCT_TH = 20; // țintă studiu în falie cărămidă; de confirmat prin calcul
+  const ETICS = 9.2;
+  out.structure_perimeter_study_cm = {
+    status: "STUDIU — neconstruibil; lungimi/grosimi = ipoteze până la structurist",
+    declared_buildable: false,
+    removes: [
+      "grila_stalpi_patrati",
+      "axa_structurala_X320_perete_comun",
+      "stalpi_etaj_only_pal_nw_pal_ne",
+    ],
+    concrete_replaces_brick_locally: true,
+    insulation_continues_on_cold_face_cm: 8,
+    structural_thickness_target_cm: STRUCT_TH,
+    structural_thickness_status: "ipoteză studiu — confirmare prin calcul",
+    interior_partitions_cm: 12.5,
+    interior_partitions_role: "nestructural — uși/casete neschimbate",
+    floor_slab: {
+      geometry_amenajare: "păstrată",
+      structural_thickness_cm: 15,
+      structural_thickness_status: "neconfirmat fără reazem interior — primul calcul structurist",
+      floor_buildup_below_ff_cm: 12,
+      note: "nu suprapune valori ca să „închidă” FF; clear rezultat = separat",
+    },
+    beams_priority: ["contur_exterior", "langa_gol_scara"],
+    living_dorm_span: "fără reazem pe compartimentarea 12,5 cm",
+    piers: [
+      {
+        id: "tronson_n",
+        x: ETICS,
+        y: ETICS,
+        dx: 650 - ETICS,
+        dy: STRUCT_TH,
+        levels: "S_P_E",
+        note: "nord — tronson continuu în falie; goluri = întreruperi locale (calcul)",
+      },
+      {
+        id: "tronson_w",
+        x: ETICS,
+        y: ETICS,
+        dx: STRUCT_TH,
+        dy: 645 - ETICS,
+        levels: "S_P_E",
+        note: "vest — tronson continuu subsol–parter–etaj",
+      },
+      {
+        id: "pila_est_n_geam",
+        x: 650,
+        y: 30,
+        dx: STRUCT_TH,
+        dy: 75,
+        levels: "S_P_E",
+        note: "est: pilă plină N de geam living (geam ~Y105–310) — lungime ipoteză",
+      },
+      {
+        id: "pila_est_s_geam",
+        x: 650,
+        y: 310,
+        dx: STRUCT_TH,
+        dy: 130,
+        levels: "S_P_E",
+        note: "est: pilă plină S de geam living — lungime ipoteză",
+      },
+      {
+        id: "pila_est_sub_palier",
+        x: 650,
+        y: 440,
+        dx: STRUCT_TH,
+        dy: 150,
+        levels: "S_P_E",
+        note: "est continuu sub palier/living — preferat față de stâlp suspendat în living",
+      },
+      {
+        id: "pila_sud_dorm_w",
+        x: ETICS,
+        y: 645,
+        dx: 120 - ETICS,
+        dy: STRUCT_TH,
+        levels: "S_P_E",
+        note: "sud dorm: pilă W de gol terasă X120–270",
+      },
+      {
+        id: "pila_sud_dorm_e",
+        x: 270,
+        y: 645,
+        dx: 90,
+        dy: STRUCT_TH,
+        levels: "S_P_E",
+        note: "sud dorm: pilă E de gol terasă — lungime ipoteză",
+      },
+      {
+        id: "tronson_sud_intrare",
+        x: 360,
+        y: 830,
+        dx: 175,
+        dy: STRUCT_TH,
+        levels: "S_P_E",
+        note: "sud corp intrare X360–535 Y830–860 (falie)",
+      },
+      {
+        id: "reazem_casa_scara",
+        x: 535,
+        y: 590,
+        dx: 30,
+        dy: 270,
+        levels: "S_P_E",
+        note: "separator casă–scară X535–565 Y590–860; coordonat gol beci Y465–565",
+      },
+    ],
+    vestibule_etaj: {
+      enclosures: "usoare + termo necesară",
+      support: "structura perimetrală + reazeme scară — fără pal_nw/pal_ne",
+    },
+  };
+
+  // Închidere termică living sub palier @ Y590 X565–650 (spre puț)
+  const thermalWall = {
+    id: "living_put_thermal_y590",
+    x: 565,
+    y: 560,
+    dx: 85,
+    dy: 30,
+    kind: "ext",
+    thermal: "heated_thermosystem",
+    assembly: "EB20_Akustik_200_ISOVER_FASSADE_80",
+    levels: [0, 1],
+    toward: "shaft_cold",
+    note: "închidere termică living↔puț @ Y590; ocupă util; nu etichetă JSON",
+  };
+  out.walls_cm = [...(out.walls_cm || []).filter((w) => w.id !== thermalWall.id), thermalWall];
+
+  // Poligon util: include living sub palier încălzit; scade peretele termic la calcul
+  out.interior_polygon_cm = {
+    note: "A1 perimeter: living sub palier X565–650 Y440–590 inclus (încălzit); perete termic Y560–590 scăzut din util",
+    vertices: [
+      [30, 30],
+      [650, 30],
+      [650, 590],
+      [565, 590],
+      [565, 440],
+      [535, 440],
+      [535, 830],
+      [360, 830],
+      [360, 645],
+      [30, 645],
+      [30, 30],
+    ],
+  };
+  const holRm = out.basement_cm.rooms?.find((r) => r.id === "hol_subsol");
+  if (holRm) holRm.note = `față E = zid puț X535; ușă Y${doorY0}–${doorY1} (test N de grindă)`;
 
   // arii
   const studio = computeStudioAreas(out);
@@ -1076,6 +1258,11 @@ function verifyA1(v, volume) {
   if (door.y < low.y || door.y + door.dy > low.y + low.dy) fails.push("ușa nu stă pe palier");
   else passes.push(`ușă pe palier Y${door.y}–${door.y + door.dy} (dy=${door.dy})`);
 
+  const beamY0 = bm.slab_coordination_cm?.edge_beam_y0 ?? 575;
+  if (door.y + door.dy > beamY0 - 0.01)
+    fails.push(`ușa intersectează/trece de grindă (ușă Y1=${door.y + door.dy} > beam ${beamY0})`);
+  else passes.push(`ușă termină N de grindă (Y${door.y + door.dy} ≤ ${beamY0})`);
+
   const hol = bm.rooms.find((r) => r.id === "hol_subsol");
   if (door.y < hol.y || door.y + door.dy > hol.y + hol.dy) fails.push("ușa nu întâlnește holul pe Y");
   else passes.push("ușă ∩ hol pe Y");
@@ -1202,8 +1389,15 @@ function verifyA1(v, volume) {
     passes.push(
       `util studii recalculat ${studio.useful_geometric_m2} m² (Δ vs ref ${v.areas_cm.useful_delta_vs_ref_m2})`
     );
-    if (Math.abs(v.areas_cm.useful_delta_vs_ref_m2 || 0) > 0.05)
-      fails.push("util studii diferă >5 cm² față de referință — anvelopă P/E modificată?");
+    if (Math.abs(v.areas_cm.useful_delta_vs_ref_m2 || 0) > 0.05) {
+      if (v.meta?.structure_variant === "perimeter_wall_piers_study") {
+        notes.push(
+          `util P/E ${studio.useful_geometric_m2} m² (Δ ${v.areas_cm.useful_delta_vs_ref_m2} vs ref) — așteptat: living sub palier + închidere termică Y590`
+        );
+      } else {
+        fails.push("util studii diferă >5 cm² față de referință — anvelopă P/E modificată?");
+      }
+    }
   }
   const ba = bm.areas;
   passes.push(`arii subsol brut recalculate ${ba.total_brut_rooms_m2} m²`);
@@ -1868,10 +2062,17 @@ ${(bm.transport_audit?.doors || []).map((xd) => `| ${xd.role} | ${xd.rough_cm} |
 |------|------:|------|-----------|
 ${(bm.transport_audit?.geometric?.poses || []).map((p) => `| ${p.id} | ${p.angleDeg}° | ${p.aabb.dx.toFixed?.(0) ?? p.aabb.dx}×${p.aabb.dy.toFixed?.(0) ?? p.aabb.dy} @ (${p.aabb.x},${p.aabb.y}) | ${p.ok ? "—" : p.collisions.join(", ")} |`).join("\n")}
 
+## Structură perimetrală (variantă studiu — neconstruibilă)
+- **Tronsoane/pile BA** în pereții exteriori; EB20 = umplutură între ele; **fără** grilă stâlpi / axă X320 / \`pal_nw\`/\`pal_ne\`
+- Grosime structurală țintă **20 cm** = ipoteză; lungimi pile = ipoteză — **calcul structurist**
+- Planșeu: geometrie amenajare separat de grosime structurală (15 cm neconfirmat) și buildup 12 cm
+- Gol beci: **Y${bm.door_to_rooms.y}–${bm.door_to_rooms.y + bm.door_to_rooms.dy}** (înaintea grinzii Y575); palier Y${bm.lower_landing.y}–${bm.lower_landing.y + bm.lower_landing.dy}
+- Living↔puț: închidere termică \`living_put_thermal_y590\` (inclusă în util)
+- Rampe: plăci continue (reazeme = calcul)
+
 ## Perete exterior P/E (EB20 + ISOVER FASSADE)
 - Alcătuire: **EB20 Akustik 200 mm + ISOVER FASSADE 80 mm** · nom. **299 mm** / max finit **300 mm**
 - Status: **de confirmat** cu furnizorul sistemului ETICS și proiectantul — **nu** validat structural / termic / acustic
-- Anvelopă finită **680×860** și fețele interioare: **neschimbate**; goluri/util: **neschimbate**
 - Secțiune: \`outputs/plans/35_v47_a1_exterior_wall_section.svg\`
 - CONFLICT faianță (baie): finisaj int. 19 mm vs vopsit 7 mm (Δ +12 mm) — **fără corectare automată plan**
 - ETICS în afara cărămizii: 9.2 cm (înainte 10 cm)
@@ -1934,7 +2135,20 @@ Runda B: **neîncepută**.
 
 function main() {
   const ref = read("data/building/v47_exact.json");
+  let prior = null;
+  try {
+    prior = read("data/building/v47_a1_study.json");
+  } catch {
+    prior = null;
+  }
   let study = applyA1(ref);
+  // păstrează alcătuirea EB20+ISOVER și alte assemblies din studiul anterior
+  if (prior?.construction_assemblies) {
+    study.construction_assemblies = prior.construction_assemblies;
+  }
+  if (prior?.meta?.rev_note_wall_etics) {
+    study.meta.rev_note_wall_etics = prior.meta.rev_note_wall_etics;
+  }
   write("data/building/v47_a1_study.json", study);
 
   const build = spawnSync(
