@@ -8,10 +8,10 @@
 <rect x="84" y="457.5" width="121.00000000000001" height="6" fill="#e8c56a" stroke="#333"/>
 <text x="40" y="453.5" font-size="8">FF −250</text>
 <rect x="95" y="347.5" width="110.00000000000001" height="110.00000000000001" fill="#b8d4e8" stroke="#c1121f" stroke-width="1.5" opacity="0.5"/>
-<text x="95" y="342" font-size="8" fill="#c1121f">gol ușă h200 Y500–600</text>
-<rect x="177.5" y="336.5" width="16.5" height="22" fill="#6a6358" stroke="#c1121f"/>
-<text x="196.20000000000002" y="347.5" font-size="8" fill="#c1121f">grindă −70…−30 CONFLICT</text>
-<text x="40" y="290" font-size="9" fill="#8a2a2a">Clear sub grindă ≈180 cm &lt; ușă 200+lintel — nerezolvat; fără mutare automată ușă</text>
+<text x="95" y="342" font-size="8" fill="#2a6f97">gol ușă h200 Y500–600 LIBER</text>
+<rect x="177.5" y="322.75" width="16.5" height="13.750000000000002" fill="#5a8f6a" stroke="#2d5a27"/>
+<text x="196.20000000000002" y="329.9" font-size="8" fill="#2d5a27">grindă întoarsă −30…−5 (studiu)</text>
+<text x="40" y="290" font-size="9" fill="#444">Clear acces: fără grindă sub −30 pe clar. Încadrare în sandwich −30…+32 = calcul (nerezolvat).</text>
 <text x="520" y="50" font-size="11">B — cote planșeu etaj (absolut cm)</text>
 <text x="520" y="70" font-size="10" font-family="IBM Plex Sans,Segoe UI,sans-serif">FF etaj: <tspan font-weight="600">320 cm</tspan></text>
 <text x="520" y="88" font-size="10" font-family="IBM Plex Sans,Segoe UI,sans-serif">față sup. placă (FF−12): <tspan font-weight="600">308 cm</tspan></text>
@@ -27,5 +27,5 @@
 <rect x="340" y="370" width="60" height="60" fill="#c4b496" stroke="#333"/>
 <text x="348" y="402" font-size="8">podest</text>
 <text x="40" y="680" font-size="9" fill="#333">Sistem: cadre BA · umplutură EB20 · ETICS 80 mm vată · declared_buildable=false</text>
-<text x="40" y="698" font-size="8" fill="#555">5 conflicte nerezolvate păstrate explicit — vezi raport MD</text>
+<text x="40" y="698" font-size="8" fill="#555">7 conflicte nerezolvate păstrate explicit — vezi raport MD</text>
 </svg>
