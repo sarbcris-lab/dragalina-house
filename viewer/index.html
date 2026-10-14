@@ -61,7 +61,8 @@
         <button type="button" id="btnSubsol">Doar subsol</button>
         <button type="button" id="btnFence">Împrejmuire</button>
         <button type="button" id="btnCurte">Curte</button>
-        <button type="button" id="btnStruct">Structură</button>
+        <button type="button" id="btnStruct">1 · Structură</button>
+        <button type="button" id="btnStructWalls">2 · + Pereți</button>
         <button type="button" id="btnCut">Secțiune interior</button>
       </div>
       <div class="tabs" id="tabsV47">
@@ -253,6 +254,7 @@
     const fenceObjs = [];
     const curteObjs = [];
     const structObjs = [];
+    const umpluturaObjs = [];
     const list = document.getElementById("meshes");
     const root = new THREE.Group();
     scene.add(root);
@@ -286,23 +288,29 @@
         id.startsWith("poarta_")
       );
     }
-    /** Schelet beton: fundație, placă, grinzi, stâlpi, structură scară — FĂRĂ ziduri umplutură */
+    /** Schelet beton legat — fără umplutură sono */
     function isStructuraMesh(m) {
       if (m.site_layer === "umplutura") return false;
       const id = m.id || "";
-      if (id.includes("zid_") || id.startsWith("subsol_zid") || id.startsWith("subsol_put_zid") || id.startsWith("subsol_fantana_zid"))
-        return false;
+      if (/subsol_zid_|part\./i.test(id) && m.site_layer !== "structura") return false;
       return (
         m.site_layer === "structura" ||
         id.startsWith("fundatie_") ||
         id.startsWith("structura_r2_") ||
         id.startsWith("subsol_stalp_") ||
+        id.startsWith("subsol_grinda_") ||
+        id.startsWith("subsol_fg_") ||
+        id.startsWith("subsol_put_beton") ||
+        id.startsWith("subsol_fantana_beton") ||
         id === "subsol_intrados_placa" ||
         id.startsWith("subsol_grindă") ||
         id === "subsol_palier_acces" ||
         id === "teren_cf" ||
         id.startsWith("amprenta_")
       );
+    }
+    function isUmpluturaMesh(m) {
+      return m.site_layer === "umplutura" || /subsol_zid_/.test(m.id || "");
     }
     /** pe fațadă EST/NORD împrejmuirea = zid casă — nu duplicăm gard în P+E */
     function isFacadeLimitOnly(m) {
@@ -338,6 +346,9 @@
       if (isImprejmuireMesh(m)) fenceObjs.push(obj);
       if (isCurteMesh(m)) curteObjs.push(obj);
       if (isStructuraMesh(m)) structObjs.push(obj);
+      if (isUmpluturaMesh(m)) umpluturaObjs.push(obj);
+      obj.userData.layer_structura = isStructuraMesh(m);
+      obj.userData.layer_umplutura = isUmpluturaMesh(m);
 
       // limit_* / imprejmuire_only: NU în P+E (apar doar în view Împrejmuire)
       if (isFacadeLimitOnly(m)) {
@@ -419,23 +430,39 @@
       controls.update();
     }
 
+    function clearLevelButtons() {
+      for (const id of [
+        "btnBoth",
+        "btnParter",
+        "btnEtaj",
+        "btnSubsol",
+        "btnFence",
+        "btnCurte",
+        "btnStruct",
+        "btnStructWalls",
+      ]) {
+        document.getElementById(id)?.classList.toggle("active", false);
+      }
+    }
+
     function setLevel(mode) {
       levelMode = mode;
-      if (mode === "imprejmuire" || mode === "curte" || mode === "structura") {
+      if (mode === "imprejmuire" || mode === "curte" || mode === "structura" || mode === "structura_pereti") {
         root.traverse((o) => {
           if (!o.isMesh) return;
           o.visible = false;
         });
-        const layer =
-          mode === "imprejmuire" ? fenceObjs : mode === "curte" ? curteObjs : structObjs;
-        for (const o of layer) o.visible = true;
-        if (mode === "curte") {
-          // amprentă + împrejmuire light (gard/porți) deja în curteObjs; limit_* doar dacă e în fence+curte
+        let layer = [];
+        if (mode === "imprejmuire") {
+          layer = fenceObjs;
+          for (const o of layer) o.visible = true;
+        } else if (mode === "curte") {
+          layer = curteObjs;
+          for (const o of layer) o.visible = true;
           for (const o of fenceObjs) {
             if ((o.name || "").startsWith("limit_")) o.visible = false;
             else if ((o.name || "").startsWith("gard_") || (o.name || "").startsWith("poarta_")) o.visible = true;
           }
-          // scară beci + plan camere (pardoseli + ziduri int)
           for (const o of subsolObjs) {
             const n = o.name || "";
             if (
@@ -450,21 +477,23 @@
               o.visible = true;
             }
           }
-        }
-        if (mode === "structura") {
-          // doar schelet: nu forța ziduri/pardoseli/trepte de umplutură în vizibilitate
+        } else if (mode === "structura") {
+          // 1 · doar schelet beton legat
+          layer = structObjs;
           for (const o of structObjs) o.visible = true;
+        } else if (mode === "structura_pereti") {
+          // 2 · structură + umplutură sono / pereți
+          layer = [...structObjs, ...umpluturaObjs];
+          for (const o of structObjs) o.visible = true;
+          for (const o of umpluturaObjs) o.visible = true;
         }
-        // păstrează starea porții auto
         for (const o of gateClosed) o.visible = document.getElementById("btnClosed").classList.contains("active");
         for (const o of gateOpen) o.visible = document.getElementById("btnOpen").classList.contains("active");
-        document.getElementById("btnBoth").classList.toggle("active", false);
-        document.getElementById("btnParter").classList.toggle("active", false);
-        document.getElementById("btnEtaj").classList.toggle("active", false);
-        document.getElementById("btnSubsol").classList.toggle("active", false);
-        document.getElementById("btnFence").classList.toggle("active", mode === "imprejmuire");
+        clearLevelButtons();
+        document.getElementById("btnFence")?.classList.toggle("active", mode === "imprejmuire");
         document.getElementById("btnCurte")?.classList.toggle("active", mode === "curte");
         document.getElementById("btnStruct")?.classList.toggle("active", mode === "structura");
+        document.getElementById("btnStructWalls")?.classList.toggle("active", mode === "structura_pereti");
         if (cutaway) applyCutaway();
         frameObjects(layer);
         return;
@@ -516,22 +545,27 @@
           }
         });
       }
+      clearLevelButtons();
       document.getElementById("btnBoth").classList.toggle("active", mode === "both");
       document.getElementById("btnParter").classList.toggle("active", mode === "parter");
       document.getElementById("btnEtaj").classList.toggle("active", mode === "etaj");
       document.getElementById("btnSubsol").classList.toggle("active", mode === "subsol");
-      document.getElementById("btnFence")?.classList.toggle("active", false);
-      document.getElementById("btnCurte")?.classList.toggle("active", false);
-      document.getElementById("btnStruct")?.classList.toggle("active", false);
       if (cutaway) applyCutaway();
 
       if (mode === "etaj") frameObjects(etajObjs);
       if (mode === "subsol") frameObjects(subsolObjs);
     }
     setGate(volume.meta.gate_default_state || "closed");
-    // V47: pornește pe Doar parter ca să nu se vadă bucătăria de pe etaj peste intrare
-    setLevel(isV47 ? "parter" : "both");
-    if (isV47) {
+    // A1: pornește pe Structură ca să se vadă scheletul legat; V47: parter
+    setLevel(isV47A1 ? "structura" : isV47 ? "parter" : "both");
+    if (isV47A1) {
+      const tip = document.createElement("p");
+      tip.className = "meta";
+      tip.style.color = "#c4b496";
+      tip.innerHTML =
+        "<strong>Straturi subsol:</strong> <em>1 · Structură</em> = beton legat (stâlpi+grinzi+placă+fundație+puț) · <em>2 · + Pereți</em> = + umplutură sono · <em>Doar subsol</em> = tot (pardoseli, scări, curte).";
+      document.getElementById("meta")?.after(tip);
+    } else if (isV47) {
       const tip = document.createElement("p");
       tip.className = "meta";
       tip.style.color = "#7dcea0";
@@ -548,6 +582,7 @@
     document.getElementById("btnFence").onclick = () => setLevel("imprejmuire");
     document.getElementById("btnCurte").onclick = () => setLevel("curte");
     document.getElementById("btnStruct").onclick = () => setLevel("structura");
+    document.getElementById("btnStructWalls").onclick = () => setLevel("structura_pereti");
     document.getElementById("btnCut").onclick = () => {
       cutaway = !cutaway;
       setLevel(levelMode);

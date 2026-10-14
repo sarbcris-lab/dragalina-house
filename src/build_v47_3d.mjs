@@ -1418,18 +1418,11 @@ function main() {
           ...(opts.site_layer ? { site_layer: opts.site_layer } : {}),
         });
       }
-      // Umplutură sono (neumplutură portantă) — vizibilă în Subsol, NU în view Structură
+      // Umplutură sono — layer „+ Pereți”; NU în view Structură
       function pushUmpluturaWall(id, x, y, dx, dy, label) {
         pushWallFull(id, x, y, dx, dy, label, {
           color: "#d8d0c0",
           site_layer: "umplutura",
-        });
-      }
-      // Stâlpi beton (schelet) — singurele „verticale” în view Structură
-      function pushStalp(id, x, y, dx, dy, label) {
-        pushWallFull(id, x, y, dx, dy, label, {
-          color: "#8a8580",
-          site_layer: "structura",
         });
       }
       function pushDoorOpening(d) {
@@ -1443,49 +1436,117 @@ function main() {
           z0_m: zB + hOpen,
           z1_m: Math.min(wallTopR, zB + hOpen + lintel),
           color: "#a89880",
+          site_layer: "umplutura",
           label: `${d.id} buiandrug`,
         });
       }
 
-      // Contur camere: umplutură sono pe schelet beton (nu ziduri portante în view Structură)
       const lowLand = bm.lower_landing || { y: 520, dy: 80 };
       const shaftWest = th.shaft_west_cm ?? 30;
       const shaftEast = th.shaft_east_cm ?? 15;
       const shaftNorthTh = th.shaft_north_cm ?? wallT;
       const landY0 = lowLand.y ?? 520;
-      const landY1 = landY0 + (lowLand.dy ?? 80);
       const thickX0p = 535;
-      const thinEX0p = ewCm - shaftEast; // 665 dacă 15
-      const col = wallPerim; // stâlp studiu 30×30 = grosime finit / nod cadru
+      const col = wallPerim; // 30×30 nod cadru
+      const beamH = 0.4; // m — grindă la soffit
+      const zFoundTop = zB - floorThB; // −265
+      const zFoundBot = zFoundTop - 0.45; // −310
+      const zColBot = zFoundBot; // stâlpi coboară pe talpă — legătură vizibilă
+      const zBeam0 = zSoffit - beamH;
+      const zBeam1 = zSoffit;
 
-      pushUmpluturaWall("subsol_zid_perim_n", 30, 30 - wallPerim, 505, wallPerim, "umplutură perim N CT");
-      pushUmpluturaWall("subsol_zid_perim_w", 30 - wallPerim, 30, wallPerim, 600, "umplutură perim W");
-      pushUmpluturaWall("subsol_zid_perim_s_dep", 30, 630, 320, wallPerim, "umplutură perim S depozit");
+      function pushBeton(id, x, y, dx, dy, z0, z1, label, color) {
+        if (dx < 1 || dy < 1 || z1 <= z0 + 0.01) return;
+        meshes.push({
+          id,
+          type: "extrude",
+          polygon: rectPoly(x, y, dx, dy),
+          z0_m: z0,
+          z1_m: z1,
+          color: color || "#8a8580",
+          opacity: 0.97,
+          site_layer: "structura",
+          label,
+        });
+      }
+      function pushStalp(id, x, y, label) {
+        pushBeton(id, x, y, col, col, zColBot, zSoffit, label, "#7a7670");
+        // talpă locală sub stâlp (lățită)
+        const pad = 10;
+        pushBeton(
+          `${id}_talpa`,
+          x - pad,
+          y - pad,
+          col + 2 * pad,
+          col + 2 * pad,
+          zFoundBot,
+          zFoundTop,
+          `talpă ${label}`,
+          "#5e5a54"
+        );
+      }
+      function pushGrindă(id, x, y, dx, dy, label) {
+        pushBeton(id, x, y, dx, dy, zBeam0, zBeam1, label, "#6a6358");
+      }
+
+      // —— SCHELT BETON LEGAT (camere încălzite + reazem puț) ——
+      // Noduri: CT / depozit / hol / axă buc_est (X535)
+      const grid = {
+        nw: { x: 0, y: 0 },
+        n_mid: { x: 320, y: 0 },
+        ne: { x: 535, y: 0 },
+        w_ct: { x: 0, y: 400 },
+        e_ct: { x: 535, y: 400 },
+        sw: { x: 0, y: 630 },
+        rein: { x: 320, y: 630 },
+        se630: { x: 535, y: 630 },
+        s_hol_w: { x: 320, y: 685 },
+        s_hol_e: { x: 535, y: 685 },
+      };
+      for (const [k, p] of Object.entries(grid)) {
+        pushStalp(`subsol_stalp_${k}`, p.x, p.y, `stâlp ${k}`);
+      }
+      // Grizi perimetru + legături (între fețele stâlpilor)
+      pushGrindă("subsol_grinda_n", col, 0, 535 - col, col, "grindă N CT");
+      pushGrindă("subsol_grinda_w", 0, col, col, 630 - col, "grindă W");
+      pushGrindă("subsol_grinda_s_dep", col, 630, 320 - col, col, "grindă S depozit");
+      pushGrindă("subsol_grinda_s_hol", 320, 685, 535 - 320, col, "grindă S hol");
+      pushGrindă("subsol_grinda_e_ct", 535, col, col, 685 - col, "grindă E (=buc_est / reazem puț)");
+      pushGrindă("subsol_grinda_reintrant_w", 320, 630 + col, col, 685 - 630 - col, "grindă hol vest reintrant");
+      pushGrindă("subsol_grinda_ct_dep", col, 400, 535 - col, col, "grindă CT|dep Y400");
+      pushGrindă("subsol_grinda_dep_hol", 320, 400 + col, col, 630 - 400 - col, "grindă dep|hol X320");
+      // Grindă de fundație pe aceleași axe (leagă tălpile)
+      const zFg0 = zFoundBot;
+      const zFg1 = zFoundTop;
+      pushBeton("subsol_fg_n", 0, 0, 565, col, zFg0, zFg1, "grindă fundație N", "#5e5a54");
+      pushBeton("subsol_fg_w", 0, 0, col, 660, zFg0, zFg1, "grindă fundație W", "#5e5a54");
+      pushBeton("subsol_fg_s_dep", 0, 630, 350, col, zFg0, zFg1, "grindă fundație S dep", "#5e5a54");
+      pushBeton("subsol_fg_s_hol", 320, 685, 245, col, zFg0, zFg1, "grindă fundație S hol", "#5e5a54");
+      pushBeton("subsol_fg_e", 535, 0, col, 715, zFg0, zFg1, "grindă fundație E X535", "#5e5a54");
+
+      // Umplutură sono pe contur (între stâlpi) — layer +Pereți
+      pushUmpluturaWall("subsol_zid_perim_n", col, 0, 535 - col, wallPerim, "umplutură perim N");
+      pushUmpluturaWall("subsol_zid_perim_w", 0, col, wallPerim, 630 - col, "umplutură perim W");
+      pushUmpluturaWall("subsol_zid_perim_s_dep", col, 630, 320 - col, wallPerim, "umplutură perim S dep");
       pushUmpluturaWall("subsol_zid_perim_s_hol", 350, 685, 185, wallPerim, "umplutură perim S hol");
-      // Stâlpi beton la noduri (schelet) — view Structură
-      pushStalp("subsol_stalp_nw", 0, 0, col, col, "stâlp beton NW");
-      pushStalp("subsol_stalp_sw_dep", 0, 630, col, col, "stâlp beton SW depozit");
-      pushStalp("subsol_stalp_ne_ct", 535, 0, col, col, "stâlp beton NE CT / buc_est");
-      pushStalp("subsol_stalp_hol_sw", 350 - col, 630, col, col, "stâlp beton hol reintrant SW");
-      // Hol protrude S: umplutură pe fața vest (între stâlpi)
       pushUmpluturaWall(
         "subsol_zid_hol_vest_reintrant",
-        350 - wallPerim,
+        320,
         630 + col,
         wallPerim,
         Math.max(0, 55 - col),
-        "umplutură hol vest reintrant Y660–685"
+        "umplutură hol vest reintrant"
       );
-      // est CT: umplutură (=buc_est) între stâlpi — nu diafragmă în view Structură
+      // est CT între stâlpi: umplutură față de grindă E (vizual în +Pereți; grindă e structura)
       pushUmpluturaWall(
         "subsol_zid_ct_est",
         thickX0p,
-        30,
+        col,
         shaftWest,
-        Math.max(0, landY0 - shaftNorthTh - 30),
-        `umplutură CT est ${shaftWest} cm (=buc_est)`
+        Math.max(0, landY0 - shaftNorthTh - col),
+        `umplutură CT est ${shaftWest} cm`
       );
-      // CT | depozit+hol — cu gol ușă
+      // Partiții interioare
       {
         const yWall = 430 - wallT / 2;
         if (doorCt) {
@@ -1493,14 +1554,13 @@ function main() {
           const xD0 = doorCt.x;
           const xD1 = doorCt.x + doorCt.dx;
           const x1 = 30 + 505;
-          pushWallFull("subsol_zid_ct_sud_w", x0, yWall, Math.max(0, xD0 - x0), wallT);
-          pushWallFull("subsol_zid_ct_sud_e", xD1, yWall, Math.max(0, x1 - xD1), wallT);
+          pushUmpluturaWall("subsol_zid_ct_sud_w", x0, yWall, Math.max(0, xD0 - x0), wallT, "part. CT sud W");
+          pushUmpluturaWall("subsol_zid_ct_sud_e", xD1, yWall, Math.max(0, x1 - xD1), wallT, "part. CT sud E");
           pushDoorOpening(doorCt);
         } else {
-          pushWallFull("subsol_zid_ct_sud", 30, yWall, 505, wallT);
+          pushUmpluturaWall("subsol_zid_ct_sud", 30, yWall, 505, wallT, "part. CT sud");
         }
       }
-      // depozit | hol — cu gol ușă
       {
         const xWall = 350 - wallT / 2;
         if (doorDep) {
@@ -1508,11 +1568,11 @@ function main() {
           const yD0 = doorDep.y;
           const yD1 = doorDep.y + doorDep.dy;
           const y1 = 630;
-          pushWallFull("subsol_zid_dep_hol_n", xWall, y0, wallT, Math.max(0, yD0 - y0));
-          pushWallFull("subsol_zid_dep_hol_s", xWall, yD1, wallT, Math.max(0, y1 - yD1));
+          pushUmpluturaWall("subsol_zid_dep_hol_n", xWall, y0, wallT, Math.max(0, yD0 - y0), "part. dep|hol N");
+          pushUmpluturaWall("subsol_zid_dep_hol_s", xWall, yD1, wallT, Math.max(0, y1 - yD1), "part. dep|hol S");
           pushDoorOpening(doorDep);
         } else {
-          pushWallFull("subsol_zid_dep_hol", xWall, 430, wallT, 200);
+          pushUmpluturaWall("subsol_zid_dep_hol", xWall, 430, wallT, 200, "part. dep|hol");
         }
       }
       // hol est = fața vest a zidului gros de puț (nu perete 12.5 duplicat pe X535)
@@ -1597,100 +1657,99 @@ function main() {
           polygon: rectPoly(x, y, dx, dy),
           z0_m: z0,
           z1_m: z1,
-          color: "#a8a296",
+          color: layer === "umplutura" ? "#a8a296" : "#7a7670",
           opacity: 0.97,
-          // ziduri puț/fântână = închideri / umplutură pe schelet — nu în view Structură
-          site_layer: layer || "umplutura",
+          // puț/fântână = beton reazem/retenție → structura (legat de cadru)
+          site_layer: layer || "structura",
           label,
         });
       }
 
-      // —— VEST GROS (continuare buc_est) pe tot puțul Y520→860 + gol ușă Y530–600
+      // —— VEST GROS beton (reazem puț = continuare cadru X535) + gol ușă
       {
         const y0 = shaftY0;
         const doorY0 = dr?.y ?? 530;
         const doorY1 = doorY0 + (dr?.dy ?? 70);
-        // gol pe TOATĂ lățimea ușii — fără clamp la vechiul shaftY0=590
         const d0 = doorY0;
         const d1 = doorY1;
         if (d0 > y0) {
           pushWallSeg(
-            "subsol_put_zid_w_gros_n",
+            "subsol_put_beton_w_n",
             thickX0,
             thickDx,
             y0,
             d0 - y0,
-            zB,
+            zColBot,
             zShaftTop,
-            `zid gros ${thickDx} cm W N de ușă`,
-            null
+            `diafragmă beton W N de ușă ${thickDx} cm`,
+            "structura"
           );
         }
         if (d1 < shaftYHouse1) {
           pushWallSeg(
-            "subsol_put_zid_w_gros_s",
+            "subsol_put_beton_w_s",
             thickX0,
             thickDx,
             d1,
             shaftYHouse1 - d1,
-            zB,
+            zColBot,
             zShaftTop,
-            `zid gros ${thickDx} cm W S de ușă`,
-            null
+            `diafragmă beton W S de ușă ${thickDx} cm`,
+            "structura"
           );
         }
         if (d1 > d0) {
           pushWallSeg(
-            "subsol_put_zid_w_buiandrug",
+            "subsol_put_beton_w_buiandrug",
             thickX0,
             thickDx,
             d0,
             d1 - d0,
             zB + doorH,
             zB + doorH + doorLintel,
-            `buiandrug ușă hol→puț Y${d0}–${d1} (gol ${dr?.opening_h_cm ?? 200}+${dr?.lintel_reserve_cm ?? 15})`,
-            null
+            `buiandrug beton ușă hol→puț Y${d0}–${d1}`,
+            "structura"
           );
         }
         if (shaftYWell1 > shaftYHouse1) {
           pushWallSeg(
-            "subsol_fantana_zid_w_gros",
+            "subsol_fantana_beton_w",
             thickX0,
             thickDx,
             shaftYHouse1,
             shaftYWell1 - shaftYHouse1,
-            zB,
+            zColBot,
             zWellTop,
-            "zid gros vest fântână (=buc_est)",
-            "curte"
+            "diafragmă beton vest fântână",
+            "structura"
           );
         }
       }
 
-      // —— EST din JSON (15 cm studiu) — pe puț + fântână până la noul capăt
+      // —— EST beton subțire (reazem curte engleză)
       pushWallSeg(
-        "subsol_put_zid_e_subtire",
+        "subsol_put_beton_e",
         thinEX0,
         thinEDx,
         shaftY0,
         shaftYWell1 - shaftY0,
-        zB,
+        zColBot,
         zWellTop,
-        `zid EST ${thinEDx} cm (JSON shaft_east)`,
-        "curte"
+        `diafragmă beton EST ${thinEDx} cm`,
+        "structura"
       );
 
-      // —— NORD puț = N de palierul jos (nu mai blochează Y590)
+      // —— NORD puț beton
       pushWallSeg(
-        "subsol_put_zid_n",
+        "subsol_put_beton_n",
         thickX0,
         thinEX0 + thinEDx - thickX0,
         shaftY0 - shaftNorthTh,
         shaftNorthTh,
-        zB,
+        zColBot,
         zNorthTop,
-        `zid puț N @ Y${shaftY0 - shaftNorthTh}–${shaftY0} (palier liber S)`,
-        null
+        `diafragmă beton N @ Y${shaftY0 - shaftNorthTh}–${shaftY0}`,
+        "structura"
       );
 
       // Reazem planșeu la Y590 (sud zonă acoperită / nord puț deschis)
