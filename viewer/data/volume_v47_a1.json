@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_study",
-    "generated": "2026-10-14T17:34:42.553Z",
+    "generated": "2026-10-14T17:41:01.178Z",
     "status": "3D_STUDIU_A1",
     "source_plan": "data/building/v47_a1_study.json",
     "based_on": "v47_exact (referință neatinsă)",
@@ -28423,6 +28423,35 @@
       "label": "Gard vest → colț NV parcelă (P7)"
     },
     {
+      "id": "fundatie_gard_vest",
+      "type": "ribbon",
+      "centerline": [
+        {
+          "x": 0.889,
+          "y": 0
+        },
+        {
+          "x": 0.625,
+          "y": 5.328
+        },
+        {
+          "x": 0.011,
+          "y": 17.706
+        },
+        {
+          "x": 0,
+          "y": 17.936
+        }
+      ],
+      "width_m": 0.32,
+      "z0_m": -0.55,
+      "z1_m": 0.05,
+      "color": "#5e5a54",
+      "opacity": 0.92,
+      "site_layer": "structura",
+      "label": "fundație gard vest"
+    },
+    {
       "id": "gard_nord_vest_colt",
       "type": "ribbon",
       "centerline": [
@@ -28445,6 +28474,27 @@
       "label": "Gard colț NV (P7 → casă)"
     },
     {
+      "id": "fundatie_gard_nord_vest_colt",
+      "type": "ribbon",
+      "centerline": [
+        {
+          "x": 0,
+          "y": 17.936
+        },
+        {
+          "x": 1.249,
+          "y": 17.9306
+        }
+      ],
+      "width_m": 0.32,
+      "z0_m": -0.55,
+      "z1_m": 0.05,
+      "color": "#5e5a54",
+      "opacity": 0.92,
+      "site_layer": "structura",
+      "label": "fundație gard colț NV"
+    },
+    {
       "id": "gard_dragalina_sud_casa",
       "type": "ribbon",
       "centerline": [
@@ -28464,6 +28514,27 @@
       "opacity": 0.65,
       "site_layer": "imprejmuire",
       "label": "Gard Dragalina (sud casă → poartă)"
+    },
+    {
+      "id": "fundatie_gard_dragalina_sud_casa",
+      "type": "ribbon",
+      "centerline": [
+        {
+          "x": 8.410457412666185,
+          "y": 9.629098180463478
+        },
+        {
+          "x": 8.465601282684332,
+          "y": 7.869884183980266
+        }
+      ],
+      "width_m": 0.32,
+      "z0_m": -0.55,
+      "z1_m": 0.05,
+      "color": "#5e5a54",
+      "opacity": 0.92,
+      "site_layer": "structura",
+      "label": "fundație gard Dragalina (→ poartă)"
     },
     {
       "id": "gard_dragalina_s",
@@ -28491,6 +28562,31 @@
       "label": "Gard Dragalina (S de poartă)"
     },
     {
+      "id": "fundatie_gard_dragalina_s",
+      "type": "ribbon",
+      "centerline": [
+        {
+          "x": 8.529630112172496,
+          "y": 6.37125137071533
+        },
+        {
+          "x": 8.804,
+          "y": 0.41799999999999926
+        },
+        {
+          "x": 8.822,
+          "y": 1.0547118733938987e-15
+        }
+      ],
+      "width_m": 0.32,
+      "z0_m": -0.55,
+      "z1_m": 0.05,
+      "color": "#5e5a54",
+      "opacity": 0.92,
+      "site_layer": "structura",
+      "label": "fundație gard Dragalina S"
+    },
+    {
       "id": "poarta_pietonala_dragalina",
       "type": "ribbon",
       "centerline": [
@@ -28516,6 +28612,91 @@
       ]
     },
     {
+      "id": "fundatie_poarta_pietonala",
+      "type": "ribbon",
+      "centerline": [
+        {
+          "x": 8.465601282684332,
+          "y": 7.869884183980266
+        },
+        {
+          "x": 8.529630112172496,
+          "y": 6.37125137071533
+        }
+      ],
+      "width_m": 0.32,
+      "z0_m": -0.55,
+      "z1_m": 0.05,
+      "color": "#5e5a54",
+      "opacity": 0.92,
+      "site_layer": "structura",
+      "label": "fundație / prag poartă pietonală"
+    },
+    {
+      "id": "stalp_poarta_pietonala_n",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.345601282684333,
+          "y": 7.7498841839802655
+        },
+        {
+          "x": 8.585601282684332,
+          "y": 7.7498841839802655
+        },
+        {
+          "x": 8.585601282684332,
+          "y": 7.989884183980266
+        },
+        {
+          "x": 8.345601282684333,
+          "y": 7.989884183980266
+        },
+        {
+          "x": 8.345601282684333,
+          "y": 7.7498841839802655
+        }
+      ],
+      "z0_m": -0.55,
+      "z1_m": 1.8,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp poartă pietonală"
+    },
+    {
+      "id": "stalp_poarta_pietonala_s",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.409630112172497,
+          "y": 6.25125137071533
+        },
+        {
+          "x": 8.649630112172495,
+          "y": 6.25125137071533
+        },
+        {
+          "x": 8.649630112172495,
+          "y": 6.4912513707153305
+        },
+        {
+          "x": 8.409630112172497,
+          "y": 6.4912513707153305
+        },
+        {
+          "x": 8.409630112172497,
+          "y": 6.25125137071533
+        }
+      ],
+      "z0_m": -0.55,
+      "z1_m": 1.8,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp poartă pietonală"
+    },
+    {
       "id": "gard_closca_est",
       "type": "ribbon",
       "centerline": [
@@ -28535,6 +28716,112 @@
       "opacity": 0.55,
       "site_layer": "imprejmuire",
       "label": "Gard scurt Cloșca E"
+    },
+    {
+      "id": "fundatie_gard_closca_est",
+      "type": "ribbon",
+      "centerline": [
+        {
+          "x": 7.989,
+          "y": 0.1
+        },
+        {
+          "x": 8.741999999999999,
+          "y": 0.1
+        }
+      ],
+      "width_m": 0.32,
+      "z0_m": -0.55,
+      "z1_m": 0.05,
+      "color": "#5e5a54",
+      "opacity": 0.92,
+      "site_layer": "structura",
+      "label": "fundație gard Cloșca E"
+    },
+    {
+      "id": "fundatie_poarta_auto",
+      "type": "ribbon",
+      "centerline": [
+        {
+          "x": 0.889,
+          "y": 0.1
+        },
+        {
+          "x": 7.989,
+          "y": 0.1
+        }
+      ],
+      "width_m": 0.32,
+      "z0_m": -0.55,
+      "z1_m": 0.05,
+      "color": "#5e5a54",
+      "opacity": 0.92,
+      "site_layer": "structura",
+      "label": "fundație prag poartă auto Cloșca"
+    },
+    {
+      "id": "stalp_poarta_auto_w",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 0.739,
+          "y": -0.04999999999999999
+        },
+        {
+          "x": 1.039,
+          "y": -0.04999999999999999
+        },
+        {
+          "x": 1.039,
+          "y": 0.25
+        },
+        {
+          "x": 0.739,
+          "y": 0.25
+        },
+        {
+          "x": 0.739,
+          "y": -0.04999999999999999
+        }
+      ],
+      "z0_m": -0.55,
+      "z1_m": 0.9900000000000001,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp / reazem poartă auto"
+    },
+    {
+      "id": "stalp_poarta_auto_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.8389999999999995,
+          "y": -0.04999999999999999
+        },
+        {
+          "x": 8.139,
+          "y": -0.04999999999999999
+        },
+        {
+          "x": 8.139,
+          "y": 0.25
+        },
+        {
+          "x": 7.8389999999999995,
+          "y": 0.25
+        },
+        {
+          "x": 7.8389999999999995,
+          "y": -0.04999999999999999
+        }
+      ],
+      "z0_m": -0.55,
+      "z1_m": 0.9900000000000001,
+      "color": "#6e6a64",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp / reazem poartă auto"
     },
     {
       "id": "auto_1",

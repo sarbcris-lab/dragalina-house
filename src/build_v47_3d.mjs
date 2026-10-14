@@ -997,6 +997,25 @@ function main() {
     const pedW = m(ped.gate?.width_cm || ped.gate?.local_cm?.dy || 150);
     const ewCm = v47.envelope_cm.ew;
     const nsCm = v47.envelope_cm.ns;
+    // Fundație gard: talpă beton pe traseu (în Structură; gardul rămâne imprejmuire)
+    const fenceFootW = Math.max(fT * 3, 0.32);
+    const fenceFootZ0 = -0.55;
+    const fenceFootZ1 = 0.05;
+    function pushFenceFoundation(id, centerline, label) {
+      if (!centerline || centerline.length < 2) return;
+      meshes.push({
+        id,
+        type: "ribbon",
+        centerline: centerline.map((p) => ({ x: p.x, y: p.y })),
+        width_m: fenceFootW,
+        z0_m: fenceFootZ0,
+        z1_m: fenceFootZ1,
+        color: "#5e5a54",
+        opacity: 0.92,
+        site_layer: "structura",
+        label: label || "fundație gard",
+      });
+    }
 
     // Marcaje limită = zid casă (est/nord) — DOAR view Împrejmuire (nu în P+E)
     meshes.push({
@@ -1026,10 +1045,11 @@ function main() {
 
     // Gard VEST pe contur CF până la colțul NV parcelă (P7) — închidere corectă
     const nwSite = toSite(0, 0);
+    const clVest = [byId[10], byId[9], byId[8], byId[7]];
     meshes.push({
       id: "gard_vest",
       type: "ribbon",
-      centerline: [byId[10], byId[9], byId[8], byId[7]],
+      centerline: clVest,
       width_m: fT,
       z0_m: 0,
       z1_m: fH,
@@ -1038,11 +1058,13 @@ function main() {
       site_layer: "imprejmuire",
       label: "Gard vest → colț NV parcelă (P7)",
     });
+    pushFenceFoundation("fundatie_gard_vest", clVest, "fundație gard vest");
     // P7 → NV casă (pe nord): leagă gardul de zidul-nord al casei
+    const clNw = [byId[7], nwSite];
     meshes.push({
       id: "gard_nord_vest_colt",
       type: "ribbon",
-      centerline: [byId[7], nwSite],
+      centerline: clNw,
       width_m: fT,
       z0_m: 0,
       z1_m: fH,
@@ -1051,6 +1073,7 @@ function main() {
       site_layer: "imprejmuire",
       label: "Gard colț NV (P7 → casă)",
     });
+    pushFenceFoundation("fundatie_gard_nord_vest_colt", clNw, "fundație gard colț NV");
 
     // Dragalina: sud de SE + gol poartă = exact banda aleii (centrat, fără loc liber)
     const dragPts = [5, 4, 3, 2, 1].map((id) => byId[id]);
@@ -1167,6 +1190,11 @@ function main() {
         site_layer: "imprejmuire",
         label: "Gard Dragalina (sud casă → poartă)",
       });
+      pushFenceFoundation(
+        "fundatie_gard_dragalina_sud_casa",
+        dragToGate,
+        "fundație gard Dragalina (→ poartă)"
+      );
     }
     const dragPastGate = collectAlong(gapEnd, accDragLen());
     if (dragPastGate.length >= 2) {
@@ -1183,6 +1211,7 @@ function main() {
         site_layer: "imprejmuire",
         label: "Gard Dragalina (S de poartă)",
       });
+      pushFenceFoundation("fundatie_gard_dragalina_s", dragPastGate, "fundație gard Dragalina S");
     }
     meshes.push({
       id: "poarta_pietonala_dragalina",
@@ -1197,6 +1226,31 @@ function main() {
       label: "Poartă pietonală (centrată pe alee)",
       gap_m: [gapStart, gapEnd],
     });
+    // prag/fundatie sub poarta pietonală + stâlpi la gol
+    pushFenceFoundation("fundatie_poarta_pietonala", gateLine, "fundație / prag poartă pietonală");
+    for (const [sid, pt] of [
+      ["stalp_poarta_pietonala_n", gateLine[0]],
+      ["stalp_poarta_pietonala_s", gateLine[1]],
+    ]) {
+      if (!pt) continue;
+      meshes.push({
+        id: sid,
+        type: "extrude",
+        polygon: [
+          { x: pt.x - 0.12, y: pt.y - 0.12 },
+          { x: pt.x + 0.12, y: pt.y - 0.12 },
+          { x: pt.x + 0.12, y: pt.y + 0.12 },
+          { x: pt.x - 0.12, y: pt.y + 0.12 },
+          { x: pt.x - 0.12, y: pt.y - 0.12 },
+        ],
+        z0_m: fenceFootZ0,
+        z1_m: fH,
+        color: "#6e6a64",
+        opacity: 0.95,
+        site_layer: "structura",
+        label: "stâlp poartă pietonală",
+      });
+    }
 
     // Cloșca: rest scurt lângă poarta auto largă
     const closcaRemain = cLen - gateClearM;
@@ -1221,6 +1275,41 @@ function main() {
         site_layer: "imprejmuire",
         label: "Gard scurt Cloșca E",
       });
+      pushFenceFoundation("fundatie_gard_closca_est", [gA, gB], "fundație gard Cloșca E");
+    }
+    // Stâlpi + fundație pe golul porții auto (capete)
+    {
+      const pAuto0 = {
+        x: c0.x + Nx * 0.1,
+        y: c0.y + Ny * 0.1,
+      };
+      const pAuto1 = {
+        x: c0.x + Cx * gateClearM + Nx * 0.1,
+        y: c0.y + Cy * gateClearM + Ny * 0.1,
+      };
+      pushFenceFoundation("fundatie_poarta_auto", [pAuto0, pAuto1], "fundație prag poartă auto Cloșca");
+      for (const [sid, pt] of [
+        ["stalp_poarta_auto_w", pAuto0],
+        ["stalp_poarta_auto_e", pAuto1],
+      ]) {
+        meshes.push({
+          id: sid,
+          type: "extrude",
+          polygon: [
+            { x: pt.x - 0.15, y: pt.y - 0.15 },
+            { x: pt.x + 0.15, y: pt.y - 0.15 },
+            { x: pt.x + 0.15, y: pt.y + 0.15 },
+            { x: pt.x - 0.15, y: pt.y + 0.15 },
+            { x: pt.x - 0.15, y: pt.y - 0.15 },
+          ],
+          z0_m: fenceFootZ0,
+          z1_m: fH * 0.55,
+          color: "#6e6a64",
+          opacity: 0.95,
+          site_layer: "structura",
+          label: "stâlp / reazem poartă auto",
+        });
+      }
     }
   }
 
