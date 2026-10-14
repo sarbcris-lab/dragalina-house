@@ -23,7 +23,9 @@ function write(rel, obj) {
 const m = (cm) => cm / 100;
 
 function main() {
-  const v47 = read("data/building/v47_exact.json");
+  const inputRel = process.argv[2] || "data/building/v47_exact.json";
+  const outVolRel = process.argv[3] || "viewer/data/volume_v47.json";
+  const v47 = read(inputRel);
   const polygon = read("data/site/parcel_polygon_cf.json");
   const parcel = read("data/site/parcel.json");
   const gate = read("data/site/gate_poarta_v05.json");
@@ -1352,12 +1354,13 @@ function main() {
   {
     const bm = v47.basement_cm;
     if (bm?.rooms) {
+      const abs = bm.absolute_from_grade_cm || {};
       const lv = bm.levels_vs_ff_parter_cm || {};
-      const zB = m(lv.basement_ff ?? -250);
-      const zSoffit = m(lv.slab_soffit_cm ?? -42);
-      const zAccess = m(lv.access_landing ?? -95);
-      const zCourt = m(lv.courtyard_general ?? -48);
-      const floorThB = m(lv.floor_slab_th_cm ?? 15);
+      const zB = m(abs.basement_ff_cm ?? lv.basement_ff ?? -250);
+      const zSoffit = m(abs.slab_soffit_cm ?? lv.slab_soffit_cm ?? -42);
+      const zAccess = m(abs.access_landing_cm ?? lv.access_landing ?? -95);
+      const zCourt = m(abs.grade_cm ?? lv.courtyard_general ?? 0);
+      const floorThB = m(abs.floor_slab_th_cm ?? lv.floor_slab_th_cm ?? 15);
 
       // Pardoseală camere (culori distincte) — FĂRĂ volume opace (ascundeau planul)
       const floorColor = {
@@ -1376,50 +1379,94 @@ function main() {
           label: `FF subsol ${r.id}`,
         });
       }
-      // Contur + pereți interiori — plan camere citibil (fără volume opace)
-      const wallT = 12.5;
-      // ziduri joase (~1 m) — plan/circulație citibilă de sus (nu „cutie” opacă)
-      const wallTopR = zB + 1.05;
+      // Contur + pereți — geometrie COMPLETĂ (secționarea e doar în viewer)
+      const th = bm.wall_thickness_study_cm || {};
+      const wallPerim = th.perimeter_structure_cm ?? 30;
+      const wallT = th.partition_cm ?? 12.5;
+      const wallTopR = zSoffit; // full clear to soffit
       const doorY0i = bm.door_to_rooms?.y ?? 600;
       const doorY1i = doorY0i + (bm.door_to_rooms?.dy ?? 80);
-      for (const w of [
-        // contur exterior subsol (citire plan)
-        { id: "subsol_zid_perim_n", x: 30, y: 30 - wallT, dx: 505, dy: wallT },
-        { id: "subsol_zid_perim_w", x: 30 - wallT, y: 30, dx: wallT, dy: 600 },
-        { id: "subsol_zid_perim_s_dep", x: 30, y: 630, dx: 320, dy: wallT },
-        { id: "subsol_zid_perim_s_hol", x: 350, y: 685, dx: 185, dy: wallT },
-        // CT | depozit+hol (pe Y430)
-        { id: "subsol_zid_ct_sud", x: 30, y: 430 - wallT / 2, dx: 505, dy: wallT },
-        // depozit | hol (pe X350)
-        { id: "subsol_zid_dep_hol", x: 350 - wallT / 2, y: 430, dx: wallT, dy: 200 },
-        // hol E: N de ușă (nu pe golul ușii spre puț)
-        {
-          id: "subsol_zid_hol_est_n",
-          x: 535 - wallT,
-          y: 430,
-          dx: wallT,
-          dy: Math.max(0, doorY0i - 430),
-        },
-        {
-          id: "subsol_zid_hol_est_s",
-          x: 535 - wallT,
-          y: doorY1i,
-          dx: wallT,
-          dy: Math.max(0, 685 - doorY1i),
-        },
-      ]) {
-        if (w.dx < 1 || w.dy < 1) continue;
+      const intDoors = bm.internal_doors || [];
+      const doorCt = intDoors.find((d) => d.id === "usa_hol_ct");
+      const doorDep = intDoors.find((d) => d.id === "usa_hol_dep");
+
+      function pushWallFull(id, x, y, dx, dy, label) {
+        if (dx < 1 || dy < 1) return;
         meshes.push({
-          id: w.id,
+          id,
           type: "extrude",
-          polygon: rectPoly(w.x, w.y, w.dx, w.dy),
+          polygon: rectPoly(x, y, dx, dy),
           z0_m: zB,
           z1_m: wallTopR,
           color: "#d8d0c0",
           opacity: 0.98,
-          label: w.id,
+          label: label || id,
         });
       }
+      function pushDoorOpening(d) {
+        if (!d) return;
+        const hOpen = m(d.opening_h_cm ?? 200);
+        const lintel = m(d.lintel_reserve_cm ?? 15);
+        meshes.push({
+          id: d.id,
+          type: "extrude",
+          polygon: rectPoly(d.x, d.y, d.dx, d.dy),
+          z0_m: zB + hOpen,
+          z1_m: Math.min(wallTopR, zB + hOpen + lintel),
+          color: "#a89880",
+          label: `${d.id} buiandrug`,
+        });
+      }
+
+      // perimetru structură (studiu)
+      pushWallFull("subsol_zid_perim_n", 30, 30 - wallPerim, 505, wallPerim, "perim N studiu");
+      pushWallFull("subsol_zid_perim_w", 30 - wallPerim, 30, wallPerim, 600, "perim W studiu");
+      pushWallFull("subsol_zid_perim_s_dep", 30, 630, 320, wallPerim, "perim S depozit");
+      pushWallFull("subsol_zid_perim_s_hol", 350, 685, 185, wallPerim, "perim S hol");
+      // CT | depozit+hol — cu gol ușă
+      {
+        const yWall = 430 - wallT / 2;
+        if (doorCt) {
+          const x0 = 30;
+          const xD0 = doorCt.x;
+          const xD1 = doorCt.x + doorCt.dx;
+          const x1 = 30 + 505;
+          pushWallFull("subsol_zid_ct_sud_w", x0, yWall, Math.max(0, xD0 - x0), wallT);
+          pushWallFull("subsol_zid_ct_sud_e", xD1, yWall, Math.max(0, x1 - xD1), wallT);
+          pushDoorOpening(doorCt);
+        } else {
+          pushWallFull("subsol_zid_ct_sud", 30, yWall, 505, wallT);
+        }
+      }
+      // depozit | hol — cu gol ușă
+      {
+        const xWall = 350 - wallT / 2;
+        if (doorDep) {
+          const y0 = 430;
+          const yD0 = doorDep.y;
+          const yD1 = doorDep.y + doorDep.dy;
+          const y1 = 630;
+          pushWallFull("subsol_zid_dep_hol_n", xWall, y0, wallT, Math.max(0, yD0 - y0));
+          pushWallFull("subsol_zid_dep_hol_s", xWall, yD1, wallT, Math.max(0, y1 - yD1));
+          pushDoorOpening(doorDep);
+        } else {
+          pushWallFull("subsol_zid_dep_hol", xWall, 430, wallT, 200);
+        }
+      }
+      pushWallFull(
+        "subsol_zid_hol_est_n",
+        535 - wallT,
+        430,
+        wallT,
+        Math.max(0, doorY0i - 430)
+      );
+      pushWallFull(
+        "subsol_zid_hol_est_s",
+        535 - wallT,
+        doorY1i,
+        wallT,
+        Math.max(0, 685 - doorY1i)
+      );
       // Pardoseală continuă hol → prag ușă → podest (același plan −250)
       {
         const dr = bm.door_to_rooms;
@@ -1474,7 +1521,8 @@ function main() {
       const shaftY0 = r2b.y; // 590
       const shaftYHouse1 = nsCm; // 860 = limita sud casă
       const shaftYWell1 = pitY1;
-      const doorH = 2.1;
+      const doorH = m(bm.door_to_rooms?.opening_h_cm ?? 200);
+      const doorLintel = m(bm.door_to_rooms?.lintel_reserve_cm ?? 15);
       const zWellTop = zGrade + 0.9;
       const zShaftTop = zAccess + doorH + 0.15; // headroom pe puț deschis
       const zNorthTop = zSoffit;
@@ -1529,7 +1577,7 @@ function main() {
             null
           );
         }
-        // bandă ușă: doar buiandrug; gol liber −250 → −250+210
+        // bandă ușă: buiandrug = opening_h + rezervă toc; gol sub el
         if (d1 > d0) {
           pushWallSeg(
             "subsol_put_zid_w_buiandrug",
@@ -1538,11 +1586,10 @@ function main() {
             d0,
             d1 - d0,
             zB + doorH,
-            zShaftTop,
-            "buiandrug ușă hol→puț",
+            Math.max(zShaftTop, zB + doorH + doorLintel),
+            `buiandrug ușă hol→puț (gol ${bm.door_to_rooms?.opening_h_cm ?? 200}+${bm.door_to_rooms?.lintel_reserve_cm ?? 15})`,
             null
           );
-          // gol ușă = absență zid (fără volum translucent care arăta ca „spațiu gol”)
         }
         // fântână: continuare zid gros vest
         if (shaftYWell1 > shaftYHouse1) {
@@ -1717,11 +1764,10 @@ function main() {
         });
       }
 
-      // Palier jos −250 — de la hol (X535) peste clar; Y de la sudul zidului N până sub scară
+      // Palier jos − din JSON (A1: liber N de scară, nu sub scară)
       {
-        const lowY = shaftY0 + 12; // imediat S de zidul N puț
-        const lowY1 = Math.max(lowY + (low?.dy ?? 90), (stB?.y ?? 595) + (stB?.tread_cm ?? 25) + 40);
-        const lowDy = lowY1 - lowY;
+        const lowY = low?.y ?? shaftY0 + 12;
+        const lowDy = low?.dy ?? 90;
         meshes.push({
           id: "subsol_palier_jos",
           type: "extrude",
@@ -1729,18 +1775,18 @@ function main() {
           z0_m: zB - floorThB,
           z1_m: zB,
           color: "#e8c56a",
-          label: "palier inferior −250 (lipit de beci)",
+          label: low?.note || "palier inferior",
         });
       }
 
-      // Echipamente — gabarit jos/colorat (nu stâlpi albi care ascund planul)
+      // Echipamente — înălțime declarată (secționarea e în viewer)
       for (const eq of bm.equipment || []) {
         meshes.push({
           id: `subsol_eq_${eq.id}`,
           type: "extrude",
           polygon: rectPoly(eq.x, eq.y, eq.w_cm, eq.d_cm),
           z0_m: zB,
-          z1_m: zB + Math.min(m(eq.h_cm || 80), 0.55),
+          z1_m: zB + m(eq.h_cm || 80),
           color: "#5a6a78",
           opacity: 0.85,
           label: eq.label || eq.id,
@@ -1778,16 +1824,20 @@ function main() {
   const stairSeInside = insideParcel(stairSeSite);
   const stairSeOverflow_m = +overflowDistanceM(stairSeSite).toFixed(3);
 
+  const isStudyA1 = (v47.meta?.study_variant === "A1") || inputRel.includes("a1_study");
+  const absD = v47.basement_cm?.absolute_from_grade_cm;
   const volume = {
     meta: {
-      id: "volume_v47_exact",
+      id: isStudyA1 ? "volume_v47_a1_study" : "volume_v47_exact",
       generated: new Date().toISOString(),
-      status: "3D_EXACT_V47",
-      source_plan: "data/building/v47_exact.json",
-      based_on: "v46_exact r7g",
+      status: isStudyA1 ? "3D_STUDIU_A1" : "3D_EXACT_V47",
+      source_plan: inputRel,
+      based_on: isStudyA1 ? "v47_exact (referință neatinsă)" : "v46_exact r7g",
+      study_variant: isStudyA1 ? "A1" : undefined,
       levels_note: "subsol (L-1) + parter + etaj",
-      warning:
-        "V47 concept: FF=față sus. Subsol scară −95→−250. Clear subsol 208→soffit −42 (ipoteză). Nu autorizabil / nu verificat structural. Elevație +32=ipoteză.",
+      warning: isStudyA1
+        ? `STUDIU A1: datum absolut teren=0. Clear ${absD?.clear_height_cm ?? 220} (ușă ${absD?.door_to_rooms_opening_h_cm ?? 200}+buiandrug ${absD?.door_lintel_reserve_cm ?? 15}). Referință v47_exact neatinsă. Nu autorizabil.`
+        : "V47 concept: FF=față sus. Subsol scară −95→−250. Clear subsol 208→soffit −42 (ipoteză). Nu autorizabil / nu verificat structural. Elevație +32=ipoteză.",
       gate_default_state: "closed",
       gate_clear_m: v47.site_access_cm?.auto?.gate?.clear_opening_m ?? 6,
       units: "meters",
@@ -1853,8 +1903,15 @@ function main() {
     meshes,
   };
 
-  write("outputs/plans/04_volume_concept_v47.json", volume);
-  write("viewer/data/volume_v47.json", volume);
+  if (outVolRel === "viewer/data/volume_v47.json") {
+    write("outputs/plans/04_volume_concept_v47.json", volume);
+  } else {
+    write("outputs/plans/04_volume_concept_v47_a1_study.json", volume);
+  }
+  write(outVolRel, volume);
+  if (outVolRel !== "viewer/data/volume_v47.json") {
+    console.log(`[build_v47_3d] study volume → ${outVolRel}`);
+  }
 
   console.log(
     JSON.stringify(

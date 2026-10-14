@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="640" viewBox="0 0 1100 640">
+<rect width="100%" height="100%" fill="#f7f7f5"/>
+<text x="40" y="36" font-size="13" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">V47 A1 · secțiune longitudinală acces (cote absolute, teren=0)</text>
+<line x1="60" y1="120" x2="1040" y2="120" stroke="#6d7f5c" stroke-width="2"/>
+<text x="60" y="114" font-size="8">teren 0</text>
+<line x1="60" y1="83.2" x2="400" y2="83.2" stroke="#333" stroke-dasharray="4 2"/>
+<text x="60" y="79.2" font-size="8">FF P +32</text>
+<line x1="80" y1="154.5" x2="170" y2="154.5" stroke="#c1121f" stroke-width="2"/>
+<text x="174" y="150.5" font-size="8" fill="#c1121f">intrados -30</text>
+<line x1="89" y1="407.5" x2="242" y2="407.5" stroke="#333" stroke-width="2"/>
+<text x="179" y="403.5" font-size="8">FF L-1 -250</text>
+<line x1="165.5" y1="154.5" x2="165.5" y2="407.5" stroke="#2d6a4f"/>
+<text x="171.5" y="281" font-size="10" fill="#2d6a4f">clear 220</text>
+<rect x="215" y="229.25" width="27" height="6" fill="#8aa4b8"/>
+<text x="215" y="223.25" font-size="7">palier -95</text>
+<rect x="203.75" y="249.05555555555554" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="192.5" y="268.8611111111111" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="181.25" y="288.66666666666663" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="170" y="308.4722222222222" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="158.75" y="328.27777777777777" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="147.5" y="348.08333333333326" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="136.25" y="367.88888888888886" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="125" y="387.6944444444444" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="89" y="407.5" width="36" height="8" fill="#e8c56a" stroke="#333"/>
+<text x="89" y="425.5" font-size="7">palier liber</text>
+<rect x="93.5" y="177.5" width="31.5" height="229.99999999999997" fill="#2d6a4f" opacity="0.35" stroke="#145"/>
+<text x="93.5" y="173.5" font-size="7">gol ușă 200 + buiandrug 15</text>
+<rect x="305" y="138.20833333333334" width="12.6" height="4" fill="#e0c888"/>
+<rect x="292.4" y="156.41666666666666" width="12.6" height="4" fill="#e0c888"/>
+<rect x="279.8" y="174.625" width="12.6" height="4" fill="#e0c888"/>
+<rect x="267.20000000000005" y="192.83333333333331" width="12.6" height="4" fill="#e0c888"/>
+<rect x="254.6" y="211.04166666666669" width="12.6" height="4" fill="#e0c888"/>
+<rect x="242" y="229.25" width="12.6" height="4" fill="#e0c888"/>
+<text x="40" y="612" font-size="8" fill="#444" font-family="IBM Plex Sans,Segoe UI,sans-serif">Datum absolut · scară 9×17.222=155.00 · studii utili 37.87875 m² neschimbați · POT anvelopă 39.78% din 147</text>
+</svg>

@@ -65,6 +65,7 @@
       </div>
       <div class="tabs" id="tabsV47">
         <a href="?v47"><strong>Model V47</strong></a>
+        <a href="?v=v47_a1">V47 A1 studiu</a>
         <a href="../outputs/plans/21_v47_exact_plan.svg" target="_blank">Plan V47</a>
         <a href="../outputs/plans/27_v47_subsol_plan.svg" target="_blank">Subsol V47</a>
         <a href="../outputs/plans/28_v47_subsol_section.svg" target="_blank">Secț. subsol</a>
@@ -81,7 +82,7 @@
         <a href="../outputs/plans/15_v46_sections.svg" target="_blank">Secțiuni V46</a>
       </div>
       <p class="meta" style="margin-top:1rem">Orbit · zoom · pan dreapta</p>
-      <p class="meta">V47 (L-1+P+E): <code>?v47</code> · V46 neschimbat: <code>?v=v46</code></p>
+      <p class="meta">V47: <code>?v47</code> · A1 studiu: <code>?v=v47_a1</code> · V46: <code>?v=v46</code></p>
       <p class="meta">Regen: <code>npm run build:v47</code> (nu atinge V46)</p>
       <ul id="meshes"></ul>
     </aside>
@@ -209,13 +210,27 @@
     }
 
     const qs = new URLSearchParams(location.search);
-    const isV47 = qs.has("v47") || (qs.get("v") || "").startsWith("v47");
-    const volFile = isV47 ? "./data/volume_v47.json" : "./data/volume.json";
+    const vParam = qs.get("v") || "";
+    const isV47A1 = vParam === "v47_a1" || qs.has("v47_a1");
+    const isV47 = isV47A1 || qs.has("v47") || vParam.startsWith("v47");
+    const volFile = isV47A1
+      ? "./data/volume_v47_a1.json"
+      : isV47
+        ? "./data/volume_v47.json"
+        : "./data/volume.json";
     const volume = await fetch(`${volFile}?${location.search.slice(1) || Date.now()}`, { cache: "no-store" }).then((r) => r.json());
-    document.getElementById("viewTitle").textContent = isV47 ? "Dragalina 131 · V47" : "Dragalina 131 · V46";
+    document.getElementById("viewTitle").textContent = isV47A1
+      ? "Dragalina 131 · V47 A1 studiu"
+      : isV47
+        ? "Dragalina 131 · V47"
+        : "Dragalina 131 · V46";
     document.getElementById("warning").textContent = volume.meta.warning || volume.meta.status;
     const env = volume.meta.envelope_m || {};
-    const srcLabel = isV47 ? "V47 concept (cm) · L-1+P+E" : "V46 exact (cm)";
+    const srcLabel = isV47A1
+      ? "V47 A1 studiu (cm) · referință neatinsă"
+      : isV47
+        ? "V47 concept (cm) · L-1+P+E"
+        : "V46 exact (cm)";
     document.getElementById("meta").innerHTML = `
       <div><strong>Model:</strong> ${volume.meta.id}</div>
       <div><strong>Sursă:</strong> ${srcLabel}</div>
