@@ -31,7 +31,7 @@
     "etaj_source": "v46_r7g — neschimbat",
     "concept_status": "temă cotată pentru discuție arhitect — NU autorizabil / NU verificat structural",
     "study_variant": "A1",
-    "rev_note_a1": "studiu Runda A — A1: scară coboară N; palier jos liber N de ultima treaptă; ușă pe palier; clear 220; fără a atinge referința v47_exact"
+    "rev_note_a1": "A1 corectat: puț Y520–860; zid N N de palier; gol ușă Y530–600; est 15 cm; clear prin intersecții; sandwich modelat"
   },
   "envelope_cm": {
     "ew": 680,
@@ -923,7 +923,15 @@
     },
     "pot_note": "uncovered exclude_from_pot; amprentă casă = envelope; POT autorizare neconfirmat",
     "uncovered_terrace_m2": 4.082,
-    "uncovered_in_pot": false
+    "uncovered_in_pot": false,
+    "useful_recalc_a1": {
+      "envelope_shoelace_m2": 39.01,
+      "walls_net_m2": 1.13125,
+      "useful_geometric_m2": 37.87875,
+      "method": "shoelace(interior_polygon) − reuniune pereți int (−goluri baie/dorm)"
+    },
+    "useful_ref_copied_was": 37.87875,
+    "useful_delta_vs_ref_m2": 0
   },
   "furniture_cm": [
     {
@@ -4074,8 +4082,8 @@
     }
   ],
   "basement_cm": {
-    "status": "studiu_A1",
-    "concept_note": "A1: curte→trepte→palier−95 (Y800–860)→scară coboară N (Y600–800)→palier liber −250 (Y520–600)→ușă→hol. Clear 220. Camere reorganizabile.",
+    "status": "studiu_A1_corectat",
+    "concept_note": "A1: curte→trepte→palier−95→scară↓N→palier liber Y520–600→ușă Y530–600→hol. Puț deschis Y520–860.",
     "ramp2_ref": {
       "x": 565,
       "y": 590,
@@ -4088,10 +4096,10 @@
       "basement_ff": -250,
       "slab_soffit_cm": -30,
       "clear_height_cm": 220,
-      "clear_height_formula": "soffit(-30) − FF_subsol(-250) = 220",
+      "clear_height_formula": "ȚINTĂ: soffit(-30) − FF(-250) = 220; validare = headroom samples",
       "floor_slab_th_cm": 15,
       "status": "studiu_A1_absolute",
-      "note": "VALORI ABSOLUTE față de teren=0 (nu relativ la FF parter)"
+      "note": "VALORI ABSOLUTE față de teren=0"
     },
     "court_to_access_steps": {
       "count": 6,
@@ -4104,8 +4112,7 @@
       "dy": 168,
       "from_z_cm": 0,
       "to_z_cm": -95,
-      "status": "studiu_A1",
-      "note": "teren 0 → palier −95"
+      "status": "studiu_A1"
     },
     "local_court_drop": {
       "x": 565,
@@ -4131,9 +4138,9 @@
       "inside_ramp2_band": true,
       "x": 565,
       "y": 600,
-      "dx": 102.5,
+      "dx": 100,
       "dy": 200,
-      "width_clear_cm": 102.5,
+      "width_clear_cm": 100,
       "riser_cm": 17.22222222222222,
       "tread_cm": 25,
       "risers": 9,
@@ -4153,7 +4160,7 @@
         -232.77777777777777
       ],
       "status": "studiu_A1",
-      "note": "Y600–800; ultima treaptă @ Y600; palier liber N"
+      "note": "clear 100 cm (est 15); Y600–800"
     },
     "upper_landing": {
       "x": 565,
@@ -4161,8 +4168,7 @@
       "dx": 115,
       "dy": 60,
       "z_ff_cm": -95,
-      "status": "studiu_A1",
-      "note": "Y800–860; abutează capătul de sus al scării; în puț deschis"
+      "status": "studiu_A1"
     },
     "lower_landing": {
       "x": 565,
@@ -4171,7 +4177,7 @@
       "dy": 80,
       "z_ff_cm": -250,
       "status": "studiu_A1",
-      "note": "Y520–600 LIBER — nu sub scară; ușă pe acest palier"
+      "note": "Y520–600 LIBER; zid N @ Y507.5"
     },
     "door_to_rooms": {
       "id": "usa_subsol_camere",
@@ -4187,7 +4193,7 @@
         "hol_subsol"
       ],
       "status": "studiu_A1",
-      "note": "deschidere 200 + buiandrug 15 ≤ clear 220"
+      "note": "gol pe toată Y530–600 (70 cm), fără clamp la Y590"
     },
     "rooms": [
       {
@@ -4197,8 +4203,7 @@
         "dx": 505,
         "dy": 400,
         "z_ff_cm": -250,
-        "area_m2": 20.2,
-        "note": "CT — A1 neschimbat ca gabarit brut; gol hol pe Y430"
+        "area_m2": 20.2
       },
       {
         "id": "depozit_subsol",
@@ -4207,8 +4212,7 @@
         "dx": 320,
         "dy": 200,
         "z_ff_cm": -250,
-        "area_m2": 6.4,
-        "note": "depozit — gol hol pe X350"
+        "area_m2": 6.4
       },
       {
         "id": "hol_subsol",
@@ -4218,7 +4222,7 @@
         "dy": 255,
         "z_ff_cm": -250,
         "area_m2": 4.7175,
-        "note": "hol Y430–685; întâlnește ușa palier @ Y530–600"
+        "note": "față E = zid gros puț X535; ușă Y530–600"
       }
     ],
     "equipment": [
@@ -4353,11 +4357,36 @@
     },
     "structure_note": "pereți/fundații aliniate cu portanți; fără depășire parcelă pe Dragalina; subzidiri = structurist+releveu",
     "areas": {
-      "camera_tehnica_m2": 20.2,
-      "depozit_m2": 6.4,
-      "hol_m2": 4.7175,
+      "rooms": {
+        "camera_tehnica": {
+          "brut_m2": 20.2,
+          "x": 30,
+          "y": 30,
+          "dx": 505,
+          "dy": 400
+        },
+        "depozit_subsol": {
+          "brut_m2": 6.4,
+          "x": 30,
+          "y": 430,
+          "dx": 320,
+          "dy": 200
+        },
+        "hol_subsol": {
+          "brut_m2": 4.7175,
+          "x": 350,
+          "y": 430,
+          "dx": 185,
+          "dy": 255
+        }
+      },
       "total_brut_rooms_m2": 31.3175,
-      "note": "arii pe contur camere — fără deducere pereți; utile de recalculat pe fețe finite"
+      "util_estimat_m2": 29.5194,
+      "wall_thickness_used_cm": {
+        "partition": 12.5,
+        "perimeter": 30
+      },
+      "note": "recalculate din geometria A1 finală; util = estimat pe fețe"
     },
     "open_shaft_under_ramp2": true,
     "english_court_open_void": true,
@@ -4369,22 +4398,127 @@
       "access_landing_cm": -95,
       "basement_ff_cm": -250,
       "slab_soffit_cm": -30,
-      "clear_height_cm": 220,
+      "clear_height_declared_cm": 220,
       "floor_slab_th_cm": 15,
       "door_to_rooms_opening_h_cm": 200,
       "door_lintel_reserve_cm": 15,
       "door_stack_needed_cm": 215,
-      "note": "Toate cotele absolute față de teren=0. levels_vs_ff_parter_cm din referință erau folosite mixt (nume vs FF, valori absolute). A1 le înlocuiește cu absolute_from_grade_cm."
+      "note": "clear_declared = 220 e ȚINTĂ de studiu; validarea = intersecții cu scară etaj / grinzi / planșeu, nu FF−soffit.",
+      "floor_sandwich_cm": {
+        "layers": [
+          {
+            "id": "intrados_finish",
+            "th_cm": 2,
+            "color": "#cfc8bc",
+            "z0_cm": -30,
+            "z1_cm": -28
+          },
+          {
+            "id": "services_plenum",
+            "th_cm": 8,
+            "color": "#aeb8c4",
+            "z0_cm": -28,
+            "z1_cm": -20
+          },
+          {
+            "id": "structural_slab",
+            "th_cm": 20,
+            "color": "#8b8680",
+            "z0_cm": -20,
+            "z1_cm": 0
+          },
+          {
+            "id": "insulation",
+            "th_cm": 5,
+            "color": "#d4c49a",
+            "z0_cm": 0,
+            "z1_cm": 5
+          },
+          {
+            "id": "heating_screed_finish",
+            "th_cm": 12,
+            "color": "#c4b8a0",
+            "z0_cm": 5,
+            "z1_cm": 17
+          },
+          {
+            "id": "residual_level_to_ff",
+            "th_cm": 15,
+            "color": "#b0a898",
+            "note": "rest până la FF+32 — de confirmat structurist/finisaj",
+            "z0_cm": 17,
+            "z1_cm": 32
+          }
+        ],
+        "sum_th_cm": 62,
+        "span_soffit_to_ff_cm": 62,
+        "closes_span": true,
+        "note": "straturi sumă 62 cm = FF(32) − intrados(-30)"
+      },
+      "clear_height_cm": 220
     },
+    "floor_sandwich_cm": [
+      {
+        "id": "intrados_finish",
+        "th_cm": 2,
+        "color": "#cfc8bc",
+        "z0_cm": -30,
+        "z1_cm": -28
+      },
+      {
+        "id": "services_plenum",
+        "th_cm": 8,
+        "color": "#aeb8c4",
+        "z0_cm": -28,
+        "z1_cm": -20
+      },
+      {
+        "id": "structural_slab",
+        "th_cm": 20,
+        "color": "#8b8680",
+        "z0_cm": -20,
+        "z1_cm": 0
+      },
+      {
+        "id": "insulation",
+        "th_cm": 5,
+        "color": "#d4c49a",
+        "z0_cm": 0,
+        "z1_cm": 5
+      },
+      {
+        "id": "heating_screed_finish",
+        "th_cm": 12,
+        "color": "#c4b8a0",
+        "z0_cm": 5,
+        "z1_cm": 17
+      },
+      {
+        "id": "residual_level_to_ff",
+        "th_cm": 15,
+        "color": "#b0a898",
+        "note": "rest până la FF+32 — de confirmat structurist/finisaj",
+        "z0_cm": 17,
+        "z1_cm": 32
+      }
+    ],
     "wall_thickness_study_cm": {
       "perimeter_structure_cm": 30,
-      "perimeter_note": "studiu — de confirmat structurist (nu 12.5 automat)",
+      "perimeter_note": "studiu — de confirmat structurist",
       "partition_cm": 12.5,
       "shaft_west_cm": 30,
       "shaft_east_cm": 15,
-      "shaft_east_note": "sprijin Dragalina — studiu",
+      "shaft_east_note": "sprijin Dragalina — JSON 15 cm",
+      "shaft_north_cm": 12.5,
       "foundation_projection_beyond_wall_cm": 15,
-      "foundation_note": "rezervă studiu 15 cm dincolo de fața exterioară a peretelui perimetral — nu se rezolvă prin subțiere"
+      "foundation_note": "proiecție 15 cm; verificare parcelă pe colțuri transformate"
+    },
+    "open_shaft_cm": {
+      "x": 565,
+      "y": 520,
+      "dx": 115,
+      "dy": 340,
+      "note": "puț deschis coordonat cu palier jos Y520–860"
     },
     "internal_doors": [
       {
@@ -4419,31 +4553,777 @@
     "a1_checks": {
       "ok": true,
       "passes": [
-        "upper_landing → Y860 (racord curte)",
-        "upper abut stair top (south)",
-        "palier jos N de ultima treaptă (liber)",
-        "ușă pe palier liber",
+        "upper_landing → Y860",
+        "upper abut stair top",
+        "palier jos N de ultima treaptă",
+        "ușă pe palier Y530–600 (dy=70)",
         "ușă ∩ hol pe Y",
-        "ușă 200+lintel 15 ≤ clear 220",
-        "palier −95 în puț deschis (fără soffit)",
-        "clear pe palier jos / camere = 220 cm",
-        "sub rampa2: puț deschis — headroom vertical liber pe scară L-1 în bandă",
-        "studii utili neschimbați 37.87875 m²",
+        "puț deschis începe la Y520 (= palier)",
+        "zid N @ Y507.5–520 (N de palier, nu Y590)",
+        "zid EST puț = 15 cm (JSON)",
+        "sandwich modelat: 62 cm = FF(+32) − intrados(-30)",
+        "gabarit minim global = 220 cm @ Y230 X282.5 (intrados_placa_parter@camera_tehnica)",
+        "gabarit minim pe traseu acces = 251 cm @ Y830 (structura_r2_0)",
+        "ușă+buiandrug 215 ≤ clear zonă ușă 558",
+        "util studii recalculat 37.87875 m² (Δ vs ref 0)",
+        "arii subsol brut recalculate 31.3175 m²",
         "anvelopă 680×860 păstrată",
-        "zid E puț ≤ X680 (limită anvelopă)",
-        "rezervă fundație ±15 cm → gabarit studiu -15…695 × -15…875 (verificare parcelă în volum 3D)",
-        "notă: ușă tip 210+buiandrug 15=225 > clear 220 — A1 demonstrează cu deschidere 200+15=215≤220 (fără a egala camera la 210)"
+        "fundație MODELATĂ (clip N/E/S/W=0/0/0/15 cm): fără overflow ≥2 cm"
       ],
       "fails": [],
+      "notes": [
+        "clear_declared 220 NU e validat doar prin scădere; vezi headroom_audit.min_clear_cm",
+        "țintă fundație uniformă 15 cm EȘUEAZĂ PIP: target_NW +0.058m; target_NE +0.15m; target_SE +0.15m; target_E_mid +0.15m",
+        "PIP=false dist≈0 pe clip_SE — același artefact numeric ca SE anvelopă",
+        "proiecție redusă față de ținta 15 cm (est/Dragalina tipic limitat de contur CF)",
+        "colț SE anvelopă: PIP=false dist≈0 (numeric contur) — neschimbat vs referință"
+      ],
       "pot_envelope_over_147": 39.78,
-      "pot_note": "doar anvelopă referință / 147 — confirmare limită admisă rămâne deschisă",
-      "foundation_study_box_cm": {
-        "x0": -15,
-        "y0": -15,
-        "x1": 695,
-        "y1": 875
+      "pot_note": "anvelopă/147 — confirmare limită admisă deschisă",
+      "headroom_min": {
+        "x_cm": 282.5,
+        "y_cm": 230,
+        "element": "intrados_placa_parter@camera_tehnica",
+        "z_walk_cm": -250,
+        "z_obstacle_cm": -30
       },
-      "path": "curte(0) → trepte → palier−95(Y800–860) → scară(Y600–800↓N) → palier liber−250(Y520–600) → ușă → hol → CT/dep"
+      "path": "curte(0) → trepte → palier−95(Y800–860) → scară(Y600–800↓N) → palier liber−250(Y520–600) → ușă Y530–600 → hol → CT/dep"
+    },
+    "headroom_audit": {
+      "samples_count": 72,
+      "samples_path": [
+        {
+          "x_cm": 615,
+          "y_cm": 520,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 525,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 530,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 535,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 540,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 545,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 550,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 555,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 560,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 565,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 570,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 575,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 580,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 585,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 308,
+          "clear_cm": 558,
+          "element": "intrados_palier_superior_etaj",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 590,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 284,
+          "clear_cm": 534,
+          "element": "structura_r2_8",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 595,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": 284,
+          "clear_cm": 534,
+          "element": "structura_r2_8",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 600,
+          "z_walk_cm": -232.78,
+          "z_obstacle_cm": 284,
+          "clear_cm": 516.78,
+          "element": "structura_r2_8",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 605,
+          "z_walk_cm": -232.78,
+          "z_obstacle_cm": 284,
+          "clear_cm": 516.78,
+          "element": "structura_r2_8",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 610,
+          "z_walk_cm": -232.78,
+          "z_obstacle_cm": 284,
+          "clear_cm": 516.78,
+          "element": "structura_r2_8",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 615,
+          "z_walk_cm": -232.78,
+          "z_obstacle_cm": 284,
+          "clear_cm": 516.78,
+          "element": "structura_r2_8",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 620,
+          "z_walk_cm": -232.78,
+          "z_obstacle_cm": 268,
+          "clear_cm": 500.78,
+          "element": "structura_r2_7",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 625,
+          "z_walk_cm": -215.56,
+          "z_obstacle_cm": 268,
+          "clear_cm": 483.56,
+          "element": "structura_r2_7",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 630,
+          "z_walk_cm": -215.56,
+          "z_obstacle_cm": 268,
+          "clear_cm": 483.56,
+          "element": "structura_r2_7",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 635,
+          "z_walk_cm": -215.56,
+          "z_obstacle_cm": 268,
+          "clear_cm": 483.56,
+          "element": "structura_r2_7",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 640,
+          "z_walk_cm": -215.56,
+          "z_obstacle_cm": 268,
+          "clear_cm": 483.56,
+          "element": "structura_r2_7",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 645,
+          "z_walk_cm": -215.56,
+          "z_obstacle_cm": 268,
+          "clear_cm": 483.56,
+          "element": "structura_r2_7",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 650,
+          "z_walk_cm": -198.33,
+          "z_obstacle_cm": 252,
+          "clear_cm": 450.33,
+          "element": "structura_r2_6",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 655,
+          "z_walk_cm": -198.33,
+          "z_obstacle_cm": 252,
+          "clear_cm": 450.33,
+          "element": "structura_r2_6",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 660,
+          "z_walk_cm": -198.33,
+          "z_obstacle_cm": 252,
+          "clear_cm": 450.33,
+          "element": "structura_r2_6",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 665,
+          "z_walk_cm": -198.33,
+          "z_obstacle_cm": 252,
+          "clear_cm": 450.33,
+          "element": "structura_r2_6",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 670,
+          "z_walk_cm": -198.33,
+          "z_obstacle_cm": 252,
+          "clear_cm": 450.33,
+          "element": "structura_r2_6",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 675,
+          "z_walk_cm": -181.11,
+          "z_obstacle_cm": 252,
+          "clear_cm": 433.11,
+          "element": "structura_r2_6",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 680,
+          "z_walk_cm": -181.11,
+          "z_obstacle_cm": 236,
+          "clear_cm": 417.11,
+          "element": "structura_r2_5",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 685,
+          "z_walk_cm": -181.11,
+          "z_obstacle_cm": 236,
+          "clear_cm": 417.11,
+          "element": "structura_r2_5",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 690,
+          "z_walk_cm": -181.11,
+          "z_obstacle_cm": 236,
+          "clear_cm": 417.11,
+          "element": "structura_r2_5",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 695,
+          "z_walk_cm": -181.11,
+          "z_obstacle_cm": 236,
+          "clear_cm": 417.11,
+          "element": "structura_r2_5",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 700,
+          "z_walk_cm": -163.89,
+          "z_obstacle_cm": 236,
+          "clear_cm": 399.89,
+          "element": "structura_r2_5",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 705,
+          "z_walk_cm": -163.89,
+          "z_obstacle_cm": 236,
+          "clear_cm": 399.89,
+          "element": "structura_r2_5",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 710,
+          "z_walk_cm": -163.89,
+          "z_obstacle_cm": 220,
+          "clear_cm": 383.89,
+          "element": "structura_r2_4",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 715,
+          "z_walk_cm": -163.89,
+          "z_obstacle_cm": 220,
+          "clear_cm": 383.89,
+          "element": "structura_r2_4",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 720,
+          "z_walk_cm": -163.89,
+          "z_obstacle_cm": 220,
+          "clear_cm": 383.89,
+          "element": "structura_r2_4",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 725,
+          "z_walk_cm": -146.67,
+          "z_obstacle_cm": 220,
+          "clear_cm": 366.67,
+          "element": "structura_r2_4",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 730,
+          "z_walk_cm": -146.67,
+          "z_obstacle_cm": 220,
+          "clear_cm": 366.67,
+          "element": "structura_r2_4",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 735,
+          "z_walk_cm": -146.67,
+          "z_obstacle_cm": 220,
+          "clear_cm": 366.67,
+          "element": "structura_r2_4",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 740,
+          "z_walk_cm": -146.67,
+          "z_obstacle_cm": 204,
+          "clear_cm": 350.67,
+          "element": "structura_r2_3",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 745,
+          "z_walk_cm": -146.67,
+          "z_obstacle_cm": 204,
+          "clear_cm": 350.67,
+          "element": "structura_r2_3",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 750,
+          "z_walk_cm": -129.44,
+          "z_obstacle_cm": 204,
+          "clear_cm": 333.44,
+          "element": "structura_r2_3",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 755,
+          "z_walk_cm": -129.44,
+          "z_obstacle_cm": 204,
+          "clear_cm": 333.44,
+          "element": "structura_r2_3",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 760,
+          "z_walk_cm": -129.44,
+          "z_obstacle_cm": 204,
+          "clear_cm": 333.44,
+          "element": "structura_r2_3",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 765,
+          "z_walk_cm": -129.44,
+          "z_obstacle_cm": 204,
+          "clear_cm": 333.44,
+          "element": "structura_r2_3",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 770,
+          "z_walk_cm": -129.44,
+          "z_obstacle_cm": 188,
+          "clear_cm": 317.44,
+          "element": "structura_r2_2",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 775,
+          "z_walk_cm": -112.22,
+          "z_obstacle_cm": 188,
+          "clear_cm": 300.22,
+          "element": "structura_r2_2",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 780,
+          "z_walk_cm": -112.22,
+          "z_obstacle_cm": 188,
+          "clear_cm": 300.22,
+          "element": "structura_r2_2",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 785,
+          "z_walk_cm": -112.22,
+          "z_obstacle_cm": 188,
+          "clear_cm": 300.22,
+          "element": "structura_r2_2",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 790,
+          "z_walk_cm": -112.22,
+          "z_obstacle_cm": 188,
+          "clear_cm": 300.22,
+          "element": "structura_r2_2",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 795,
+          "z_walk_cm": -112.22,
+          "z_obstacle_cm": 188,
+          "clear_cm": 300.22,
+          "element": "structura_r2_2",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 800,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 172,
+          "clear_cm": 267,
+          "element": "structura_r2_1",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 805,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 172,
+          "clear_cm": 267,
+          "element": "structura_r2_1",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 810,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 172,
+          "clear_cm": 267,
+          "element": "structura_r2_1",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 815,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 172,
+          "clear_cm": 267,
+          "element": "structura_r2_1",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 820,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 172,
+          "clear_cm": 267,
+          "element": "structura_r2_1",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 825,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 172,
+          "clear_cm": 267,
+          "element": "structura_r2_1",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 830,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 156,
+          "clear_cm": 251,
+          "element": "structura_r2_0",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 835,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 156,
+          "clear_cm": 251,
+          "element": "structura_r2_0",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 840,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 156,
+          "clear_cm": 251,
+          "element": "structura_r2_0",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 845,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 156,
+          "clear_cm": 251,
+          "element": "structura_r2_0",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 850,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 156,
+          "clear_cm": 251,
+          "element": "structura_r2_0",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 855,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 156,
+          "clear_cm": 251,
+          "element": "structura_r2_0",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 615,
+          "y_cm": 860,
+          "z_walk_cm": -95,
+          "z_obstacle_cm": 156,
+          "clear_cm": 251,
+          "element": "structura_r2_0",
+          "open": false,
+          "kind": "access_path"
+        },
+        {
+          "x_cm": 190,
+          "y_cm": 530,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_parter@depozit_subsol",
+          "open": false,
+          "kind": "room"
+        },
+        {
+          "x_cm": 442.5,
+          "y_cm": 557.5,
+          "z_walk_cm": -250,
+          "z_obstacle_cm": -30,
+          "clear_cm": 220,
+          "element": "intrados_placa_parter@hol_subsol",
+          "open": false,
+          "kind": "room"
+        }
+      ],
+      "min_clear_cm": 220,
+      "min_at": {
+        "x_cm": 282.5,
+        "y_cm": 230,
+        "element": "intrados_placa_parter@camera_tehnica",
+        "z_walk_cm": -250,
+        "z_obstacle_cm": -30
+      },
+      "min_on_access_path_cm": 251,
+      "min_on_access_path_at": {
+        "x_cm": 615,
+        "y_cm": 830,
+        "element": "structura_r2_0",
+        "z_walk_cm": -95,
+        "z_obstacle_cm": 156
+      },
+      "door_stack_vs_clear_at_door": {
+        "opening_plus_lintel_cm": 215,
+        "clear_at_door_zone_cm": 558,
+        "ok": true
+      }
     }
   },
   "site_access_cm": {

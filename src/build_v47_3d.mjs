@@ -186,15 +186,18 @@ function main() {
   const ctsEarly = bmEarly?.court_to_access_steps;
   const upEarly = bmEarly?.upper_landing || bmEarly?.local_court_drop;
   const r2ref = bmEarly?.ramp2_ref || st.ramp2;
+  // puț deschis A1: open_shaft_cm acoperă și palierul jos; altfel ramp2_ref
+  const shaftRef = bmEarly?.open_shaft_cm || r2ref;
   const ewCm = v47.envelope_cm.ew;
   const nsCm = v47.envelope_cm.ns;
   // până la fațada est (Dragalina), nu inset 670
-  const pitX = r2ref.x;
+  const pitX = shaftRef.x;
   const pitX1 = ewCm;
-  const pitY = Math.min(upEarly?.y ?? 780, ecOpen?.y ?? 850);
+  const pitY = Math.min(shaftRef.y, upEarly?.y ?? 780, ecOpen?.y ?? 850);
   const pitY1 = Math.max(
     (ecOpen?.y ?? 850) + (ecOpen?.dy ?? 114),
-    (ctsEarly?.y ?? 860) + (ctsEarly?.dy ?? 84)
+    (ctsEarly?.y ?? 860) + (ctsEarly?.dy ?? 84),
+    shaftRef.y + shaftRef.dy
   );
   const pitDx = Math.max(1, pitX1 - pitX);
   const pitDy = Math.max(1, pitY1 - pitY);
@@ -220,8 +223,18 @@ function main() {
   }
   // puț sub casă + fântână ca goluri separate (validate în CF)
   const shaftHole =
-    rectHoleInside(r2ref.x + 2, r2ref.y + 2, r2ref.dx - 4, Math.min(r2ref.dy, nsCm - r2ref.y) - 4) ||
-    rectHole(r2ref.x + 5, r2ref.y + 5, r2ref.dx - 10, Math.min(r2ref.dy, nsCm - r2ref.y) - 10);
+    rectHoleInside(
+      shaftRef.x + 2,
+      shaftRef.y + 2,
+      shaftRef.dx - 4,
+      Math.min(shaftRef.dy, nsCm - shaftRef.y) - 4
+    ) ||
+    rectHole(
+      shaftRef.x + 5,
+      shaftRef.y + 5,
+      shaftRef.dx - 10,
+      Math.min(shaftRef.dy, nsCm - shaftRef.y) - 10
+    );
   const wellHole = rectHoleInside(pitX + 2, nsCm, pitDx - 4, Math.max(20, pitY1 - nsCm - 2));
   const terenHoles = [shaftHole, wellHole].filter(Boolean);
 
@@ -1418,11 +1431,29 @@ function main() {
         });
       }
 
-      // perimetru structură (studiu)
-      pushWallFull("subsol_zid_perim_n", 30, 30 - wallPerim, 505, wallPerim, "perim N studiu");
-      pushWallFull("subsol_zid_perim_w", 30 - wallPerim, 30, wallPerim, 600, "perim W studiu");
+      // perimetru structură (studiu) — contur complet camere + legătură CT est
+      const lowLand = bm.lower_landing || { y: 520, dy: 80 };
+      const shaftWest = th.shaft_west_cm ?? 30;
+      const shaftEast = th.shaft_east_cm ?? 15;
+      const shaftNorthTh = th.shaft_north_cm ?? wallT;
+      const landY0 = lowLand.y ?? 520;
+      const landY1 = landY0 + (lowLand.dy ?? 80);
+      const thickX0p = 535;
+      const thinEX0p = ewCm - shaftEast; // 665 dacă 15
+
+      pushWallFull("subsol_zid_perim_n", 30, 30 - wallPerim, 505, wallPerim, "perim N CT");
+      pushWallFull("subsol_zid_perim_w", 30 - wallPerim, 30, wallPerim, 600, "perim W");
       pushWallFull("subsol_zid_perim_s_dep", 30, 630, 320, wallPerim, "perim S depozit");
       pushWallFull("subsol_zid_perim_s_hol", 350, 685, 185, wallPerim, "perim S hol");
+      // est CT: continuare buc_est până la palier (închidere exterioară est CT)
+      pushWallFull(
+        "subsol_zid_ct_est",
+        thickX0p,
+        30,
+        shaftWest,
+        Math.max(0, landY0 - shaftNorthTh - 30),
+        `CT est ${shaftWest} cm (=buc_est)`
+      );
       // CT | depozit+hol — cu gol ușă
       {
         const yWall = 430 - wallT / 2;
@@ -1453,20 +1484,8 @@ function main() {
           pushWallFull("subsol_zid_dep_hol", xWall, 430, wallT, 200);
         }
       }
-      pushWallFull(
-        "subsol_zid_hol_est_n",
-        535 - wallT,
-        430,
-        wallT,
-        Math.max(0, doorY0i - 430)
-      );
-      pushWallFull(
-        "subsol_zid_hol_est_s",
-        535 - wallT,
-        doorY1i,
-        wallT,
-        Math.max(0, 685 - doorY1i)
-      );
+      // hol est = fața vest a zidului gros de puț (nu perete 12.5 duplicat pe X535)
+      // segmente hol–puț N/S de ușă sunt modelate pe zidul gros (subsol_put_zid_w_*)
       // Pardoseală continuă hol → prag ușă → podest (același plan −250)
       {
         const dr = bm.door_to_rooms;
@@ -1508,23 +1527,30 @@ function main() {
       const low = bm.lower_landing;
       const dr = bm.door_to_rooms;
       const r2b = bm.ramp2_ref || r2ref;
+      const openSh = bm.open_shaft_cm || {
+        x: r2b.x,
+        y: low?.y ?? r2b.y,
+        dx: r2b.dx,
+        dy: nsCm - (low?.y ?? r2b.y),
+      };
       const bucEst = (v47.walls_cm || []).find((w) => w.id === "buc_est");
+      const thShaft = bm.wall_thickness_study_cm || {};
       // Zid gros stânga = buc_est (X535×30), continuat pe subsol
       const thickX0 = bucEst?.x ?? 535;
-      const thickDx = bucEst?.dx ?? 30; // 30 cm
-      const clearX0 = r2b.x; // 565 — imediat est de buc_est
-      // EST pe Dragalina: SUBȚIRE 12.5 cm (nu restul benzii ≈25–30 care arăta „zid gros”)
-      const thinEDx = 12.5;
-      const thinEX0 = r2b.x + r2b.dx - thinEDx; // 667.5
-      const clearDx = thinEX0 - clearX0; // 102.5 cm clar până la zidul subțire
+      const thickDx = thShaft.shaft_west_cm ?? bucEst?.dx ?? 30;
+      const clearX0 = openSh.x; // 565
+      const thinEDx = thShaft.shaft_east_cm ?? 15;
+      const thinEX0 = ewCm - thinEDx; // 665
+      const clearDx = thinEX0 - clearX0;
       const stairX0 = clearX0;
-      const shaftY0 = r2b.y; // 590
-      const shaftYHouse1 = nsCm; // 860 = limita sud casă
+      // puț coordonat cu palierul jos — NU mai rămâne la Y590
+      const shaftY0 = openSh.y; // 520 A1
+      const shaftYHouse1 = nsCm; // 860
       const shaftYWell1 = pitY1;
-      const doorH = m(bm.door_to_rooms?.opening_h_cm ?? 200);
-      const doorLintel = m(bm.door_to_rooms?.lintel_reserve_cm ?? 15);
+      const doorH = m(dr?.opening_h_cm ?? 200);
+      const doorLintel = m(dr?.lintel_reserve_cm ?? 15);
       const zWellTop = zGrade + 0.9;
-      const zShaftTop = zAccess + doorH + 0.15; // headroom pe puț deschis
+      const zShaftTop = Math.max(zSoffit + 0.05, zAccess + doorH + doorLintel);
       const zNorthTop = zSoffit;
 
       function pushWallSeg(id, x, dx, y, dy, z0, z1, label, layer) {
@@ -1542,14 +1568,14 @@ function main() {
         });
       }
 
-      // —— VEST GROS 30 cm (continuare buc_est) — stânga puțului
+      // —— VEST GROS (continuare buc_est) pe tot puțul Y520→860 + gol ușă Y530–600
       {
         const y0 = shaftY0;
-        const doorY0 = dr?.y ?? 600;
-        const doorY1 = doorY0 + (dr?.dy ?? 80);
-        const d0 = Math.max(doorY0, y0);
-        const d1 = Math.min(doorY1, shaftYHouse1);
-        // N de ușă: plin −250 → headroom
+        const doorY0 = dr?.y ?? 530;
+        const doorY1 = doorY0 + (dr?.dy ?? 70);
+        // gol pe TOATĂ lățimea ușii — fără clamp la vechiul shaftY0=590
+        const d0 = doorY0;
+        const d1 = doorY1;
         if (d0 > y0) {
           pushWallSeg(
             "subsol_put_zid_w_gros_n",
@@ -1559,11 +1585,10 @@ function main() {
             d0 - y0,
             zB,
             zShaftTop,
-            "zid gros 30 cm W N (=buc_est)",
+            `zid gros ${thickDx} cm W N de ușă`,
             null
           );
         }
-        // S de ușă până la sud casă: plin (canalul e pe EST de acest zid, liber)
         if (d1 < shaftYHouse1) {
           pushWallSeg(
             "subsol_put_zid_w_gros_s",
@@ -1573,11 +1598,10 @@ function main() {
             shaftYHouse1 - d1,
             zB,
             zShaftTop,
-            "zid gros 30 cm W S (=buc_est)",
+            `zid gros ${thickDx} cm W S de ușă`,
             null
           );
         }
-        // bandă ușă: buiandrug = opening_h + rezervă toc; gol sub el
         if (d1 > d0) {
           pushWallSeg(
             "subsol_put_zid_w_buiandrug",
@@ -1586,12 +1610,11 @@ function main() {
             d0,
             d1 - d0,
             zB + doorH,
-            Math.max(zShaftTop, zB + doorH + doorLintel),
-            `buiandrug ușă hol→puț (gol ${bm.door_to_rooms?.opening_h_cm ?? 200}+${bm.door_to_rooms?.lintel_reserve_cm ?? 15})`,
+            zB + doorH + doorLintel,
+            `buiandrug ușă hol→puț Y${d0}–${d1} (gol ${dr?.opening_h_cm ?? 200}+${dr?.lintel_reserve_cm ?? 15})`,
             null
           );
         }
-        // fântână: continuare zid gros vest
         if (shaftYWell1 > shaftYHouse1) {
           pushWallSeg(
             "subsol_fantana_zid_w_gros",
@@ -1607,7 +1630,7 @@ function main() {
         }
       }
 
-      // —— EST SUBȚIRE (sprijin spre Dragalina, NU fațadă 30 pe scară)
+      // —— EST din JSON (15 cm studiu)
       pushWallSeg(
         "subsol_put_zid_e_subtire",
         thinEX0,
@@ -1616,20 +1639,20 @@ function main() {
         shaftYWell1 - shaftY0,
         zB,
         zWellTop,
-        "zid subțire EST sprijin / Dragalina (scară)",
+        `zid EST ${thinEDx} cm (JSON shaft_east)`,
         "curte"
       );
 
-      // —— NORD puț spre living (sub placă)
+      // —— NORD puț = N de palierul jos (nu mai blochează Y590)
       pushWallSeg(
         "subsol_put_zid_n",
         thickX0,
         thinEX0 + thinEDx - thickX0,
-        shaftY0,
-        12,
+        shaftY0 - shaftNorthTh,
+        shaftNorthTh,
         zB,
         zNorthTop,
-        "zid puț N (spre living)",
+        `zid puț N @ Y${shaftY0 - shaftNorthTh}–${shaftY0} (palier liber S)`,
         null
       );
 
@@ -1792,6 +1815,90 @@ function main() {
           label: eq.label || eq.id,
         });
       }
+
+      // Straturi intrados −30 → FF parter +32 (modelate, nu doar scădere)
+      const sandwich = bm.floor_sandwich_cm || abs.floor_sandwich_cm || [];
+      for (const layer of sandwich) {
+        if (!(layer.th_cm > 0)) continue;
+        meshes.push({
+          id: `sandwich_${layer.id}`,
+          type: "extrude",
+          polygon: rectPoly(0, 0, ewCm, nsCm),
+          holes: bm.open_shaft_under_ramp2 ? [shaftHole] : [],
+          z0_m: m(layer.z0_cm),
+          z1_m: m(layer.z1_cm),
+          color: layer.color || "#b0a090",
+          opacity: 0.35,
+          label: `sandwich ${layer.id} ${layer.th_cm} cm`,
+        });
+      }
+
+      // Fundație: proiecție țintă din JSON, apoi clip pe muchii ca PIP=true
+      const foundTarget = th.foundation_projection_beyond_wall_cm ?? 15;
+      const foundZ0 = zB - floorThB - 0.45;
+      const foundZ1 = zB - floorThB;
+      function maxProjEdge(signX, signY, axis) {
+        // binary search proiecție 0…target cu colțurile muchiei în parcelă
+        let lo = 0;
+        let hi = foundTarget;
+        for (let i = 0; i < 16; i++) {
+          const mid = (lo + hi) / 2;
+          const pts =
+            axis === "N"
+              ? [
+                  toSite(-mid, -mid),
+                  toSite(ewCm / 2, -mid),
+                  toSite(ewCm + mid, -mid),
+                ]
+              : axis === "S"
+                ? [
+                    toSite(-mid, nsCm + mid),
+                    toSite(ewCm / 2, nsCm + mid),
+                    toSite(ewCm + mid, nsCm + mid),
+                  ]
+                : axis === "W"
+                  ? [
+                      toSite(-mid, 0),
+                      toSite(-mid, nsCm / 2),
+                      toSite(-mid, nsCm),
+                    ]
+                  : [
+                      toSite(ewCm + mid, 0),
+                      toSite(ewCm + mid, nsCm / 2),
+                      toSite(ewCm + mid, nsCm),
+                    ];
+          if (pts.every((p) => insideParcel(p))) lo = mid;
+          else hi = mid;
+        }
+        return +lo.toFixed(2);
+      }
+      const foundClip = {
+        N: maxProjEdge(0, -1, "N"),
+        S: maxProjEdge(0, 1, "S"),
+        W: maxProjEdge(-1, 0, "W"),
+        E: maxProjEdge(1, 0, "E"),
+        target_cm: foundTarget,
+      };
+      // stocare pe v47 pentru audit (mutat pe volume.site mai jos via closure)
+      v47._foundation_clip_cm = foundClip;
+      const foundOuter = [
+        { id: "N", x: -foundClip.W, y: -foundClip.N, dx: ewCm + foundClip.W + foundClip.E, dy: foundClip.N },
+        { id: "S", x: -foundClip.W, y: nsCm, dx: ewCm + foundClip.W + foundClip.E, dy: foundClip.S },
+        { id: "W", x: -foundClip.W, y: 0, dx: foundClip.W, dy: nsCm },
+        { id: "E", x: ewCm, y: 0, dx: foundClip.E, dy: nsCm },
+      ].filter((f) => f.dx >= 0.5 && f.dy >= 0.5);
+      for (const f of foundOuter) {
+        meshes.push({
+          id: `fundatie_${f.id}`,
+          type: "extrude",
+          polygon: rectPoly(f.x, f.y, f.dx, f.dy),
+          z0_m: foundZ0,
+          z1_m: foundZ1,
+          color: "#6e6a62",
+          opacity: 0.9,
+          label: `fundație clip ${f.id} (țintă ${foundTarget} cm)`,
+        });
+      }
     }
   }
 
@@ -1826,6 +1933,56 @@ function main() {
 
   const isStudyA1 = (v47.meta?.study_variant === "A1") || inputRel.includes("a1_study");
   const absD = v47.basement_cm?.absolute_from_grade_cm;
+
+  // —— Audit A1: fundație țintă vs clipată (colțuri reale PIP)
+  const foundProjCm = v47.basement_cm?.wall_thickness_study_cm?.foundation_projection_beyond_wall_cm ?? 15;
+  const foundClip = v47._foundation_clip_cm || {
+    N: foundProjCm,
+    S: foundProjCm,
+    W: foundProjCm,
+    E: foundProjCm,
+    target_cm: foundProjCm,
+  };
+  function auditFoundCorners(label, n, e, s, w) {
+    const corners = [
+      { id: `${label}_NW`, x: -w, y: -n },
+      { id: `${label}_NE`, x: ewCm + e, y: -n },
+      { id: `${label}_SE`, x: ewCm + e, y: nsCm + s },
+      { id: `${label}_SW`, x: -w, y: nsCm + s },
+      { id: `${label}_N_mid`, x: ewCm / 2, y: -n },
+      { id: `${label}_E_mid`, x: ewCm + e, y: nsCm / 2 },
+      { id: `${label}_S_mid`, x: ewCm / 2, y: nsCm + s },
+      { id: `${label}_W_mid`, x: -w, y: nsCm / 2 },
+    ];
+    return corners.map((c) => {
+      const site = toSite(c.x, c.y);
+      const inside = insideParcel(site);
+      return {
+        id: c.id,
+        local_cm: { x: c.x, y: c.y },
+        site_m: site,
+        inside,
+        overflow_m: +overflowDistanceM(site).toFixed(3),
+      };
+    });
+  }
+  const foundationTargetParcel = auditFoundCorners(
+    "target",
+    foundProjCm,
+    foundProjCm,
+    foundProjCm,
+    foundProjCm
+  );
+  const foundationParcel = auditFoundCorners(
+    "clip",
+    foundClip.N,
+    foundClip.E,
+    foundClip.S,
+    foundClip.W
+  );
+  const foundationAllInside = foundationParcel.every((p) => p.inside);
+  const foundationTargetAllInside = foundationTargetParcel.every((p) => p.inside);
+  delete v47._foundation_clip_cm;
   const volume = {
     meta: {
       id: isStudyA1 ? "volume_v47_a1_study" : "volume_v47_exact",
@@ -1880,6 +2037,12 @@ function main() {
       stair_se_site: stairSeSite,
       stair_se_inside: stairSeInside,
       stair_se_overflow_m: stairSeOverflow_m,
+      foundation_projection_cm: foundProjCm,
+      foundation_clip_cm: foundClip,
+      foundation_corners_target_15: foundationTargetParcel,
+      foundation_target_all_inside: foundationTargetAllInside,
+      foundation_corners: foundationParcel,
+      foundation_all_inside: foundationAllInside,
       parcel_area_status: "aproximativ (reconstruit ≠ 147 m² declarați)",
       transform: { P5, P7, Ix, Iy, Tx, Ty, along0, ew, ns },
     },

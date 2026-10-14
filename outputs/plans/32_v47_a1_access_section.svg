@@ -1,36 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="640" viewBox="0 0 1100 640">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
 <rect width="100%" height="100%" fill="#f7f7f5"/>
-<text x="40" y="36" font-size="13" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">V47 A1 · secțiune longitudinală acces (cote absolute, teren=0)</text>
-<line x1="60" y1="120" x2="1040" y2="120" stroke="#6d7f5c" stroke-width="2"/>
-<text x="60" y="114" font-size="8">teren 0</text>
-<line x1="60" y1="83.2" x2="400" y2="83.2" stroke="#333" stroke-dasharray="4 2"/>
-<text x="60" y="79.2" font-size="8">FF P +32</text>
-<line x1="80" y1="154.5" x2="170" y2="154.5" stroke="#c1121f" stroke-width="2"/>
-<text x="174" y="150.5" font-size="8" fill="#c1121f">intrados -30</text>
-<line x1="89" y1="407.5" x2="242" y2="407.5" stroke="#333" stroke-width="2"/>
-<text x="179" y="403.5" font-size="8">FF L-1 -250</text>
-<line x1="165.5" y1="154.5" x2="165.5" y2="407.5" stroke="#2d6a4f"/>
-<text x="171.5" y="281" font-size="10" fill="#2d6a4f">clear 220</text>
-<rect x="215" y="229.25" width="27" height="6" fill="#8aa4b8"/>
-<text x="215" y="223.25" font-size="7">palier -95</text>
-<rect x="203.75" y="249.05555555555554" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
-<rect x="192.5" y="268.8611111111111" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
-<rect x="181.25" y="288.66666666666663" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
-<rect x="170" y="308.4722222222222" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
-<rect x="158.75" y="328.27777777777777" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
-<rect x="147.5" y="348.08333333333326" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
-<rect x="136.25" y="367.88888888888886" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
-<rect x="125" y="387.6944444444444" width="11.25" height="5" fill="#9aa3ad" stroke="#222"/>
-<rect x="89" y="407.5" width="36" height="8" fill="#e8c56a" stroke="#333"/>
-<text x="89" y="425.5" font-size="7">palier liber</text>
-<rect x="93.5" y="177.5" width="31.5" height="229.99999999999997" fill="#2d6a4f" opacity="0.35" stroke="#145"/>
-<text x="93.5" y="173.5" font-size="7">gol ușă 200 + buiandrug 15</text>
-<rect x="305" y="138.20833333333334" width="12.6" height="4" fill="#e0c888"/>
-<rect x="292.4" y="156.41666666666666" width="12.6" height="4" fill="#e0c888"/>
-<rect x="279.8" y="174.625" width="12.6" height="4" fill="#e0c888"/>
-<rect x="267.20000000000005" y="192.83333333333331" width="12.6" height="4" fill="#e0c888"/>
-<rect x="254.6" y="211.04166666666669" width="12.6" height="4" fill="#e0c888"/>
-<rect x="242" y="229.25" width="12.6" height="4" fill="#e0c888"/>
-<text x="40" y="612" font-size="8" fill="#444" font-family="IBM Plex Sans,Segoe UI,sans-serif">Datum absolut · scară 9×17.222=155.00 · studii utili 37.87875 m² neschimbați · POT anvelopă 39.78% din 147</text>
+<text x="40" y="28" font-size="13" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">V47 A1 · secțiune din model (acces + scară etaj + sandwich)</text>
+<line x1="40" y1="160" x2="1160" y2="160" stroke="#6d7f5c" stroke-width="2"/>
+<text x="40" y="155" font-size="8">teren 0</text>
+<line x1="40" y1="126.4" x2="500" y2="126.4" stroke="#333" stroke-dasharray="4 2"/>
+<text x="40" y="122.4" font-size="8">FF P +32</text>
+<line x1="40" y1="-176" x2="400" y2="-176" stroke="#555" stroke-dasharray="3 2"/>
+<text x="40" y="-180" font-size="8">FF E +320</text>
+<rect x="40" y="189.4" width="70" height="2.1" fill="#cfc8bc" stroke="#444" opacity="0.85"/>
+<text x="115" y="190.45" font-size="6">intrados_finish 2</text>
+<rect x="40" y="181" width="70" height="8.4" fill="#aeb8c4" stroke="#444" opacity="0.85"/>
+<text x="115" y="185.2" font-size="6">services_plenum 8</text>
+<rect x="40" y="160" width="70" height="21" fill="#8b8680" stroke="#444" opacity="0.85"/>
+<text x="115" y="170.5" font-size="6">structural_slab 20</text>
+<rect x="40" y="154.75" width="70" height="5.25" fill="#d4c49a" stroke="#444" opacity="0.85"/>
+<text x="115" y="157.375" font-size="6">insulation 5</text>
+<rect x="40" y="142.15" width="70" height="12.600000000000001" fill="#c4b8a0" stroke="#444" opacity="0.85"/>
+<text x="115" y="148.45" font-size="6">heating_screed_finish 12</text>
+<rect x="40" y="126.4" width="70" height="15.75" fill="#b0a898" stroke="#444" opacity="0.85"/>
+<text x="115" y="134.275" font-size="6">residual_level_to_ff 15</text>
+<text x="40" y="203.5" font-size="7" fill="#c1121f">intrados -30</text>
+<line x1="76.8" y1="422.5" x2="290.15999999999997" y2="422.5" stroke="#333" stroke-width="2"/>
+<rect x="207" y="-24.80000000000001" width="12.6" height="3.15" fill="#7a8390" stroke="#222"/>
+<rect x="207" y="-24.789500000000004" width="12.6" height="21" fill="#5a6570" opacity="0.55"/>
+<rect x="194.4" y="-41.60000000000002" width="12.6" height="3.15" fill="#7a8390" stroke="#222"/>
+<rect x="194.4" y="-41.589500000000015" width="12.6" height="21" fill="#5a6570" opacity="0.55"/>
+<rect x="181.8" y="-58.400000000000006" width="12.6" height="3.15" fill="#7a8390" stroke="#222"/>
+<rect x="181.8" y="-58.38950000000003" width="12.6" height="21" fill="#5a6570" opacity="0.55"/>
+<rect x="169.2" y="-75.20000000000002" width="12.6" height="3.15" fill="#7a8390" stroke="#222"/>
+<rect x="169.2" y="-75.18950000000001" width="12.6" height="21" fill="#5a6570" opacity="0.55"/>
+<rect x="156.6" y="-92" width="12.6" height="3.15" fill="#7a8390" stroke="#222"/>
+<rect x="156.6" y="-91.98950000000002" width="12.6" height="21" fill="#5a6570" opacity="0.55"/>
+<rect x="144" y="-108.80000000000001" width="12.6" height="3.15" fill="#7a8390" stroke="#222"/>
+<rect x="144" y="-108.78950000000003" width="12.6" height="21" fill="#5a6570" opacity="0.55"/>
+<rect x="131.39999999999998" y="-125.60000000000002" width="12.6" height="3.15" fill="#7a8390" stroke="#222"/>
+<rect x="131.39999999999998" y="-125.58950000000004" width="12.6" height="21" fill="#5a6570" opacity="0.55"/>
+<rect x="118.8" y="-142.40000000000003" width="12.6" height="3.15" fill="#7a8390" stroke="#222"/>
+<rect x="118.8" y="-142.3895" width="12.6" height="21" fill="#5a6570" opacity="0.55"/>
+<rect x="106.19999999999999" y="-159.2" width="12.6" height="3.15" fill="#7a8390" stroke="#222"/>
+<rect x="106.19999999999999" y="-159.1895" width="12.6" height="21" fill="#5a6570" opacity="0.55"/>
+<rect x="219.6" y="-8" width="48.3" height="6" fill="#c4b496"/>
+<text x="223.79999999999998" y="-12" font-size="7">podest SE +128 vs FF</text>
+<rect x="55.8" y="-176" width="50.4" height="12.600000000000001" fill="#e4ddd0" stroke="#333"/>
+<text x="55.8" y="-180" font-size="7">palier sup. etaj</text>
+<rect x="183.89999999999998" y="277.83333333333337" width="10.5" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="173.39999999999998" y="295.9166666666667" width="10.5" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="162.89999999999998" y="314" width="10.5" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="152.39999999999998" y="332.08333333333337" width="10.5" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="141.89999999999998" y="350.1666666666667" width="10.5" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="131.39999999999998" y="368.25" width="10.5" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="120.9" y="386.33333333333337" width="10.5" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="110.4" y="404.41666666666663" width="10.5" height="5" fill="#9aa3ad" stroke="#222"/>
+<rect x="194.4" y="259.75" width="25.2" height="6" fill="#8aa4b8"/>
+<rect x="76.8" y="422.5" width="33.6" height="8" fill="#e8c56a" stroke="#333"/>
+<rect x="81" y="212.5" width="29.4" height="210" fill="#2d6a4f" opacity="0.3" stroke="#145"/>
+<text x="81" y="209.5" font-size="7">gol 200+15 pe Y530–600</text>
+<rect x="278.4" y="176.625" width="11.76" height="4" fill="#e0c888"/>
+<rect x="266.64" y="193.25" width="11.76" height="4" fill="#e0c888"/>
+<rect x="254.88" y="209.875" width="11.76" height="4" fill="#e0c888"/>
+<rect x="243.12" y="226.5" width="11.76" height="4" fill="#e0c888"/>
+<rect x="231.35999999999999" y="243.125" width="11.76" height="4" fill="#e0c888"/>
+<rect x="219.6" y="259.75" width="11.76" height="4" fill="#e0c888"/>
+<line x1="-45" y1="422.5" x2="-45" y2="191.5" stroke="#c1121f" stroke-width="2"/>
+<text x="-41" y="307" font-size="9" fill="#c1121f">min 220 cm @ Y230 (intrados_placa_parter@camera_tehnica)</text>
+<text x="40" y="696" font-size="8" fill="#444">model 973 mesh-uri · sandwich sum 62 cm · util recalculat 37.87875 m²</text>
 </svg>
