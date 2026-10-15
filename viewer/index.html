@@ -67,9 +67,9 @@
         <button type="button" id="btnCut">Secțiune interior</button>
       </div>
       <div class="tabs" id="tabsV47">
-        <a href="?v47"><strong>Model V47</strong></a>
-        <a href="?v=v47_a1">V47 A1 studiu</a>
-        <a href="?v=v47_a1_frame">V47 A1 FRAME (cadre)</a>
+        <a href="/viewer/?v47"><strong>Model V47</strong></a>
+        <a href="/viewer/?v=v47_a1">V47 A1 studiu</a>
+        <a href="/viewer/?v=v47_a1_frame">V47 A1 FRAME (cadre)</a>
         <a href="../outputs/plans/36_v47_a1_frame_structure_overlay.svg" target="_blank">Frame overlay</a>
         <a href="../outputs/plans/37_v47_a1_frame_sections.svg" target="_blank">Frame secțiuni</a>
         <a href="../outputs/reports/v47_a1_frame_structure.md" target="_blank">Frame raport</a>
@@ -87,7 +87,7 @@
         <a href="../outputs/reports/v47_checks.md" target="_blank">Checks</a>
       </div>
       <div class="tabs" id="tabsV46">
-        <a href="?v=v46">Model V46 (r7g)</a>
+        <a href="/viewer/?v=v46">Model V46 (r7g)</a>
         <a href="../outputs/plans/11_v46_exact_plan.svg" target="_blank">Plan V46</a>
         <a href="../outputs/plans/15_v46_sections.svg" target="_blank">Secțiuni V46</a>
       </div>
@@ -272,6 +272,11 @@
       return mesh;
     }
 
+    // /viewer fără slash → relative ./data cade pe /data (404); păstrează query
+    if (/\/viewer$/i.test(location.pathname)) {
+      location.replace(`/viewer/${location.search}${location.hash}`);
+      throw new Error("redirect /viewer/");
+    }
     // Robust la query dublu-encodat (ex. ?v%3Dv47_a1_frame din Glass/open_resource)
     const rawSearch = location.search || "";
     let searchDecoded = rawSearch;
@@ -305,14 +310,20 @@
       (vParam === "v47_a1" || qs.has("v47_a1") || qsDec.has("v47_a1") || /(?:^|[?&])v(?:=|%3D)?v47_a1(?!_frame)(?:&|$)/i.test(blob));
     const isV47 =
       isV47A1Frame || isV47A1 || qs.has("v47") || qsDec.has("v47") || vParam.startsWith("v47") || /(?:\?|&)v47(?:&|$)/.test(blob);
+    // Path absolut — nu depinde de /viewer vs /viewer/
     const volFile = isV47A1Frame
-      ? "./data/volume_v47_a1_frame.json"
+      ? "/viewer/data/volume_v47_a1_frame.json"
       : isV47A1
-        ? "./data/volume_v47_a1.json"
+        ? "/viewer/data/volume_v47_a1.json"
         : isV47
-          ? "./data/volume_v47.json"
-          : "./data/volume.json";
-    const volume = await fetch(`${volFile}?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.json());
+          ? "/viewer/data/volume_v47.json"
+          : "/viewer/data/volume.json";
+    const volRes = await fetch(`${volFile}?t=${Date.now()}`, { cache: "no-store" });
+    if (!volRes.ok) {
+      document.getElementById("warning").textContent = `Nu pot încărca ${volFile} (${volRes.status}). Deschide /viewer/?v=v47_a1_frame`;
+      throw new Error(`volume fetch ${volRes.status}`);
+    }
+    const volume = await volRes.json();
     document.getElementById("viewTitle").textContent = isV47A1Frame
       ? "Dragalina 131 · V47 A1 FRAME (cadre)"
       : isV47A1
