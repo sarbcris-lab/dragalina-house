@@ -8375,6 +8375,26 @@
         "continuous_through_floor": true
       },
       {
+        "id": "C_E_LAND_SP",
+        "x": 641.3,
+        "y": 575,
+        "dx": 30,
+        "dy": 30,
+        "orient": "along_E_landing",
+        "levels": ["S", "P"],
+        "support_below": "fundație_E — talpă pe axa est",
+        "protrusion_into_room_cm": 0,
+        "section_cm": "30×30",
+        "section_status": "studiu — S+P până la soffit/FF etaj; NU urcă în volumul scară etaj",
+        "wall": "est pe fală Dragalina @ Y575 — aliniat grindă întoarsă / muchie sud palier",
+        "role": "reazem_east_landing_span",
+        "why_not_E": "circulație scară etaj liberă; placa palier rezemată de jos (stâlp S+P)",
+        "pairs_with": ["C_E_PAL", "C_SHAFT_E_PIER", "B_E", "B_LAND_S_EDGE"],
+        "conflicts": [],
+        "continuous_through_floor": false,
+        "stops_at": "ff_etaj_soffit"
+      },
+      {
         "id": "C_CASA_SCARA",
         "x": 536.3,
         "y": 610,
@@ -8510,7 +8530,7 @@
         "x": 641.3,
         "y": 9.2,
         "dx": 30,
-        "dy": 479.8,
+        "dy": 595.8,
         "levels": [
           "P",
           "E"
@@ -8518,9 +8538,10 @@
         "supports": [
           "C_NE",
           "C_E_GEAM_S",
-          "C_E_PAL"
+          "C_E_PAL",
+          "C_E_LAND_SP"
         ],
-        "note": "centură E până la C_E_PAL; fără stâlp pe palier/scară"
+        "note": "centură E prelungită până la C_E_LAND_SP @Y575 (studiu east_landing); pe E grindă la streșină pe același ax — C_E_LAND_SP nu urcă la etaj"
       },
       {
         "id": "B_CASA_SCARA",
@@ -8635,7 +8656,25 @@
           "C_E_PAL",
           "B_E"
         ],
-        "note": "bordură nord placă palier scară (NU vestibul); sprijin placă = schemă 4 laturi DESCHIS"
+        "note": "bordură nord placă palier scară (NU vestibul); N-reazem pe C_E_PAL"
+      },
+      {
+        "id": "B_LAND_S_EDGE",
+        "x": 536.3,
+        "y": 575,
+        "dx": 135,
+        "dy": 45,
+        "levels": [
+          "P"
+        ],
+        "supports": [
+          "C_CASA_SCARA",
+          "C_E_LAND_SP",
+          "B_SEP_AFTER_DOOR",
+          "B_Y590_EDGE_INVERTED"
+        ],
+        "note": "muchie sud placă palier: X535→C_E_LAND_SP; dy 575–610 overlap C_CASA + B_SEP; bandă Y cu grindă întoarsă",
+        "role": "close_east_landing_span"
       }
     ],
     "inverted_edge_beam": {
@@ -8701,8 +8740,15 @@
       },
       {
         "id": "east_landing_span",
-        "severity": "DESCHIS",
-        "detail": "Un singur reazem est C_E_PAL (Y449–489). Deschidere spre sud fără stâlp pe palier/scară — de dimensionat."
+        "severity": "STUDIU_SOLUTIE",
+        "detail": "C_E_LAND_SP (S+P, 30×30 @ Y575) + B_E prelungit + B_LAND_S_EDGE. Stâlpul NU urcă în etaj scară; placa palier rezemată de jos. Calcul = ordine de mărime în raport v03_east_landing — NEVALIDAT structurist.",
+        "solution_ref": "outputs/reports/v47_a1_frame_east_landing_solution_v01.md"
+      },
+      {
+        "id": "palier_plate_support",
+        "severity": "STUDIU_SOLUTIE",
+        "detail": "Schemă 4 laturi studiu: N=B_Y470/C_E_PAL · S=B_LAND_S_EDGE/C_E_LAND_SP · W=separator/C_CASA · E=B_E. De confirmat calcul placă.",
+        "supersedes_open": true
       },
       {
         "id": "north_three_supports",
@@ -8718,11 +8764,6 @@
         "id": "column_30_protrusion_vs_37m2",
         "severity": "DESCHIS",
         "detail": "Proeminențe locale; util P/E = NECONFIRMAT — nu e rezervă stâlpi."
-      },
-      {
-        "id": "palier_plate_support",
-        "severity": "DESCHIS",
-        "detail": "Palier scară rece (fără vestibul): placa = plafon living P. Reazeme pe margini — schemă DESCHIS. Vestibul închis ELIMINAT."
       },
       {
         "id": "slab_span_without_X320",

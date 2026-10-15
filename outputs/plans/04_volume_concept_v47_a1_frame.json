@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_frame_study",
-    "generated": "2026-10-15T20:11:15.317Z",
+    "generated": "2026-10-15T20:16:55.389Z",
     "status": "3D_STUDIU_A1_FRAME_CADRE",
     "source_plan": "data/building/v47_a1_frame_study.json",
     "based_on": "v47_a1_study amenajare (aprobată) + schemă cadre separată",
@@ -34705,12 +34705,12 @@
           "y": 18.1245
         },
         {
-          "x": 8.1389,
-          "y": 13.3309
+          "x": 8.1885,
+          "y": 12.172
         },
         {
-          "x": 7.8392,
-          "y": 13.3181
+          "x": 7.8888,
+          "y": 12.1592
         },
         {
           "x": 7.6341,
@@ -34722,7 +34722,7 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "centură E până la C_E_PAL; fără stâlp pe palier/scară"
+      "label": "centură E prelungită până la C_E_LAND_SP @Y575 (studiu east_landing); pe E grindă la streșină pe același ax — C_E_LAND_SP nu urcă la etaj"
     },
     {
       "id": "subsol_grinda_B_CASA_SCARA",
@@ -34883,6 +34883,38 @@
       "opacity": 0.97,
       "site_layer": "structura",
       "label": "sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA"
+    },
+    {
+      "id": "subsol_grinda_B_LAND_S_EDGE",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.8269,
+          "y": 12.414
+        },
+        {
+          "x": 8.1757,
+          "y": 12.4717
+        },
+        {
+          "x": 8.1949,
+          "y": 12.0221
+        },
+        {
+          "x": 6.8462,
+          "y": 11.9644
+        },
+        {
+          "x": 6.8269,
+          "y": 12.414
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "muchie sud placă palier: X535→C_E_LAND_SP; dy 575–610 overlap C_CASA + B_SEP; bandă Y cu grindă întoarsă"
     },
     {
       "id": "subsol_grinda_node_C_NW",
@@ -35141,6 +35173,38 @@
       "label": "nod centură pe C_E_PAL"
     },
     {
+      "id": "subsol_grinda_node_C_E_LAND_SP",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.876,
+          "y": 12.4589
+        },
+        {
+          "x": 8.1757,
+          "y": 12.4717
+        },
+        {
+          "x": 8.1885,
+          "y": 12.172
+        },
+        {
+          "x": 7.8888,
+          "y": 12.1592
+        },
+        {
+          "x": 7.876,
+          "y": 12.4589
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod centură pe C_E_LAND_SP"
+    },
+    {
       "id": "subsol_grinda_node_C_CASA_SCARA",
       "type": "extrude",
       "polygon": [
@@ -35345,12 +35409,12 @@
           "y": 18.1245
         },
         {
-          "x": 8.1389,
-          "y": 13.3309
+          "x": 8.1885,
+          "y": 12.172
         },
         {
-          "x": 7.8392,
-          "y": 13.3181
+          "x": 7.8888,
+          "y": 12.1592
         },
         {
           "x": 7.6341,
@@ -35523,6 +35587,38 @@
       "opacity": 0.97,
       "site_layer": "structura",
       "label": "fg pe axa B_Y830"
+    },
+    {
+      "id": "subsol_fg_B_LAND_S_EDGE",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.8269,
+          "y": 12.414
+        },
+        {
+          "x": 8.1757,
+          "y": 12.4717
+        },
+        {
+          "x": 8.1949,
+          "y": 12.0221
+        },
+        {
+          "x": 6.8462,
+          "y": 11.9644
+        },
+        {
+          "x": 6.8269,
+          "y": 12.414
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#5e5a54",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "fg pe axa B_LAND_S_EDGE"
     },
     {
       "id": "subsol_fg_pad_C_NW",
@@ -35779,6 +35875,38 @@
       "opacity": 0.97,
       "site_layer": "structura",
       "label": "talpă locală C_E_PAL"
+    },
+    {
+      "id": "subsol_fg_pad_C_E_LAND_SP",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.876,
+          "y": 12.4589
+        },
+        {
+          "x": 8.1757,
+          "y": 12.4717
+        },
+        {
+          "x": 8.1885,
+          "y": 12.172
+        },
+        {
+          "x": 7.8888,
+          "y": 12.1592
+        },
+        {
+          "x": 7.876,
+          "y": 12.4589
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6a6660",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "talpă locală C_E_LAND_SP"
     },
     {
       "id": "subsol_fg_pad_C_CASA_SCARA",
@@ -38171,6 +38299,38 @@
       "label": "stâlp C_E_PAL fundație→acoperiș (30×40), legat pe grinzi fg+centuri"
     },
     {
+      "id": "stalp_SP_C_E_LAND_SP",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.876,
+          "y": 12.4589
+        },
+        {
+          "x": 8.1757,
+          "y": 12.4717
+        },
+        {
+          "x": 8.1885,
+          "y": 12.172
+        },
+        {
+          "x": 7.8888,
+          "y": 12.1592
+        },
+        {
+          "x": 7.876,
+          "y": 12.4589
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 3.1999999999999997,
+      "color": "#7a9e6a",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "stâlp S+P C_E_LAND_SP (oprire sub etaj — circulație scară etaj liberă; placa palier rezemată de jos (stâlp S+P))"
+    },
+    {
       "id": "stalp_continuu_C_CASA_SCARA",
       "type": "extrude",
       "polygon": [
@@ -38704,12 +38864,12 @@
           "y": 18.1245
         },
         {
-          "x": 8.1389,
-          "y": 13.3309
+          "x": 8.1885,
+          "y": 12.172
         },
         {
-          "x": 7.8392,
-          "y": 13.3181
+          "x": 7.8888,
+          "y": 12.1592
         },
         {
           "x": 7.6341,
@@ -38721,7 +38881,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E până la C_E_PAL; fără stâlp pe palier/scară (intrados 273)"
+      "label": "centură E prelungită până la C_E_LAND_SP @Y575 (studiu east_landing); pe E grindă la streșină pe același ax — C_E_LAND_SP nu urcă la etaj (intrados 273)"
     },
     {
       "id": "parter_centura_B_CASA_SCARA",
@@ -38882,6 +39042,38 @@
       "opacity": 0.95,
       "site_layer": "structura",
       "label": "sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA (intrados 273)"
+    },
+    {
+      "id": "parter_centura_B_LAND_S_EDGE",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.8269,
+          "y": 12.414
+        },
+        {
+          "x": 8.1757,
+          "y": 12.4717
+        },
+        {
+          "x": 8.1949,
+          "y": 12.0221
+        },
+        {
+          "x": 6.8462,
+          "y": 11.9644
+        },
+        {
+          "x": 6.8269,
+          "y": 12.414
+        }
+      ],
+      "z0_m": 2.73,
+      "z1_m": 3.08,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "muchie sud placă palier: X535→C_E_LAND_SP; dy 575–610 overlap C_CASA + B_SEP; bandă Y cu grindă întoarsă (intrados 273)"
     },
     {
       "id": "etaj_placa_structura",
@@ -39109,6 +39301,28 @@
         ],
         [
           {
+            "x": 7.876,
+            "y": 12.4589
+          },
+          {
+            "x": 7.8888,
+            "y": 12.1592
+          },
+          {
+            "x": 8.1885,
+            "y": 12.172
+          },
+          {
+            "x": 8.1757,
+            "y": 12.4717
+          },
+          {
+            "x": 7.876,
+            "y": 12.4589
+          }
+        ],
+        [
+          {
             "x": 6.8419,
             "y": 12.0643
           },
@@ -39258,12 +39472,12 @@
           "y": 18.1245
         },
         {
-          "x": 8.1389,
-          "y": 13.3309
+          "x": 8.1885,
+          "y": 12.172
         },
         {
-          "x": 7.8392,
-          "y": 13.3181
+          "x": 7.8888,
+          "y": 12.1592
         },
         {
           "x": 7.6341,
@@ -39275,7 +39489,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E până la C_E_PAL; fără stâlp pe palier/scară"
+      "label": "centură E prelungită până la C_E_LAND_SP @Y575 (studiu east_landing); pe E grindă la streșină pe același ax — C_E_LAND_SP nu urcă la etaj"
     },
     {
       "id": "etaj_centura_B_CASA_SCARA",
@@ -39435,7 +39649,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "bordură nord placă palier scară (NU vestibul); sprijin placă = schemă 4 laturi DESCHIS"
+      "label": "bordură nord placă palier scară (NU vestibul); N-reazem pe C_E_PAL"
     },
     {
       "id": "acces_treapta_0",

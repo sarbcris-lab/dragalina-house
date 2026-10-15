@@ -2871,7 +2871,21 @@ function main() {
           );
           colHoles.push(rectHole(c.x, c.y, c.dx, c.dy));
         } else {
-          if (hasP) {
+          if (hasP && !hasE) {
+            // S+P (ex. C_E_LAND_SP): fundație → FF etaj / soffit placă — NU urcă în volumul E
+            pushPE(
+              `stalp_SP_${c.id}`,
+              c.x,
+              c.y,
+              c.dx,
+              c.dy,
+              zBotP,
+              zTopP,
+              `stâlp S+P ${c.id} (oprire sub etaj — ${c.why_not_E || "fără E"})`,
+              "#7a9e6a"
+            );
+            colHoles.push(rectHole(c.x, c.y, c.dx, c.dy));
+          } else if (hasP) {
             pushPE(
               `parter_stalp_${c.id}`,
               c.x,

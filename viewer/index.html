@@ -355,6 +355,7 @@
       }
       return (
         id.startsWith("stalp_continuu_") ||
+        id.startsWith("stalp_SP_") ||
         id.startsWith("subsol_pier_") ||
         id.startsWith("subsol_stalp_") ||
         id.startsWith("subsol_grinda_") ||
@@ -463,6 +464,11 @@
         id.startsWith("acoperis_solbanc_")
       ) {
         // Stâlpi fundație→acoperiș + schelet acoperiș: vizibili pe S / P / E (nu doar pe zMid)
+        subsolObjs.push(obj);
+        parterObjs.push(obj);
+        etajObjs.push(obj);
+      } else if (id.startsWith("stalp_SP_")) {
+        // S+P: vizibil subsol+parter (+ etaj ca reazem sub placă), nu ca stâlp în volumul E
         subsolObjs.push(obj);
         parterObjs.push(obj);
         etajObjs.push(obj);

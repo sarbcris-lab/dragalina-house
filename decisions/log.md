@@ -159,3 +159,10 @@
 - View Structură: exclus poluare (gard/trepte/teren/țiglă) — doar cadru BA.
 - B_SEP overlap în C_CASA; fg doar pe axe S/P.
 - Calcule: ordine de mărime (B_W M/Mu≈0,63); P100/zăpadă/fundații = LIPSĂ.
+
+## 2026-10-15 — Soluție east_landing_span (S+P)
+
+- `C_E_LAND_SP` 30×30 @ Y575 — **doar S+P** (nu urcă în etaj scară).
+- `B_E` prelungit; `B_LAND_S_EDGE` pe muchia sud palier.
+- Raport: `outputs/reports/v47_a1_frame_east_landing_solution_v01.md`.
+- Conflict → `STUDIU_SOLUTIE` (NEVALIDAT structurist).
