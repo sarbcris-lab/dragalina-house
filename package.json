@@ -23,8 +23,12 @@
     "build:v45": "npm run volume:v45 && npm run docs:v45",
     "build:v46": "npm run volume:v46 && npm run docs:v46",
     "volume:v47": "node src/build_v47_3d.mjs",
+    "assemblies:apply": "node src/apply_assemblies_v01.mjs",
+    "assemblies:geometry": "node src/apply_geometry_assemblies_v01.mjs",
+    "volume:v47:studies": "node src/build_v47_3d.mjs data/building/v47_a1_study.json viewer/data/volume_v47_a1.json && node src/build_v47_3d.mjs data/building/v47_a1_frame_study.json viewer/data/volume_v47_a1_frame.json",
     "docs:v47": "node src/export_v47_docs.mjs && node src/export_v47_deliverables.mjs",
-    "build:v47": "npm run volume:v47 && npm run docs:v47",
+    "build:v47": "npm run volume:v47:studies && npm run docs:v47",
+    "build:frame": "npm run assemblies:apply && npm run volume:v47:studies",
     "study:frame": "node src/study_v47_frame_schema.mjs",
     "restore:r7g": "node tmp_restore_r7g.mjs && npm run build:v46",
     "viewer": "npx --yes serve . -p 5173"

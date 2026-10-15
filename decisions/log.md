@@ -69,3 +69,64 @@
 - `data/building/v43_exact.json` = pereți/camere/mobilier/goluri din audit (cm).
 - `npm run volume:v43` → viewer 3D pe sit CF; EST pe Dragalina (pct 5); P+1 @ 304 cm.
 - Nu e randare foto-reală; este volumetrie exactă din aceleași cote V43.
+
+## 2026-10-15 — Țintă stil exterior (Belgian)
+
+- **Locked:** Belgian · Cărămidă + tencuială (nu Industrial dark).
+- Corp: cărămidă long-format; nișe/parapete: tencuială deschisă; metal antracit mat; gard la trotuar în același limbaj.
+- Nuanță cărămidă: **deschisă sau intermediară**, nu închisă; SKU încă nedecis.
+- Detalii + reper: `decisions/style_target_v01.md`, `inputs/references/style_target_belgian_caramida_tencuiala.png`.
+
+## 2026-10-15 — Fațade klinker + alcătuire perete (POT)
+
+- Placaj klinker pe **volumele principale** ale tuturor fațadelor corpului încălzit (E/S/V/N); tencuială pe nișe/retrageri/parapete balcon; gard trotuar = cărămidă.
+- Perete P/E: EB20 200 + ISOVER FASSADE 80 + ETICS; finit max 300 mm; anvelopă 680×860 = fața finită.
+- +1…2 cm placaj vs tencuială **contează la POT**; pe EST/Dragalina nu se crește în afara anvelopei.
+- `decisions/facade_brick_and_wall_v01.md` + `construction_assemblies.facade_cladding` în study JSON.
+
+## 2026-10-15 — Retrageri vecini N/V
+
+- **Nord:** vecin OK inclusiv 0 cm; pe teren există ~20 cm între ziduri; casă vecin recent refăcută.
+- **Recomandare locked ca ipoteză:** **nu 0 cm** — păstrează rost **~20 cm**; vest **~1 m**.
+- Sub 60 cm față de hotar → acord autentic + verificare RLU; la 20 cm preferabil **tencuială pe N** (klinker greu de montat/întreținut).
+- `decisions/setbacks_neighbors_v01.md`.
+
+## 2026-10-15 — Soluție optimă nord
+
+- Pe limită N + rost ~20 cm (terenul nu permite 80–100 cm).
+- **Nord = tencuială** (finisaj la ridicare + hidro/drenaj); **klinker pe E/S/V** (vest ~1 m, vecin vest nu e lipit).
+- Fără goluri inutile pe N; acord notarial + RLU; nu 0 cm pe casa refăcută a vecinului.
+
+## 2026-10-15 — Vecin N = doar P + 4 ape
+
+- Vecin nord: **parter + acoperiș 4 ape**; noi P+1 → N-jos vs N-sus.
+- Atenție apă/zăpadă/incendiu pe învelitoarea lui; fără schelă pe acoperișul vecinului.
+
+## 2026-10-15 — Nord = tencuială (confirmat)
+
+- Beneficiar: **pe tot nordul (N-jos + N-sus) = tencuială**, fără klinker.
+- Klinker rămâne pe E / S / V + gard.
+
+## 2026-10-15 — Catalog ansambluri CONFIRMAT
+
+- `decisions/assemblies_catalog_v01.md` OK beneficiar.
+- Reguli: A1/A6 ≈300; A2 klinker 312 (vată 80); A7 fono 125 (nu BCA); A8 baie ≈150; A4 scară klinker ext. ≈150.
+
+## 2026-10-15 — Update assemblies_v01 în proiect
+
+- Sursă: `data/building/assemblies_v01.json`; aplicat pe A1 + FRAME.
+- 3D: layere pe catalog_id (A1/A2/A4/A6/A7/A8); A2 +13 mm în mesh.
+- SVG: `35_…A1` + `35b_…A2_klinker`.
+
+## 2026-10-15 — Geometrie A2/A8
+
+- A2: +1,3 cm exterior E/S/V; envelope **680×860 → 682,6×861,3** cm; amprentă **58,48 → 58,79 m²** (Δ +0,31).
+- A8 baie: pereți **15 cm**; util uscat ≈ neschimbat (A2 în afară).
+- `src/apply_geometry_assemblies_v01.mjs` + regen volumes.
+
+## 2026-10-15 — Site = doar V47 A1 FRAME
+
+- Viewer + redirect `/` încarcă **doar** `volume_v47_a1_frame.json`.
+- Taburi: overlay / secțiuni cadre / A1–A2 wall / util / POT / catalog.
+- V47, A1 studiu, V46 **nu** mai apar ca modele principale.
+- Continuăm pe FRAME: layere + îmbunătățiri.

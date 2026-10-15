@@ -5,6 +5,6 @@
   "installCommand": "npm install --ignore-scripts",
   "outputDirectory": ".",
   "rewrites": [
-    { "source": "/", "destination": "/viewer/?v47" }
+    { "source": "/", "destination": "/viewer/?v=v47_a1_frame" }
   ]
 }

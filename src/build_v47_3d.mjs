@@ -198,6 +198,7 @@ function main() {
    */
   const WALL_FINISHED = 30;
   const assy = v47.construction_assemblies?.exterior_wall_heated || {};
+  const assyCatalog = v47.construction_assemblies?.catalog || {};
   const THERMO_OUT = assy.etics_outside_brick_cm ?? 9.2;
   const frameStudy = v47.structure_frame_study_cm;
   const isFrameStudy = !!frameStudy && frameStudy.system === "cadre_beton_armat";
@@ -248,31 +249,52 @@ function main() {
     ? `FRAME studiu: cadre BA + EB20 + vată 80; stâlpi ${COL}×${frameStudy.column_section_hypothesis_cm?.along_wall_cm ?? 40} + proem. locală — de confirmat calcul/normativ. Neconstruibil. Fără pereți structurali P/E.`
     : "Structură studiu A1: COL_BETON=20 pe falie; EB20+ISOVER FASSADE. Dimensiuni ipoteză.";
 
-  /** Straturi perete exterior încălzit — model fața exterioară → încăpere (mm din assembly). */
-  function exteriorWallLayersFromOutside() {
-    const listed = assy.layers_interior_to_exterior_mm;
-    if (Array.isArray(listed) && listed.length) {
-      // listă furnizor int→ext; pe model extrudăm de la exterior: reverse + vopsea pe fața încăperii
-      const rev = [...listed].reverse();
-      // dacă ultimele două după reverse sunt vopsea apoi tencuială, pune vopseaua spre încăpere
-      const paintIdx = rev.findIndex((L) => /vopsea|finisare/i.test(L.id || L.name || ""));
-      const plasIdx = rev.findIndex((L) => /tencuiala_int|tencuială interioară/i.test(L.id || L.name || ""));
-      if (paintIdx >= 0 && plasIdx >= 0 && paintIdx < plasIdx) {
-        const p = rev[paintIdx];
-        rev.splice(paintIdx, 1);
-        rev.splice(plasIdx, 0, p);
-      }
-      return rev;
+  /** Straturi catalog int→ext → ordine exterior→interior pentru extrudare. */
+  function layersFromOutside(catalogId) {
+    const entry =
+      assyCatalog[catalogId] ||
+      (catalogId === "A2" ? v47.construction_assemblies?.exterior_wall_klinker : null) ||
+      assy;
+    const listed =
+      entry?.layers_interior_to_exterior_mm || assy.layers_interior_to_exterior_mm || [];
+    if (!Array.isArray(listed) || !listed.length) {
+      return [
+        { id: "grund_decorativa", name: "grund și decorativă", th_mm: 2 },
+        { id: "strat_armat", name: "strat armat", th_mm: 5 },
+        { id: "vata_isover_fassade", name: "ISOVER FASSADE", th_mm: 80 },
+        { id: "adeziv_etics", name: "adeziv ETICS", th_mm: 5 },
+        { id: "caramida_eb20", name: "EB20 Akustik", th_mm: 200 },
+        { id: "tencuiala_int", name: "tencuială", th_mm: 6 },
+        { id: "finisare_vopsea", name: "finisare/vopsea", th_mm: 1 },
+      ];
     }
-    return [
-      { id: "grund_decorativa", name: "grund și decorativă", th_mm: 2 },
-      { id: "strat_armat", name: "strat armat", th_mm: 5 },
-      { id: "vata_isover_fassade", name: "ISOVER FASSADE", th_mm: 80 },
-      { id: "adeziv_etics", name: "adeziv ETICS", th_mm: 5 },
-      { id: "caramida_eb20", name: "EB20 Akustik", th_mm: 200 },
-      { id: "tencuiala_int", name: "tencuială", th_mm: 6 },
-      { id: "finisare_vopsea", name: "finisare/vopsea", th_mm: 1 },
-    ];
+    const rev = [...listed].reverse();
+    const paintIdx = rev.findIndex((L) => /vopsea|finisare/i.test(L.id || L.name || ""));
+    const plasIdx = rev.findIndex((L) => /tencuiala_int|tencuială interioară/i.test(L.id || L.name || ""));
+    if (paintIdx >= 0 && plasIdx >= 0 && paintIdx < plasIdx) {
+      const p = rev[paintIdx];
+      rev.splice(paintIdx, 1);
+      rev.splice(plasIdx, 0, p);
+    }
+    return rev;
+  }
+  function resolveWallCatalogId(w, opts = {}) {
+    if (opts.catalogId) return opts.catalogId;
+    if (w.catalog_id) return w.catalog_id;
+    if (w.id === "nord_heated" || w.catalog_id_heated) return w.catalog_id_heated || "A1";
+    if (w.id === "nord_cold_stair" || w.thermal === "cold_stair") return w.catalog_id_cold || "A4";
+    if (w.thermal === "house_stair_separator" || /buc_est/i.test(w.id || "")) return "A6";
+    if (w.kind === "int") {
+      if (/baie|nisa_dulap/i.test(w.id || "")) return "A8";
+      return "A7";
+    }
+    // E/S/V heated → A2 klinker; N heated → A1
+    const out = opts.outward || wallOutward(w);
+    if (out === "north") return "A1";
+    if (["vest", "est_living", "est_recuperat_p", "sud_bucatarie", "dormitor_sud"].includes(w.id))
+      return "A2";
+    if (out === "east" || out === "west" || out === "south") return "A2";
+    return "A1";
   }
   const LAYER_COLORS = {
     grund_decorativa: "#8a8680",
@@ -282,6 +304,19 @@ function main() {
     caramida_eb20: "#c4a070",
     tencuiala_int: "#e8e0d4",
     finisare_vopsea: "#f4f0e8",
+    placaj_klinker: "#c4a882",
+    placaj_klinker_curte: "#b8956e",
+    tencuiala_scara: "#d4cfc4",
+    miez_scara: "#a89880",
+    miez_parapet: "#9a9590",
+    tencuiala_fata_1: "#e8e0d4",
+    tencuiala_fata_2: "#e8e0d4",
+    faianata: "#e8eef2",
+    adeziv_faianata: "#c5d0d8",
+    gk_vopsea_1: "#f0ebe3",
+    gk_vopsea_2: "#f0ebe3",
+    gkbi_hidro: "#dde8f0",
+    montanti_vata_fono: "#d8d090",
   };
   function wallOutward(w) {
     const eps = 0.6;
@@ -302,14 +337,26 @@ function main() {
     if (w.id === "nord") return true; // layered doar pe segmentul încălzit — vezi split
     return ["vest", "est_living", "sud_bucatarie", "dormitor_sud"].includes(w.id);
   }
+  function expandWallOutward(w, outward, trueThCm) {
+    const oldTh = outward === "north" || outward === "south" ? w.dy : w.dx;
+    const grow = Math.max(0, trueThCm - oldTh);
+    // Geometria din JSON poate fi deja la grosimea catalog (după apply_geometry) — nu dubla
+    if (grow < 0.05) return { ...w, _trueThCm: Math.max(oldTh, trueThCm) };
+    if (outward === "north") return { ...w, y: w.y - grow, dy: oldTh + grow, _trueThCm: trueThCm };
+    if (outward === "south") return { ...w, dy: oldTh + grow, _trueThCm: trueThCm };
+    if (outward === "west") return { ...w, x: w.x - grow, dx: oldTh + grow, _trueThCm: trueThCm };
+    return { ...w, dx: oldTh + grow, _trueThCm: trueThCm }; // east
+  }
   function pushLayeredExteriorWall(w, z0, z1, suffix, opts = {}) {
-    const layers = exteriorWallLayersFromOutside();
+    const catalogId = resolveWallCatalogId(w, opts);
+    const layers = layersFromOutside(catalogId);
     const outward = opts.outward || wallOutward(w);
     const sumMm = layers.reduce((s, L) => s + (L.th_mm || 0), 0);
-    const wallThCm = outward === "north" || outward === "south" ? w.dy : w.dx;
-    const wallThMm = wallThCm * 10;
-    // păstrează bbox finit: scalează straturile în grosimea geometrică a zidului (30 cm)
-    const scale = wallThMm > 0 ? wallThMm / sumMm : 1;
+    const trueThCm = sumMm / 10;
+    const W = expandWallOutward(w, outward, trueThCm);
+    const wallThMm = (outward === "north" || outward === "south" ? W.dy : W.dx) * 10;
+    // Dacă bbox ≈ suma straturilor → mm reale; altfel scalează în bbox (holaj A6 305→300)
+    const scale = wallThMm > 0 && Math.abs(wallThMm - sumMm) > 2 ? wallThMm / sumMm : 1;
     let accMm = 0;
     for (const L of layers) {
       const thMm = (L.th_mm || 0) * scale;
@@ -317,32 +364,33 @@ function main() {
       const aCm = accMm / 10;
       const bCm = (accMm + thMm) / 10;
       accMm += thMm;
-      let x = w.x;
-      let y = w.y;
-      let dx = w.dx;
-      let dy = w.dy;
+      let x = W.x;
+      let y = W.y;
+      let dx = W.dx;
+      let dy = W.dy;
       if (outward === "north") {
-        y = w.y + aCm;
+        y = W.y + aCm;
         dy = Math.max(0.05, bCm - aCm);
-        dx = w.dx;
-        x = w.x;
+        dx = W.dx;
+        x = W.x;
       } else if (outward === "south") {
-        y = w.y + w.dy - bCm;
+        y = W.y + W.dy - bCm;
         dy = Math.max(0.05, bCm - aCm);
-        dx = w.dx;
-        x = w.x;
+        dx = W.dx;
+        x = W.x;
       } else if (outward === "west") {
-        x = w.x + aCm;
+        x = W.x + aCm;
         dx = Math.max(0.05, bCm - aCm);
-        dy = w.dy;
-        y = w.y;
+        dy = W.dy;
+        y = W.y;
       } else {
-        // east — exterior la x+dx
-        x = w.x + w.dx - bCm;
+        x = W.x + W.dx - bCm;
         dx = Math.max(0.05, bCm - aCm);
-        dy = w.dy;
-        y = w.y;
+        dy = W.dy;
+        y = W.y;
       }
+      const isFill = /caramida|eb20|miez_scara|miez_parapet|miez_gard/i.test(L.id);
+      const isFono = /montanti_vata|vata_isover/i.test(L.id);
       meshes.push({
         id: `zid_${w.id}_${L.id}_${suffix}`,
         type: "extrude",
@@ -350,12 +398,13 @@ function main() {
         z0_m: z0,
         z1_m: z1,
         color: LAYER_COLORS[L.id] || "#d8d2c6",
-        label: `${w.id}: ${L.name || L.id} (${L.th_mm} mm)`,
-        kind: "ext",
+        label: `${w.id} [${catalogId}]: ${L.name || L.id} (${L.th_mm} mm)`,
+        kind: w.kind || "ext",
         wall_layer: L.id,
-        assembly: "EB20_Akustik_200_ISOVER_FASSADE_80",
-        site_layer: /caramida|eb20/i.test(L.id) ? "umplutura" : undefined,
-        opacity: /vata|isover/i.test(L.id) ? 0.85 : 0.97,
+        catalog_id: catalogId,
+        assembly: catalogId,
+        site_layer: isFill ? "umplutura" : undefined,
+        opacity: isFono ? 0.85 : 0.97,
       });
     }
   }
@@ -665,26 +714,44 @@ function main() {
       ) {
         continue;
       }
-      // Perete N: straturi ETICS doar pe casă încălzită X0–565; X565–680 = scară rece (monolit)
+      // Perete N: A1 pe casă X0–565; A4 scară rece X565–680
       if (isExt && w.id === "nord") {
-        const heated = { ...w, id: "nord_heated", x: 0, dx: 565, thermal: "heated_thermosystem" };
-        const cold = { ...w, id: "nord_cold_stair", x: 565, dx: 115, thermal: "cold_stair" };
-        pushLayeredExteriorWall(heated, zFf, z1, suffix, { outward: "north" });
-        meshes.push({
-          id: `zid_${cold.id}_${suffix}`,
-          type: "extrude",
-          polygon: rectPoly(cold.x, cold.y, cold.dx, cold.dy),
-          z0_m: zFf,
-          z1_m: z1,
-          color: "#c8c2b6",
-          label: "nord bandă scară (fără ETICS)",
-          kind: "ext",
-          assembly: "cold_stair",
+        const heated = {
+          ...w,
+          id: "nord_heated",
+          x: 0,
+          dx: 565,
+          thermal: "heated_thermosystem",
+          catalog_id: "A1",
+        };
+        const cold = {
+          ...w,
+          id: "nord_cold_stair",
+          x: 565,
+          dx: 115,
+          thermal: "cold_stair",
+          catalog_id: "A4",
+        };
+        pushLayeredExteriorWall(heated, zFf, z1, suffix, { outward: "north", catalogId: "A1" });
+        pushLayeredExteriorWall(cold, zFf, z1, suffix, { outward: "north", catalogId: "A4" });
+        continue;
+      }
+      if (isExt && (w.thermal === "house_stair_separator" || /buc_est/i.test(w.id || ""))) {
+        pushLayeredExteriorWall(w, zFf, z1, suffix, {
+          outward: "east",
+          catalogId: "A6",
         });
         continue;
       }
       if (isExt && isHeatedExteriorWall(w)) {
         pushLayeredExteriorWall(w, zFf, z1, suffix);
+        continue;
+      }
+      if (!isExt && (w.catalog_id === "A7" || w.catalog_id === "A8" || w.kind === "int")) {
+        const cid = w.catalog_id || (/baie|nisa_dulap/i.test(w.id || "") ? "A8" : "A7");
+        // interior: outward arbitrary — stack along thickness axis
+        const out = w.dx >= w.dy ? "east" : "south";
+        pushLayeredExteriorWall(w, zFf, z1, suffix, { outward: out, catalogId: cid });
         continue;
       }
       meshes.push({
@@ -3114,7 +3181,8 @@ function main() {
       useful_interior_m2: v47.areas_cm?.useful_interior_m2 ?? null,
       terrace_libera_m2: v47.areas_cm?.terrace_libera_m2 ?? null,
       useful_note: "shoelace pe interior_polygon_cm — vezi docs:v47",
-      walls: "ext max 300 mm (EB20+ISOVER FASSADE nom. 299) / int 12.5 — de confirmat ETICS/proiectant",
+      walls:
+        "A1/A6≈300; A2 klinker 312 (vată80); A4 scară≈150; A7 fono125; A8 baie≈150 — assemblies_v01",
       levels: "L-1 subsol + P + E; FF→FF 288 cm; subsol clear 208 cm (ipoteză soffit −42)",
       basement_m2: v47.basement_cm?.areas?.total_brut_rooms_m2 ?? null,
       parking: "2 × 2.50×5.00 Cloșca (studiu, departate)",
@@ -3129,59 +3197,64 @@ function main() {
     meshes,
   };
 
-  // Secțiune straturi perete exterior P/E (date + model)
-  if (isStudyA1 && Array.isArray(assy.layers_interior_to_exterior_mm)) {
-    const layersIntExt = assy.layers_interior_to_exterior_mm;
-    const Wsvg = 920;
-    const Hsvg = 520;
-    const x0 = 80;
-    const y0 = 70;
-    const Hbar = 280;
-    const scale = 2.2; // px/mm
-    let x = x0;
-    const parts = [];
-    parts.push(`<?xml version="1.0" encoding="UTF-8"?>`);
-    parts.push(
-      `<svg xmlns="http://www.w3.org/2000/svg" width="${Wsvg}" height="${Hsvg}" viewBox="0 0 ${Wsvg} ${Hsvg}">`
-    );
-    parts.push(`<rect width="100%" height="100%" fill="#f7f4ef"/>`);
-    parts.push(
-      `<text x="40" y="28" font-size="14" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">V47 A1 · perete exterior P/E — EB20 Akustik 200 + ISOVER FASSADE 80</text>`
-    );
-    parts.push(
-      `<text x="40" y="48" font-size="10" fill="#444" font-family="IBM Plex Sans,Segoe UI,sans-serif">interior → exterior · sumă ${assy.sum_layers_mm ?? 299} mm · max finit ${assy.thickness_finished_max_mm ?? 300} mm · anvelopă 680×860 neschimbată · DE CONFIRMAT furnizor ETICS + proiectant (nu validat structural/termic/acustic)</text>`
-    );
-    for (const L of layersIntExt) {
-      const w = (L.th_mm || 0) * scale;
-      const col = LAYER_COLORS[L.id] || "#ccc";
+  // Secțiuni straturi A1 + A2 (catalog locked)
+  if (isStudyA1) {
+    function writeWallSectionSvg(catalogId, svgRel, title) {
+      const entry = assyCatalog[catalogId] || (catalogId === "A1" ? assy : null);
+      const layersIntExt = entry?.layers_interior_to_exterior_mm;
+      if (!Array.isArray(layersIntExt)) return null;
+      const sum = layersIntExt.reduce((s, L) => s + (L.th_mm || 0), 0);
+      const Wsvg = 960;
+      const Hsvg = 480;
+      const x0 = 80;
+      const y0 = 70;
+      const Hbar = 260;
+      const scale = 2.2;
+      let x = x0;
+      const parts = [];
+      parts.push(`<?xml version="1.0" encoding="UTF-8"?>`);
       parts.push(
-        `<rect x="${x}" y="${y0}" width="${w}" height="${Hbar}" fill="${col}" stroke="#333" stroke-width="0.8"/>`
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${Wsvg}" height="${Hsvg}" viewBox="0 0 ${Wsvg} ${Hsvg}">`
+      );
+      parts.push(`<rect width="100%" height="100%" fill="#f7f4ef"/>`);
+      parts.push(
+        `<text x="40" y="28" font-size="14" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">${title}</text>`
       );
       parts.push(
-        `<text x="${x + w / 2}" y="${y0 + Hbar + 18}" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">${L.th_mm}</text>`
+        `<text x="40" y="48" font-size="10" fill="#444" font-family="IBM Plex Sans,Segoe UI,sans-serif">interior → exterior · sumă ${sum} mm · assemblies_v01 CONFIRMAT · vată 80 neschimbată</text>`
       );
+      for (const L of layersIntExt) {
+        const ww = (L.th_mm || 0) * scale;
+        const col = LAYER_COLORS[L.id] || "#ccc";
+        parts.push(
+          `<rect x="${x}" y="${y0}" width="${ww}" height="${Hbar}" fill="${col}" stroke="#333" stroke-width="0.8"/>`
+        );
+        parts.push(
+          `<text x="${x + ww / 2}" y="${y0 + Hbar + 18}" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">${L.th_mm}</text>`
+        );
+        parts.push(
+          `<text x="${x + ww / 2}" y="${y0 + Hbar / 2}" text-anchor="middle" font-size="7" transform="rotate(-90 ${x + ww / 2} ${y0 + Hbar / 2})" font-family="IBM Plex Sans,Segoe UI,sans-serif">${(L.name || L.id).slice(0, 28)}</text>`
+        );
+        x += ww;
+      }
       parts.push(
-        `<text x="${x + w / 2}" y="${y0 + Hbar / 2}" text-anchor="middle" font-size="7" transform="rotate(-90 ${x + w / 2} ${y0 + Hbar / 2})" font-family="IBM Plex Sans,Segoe UI,sans-serif">${(L.name || L.id).slice(0, 28)}</text>`
+        `<text x="40" y="${Hsvg - 28}" font-size="8" fill="#555" font-family="IBM Plex Sans,Segoe UI,sans-serif">catalog ${catalogId} · decisions/assemblies_catalog_v01.md</text>`
       );
-      x += w;
+      parts.push(`</svg>`);
+      fs.mkdirSync(path.join(ROOT, "outputs/plans"), { recursive: true });
+      fs.writeFileSync(path.join(ROOT, svgRel), parts.join("\n"));
+      return svgRel;
     }
-    parts.push(
-      `<text x="40" y="${y0 + Hbar + 48}" font-size="9" fill="#333" font-family="IBM Plex Sans,Segoe UI,sans-serif">← încăpere (finisaj vopsit 7 mm) · cărămidă 200 · ETICS 92 mm · exterior →</text>`
+    volume.meta.exterior_wall_section_svg = writeWallSectionSvg(
+      "A1",
+      "outputs/plans/35_v47_a1_exterior_wall_section.svg",
+      "V47 · A1 Ext. tencuială (N) — EB20 200 + ISOVER 80 ≈ 300 mm"
     );
-    const tiled = assy.interior_finish_tiled_zones;
-    if (tiled) {
-      parts.push(
-        `<text x="40" y="${y0 + Hbar + 72}" font-size="9" fill="#8a2a2a" font-family="IBM Plex Sans,Segoe UI,sans-serif">CONFLICT faianță (baie): finisaj int. ${tiled.sum_interior_tiled_mm} mm vs vopsit ${tiled.painted_interior_mm} mm (Δ +${tiled.delta_vs_painted_mm} mm) — plan/goluri/util NECORECATE automat</text>`
-      );
-    }
-    parts.push(
-      `<text x="40" y="${Hsvg - 24}" font-size="8" fill="#555" font-family="IBM Plex Sans,Segoe UI,sans-serif">ETICS în afara cărămizii: ${assy.etics_outside_brick_mm ?? 92} mm (înainte model 100 mm / 8+2). Fundație: termosistem outside = ${assy.foundation?.thermosystem_outside_foundation_cm ?? 9.2} cm.</text>`
+    volume.meta.exterior_wall_klinker_section_svg = writeWallSectionSvg(
+      "A2",
+      "outputs/plans/35b_v47_a2_klinker_wall_section.svg",
+      "V47 · A2 Ext. klinker (E/S/V) — EB20 200 + ISOVER 80 + klinker 15 = 312 mm"
     );
-    parts.push(`</svg>`);
-    const svgPath = "outputs/plans/35_v47_a1_exterior_wall_section.svg";
-    fs.mkdirSync(path.join(ROOT, "outputs/plans"), { recursive: true });
-    fs.writeFileSync(path.join(ROOT, svgPath), parts.join("\n"));
-    volume.meta.exterior_wall_section_svg = svgPath;
   }
 
   if (outVolRel === "viewer/data/volume_v47.json") {

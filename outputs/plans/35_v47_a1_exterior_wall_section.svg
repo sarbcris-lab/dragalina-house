@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520">
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="480" viewBox="0 0 960 480">
 <rect width="100%" height="100%" fill="#f7f4ef"/>
-<text x="40" y="28" font-size="14" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">V47 A1 · perete exterior P/E — EB20 Akustik 200 + ISOVER FASSADE 80</text>
-<text x="40" y="48" font-size="10" fill="#444" font-family="IBM Plex Sans,Segoe UI,sans-serif">interior → exterior · sumă 299 mm · max finit 300 mm · anvelopă 680×860 neschimbată · DE CONFIRMAT furnizor ETICS + proiectant (nu validat structural/termic/acustic)</text>
-<rect x="80" y="70" width="13.200000000000001" height="280" fill="#e8e0d4" stroke="#333" stroke-width="0.8"/>
-<text x="86.6" y="368" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">6</text>
-<text x="86.6" y="210" text-anchor="middle" font-size="7" transform="rotate(-90 86.6 210)" font-family="IBM Plex Sans,Segoe UI,sans-serif">tencuială interioară</text>
-<rect x="93.2" y="70" width="2.2" height="280" fill="#f4f0e8" stroke="#333" stroke-width="0.8"/>
-<text x="94.3" y="368" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">1</text>
-<text x="94.3" y="210" text-anchor="middle" font-size="7" transform="rotate(-90 94.3 210)" font-family="IBM Plex Sans,Segoe UI,sans-serif">finisare și vopsea</text>
-<rect x="95.4" y="70" width="440.00000000000006" height="280" fill="#c4a070" stroke="#333" stroke-width="0.8"/>
-<text x="315.40000000000003" y="368" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">200</text>
-<text x="315.40000000000003" y="210" text-anchor="middle" font-size="7" transform="rotate(-90 315.40000000000003 210)" font-family="IBM Plex Sans,Segoe UI,sans-serif">EB20 Akustik</text>
-<rect x="535.4000000000001" y="70" width="11" height="280" fill="#b0a898" stroke="#333" stroke-width="0.8"/>
-<text x="540.9000000000001" y="368" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">5</text>
-<text x="540.9000000000001" y="210" text-anchor="middle" font-size="7" transform="rotate(-90 540.9000000000001 210)" font-family="IBM Plex Sans,Segoe UI,sans-serif">adeziv ETICS</text>
-<rect x="546.4000000000001" y="70" width="176" height="280" fill="#e2d18a" stroke="#333" stroke-width="0.8"/>
-<text x="634.4000000000001" y="368" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">80</text>
-<text x="634.4000000000001" y="210" text-anchor="middle" font-size="7" transform="rotate(-90 634.4000000000001 210)" font-family="IBM Plex Sans,Segoe UI,sans-serif">vată minerală fațadă</text>
-<rect x="722.4000000000001" y="70" width="11" height="280" fill="#a8b0b8" stroke="#333" stroke-width="0.8"/>
-<text x="727.9000000000001" y="368" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">5</text>
-<text x="727.9000000000001" y="210" text-anchor="middle" font-size="7" transform="rotate(-90 727.9000000000001 210)" font-family="IBM Plex Sans,Segoe UI,sans-serif">strat armat</text>
-<rect x="733.4000000000001" y="70" width="4.4" height="280" fill="#8a8680" stroke="#333" stroke-width="0.8"/>
-<text x="735.6000000000001" y="368" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">2</text>
-<text x="735.6000000000001" y="210" text-anchor="middle" font-size="7" transform="rotate(-90 735.6000000000001 210)" font-family="IBM Plex Sans,Segoe UI,sans-serif">grund și tencuială decorativ</text>
-<text x="40" y="398" font-size="9" fill="#333" font-family="IBM Plex Sans,Segoe UI,sans-serif">← încăpere (finisaj vopsit 7 mm) · cărămidă 200 · ETICS 92 mm · exterior →</text>
-<text x="40" y="422" font-size="9" fill="#8a2a2a" font-family="IBM Plex Sans,Segoe UI,sans-serif">CONFLICT faianță (baie): finisaj int. 19 mm vs vopsit 7 mm (Δ +12 mm) — plan/goluri/util NECORECATE automat</text>
-<text x="40" y="496" font-size="8" fill="#555" font-family="IBM Plex Sans,Segoe UI,sans-serif">ETICS în afara cărămizii: 92 mm (înainte model 100 mm / 8+2). Fundație: termosistem outside = 9.2 cm.</text>
+<text x="40" y="28" font-size="14" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">V47 · A1 Ext. tencuială (N) — EB20 200 + ISOVER 80 ≈ 300 mm</text>
+<text x="40" y="48" font-size="10" fill="#444" font-family="IBM Plex Sans,Segoe UI,sans-serif">interior → exterior · sumă 299 mm · assemblies_v01 CONFIRMAT · vată 80 neschimbată</text>
+<rect x="80" y="70" width="13.200000000000001" height="260" fill="#e8e0d4" stroke="#333" stroke-width="0.8"/>
+<text x="86.6" y="348" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">6</text>
+<text x="86.6" y="200" text-anchor="middle" font-size="7" transform="rotate(-90 86.6 200)" font-family="IBM Plex Sans,Segoe UI,sans-serif">tencuială interioară</text>
+<rect x="93.2" y="70" width="2.2" height="260" fill="#f4f0e8" stroke="#333" stroke-width="0.8"/>
+<text x="94.3" y="348" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">1</text>
+<text x="94.3" y="200" text-anchor="middle" font-size="7" transform="rotate(-90 94.3 200)" font-family="IBM Plex Sans,Segoe UI,sans-serif">finisare și vopsea</text>
+<rect x="95.4" y="70" width="440.00000000000006" height="260" fill="#c4a070" stroke="#333" stroke-width="0.8"/>
+<text x="315.40000000000003" y="348" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">200</text>
+<text x="315.40000000000003" y="200" text-anchor="middle" font-size="7" transform="rotate(-90 315.40000000000003 200)" font-family="IBM Plex Sans,Segoe UI,sans-serif">EB20 Akustik</text>
+<rect x="535.4000000000001" y="70" width="11" height="260" fill="#b0a898" stroke="#333" stroke-width="0.8"/>
+<text x="540.9000000000001" y="348" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">5</text>
+<text x="540.9000000000001" y="200" text-anchor="middle" font-size="7" transform="rotate(-90 540.9000000000001 200)" font-family="IBM Plex Sans,Segoe UI,sans-serif">adeziv ETICS</text>
+<rect x="546.4000000000001" y="70" width="176" height="260" fill="#e2d18a" stroke="#333" stroke-width="0.8"/>
+<text x="634.4000000000001" y="348" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">80</text>
+<text x="634.4000000000001" y="200" text-anchor="middle" font-size="7" transform="rotate(-90 634.4000000000001 200)" font-family="IBM Plex Sans,Segoe UI,sans-serif">vată minerală fațadă</text>
+<rect x="722.4000000000001" y="70" width="11" height="260" fill="#a8b0b8" stroke="#333" stroke-width="0.8"/>
+<text x="727.9000000000001" y="348" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">5</text>
+<text x="727.9000000000001" y="200" text-anchor="middle" font-size="7" transform="rotate(-90 727.9000000000001 200)" font-family="IBM Plex Sans,Segoe UI,sans-serif">strat armat</text>
+<rect x="733.4000000000001" y="70" width="4.4" height="260" fill="#8a8680" stroke="#333" stroke-width="0.8"/>
+<text x="735.6000000000001" y="348" text-anchor="middle" font-size="8" font-family="IBM Plex Sans,Segoe UI,sans-serif">2</text>
+<text x="735.6000000000001" y="200" text-anchor="middle" font-size="7" transform="rotate(-90 735.6000000000001 200)" font-family="IBM Plex Sans,Segoe UI,sans-serif">grund și tencuială decorativ</text>
+<text x="40" y="452" font-size="8" fill="#555" font-family="IBM Plex Sans,Segoe UI,sans-serif">catalog A1 · decisions/assemblies_catalog_v01.md</text>
 </svg>

@@ -6,7 +6,7 @@
     "rev": 39,
     "units_source": "cm",
     "coords": "origine colț exterior NV; X→est (Dragalina); Y→sud (Cloșca)",
-    "envelope_preserved": "680 × 860 cm — nu extins",
+    "envelope_preserved": "682.6 × 861.3 cm — A2 +1.3 cm E/S/V",
     "ff_definition": "FF = fața SUPERIOARĂ a pardoselii finite",
     "parcel_polygon_status": "aproximativ (145,741 m² reconstruit vs 147 m² CF) — amplasare neschimbată",
     "comparison_baseline": "v45_exact",
@@ -36,19 +36,23 @@
     "based_on_amenajare": "v47_a1_study (aprobat — neatins)",
     "structure_system": "cadre_BA",
     "declared_buildable": false,
-    "rev_note_frame": "FRAME: C_NW/C_W_MID 30×40; C_N_MID@320; C_CASA@535 flush; grindă întoarsă+pier E+B_SEP; util studio≠vestibul; NECONFIRMAT. Neconstruibil."
+    "rev_note_frame": "FRAME: C_NW/C_W_MID 30×40; C_N_MID@320; C_CASA@535 flush; grindă întoarsă+pier E+B_SEP; util studio≠vestibul; NECONFIRMAT. Neconstruibil.",
+    "assemblies_v01": "CONFIRMAT_2026-10-15",
+    "rev_note_assemblies": "assemblies_v01: A1/A6≈300; A2=312 klinker vată80; A7 fono125; A4 scară klinker; A8 baie≈150. Envelope A2 Δ pending recalc.",
+    "geometry_assemblies_applied": "v01",
+    "rev_note_geometry_assemblies": "A2 +1.3cm exterior; A8 15cm; x recentrat pe vest finit=0"
   },
   "envelope_cm": {
-    "ew": 680,
-    "ns": 860
+    "ew": 682.6,
+    "ns": 861.3
   },
   "roof_cm": {
     "type": "two_pitch",
     "status": "stabilit",
     "ridge": {
-      "on_side_m": 6.8,
+      "on_side_m": 6.826,
       "along": "ew",
-      "length_cm": 680,
+      "length_cm": 682.6,
       "y_cm": 430,
       "note": "Coamă pe latura 6,8 m (X) — ape spre N și S; Y mid anvelopă"
     },
@@ -58,9 +62,9 @@
     "pitch_note": "Ipoteză ~30° (rise 248 cm pe run 430 cm) — contemporary gable + bun PV; confirmare structurist",
     "covers_cm": {
       "x0": 0,
-      "x1": 680,
+      "x1": 682.6,
       "y0": 0,
-      "y1": 860,
+      "y1": 861.3,
       "includes_stair_band": true,
       "excludes": [
         "podest_se",
@@ -110,144 +114,186 @@
   "walls_cm": [
     {
       "id": "nord",
-      "x": 0,
+      "x": 1.3,
       "y": 0,
       "dx": 680,
       "dy": 30,
       "kind": "ext",
       "thermal": "mixed",
-      "note": "X0–565 casă încălzită (EB20 200 + ISOVER FASSADE 80, total nom. 299 mm); X565–680 bandă scară — cold_stair (fără ETICS)",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80"
+      "note": "X0–565 casă încălzită (EB20 200 + ISOVER FASSADE 80, total nom. 299 mm); X565–680 bandă scară — cold_stair (fără ETICS) · heated A1 / cold A4",
+      "assembly": "A1+A4_split",
+      "catalog_id_heated": "A1",
+      "catalog_id_cold": "A4"
     },
     {
       "id": "vest",
       "x": 0,
       "y": 30,
-      "dx": 30,
+      "dx": 31.3,
       "dy": 615,
       "kind": "ext",
       "thermal": "heated_thermosystem",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "note": "Y30–645; alcătuire P/E încălzită EB20+ISOVER FASSADE — de confirmat ETICS/proiectant"
+      "assembly": "A2",
+      "note": "Y30–645; alcătuire P/E încălzită EB20+ISOVER FASSADE — de confirmat ETICS/proiectant · catalog A2",
+      "catalog_id": "A2",
+      "thickness_finished_mm": 312,
+      "geometry_note": "A2 +1.3 cm spre exterior"
     },
     {
       "id": "est_living",
-      "x": 650,
+      "x": 651.3,
       "y": 30,
-      "dx": 30,
+      "dx": 31.3,
       "dy": 410,
       "kind": "ext",
       "thermal": "heated_thermosystem",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "note": "P+E: X650 Y30–440; finit la X680; EB20 200 + ETICS ISOVER 80; structură beton — neconfirmat"
+      "assembly": "A2",
+      "note": "P+E: X650 Y30–440; finit la X680; EB20 200 + ETICS ISOVER 80; structură beton — neconfirmat · catalog A2",
+      "catalog_id": "A2",
+      "thickness_finished_mm": 312,
+      "geometry_note": "A2 +1.3 cm spre exterior"
     },
     {
       "id": "sud_bucatarie",
-      "x": 360,
+      "x": 361.3,
       "y": 830,
       "dx": 175,
-      "dy": 30,
+      "dy": 31.3,
       "kind": "ext",
       "thermal": "heated_thermosystem",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "note": "fațadă SUD exterioară casă (P+E) — restaurat; nu = bucătărie pe P; EB20+ISOVER FASSADE"
+      "assembly": "A2",
+      "note": "fațadă SUD exterioară casă (P+E) — restaurat; nu = bucătărie pe P; EB20+ISOVER FASSADE · catalog A2",
+      "catalog_id": "A2",
+      "thickness_finished_mm": 312,
+      "geometry_note": "A2 +1.3 cm spre exterior"
     },
     {
       "id": "dormitor_sud",
-      "x": 0,
+      "x": 1.3,
       "y": 645,
       "dx": 360,
-      "dy": 30,
+      "dy": 31.3,
       "kind": "ext",
       "thermal": "heated_thermosystem",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "note": "Y645–675; terasă de la Y675; EB20+ISOVER FASSADE — de confirmat ETICS/proiectant"
+      "assembly": "A2",
+      "note": "Y645–675; terasă de la Y675; EB20+ISOVER FASSADE — de confirmat ETICS/proiectant · catalog A2",
+      "catalog_id": "A2",
+      "thickness_finished_mm": 312,
+      "geometry_note": "A2 +1.3 cm spre exterior"
     },
     {
       "id": "perete_comun_est",
-      "x": 347.5,
+      "x": 348.8,
       "y": 30,
       "dx": 12.5,
       "dy": 615,
       "kind": "int",
-      "note": "V46r3: studiu casete — grosime actuală 12,5 cm; îngroșare locală propusă 15 cm spre living dacă se aleg pocket (vezi pocket_doors_study)"
+      "note": "V46r3: studiu casete — grosime actuală 12,5 cm; îngroșare locală propusă 15 cm spre living dacă se aleg pocket (vezi pocket_doors_study) · catalog A7",
+      "catalog_id": "A7",
+      "assembly": "A7",
+      "thickness_finished_mm": 125
     },
     {
       "id": "nisa_dulap_spate",
-      "x": 30,
+      "x": 31.3,
       "y": 187.5,
       "dx": 120,
-      "dy": 12.5,
+      "dy": 15,
       "kind": "int",
-      "note": "spate nișă; adâncită 10 cm spre baie vs captură anterioară"
+      "note": "spate nișă; adâncită 10 cm spre baie vs captură anterioară · catalog A8",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "thickness_finished_mm": 150,
+      "geometry_note": "A8 → 15 cm"
     },
     {
       "id": "nisa_dulap_est",
-      "x": 150,
+      "x": 148.8,
       "y": 187.5,
-      "dx": 12.5,
+      "dx": 15,
       "dy": 95,
       "kind": "int",
-      "note": "lateral est nișă Y187.5–282.5"
+      "note": "lateral est nișă Y187.5–282.5 · catalog A8",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "thickness_finished_mm": 150,
+      "geometry_note": "A8 → 15 cm"
     },
     {
       "id": "dorm_baie_nord",
-      "x": 162.5,
-      "y": 270,
+      "x": 163.8,
+      "y": 267.5,
       "dx": 185,
-      "dy": 12.5,
+      "dy": 15,
       "kind": "int",
-      "note": "rest perete baie–dormitor X162.5–347.5; front nișă deschis spre dormitor"
+      "note": "rest perete baie–dormitor X162.5–347.5; front nișă deschis spre dormitor · catalog A8",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "thickness_finished_mm": 150,
+      "geometry_note": "A8 → 15 cm"
     },
     {
       "id": "buc_est",
-      "x": 535,
+      "x": 536.3,
       "y": 590,
       "dx": 30,
       "dy": 270,
       "kind": "ext",
       "thermal": "house_stair_separator",
-      "note": "separator termic casă încălzită ↔ scară rece; P: vest scară Y590+; Y470–590 deschis (sub palier etaj)",
+      "note": "separator termic casă încălzită ↔ scară rece; P: vest scară Y590+; Y470–590 deschis (sub palier etaj) · catalog A6",
       "levels": [
         0
-      ]
+      ],
+      "catalog_id": "A6",
+      "assembly": "A6",
+      "thickness_finished_mm": 300
     },
     {
       "id": "ecran_frigider",
-      "x": 475,
+      "x": 476.3,
       "y": 565,
       "dx": 60,
       "dy": 12.5,
       "kind": "int",
-      "note": "doar etaj / scos de pe traseul P10",
+      "note": "doar etaj / scos de pe traseul P10 · catalog A7",
       "levels": [
         1
-      ]
+      ],
+      "catalog_id": "A7",
+      "assembly": "A7",
+      "thickness_finished_mm": 125
     },
     {
       "id": "terasa_est",
-      "x": 330,
+      "x": 331.3,
       "y": 675,
       "dx": 30,
       "dy": 185,
       "kind": "ext",
-      "note": "Y675–860; gol buc_terasa_etaj Y680–770 pe L1; pe P = intrare_parter"
+      "note": "Y675–860; gol buc_terasa_etaj Y680–770 pe L1; pe P = intrare_parter · catalog A5",
+      "catalog_id": "A5",
+      "assembly": "A5",
+      "thickness_finished_mm": 116
     },
     {
       "id": "est_recuperat_p",
-      "x": 650,
+      "x": 651.3,
       "y": 440,
-      "dx": 30,
+      "dx": 31.3,
       "dy": 150,
       "kind": "ext",
       "levels": [
         0
       ],
-      "note": "ext limită est sub palier — păstrat; canapea pe el"
+      "note": "ext limită est sub palier — păstrat; canapea pe el · catalog A2",
+      "catalog_id": "A2",
+      "assembly": "A2",
+      "thickness_finished_mm": 312,
+      "geometry_note": "A2 +1.3 cm spre exterior"
     },
     {
       "id": "buc_est_etaj",
-      "x": 535,
+      "x": 536.3,
       "y": 470,
       "dx": 30,
       "dy": 390,
@@ -255,11 +301,14 @@
       "levels": [
         1
       ],
-      "note": "etaj: perete vest scară / ușă intrare etaj pe palier"
+      "note": "etaj: perete vest scară / ușă intrare etaj pe palier · catalog A6",
+      "catalog_id": "A6",
+      "assembly": "A6",
+      "thickness_finished_mm": 300
     },
     {
       "id": "living_put_thermal_y590",
-      "x": 565,
+      "x": 566.3,
       "y": 560,
       "dx": 85,
       "dy": 30,
@@ -277,7 +326,7 @@
   "openings_cm": [
     {
       "id": "baie_usa",
-      "x": 347.5,
+      "x": 348.8,
       "y": 180,
       "dx": 12.5,
       "dy": 80,
@@ -329,7 +378,7 @@
     },
     {
       "id": "baie_usa_dorm",
-      "x": 245,
+      "x": 246.3,
       "y": 270,
       "dx": 80,
       "dy": 12.5,
@@ -382,7 +431,7 @@
     },
     {
       "id": "dorm_usa",
-      "x": 347.5,
+      "x": 348.8,
       "y": 292.5,
       "dx": 12.5,
       "dy": 90,
@@ -440,7 +489,7 @@
     },
     {
       "id": "dorm_terasa",
-      "x": 120,
+      "x": 121.3,
       "y": 645,
       "dx": 150,
       "dy": 30,
@@ -487,7 +536,7 @@
     },
     {
       "id": "intrare_parter",
-      "x": 330,
+      "x": 331.3,
       "y": 680,
       "dx": 30,
       "dy": 90,
@@ -527,7 +576,7 @@
     },
     {
       "id": "intrare_etaj",
-      "x": 535,
+      "x": 536.3,
       "y": 475,
       "dx": 30,
       "dy": 90,
@@ -588,7 +637,7 @@
     },
     {
       "id": "geam_est",
-      "x": 650,
+      "x": 651.3,
       "y": 105,
       "dx": 30,
       "dy": 205
@@ -598,7 +647,7 @@
       "levels": [
         1
       ],
-      "x": 330,
+      "x": 331.3,
       "y": 680,
       "dx": 30,
       "dy": 90,
@@ -624,66 +673,65 @@
     }
   ],
   "interior_polygon_cm": {
-    "note": "Frame P util: living sub palier inclus; EXCLUDE terasă/acces exterior",
+    "note": "Util PARTER: living sub palier inclus; exclude terasă/acces exterior",
+    "level": "parter",
     "vertices": [
       [
-        30,
+        31.3,
         30
       ],
       [
-        650,
+        651.3,
         30
       ],
       [
-        650,
+        651.3,
         590
       ],
       [
-        565,
+        566.3,
         590
       ],
       [
-        565,
+        566.3,
         440
       ],
       [
-        535,
+        536.3,
         440
       ],
       [
-        535,
+        536.3,
         830
       ],
       [
-        360,
+        361.3,
         830
       ],
       [
-        360,
+        361.3,
         645
       ],
       [
-        30,
+        31.3,
         645
       ],
       [
-        30,
+        31.3,
         30
       ]
     ],
     "excludes": [
       "terasa",
       "uncovered_south",
-      "entry_steps",
-      "curte_engleza",
-      "alee"
+      "entry_steps"
     ]
   },
   "rooms_cm": [
     {
       "id": "baie",
       "label": "BAIE",
-      "x": 30,
+      "x": 31.3,
       "y": 30,
       "dx": 317.5,
       "dy": 240,
@@ -693,7 +741,7 @@
     {
       "id": "nisa_dulap",
       "label": "NIȘĂ DULAP",
-      "x": 30,
+      "x": 31.3,
       "y": 200,
       "dx": 120,
       "dy": 70,
@@ -704,7 +752,7 @@
     {
       "id": "dormitor",
       "label": "DORMITOR",
-      "x": 30,
+      "x": 31.3,
       "y": 282.5,
       "dx": 317.5,
       "dy": 362.5,
@@ -713,7 +761,7 @@
     {
       "id": "living",
       "label": "LIVING",
-      "x": 360,
+      "x": 361.3,
       "y": 90,
       "dx": 290,
       "dy": 380,
@@ -726,7 +774,7 @@
     {
       "id": "legatura_lb",
       "label": "LEGĂTURĂ",
-      "x": 360,
+      "x": 361.3,
       "y": 440,
       "dx": 205,
       "dy": 104.3,
@@ -739,7 +787,7 @@
     {
       "id": "bucatarie",
       "label": "BUCĂTĂRIE",
-      "x": 360,
+      "x": 361.3,
       "y": 30,
       "dx": 290,
       "dy": 60,
@@ -753,7 +801,7 @@
     {
       "id": "hol_intrare",
       "label": "PRIMIRE / HOL",
-      "x": 360,
+      "x": 361.3,
       "y": 680,
       "dx": 175,
       "dy": 90,
@@ -767,7 +815,7 @@
     {
       "id": "terasa",
       "label": "TERASĂ",
-      "x": 0,
+      "x": 1.3,
       "y": 675,
       "dx": 340,
       "dy": 300,
@@ -802,7 +850,7 @@
     {
       "id": "scara",
       "label": "SCARĂ",
-      "x": 565,
+      "x": 566.3,
       "y": 470,
       "dx": 115,
       "dy": 390,
@@ -813,7 +861,7 @@
     {
       "id": "living_sub_palier",
       "label": "LIVING (sub palier etaj)",
-      "x": 535,
+      "x": 536.3,
       "y": 470,
       "dx": 145,
       "dy": 120,
@@ -828,7 +876,7 @@
     {
       "id": "dining_p",
       "label": "DINING",
-      "x": 400,
+      "x": 401.3,
       "y": 200,
       "dx": 200,
       "dy": 160,
@@ -843,7 +891,7 @@
     {
       "id": "circulatie_vest_p",
       "label": "CIRCULAȚIE",
-      "x": 360,
+      "x": 361.3,
       "y": 544.3,
       "dx": 90,
       "dy": 135.7,
@@ -857,7 +905,7 @@
   "parapets_cm": [
     {
       "id": "terasa_parapet_sud_w",
-      "x": 0,
+      "x": 1.3,
       "y": 965,
       "dx": 210,
       "dy": 10,
@@ -870,7 +918,7 @@
     },
     {
       "id": "terasa_gap_trepte",
-      "x": 210,
+      "x": 211.3,
       "y": 965,
       "dx": 130,
       "dy": 10,
@@ -883,7 +931,7 @@
     },
     {
       "id": "terasa_parapet_sud_e",
-      "x": 340,
+      "x": 341.3,
       "y": 965,
       "dx": 0,
       "dy": 10,
@@ -896,7 +944,7 @@
     },
     {
       "id": "terasa_parapet_vest",
-      "x": 0,
+      "x": 1.3,
       "y": 675,
       "dx": 10,
       "dy": 300,
@@ -908,7 +956,7 @@
     },
     {
       "id": "terasa_parapet_sud_etaj",
-      "x": 0,
+      "x": 1.3,
       "y": 850,
       "dx": 330,
       "dy": 10,
@@ -920,7 +968,7 @@
     },
     {
       "id": "terasa_parapet_vest_etaj",
-      "x": 0,
+      "x": 1.3,
       "y": 675,
       "dx": 10,
       "dy": 175,
@@ -932,7 +980,7 @@
     },
     {
       "id": "terasa_parapet_est_neacoperit",
-      "x": 200,
+      "x": 201.3,
       "y": 830,
       "dx": 12,
       "dy": 135,
@@ -946,20 +994,20 @@
     }
   ],
   "areas_cm": {
-    "method": "shoelace(anvelopă) − reuniune pereți int (−goluri); util geometric ≠ certificat autorizare",
-    "useful_interior_m2": 37.87875,
+    "method": "shoelace(interior_polygon) − reuniune pereți int (−goluri baie/dorm); post A2/A8 geometry",
+    "useful_interior_m2": 38.505,
     "terrace_placa_m2": 10.2,
     "terrace_libera_m2": 9.57,
     "terrace_libera_formula": "(330−10)×(185−10)/10000 = 5,60",
-    "envelope_gross_m2": 58.48,
-    "envelope_interior_shoelace_m2": 39.01,
-    "interior_walls_gross_m2": 1.34375,
-    "interior_walls_overlaps_m2": 0,
+    "envelope_gross_m2": 58.7923,
+    "envelope_interior_shoelace_m2": 40.285,
+    "interior_walls_gross_m2": 1.44375,
+    "interior_walls_overlaps_m2": 0.00375,
     "interior_walls_openings_void_m2": 0.2125,
-    "interior_walls_net_m2": 1.13125,
-    "useful_geometric_m2": 38.605,
-    "useful_interior_net_m2": 37.87875,
-    "decomposition": "39.0100 − 1.1313 = 37.8787 m²",
+    "interior_walls_net_m2": 1.2275,
+    "useful_geometric_m2": 38.505,
+    "useful_interior_net_m2": 39.0575,
+    "decomposition": "40.2850 − 1.2275 = 39.0575 m²",
     "dorm_principal_m2": 11.509375,
     "dorm_nisa_m2": 0.84,
     "bath_base_m2": 7.62,
@@ -968,31 +1016,31 @@
     "stair_band_m2": 4.485,
     "wall_parts_cm2": {
       "perete_comun_est": 7687.5,
-      "nisa_dulap_spate": 1500,
-      "nisa_dulap_est": 1187.5,
-      "dorm_baie_nord": 2312.5,
+      "nisa_dulap_spate": 1800,
+      "nisa_dulap_est": 1425,
+      "dorm_baie_nord": 2775,
       "ecran_frigider": 750
     },
     "openings_void_cm2": {
       "baie_usa": 1000,
       "dorm_usa": 1125
     },
-    "pot_note": "uncovered exclude_from_pot; amprentă casă = envelope; POT autorizare neconfirmat",
+    "pot_note": "amprentă 58.7923 m²; POT 147=39.99% / 172=34.18%; CUT≈0.800; vs C1 76 m² (−17.21 m²). Max POT RLU = DE VERIFICAT.",
     "uncovered_terrace_m2": 4.082,
     "uncovered_in_pot": false,
     "useful_recalc_a1": {
-      "envelope_shoelace_m2": 39.01,
-      "walls_net_m2": 1.13125,
-      "useful_geometric_m2": 37.87875,
+      "envelope_shoelace_m2": 40.285,
+      "walls_net_m2": 1.2275,
+      "useful_geometric_m2": 39.0575,
       "method": "shoelace(interior_polygon) − reuniune pereți int (−goluri baie/dorm)"
     },
     "useful_ref_copied_was": 37.87875,
     "useful_delta_vs_ref_m2": 0,
     "frame_study_areas": {
-      "method": "P/E separate: shoelace − pereți − thermal − proem.; E = studio; palier scară rece raportat separat (NU vestibul); NU usefulE=usefulP",
-      "useful_parter_m2": 38.605,
-      "useful_etaj_studio_m2": 37.96,
-      "useful_etaj_m2": 37.96,
+      "method": "P/E separate: shoelace(contur încălzit) − pereți int net − thermal puț − (frame: proem. stâlpi). E = studio fără palier scară rece.",
+      "useful_parter_m2": 38.505,
+      "useful_etaj_studio_m2": 37.86,
+      "useful_etaj_m2": 37.86,
       "palier_scara_rece_m2": 1.26,
       "palier_scara_rect_cm": {
         "x": 565,
@@ -1009,8 +1057,8 @@
       "thermal_enclosure_E_m2": 0.255,
       "column_protrusion_P_m2": 0.369,
       "column_protrusion_E_m2": 0.369,
-      "walls_int_net_P_m2": 1.056,
-      "walls_int_net_E_m2": 1.131,
+      "walls_int_net_P_m2": 1.156,
+      "walls_int_net_E_m2": 1.231,
       "reference_threshold_m2": 37,
       "delta_P_vs_37": 1.605,
       "delta_E_studio_vs_37": 0.96,
@@ -1018,13 +1066,254 @@
       "ref_a1_useful_was": 37.87875,
       "status_util": "NECONFIRMAT",
       "declared_pass_util": false,
-      "note": "Fără PASS. Util E = studio. Palier = scară rece (vestibul ELIMINAT)."
-    }
+      "note": "Fără PASS. Util E = studio. Palier = scară rece (vestibul ELIMINAT).",
+      "poly_parter_cm": [
+        [
+          31.3,
+          30
+        ],
+        [
+          651.3,
+          30
+        ],
+        [
+          651.3,
+          590
+        ],
+        [
+          566.3,
+          590
+        ],
+        [
+          566.3,
+          440
+        ],
+        [
+          536.3,
+          440
+        ],
+        [
+          536.3,
+          830
+        ],
+        [
+          361.3,
+          830
+        ],
+        [
+          361.3,
+          645
+        ],
+        [
+          31.3,
+          645
+        ],
+        [
+          31.3,
+          30
+        ]
+      ],
+      "poly_etaj_cm": [
+        [
+          31.3,
+          30
+        ],
+        [
+          651.3,
+          30
+        ],
+        [
+          651.3,
+          470
+        ],
+        [
+          566.3,
+          470
+        ],
+        [
+          566.3,
+          590
+        ],
+        [
+          536.3,
+          590
+        ],
+        [
+          536.3,
+          830
+        ],
+        [
+          361.3,
+          830
+        ],
+        [
+          361.3,
+          645
+        ],
+        [
+          31.3,
+          645
+        ],
+        [
+          31.3,
+          30
+        ]
+      ],
+      "thermal_P_m2": 0.255,
+      "thermal_E_m2": 0.255,
+      "delta_E_minus_P_m2": -0.645,
+      "status": "CALCUL_STUDIU"
+    },
+    "envelope_before_A2_m2": 58.48,
+    "envelope_delta_A2_m2": 0.3123,
+    "pot_candidate_pct_on_147": 39.99,
+    "geometry_assemblies_v01": {
+      "A2_delta_cm": 1.3,
+      "A8_cm": 15,
+      "envelope_cm": {
+        "ew": 682.6,
+        "ns": 861.3
+      },
+      "useful_note": "A2 exterior → util uscat ≈ neschimbat; A8 reduce clar baie"
+    },
+    "useful_before_A8_m2": 37.87875,
+    "useful_delta_vs_before_A8_m2": 1.17875,
+    "pot": {
+      "amprenta_casa_m2": 58.7923,
+      "uncovered_terrace_m2": 4.082,
+      "uncovered_in_pot": false,
+      "parcel_measured_m2": 147,
+      "parcel_acts_m2": 172,
+      "parcel_polygon_m2": 145.741,
+      "pot_on_147": 0.3999,
+      "pot_pct_147": 39.99,
+      "pot_on_172": 0.3418,
+      "pot_pct_172": 34.18,
+      "cut_on_147_PxE": 0.7999,
+      "existing_C1_m2": 76,
+      "existing_pot_pct_147": 51.7,
+      "delta_vs_C1_m2": -17.2077,
+      "status": "CALCUL_STUDIU — max POT din RLU/CU NECUNOSCUT",
+      "verdict_vs_existent": "sub amprenta C1 existent (76 m²); pe 147 ≈40%"
+    },
+    "useful_by_level": {
+      "method": "P/E separate: shoelace(contur încălzit) − pereți int net − thermal puț − (frame: proem. stâlpi). E = studio fără palier scară rece.",
+      "poly_parter_cm": [
+        [
+          31.3,
+          30
+        ],
+        [
+          651.3,
+          30
+        ],
+        [
+          651.3,
+          590
+        ],
+        [
+          566.3,
+          590
+        ],
+        [
+          566.3,
+          440
+        ],
+        [
+          536.3,
+          440
+        ],
+        [
+          536.3,
+          830
+        ],
+        [
+          361.3,
+          830
+        ],
+        [
+          361.3,
+          645
+        ],
+        [
+          31.3,
+          645
+        ],
+        [
+          31.3,
+          30
+        ]
+      ],
+      "poly_etaj_cm": [
+        [
+          31.3,
+          30
+        ],
+        [
+          651.3,
+          30
+        ],
+        [
+          651.3,
+          470
+        ],
+        [
+          566.3,
+          470
+        ],
+        [
+          566.3,
+          590
+        ],
+        [
+          536.3,
+          590
+        ],
+        [
+          536.3,
+          830
+        ],
+        [
+          361.3,
+          830
+        ],
+        [
+          361.3,
+          645
+        ],
+        [
+          31.3,
+          645
+        ],
+        [
+          31.3,
+          30
+        ]
+      ],
+      "gross_parter_m2": 40.285,
+      "gross_etaj_m2": 39.715,
+      "walls_int_net_P_m2": 1.156,
+      "walls_int_net_E_m2": 1.231,
+      "thermal_P_m2": 0.255,
+      "thermal_E_m2": 0.255,
+      "column_protrusion_P_m2": 0.369,
+      "column_protrusion_E_m2": 0.369,
+      "useful_parter_m2": 38.505,
+      "useful_etaj_studio_m2": 37.86,
+      "useful_etaj_m2": 37.86,
+      "palier_scara_rece_m2": 1.26,
+      "delta_E_minus_P_m2": -0.645,
+      "status": "CALCUL_STUDIU"
+    },
+    "useful_parter_m2": 38.505,
+    "useful_etaj_m2": 37.86,
+    "useful_etaj_studio_m2": 37.86,
+    "useful_note": "P ≠ E. Vezi areas_cm.useful_by_level. Etaj = studio fără palier scară rece."
   },
   "furniture_cm": [
     {
       "id": "pat",
-      "x": 45,
+      "x": 46.3,
       "y": 385,
       "dx": 208,
       "dy": 168,
@@ -1036,7 +1325,7 @@
     },
     {
       "id": "tv_dorm",
-      "x": 339.5,
+      "x": 340.8,
       "y": 424,
       "dx": 8,
       "dy": 90,
@@ -1082,7 +1371,7 @@
     },
     {
       "id": "dulap",
-      "x": 30,
+      "x": 31.3,
       "y": 200,
       "dx": 120,
       "dy": 70,
@@ -1105,7 +1394,7 @@
     },
     {
       "id": "dus",
-      "x": 50,
+      "x": 51.3,
       "y": 30,
       "dx": 90,
       "dy": 157.5,
@@ -1224,7 +1513,7 @@
     },
     {
       "id": "blat_baie",
-      "x": 135,
+      "x": 136.3,
       "y": 30,
       "dx": 202.5,
       "dy": 60,
@@ -1236,7 +1525,7 @@
     },
     {
       "id": "masina_ew7w368si",
-      "x": 135,
+      "x": 136.3,
       "y": 33,
       "dx": 60,
       "dy": 54,
@@ -1292,7 +1581,7 @@
     },
     {
       "id": "lavoar",
-      "x": 220,
+      "x": 221.3,
       "y": 40,
       "dx": 60,
       "dy": 45,
@@ -1311,7 +1600,7 @@
     },
     {
       "id": "depozitare_blat",
-      "x": 285,
+      "x": 286.3,
       "y": 35,
       "dx": 50,
       "dy": 50,
@@ -1323,7 +1612,7 @@
     },
     {
       "id": "wc",
-      "x": 180,
+      "x": 181.3,
       "y": 190,
       "dx": 40,
       "dy": 65,
@@ -1354,7 +1643,7 @@
     },
     {
       "id": "wc_cadru",
-      "x": 170,
+      "x": 171.3,
       "y": 255,
       "dx": 60,
       "dy": 15,
@@ -1385,7 +1674,7 @@
     },
     {
       "id": "canapea",
-      "x": 545,
+      "x": 546.3,
       "y": 50,
       "dx": 90,
       "dy": 170,
@@ -1424,7 +1713,7 @@
     },
     {
       "id": "tv",
-      "x": 375,
+      "x": 376.3,
       "y": 55,
       "dx": 40,
       "dy": 90,
@@ -1478,7 +1767,7 @@
       "cx": 515,
       "cy": 325,
       "diameter_cm": 100,
-      "x": 465,
+      "x": 466.3,
       "y": 275,
       "dx": 100,
       "dy": 100,
@@ -1492,7 +1781,7 @@
       ]
     },
     {
-      "x": 538.33,
+      "x": 539.63,
       "y": 238.03,
       "dx": 63.64,
       "dy": 63.64,
@@ -1562,7 +1851,7 @@
       ]
     },
     {
-      "x": 538.33,
+      "x": 539.63,
       "y": 348.33,
       "dx": 63.64,
       "dy": 63.64,
@@ -1632,7 +1921,7 @@
       ]
     },
     {
-      "x": 428.03,
+      "x": 429.33,
       "y": 348.33,
       "dx": 63.64,
       "dy": 63.64,
@@ -1702,7 +1991,7 @@
       ]
     },
     {
-      "x": 428.03,
+      "x": 429.33,
       "y": 238.03,
       "dx": 63.64,
       "dy": 63.64,
@@ -1773,7 +2062,7 @@
     },
     {
       "id": "frigider",
-      "x": 475,
+      "x": 476.3,
       "y": 580,
       "dx": 60,
       "dy": 65,
@@ -1804,7 +2093,7 @@
     },
     {
       "id": "blat_est",
-      "x": 475,
+      "x": 476.3,
       "y": 645,
       "dx": 60,
       "dy": 125,
@@ -1820,7 +2109,7 @@
     },
     {
       "id": "blat_sud",
-      "x": 450,
+      "x": 451.3,
       "y": 770,
       "dx": 85,
       "dy": 60,
@@ -1836,7 +2125,7 @@
     },
     {
       "id": "msv",
-      "x": 475,
+      "x": 476.3,
       "y": 645,
       "dx": 60,
       "dy": 60,
@@ -1855,7 +2144,7 @@
     },
     {
       "id": "chiuveta",
-      "x": 475,
+      "x": 476.3,
       "y": 705,
       "dx": 60,
       "dy": 60,
@@ -1884,7 +2173,7 @@
     },
     {
       "id": "corp_plita_cuptor",
-      "x": 450,
+      "x": 451.3,
       "y": 770,
       "dx": 60,
       "dy": 60,
@@ -1910,7 +2199,7 @@
     },
     {
       "id": "plita",
-      "x": 455,
+      "x": 456.3,
       "y": 777,
       "dx": 50,
       "dy": 48,
@@ -1927,7 +2216,7 @@
     },
     {
       "id": "cuptor",
-      "x": 452,
+      "x": 453.3,
       "y": 775,
       "dx": 56,
       "dy": 55,
@@ -1943,7 +2232,7 @@
       ]
     },
     {
-      "x": 220,
+      "x": 221.3,
       "y": 30,
       "dx": 60,
       "dy": 4,
@@ -1960,7 +2249,7 @@
       "id": "oglinda_baie"
     },
     {
-      "x": 339.5,
+      "x": 340.8,
       "y": 262,
       "dx": 8,
       "dy": 28,
@@ -1973,7 +2262,7 @@
       "id": "suport_prosoape"
     },
     {
-      "x": 320,
+      "x": 321.3,
       "y": 95,
       "dx": 10,
       "dy": 55,
@@ -1989,7 +2278,7 @@
     },
     {
       "id": "perdea_dorm_terasa",
-      "x": 110,
+      "x": 111.3,
       "y": 640,
       "dx": 170,
       "dy": 12,
@@ -2005,7 +2294,7 @@
     },
     {
       "id": "canapea_desf_gabarit",
-      "x": 455,
+      "x": 456.3,
       "y": 50,
       "dx": 180,
       "dy": 170,
@@ -2024,7 +2313,7 @@
     },
     {
       "id": "masuta_living",
-      "x": 480,
+      "x": 481.3,
       "y": 120,
       "dx": 55,
       "dy": 55,
@@ -2043,7 +2332,7 @@
     },
     {
       "id": "hota",
-      "x": 450,
+      "x": 451.3,
       "y": 770,
       "dx": 60,
       "dy": 20,
@@ -2067,7 +2356,7 @@
       ]
     },
     {
-      "x": 475,
+      "x": 476.3,
       "y": 720,
       "dx": 55,
       "dy": 45,
@@ -2090,7 +2379,7 @@
     },
     {
       "id": "cos_gunoi",
-      "x": 510,
+      "x": 511.3,
       "y": 770,
       "dx": 25,
       "dy": 50,
@@ -2105,7 +2394,7 @@
       ]
     },
     {
-      "x": 480,
+      "x": 481.3,
       "y": 775,
       "dx": 50,
       "dy": 50,
@@ -2121,7 +2410,7 @@
     },
     {
       "id": "mob_terasa_dorm",
-      "x": 30,
+      "x": 31.3,
       "y": 720,
       "dx": 140,
       "dy": 70,
@@ -2138,7 +2427,7 @@
     },
     {
       "id": "mob_terasa_buc",
-      "x": 30,
+      "x": 31.3,
       "y": 880,
       "dx": 150,
       "dy": 60,
@@ -2155,7 +2444,7 @@
     },
     {
       "id": "noptiera_n",
-      "x": 40,
+      "x": 41.3,
       "y": 350,
       "dx": 40,
       "dy": 35,
@@ -2193,7 +2482,7 @@
     },
     {
       "id": "noptiera_s",
-      "x": 40,
+      "x": 41.3,
       "y": 553,
       "dx": 40,
       "dy": 35,
@@ -2231,7 +2520,7 @@
     },
     {
       "id": "frigider_p",
-      "x": 360,
+      "x": 361.3,
       "y": 30,
       "dx": 60,
       "dy": 60,
@@ -2246,7 +2535,7 @@
     },
     {
       "id": "msv_p",
-      "x": 420,
+      "x": 421.3,
       "y": 30,
       "dx": 60,
       "dy": 60,
@@ -2261,7 +2550,7 @@
     },
     {
       "id": "chiuveta_p",
-      "x": 480,
+      "x": 481.3,
       "y": 30,
       "dx": 60,
       "dy": 60,
@@ -2276,7 +2565,7 @@
     },
     {
       "id": "plita_p",
-      "x": 540,
+      "x": 541.3,
       "y": 30,
       "dx": 60,
       "dy": 60,
@@ -2291,7 +2580,7 @@
     },
     {
       "id": "cuptor_p",
-      "x": 542,
+      "x": 543.3,
       "y": 32,
       "dx": 56,
       "dy": 55,
@@ -2305,7 +2594,7 @@
     },
     {
       "id": "blat_tail_p",
-      "x": 600,
+      "x": 601.3,
       "y": 30,
       "dx": 50,
       "dy": 60,
@@ -2320,7 +2609,7 @@
     },
     {
       "id": "hota_p10",
-      "x": 540,
+      "x": 541.3,
       "y": 30,
       "dx": 60,
       "dy": 20,
@@ -2335,7 +2624,7 @@
     },
     {
       "id": "canapea_p",
-      "x": 550,
+      "x": 551.3,
       "y": 420,
       "dx": 90,
       "dy": 170,
@@ -2351,7 +2640,7 @@
     },
     {
       "id": "canapea_desf_p",
-      "x": 460,
+      "x": 461.3,
       "y": 420,
       "dx": 180,
       "dy": 170,
@@ -2367,7 +2656,7 @@
     },
     {
       "id": "tv_p",
-      "x": 365,
+      "x": 366.3,
       "y": 460,
       "dx": 8,
       "dy": 100,
@@ -2382,7 +2671,7 @@
     },
     {
       "id": "masuta_cafea_p",
-      "x": 455,
+      "x": 456.3,
       "y": 505,
       "dx": 40,
       "dy": 40,
@@ -2401,7 +2690,7 @@
       "cx": 500,
       "cy": 300,
       "diameter_cm": 100,
-      "x": 450,
+      "x": 451.3,
       "y": 250,
       "dx": 100,
       "dy": 100,
@@ -2416,7 +2705,7 @@
     },
     {
       "id": "scaun_dining_p1",
-      "x": 455,
+      "x": 456.3,
       "y": 230,
       "dx": 45,
       "dy": 45,
@@ -2430,7 +2719,7 @@
     },
     {
       "id": "scaun_dining_p2",
-      "x": 545,
+      "x": 546.3,
       "y": 230,
       "dx": 45,
       "dy": 45,
@@ -2444,7 +2733,7 @@
     },
     {
       "id": "scaun_dining_p3",
-      "x": 455,
+      "x": 456.3,
       "y": 320,
       "dx": 45,
       "dy": 45,
@@ -2458,7 +2747,7 @@
     },
     {
       "id": "scaun_dining_p4",
-      "x": 545,
+      "x": 546.3,
       "y": 320,
       "dx": 45,
       "dy": 45,
@@ -2472,7 +2761,7 @@
     },
     {
       "id": "cuier_agatori",
-      "x": 362,
+      "x": 363.3,
       "y": 685,
       "dx": 6,
       "dy": 70,
@@ -2487,7 +2776,7 @@
     },
     {
       "id": "corp_primire_p",
-      "x": 505,
+      "x": 506.3,
       "y": 685,
       "dx": 30,
       "dy": 80,
@@ -3280,13 +3569,13 @@
           "id": "prana_dorm",
           "room": "dormitor",
           "wall": "vest",
-          "x": 0,
+          "x": 1.3,
           "y": 500,
           "dx": 30,
           "dy": 20,
           "z_cm": 200,
           "hole_center": {
-            "x": 15,
+            "x": 16.3,
             "y": 510
           },
           "facade_check": {
@@ -3301,13 +3590,13 @@
           "id": "prana_living",
           "room": "living",
           "wall": "est_living",
-          "x": 650,
+          "x": 651.3,
           "y": 80,
           "dx": 30,
           "dy": 20,
           "z_cm": 200,
           "hole_center": {
-            "x": 665,
+            "x": 666.3,
             "y": 90
           },
           "facade_check": {
@@ -3335,7 +3624,7 @@
       "duct": "evacuare proprie — SEPARAT de PRANA",
       "route_study": {
         "vertical_chase": {
-          "x": 300,
+          "x": 301.3,
           "y": 30,
           "dx": 20,
           "dy": 20,
@@ -3346,7 +3635,7 @@
       "supply_air": "aport sub ușă / grilaj transfer — necesar cu extract; pocket reduce etanșarea",
       "control": "higrostat + overrun — REZERVĂ",
       "position_study": {
-        "x": 280,
+        "x": 281.3,
         "y": 40,
         "dx": 25,
         "dy": 20
@@ -3357,7 +3646,7 @@
       "id": "hota",
       "type": "hotă evacuare sau recirculare — SEPARAT",
       "position_study": {
-        "x": 390,
+        "x": 391.3,
         "y": 770,
         "above": "plita"
       },
@@ -3370,7 +3659,7 @@
       "indoor": [
         {
           "id": "ac_dorm_indoor",
-          "x": 180,
+          "x": 181.3,
           "y": 282.5,
           "dx": 90,
           "dy": 22,
@@ -3387,7 +3676,7 @@
         },
         {
           "id": "ac_living_indoor",
-          "x": 400,
+          "x": 401.3,
           "y": 30,
           "dx": 90,
           "dy": 22,
@@ -3404,7 +3693,7 @@
       "outdoor": [
         {
           "id": "ac_outdoor_study",
-          "x": 0,
+          "x": 1.3,
           "y": 400,
           "dx": 35,
           "dy": 85,
@@ -3427,14 +3716,14 @@
       "note": "coordonare parter–etaj — REZERVE; apartamente separate",
       "water_sewer": {
         "stack_bath": {
-          "x": 185,
+          "x": 186.3,
           "y": 250,
           "dx": 20,
           "dy": 20,
           "note": "coloană lângă cadru WC readus — REZERVĂ"
         },
         "stack_kitchen": {
-          "x": 500,
+          "x": 501.3,
           "y": 800,
           "dx": 20,
           "dy": 20,
@@ -3443,13 +3732,13 @@
         "service_access": "capac/ușițe pe coloane — NECONFIRMAT"
       },
       "bath_vent_stack": {
-        "x": 300,
+        "x": 301.3,
         "y": 30,
         "dx": 20,
         "dy": 20
       },
       "hood_duct": {
-        "x": 420,
+        "x": 421.3,
         "y": 830,
         "dx": 20,
         "dy": 15,
@@ -3462,7 +3751,7 @@
       "electrical": {
         "panel_study": {
           "id": "tablou",
-          "x": 505,
+          "x": 506.3,
           "y": 655,
           "dx": 25,
           "dy": 12,
@@ -3598,7 +3887,7 @@
     "points": [
       {
         "id": "priza_ms",
-        "x": 190,
+        "x": 191.3,
         "y": 85,
         "z_cm": 30,
         "zone": "baie",
@@ -3606,21 +3895,21 @@
       },
       {
         "id": "priza_lavoar",
-        "x": 250,
+        "x": 251.3,
         "y": 35,
         "z_cm": 110,
         "zone": "baie"
       },
       {
         "id": "lumina_oglinda",
-        "x": 250,
+        "x": 251.3,
         "y": 32,
         "z_cm": 160,
         "zone": "baie"
       },
       {
         "id": "priza_noptiera_n",
-        "x": 35,
+        "x": 36.3,
         "y": 385,
         "z_cm": 45,
         "zone": "dormitor",
@@ -3628,7 +3917,7 @@
       },
       {
         "id": "priza_noptiera_s",
-        "x": 35,
+        "x": 36.3,
         "y": 590,
         "z_cm": 45,
         "zone": "dormitor",
@@ -3636,7 +3925,7 @@
       },
       {
         "id": "priza_tv_dorm",
-        "x": 340,
+        "x": 341.3,
         "y": 520,
         "z_cm": 110,
         "zone": "dormitor",
@@ -3644,7 +3933,7 @@
       },
       {
         "id": "priza_tv_living_wall",
-        "x": 360,
+        "x": 361.3,
         "y": 45,
         "z_cm": 40,
         "zone": "living",
@@ -3652,14 +3941,14 @@
       },
       {
         "id": "prize_blat_buc",
-        "x": 400,
+        "x": 401.3,
         "y": 765,
         "z_cm": 110,
         "zone": "bucatarie"
       },
       {
         "id": "priza_ext_terasa",
-        "x": 300,
+        "x": 301.3,
         "y": 680,
         "z_cm": 30,
         "zone": "terasa"
@@ -3688,7 +3977,7 @@
       ],
       "selected_study": "sifon_central",
       "sifon": {
-        "x": 60,
+        "x": 61.3,
         "y": 95,
         "dx": 12,
         "dy": 12,
@@ -3699,7 +3988,7 @@
         "note": "pante spre sifon — de proiectat pe șapă; NECONFIRMAT executiv"
       },
       "maintenance_access": {
-        "x": 45,
+        "x": 46.3,
         "y": 80,
         "dx": 40,
         "dy": 40,
@@ -3713,16 +4002,520 @@
     }
   },
   "construction_assemblies": {
-    "status": "REZERVE — de confirmat cu furnizorul sistemului ETICS și proiectantul; NU validat structural, termic sau acustic",
+    "status": "CONFIRMAT_2026-10-15 — assemblies_v01",
+    "catalog_ref": "data/building/assemblies_v01.json",
+    "decision_ref": "decisions/assemblies_catalog_v01.md",
+    "catalog": {
+      "A1": {
+        "id": "A1",
+        "name": "Ext. încălzit tencuială",
+        "applies": [
+          "nord_heated",
+          "nise",
+          "retrageri_tencuite"
+        ],
+        "thickness_finished_mm": 299,
+        "layers_interior_to_exterior_mm": [
+          {
+            "id": "tencuiala_int",
+            "name": "tencuială interioară",
+            "th_mm": 6
+          },
+          {
+            "id": "finisare_vopsea",
+            "name": "finisare și vopsea",
+            "th_mm": 1
+          },
+          {
+            "id": "caramida_eb20",
+            "name": "EB20 Akustik",
+            "th_mm": 200,
+            "product": "EB20 Akustik"
+          },
+          {
+            "id": "adeziv_etics",
+            "name": "adeziv ETICS",
+            "th_mm": 5
+          },
+          {
+            "id": "vata_isover_fassade",
+            "name": "vată minerală fațadă",
+            "th_mm": 80,
+            "product": "ISOVER FASSADE"
+          },
+          {
+            "id": "strat_armat",
+            "name": "strat armat",
+            "th_mm": 5
+          },
+          {
+            "id": "grund_decorativa",
+            "name": "grund și tencuială decorativă",
+            "th_mm": 2
+          }
+        ]
+      },
+      "A2": {
+        "id": "A2",
+        "name": "Ext. încălzit klinker",
+        "applies": [
+          "est_dragalina",
+          "sud_closca",
+          "vest_curte"
+        ],
+        "thickness_finished_mm": 312,
+        "delta_vs_A1_mm": 13,
+        "layers_interior_to_exterior_mm": [
+          {
+            "id": "tencuiala_int",
+            "name": "tencuială interioară",
+            "th_mm": 6
+          },
+          {
+            "id": "finisare_vopsea",
+            "name": "finisare și vopsea",
+            "th_mm": 1
+          },
+          {
+            "id": "caramida_eb20",
+            "name": "EB20 Akustik",
+            "th_mm": 200,
+            "product": "EB20 Akustik"
+          },
+          {
+            "id": "adeziv_etics",
+            "name": "adeziv ETICS",
+            "th_mm": 5
+          },
+          {
+            "id": "vata_isover_fassade",
+            "name": "vată minerală fațadă",
+            "th_mm": 80,
+            "product": "ISOVER FASSADE"
+          },
+          {
+            "id": "strat_armat",
+            "name": "strat armat ceramic",
+            "th_mm": 5
+          },
+          {
+            "id": "placaj_klinker",
+            "name": "adeziv + placaj klinker",
+            "th_mm": 15
+          }
+        ]
+      },
+      "A3_N": {
+        "id": "A3_N",
+        "name": "Ext. baie pe fațadă tencuială",
+        "thickness_finished_mm": 311,
+        "layers_interior_to_exterior_mm": [
+          {
+            "id": "faianata",
+            "name": "faianță",
+            "th_mm": 8
+          },
+          {
+            "id": "adeziv_faianata",
+            "name": "adeziv faianță",
+            "th_mm": 5
+          },
+          {
+            "id": "tencuiala_int",
+            "name": "tencuială interioară",
+            "th_mm": 6
+          },
+          {
+            "id": "caramida_eb20",
+            "name": "EB20 Akustik",
+            "th_mm": 200
+          },
+          {
+            "id": "adeziv_etics",
+            "name": "adeziv ETICS",
+            "th_mm": 5
+          },
+          {
+            "id": "vata_isover_fassade",
+            "name": "vată minerală fațadă",
+            "th_mm": 80
+          },
+          {
+            "id": "strat_armat",
+            "name": "strat armat",
+            "th_mm": 5
+          },
+          {
+            "id": "grund_decorativa",
+            "name": "grund și tencuială decorativă",
+            "th_mm": 2
+          }
+        ]
+      },
+      "A3_K": {
+        "id": "A3_K",
+        "name": "Ext. baie pe fațadă klinker",
+        "thickness_finished_mm": 324,
+        "layers_interior_to_exterior_mm": [
+          {
+            "id": "faianata",
+            "name": "faianță",
+            "th_mm": 8
+          },
+          {
+            "id": "adeziv_faianata",
+            "name": "adeziv faianță",
+            "th_mm": 5
+          },
+          {
+            "id": "tencuiala_int",
+            "name": "tencuială interioară",
+            "th_mm": 6
+          },
+          {
+            "id": "caramida_eb20",
+            "name": "EB20 Akustik",
+            "th_mm": 200
+          },
+          {
+            "id": "adeziv_etics",
+            "name": "adeziv ETICS",
+            "th_mm": 5
+          },
+          {
+            "id": "vata_isover_fassade",
+            "name": "vată minerală fațadă",
+            "th_mm": 80
+          },
+          {
+            "id": "strat_armat",
+            "name": "strat armat ceramic",
+            "th_mm": 5
+          },
+          {
+            "id": "placaj_klinker",
+            "name": "adeziv + placaj klinker",
+            "th_mm": 15
+          }
+        ]
+      },
+      "A4": {
+        "id": "A4",
+        "name": "Scară rece contur (klinker ext.)",
+        "applies": [
+          "nord_cold_stair",
+          "scara_rece_contur"
+        ],
+        "thickness_finished_mm": 148,
+        "layers_interior_to_exterior_mm": [
+          {
+            "id": "tencuiala_scara",
+            "name": "tencuială volum scară",
+            "th_mm": 8
+          },
+          {
+            "id": "miez_scara",
+            "name": "miez cărămidă/BA",
+            "th_mm": 120
+          },
+          {
+            "id": "strat_armat",
+            "name": "strat armat / suport",
+            "th_mm": 5
+          },
+          {
+            "id": "placaj_klinker",
+            "name": "adeziv + placaj klinker",
+            "th_mm": 15
+          }
+        ]
+      },
+      "A5": {
+        "id": "A5",
+        "name": "Parapet",
+        "thickness_finished_mm": 116,
+        "layers_interior_to_exterior_mm": [
+          {
+            "id": "tencuiala_fata_1",
+            "name": "tencuială față 1",
+            "th_mm": 8
+          },
+          {
+            "id": "miez_parapet",
+            "name": "miez beton/zidărie",
+            "th_mm": 100
+          },
+          {
+            "id": "tencuiala_fata_2",
+            "name": "tencuială față 2",
+            "th_mm": 8
+          }
+        ]
+      },
+      "A6": {
+        "id": "A6",
+        "name": "Separator casă caldă ↔ scară rece",
+        "applies": [
+          "buc_est",
+          "buc_est_etaj",
+          "house_stair_separator"
+        ],
+        "thickness_finished_mm": 300,
+        "layers_interior_to_exterior_mm": [
+          {
+            "id": "tencuiala_int",
+            "name": "tencuială interioară casă",
+            "th_mm": 6
+          },
+          {
+            "id": "finisare_vopsea",
+            "name": "vopsea",
+            "th_mm": 1
+          },
+          {
+            "id": "caramida_eb20",
+            "name": "EB20 Akustik",
+            "th_mm": 200
+          },
+          {
+            "id": "adeziv_etics",
+            "name": "adeziv",
+            "th_mm": 5
+          },
+          {
+            "id": "vata_isover_fassade",
+            "name": "vată minerală spre scară",
+            "th_mm": 80
+          },
+          {
+            "id": "strat_armat",
+            "name": "strat armat / suport",
+            "th_mm": 5
+          },
+          {
+            "id": "tencuiala_scara",
+            "name": "tencuială volum scară",
+            "th_mm": 8
+          }
+        ],
+        "sum_note": "305 mm → holaj în 300 mm la detalii"
+      },
+      "A7": {
+        "id": "A7",
+        "name": "Interior fono camere",
+        "thickness_finished_mm": 125,
+        "layers_interior_to_exterior_mm": [
+          {
+            "id": "gk_vopsea_1",
+            "name": "GK + vopsea",
+            "th_mm": 12.5
+          },
+          {
+            "id": "montanti_vata_fono",
+            "name": "montanți + vată fono",
+            "th_mm": 100
+          },
+          {
+            "id": "gk_vopsea_2",
+            "name": "GK + vopsea",
+            "th_mm": 12.5
+          }
+        ]
+      },
+      "A8": {
+        "id": "A8",
+        "name": "Interior baie fono + faianță",
+        "thickness_finished_mm": 150,
+        "layers_interior_to_exterior_mm": [
+          {
+            "id": "faianata",
+            "name": "faianță",
+            "th_mm": 8
+          },
+          {
+            "id": "adeziv_faianata",
+            "name": "adeziv",
+            "th_mm": 5
+          },
+          {
+            "id": "gkbi_hidro",
+            "name": "hidro / GKBI",
+            "th_mm": 12.5
+          },
+          {
+            "id": "montanti_vata_fono",
+            "name": "montanți + vată",
+            "th_mm": 100
+          },
+          {
+            "id": "gk_vopsea_2",
+            "name": "GK + vopsea cameră",
+            "th_mm": 12.5
+          }
+        ],
+        "sum_note": "138.5 mm → lock gabarit 150 mm"
+      },
+      "A9": {
+        "id": "A9",
+        "name": "Pocket / TV",
+        "thickness_finished_mm": 125,
+        "thickness_tv_band_mm": 150,
+        "alias_of": "A7"
+      },
+      "A10": {
+        "id": "A10",
+        "name": "Gard trotuar",
+        "thickness_finished_mm": 230,
+        "layers_interior_to_exterior_mm": [
+          {
+            "id": "placaj_klinker",
+            "name": "klinker stradă",
+            "th_mm": 15
+          },
+          {
+            "id": "miez_gard",
+            "name": "miez BA/zidărie",
+            "th_mm": 200
+          },
+          {
+            "id": "placaj_klinker_curte",
+            "name": "klinker curte",
+            "th_mm": 15
+          }
+        ]
+      },
+      "A11": {
+        "id": "A11",
+        "name": "Subsol / curte engleză",
+        "thickness_finished_mm": 326,
+        "layers_interior_to_exterior_mm": [
+          {
+            "id": "tencuiala_beci",
+            "name": "tencuială beci",
+            "th_mm": 10
+          },
+          {
+            "id": "perete_ba",
+            "name": "perete BA",
+            "th_mm": 300
+          },
+          {
+            "id": "hidro",
+            "name": "hidroizolație",
+            "th_mm": 6
+          },
+          {
+            "id": "drenaj",
+            "name": "drenaj / protecție",
+            "th_mm": 10
+          }
+        ]
+      },
+      "A12": {
+        "id": "A12",
+        "name": "Soclu",
+        "height_cm": 40,
+        "finish": "tencuiala_hidrofoba",
+        "note": "bandă pe A1/A2, nu sandwich separat"
+      },
+      "B1": {
+        "id": "B1",
+        "name": "Planșeu între apt. FF→FF",
+        "ff_to_ff_mm": 2880,
+        "layers_top_to_bottom_mm": [
+          {
+            "id": "spc",
+            "name": "SPC + underlay",
+            "th_mm": 20
+          },
+          {
+            "id": "sapa",
+            "name": "șapă",
+            "th_mm": 50
+          },
+          {
+            "id": "tevi",
+            "name": "țevi încălzire",
+            "th_mm": 20
+          },
+          {
+            "id": "izol_sub_sapa",
+            "name": "izolație sub șapă",
+            "th_mm": 30
+          },
+          {
+            "id": "placa_ba",
+            "name": "placă BA",
+            "th_mm": 150
+          },
+          {
+            "id": "fals_plafon",
+            "name": "fals plafon",
+            "th_mm": 60
+          },
+          {
+            "id": "clear",
+            "name": "clear liber",
+            "th_mm": 2550
+          }
+        ]
+      },
+      "B2": {
+        "id": "B2",
+        "name": "Parter peste beci buildup",
+        "buildup_above_slab_mm": 120
+      },
+      "B3": {
+        "id": "B3",
+        "name": "Pardoseală baie",
+        "buildup_above_slab_mm": 125,
+        "upstand_cm": 10
+      },
+      "B4": {
+        "id": "B4",
+        "name": "Terasă",
+        "buildup_above_slab_mm_range": [
+          285,
+          330
+        ],
+        "xps_mm": 80
+      },
+      "B5": {
+        "id": "B5",
+        "name": "Trepte scară finisaj",
+        "finish_mm": 15
+      },
+      "B6": {
+        "id": "B6",
+        "name": "Acoperiș",
+        "insulation_mm": 220,
+        "shell_cm": 18,
+        "pv": true
+      },
+      "B7": {
+        "id": "B7",
+        "name": "Fals plafon",
+        "thickness_mm": 60
+      },
+      "B8": {
+        "id": "B8",
+        "name": "Radier / beci",
+        "typical_mm_range": [
+          280,
+          290
+        ]
+      }
+    },
     "exterior_wall_heated": {
-      "id": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "applies_to": "P_E_heated_envelope",
+      "id": "A1",
+      "alias": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "applies_to": "P_E_heated_plaster_N",
       "products": {
         "brick": "EB20 Akustik 200 mm",
         "insulation": "ISOVER FASSADE 80 mm",
         "etics": "sistem ETICS pe vată — de confirmat furnizor"
       },
-      "structure_role": "beton_portant; cărămida = umplutură neportantă (acustic/termic studiu)",
+      "structure_role": "beton_portant; EB20 = umplutură",
       "layers_interior_to_exterior_mm": [
         {
           "id": "tencuiala_int",
@@ -3763,157 +4556,143 @@
         }
       ],
       "sum_layers_mm": 299,
-      "sum_check": "6+1+200+5+80+5+2=299",
       "thickness_nominal_mm": 299,
       "thickness_finished_max_mm": 300,
       "thickness_finished_cm": 30,
-      "slack_to_max_mm": 1,
-      "envelope_kept_cm": {
-        "ew": 680,
-        "ns": 860
-      },
-      "interior_faces_kept": true,
-      "openings_unchanged": true,
-      "useful_areas_unchanged_by_this_update": true,
       "etics_outside_brick_mm": 92,
       "etics_outside_brick_cm": 9.2,
-      "interior_finish_painted_mm": 7,
       "brick_mm": 200,
-      "legacy_simplified_was": "20_sono+8_termo+2_finisaj",
-      "validation_status": "de_confirmat_furnizor_ETICS_si_proiectant",
-      "not_validated": [
-        "structural",
-        "thermal",
-        "acoustic"
-      ],
-      "foundation": {
-        "bears_on": "beton_structura_sub_caramida",
-        "thermosystem_outside_foundation_cm": 9.2,
-        "thermosystem_note": "ETICS 92 mm (5+80+5+2) în afara feței cărămizii/structurii; nu pe talpă. Finisajul interior 7 mm e spre încăpere.",
-        "footing_beyond_structure_outer_cm": 5,
-        "footing_note": "mică ieșire talpă față de fața cărămizii sub ETICS — nu față de fața finită exterioară",
-        "conflict_vs_prior_10cm": "înainte 10 cm (8+2); acum 9.2 cm — Δ −0.8 cm spre exterior pe falie; anvelopa finită neschimbată"
-      },
-      "interior_finish_tiled_zones": {
-        "note": "Finisaj interior calculat SEPARAT față de vopsea; nu înlocuiește automat straturile din bugetul 299 mm.",
-        "zones": [
-          "baie"
-        ],
-        "layers_interior_to_wall_mm": [
-          {
-            "id": "tencuiala_int",
-            "name": "tencuială interioară",
-            "th_mm": 6
-          },
-          {
-            "id": "adeziv_faianata",
-            "name": "adeziv faianță (ipoteză studiu)",
-            "th_mm": 5
-          },
-          {
-            "id": "faianata",
-            "name": "faianță (ipoteză studiu)",
-            "th_mm": 8
-          }
-        ],
-        "sum_interior_tiled_mm": 19,
-        "painted_interior_mm": 7,
-        "delta_vs_painted_mm": 12,
-        "conflict": "Faianța (19 mm) depășește finisajul vopsit (7 mm) cu +12 mm. Cu EB20+ETICS neschimbate, totalul ar trece peste 300 mm SAU ar reduce clarul încăperii. Planul/golurile/utilul NU au fost corectate automat — de rezolvat cu proiectantul (subțiere locală, nicșă, sau acceptare spațiu).",
-        "status": "CONFLICT_RAPORTAT_fara_corectare_plan"
-      },
-      "conflicts_reported": [
+      "validation_status": "catalog_locked_furnizor_de_confirmat",
+      "note": "A1 standard tencuială (N). A2 klinker = 312 mm (vată 80)."
+    },
+    "exterior_wall_klinker": {
+      "id": "A2",
+      "layers_interior_to_exterior_mm": [
         {
-          "id": "etics_outside_was_10_now_9_2",
-          "severity": "ETICS în afara cărămizii 9.2 cm vs model anterior 10 cm",
-          "action": "date actualizate; anvelopă/camere neschimbate"
+          "id": "tencuiala_int",
+          "name": "tencuială interioară",
+          "th_mm": 6
         },
         {
-          "id": "tiled_interior_exceeds_painted_budget",
-          "severity": "baie: finisaj faianță 19 mm vs 7 mm vopsit (+12 mm)",
-          "action": "raportat; fără micșorare automată camere/goluri"
+          "id": "finisare_vopsea",
+          "name": "finisare și vopsea",
+          "th_mm": 1
         },
         {
-          "id": "nominal_299_vs_wall_ext_30",
-          "severity": "sumă straturi 299 mm în buget max 300 mm (wall_ext_cm=30) — OK cu 1 mm holaj",
-          "action": "niciuna"
+          "id": "caramida_eb20",
+          "name": "EB20 Akustik",
+          "th_mm": 200,
+          "product": "EB20 Akustik"
+        },
+        {
+          "id": "adeziv_etics",
+          "name": "adeziv ETICS",
+          "th_mm": 5
+        },
+        {
+          "id": "vata_isover_fassade",
+          "name": "vată minerală fațadă",
+          "th_mm": 80,
+          "product": "ISOVER FASSADE"
+        },
+        {
+          "id": "strat_armat",
+          "name": "strat armat ceramic",
+          "th_mm": 5
+        },
+        {
+          "id": "placaj_klinker",
+          "name": "adeziv + placaj klinker",
+          "th_mm": 15
         }
       ],
-      "note": "Alcătuire P/E încălzită: EB20 Akustik 200 + ISOVER FASSADE 80. De confirmat cu furnizorul sistemului ETICS și proiectantul. Nu validată structural/termic/acustic."
+      "sum_layers_mm": 312,
+      "thickness_finished_mm": 312,
+      "thickness_finished_cm": 31.2,
+      "delta_vs_A1_mm": 13,
+      "note": "Vată 80 neschimbată; iese în afară — POT/util de recalculat"
+    },
+    "facade_cladding": {
+      "status": "LOCKED_2026-10-15",
+      "nord": "A1_tencuiala",
+      "est_sud_vest": "A2_klinker",
+      "scara_rece_ext": "A4_klinker",
+      "separator_scara": "A6_300",
+      "pot_sensitivity": {
+        "A2_delta_mm_per_face": 13,
+        "envelope_cm": {
+          "ew": 682.6,
+          "ns": 861.3
+        },
+        "footprint_m2": 58.7923,
+        "footprint_before_m2": 58.48,
+        "delta_m2": 0.3123,
+        "status": "geometry_updated"
+      }
     },
     "exterior_wall": {
       "alias_of": "exterior_wall_heated",
       "thickness_finished_cm": 30,
-      "thickness_nominal_mm": 299,
-      "note": "compatibil vechi; detalii complete în exterior_wall_heated"
+      "note": "A1 standard; vezi exterior_wall_klinker pentru A2"
     },
     "stair_volume_cold": {
+      "catalog_id": "A4",
       "heated": false,
       "thermosystem": false,
-      "thermal_separation_from_house": "buc_est / perete casă↔scară",
-      "typical_wall_cm": "10–15 zidărie/parapet — fără 8+2",
-      "foundation_note": "fără termosistem: linia fundației ≈ fața zidăriei reci, nu +10 inset finit",
-      "note": "casa scării = volum rece; casa izolată față de scară"
+      "thickness_finished_mm": 148,
+      "note": "Scară rece contur (klinker ext.)"
     },
     "parapet_no_thermosystem": {
-      "thermosystem": false,
-      "typical_cm": 10,
-      "note": "parapete scară/terasă — fără termosistem"
+      "catalog_id": "A5",
+      "thickness_finished_mm": 116
+    },
+    "house_stair_separator": {
+      "catalog_id": "A6",
+      "thickness_finished_mm": 300
+    },
+    "interior_wall_fono": {
+      "catalog_id": "A7",
+      "thickness_finished_mm": 125,
+      "not": "BCA"
+    },
+    "interior_wall_bath": {
+      "catalog_id": "A8",
+      "thickness_finished_mm": 150
     },
     "interior_wall_pocket": {
+      "catalog_id": "A9",
       "current_cm": 12.5,
-      "kit_125_mm": "compatibil grosime — nu = fonic baie",
-      "thicken_to_cm": 15,
-      "applied": false,
-      "area_impact_m2": 0.15375,
-      "area_note": "brut 2.5×615/10000=0.15375 înainte de goluri"
+      "tv_band_cm": 15
     },
     "floor_between_units": {
+      "catalog_id": "B1",
       "ff_to_ff_cm": 288,
       "buildup": {
-        "note": "FF→FF 288 = 255+6+15+3+2+5+2. Neschimbat.",
+        "note": "B1 locked catalog",
         "clear_to_false_ceiling_cm": 255,
         "false_ceiling_cm": 6,
         "structural_slab_cm": 15,
-        "structural_slab_status": "ipoteză structurist",
         "insulation_under_screed_cm": 3,
         "heating_pipes_zone_cm": 2,
         "screed_above_pipes_cm": 5,
         "finish_complete_cm": 2,
         "floor_buildup_below_ff_cm": 12,
-        "ff_to_ff_cm": 288,
-        "ff_check_sum": "255+6+15+3+2+5+2=288",
-        "stair_risers_ff": 18,
-        "riser_cm": 16,
-        "wall_to_soffit_cm": 261,
-        "entry_steps_to_terrace": 2,
-        "entry_step_riser_cm": 16,
-        "entry_steps_status": "ipoteză",
-        "z_parter_ff_note": "zParter = 2 × riser = ipoteză elevație"
+        "ff_to_ff_cm": 288
       },
-      "floating_screed": "șapă flotantă + bandă perimetrală — REZERVĂ acustică",
-      "acoustic_priority": "trafic stradal + între apartamente",
-      "status": "structură/ipoteză — NECONFIRMAT"
-    },
-    "windows": {
-      "mount": "montaj etanș + spumă/benzi — REZERVĂ",
-      "acoustic": "prioritate trafic Dragalina — Rw NECONFIRMAT"
-    },
-    "thermal_bridges": {
-      "terraces": "continuare izolație / prag — REZERVĂ",
-      "stair": "rupere punți casă↔scară rece (buc_est) — REZERVĂ detaliu",
-      "joinery": "praguri termice — REZERVĂ"
+      "floating_screed": true,
+      "status": "catalog_locked"
     },
     "envelope_zones": {
-      "heated_house": "corp P+E: EB20 Akustik 200 + ISOVER FASSADE 80 (ETICS) — de confirmat furnizor/proiectant",
-      "cold_stair": "bandă scară est — rece, fără ETICS",
-      "note": "anvelopa 680×860 = fața FINITE; fundația față de cărămidă (ETICS 9.2 cm afară), nu de la finit pe fațadele cu ETICS"
+      "heated_plaster_N": "A1",
+      "heated_klinker_ESV": "A2",
+      "cold_stair": "A4",
+      "house_stair_separator": "A6"
     }
   },
   "path_overlays_cm": [
     {
       "id": "path_entry_parter",
-      "x": 360,
+      "x": 361.3,
       "y": 440,
       "dx": 90,
       "dy": 330,
@@ -3925,7 +4704,7 @@
     },
     {
       "id": "path_dorm",
-      "x": 360,
+      "x": 361.3,
       "y": 280,
       "dx": 100,
       "dy": 100,
@@ -3933,7 +4712,7 @@
     },
     {
       "id": "path_bath",
-      "x": 360,
+      "x": 361.3,
       "y": 170,
       "dx": 100,
       "dy": 90,
@@ -3941,7 +4720,7 @@
     },
     {
       "id": "path_entry_etaj",
-      "x": 430,
+      "x": 431.3,
       "y": 400,
       "dx": 100,
       "dy": 80,
@@ -3952,7 +4731,7 @@
     },
     {
       "id": "path_tv_canapea_p",
-      "x": 373,
+      "x": 374.3,
       "y": 490,
       "dx": 187,
       "dy": 90,
@@ -4320,7 +5099,7 @@
     "status": "studiu_A1_slab_transport",
     "concept_note": "A1: palier 110 cm / goluri 100 păstrate studiu; planșeu peste Y490–590; puț deschis Y590–860.",
     "ramp2_ref": {
-      "x": 565,
+      "x": 566.3,
       "y": 590,
       "dx": 115,
       "dy": 270
@@ -4341,7 +5120,7 @@
       "delta_cm": 95,
       "riser_cm": 15.833333333333334,
       "tread_cm": 28,
-      "x": 565,
+      "x": 566.3,
       "y": 868,
       "dx": 115,
       "dy": 168,
@@ -4351,7 +5130,7 @@
       "note": "Y868–1036: +8 cm sud vs Y860 (elimină H=179,7 sub muchia podest_se Y975)"
     },
     "local_court_drop": {
-      "x": 565,
+      "x": 566.3,
       "y": 800,
       "dx": 115,
       "dy": 68,
@@ -4361,7 +5140,7 @@
     },
     "entry_door": {
       "id": "usa_acces_subsol_ext",
-      "x": 565,
+      "x": 566.3,
       "y": 800,
       "dx": 30,
       "dy": 90,
@@ -4372,7 +5151,7 @@
     "stair": {
       "align": "along_ramp2",
       "inside_ramp2_band": true,
-      "x": 565,
+      "x": 566.3,
       "y": 600,
       "dx": 100,
       "dy": 200,
@@ -4399,7 +5178,7 @@
       "note": "clear 100 cm (est 15); Y600–800"
     },
     "upper_landing": {
-      "x": 565,
+      "x": 566.3,
       "y": 800,
       "dx": 115,
       "dy": 68,
@@ -4408,7 +5187,7 @@
       "note": "prelungit la Y868 (dy=68) — fără gol față de rampă"
     },
     "lower_landing": {
-      "x": 565,
+      "x": 566.3,
       "y": 490,
       "dx": 115,
       "dy": 110,
@@ -4418,7 +5197,7 @@
     },
     "door_to_rooms": {
       "id": "usa_subsol_camere",
-      "x": 535,
+      "x": 536.3,
       "y": 500,
       "dx": 30,
       "dy": 100,
@@ -4439,7 +5218,7 @@
     "rooms": [
       {
         "id": "camera_tehnica",
-        "x": 30,
+        "x": 31.3,
         "y": 30,
         "dx": 505,
         "dy": 370,
@@ -4449,7 +5228,7 @@
       },
       {
         "id": "depozit_subsol",
-        "x": 30,
+        "x": 31.3,
         "y": 400,
         "dx": 330,
         "dy": 245,
@@ -4459,7 +5238,7 @@
       },
       {
         "id": "hol_subsol",
-        "x": 360,
+        "x": 361.3,
         "y": 400,
         "dx": 175,
         "dy": 245,
@@ -4475,7 +5254,7 @@
         "w_cm": 55,
         "d_cm": 30,
         "h_cm": 80,
-        "x": 50,
+        "x": 51.3,
         "y": 50,
         "service_front_cm": 100,
         "service_side_cm": 50,
@@ -4492,7 +5271,7 @@
         "w_cm": 70,
         "d_cm": 25,
         "h_cm": 110,
-        "x": 130,
+        "x": 131.3,
         "y": 50,
         "service_front_cm": 80,
         "room": "camera_tehnica",
@@ -4506,7 +5285,7 @@
         "w_cm": 70,
         "d_cm": 25,
         "h_cm": 110,
-        "x": 210,
+        "x": 211.3,
         "y": 50,
         "service_front_cm": 80,
         "room": "camera_tehnica",
@@ -4519,7 +5298,7 @@
         "w_cm": 70,
         "d_cm": 25,
         "h_cm": 110,
-        "x": 290,
+        "x": 291.3,
         "y": 50,
         "service_front_cm": 80,
         "room": "camera_tehnica",
@@ -4532,7 +5311,7 @@
         "w_cm": 70,
         "d_cm": 25,
         "h_cm": 110,
-        "x": 370,
+        "x": 371.3,
         "y": 50,
         "service_front_cm": 80,
         "room": "camera_tehnica",
@@ -4544,7 +5323,7 @@
         "w_cm": 70,
         "d_cm": 25,
         "h_cm": 110,
-        "x": 450,
+        "x": 451.3,
         "y": 50,
         "service_front_cm": 80,
         "room": "camera_tehnica",
@@ -4556,7 +5335,7 @@
         "w_cm": 100,
         "d_cm": 25,
         "h_cm": 140,
-        "x": 50,
+        "x": 51.3,
         "y": 200,
         "service_front_cm": 100,
         "room": "camera_tehnica",
@@ -4570,7 +5349,7 @@
         "w_cm": 40,
         "d_cm": 20,
         "h_cm": 60,
-        "x": 180,
+        "x": 181.3,
         "y": 200,
         "service_front_cm": 80,
         "room": "camera_tehnica",
@@ -4583,7 +5362,7 @@
         "w_cm": 60,
         "d_cm": 40,
         "h_cm": 80,
-        "x": 250,
+        "x": 251.3,
         "y": 200,
         "service_front_cm": 70,
         "room": "camera_tehnica",
@@ -4603,21 +5382,21 @@
       "rooms": {
         "camera_tehnica": {
           "brut_m2": 18.68,
-          "x": 30,
+          "x": 31.3,
           "y": 30,
           "dx": 505,
           "dy": 370
         },
         "depozit_subsol": {
           "brut_m2": 8.09,
-          "x": 30,
+          "x": 31.3,
           "y": 400,
           "dx": 330,
           "dy": 245
         },
         "hol_subsol": {
           "brut_m2": 4.287,
-          "x": 360,
+          "x": 361.3,
           "y": 400,
           "dx": 175,
           "dy": 245
@@ -4652,7 +5431,7 @@
     },
     "slab_coordination_cm": {
       "living_parter": {
-        "x": 360,
+        "x": 361.3,
         "y": 90,
         "dx": 290,
         "dy": 380,
@@ -4664,7 +5443,7 @@
       ],
       "open_shaft_allowed_y0": 590,
       "covered_landing": {
-        "x": 565,
+        "x": 566.3,
         "y": 490,
         "dx": 115,
         "dy": 100,
@@ -4673,7 +5452,7 @@
         "note": "palier inferior sub planșeu parter (sandwich) — nu gol structural"
       },
       "open_shaft": {
-        "x": 565,
+        "x": 566.3,
         "y": 590,
         "dx": 115,
         "dy": 270,
@@ -4688,7 +5467,7 @@
       "edge_beam_dx": 115,
       "edge_beam_mode": "inverted_study",
       "inverted_edge_beam": {
-        "x": 565,
+        "x": 566.3,
         "y": 575,
         "dx": 115,
         "dy": 15,
@@ -4830,7 +5609,7 @@
       "cold_stair_note": "volum scară rece; casă izolată la buc_est"
     },
     "open_shaft_cm": {
-      "x": 565,
+      "x": 566.3,
       "y": 590,
       "dx": 115,
       "dy": 270,
@@ -4845,7 +5624,7 @@
       {
         "id": "usa_hol_ct",
         "wall": "subsol_zid_ct_sud",
-        "x": 375,
+        "x": 376.3,
         "y": 393.75,
         "dx": 100,
         "dy": 12.5,
@@ -4863,7 +5642,7 @@
       {
         "id": "usa_hol_dep",
         "wall": "subsol_zid_dep_hol",
-        "x": 353.75,
+        "x": 355.05,
         "y": 470,
         "dx": 12.5,
         "dy": 100,
@@ -4980,7 +5759,7 @@
               "cx": 615,
               "cy": 787.5,
               "aabb": {
-                "x": 575,
+                "x": 576.3,
                 "y": 742.5,
                 "dx": 80,
                 "dy": 90
@@ -4995,7 +5774,7 @@
               "cx": 615,
               "cy": 762.5,
               "aabb": {
-                "x": 575,
+                "x": 576.3,
                 "y": 717.5,
                 "dx": 80,
                 "dy": 90
@@ -5010,7 +5789,7 @@
               "cx": 615,
               "cy": 737.5,
               "aabb": {
-                "x": 575,
+                "x": 576.3,
                 "y": 692.5,
                 "dx": 80,
                 "dy": 90
@@ -5025,7 +5804,7 @@
               "cx": 615,
               "cy": 712.5,
               "aabb": {
-                "x": 575,
+                "x": 576.3,
                 "y": 667.5,
                 "dx": 80,
                 "dy": 90
@@ -5040,7 +5819,7 @@
               "cx": 615,
               "cy": 687.5,
               "aabb": {
-                "x": 575,
+                "x": 576.3,
                 "y": 642.5,
                 "dx": 80,
                 "dy": 90
@@ -5055,7 +5834,7 @@
               "cx": 615,
               "cy": 662.5,
               "aabb": {
-                "x": 575,
+                "x": 576.3,
                 "y": 617.5,
                 "dx": 80,
                 "dy": 90
@@ -5070,7 +5849,7 @@
               "cx": 615,
               "cy": 637.5,
               "aabb": {
-                "x": 575,
+                "x": 576.3,
                 "y": 592.5,
                 "dx": 80,
                 "dy": 90
@@ -5085,7 +5864,7 @@
               "cx": 615,
               "cy": 612.5,
               "aabb": {
-                "x": 575,
+                "x": 576.3,
                 "y": 567.5,
                 "dx": 80,
                 "dy": 90
@@ -5100,7 +5879,7 @@
               "cx": 615,
               "cy": 545,
               "aabb": {
-                "x": 575,
+                "x": 576.3,
                 "y": 500,
                 "dx": 80,
                 "dy": 90
@@ -5115,7 +5894,7 @@
               "cx": 604.2,
               "cy": 550,
               "aabb": {
-                "x": 555,
+                "x": 556.3,
                 "y": 497.3,
                 "dx": 98.3,
                 "dy": 105.4
@@ -5136,7 +5915,7 @@
               "cx": 593.3,
               "cy": 550,
               "aabb": {
-                "x": 538,
+                "x": 539.3,
                 "y": 492.9,
                 "dx": 110.6,
                 "dy": 114.3
@@ -5157,7 +5936,7 @@
               "cx": 582.5,
               "cy": 550,
               "aabb": {
-                "x": 524.5,
+                "x": 525.8,
                 "y": 492,
                 "dx": 116.1,
                 "dy": 116.1
@@ -5179,7 +5958,7 @@
               "cx": 571.7,
               "cy": 550,
               "aabb": {
-                "x": 514.5,
+                "x": 515.8,
                 "y": 494.7,
                 "dx": 114.3,
                 "dy": 110.6
@@ -5201,7 +5980,7 @@
               "cx": 560.8,
               "cy": 550,
               "aabb": {
-                "x": 508.1,
+                "x": 509.4,
                 "y": 500.8,
                 "dx": 105.4,
                 "dy": 98.3
@@ -5220,7 +5999,7 @@
               "cx": 550,
               "cy": 550,
               "aabb": {
-                "x": 505,
+                "x": 506.3,
                 "y": 510,
                 "dx": 90,
                 "dy": 80
@@ -5235,7 +6014,7 @@
               "cx": 550,
               "cy": 550,
               "aabb": {
-                "x": 505,
+                "x": 506.3,
                 "y": 510,
                 "dx": 90,
                 "dy": 80
@@ -5250,7 +6029,7 @@
               "cx": 485,
               "cy": 550,
               "aabb": {
-                "x": 440,
+                "x": 441.3,
                 "y": 510,
                 "dx": 90,
                 "dy": 80
@@ -5314,7 +6093,7 @@
             "cx": 615,
             "cy": 787.5,
             "aabb": {
-              "x": 575,
+              "x": 576.3,
               "y": 742.5,
               "dx": 80,
               "dy": 90
@@ -5329,7 +6108,7 @@
             "cx": 615,
             "cy": 762.5,
             "aabb": {
-              "x": 575,
+              "x": 576.3,
               "y": 717.5,
               "dx": 80,
               "dy": 90
@@ -5344,7 +6123,7 @@
             "cx": 615,
             "cy": 737.5,
             "aabb": {
-              "x": 575,
+              "x": 576.3,
               "y": 692.5,
               "dx": 80,
               "dy": 90
@@ -5359,7 +6138,7 @@
             "cx": 615,
             "cy": 712.5,
             "aabb": {
-              "x": 575,
+              "x": 576.3,
               "y": 667.5,
               "dx": 80,
               "dy": 90
@@ -5374,7 +6153,7 @@
             "cx": 615,
             "cy": 687.5,
             "aabb": {
-              "x": 575,
+              "x": 576.3,
               "y": 642.5,
               "dx": 80,
               "dy": 90
@@ -5389,7 +6168,7 @@
             "cx": 615,
             "cy": 662.5,
             "aabb": {
-              "x": 575,
+              "x": 576.3,
               "y": 617.5,
               "dx": 80,
               "dy": 90
@@ -5404,7 +6183,7 @@
             "cx": 615,
             "cy": 637.5,
             "aabb": {
-              "x": 575,
+              "x": 576.3,
               "y": 592.5,
               "dx": 80,
               "dy": 90
@@ -5419,7 +6198,7 @@
             "cx": 615,
             "cy": 612.5,
             "aabb": {
-              "x": 575,
+              "x": 576.3,
               "y": 567.5,
               "dx": 80,
               "dy": 90
@@ -5434,7 +6213,7 @@
             "cx": 615,
             "cy": 545,
             "aabb": {
-              "x": 575,
+              "x": 576.3,
               "y": 500,
               "dx": 80,
               "dy": 90
@@ -5449,7 +6228,7 @@
             "cx": 604.2,
             "cy": 550,
             "aabb": {
-              "x": 555,
+              "x": 556.3,
               "y": 497.3,
               "dx": 98.3,
               "dy": 105.4
@@ -5470,7 +6249,7 @@
             "cx": 593.3,
             "cy": 550,
             "aabb": {
-              "x": 538,
+              "x": 539.3,
               "y": 492.9,
               "dx": 110.6,
               "dy": 114.3
@@ -5491,7 +6270,7 @@
             "cx": 582.5,
             "cy": 550,
             "aabb": {
-              "x": 524.5,
+              "x": 525.8,
               "y": 492,
               "dx": 116.1,
               "dy": 116.1
@@ -5513,7 +6292,7 @@
             "cx": 571.7,
             "cy": 550,
             "aabb": {
-              "x": 514.5,
+              "x": 515.8,
               "y": 494.7,
               "dx": 114.3,
               "dy": 110.6
@@ -5535,7 +6314,7 @@
             "cx": 560.8,
             "cy": 550,
             "aabb": {
-              "x": 508.1,
+              "x": 509.4,
               "y": 500.8,
               "dx": 105.4,
               "dy": 98.3
@@ -5554,7 +6333,7 @@
             "cx": 550,
             "cy": 550,
             "aabb": {
-              "x": 505,
+              "x": 506.3,
               "y": 510,
               "dx": 90,
               "dy": 80
@@ -5569,7 +6348,7 @@
             "cx": 550,
             "cy": 550,
             "aabb": {
-              "x": 505,
+              "x": 506.3,
               "y": 510,
               "dx": 90,
               "dy": 80
@@ -5584,7 +6363,7 @@
             "cx": 485,
             "cy": 550,
             "aabb": {
-              "x": 440,
+              "x": 441.3,
               "y": 510,
               "dx": 90,
               "dy": 80
@@ -6617,7 +7396,7 @@
             "cx": 615,
             "cy": 787.5,
             "aabb": {
-              "x": 570,
+              "x": 571.3,
               "y": 747.5,
               "dx": 90,
               "dy": 80
@@ -6632,7 +7411,7 @@
             "cx": 615,
             "cy": 762.5,
             "aabb": {
-              "x": 570,
+              "x": 571.3,
               "y": 722.5,
               "dx": 90,
               "dy": 80
@@ -6647,7 +7426,7 @@
             "cx": 615,
             "cy": 737.5,
             "aabb": {
-              "x": 570,
+              "x": 571.3,
               "y": 697.5,
               "dx": 90,
               "dy": 80
@@ -6662,7 +7441,7 @@
             "cx": 615,
             "cy": 712.5,
             "aabb": {
-              "x": 570,
+              "x": 571.3,
               "y": 672.5,
               "dx": 90,
               "dy": 80
@@ -6677,7 +7456,7 @@
             "cx": 615,
             "cy": 687.5,
             "aabb": {
-              "x": 570,
+              "x": 571.3,
               "y": 647.5,
               "dx": 90,
               "dy": 80
@@ -6692,7 +7471,7 @@
             "cx": 615,
             "cy": 662.5,
             "aabb": {
-              "x": 570,
+              "x": 571.3,
               "y": 622.5,
               "dx": 90,
               "dy": 80
@@ -6707,7 +7486,7 @@
             "cx": 615,
             "cy": 637.5,
             "aabb": {
-              "x": 570,
+              "x": 571.3,
               "y": 597.5,
               "dx": 90,
               "dy": 80
@@ -6722,7 +7501,7 @@
             "cx": 615,
             "cy": 612.5,
             "aabb": {
-              "x": 570,
+              "x": 571.3,
               "y": 572.5,
               "dx": 90,
               "dy": 80
@@ -6737,7 +7516,7 @@
             "cx": 615,
             "cy": 545,
             "aabb": {
-              "x": 570,
+              "x": 571.3,
               "y": 505,
               "dx": 90,
               "dy": 80
@@ -6752,7 +7531,7 @@
             "cx": 604.2,
             "cy": 550,
             "aabb": {
-              "x": 550.3,
+              "x": 551.6,
               "y": 499.7,
               "dx": 107.6,
               "dy": 100.6
@@ -6774,7 +7553,7 @@
             "cx": 593.3,
             "cy": 550,
             "aabb": {
-              "x": 534.4,
+              "x": 535.7,
               "y": 492.9,
               "dx": 117.9,
               "dy": 114.3
@@ -6797,7 +7576,7 @@
             "cx": 582.5,
             "cy": 550,
             "aabb": {
-              "x": 522.4,
+              "x": 523.7,
               "y": 489.9,
               "dx": 120.2,
               "dy": 120.2
@@ -6823,7 +7602,7 @@
             "cx": 571.7,
             "cy": 550,
             "aabb": {
-              "x": 514.5,
+              "x": 515.8,
               "y": 491,
               "dx": 114.3,
               "dy": 117.9
@@ -6846,7 +7625,7 @@
             "cx": 560.8,
             "cy": 550,
             "aabb": {
-              "x": 510.5,
+              "x": 511.8,
               "y": 496.2,
               "dx": 100.6,
               "dy": 107.6
@@ -6869,7 +7648,7 @@
             "cx": 550,
             "cy": 550,
             "aabb": {
-              "x": 510,
+              "x": 511.3,
               "y": 505,
               "dx": 80,
               "dy": 90
@@ -6887,7 +7666,7 @@
             "cx": 550,
             "cy": 550,
             "aabb": {
-              "x": 510,
+              "x": 511.3,
               "y": 505,
               "dx": 80,
               "dy": 90
@@ -6905,7 +7684,7 @@
             "cx": 485,
             "cy": 550,
             "aabb": {
-              "x": 445,
+              "x": 446.3,
               "y": 505,
               "dx": 80,
               "dy": 90
@@ -7340,7 +8119,7 @@
     "columns": [
       {
         "id": "C_NW",
-        "x": 9.2,
+        "x": 10.5,
         "y": 9.2,
         "dx": 40,
         "dy": 30,
@@ -7354,8 +8133,8 @@
         "protrusion_into_room_cm": 10,
         "section_cm": "40×30",
         "etics_outside_band_cm": {
-          "x0": 0,
-          "x1": 9.2,
+          "x0": 1.3,
+          "x1": 10.5,
           "y0": 0,
           "y1": 9.2,
           "th": 9.2
@@ -7369,7 +8148,7 @@
       },
       {
         "id": "C_N_MID",
-        "x": 320,
+        "x": 321.3,
         "y": 9.2,
         "dx": 40,
         "dy": 30,
@@ -7389,7 +8168,7 @@
       },
       {
         "id": "C_NE",
-        "x": 640,
+        "x": 641.3,
         "y": 9.2,
         "dx": 30,
         "dy": 40,
@@ -7408,15 +8187,15 @@
           "proeminență în capăt blat_tail_p — capăt mobilier adaptat"
         ],
         "etics_outside_band_cm": {
-          "x0": 670.8,
-          "x1": 680,
+          "x0": 672.1,
+          "x1": 681.3,
           "th": 9.2
         },
         "continuous_through_floor": true
       },
       {
         "id": "C_W_MID",
-        "x": 9.2,
+        "x": 10.5,
         "y": 400,
         "dx": 30,
         "dy": 40,
@@ -7432,8 +8211,8 @@
         "section_status": "de confirmat prin calcul și cerințe normative",
         "wall": "vest — 30×40 (NU redus pt. pat)",
         "etics_outside_band_cm": {
-          "x0": 0,
-          "x1": 9.2,
+          "x0": 1.3,
+          "x1": 10.5,
           "th": 9.2
         },
         "conflicts": [
@@ -7444,7 +8223,7 @@
       },
       {
         "id": "C_W_DORM",
-        "x": 9.2,
+        "x": 10.5,
         "y": 635.8,
         "dx": 40,
         "dy": 30,
@@ -7471,7 +8250,7 @@
       },
       {
         "id": "C_S_DORM_E",
-        "x": 330,
+        "x": 331.3,
         "y": 635.8,
         "dx": 30,
         "dy": 30,
@@ -7498,7 +8277,7 @@
       },
       {
         "id": "C_E_GEAM_S",
-        "x": 640,
+        "x": 641.3,
         "y": 310,
         "dx": 30,
         "dy": 40,
@@ -7514,15 +8293,15 @@
         "section_status": "de confirmat prin calcul și cerințe normative (P100 — aplicabilitate pe sistem/ductilitate)",
         "wall": "est S de geam",
         "etics_outside_band_cm": {
-          "x0": 670.8,
-          "x1": 680,
+          "x0": 672.1,
+          "x1": 681.3,
           "th": 9.2
         },
         "continuous_through_floor": true
       },
       {
         "id": "C_E_PAL",
-        "x": 640,
+        "x": 641.3,
         "y": 449,
         "dx": 30,
         "dy": 40,
@@ -7546,15 +8325,15 @@
         ],
         "clear_landing": "y1=489 ≤ lower_landing Y490",
         "etics_outside_band_cm": {
-          "x0": 670.8,
-          "x1": 680,
+          "x0": 672.1,
+          "x1": 681.3,
           "th": 9.2
         },
         "continuous_through_floor": true
       },
       {
         "id": "C_CASA_SCARA",
-        "x": 535,
+        "x": 536.3,
         "y": 610,
         "dx": 30,
         "dy": 40,
@@ -7567,8 +8346,8 @@
         "support_below": "fundație X535",
         "protrusion_into_room_cm": 0,
         "etics_cold_band_cm": {
-          "x0": 565,
-          "x1": 574.2,
+          "x0": 566.3,
+          "x1": 575.5,
           "th": 9.2,
           "note": "vată pe fața rece scară; beton doar în falie X535–565"
         },
@@ -7583,7 +8362,7 @@
       },
       {
         "id": "C_SHAFT_E_PIER",
-        "x": 665,
+        "x": 666.3,
         "y": 575,
         "dx": 15,
         "dy": 15,
@@ -7599,7 +8378,7 @@
       },
       {
         "id": "C_S_INTRARE_W",
-        "x": 360,
+        "x": 361.3,
         "y": 820.8,
         "dx": 40,
         "dy": 30,
@@ -7624,7 +8403,7 @@
       },
       {
         "id": "C_S_INTRARE_E",
-        "x": 535,
+        "x": 536.3,
         "y": 820.8,
         "dx": 30,
         "dy": 30,
@@ -7651,7 +8430,7 @@
     "beams": [
       {
         "id": "B_N",
-        "x": 9.2,
+        "x": 10.5,
         "y": 9.2,
         "dx": 670.8,
         "dy": 30,
@@ -7668,7 +8447,7 @@
       },
       {
         "id": "B_W",
-        "x": 9.2,
+        "x": 10.5,
         "y": 9.2,
         "dx": 30,
         "dy": 656.5999999999999,
@@ -7685,7 +8464,7 @@
       },
       {
         "id": "B_E",
-        "x": 640,
+        "x": 641.3,
         "y": 9.2,
         "dx": 30,
         "dy": 479.8,
@@ -7702,7 +8481,7 @@
       },
       {
         "id": "B_CASA_SCARA",
-        "x": 535,
+        "x": 536.3,
         "y": 610,
         "dx": 30,
         "dy": 250,
@@ -7719,7 +8498,7 @@
       },
       {
         "id": "B_Y590_EDGE_INVERTED",
-        "x": 565,
+        "x": 566.3,
         "y": 575,
         "dx": 115,
         "dy": 15,
@@ -7738,7 +8517,7 @@
       },
       {
         "id": "B_SEP_AFTER_DOOR",
-        "x": 535,
+        "x": 536.3,
         "y": 600,
         "dx": 30,
         "dy": 10,
@@ -7754,7 +8533,7 @@
       },
       {
         "id": "B_Y645",
-        "x": 9.2,
+        "x": 10.5,
         "y": 645,
         "dx": 350.8,
         "dy": 30,
@@ -7770,7 +8549,7 @@
       },
       {
         "id": "B_X360_DORM_INTRARE",
-        "x": 330,
+        "x": 331.3,
         "y": 645,
         "dx": 70,
         "dy": 205.79999999999995,
@@ -7786,7 +8565,7 @@
       },
       {
         "id": "B_Y830",
-        "x": 360,
+        "x": 361.3,
         "y": 830,
         "dx": 205,
         "dy": 30,
@@ -7802,7 +8581,7 @@
       },
       {
         "id": "B_Y470_PALIER_EDGE",
-        "x": 535,
+        "x": 536.3,
         "y": 470,
         "dx": 145,
         "dy": 30,
@@ -7817,7 +8596,7 @@
       }
     ],
     "inverted_edge_beam": {
-      "x": 565,
+      "x": 566.3,
       "y": 575,
       "dx": 115,
       "dy": 15,
@@ -7939,20 +8718,20 @@
     },
     "access_clearances": {
       "basement_stair_clear": {
-        "x0": 565,
-        "x1": 665,
+        "x0": 566.3,
+        "x1": 666.3,
         "y0": 600,
         "y1": 800
       },
       "lower_landing": {
-        "x0": 565,
-        "x1": 680,
+        "x0": 566.3,
+        "x1": 681.3,
         "y0": 490,
         "y1": 600
       },
       "door": {
-        "x0": 535,
-        "x1": 565,
+        "x0": 536.3,
+        "x1": 566.3,
         "y0": 500,
         "y1": 600
       },
@@ -7978,58 +8757,61 @@
     }
   },
   "interior_polygon_etaj_cm": {
-    "note": "Frame E util STUDIO: EXCLUDE palier scară rece (nu vestibul) + exterior; NU copiază usefulP",
+    "note": "Util ETAJ studio: exclude palier scară rece + exterior",
+    "level": "etaj",
     "vertices": [
       [
-        30,
+        31.3,
         30
       ],
       [
-        650,
+        651.3,
         30
       ],
       [
-        650,
+        651.3,
         470
       ],
       [
-        565,
+        566.3,
         470
       ],
       [
-        565,
+        566.3,
         590
       ],
       [
-        535,
+        536.3,
         590
       ],
       [
-        535,
+        536.3,
         830
       ],
       [
-        360,
+        361.3,
         830
       ],
       [
-        360,
+        361.3,
         645
       ],
       [
-        30,
+        31.3,
         645
       ],
       [
-        30,
+        31.3,
         30
       ]
     ],
     "excludes": [
       "terasa",
-      "uncovered_south",
-      "rampă_exterioară",
-      "palier_scara_rece"
+      "palier_scara_rece",
+      "rampa_exterioara"
     ]
-  }
+  },
+  "assemblies_catalog_ref": "data/building/assemblies_v01.json",
+  "wall_ext_note": "30 cm = A1 standard. A2 klinker = 31.2 cm (iese afară). A6 separator = 30 cm.",
+  "wall_int_note": "12.5 cm = A7 fono. A8 baie = 15 cm."
 }

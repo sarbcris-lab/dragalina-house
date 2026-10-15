@@ -1,0 +1,241 @@
+{
+  "meta": {
+    "id": "assemblies_v01",
+    "status": "CONFIRMAT_2026-10-15",
+    "decision_ref": "decisions/assemblies_catalog_v01.md",
+    "units": "mm",
+    "notes": [
+      "A1/A6 ≈300 mm anvelopă caldă; A2=312 vată 80 neschimbată (iese afară)",
+      "A7 fono 125 fără BCA; A8 baie ≈150",
+      "Spații/POT de recalculat unde A2/A3/A8 îngroașă"
+    ]
+  },
+  "by_id": {
+    "A1": {
+      "id": "A1",
+      "name": "Ext. încălzit tencuială",
+      "applies": ["nord_heated", "nise", "retrageri_tencuite"],
+      "thickness_finished_mm": 299,
+      "layers_interior_to_exterior_mm": [
+        { "id": "tencuiala_int", "name": "tencuială interioară", "th_mm": 6 },
+        { "id": "finisare_vopsea", "name": "finisare și vopsea", "th_mm": 1 },
+        { "id": "caramida_eb20", "name": "EB20 Akustik", "th_mm": 200, "product": "EB20 Akustik" },
+        { "id": "adeziv_etics", "name": "adeziv ETICS", "th_mm": 5 },
+        { "id": "vata_isover_fassade", "name": "vată minerală fațadă", "th_mm": 80, "product": "ISOVER FASSADE" },
+        { "id": "strat_armat", "name": "strat armat", "th_mm": 5 },
+        { "id": "grund_decorativa", "name": "grund și tencuială decorativă", "th_mm": 2 }
+      ]
+    },
+    "A2": {
+      "id": "A2",
+      "name": "Ext. încălzit klinker",
+      "applies": ["est_dragalina", "sud_closca", "vest_curte"],
+      "thickness_finished_mm": 312,
+      "delta_vs_A1_mm": 13,
+      "layers_interior_to_exterior_mm": [
+        { "id": "tencuiala_int", "name": "tencuială interioară", "th_mm": 6 },
+        { "id": "finisare_vopsea", "name": "finisare și vopsea", "th_mm": 1 },
+        { "id": "caramida_eb20", "name": "EB20 Akustik", "th_mm": 200, "product": "EB20 Akustik" },
+        { "id": "adeziv_etics", "name": "adeziv ETICS", "th_mm": 5 },
+        { "id": "vata_isover_fassade", "name": "vată minerală fațadă", "th_mm": 80, "product": "ISOVER FASSADE" },
+        { "id": "strat_armat", "name": "strat armat ceramic", "th_mm": 5 },
+        { "id": "placaj_klinker", "name": "adeziv + placaj klinker", "th_mm": 15 }
+      ]
+    },
+    "A3_N": {
+      "id": "A3_N",
+      "name": "Ext. baie pe fațadă tencuială",
+      "thickness_finished_mm": 311,
+      "layers_interior_to_exterior_mm": [
+        { "id": "faianata", "name": "faianță", "th_mm": 8 },
+        { "id": "adeziv_faianata", "name": "adeziv faianță", "th_mm": 5 },
+        { "id": "tencuiala_int", "name": "tencuială interioară", "th_mm": 6 },
+        { "id": "caramida_eb20", "name": "EB20 Akustik", "th_mm": 200 },
+        { "id": "adeziv_etics", "name": "adeziv ETICS", "th_mm": 5 },
+        { "id": "vata_isover_fassade", "name": "vată minerală fațadă", "th_mm": 80 },
+        { "id": "strat_armat", "name": "strat armat", "th_mm": 5 },
+        { "id": "grund_decorativa", "name": "grund și tencuială decorativă", "th_mm": 2 }
+      ]
+    },
+    "A3_K": {
+      "id": "A3_K",
+      "name": "Ext. baie pe fațadă klinker",
+      "thickness_finished_mm": 324,
+      "layers_interior_to_exterior_mm": [
+        { "id": "faianata", "name": "faianță", "th_mm": 8 },
+        { "id": "adeziv_faianata", "name": "adeziv faianță", "th_mm": 5 },
+        { "id": "tencuiala_int", "name": "tencuială interioară", "th_mm": 6 },
+        { "id": "caramida_eb20", "name": "EB20 Akustik", "th_mm": 200 },
+        { "id": "adeziv_etics", "name": "adeziv ETICS", "th_mm": 5 },
+        { "id": "vata_isover_fassade", "name": "vată minerală fațadă", "th_mm": 80 },
+        { "id": "strat_armat", "name": "strat armat ceramic", "th_mm": 5 },
+        { "id": "placaj_klinker", "name": "adeziv + placaj klinker", "th_mm": 15 }
+      ]
+    },
+    "A4": {
+      "id": "A4",
+      "name": "Scară rece contur (klinker ext.)",
+      "applies": ["nord_cold_stair", "scara_rece_contur"],
+      "thickness_finished_mm": 148,
+      "layers_interior_to_exterior_mm": [
+        { "id": "tencuiala_scara", "name": "tencuială volum scară", "th_mm": 8 },
+        { "id": "miez_scara", "name": "miez cărămidă/BA", "th_mm": 120 },
+        { "id": "strat_armat", "name": "strat armat / suport", "th_mm": 5 },
+        { "id": "placaj_klinker", "name": "adeziv + placaj klinker", "th_mm": 15 }
+      ]
+    },
+    "A5": {
+      "id": "A5",
+      "name": "Parapet",
+      "thickness_finished_mm": 116,
+      "layers_interior_to_exterior_mm": [
+        { "id": "tencuiala_fata_1", "name": "tencuială față 1", "th_mm": 8 },
+        { "id": "miez_parapet", "name": "miez beton/zidărie", "th_mm": 100 },
+        { "id": "tencuiala_fata_2", "name": "tencuială față 2", "th_mm": 8 }
+      ]
+    },
+    "A6": {
+      "id": "A6",
+      "name": "Separator casă caldă ↔ scară rece",
+      "applies": ["buc_est", "buc_est_etaj", "house_stair_separator"],
+      "thickness_finished_mm": 300,
+      "layers_interior_to_exterior_mm": [
+        { "id": "tencuiala_int", "name": "tencuială interioară casă", "th_mm": 6 },
+        { "id": "finisare_vopsea", "name": "vopsea", "th_mm": 1 },
+        { "id": "caramida_eb20", "name": "EB20 Akustik", "th_mm": 200 },
+        { "id": "adeziv_etics", "name": "adeziv", "th_mm": 5 },
+        { "id": "vata_isover_fassade", "name": "vată minerală spre scară", "th_mm": 80 },
+        { "id": "strat_armat", "name": "strat armat / suport", "th_mm": 5 },
+        { "id": "tencuiala_scara", "name": "tencuială volum scară", "th_mm": 8 }
+      ],
+      "sum_note": "305 mm → holaj în 300 mm la detalii"
+    },
+    "A7": {
+      "id": "A7",
+      "name": "Interior fono camere",
+      "thickness_finished_mm": 125,
+      "layers_interior_to_exterior_mm": [
+        { "id": "gk_vopsea_1", "name": "GK + vopsea", "th_mm": 12.5 },
+        { "id": "montanti_vata_fono", "name": "montanți + vată fono", "th_mm": 100 },
+        { "id": "gk_vopsea_2", "name": "GK + vopsea", "th_mm": 12.5 }
+      ]
+    },
+    "A8": {
+      "id": "A8",
+      "name": "Interior baie fono + faianță",
+      "thickness_finished_mm": 150,
+      "layers_interior_to_exterior_mm": [
+        { "id": "faianata", "name": "faianță", "th_mm": 8 },
+        { "id": "adeziv_faianata", "name": "adeziv", "th_mm": 5 },
+        { "id": "gkbi_hidro", "name": "hidro / GKBI", "th_mm": 12.5 },
+        { "id": "montanti_vata_fono", "name": "montanți + vată", "th_mm": 100 },
+        { "id": "gk_vopsea_2", "name": "GK + vopsea cameră", "th_mm": 12.5 }
+      ],
+      "sum_note": "138.5 mm → lock gabarit 150 mm"
+    },
+    "A9": {
+      "id": "A9",
+      "name": "Pocket / TV",
+      "thickness_finished_mm": 125,
+      "thickness_tv_band_mm": 150,
+      "alias_of": "A7"
+    },
+    "A10": {
+      "id": "A10",
+      "name": "Gard trotuar",
+      "thickness_finished_mm": 230,
+      "layers_interior_to_exterior_mm": [
+        { "id": "placaj_klinker", "name": "klinker stradă", "th_mm": 15 },
+        { "id": "miez_gard", "name": "miez BA/zidărie", "th_mm": 200 },
+        { "id": "placaj_klinker_curte", "name": "klinker curte", "th_mm": 15 }
+      ]
+    },
+    "A11": {
+      "id": "A11",
+      "name": "Subsol / curte engleză",
+      "thickness_finished_mm": 326,
+      "layers_interior_to_exterior_mm": [
+        { "id": "tencuiala_beci", "name": "tencuială beci", "th_mm": 10 },
+        { "id": "perete_ba", "name": "perete BA", "th_mm": 300 },
+        { "id": "hidro", "name": "hidroizolație", "th_mm": 6 },
+        { "id": "drenaj", "name": "drenaj / protecție", "th_mm": 10 }
+      ]
+    },
+    "A12": {
+      "id": "A12",
+      "name": "Soclu",
+      "height_cm": 40,
+      "finish": "tencuiala_hidrofoba",
+      "note": "bandă pe A1/A2, nu sandwich separat"
+    },
+    "B1": {
+      "id": "B1",
+      "name": "Planșeu între apt. FF→FF",
+      "ff_to_ff_mm": 2880,
+      "layers_top_to_bottom_mm": [
+        { "id": "spc", "name": "SPC + underlay", "th_mm": 20 },
+        { "id": "sapa", "name": "șapă", "th_mm": 50 },
+        { "id": "tevi", "name": "țevi încălzire", "th_mm": 20 },
+        { "id": "izol_sub_sapa", "name": "izolație sub șapă", "th_mm": 30 },
+        { "id": "placa_ba", "name": "placă BA", "th_mm": 150 },
+        { "id": "fals_plafon", "name": "fals plafon", "th_mm": 60 },
+        { "id": "clear", "name": "clear liber", "th_mm": 2550 }
+      ]
+    },
+    "B2": {
+      "id": "B2",
+      "name": "Parter peste beci buildup",
+      "buildup_above_slab_mm": 120
+    },
+    "B3": {
+      "id": "B3",
+      "name": "Pardoseală baie",
+      "buildup_above_slab_mm": 125,
+      "upstand_cm": 10
+    },
+    "B4": {
+      "id": "B4",
+      "name": "Terasă",
+      "buildup_above_slab_mm_range": [285, 330],
+      "xps_mm": 80
+    },
+    "B5": {
+      "id": "B5",
+      "name": "Trepte scară finisaj",
+      "finish_mm": 15
+    },
+    "B6": {
+      "id": "B6",
+      "name": "Acoperiș",
+      "insulation_mm": 220,
+      "shell_cm": 18,
+      "pv": true
+    },
+    "B7": {
+      "id": "B7",
+      "name": "Fals plafon",
+      "thickness_mm": 60
+    },
+    "B8": {
+      "id": "B8",
+      "name": "Radier / beci",
+      "typical_mm_range": [280, 290]
+    }
+  },
+  "wall_map": {
+    "nord": { "heated_x0_565": "A1", "cold_x565_680": "A4" },
+    "vest": "A2",
+    "est_living": "A2",
+    "est_recuperat_p": "A2",
+    "sud_bucatarie": "A2",
+    "dormitor_sud": "A2",
+    "buc_est": "A6",
+    "buc_est_etaj": "A6",
+    "perete_comun_est": "A7",
+    "nisa_dulap_spate": "A8",
+    "nisa_dulap_est": "A8",
+    "dorm_baie_nord": "A8",
+    "ecran_frigider": "A7",
+    "terasa_est": "A5"
+  }
+}

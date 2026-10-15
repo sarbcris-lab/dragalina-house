@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <title>Dragalina 131 — Viewer 3D · V47 / V46 · gable</title>
+  <title>Dragalina 131 — Viewer 3D · V47 A1 FRAME</title>
   <style>
     :root {
       --bg: #1a1d22;
@@ -66,34 +66,19 @@
         <button type="button" id="btnStructWalls">2 · + Pereți</button>
         <button type="button" id="btnCut">Secțiune interior</button>
       </div>
-      <div class="tabs" id="tabsV47">
-        <a href="/viewer/?v47"><strong>Model V47</strong></a>
-        <a href="/viewer/?v=v47_a1">V47 A1 studiu</a>
-        <a href="/viewer/?v=v47_a1_frame">V47 A1 FRAME (cadre)</a>
-        <a href="../outputs/plans/36_v47_a1_frame_structure_overlay.svg" target="_blank">Frame overlay</a>
-        <a href="../outputs/plans/37_v47_a1_frame_sections.svg" target="_blank">Frame secțiuni</a>
-        <a href="../outputs/reports/v47_a1_frame_structure.md" target="_blank">Frame raport</a>
-        <a href="../outputs/plans/21_v47_exact_plan.svg" target="_blank">Plan V47</a>
-        <a href="../outputs/plans/31_v47_a1_subsol_plan.svg" target="_blank">Subsol A1</a>
-        <a href="../outputs/plans/33_v47_a1_court_access_plan_after.svg" target="_blank">Acces plan</a>
-        <a href="../outputs/plans/34_v47_a1_court_access_section_before_after.svg" target="_blank">Acces ±8cm</a>
-        <a href="../outputs/plans/27_v47_subsol_plan.svg" target="_blank">Subsol V47</a>
-        <a href="../outputs/plans/28_v47_subsol_section.svg" target="_blank">Secț. subsol</a>
-        <a href="../outputs/plans/26_v47_site_plan.svg" target="_blank">Situație</a>
-        <a href="../outputs/plans/29_v47_imprejmuire.svg" target="_blank">Împrejmuire</a>
-        <a href="../outputs/plans/30_v47_curte.svg" target="_blank">Curte</a>
-        <a href="../outputs/plans/25_v47_sections.svg" target="_blank">Secțiuni V47</a>
-        <a href="../outputs/reports/v47_surfaces.md" target="_blank">Suprafețe</a>
-        <a href="../outputs/reports/v47_checks.md" target="_blank">Checks</a>
-      </div>
-      <div class="tabs" id="tabsV46">
-        <a href="/viewer/?v=v46">Model V46 (r7g)</a>
-        <a href="../outputs/plans/11_v46_exact_plan.svg" target="_blank">Plan V46</a>
-        <a href="../outputs/plans/15_v46_sections.svg" target="_blank">Secțiuni V46</a>
+      <div class="tabs" id="tabsFrame">
+        <a href="/viewer/?v=v47_a1_frame"><strong>3D FRAME</strong></a>
+        <a href="../outputs/plans/36_v47_a1_frame_structure_overlay.svg" target="_blank">Overlay structură</a>
+        <a href="../outputs/plans/37_v47_a1_frame_sections.svg" target="_blank">Secțiuni cadre</a>
+        <a href="../outputs/reports/v47_a1_frame_structure.md" target="_blank">Raport structură</a>
+        <a href="../outputs/plans/35_v47_a1_exterior_wall_section.svg" target="_blank">Perete A1 tencuială</a>
+        <a href="../outputs/plans/35b_v47_a2_klinker_wall_section.svg" target="_blank">Perete A2 klinker</a>
+        <a href="../outputs/reports/v47_useful_by_level.md" target="_blank">Util P/E</a>
+        <a href="../outputs/reports/v47_pot_util_assemblies.md" target="_blank">POT + util</a>
+        <a href="../decisions/assemblies_catalog_v01.md" target="_blank">Catalog straturi</a>
       </div>
       <p class="meta" style="margin-top:1rem">Orbit · zoom · pan dreapta</p>
-      <p class="meta">V47: <code>?v47</code> · A1: <code>?v=v47_a1</code> · FRAME: <code>?v=v47_a1_frame</code> · V46: <code>?v=v46</code></p>
-      <p class="meta">Regen: <code>npm run build:v47</code> (nu atinge V46)</p>
+      <p class="meta">Model unic: <code>V47 A1 FRAME</code> · regen <code>npm run volume:v47:studies</code></p>
       <ul id="meshes"></ul>
     </aside>
     <canvas id="c"></canvas>
@@ -277,69 +262,18 @@
       location.replace(`/viewer/${location.search}${location.hash}`);
       throw new Error("redirect /viewer/");
     }
-    // Robust la query dublu-encodat (ex. ?v%3Dv47_a1_frame din Glass/open_resource)
-    const rawSearch = location.search || "";
-    let searchDecoded = rawSearch;
-    try {
-      searchDecoded = decodeURIComponent(rawSearch);
-      if (/%[0-9A-Fa-f]{2}/.test(searchDecoded)) searchDecoded = decodeURIComponent(searchDecoded);
-    } catch (_) { /* keep raw */ }
-    const qs = new URLSearchParams(rawSearch.startsWith("?") ? rawSearch : `?${rawSearch}`);
-    const qsDec = new URLSearchParams(searchDecoded.startsWith("?") ? searchDecoded : `?${searchDecoded}`);
-    let vParam = qs.get("v") || qsDec.get("v") || "";
-    if (!vParam) {
-      for (const src of [qs, qsDec]) {
-        for (const [k, val] of src.entries()) {
-          if (k.startsWith("v=")) {
-            vParam = k.slice(2);
-            break;
-          }
-          if (/^v47/.test(k) && !val) {
-            vParam = k;
-            break;
-          }
-        }
-        if (vParam) break;
-      }
-    }
-    const blob = `${searchDecoded}&v=${vParam}&${rawSearch}`;
-    const isV47A1Frame =
-      vParam === "v47_a1_frame" || qs.has("v47_a1_frame") || qsDec.has("v47_a1_frame") || /v47_a1_frame/.test(blob);
-    const isV47A1 =
-      !isV47A1Frame &&
-      (vParam === "v47_a1" || qs.has("v47_a1") || qsDec.has("v47_a1") || /(?:^|[?&])v(?:=|%3D)?v47_a1(?!_frame)(?:&|$)/i.test(blob));
-    const isV47 =
-      isV47A1Frame || isV47A1 || qs.has("v47") || qsDec.has("v47") || vParam.startsWith("v47") || /(?:\?|&)v47(?:&|$)/.test(blob);
-    // Path absolut — nu depinde de /viewer vs /viewer/
-    const volFile = isV47A1Frame
-      ? "/viewer/data/volume_v47_a1_frame.json"
-      : isV47A1
-        ? "/viewer/data/volume_v47_a1.json"
-        : isV47
-          ? "/viewer/data/volume_v47.json"
-          : "/viewer/data/volume.json";
+    // Model unic pe site: V47 A1 FRAME (cadre). V47 / A1 / V46 nu se mai încarcă.
+    const volFile = "/viewer/data/volume_v47_a1_frame.json";
     const volRes = await fetch(`${volFile}?t=${Date.now()}`, { cache: "no-store" });
     if (!volRes.ok) {
-      document.getElementById("warning").textContent = `Nu pot încărca ${volFile} (${volRes.status}). Deschide /viewer/?v=v47_a1_frame`;
+      document.getElementById("warning").textContent = `Nu pot încărca ${volFile} (${volRes.status}).`;
       throw new Error(`volume fetch ${volRes.status}`);
     }
     const volume = await volRes.json();
-    document.getElementById("viewTitle").textContent = isV47A1Frame
-      ? "Dragalina 131 · V47 A1 FRAME (cadre)"
-      : isV47A1
-        ? "Dragalina 131 · V47 A1 studiu"
-        : isV47
-          ? "Dragalina 131 · V47"
-          : "Dragalina 131 · V46";
+    document.getElementById("viewTitle").textContent = "Dragalina 131 · V47 A1 FRAME (cadre)";
     document.getElementById("warning").textContent = volume.meta.warning || volume.meta.status;
     const env = volume.meta.envelope_m || {};
-    const srcLabel = isV47A1Frame
-      ? "V47 A1 FRAME · cadre BA · neconstruibil"
-      : isV47A1
-        ? "V47 A1 studiu (cm) · referință neatinsă"
-        : isV47
-          ? "V47 concept (cm) · L-1+P+E"
-          : "V46 exact (cm)";
+    const srcLabel = "V47 A1 FRAME · cadre BA · assemblies_v01 · neconstruibil";
     document.getElementById("meta").innerHTML = `
       <div><strong>Model:</strong> ${volume.meta.id}</div>
       <div><strong>Sursă:</strong> ${srcLabel}</div>
@@ -686,28 +620,13 @@
       if (mode === "subsol") frameObjects(subsolObjs);
     }
     setGate(volume.meta.gate_default_state || "closed");
-    // A1: pornește pe Structură ca să se vadă scheletul legat; V47: parter
-    setLevel(isV47A1 || isV47A1Frame ? "structura" : isV47 ? "parter" : "both");
-    if (isV47A1Frame) {
+    setLevel("structura");
+    {
       const tip = document.createElement("p");
       tip.className = "meta";
       tip.style.color = "#e8a87c";
       tip.innerHTML =
-        "<strong>FRAME:</strong> cadre BA (stâlpi+grinzi) · EB20 umplutură · <em>neconstruibil</em> · amenajarea A1 e separat pe <code>?v=v47_a1</code>.";
-      document.getElementById("meta")?.after(tip);
-    } else if (isV47A1) {
-      const tip = document.createElement("p");
-      tip.className = "meta";
-      tip.style.color = "#c4b496";
-      tip.innerHTML =
-        "<strong>Straturi:</strong> <em>1 · Structură</em> = beton L-1+P+E + scări · <em>2 · + Pereți</em> = umplutură · amenajare aprobată (fără pereți structurali P/E).";
-      document.getElementById("meta")?.after(tip);
-    } else if (isV47) {
-      const tip = document.createElement("p");
-      tip.className = "meta";
-      tip.style.color = "#7dcea0";
-      tip.innerHTML =
-        "<strong>Parter:</strong> parapet <span style='color:#00ff22'>verde</span> închide terasa față de palier/rampă (gol sud = acces etaj) · sub palierul est = living deschis · bucătărie = NORD · verifică titlul <em>V47</em> (nu V46).";
+        "<strong>FRAME:</strong> model unic pe site · cadre BA · straturi A1–A8 · <em>1 · Structură</em> / <em>2 · + Pereți</em> · neconstruibil.";
       document.getElementById("meta")?.after(tip);
     }
     document.getElementById("btnClosed").onclick = () => setGate("closed");
