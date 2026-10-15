@@ -36,7 +36,7 @@
     "based_on_amenajare": "v47_a1_study (aprobat — neatins)",
     "structure_system": "cadre_BA",
     "declared_buildable": false,
-    "rev_note_frame": "FRAME: o fundație (fg pe axe); stâlpi un corp fundație→acoperiș; C_N_MID pe N gros X400; subsol alin. P X360/Y400; util/transport NECONFIRMAT. Neconstruibil."
+    "rev_note_frame": "FRAME: C_NW/C_W_MID 30×40; C_N_MID@320; C_CASA@535 flush; grindă întoarsă+pier E+B_SEP; util studio≠vestibul; NECONFIRMAT. Neconstruibil."
   },
   "envelope_cm": {
     "ew": 680,
@@ -951,7 +951,7 @@
     "interior_walls_overlaps_m2": 0,
     "interior_walls_openings_void_m2": 0.2125,
     "interior_walls_net_m2": 1.13125,
-    "useful_geometric_m2": 38.616,
+    "useful_geometric_m2": 38.605,
     "useful_interior_net_m2": 37.87875,
     "decomposition": "39.0100 − 1.1313 = 37.8787 m²",
     "dorm_principal_m2": 11.509375,
@@ -983,37 +983,48 @@
     "useful_ref_copied_was": 37.87875,
     "useful_delta_vs_ref_m2": 0,
     "frame_study_areas": {
-      "method": "P/E separate: shoelace(poly nivel) − pereți_int ai nivelului − thermal pe nivel − proeminențe stâlpi; fără terasă/acces exterior; NU usefulE=usefulP",
-      "useful_parter_m2": 38.616,
-      "useful_etaj_m2": 38.991,
+      "method": "P/E separate: shoelace(poly nivel) − pereți_int − thermal − proeminențe; E = studio fără vestibul; vestibul raportat separat; NU usefulE=usefulP",
+      "useful_parter_m2": 38.605,
+      "useful_etaj_studio_m2": 37.96,
+      "useful_etaj_m2": 37.96,
+      "vestibule_palier_m2": 1.26,
+      "vestibule_rect_cm": {
+        "x": 565,
+        "y": 470,
+        "dx": 105,
+        "dy": 120
+      },
       "gross_parter_m2": 40.285,
-      "gross_etaj_m2": 40.735,
+      "gross_etaj_studio_m2": 39.715,
+      "gross_etaj_m2": 39.715,
       "thermal_enclosure_P_m2": 0.255,
       "thermal_enclosure_E_m2": 0.255,
-      "column_protrusion_P_m2": 0.358,
-      "column_protrusion_E_m2": 0.358,
+      "column_protrusion_P_m2": 0.369,
+      "column_protrusion_E_m2": 0.369,
       "walls_int_net_P_m2": 1.056,
       "walls_int_net_E_m2": 1.131,
       "reference_threshold_m2": 37,
-      "delta_P_vs_37": 1.616,
-      "delta_E_vs_37": 1.991,
+      "delta_P_vs_37": 1.605,
+      "delta_E_studio_vs_37": 0.96,
+      "delta_E_vs_37": 0.96,
       "ref_a1_useful_was": 37.87875,
       "status_util": "NECONFIRMAT",
       "declared_pass_util": false,
-      "note": "Fără PASS pe util. Nu folosi Δ vs 37 ca rezervă stâlpi până la reuniune CAD."
+      "note": "Fără PASS. Util E = studio (fără vestibul). Vestibul = acces, nu util studio."
     }
   },
   "furniture_cm": [
     {
       "id": "pat",
-      "x": 40,
+      "x": 45,
       "y": 385,
       "dx": 208,
       "dy": 168,
       "h": 45,
       "color": "#c4a882",
       "zone": "dormitor",
-      "note": "tăblie vest; mutat nord → Y385 (−20); noptiere N/S"
+      "note": "tăblie vest; mutat nord → Y385 (−20); noptiere N/S | FRAME: x≥45 față de C_W_MID 30×40 (A1 rămâne x=40)",
+      "frame_overlay": true
     },
     {
       "id": "tv_dorm",
@@ -1086,7 +1097,7 @@
     },
     {
       "id": "dus",
-      "x": 30,
+      "x": 50,
       "y": 30,
       "dx": 90,
       "dy": 157.5,
@@ -1099,7 +1110,7 @@
         "dx": 55,
         "dy": 75
       },
-      "note": "V46r5: glisare→nord; gol utilizabil 75 cm pe SUD (evită blat Y30–90); șine X118 și X121",
+      "note": "V46r5: glisare→nord; gol utilizabil 75 cm pe SUD (evită blat Y30–90); șine X118 și X121 | FRAME: x≥50 față de C_NW 40×30 (A1 rămâne x=30)",
       "enclosure": {
         "type": "glisanta_est_doua_panouri_sine_distincte",
         "viewing": "privind spre est; acces utilizabil pe SUD (fără blat)",
@@ -1200,7 +1211,8 @@
         "floor": "pardoseală duș + min. 10 cm pe pereți adiacenți — REZERVĂ",
         "walls": "pereți duș pe toată înălțimea stropirii — REZERVĂ",
         "junctions": "racorduri sifon/țevi — detalii execuție NECONFIRMATE"
-      }
+      },
+      "frame_overlay": true
     },
     {
       "id": "blat_baie",
@@ -7318,8 +7330,8 @@
         "id": "C_NW",
         "x": 9.2,
         "y": 9.2,
-        "dx": 20.8,
-        "dy": 20.8,
+        "dx": 40,
+        "dy": 30,
         "orient": "corner_NW",
         "levels": [
           "S",
@@ -7327,7 +7339,8 @@
           "E"
         ],
         "support_below": "fundație_N/W",
-        "protrusion_into_room_cm": 0,
+        "protrusion_into_room_cm": 10,
+        "section_cm": "40×30",
         "etics_outside_band_cm": {
           "x0": 0,
           "x1": 9.2,
@@ -7335,15 +7348,16 @@
           "y1": 9.2,
           "th": 9.2
         },
-        "wall": "colț N/W — secțiune redusă ca să elibereze dușul; de confirmat calcul",
+        "wall": "colț N/W — 40×30 preliminar (NU redus pt. duș)",
         "conflicts": [
-          "secțiune < 30×40 la colț — IPOTEZĂ amenajare"
+          "duș decupat local în frame — nu micșorăm stâlpul"
         ],
+        "amenajare_fix": "dus x≥50",
         "continuous_through_floor": true
       },
       {
         "id": "C_N_MID",
-        "x": 400,
+        "x": 320,
         "y": 9.2,
         "dx": 40,
         "dy": 30,
@@ -7355,9 +7369,9 @@
         ],
         "support_below": "fundație_N",
         "protrusion_into_room_cm": 10,
-        "wall": "nord living pe perete gros exterior (X400) — NU pe perete_comun 12,5",
+        "wall": "nord X320–360 — rost vest de frigider_p@X360",
         "conflicts": [
-          "verificare goluri/ferestre nord living"
+          "alternativă: fără C_N_MID (doar NW+NE) — comparație"
         ],
         "continuous_through_floor": true
       },
@@ -7379,7 +7393,7 @@
         "section_status": "de confirmat prin calcul și cerințe normative (P100 — aplicabilitate pe sistem/ductilitate)",
         "wall": "est N de geam",
         "conflicts": [
-          "proeminență în capăt blat_tail_p — integrare mobilier"
+          "proeminență în capăt blat_tail_p — capăt mobilier adaptat"
         ],
         "etics_outside_band_cm": {
           "x0": 670.8,
@@ -7392,7 +7406,7 @@
         "id": "C_W_MID",
         "x": 9.2,
         "y": 400,
-        "dx": 28,
+        "dx": 30,
         "dy": 40,
         "orient": "along_W",
         "levels": [
@@ -7401,18 +7415,19 @@
           "E"
         ],
         "support_below": "fundație_W",
-        "protrusion_into_room_cm": 7.2,
+        "protrusion_into_room_cm": 10,
         "section_cm": "30×40",
         "section_status": "de confirmat prin calcul și cerințe normative",
-        "wall": "vest — dx=28 pt. rezervă montaj față de pat (X40)",
+        "wall": "vest — 30×40 (NU redus pt. pat)",
         "etics_outside_band_cm": {
           "x0": 0,
           "x1": 9.2,
           "th": 9.2
         },
         "conflicts": [
-          "gap beton→pat ~2,8 cm înainte de finisaj — verifică tăblia"
+          "pat x≥45 în frame — rezervă montaj/tăblie"
         ],
+        "amenajare_fix": "pat x≥45",
         "continuous_through_floor": true
       },
       {
@@ -7527,7 +7542,7 @@
       },
       {
         "id": "C_CASA_SCARA",
-        "x": 525,
+        "x": 535,
         "y": 610,
         "dx": 30,
         "dy": 40,
@@ -7538,24 +7553,37 @@
           "E"
         ],
         "support_below": "fundație X535",
-        "protrusion_into_room_cm": 10,
+        "protrusion_into_room_cm": 0,
         "etics_cold_band_cm": {
-          "x0": 555,
-          "x1": 565,
-          "th": 10,
-          "note": "față rece scară — vată/separator, nu beton"
+          "x0": 565,
+          "x1": 574.2,
+          "th": 9.2,
+          "note": "vată pe fața rece scară; beton doar în falie X535–565"
         },
-        "wall": "separator: beton X525–555 (încălzit); gol ușă Y500–600 liber",
+        "wall": "separator X535–565; fără proeminență vest (eliberează frigider/MSV etaj)",
         "replaces": [
-          "buc_y590",
-          "C_CASA_SCARA@Y590",
-          "C_CASA_SCARA@X535"
+          "C_CASA_SCARA@X525",
+          "buc_y590"
         ],
-        "conflicts": [
-          "verifică frigider/front bucătărie E față de X525"
-        ],
+        "conflicts": [],
         "door_clearance": "y0=610 ≥ door Y1=600 + 10",
         "continuous_through_floor": true
+      },
+      {
+        "id": "C_SHAFT_E_PIER",
+        "x": 665,
+        "y": 575,
+        "dx": 15,
+        "dy": 15,
+        "orient": "pier_E_shaft",
+        "levels": [
+          "S"
+        ],
+        "support_below": "diafragmă est puț",
+        "protrusion_into_room_cm": 0,
+        "wall": "pier sub capăt E grindă întoarsă — în zid, nu în clar X565–665",
+        "role": "reazem_vertical_grinda_intoarsa_E",
+        "conflicts": []
       },
       {
         "id": "C_S_INTRARE_W",
@@ -7662,7 +7690,7 @@
       },
       {
         "id": "B_CASA_SCARA",
-        "x": 525,
+        "x": 535,
         "y": 610,
         "dx": 30,
         "dy": 250,
@@ -7675,7 +7703,7 @@
           "C_CASA_SCARA",
           "C_S_INTRARE_E"
         ],
-        "note": "separator încălzit Y610→sud; leagă de B_Y830 / C_S_INTRARE_E"
+        "note": "separator Y610→sud; nod cu B_Y830"
       },
       {
         "id": "B_Y590_EDGE_INVERTED",
@@ -7685,29 +7713,32 @@
         "dy": 15,
         "z0_cm": -30,
         "z1_cm": -5,
-        "note": "variantă studiu: grindă întoarsă deasupra intrados −30; eliberează clear acces; încape în sandwich? — calcul",
+        "note": "ansamblu muchie puț — nu etichetă via_slab goală",
         "levels": [
           "S_inverted"
         ],
         "supports": [
-          "C_E_frame_via_slab",
-          "B_LINK_INVERTED_W"
-        ]
+          "C_SHAFT_E_PIER",
+          "placa_parter_span_to_sep",
+          "B_SEP_AFTER_DOOR"
+        ],
+        "load_path": "E→C_SHAFT_E_PIER (zid est); W→placă parter (întoarsă) → diafragmă/separator S de ușă (B_SEP_AFTER_DOOR+C_CASA_SCARA). Ușă Y500–600 și palier Y490–600 fără stâlp."
       },
       {
-        "id": "B_LINK_INVERTED_W",
+        "id": "B_SEP_AFTER_DOOR",
         "x": 535,
-        "y": 575,
+        "y": 600,
         "dx": 30,
-        "dy": 15,
+        "dy": 10,
         "levels": [
-          "S_inverted"
+          "S",
+          "P"
         ],
         "supports": [
-          "C_CASA_SCARA_zone",
-          "slab_edge"
+          "zid_separator",
+          "C_CASA_SCARA"
         ],
-        "note": "reazem/legătură capăt vest grindă întoarsă → separator/planșeu @ X535 — studiu, de dimensionat"
+        "note": "buiandrug/centură S de ușă Y600–610 — preia traseul de la placa peste palier către C_CASA_SCARA; nu blochează golul"
       },
       {
         "id": "B_Y645",
@@ -7729,8 +7760,8 @@
         "id": "B_X360_DORM_INTRARE",
         "x": 330,
         "y": 645,
-        "dx": 30,
-        "dy": 185,
+        "dx": 70,
+        "dy": 205.79999999999995,
         "levels": [
           "P",
           "E"
@@ -7739,7 +7770,7 @@
           "C_S_DORM_E",
           "C_S_INTRARE_W"
         ],
-        "note": "legătură longitudinală dorm sud → corp intrare (nod cadru transversal)"
+        "note": "prin secțiunea C_S_INTRARE_W (X360–400, Y820.8+) — nod complet, nu doar muchie"
       },
       {
         "id": "B_Y830",
@@ -7828,7 +7859,7 @@
       {
         "id": "inverted_beam_fit",
         "severity": "DESCHIS_CALCUL",
-        "detail": "Grindă întoarsă + B_LINK_INVERTED_W @ X535: eliberează clear acces; fit sandwich −30…+32 și dimensionare legătură vest = calcul.",
+        "detail": "Ansamblu B_Y590_EDGE_INVERTED: E→C_SHAFT_E_PIER; W→placă+B_SEP_AFTER_DOOR→C_CASA_SCARA. Fit sandwich −30…+32 = calcul. Ușă/palier libere.",
         "door_kept": {
           "y0": 500,
           "y1": 600
@@ -7841,13 +7872,13 @@
       },
       {
         "id": "north_three_supports",
-        "severity": "COMPARȚIE",
-        "detail": "C_N_BUC eliminat (aparate). B_N pe C_NW–C_N_MID–C_NE. Alternativă: al 4-lea reazem doar în rost real între corpuri după redesen mobilier."
+        "severity": "COMPARATIE",
+        "detail": "C_N_BUC eliminat. C_N_MID@X320 (rost vest de frigider_p@360). B_N pe NW–N_MID–NE. Alternativa: fara N_MID."
       },
       {
-        "id": "C_NW_reduced_section",
-        "severity": "IPOTEZĂ",
-        "detail": "C_NW redus ca să nu intre în duș; secțiune ≠ 30×40 — de confirmat sau duș decupat."
+        "id": "amenajare_frame_overlays",
+        "severity": "FRAME_ONLY",
+        "detail": "A1 aprobat neatins. In frame: dus x>=50 (C_NW 40x30); pat x>=45 (C_W_MID 30x40) — nu micsoram stalpii."
       },
       {
         "id": "column_30_protrusion_vs_37m2",
@@ -7935,7 +7966,7 @@
     }
   },
   "interior_polygon_etaj_cm": {
-    "note": "Frame E util: vestibul inclus; EXCLUDE exterior; NU copiază usefulP",
+    "note": "Frame E util STUDIO: EXCLUDE vestibul palier_superior + exterior; NU copiază usefulP",
     "vertices": [
       [
         30,
@@ -7947,6 +7978,14 @@
       ],
       [
         650,
+        470
+      ],
+      [
+        565,
+        470
+      ],
+      [
+        565,
         590
       ],
       [
@@ -7977,7 +8016,8 @@
     "excludes": [
       "terasa",
       "uncovered_south",
-      "rampă_exterioară"
+      "rampă_exterioară",
+      "vestibul_palier_superior"
     ]
   }
 }

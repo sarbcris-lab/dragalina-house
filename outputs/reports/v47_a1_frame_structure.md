@@ -4,13 +4,13 @@
 **NECONSTRUIBIL / NEVALIDAT.** Variantă separată față de A1 amenajare aprobată.
 Sistem: **cadre beton armat** + **EB20** + **vată 80 mm**. **Nu** pereți structurali P/E.
 
-## Priorități geometrie (implementate din audit confirmat)
-1. **Stâlpi continui** prin nod placă/pardoseală (fără gap +293…+320); pardoseala decupată la stâlpi.
-2. **C_N_BUC eliminat** (aparete bucătărie); B_N pe 3 reazeme; C_N_MID mutat X370 (în afara blatului baie).
-3. **C_NW** redus ca să elibereze dușul; **C_CASA_SCARA** beton spre încălzit + vată pe fața rece.
-4. **Noduri:** B_Y830 prin C_S_INTRARE_E; B_X360_DORM_INTRARE; B_LINK_INVERTED_W; B_W prin C_W_DORM.
-5. **Fundație S intrare** + benzi pe schema stâlpilor.
-6. **Util / transport = NECONFIRMAT** — fără PASS.
+## Prioritati geometrie (runda audit post-117edb0)
+1. **Stalpi continui** prin nod placa/pardoseala; C_NW / C_W_MID restaurate 30x40 (nu reduse pt. mobilier).
+2. **C_N_MID@X320** (rost vest de frigider_p); **C_CASA_SCARA@X535** flush (fara proeminenta vest).
+3. **Ansamblu muchie put:** B_Y590_EDGE_INVERTED + C_SHAFT_E_PIER + B_SEP_AFTER_DOOR (usa/palier libere).
+4. **Noduri:** B_X360 prin C_S_INTRARE_W; B_Y830 prin C_S_INTRARE_E; B_W prin C_W_DORM.
+5. **Util E = studio fara vestibul** (vestibul raportat separat); transport/util = NECONFIRMAT — fara PASS.
+6. **Amenajare frame-only:** dus x>=50, pat x>=45; A1 aprobat neatins.
 
 ## Secțiuni stâlpi
 - Preliminar **30×40 cm** + proeminență locală **10 cm** spre interior.
@@ -33,15 +33,16 @@ Sistem: **cadre beton armat** + **EB20** + **vată 80 mm**. **Nu** pereți struc
 
 | ID | Poziție (cm) | Secțiune + proem. | Niveluri | Reazem inferior | Conflicte |
 |----|--------------|-------------------|----------|-----------------|-----------|
-| C_NW | X9.2–30 Y9.2–30 | 20.8×20.8 (proem. 0) | S–P–E | fundație_N/W | secțiune < 30×40 la colț — IPOTEZĂ amenajare |
-| C_N_MID | X400–440 Y9.2–39.2 | 40×30 (proem. 10) | S–P–E | fundație_N | verificare goluri/ferestre nord living |
-| C_NE | X640–670 Y9.2–49.2 | 30×40 (proem. 10) | S–P–E | fundație_E | proeminență în capăt blat_tail_p — integrare mobilier |
-| C_W_MID | X9.2–37.2 Y400–440 | 28×40 (proem. 7.2) | S–P–E | fundație_W | gap beton→pat ~2,8 cm înainte de finisaj — verifică tăblia |
+| C_NW | X9.2–49.2 Y9.2–39.2 | 40×30 (proem. 10) | S–P–E | fundație_N/W | duș decupat local în frame — nu micșorăm stâlpul |
+| C_N_MID | X320–360 Y9.2–39.2 | 40×30 (proem. 10) | S–P–E | fundație_N | alternativă: fără C_N_MID (doar NW+NE) — comparație |
+| C_NE | X640–670 Y9.2–49.2 | 30×40 (proem. 10) | S–P–E | fundație_E | proeminență în capăt blat_tail_p — capăt mobilier adaptat |
+| C_W_MID | X9.2–39.2 Y400–440 | 30×40 (proem. 10) | S–P–E | fundație_W | pat x≥45 în frame — rezervă montaj/tăblie |
 | C_W_DORM | X9.2–49.2 Y635.8–665.8 | 40×30 (proem. 9.200000000000045) | S–P–E | fundație_S | gol terasă X120–270 |
 | C_S_DORM_E | X330–360 Y635.8–665.8 | 30×30 (proem. 9.200000000000045) | S–P–E | fundație_S | proximitate circulație / ușă terasă |
 | C_E_GEAM_S | X640–670 Y310–350 | 30×40 (proem. 10) | S–P–E | fundație_E | — |
 | C_E_PAL | X640–670 Y449–489 | 30×40 (proem. 10) | S–P–E | fundație_E continuu — NU pe placă 15 | proeminență pe palier etaj Y470–489 — recalcul lățime utilă |
-| C_CASA_SCARA | X525–555 Y610–650 | 30×40 (proem. 10) | S–P–E | fundație X535 | verifică frigider/front bucătărie E față de X525 |
+| C_CASA_SCARA | X535–565 Y610–650 | 30×40 (proem. 0) | S–P–E | fundație X535 | — |
+| C_SHAFT_E_PIER | X665–680 Y575–590 | 15×15 (proem. 0) | S | diafragmă est puț | — |
 | C_S_INTRARE_W | X360–400 Y820.8–850.8 | 40×30 (proem. 9.200000000000045) | S–P–E | fundație_S_intrare (bandă dedicată) | — |
 | C_S_INTRARE_E | X535–565 Y820.8–850.8 | 30×30 (proem. 9.200000000000045) | S–P–E | fundație_S | — |
 
@@ -56,17 +57,60 @@ Placă +293→+308; grindă +273; FF +320; buildup 12. Stâlpi P+E = continui pr
 | Intrados grindă (h total 35) | 273 |
 | Clear P sub grindă | 241 |
 
+## Tabel grinzi
+
+| ID | Poziție (cm) | Niveluri | Reazeme | Note / traseu |
+|----|--------------|----------|---------|---------------|
+| B_N | X9.2–680 Y9.2–39.2 | P,E | C_NW, C_N_MID, C_NE | centură N — 3 reazeme (fără C_N_BUC); deschideri de dimensionat |
+| B_W | X9.2–39.2 Y9.2–665.8 | P,E | C_NW, C_W_MID, C_W_DORM | centură W prin nodul C_W_DORM (nu se oprește la fața nord a stâlpului) |
+| B_E | X640–670 Y9.2–489 | P,E | C_NE, C_E_GEAM_S, C_E_PAL | centură E până la C_E_PAL; fără stâlp pe palier/scară |
+| B_CASA_SCARA | X535–565 Y610–860 | S,P,E | C_CASA_SCARA, C_S_INTRARE_E | separator Y610→sud; nod cu B_Y830 |
+| B_Y590_EDGE_INVERTED | X565–680 Y575–590 | S_inverted | C_SHAFT_E_PIER, placa_parter_span_to_sep, B_SEP_AFTER_DOOR | E→C_SHAFT_E_PIER (zid est); W→placă parter (întoarsă) → diafragmă/separator S de ușă (B_SEP_AFTER_DOOR+C_CASA_SCARA). Ușă Y500–600 și palier Y490–600 fără stâlp. |
+| B_SEP_AFTER_DOOR | X535–565 Y600–610 | S,P | zid_separator, C_CASA_SCARA | buiandrug/centură S de ușă Y600–610 — preia traseul de la placa peste palier către C_CASA_SCARA; nu blochează golul |
+| B_Y645 | X9.2–360 Y645–675 | P,E | C_W_DORM, C_S_DORM_E | sud dorm — prin secțiunile stâlpilor de capăt |
+| B_X360_DORM_INTRARE | X330–400 Y645–850.8 | P,E | C_S_DORM_E, C_S_INTRARE_W | prin secțiunea C_S_INTRARE_W (X360–400, Y820.8+) — nod complet, nu doar muchie |
+| B_Y830 | X360–565 Y830–860 | P,E | C_S_INTRARE_W, C_S_INTRARE_E | sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA |
+| B_Y470_VESTIBUL_CANTILEVER | X535–680 Y470–500 | E | C_E_PAL, B_E | acoperire vestibul / consolă E — separat de placa palierului; sprijin placă palier = schemă proprie (DESCHIS) |
+
+## Tabel elemente (stâlpi + grinzi)
+
+| Tip | ID | Reazeme / sprijin | Niveluri | Conflict amenajare | Soluție propusă |
+|-----|----|-------------------|----------|--------------------|-----------------|
+| stalp | C_NW | fundație_N/W | S/P/E | duș decupat local în frame — nu micșorăm stâlpul | dus x≥50 |
+| stalp | C_N_MID | fundație_N | S/P/E | alternativă: fără C_N_MID (doar NW+NE) — comparație | nord X320–360 — rost vest de frigider_p@X360 |
+| stalp | C_NE | fundație_E | S/P/E | proeminență în capăt blat_tail_p — capăt mobilier adaptat | est N de geam |
+| stalp | C_W_MID | fundație_W | S/P/E | pat x≥45 în frame — rezervă montaj/tăblie | pat x≥45 |
+| stalp | C_W_DORM | fundație_S | S/P/E | gol terasă X120–270 | sud dorm W — ETICS Y665.8–675 continuă peste stâlp |
+| stalp | C_S_DORM_E | fundație_S | S/P/E | proximitate circulație / ușă terasă | capăt E sud dorm @ X360 — ETICS continuă afară |
+| stalp | C_E_GEAM_S | fundație_E | S/P/E | — | est S de geam |
+| stalp | C_E_PAL | fundație_E continuu — NU pe placă 15 | S/P/E | proeminență pe palier etaj Y470–489 — recalcul lățime utilă | est sub vestibul / N de palier inferior |
+| stalp | C_CASA_SCARA | fundație X535 | S/P/E | — | separator X535–565; fără proeminență vest (eliberează frigider/MSV etaj) |
+| stalp | C_SHAFT_E_PIER | diafragmă est puț | S | — | pier sub capăt E grindă întoarsă — în zid, nu în clar X565–665 |
+| stalp | C_S_INTRARE_W | fundație_S_intrare (bandă dedicată) | S/P/E | — | sud intrare X360–535 — ETICS continuă |
+| stalp | C_S_INTRARE_E | fundație_S | S/P/E | — | sud @ X535 — ETICS continuă afară |
+| grinda | B_N | C_NW, C_N_MID, C_NE | P/E | — | centură N — 3 reazeme (fără C_N_BUC); deschideri de dimensionat |
+| grinda | B_W | C_NW, C_W_MID, C_W_DORM | P/E | — | centură W prin nodul C_W_DORM (nu se oprește la fața nord a stâlpului) |
+| grinda | B_E | C_NE, C_E_GEAM_S, C_E_PAL | P/E | — | centură E până la C_E_PAL; fără stâlp pe palier/scară |
+| grinda | B_CASA_SCARA | C_CASA_SCARA, C_S_INTRARE_E | S/P/E | — | separator Y610→sud; nod cu B_Y830 |
+| grinda | B_Y590_EDGE_INVERTED | C_SHAFT_E_PIER, placa_parter_span_to_sep, B_SEP_AFTER_DOOR | S_inverted | traseu incarcari — calcul | ansamblu muchie puț — nu etichetă via_slab goală |
+| grinda | B_SEP_AFTER_DOOR | zid_separator, C_CASA_SCARA | S/P | — | buiandrug/centură S de ușă Y600–610 — preia traseul de la placa peste palier către C_CASA_SCARA; nu blochează golul |
+| grinda | B_Y645 | C_W_DORM, C_S_DORM_E | P/E | — | sud dorm — prin secțiunile stâlpilor de capăt |
+| grinda | B_X360_DORM_INTRARE | C_S_DORM_E, C_S_INTRARE_W | P/E | — | prin secțiunea C_S_INTRARE_W (X360–400, Y820.8+) — nod complet, nu doar muchie |
+| grinda | B_Y830 | C_S_INTRARE_W, C_S_INTRARE_E | P/E | — | sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA |
+| grinda | B_Y470_VESTIBUL_CANTILEVER | C_E_PAL, B_E | E | — | acoperire vestibul / consolă E — separat de placa palierului; sprijin placă palier = schemă proprie (DESCHIS) |
+
 ## Suprafețe utile (P și E separate) — NECONFIRMAT
-Metodă: P/E separate: shoelace(poly nivel) − pereți_int ai nivelului − thermal pe nivel − proeminențe stâlpi; fără terasă/acces exterior; NU usefulE=usefulP
+Metodă: P/E separate: shoelace(poly nivel) − pereți_int − thermal − proeminențe; E = studio fără vestibul; vestibul raportat separat; NU usefulE=usefulP
 
 | | m² |
 |--|---:|
-| Util parter (studiu) | 38.616 |
-| Util etaj (studiu) | 38.991 |
+| Util parter (studiu) | 38.605 |
+| Util etaj studio (fara vestibul) | 37.96 |
+| Vestibul palier (separat, nu in util studio) | 1.26 |
 | Pereți int net P / E | 1.056 / 1.131 |
-| Proeminențe stâlpi P / E | 0.358 / 0.358 |
+| Proeminențe stâlpi P / E | 0.369 / 0.369 |
 | Thermal P / E | 0.255 / 0.255 |
-| Δ vs 37 (informativ) | 1.616 / 1.991 |
+| Δ vs 37 (informativ) | 1.605 / 0.96 |
 | Verdict util | **NECONFIRMAT** (declared_pass=false) |
 
 ## Transport palier (stâlpi + finisaje)
@@ -76,10 +120,10 @@ Status: **NECONFIRMAT** · declared_pass_access=false
 - TRANSPORT / ACCES = NECONFIRMAT
 
 ## Conflicte nerezolvate (păstrate explicit)
-- **inverted_beam_fit** (DESCHIS_CALCUL): Grindă întoarsă + B_LINK_INVERTED_W @ X535: eliberează clear acces; fit sandwich −30…+32 și dimensionare legătură vest = calcul.
+- **inverted_beam_fit** (DESCHIS_CALCUL): Ansamblu B_Y590_EDGE_INVERTED: E→C_SHAFT_E_PIER; W→placă+B_SEP_AFTER_DOOR→C_CASA_SCARA. Fit sandwich −30…+32 = calcul. Ușă/palier libere.
 - **east_landing_span** (DESCHIS): Un singur reazem est C_E_PAL (Y449–489). Deschidere spre sud fără stâlp pe palier/scară — de dimensionat.
-- **north_three_supports** (COMPARȚIE): C_N_BUC eliminat (aparate). B_N pe C_NW–C_N_MID–C_NE. Alternativă: al 4-lea reazem doar în rost real între corpuri după redesen mobilier.
-- **C_NW_reduced_section** (IPOTEZĂ): C_NW redus ca să nu intre în duș; secțiune ≠ 30×40 — de confirmat sau duș decupat.
+- **north_three_supports** (COMPARATIE): C_N_BUC eliminat. C_N_MID@X320 (rost vest de frigider_p@360). B_N pe NW–N_MID–NE. Alternativa: fara N_MID.
+- **amenajare_frame_overlays** (FRAME_ONLY): A1 aprobat neatins. In frame: dus x>=50 (C_NW 40x30); pat x>=45 (C_W_MID 30x40) — nu micsoram stalpii.
 - **column_30_protrusion_vs_37m2** (DESCHIS): Proeminențe locale; util P/E = NECONFIRMAT — nu e rezervă stâlpi.
 - **vestibule_cantilever** (DESCHIS): B_Y470 = acoperire vestibul; placa palierului +320 necesită schemă de sprijin separată — neconfirmat.
 - **slab_span_without_X320** (DESCHIS): Fără reazem pe compartimentarea 12,5 cm — placă/grinzi pe perimetru; grosime 15 cm neconfirmată.

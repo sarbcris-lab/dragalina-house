@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_frame_study",
-    "generated": "2026-10-14T20:07:40.403Z",
+    "generated": "2026-10-15T07:18:10.553Z",
     "status": "3D_STUDIU_A1_FRAME_CADRE",
     "source_plan": "data/building/v47_a1_frame_study.json",
     "based_on": "v47_a1_study amenajare (aprobată) + schemă cadre separată",
@@ -24049,24 +24049,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.8132,
-          "y": 14.1013
+          "x": 1.8632,
+          "y": 14.1034
         },
         {
-          "x": 3.8913,
-          "y": 14.1902
+          "x": 3.9413,
+          "y": 14.1923
         },
         {
-          "x": 3.9631,
-          "y": 12.5117
+          "x": 4.0131,
+          "y": 12.5138
         },
         {
-          "x": 1.885,
-          "y": 12.4228
+          "x": 1.935,
+          "y": 12.4249
         },
         {
-          "x": 1.8132,
-          "y": 14.1013
+          "x": 1.8632,
+          "y": 14.1034
         }
       ],
       "z0_m": 0.32,
@@ -24139,24 +24139,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.5616,
-          "y": 17.6437
+          "x": 1.7614,
+          "y": 17.6523
         },
         {
-          "x": 2.4608,
-          "y": 17.6822
+          "x": 2.6606,
+          "y": 17.6907
         },
         {
-          "x": 2.5281,
-          "y": 16.1086
+          "x": 2.7279,
+          "y": 16.1172
         },
         {
-          "x": 1.6289,
-          "y": 16.0702
+          "x": 1.8287,
+          "y": 16.0787
         },
         {
-          "x": 1.5616,
-          "y": 17.6437
+          "x": 1.7614,
+          "y": 17.6523
         }
       ],
       "z0_m": 0.32,
@@ -27358,24 +27358,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.8132,
-          "y": 14.1013
+          "x": 1.8632,
+          "y": 14.1034
         },
         {
-          "x": 3.8913,
-          "y": 14.1902
+          "x": 3.9413,
+          "y": 14.1923
         },
         {
-          "x": 3.9631,
-          "y": 12.5117
+          "x": 4.0131,
+          "y": 12.5138
         },
         {
-          "x": 1.885,
-          "y": 12.4228
+          "x": 1.935,
+          "y": 12.4249
         },
         {
-          "x": 1.8132,
-          "y": 14.1013
+          "x": 1.8632,
+          "y": 14.1034
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -27448,24 +27448,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.5616,
-          "y": 17.6437
+          "x": 1.7614,
+          "y": 17.6523
         },
         {
-          "x": 2.4608,
-          "y": 17.6822
+          "x": 2.6606,
+          "y": 17.6907
         },
         {
-          "x": 2.5281,
-          "y": 16.1086
+          "x": 2.7279,
+          "y": 16.1172
         },
         {
-          "x": 1.6289,
-          "y": 16.0702
+          "x": 1.8287,
+          "y": 16.0787
         },
         {
-          "x": 1.5616,
-          "y": 17.6437
+          "x": 1.7614,
+          "y": 17.6523
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -28615,38 +28615,6 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
-      "id": "structura_r180_0",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 5.1634,
-          "y": 9.4902
-        },
-        {
-          "x": 5.4632,
-          "y": 9.503
-        },
-        {
-          "x": 5.508,
-          "y": 8.454
-        },
-        {
-          "x": 5.2082,
-          "y": 8.4412
-        },
-        {
-          "x": 5.1634,
-          "y": 9.4902
-        }
-      ],
-      "z0_m": 0.27999999999999997,
-      "z1_m": 0.42,
-      "color": "#5a6570",
-      "opacity": 0.9,
-      "site_layer": "structura",
-      "label": "Structură rampă 1 20 cm"
-    },
-    {
       "id": "parapet_r180_0",
       "type": "extrude",
       "polygon": [
@@ -28705,38 +28673,6 @@
       "z1_m": 0.64,
       "color": "#5a7488",
       "label": "SCARĂ rampă 1 (nu terasă)"
-    },
-    {
-      "id": "structura_r180_1",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 5.4632,
-          "y": 9.503
-        },
-        {
-          "x": 5.7629,
-          "y": 9.5159
-        },
-        {
-          "x": 5.8077,
-          "y": 8.4668
-        },
-        {
-          "x": 5.508,
-          "y": 8.454
-        },
-        {
-          "x": 5.4632,
-          "y": 9.503
-        }
-      ],
-      "z0_m": 0.44,
-      "z1_m": 0.5800000000000001,
-      "color": "#5a6570",
-      "opacity": 0.9,
-      "site_layer": "structura",
-      "label": "Structură rampă 1 20 cm"
     },
     {
       "id": "parapet_r180_1",
@@ -28799,38 +28735,6 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
-      "id": "structura_r180_2",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 5.7629,
-          "y": 9.5159
-        },
-        {
-          "x": 6.0626,
-          "y": 9.5287
-        },
-        {
-          "x": 6.1074,
-          "y": 8.4797
-        },
-        {
-          "x": 5.8077,
-          "y": 8.4668
-        },
-        {
-          "x": 5.7629,
-          "y": 9.5159
-        }
-      ],
-      "z0_m": 0.6000000000000001,
-      "z1_m": 0.74,
-      "color": "#5a6570",
-      "opacity": 0.9,
-      "site_layer": "structura",
-      "label": "Structură rampă 1 20 cm"
-    },
-    {
       "id": "parapet_r180_2",
       "type": "extrude",
       "polygon": [
@@ -28889,38 +28793,6 @@
       "z1_m": 0.96,
       "color": "#5a7488",
       "label": "SCARĂ rampă 1 (nu terasă)"
-    },
-    {
-      "id": "structura_r180_3",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.0626,
-          "y": 9.5287
-        },
-        {
-          "x": 6.3623,
-          "y": 9.5415
-        },
-        {
-          "x": 6.4071,
-          "y": 8.4925
-        },
-        {
-          "x": 6.1074,
-          "y": 8.4797
-        },
-        {
-          "x": 6.0626,
-          "y": 9.5287
-        }
-      ],
-      "z0_m": 0.76,
-      "z1_m": 0.8999999999999999,
-      "color": "#5a6570",
-      "opacity": 0.9,
-      "site_layer": "structura",
-      "label": "Structură rampă 1 20 cm"
     },
     {
       "id": "parapet_r180_3",
@@ -28983,38 +28855,6 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
-      "id": "structura_r180_4",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.3623,
-          "y": 9.5415
-        },
-        {
-          "x": 6.6621,
-          "y": 9.5543
-        },
-        {
-          "x": 6.7069,
-          "y": 8.5053
-        },
-        {
-          "x": 6.4071,
-          "y": 8.4925
-        },
-        {
-          "x": 6.3623,
-          "y": 9.5415
-        }
-      ],
-      "z0_m": 0.9200000000000002,
-      "z1_m": 1.06,
-      "color": "#5a6570",
-      "opacity": 0.9,
-      "site_layer": "structura",
-      "label": "Structură rampă 1 20 cm"
-    },
-    {
       "id": "parapet_r180_4",
       "type": "extrude",
       "polygon": [
@@ -29073,38 +28913,6 @@
       "z1_m": 1.28,
       "color": "#5a7488",
       "label": "SCARĂ rampă 1 (nu terasă)"
-    },
-    {
-      "id": "structura_r180_5",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.6621,
-          "y": 9.5543
-        },
-        {
-          "x": 6.9618,
-          "y": 9.5672
-        },
-        {
-          "x": 7.0066,
-          "y": 8.5181
-        },
-        {
-          "x": 6.7069,
-          "y": 8.5053
-        },
-        {
-          "x": 6.6621,
-          "y": 9.5543
-        }
-      ],
-      "z0_m": 1.08,
-      "z1_m": 1.22,
-      "color": "#5a6570",
-      "opacity": 0.9,
-      "site_layer": "structura",
-      "label": "Structură rampă 1 20 cm"
     },
     {
       "id": "parapet_r180_5",
@@ -29167,38 +28975,6 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
-      "id": "structura_r180_6",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.9618,
-          "y": 9.5672
-        },
-        {
-          "x": 7.2615,
-          "y": 9.58
-        },
-        {
-          "x": 7.3063,
-          "y": 8.5309
-        },
-        {
-          "x": 7.0066,
-          "y": 8.5181
-        },
-        {
-          "x": 6.9618,
-          "y": 9.5672
-        }
-      ],
-      "z0_m": 1.2400000000000002,
-      "z1_m": 1.3800000000000001,
-      "color": "#5a6570",
-      "opacity": 0.9,
-      "site_layer": "structura",
-      "label": "Structură rampă 1 20 cm"
-    },
-    {
       "id": "parapet_r180_6",
       "type": "extrude",
       "polygon": [
@@ -29227,6 +29003,102 @@
       "z1_m": 2.49,
       "color": "#4a6070",
       "label": "Parapet rampă 1 (scară)"
+    },
+    {
+      "id": "structura_rampa180_continua_N",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.1634,
+          "y": 9.4902
+        },
+        {
+          "x": 7.2615,
+          "y": 9.58
+        },
+        {
+          "x": 7.2666,
+          "y": 9.4601
+        },
+        {
+          "x": 5.1685,
+          "y": 9.3703
+        },
+        {
+          "x": 5.1634,
+          "y": 9.4902
+        }
+      ],
+      "z0_m": 0.27999999999999997,
+      "z1_m": 1.54,
+      "color": "#5a6570",
+      "opacity": 0.92,
+      "site_layer": "structura",
+      "label": "Vang N rampă 1 CONTINUU (nu blocuri pe treaptă)"
+    },
+    {
+      "id": "structura_rampa180_continua_S",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.2031,
+          "y": 8.5611
+        },
+        {
+          "x": 7.3012,
+          "y": 8.6508
+        },
+        {
+          "x": 7.3063,
+          "y": 8.5309
+        },
+        {
+          "x": 5.2082,
+          "y": 8.4412
+        },
+        {
+          "x": 5.2031,
+          "y": 8.5611
+        }
+      ],
+      "z0_m": 0.27999999999999997,
+      "z1_m": 1.54,
+      "color": "#5a6570",
+      "opacity": 0.92,
+      "site_layer": "structura",
+      "label": "Vang S rampă 1 CONTINUU"
+    },
+    {
+      "id": "structura_rampa180_placa_continua",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.1685,
+          "y": 9.3703
+        },
+        {
+          "x": 7.2666,
+          "y": 9.4601
+        },
+        {
+          "x": 7.3012,
+          "y": 8.6508
+        },
+        {
+          "x": 5.2031,
+          "y": 8.5611
+        },
+        {
+          "x": 5.1685,
+          "y": 9.3703
+        }
+      ],
+      "z0_m": 1.34,
+      "z1_m": 1.54,
+      "color": "#626c75",
+      "opacity": 0.75,
+      "site_layer": "structura",
+      "label": "Placă scară rampă 1 CONTINUĂ (schematic la cotă sus — vanguri poartă panta)"
     },
     {
       "id": "podest_se",
@@ -29350,38 +29222,6 @@
       "label": "Rampă est (FF treaptă = sus)"
     },
     {
-      "id": "structura_r2_0",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.2487,
-          "y": 9.8797
-        },
-        {
-          "x": 8.3977,
-          "y": 9.9289
-        },
-        {
-          "x": 8.4105,
-          "y": 9.6291
-        },
-        {
-          "x": 7.2615,
-          "y": 9.58
-        },
-        {
-          "x": 7.2487,
-          "y": 9.8797
-        }
-      ],
-      "z0_m": 1.56,
-      "z1_m": 1.7,
-      "color": "#5a6570",
-      "label": "Structură rampă 20 cm",
-      "opacity": 0.9,
-      "site_layer": "structura"
-    },
-    {
       "id": "parapet_r2_0",
       "type": "extrude",
       "polygon": [
@@ -29440,38 +29280,6 @@
       "z1_m": 1.9200000000000002,
       "color": "#7a8390",
       "label": "Rampă est (FF treaptă = sus)"
-    },
-    {
-      "id": "structura_r2_1",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.2359,
-          "y": 10.1794
-        },
-        {
-          "x": 8.3848,
-          "y": 10.2286
-        },
-        {
-          "x": 8.3977,
-          "y": 9.9289
-        },
-        {
-          "x": 7.2487,
-          "y": 9.8797
-        },
-        {
-          "x": 7.2359,
-          "y": 10.1794
-        }
-      ],
-      "z0_m": 1.7200000000000002,
-      "z1_m": 1.86,
-      "color": "#5a6570",
-      "label": "Structură rampă 20 cm",
-      "opacity": 0.9,
-      "site_layer": "structura"
     },
     {
       "id": "parapet_r2_1",
@@ -29534,38 +29342,6 @@
       "label": "Rampă est (FF treaptă = sus)"
     },
     {
-      "id": "structura_r2_2",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.2231,
-          "y": 10.4792
-        },
-        {
-          "x": 8.372,
-          "y": 10.5283
-        },
-        {
-          "x": 8.3848,
-          "y": 10.2286
-        },
-        {
-          "x": 7.2359,
-          "y": 10.1794
-        },
-        {
-          "x": 7.2231,
-          "y": 10.4792
-        }
-      ],
-      "z0_m": 1.8800000000000001,
-      "z1_m": 2.02,
-      "color": "#5a6570",
-      "label": "Structură rampă 20 cm",
-      "opacity": 0.9,
-      "site_layer": "structura"
-    },
-    {
       "id": "parapet_r2_2",
       "type": "extrude",
       "polygon": [
@@ -29624,38 +29400,6 @@
       "z1_m": 2.24,
       "color": "#7a8390",
       "label": "Rampă est (FF treaptă = sus)"
-    },
-    {
-      "id": "structura_r2_3",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.2102,
-          "y": 10.7789
-        },
-        {
-          "x": 8.3591,
-          "y": 10.828
-        },
-        {
-          "x": 8.372,
-          "y": 10.5283
-        },
-        {
-          "x": 7.2231,
-          "y": 10.4792
-        },
-        {
-          "x": 7.2102,
-          "y": 10.7789
-        }
-      ],
-      "z0_m": 2.04,
-      "z1_m": 2.18,
-      "color": "#5a6570",
-      "label": "Structură rampă 20 cm",
-      "opacity": 0.9,
-      "site_layer": "structura"
     },
     {
       "id": "parapet_r2_3",
@@ -29718,38 +29462,6 @@
       "label": "Rampă est (FF treaptă = sus)"
     },
     {
-      "id": "structura_r2_4",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1973,
-          "y": 11.0786
-        },
-        {
-          "x": 8.3463,
-          "y": 11.1278
-        },
-        {
-          "x": 8.3591,
-          "y": 10.828
-        },
-        {
-          "x": 7.2102,
-          "y": 10.7789
-        },
-        {
-          "x": 7.1973,
-          "y": 11.0786
-        }
-      ],
-      "z0_m": 2.2,
-      "z1_m": 2.3400000000000003,
-      "color": "#5a6570",
-      "label": "Structură rampă 20 cm",
-      "opacity": 0.9,
-      "site_layer": "structura"
-    },
-    {
       "id": "parapet_r2_4",
       "type": "extrude",
       "polygon": [
@@ -29808,38 +29520,6 @@
       "z1_m": 2.56,
       "color": "#7a8390",
       "label": "Rampă est (FF treaptă = sus)"
-    },
-    {
-      "id": "structura_r2_5",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1845,
-          "y": 11.3783
-        },
-        {
-          "x": 8.3335,
-          "y": 11.4275
-        },
-        {
-          "x": 8.3463,
-          "y": 11.1278
-        },
-        {
-          "x": 7.1973,
-          "y": 11.0786
-        },
-        {
-          "x": 7.1845,
-          "y": 11.3783
-        }
-      ],
-      "z0_m": 2.36,
-      "z1_m": 2.5,
-      "color": "#5a6570",
-      "label": "Structură rampă 20 cm",
-      "opacity": 0.9,
-      "site_layer": "structura"
     },
     {
       "id": "parapet_r2_5",
@@ -29902,38 +29582,6 @@
       "label": "Rampă est (FF treaptă = sus)"
     },
     {
-      "id": "structura_r2_6",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1717,
-          "y": 11.6781
-        },
-        {
-          "x": 8.3206,
-          "y": 11.7272
-        },
-        {
-          "x": 8.3335,
-          "y": 11.4275
-        },
-        {
-          "x": 7.1845,
-          "y": 11.3783
-        },
-        {
-          "x": 7.1717,
-          "y": 11.6781
-        }
-      ],
-      "z0_m": 2.52,
-      "z1_m": 2.66,
-      "color": "#5a6570",
-      "label": "Structură rampă 20 cm",
-      "opacity": 0.9,
-      "site_layer": "structura"
-    },
-    {
       "id": "parapet_r2_6",
       "type": "extrude",
       "polygon": [
@@ -29992,38 +29640,6 @@
       "z1_m": 2.88,
       "color": "#7a8390",
       "label": "Rampă est (FF treaptă = sus)"
-    },
-    {
-      "id": "structura_r2_7",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1589,
-          "y": 11.9778
-        },
-        {
-          "x": 8.3078,
-          "y": 12.0269
-        },
-        {
-          "x": 8.3206,
-          "y": 11.7272
-        },
-        {
-          "x": 7.1717,
-          "y": 11.6781
-        },
-        {
-          "x": 7.1589,
-          "y": 11.9778
-        }
-      ],
-      "z0_m": 2.6799999999999997,
-      "z1_m": 2.82,
-      "color": "#5a6570",
-      "label": "Structură rampă 20 cm",
-      "opacity": 0.9,
-      "site_layer": "structura"
     },
     {
       "id": "parapet_r2_7",
@@ -30086,38 +29702,6 @@
       "label": "Rampă est (FF treaptă = sus)"
     },
     {
-      "id": "structura_r2_8",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.146,
-          "y": 12.2775
-        },
-        {
-          "x": 8.295,
-          "y": 12.3267
-        },
-        {
-          "x": 8.3078,
-          "y": 12.0269
-        },
-        {
-          "x": 7.1589,
-          "y": 11.9778
-        },
-        {
-          "x": 7.146,
-          "y": 12.2775
-        }
-      ],
-      "z0_m": 2.84,
-      "z1_m": 2.98,
-      "color": "#5a6570",
-      "label": "Structură rampă 20 cm",
-      "opacity": 0.9,
-      "site_layer": "structura"
-    },
-    {
       "id": "parapet_r2_8",
       "type": "extrude",
       "polygon": [
@@ -30146,6 +29730,70 @@
       "z1_m": 4.09,
       "color": "#8a939e",
       "label": "Parapet rampa 2"
+    },
+    {
+      "id": "structura_rampa2_continua_W",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.146,
+          "y": 12.2775
+        },
+        {
+          "x": 7.2659,
+          "y": 12.2826
+        },
+        {
+          "x": 7.3814,
+          "y": 9.5851
+        },
+        {
+          "x": 7.2615,
+          "y": 9.58
+        },
+        {
+          "x": 7.146,
+          "y": 12.2775
+        }
+      ],
+      "z0_m": 1.56,
+      "z1_m": 3.14,
+      "color": "#5a6570",
+      "opacity": 0.92,
+      "site_layer": "structura",
+      "label": "Vang W rampă 2 CONTINUU (gol puț păstrat între vanguri)"
+    },
+    {
+      "id": "structura_rampa2_continua_E",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.1751,
+          "y": 12.3215
+        },
+        {
+          "x": 8.295,
+          "y": 12.3267
+        },
+        {
+          "x": 8.4105,
+          "y": 9.6291
+        },
+        {
+          "x": 8.2906,
+          "y": 9.624
+        },
+        {
+          "x": 8.1751,
+          "y": 12.3215
+        }
+      ],
+      "z0_m": 1.56,
+      "z1_m": 3.14,
+      "color": "#5a6570",
+      "opacity": 0.92,
+      "site_layer": "structura",
+      "label": "Vang E rampă 2 CONTINUU"
     },
     {
       "id": "copertina_rampa2",
@@ -32154,24 +31802,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.755,
-          "y": 12.0606
+          "x": 6.8549,
+          "y": 12.0649
         },
         {
-          "x": 7.0547,
-          "y": 12.0734
+          "x": 7.1546,
+          "y": 12.0777
         },
         {
-          "x": 7.1616,
-          "y": 9.5757
+          "x": 7.2615,
+          "y": 9.58
         },
         {
-          "x": 6.8619,
-          "y": 9.5629
+          "x": 6.9618,
+          "y": 9.5672
         },
         {
-          "x": 6.755,
-          "y": 12.0606
+          "x": 6.8549,
+          "y": 12.0649
         }
       ],
       "z0_m": -0.7,
@@ -32179,7 +31827,39 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "separator încălzit Y610→sud; leagă de B_Y830 / C_S_INTRARE_E"
+      "label": "separator Y610→sud; nod cu B_Y830"
+    },
+    {
+      "id": "subsol_grinda_B_SEP_AFTER_DOOR",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.8506,
+          "y": 12.1648
+        },
+        {
+          "x": 7.1503,
+          "y": 12.1776
+        },
+        {
+          "x": 7.1546,
+          "y": 12.0777
+        },
+        {
+          "x": 6.8549,
+          "y": 12.0649
+        },
+        {
+          "x": 6.8506,
+          "y": 12.1648
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "buiandrug/centură S de ușă Y600–610 — preia traseul de la placa peste palier către C_CASA_SCARA; nu blochează golul"
     },
     {
       "id": "subsol_grinda_B_Y645",
@@ -32222,16 +31902,16 @@
           "y": 11.6276
         },
         {
-          "x": 5.1214,
-          "y": 11.6404
+          "x": 5.5211,
+          "y": 11.6575
         },
         {
-          "x": 5.2006,
-          "y": 9.7921
+          "x": 5.6091,
+          "y": 9.6014
         },
         {
-          "x": 4.9008,
-          "y": 9.7793
+          "x": 4.9097,
+          "y": 9.5715
         },
         {
           "x": 4.8217,
@@ -32243,7 +31923,7 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "legătură longitudinală dorm sud → corp intrare (nod cadru transversal)"
+      "label": "prin secțiunea C_S_INTRARE_W (X360–400, Y820.8+) — nod complet, nu doar muchie"
     },
     {
       "id": "subsol_grinda_B_Y830",
@@ -34738,16 +34418,16 @@
           "y": 17.8427
         },
         {
-          "x": 1.5527,
-          "y": 17.8515
+          "x": 1.7445,
+          "y": 17.8597
         },
         {
-          "x": 1.5616,
-          "y": 17.6437
+          "x": 1.7573,
+          "y": 17.56
         },
         {
-          "x": 1.3538,
-          "y": 17.6348
+          "x": 1.3577,
+          "y": 17.5429
         },
         {
           "x": 1.3449,
@@ -34759,31 +34439,31 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "stâlp C_NW fundație→acoperiș (20.8×20.8), legat pe grinzi fg+centuri"
+      "label": "stâlp C_NW fundație→acoperiș (40×30), legat pe grinzi fg+centuri"
     },
     {
       "id": "stalp_continuu_C_N_MID",
       "type": "extrude",
       "polygon": [
         {
-          "x": 5.2493,
-          "y": 18.0097
+          "x": 4.45,
+          "y": 17.9755
         },
         {
-          "x": 5.6489,
-          "y": 18.0268
+          "x": 4.8497,
+          "y": 17.9926
         },
         {
-          "x": 5.6618,
-          "y": 17.7271
+          "x": 4.8625,
+          "y": 17.6929
         },
         {
-          "x": 5.2621,
-          "y": 17.71
+          "x": 4.4629,
+          "y": 17.6758
         },
         {
-          "x": 5.2493,
-          "y": 18.0097
+          "x": 4.45,
+          "y": 17.9755
         }
       ],
       "z0_m": -3.1,
@@ -34834,12 +34514,12 @@
           "y": 13.9382
         },
         {
-          "x": 1.7917,
-          "y": 13.9502
+          "x": 1.8116,
+          "y": 13.951
         },
         {
-          "x": 1.8088,
-          "y": 13.5506
+          "x": 1.8287,
+          "y": 13.5514
         },
         {
           "x": 1.529,
@@ -34855,7 +34535,7 @@
       "color": "#6e6a64",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "stâlp C_W_MID fundație→acoperiș (28×40), legat pe grinzi fg+centuri"
+      "label": "stâlp C_W_MID fundație→acoperiș (30×40), legat pe grinzi fg+centuri"
     },
     {
       "id": "stalp_continuu_C_W_DORM",
@@ -34990,24 +34670,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.755,
-          "y": 12.0606
+          "x": 6.8549,
+          "y": 12.0649
         },
         {
-          "x": 7.0547,
-          "y": 12.0734
+          "x": 7.1546,
+          "y": 12.0777
         },
         {
-          "x": 7.0718,
-          "y": 11.6738
+          "x": 7.1717,
+          "y": 11.6781
         },
         {
-          "x": 6.7721,
-          "y": 11.661
+          "x": 6.872,
+          "y": 11.6652
         },
         {
-          "x": 6.755,
-          "y": 12.0606
+          "x": 6.8549,
+          "y": 12.0649
         }
       ],
       "z0_m": -3.1,
@@ -35022,24 +34702,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.0547,
-          "y": 12.0734
-        },
-        {
           "x": 7.1546,
           "y": 12.0777
+        },
+        {
+          "x": 7.2465,
+          "y": 12.0816
+        },
+        {
+          "x": 7.2636,
+          "y": 11.682
         },
         {
           "x": 7.1717,
           "y": 11.6781
         },
         {
-          "x": 7.0718,
-          "y": 11.6738
-        },
-        {
-          "x": 7.0547,
-          "y": 12.0734
+          "x": 7.1546,
+          "y": 12.0777
         }
       ],
       "z0_m": -3.1,
@@ -35048,6 +34728,38 @@
       "opacity": 0.8,
       "site_layer": "umplutura",
       "label": "vată față rece C_CASA_SCARA (nu beton în scară)"
+    },
+    {
+      "id": "subsol_pier_C_SHAFT_E_PIER",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.1387,
+          "y": 12.4701
+        },
+        {
+          "x": 8.2886,
+          "y": 12.4765
+        },
+        {
+          "x": 8.295,
+          "y": 12.3267
+        },
+        {
+          "x": 8.1451,
+          "y": 12.3203
+        },
+        {
+          "x": 8.1387,
+          "y": 12.4701
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -0.05,
+      "color": "#5a8f6a",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "pier C_SHAFT_E_PIER — reazem grindă întoarsă"
     },
     {
       "id": "stalp_continuu_C_S_INTRARE_W",
@@ -35511,24 +35223,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.755,
-          "y": 12.0606
+          "x": 6.8549,
+          "y": 12.0649
         },
         {
-          "x": 7.0547,
-          "y": 12.0734
+          "x": 7.1546,
+          "y": 12.0777
         },
         {
-          "x": 7.1616,
-          "y": 9.5757
+          "x": 7.2615,
+          "y": 9.58
         },
         {
-          "x": 6.8619,
-          "y": 9.5629
+          "x": 6.9618,
+          "y": 9.5672
         },
         {
-          "x": 6.755,
-          "y": 12.0606
+          "x": 6.8549,
+          "y": 12.0649
         }
       ],
       "z0_m": 2.73,
@@ -35536,7 +35248,39 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "separator încălzit Y610→sud; leagă de B_Y830 / C_S_INTRARE_E (intrados 273)"
+      "label": "separator Y610→sud; nod cu B_Y830 (intrados 273)"
+    },
+    {
+      "id": "parter_centura_B_SEP_AFTER_DOOR",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.8506,
+          "y": 12.1648
+        },
+        {
+          "x": 7.1503,
+          "y": 12.1776
+        },
+        {
+          "x": 7.1546,
+          "y": 12.0777
+        },
+        {
+          "x": 6.8549,
+          "y": 12.0649
+        },
+        {
+          "x": 6.8506,
+          "y": 12.1648
+        }
+      ],
+      "z0_m": 2.73,
+      "z1_m": 3.08,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "buiandrug/centură S de ușă Y600–610 — preia traseul de la placa peste palier către C_CASA_SCARA; nu blochează golul (intrados 273)"
     },
     {
       "id": "parter_centura_B_Y645",
@@ -35579,16 +35323,16 @@
           "y": 11.6276
         },
         {
-          "x": 5.1214,
-          "y": 11.6404
+          "x": 5.5211,
+          "y": 11.6575
         },
         {
-          "x": 5.2006,
-          "y": 9.7921
+          "x": 5.6091,
+          "y": 9.6014
         },
         {
-          "x": 4.9008,
-          "y": 9.7793
+          "x": 4.9097,
+          "y": 9.5715
         },
         {
           "x": 4.8217,
@@ -35600,7 +35344,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "legătură longitudinală dorm sud → corp intrare (nod cadru transversal) (intrados 273)"
+      "label": "prin secțiunea C_S_INTRARE_W (X360–400, Y820.8+) — nod complet, nu doar muchie (intrados 273)"
     },
     {
       "id": "parter_centura_B_Y830",
@@ -35688,16 +35432,16 @@
             "y": 17.8427
           },
           {
-            "x": 1.3538,
-            "y": 17.6348
+            "x": 1.3577,
+            "y": 17.5429
           },
           {
-            "x": 1.5616,
-            "y": 17.6437
+            "x": 1.7573,
+            "y": 17.56
           },
           {
-            "x": 1.5527,
-            "y": 17.8515
+            "x": 1.7445,
+            "y": 17.8597
           },
           {
             "x": 1.3449,
@@ -35706,24 +35450,24 @@
         ],
         [
           {
-            "x": 5.2493,
-            "y": 18.0097
+            "x": 4.45,
+            "y": 17.9755
           },
           {
-            "x": 5.2621,
-            "y": 17.71
+            "x": 4.4629,
+            "y": 17.6758
           },
           {
-            "x": 5.6618,
-            "y": 17.7271
+            "x": 4.8625,
+            "y": 17.6929
           },
           {
-            "x": 5.6489,
-            "y": 18.0268
+            "x": 4.8497,
+            "y": 17.9926
           },
           {
-            "x": 5.2493,
-            "y": 18.0097
+            "x": 4.45,
+            "y": 17.9755
           }
         ],
         [
@@ -35758,12 +35502,12 @@
             "y": 13.5386
           },
           {
-            "x": 1.8088,
-            "y": 13.5506
+            "x": 1.8287,
+            "y": 13.5514
           },
           {
-            "x": 1.7917,
-            "y": 13.9502
+            "x": 1.8116,
+            "y": 13.951
           },
           {
             "x": 1.5119,
@@ -35860,24 +35604,24 @@
         ],
         [
           {
-            "x": 6.755,
-            "y": 12.0606
+            "x": 6.8549,
+            "y": 12.0649
           },
           {
-            "x": 6.7721,
-            "y": 11.661
+            "x": 6.872,
+            "y": 11.6652
           },
           {
-            "x": 7.0718,
-            "y": 11.6738
+            "x": 7.1717,
+            "y": 11.6781
           },
           {
-            "x": 7.0547,
-            "y": 12.0734
+            "x": 7.1546,
+            "y": 12.0777
           },
           {
-            "x": 6.755,
-            "y": 12.0606
+            "x": 6.8549,
+            "y": 12.0649
           }
         ],
         [
@@ -36033,24 +35777,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.755,
-          "y": 12.0606
+          "x": 6.8549,
+          "y": 12.0649
         },
         {
-          "x": 7.0547,
-          "y": 12.0734
+          "x": 7.1546,
+          "y": 12.0777
         },
         {
-          "x": 7.1616,
-          "y": 9.5757
+          "x": 7.2615,
+          "y": 9.58
         },
         {
-          "x": 6.8619,
-          "y": 9.5629
+          "x": 6.9618,
+          "y": 9.5672
         },
         {
-          "x": 6.755,
-          "y": 12.0606
+          "x": 6.8549,
+          "y": 12.0649
         }
       ],
       "z0_m": 5.46,
@@ -36058,7 +35802,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "separator încălzit Y610→sud; leagă de B_Y830 / C_S_INTRARE_E"
+      "label": "separator Y610→sud; nod cu B_Y830"
     },
     {
       "id": "etaj_centura_B_Y645",
@@ -36101,16 +35845,16 @@
           "y": 11.6276
         },
         {
-          "x": 5.1214,
-          "y": 11.6404
+          "x": 5.5211,
+          "y": 11.6575
         },
         {
-          "x": 5.2006,
-          "y": 9.7921
+          "x": 5.6091,
+          "y": 9.6014
         },
         {
-          "x": 4.9008,
-          "y": 9.7793
+          "x": 4.9097,
+          "y": 9.5715
         },
         {
           "x": 4.8217,
@@ -36122,7 +35866,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "legătură longitudinală dorm sud → corp intrare (nod cadru transversal)"
+      "label": "prin secțiunea C_S_INTRARE_W (X360–400, Y820.8+) — nod complet, nu doar muchie"
     },
     {
       "id": "etaj_centura_B_Y830",

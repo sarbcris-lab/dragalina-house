@@ -798,6 +798,7 @@ function main() {
   const tread = st.tread_cm || 30;
   const nTread180 = n180 - 1;
   const rampStruct180 = m(st.ramp2_structure_cm || 20);
+  const stringerTh = 12; // cm — vanguri continue (FRAME)
   for (let i = 0; i < nTread180; i++) {
     const xWest = f180.x + i * tread;
     const zTop = zParter + riser * (i + 1);
@@ -810,17 +811,19 @@ function main() {
       color: i % 2 === 0 ? "#6a8498" : "#5a7488",
       label: "SCARĂ rampă 1 (nu terasă)",
     });
-    meshes.push({
-      id: `structura_r180_${i}`,
-      type: "extrude",
-      polygon: rectPoly(xWest, f180.y, tread, st.width_clear_cm),
-      z0_m: zTop - rampStruct180,
-      z1_m: zTop - treadTh,
-      color: "#5a6570",
-      opacity: 0.9,
-      site_layer: "structura",
-      label: `Structură rampă 1 ${st.ramp2_structure_cm || 20} cm`,
-    });
+    if (!isFrameStudy) {
+      meshes.push({
+        id: `structura_r180_${i}`,
+        type: "extrude",
+        polygon: rectPoly(xWest, f180.y, tread, st.width_clear_cm),
+        z0_m: zTop - rampStruct180,
+        z1_m: zTop - treadTh,
+        color: "#5a6570",
+        opacity: 0.9,
+        site_layer: "structura",
+        label: `Structură rampă 1 ${st.ramp2_structure_cm || 20} cm`,
+      });
+    }
     meshes.push({
       id: `parapet_r180_${i}`,
       type: "extrude",
@@ -829,6 +832,45 @@ function main() {
       z1_m: zTop + parapetH,
       color: "#4a6070",
       label: "Parapet rampă 1 (scară)",
+    });
+  }
+  if (isFrameStudy && nTread180 > 0) {
+    const zLo180 = zParter + riser - rampStruct180;
+    const zHi180 = zParter + riser * n180 - treadTh;
+    const runDx180 = nTread180 * tread;
+    meshes.push({
+      id: "structura_rampa180_continua_N",
+      type: "extrude",
+      polygon: rectPoly(f180.x, f180.y, runDx180, stringerTh),
+      z0_m: zLo180,
+      z1_m: zHi180,
+      color: "#5a6570",
+      opacity: 0.92,
+      site_layer: "structura",
+      label: "Vang N rampă 1 CONTINUU (nu blocuri pe treaptă)",
+    });
+    meshes.push({
+      id: "structura_rampa180_continua_S",
+      type: "extrude",
+      polygon: rectPoly(f180.x, f180.y + st.width_clear_cm - stringerTh, runDx180, stringerTh),
+      z0_m: zLo180,
+      z1_m: zHi180,
+      color: "#5a6570",
+      opacity: 0.92,
+      site_layer: "structura",
+      label: "Vang S rampă 1 CONTINUU",
+    });
+    // placă/calcâi continuu sub călcări (finisaj trepte separat)
+    meshes.push({
+      id: "structura_rampa180_placa_continua",
+      type: "extrude",
+      polygon: rectPoly(f180.x, f180.y + stringerTh, runDx180, Math.max(1, st.width_clear_cm - 2 * stringerTh)),
+      z0_m: zHi180 - rampStruct180,
+      z1_m: zHi180,
+      color: "#626c75",
+      opacity: 0.75,
+      site_layer: "structura",
+      label: "Placă scară rampă 1 CONTINUĂ (schematic la cotă sus — vanguri poartă panta)",
     });
   }
 
@@ -873,7 +915,6 @@ function main() {
     for (let i = 0; i < nTread330; i++) {
       const ySouth = ySouthEdge - (i + 1) * tread;
       const zTopStep = zPod + riser * (i + 1);
-      // plăcuță vizibilă pe față
       meshes.push({
         id: `treapta_r2_${i}`,
         type: "extrude",
@@ -883,18 +924,19 @@ function main() {
         color: i % 2 === 0 ? "#8a93a0" : "#7a8390",
         label: "Rampă est (FF treaptă = sus)",
       });
-      // structură treaptă (doară grosimea scării — NU umplutură până la FF parter)
-      meshes.push({
-        id: `structura_r2_${i}`,
-        type: "extrude",
-        polygon: rectPoly(r2.x, ySouth, r2.dx, tread),
-        z0_m: zTopStep - rampStruct,
-        z1_m: zTopStep - treadTh,
-        color: "#5a6570",
-        label: `Structură rampă ${st.ramp2_structure_cm || 20} cm`,
-        opacity: 0.9,
-        site_layer: "structura",
-      });
+      if (!isFrameStudy) {
+        meshes.push({
+          id: `structura_r2_${i}`,
+          type: "extrude",
+          polygon: rectPoly(r2.x, ySouth, r2.dx, tread),
+          z0_m: zTopStep - rampStruct,
+          z1_m: zTopStep - treadTh,
+          color: "#5a6570",
+          label: `Structură rampă ${st.ramp2_structure_cm || 20} cm`,
+          opacity: 0.9,
+          site_layer: "structura",
+        });
+      }
       meshes.push({
         id: `parapet_r2_${i}`,
         type: "extrude",
@@ -904,7 +946,6 @@ function main() {
         color: "#8a939e",
         label: "Parapet rampa 2",
       });
-      // depozit sub r2 eliminat (V47): spațiu liber pentru coborâre beci
       if (storageUnderRamp2) {
         const zFill = Math.max(zParter, zTopStep - rampStruct);
         if (zFill > zParter + 0.05) {
@@ -920,6 +961,34 @@ function main() {
           });
         }
       }
+    }
+    if (isFrameStudy && nTread330 > 0) {
+      const zLo2 = zPod + riser - rampStruct;
+      const zHi2 = zPod + riser * n330 - treadTh;
+      const runDy2 = nTread330 * tread;
+      const yRun0 = ySouthEdge - runDy2;
+      meshes.push({
+        id: "structura_rampa2_continua_W",
+        type: "extrude",
+        polygon: rectPoly(r2.x, yRun0, stringerTh, runDy2),
+        z0_m: zLo2,
+        z1_m: zHi2,
+        color: "#5a6570",
+        opacity: 0.92,
+        site_layer: "structura",
+        label: "Vang W rampă 2 CONTINUU (gol puț păstrat între vanguri)",
+      });
+      meshes.push({
+        id: "structura_rampa2_continua_E",
+        type: "extrude",
+        polygon: rectPoly(r2.x + r2.dx - stringerTh, yRun0, stringerTh, runDy2),
+        z0_m: zLo2,
+        z1_m: zHi2,
+        color: "#5a6570",
+        opacity: 0.92,
+        site_layer: "structura",
+        label: "Vang E rampă 2 CONTINUU",
+      });
     }
   }
   // Copertină pe rampa 2 (acoperită) — nu e placă de planșeu
@@ -2488,6 +2557,21 @@ function main() {
               zTopE,
               `stâlp E ${c.id}`,
               "#6e6a64"
+            );
+          }
+          // Pier/subsol-only (ex. C_SHAFT_E_PIER sub grindă întoarsă)
+          if (!hasP && !hasE && (lv.includes("S") || c.role)) {
+            const pierTop = m(invertedEdgeBeam?.z1_cm ?? -5);
+            pushPE(
+              `subsol_pier_${c.id}`,
+              c.x,
+              c.y,
+              c.dx,
+              c.dy,
+              zBotP,
+              pierTop,
+              `pier ${c.id} — reazem grindă întoarsă`,
+              "#5a8f6a"
             );
           }
         }
