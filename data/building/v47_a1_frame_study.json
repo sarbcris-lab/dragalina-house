@@ -79,8 +79,33 @@
       "above_roof_cm": 6,
       "note": "Panouri fotovoltaice pe ambele ape — decis"
     },
+    "structure_cm": {
+      "status": "studiu_preliminar",
+      "system": "coama_BA_plus_capriori_BA",
+      "note": "Schelet acoperiș pe cadre: coamă pe Y430, solbancuri pe streșini N/S, căpriori la pas ~120 cm — de confirmat structurist (nu șarpantă lemn finală).",
+      "ridge_beam": {
+        "section_cm": [20, 35],
+        "along": "ew",
+        "y_cm": 430,
+        "note": "grindă coamă pe toată lungimea anvelopei"
+      },
+      "wall_plate": {
+        "section_cm": [20, 25],
+        "on": ["eave_N", "eave_S"]
+      },
+      "rafter": {
+        "section_cm": [12, 25],
+        "spacing_cm": 120,
+        "note": "căpriori BA pe pantă N și S"
+      },
+      "gable_posts": {
+        "section_cm": [20, 20],
+        "at_x": ["near_W", "near_E"],
+        "note": "stâlpișori fronton de la solbanc/coamă — legătură vizuală la cadre"
+      }
+    },
     "not": "copertină pe rampă 2 — acoperiș 2 ape continuu pe casă + scară",
-    "viewer_note": "Mesh triangles: acoperis_apa_N/S + frontoane + pv_apa_N/S"
+    "viewer_note": "Mesh: acoperis_apa_N/S + frontoane + pv + acoperis_coama_/caprior_/solbanc_"
   },
   "wall_ext_cm": 30,
   "wall_int_cm": 12.5,
@@ -5218,35 +5243,53 @@
     "rooms": [
       {
         "id": "camera_tehnica",
-        "x": 31.3,
-        "y": 30,
-        "dx": 505,
-        "dy": 370,
+        "x": 50.5,
+        "y": 39.2,
+        "dx": 485.8,
+        "dy": 360.8,
         "z_ff_cm": -250,
-        "area_m2": 18.68,
-        "note": "alin. parter: E@X535 separator, S@Y400"
+        "area_m2": 17.53,
+        "note": "PRIORITATE plan P: sub living până la separator X535 (buc_est) și Y400 (C_W_MID). Stâlpi C_NW/C_N_MID în perete N — în afara clarului; C_W_MID în perete S.",
+        "plan_align": {
+          "e_to": "buc_est / C_CASA_SCARA X536.3",
+          "s_to": "C_W_MID Y400",
+          "columns_in_walls": ["C_NW", "C_N_MID", "C_W_MID"]
+        }
       },
       {
         "id": "depozit_subsol",
-        "x": 31.3,
-        "y": 400,
-        "dx": 330,
-        "dy": 245,
+        "x": 50.5,
+        "y": 440,
+        "dx": 280.8,
+        "dy": 195.8,
         "z_ff_cm": -250,
-        "area_m2": 8.09,
-        "note": "sub dorm P: X30–360 Y400–645"
+        "area_m2": 5.5,
+        "note": "PRIORITATE plan P: sub dormitor — E@X331.3 (C_S_DORM_E), N past C_W_MID (Y440), S@Y645.8. Stâlpi C_W_DORM / C_S_DORM_E în pereți.",
+        "plan_align": {
+          "e_to": "C_S_DORM_E / ax X360 plan",
+          "n_to": "fața sud C_W_MID",
+          "s_to": "dormitor_sud Y645",
+          "columns_in_walls": ["C_W_DORM", "C_S_DORM_E", "C_W_MID"]
+        }
       },
       {
         "id": "hol_subsol",
         "x": 361.3,
-        "y": 400,
+        "y": 440,
         "dx": 175,
-        "dy": 245,
+        "dy": 160,
         "z_ff_cm": -250,
-        "area_m2": 4.287,
-        "note": "alin. intrare/hol P: X360–535 Y400–645; ușă beci neschimbată"
+        "area_m2": 2.8,
+        "note": "PRIORITATE plan P: bandă X360–535 sub hol/intrare; S până la Y600 (ușă beci). C_CASA_SCARA @Y610 în perete E (separator), nu în clar circulație.",
+        "plan_align": {
+          "w_to": "ax X360 plan",
+          "e_to": "buc_est X535 / C_CASA_SCARA",
+          "s_to": "usa_subsol_camere Y500–600",
+          "columns_in_walls": ["C_CASA_SCARA"]
+        }
       }
     ],
+    "rooms_priority_note": "Planurile P/E = sursă de adevăr. Beciul se aliniază pe aceleași axe (X360, X535, Y400, Y645); stâlpii NU se elimină — stau în pereți. Clarul camerelor ocolește proeminențele.",
     "equipment": [
       {
         "id": "invertor_deye_15kw",
@@ -5381,34 +5424,34 @@
     "areas": {
       "rooms": {
         "camera_tehnica": {
-          "brut_m2": 18.68,
-          "x": 31.3,
-          "y": 30,
-          "dx": 505,
-          "dy": 370
+          "brut_m2": 17.53,
+          "x": 50.5,
+          "y": 39.2,
+          "dx": 485.8,
+          "dy": 360.8
         },
         "depozit_subsol": {
-          "brut_m2": 8.09,
-          "x": 31.3,
-          "y": 400,
-          "dx": 330,
-          "dy": 245
+          "brut_m2": 5.5,
+          "x": 50.5,
+          "y": 440,
+          "dx": 280.8,
+          "dy": 195.8
         },
         "hol_subsol": {
-          "brut_m2": 4.287,
+          "brut_m2": 2.8,
           "x": 361.3,
-          "y": 400,
+          "y": 440,
           "dx": 175,
-          "dy": 245
+          "dy": 160
         }
       },
-      "total_brut_rooms_m2": 31.3175,
-      "util_estimat_m2": 29.5194,
+      "total_brut_rooms_m2": 25.83,
+      "util_estimat_m2": 24.0,
       "wall_thickness_used_cm": {
         "partition": 12.5,
         "perimeter": 30
       },
-      "note": "FRAME: compartimentare subsol realiniată la axe parter — nu constrânge stâlpii"
+      "note": "PRIORITATE planuri P/E: beci pe axe X360/X535/Y400/Y645; stâlpii rămân, clarul ocolește proeminențele"
     },
     "open_shaft_under_ramp2": true,
     "english_court_open_void": true,

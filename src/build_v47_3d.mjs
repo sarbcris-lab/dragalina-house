@@ -1008,6 +1008,149 @@ function main() {
     }
   }
 
+  // —— STRUCTURĂ ACOPERIȘ (FRAME): coamă + solbancuri + căpriori pe pantă
+  if (isFrameStudy) {
+    const rs = roofMeta.structure_cm || {};
+    const ridgeSec = rs.ridge_beam?.section_cm || [20, 35];
+    const plateSec = rs.wall_plate?.section_cm || [20, 25];
+    const rafSec = rs.rafter?.section_cm || [12, 25];
+    const spacing = rs.rafter?.spacing_cm || 120;
+    const dropUnderShell = roofTh * 0.35; // sub învelitoare
+    const boxFaces = [
+      [0, 1, 2],
+      [0, 2, 3],
+      [4, 6, 5],
+      [4, 7, 6],
+      [0, 4, 5],
+      [0, 5, 1],
+      [3, 2, 6],
+      [3, 6, 7],
+      [0, 3, 7],
+      [0, 7, 4],
+      [1, 5, 6],
+      [1, 6, 2],
+    ];
+    function pushPitchBeam(id, xa, xb, yA, zA, yB, zB, thZcm, color, label) {
+      const zAt = zA - dropUnderShell;
+      const zBt = zB - dropUnderShell;
+      const zAb = zAt - m(thZcm);
+      const zBb = zBt - m(thZcm);
+      pushTriMesh(
+        id,
+        [
+          siteVert(xa, yA, zAt),
+          siteVert(xb, yA, zAt),
+          siteVert(xb, yB, zBt),
+          siteVert(xa, yB, zBt),
+          siteVert(xa, yA, zAb),
+          siteVert(xb, yA, zAb),
+          siteVert(xb, yB, zBb),
+          siteVert(xa, yB, zBb),
+        ],
+        boxFaces,
+        color,
+        label,
+        { site_layer: "structura" }
+      );
+    }
+    // Grindă coamă (orizontală pe Y ridge)
+    {
+      const by = ridgeSec[0];
+      const hz = ridgeSec[1];
+      meshes.push({
+        id: "acoperis_coama_BA",
+        type: "extrude",
+        polygon: rectPoly(x0r, ridgeY - by / 2, x1r - x0r, by),
+        z0_m: ridgeZ - dropUnderShell - m(hz),
+        z1_m: ridgeZ - dropUnderShell,
+        color: "#d4a84b",
+        opacity: 0.98,
+        site_layer: "structura",
+        label: `grindă coamă BA ${ridgeSec[0]}×${ridgeSec[1]} cm · Y${ridgeY}`,
+      });
+    }
+    // Solbancuri streșină N / S
+    {
+      const by = plateSec[0];
+      const hz = plateSec[1];
+      meshes.push({
+        id: "acoperis_solbanc_N",
+        type: "extrude",
+        polygon: rectPoly(x0r, y0r, x1r - x0r, by),
+        z0_m: eaveZ - m(hz),
+        z1_m: eaveZ,
+        color: "#c4983e",
+        site_layer: "structura",
+        label: `solbanc N BA ${plateSec[0]}×${plateSec[1]} cm`,
+      });
+      meshes.push({
+        id: "acoperis_solbanc_S",
+        type: "extrude",
+        polygon: rectPoly(x0r, y1r - by, x1r - x0r, by),
+        z0_m: eaveZ - m(hz),
+        z1_m: eaveZ,
+        color: "#c4983e",
+        site_layer: "structura",
+        label: `solbanc S BA ${plateSec[0]}×${plateSec[1]} cm`,
+      });
+    }
+    // Căpriori pe ape N și S
+    {
+      const w = rafSec[0];
+      const hz = rafSec[1];
+      let idx = 0;
+      for (let x = x0r + spacing / 2; x <= x1r - spacing / 2 + 0.1; x += spacing) {
+        const xa = x - w / 2;
+        const xb = x + w / 2;
+        pushPitchBeam(
+          `acoperis_caprior_N_${idx}`,
+          xa,
+          xb,
+          y0r,
+          eaveZ,
+          ridgeY,
+          ridgeZ,
+          hz,
+          "#b8893a",
+          `căprior N @ X${Math.round(x)}`
+        );
+        pushPitchBeam(
+          `acoperis_caprior_S_${idx}`,
+          xa,
+          xb,
+          ridgeY,
+          ridgeZ,
+          y1r,
+          eaveZ,
+          hz,
+          "#b8893a",
+          `căprior S @ X${Math.round(x)}`
+        );
+        idx += 1;
+      }
+    }
+    // Stâlpișori fronton W/E (legătură vizuală coamă↔solbanc)
+    {
+      const ps = rs.gable_posts?.section_cm || [20, 20];
+      const inset = 25;
+      for (const [tag, x] of [
+        ["W", x0r + inset],
+        ["E", x1r - inset - ps[0]],
+      ]) {
+        meshes.push({
+          id: `acoperis_structura_fronton_${tag}`,
+          type: "extrude",
+          polygon: rectPoly(x, ridgeY - ps[1] / 2, ps[0], ps[1]),
+          z0_m: eaveZ,
+          z1_m: ridgeZ - dropUnderShell,
+          color: "#a87830",
+          site_layer: "structura",
+          label: `stâlpișor fronton ${tag} (coamă↔streșină)`,
+        });
+      }
+    }
+  }
+
   const r2 = st.ramp2;
   const f180 = st.flight_180;
   const pod = st.podest_se;
@@ -2033,12 +2176,13 @@ function main() {
       if (isFrameStudy && frameColumns) {
         // Stâlpii continui se extrudează o singură dată (fundație→acoperiș) în blocul P/E — nu stub-uri aici.
         frameColumnZ0 = zColBot;
-        // Grinzi de legătură pe axele cadrului (leagă stâlpii; nu stâlpi izolați)
+        // DOAR grinzi din schemă (coordonate stâlpi). Fără dubluri hardcodate pe 650/I — alea nu închideau nodurile.
         for (const b of frameStudy.beams || []) {
           const lv = (b.levels || []).join();
           if (/S_inverted/i.test(lv)) continue;
-          if (!(b.levels || []).includes("S") && !(b.levels || []).includes("P")) continue;
-          // la subsol: centuri pe aceleași axe ca P (noduri)
+          // Orice grindă P/E/S = și pe subsol (aceeași axă, pe soffit)
+          if (!(b.levels || []).includes("S") && !(b.levels || []).includes("P") && !(b.levels || []).includes("E"))
+            continue;
           pushGrindă(
             `subsol_grinda_${b.id}`,
             b.x,
@@ -2048,54 +2192,15 @@ function main() {
             b.note || `grindă legătură ${b.id}`
           );
         }
-        // Grinzi subsol: fiecare braț TRECE prin grosimea nodului (overlap), nu butt pe muchie.
-        pushGrindă("subsol_grinda_n", I, I, 650 - I + col, col, "grindă N cadru (prin noduri)");
-        pushGrindă("subsol_grinda_w", I, I, col, 645 - I + col, "grindă W cadru (prin nod S dorm)");
-        pushGrindă(
-          "subsol_grinda_est",
-          650 - (frameStudy.column_section_hypothesis_cm?.local_protrusion_inward_cm ?? 10),
-          I,
-          col,
-          489 - I,
-          "grindă E pe C_NE…C_E_PAL"
-        );
-        pushGrindă("subsol_grinda_y400", I, 400, 535 - I + col, col, "grindă Y400 prin separator X535");
-        pushGrindă(
-          "subsol_grinda_x360",
-          360 - col / 2,
-          400,
-          col,
-          430 + col,
-          "grindă X360 prin nod Y830"
-        );
-        pushGrindă("subsol_grinda_y645", I, 645, 360 - I + col / 2, col, "grindă Y645 prin X360");
-        pushGrindă(
-          "subsol_grinda_y830",
-          360 - col / 2,
-          830,
-          175 + col + col / 2,
-          col,
-          "grindă Y830 prin X360 și X535"
-        );
-        // Noduri pline pe centura subsol (vizibile de sub placă)
-        const x360g = 360 - col / 2;
-        for (const n of [
-          { id: "NW", x: I, y: I },
-          { id: "SW_dorm", x: I, y: 645 },
-          { id: "SE_dorm_X360", x: x360g, y: 645 },
-          { id: "S_intrare_W", x: x360g, y: 830 },
-          { id: "S_intrare_E", x: 535, y: 830 },
-          { id: "W_Y400", x: I, y: 400 },
-          { id: "X360_Y400", x: x360g, y: 400 },
-          { id: "E535_Y400", x: 535, y: 400 },
-        ]) {
+        // Nod plin = amprenta fiecărui stâlp (închide centura pe nod)
+        for (const c of frameColumns) {
           pushGrindă(
-            `subsol_grinda_node_${n.id}`,
-            n.x,
-            n.y,
-            col,
-            col,
-            `nod centură plin ${n.id}`
+            `subsol_grinda_node_${c.id}`,
+            c.x,
+            c.y,
+            c.dx,
+            c.dy,
+            `nod centură pe ${c.id}`
           );
         }
       } else {
@@ -2119,95 +2224,47 @@ function main() {
       const zFg0 = zFoundBot;
       const zFg1 = zFoundTop;
       if (isFrameStudy && frameColumns) {
-        // Fundație: grinzi pe axe + OVERLAP prin nod (nu butt pe muchie — altfel colț „gol” în viewer).
-        // + piese nod col×col la fiecare L/T ca „colț plin” vizibil/volumetric.
-        const x360 = 360 - col / 2;
-        pushBeton("subsol_fg_n", I, I, 650 - I + col, col, zFg0, zFg1, "fg N (prin noduri)", "#5e5a54");
-        pushBeton("subsol_fg_w", I, I, col, 645 - I + col, zFg0, zFg1, "fg W prin nod S dorm", "#5e5a54");
-        pushBeton(
-          "subsol_fg_e535",
-          535,
-          I,
-          col,
-          860 - I,
-          zFg0,
-          zFg1,
-          "fg separator X535",
-          "#5e5a54"
-        );
-        pushBeton("subsol_fg_e640", 640, I, col, 489 - I, zFg0, zFg1, "fg E stâlpi", "#5e5a54");
-        pushBeton(
-          "subsol_fg_y400",
-          I,
-          400,
-          535 - I + col,
-          col,
-          zFg0,
-          zFg1,
-          "fg Y400 prin X535",
-          "#5e5a54"
-        );
-        pushBeton(
-          "subsol_fg_x360",
-          x360,
-          400,
-          col,
-          430 + col,
-          zFg0,
-          zFg1,
-          "fg X360 prin nod Y830",
-          "#5e5a54"
-        );
-        pushBeton(
-          "subsol_fg_s",
-          I,
-          645,
-          360 - I + col / 2,
-          col,
-          zFg0,
-          zFg1,
-          "fg S dorm prin X360",
-          "#5e5a54"
-        );
-        pushBeton(
-          "subsol_fg_s_intrare",
-          x360,
-          830,
-          175 + col + col / 2,
-          col,
-          zFg0,
-          zFg1,
-          "fg S intrare prin X360+X535",
-          "#5e5a54"
-        );
-        pushBeton("subsol_fg_shaft_e", 665, 575, 15, 15, zFg0, zFg1, "fg pier est grindă întoarsă", "#5e5a54");
-
-        const fgNodes = [
-          { id: "NW", x: I, y: I },
-          { id: "N_e535", x: 535, y: I },
-          { id: "NE_e640", x: 640, y: I },
-          { id: "W_Y400", x: I, y: 400 },
-          { id: "X360_Y400", x: x360, y: 400 },
-          { id: "E535_Y400", x: 535, y: 400 },
-          { id: "SW_dorm", x: I, y: 645 },
-          { id: "SE_dorm_X360", x: x360, y: 645 },
-          { id: "S_intrare_W", x: x360, y: 830 },
-          { id: "S_intrare_E", x: 535, y: 830 },
-          { id: "E_PAL", x: 640, y: 489 - col },
-          { id: "C_W_DORM", x: I, y: 635.8 },
-          { id: "C_S_DORM_E", x: 330, y: 635.8 },
-        ];
-        for (const n of fgNodes) {
+        // Fundație = aceleași axe ca grinzile/stâlpii din schemă (nu coordonate legacy 650/I).
+        for (const b of frameStudy.beams || []) {
+          if (/S_inverted/i.test((b.levels || []).join())) continue;
           pushBeton(
-            `subsol_fg_node_${n.id}`,
-            n.x,
-            n.y,
-            col,
-            col,
+            `subsol_fg_${b.id}`,
+            b.x,
+            b.y,
+            b.dx,
+            b.dy,
             zFg0,
             zFg1,
-            `nod fundație plin ${n.id} (${col}×${col})`,
+            `fg pe axa ${b.id}`,
+            "#5e5a54"
+          );
+        }
+        for (const c of frameColumns) {
+          pushBeton(
+            `subsol_fg_pad_${c.id}`,
+            c.x,
+            c.y,
+            Math.max(c.dx, col),
+            Math.max(c.dy, col),
+            zFg0,
+            zFg1,
+            `talpă locală ${c.id}`,
             "#6a6660"
+          );
+        }
+        // Grindă întoarsă: legătură vizibilă pier → grindă (nu „în aer”)
+        const pier = frameColumns.find((c) => c.id === "C_SHAFT_E_PIER");
+        if (pier && invertedEdgeBeam) {
+          pushBeton(
+            "subsol_fg_pad_C_SHAFT_E_PIER_up",
+            pier.x,
+            pier.y,
+            pier.dx,
+            pier.dy,
+            zFg1,
+            m(invertedEdgeBeam.z0_cm ?? -30),
+            "piedestal pier → grindă întoarsă",
+            "#5a8f6a"
           );
         }
       } else {
@@ -2465,10 +2522,12 @@ function main() {
           polygon: rectPoly(ib.x, ib.y, ib.dx, ib.dy),
           z0_m: m(ib.z0_cm ?? -30),
           z1_m: m(ib.z1_cm ?? -5),
-          color: "#5a8f6a",
+          color: "#3ecf7a",
+          opacity: 1,
           site_layer: "structura",
+          highlight: "inverted_beam",
           label:
-            "grindă întoarsă Y575–590 X565 (studiu) — eliberează clear acces; fit sandwich −30…+32 = calcul",
+            "GRINDĂ ÎNTOARSĂ Y575–590 (verde) — sub placă, deasupra ușii beci; fit sandwich = calcul",
         });
       } else if (bm.slab_coordination_cm?.edge_beam_y != null) {
         const by = bm.slab_coordination_cm.edge_beam_y; // 590

@@ -130,3 +130,25 @@
 - Taburi: overlay / secțiuni cadre / A1–A2 wall / util / POT / catalog.
 - V47, A1 studiu, V46 **nu** mai apar ca modele principale.
 - Continuăm pe FRAME: layere + îmbunătățiri.
+
+## 2026-10-15 — Audit rezistență FRAME v02
+
+- Raport: `outputs/reports/v47_a1_frame_structure_audit_v02.md`.
+- Acoperă: cadre, planșee, grindă întoarsă, scări P/E+L-1, subsol, acoperiș, gard, curte, A1–A12, limite N/E/S/W.
+- Verdict: **NECONSTRUIBIL/NEVALIDAT**; top riscuri = east_landing_span, inverted_beam_fit, acoperiș fără structură, A2 vs hotar E.
+
+## 2026-10-15 — FRAME: vizibilitate stâlpi + structură acoperiș
+
+- Bug viewer: `stalp_continuu_*` erau clasificate doar pe zMid → păreau „doar subsol/parter”. Acum pe S+P+E.
+- 11 stâlpi continui + 1 pier subsol (C_SHAFT_E_PIER). N = pe limita proprietății (rost ~20 cm până la zidul vecinului).
+- Grindă întoarsă: mesh verde `subsol_grinda_y590_inverted` + SVG 37.
+- Acoperiș: coamă + solbancuri + căpriori BA (studiu) în 3D.
+- Clarificare „72,5 cm”: NU e lățimea scării proiectate (scara beci = clear **100** cm); 72,5 e (a) warn vechi pe ziduri greșite sau (b) culoar living mobilier.
+
+## 2026-10-15 — FRAME: planuri P/E sfinte · beci realiniat · schelet curățat
+
+- **Prioritate:** amenajare P/E = sursă de adevăr; stâlpii nu se elimină; beciul se ghidează pe axe plan.
+- Camere beci: CT / depozit / hol pe X360·X535·Y400·Y645; clar ocolește stâlpii (în pereți).
+- Schelet: eliminate grinzi/fundații hardcodate pe 650/I (nu închideau nodurile); fg+grinzi din schema stâlpilor.
+- Viewer: pe etaj vezi planșeu+stâlpi+schelet acoperiș; `1 · Structură` ascunde țigla ca să apară coama/căpriorii.
+- Centură E discontinuă sud de C_E_PAL = **intenție** (gol scară), nu bug.

@@ -347,6 +347,7 @@
         id.startsWith("subsol_fantana_beton") ||
         id.startsWith("subsol_scara") ||
         id.startsWith("subsol_racord_") ||
+        id.startsWith("stalp_continuu_") ||
         id.startsWith("parter_stalp_") ||
         id.startsWith("parter_grinda_") ||
         id.startsWith("parter_centura_") ||
@@ -358,6 +359,11 @@
         id === "acoperis_2_ape" ||
         id.startsWith("acoperis_apa_") ||
         id.startsWith("acoperis_fronton_") ||
+        id.startsWith("acoperis_structura_") ||
+        id.startsWith("acoperis_caprior_") ||
+        id.startsWith("acoperis_coama_") ||
+        id.startsWith("acoperis_solbanc_") ||
+        id === "subsol_grinda_y590_inverted" ||
         id === "subsol_intrados_placa" ||
         id === "subsol_palier_jos" ||
         id === "podest_se" ||
@@ -434,6 +440,25 @@
         alwaysObjs.push(obj);
       } else if (id === "teren_cf" || id.startsWith("auto") || id.startsWith("poarta") || id.startsWith("amprenta_") || id.startsWith("alee_")) {
         alwaysObjs.push(obj);
+      } else if (
+        id.startsWith("stalp_continuu_") ||
+        id.startsWith("etics_wrap_") ||
+        id.startsWith("acoperis_structura_") ||
+        id.startsWith("acoperis_caprior_") ||
+        id.startsWith("acoperis_coama_") ||
+        id.startsWith("acoperis_solbanc_")
+      ) {
+        // Stâlpi fundație→acoperiș + schelet acoperiș: vizibili pe S / P / E (nu doar pe zMid)
+        subsolObjs.push(obj);
+        parterObjs.push(obj);
+        etajObjs.push(obj);
+      } else if (
+        id.startsWith("parter_centura_") ||
+        id === "etaj_placa_structura"
+      ) {
+        // Planșeu P↔E = plafon parter / pardoseală etaj → vizibil și pe etaj
+        parterObjs.push(obj);
+        etajObjs.push(obj);
       } else if (id.startsWith("subsol_")) {
         subsolObjs.push(obj);
       } else if (zMid >= H - 0.05) etajObjs.push(obj);
@@ -543,13 +568,31 @@
             }
           }
         } else if (mode === "structura") {
-          // 1 · doar schelet beton legat
+          // 1 · doar schelet beton legat — fără învelitoare/PV ca să se vadă coama+căpriorii
           layer = structObjs;
-          for (const o of structObjs) o.visible = true;
+          for (const o of structObjs) {
+            const n = o.name || "";
+            if (
+              n.startsWith("acoperis_apa_") ||
+              n.startsWith("acoperis_fronton_") ||
+              n.startsWith("pv_")
+            ) {
+              o.visible = false;
+            } else {
+              o.visible = true;
+            }
+          }
         } else if (mode === "structura_pereti") {
-          // 2 · structură + umplutură sono / pereți
+          // 2 · structură + umplutură sono / pereți (tot fără învelitoare — vezi schelet acoperiș)
           layer = [...structObjs, ...umpluturaObjs];
-          for (const o of structObjs) o.visible = true;
+          for (const o of structObjs) {
+            const n = o.name || "";
+            o.visible = !(
+              n.startsWith("acoperis_apa_") ||
+              n.startsWith("acoperis_fronton_") ||
+              n.startsWith("pv_")
+            );
+          }
           for (const o of umpluturaObjs) o.visible = true;
         }
         for (const o of gateClosed) o.visible = document.getElementById("btnClosed").classList.contains("active");
@@ -583,9 +626,16 @@
       if (mode === "etaj" || mode === "parter") {
         root.traverse((o) => {
           if (!o.isMesh) return;
-          if ((o.name || "").startsWith("subsol_")) o.visible = false;
-          // Pe parter: fără acoperiș (vezi placa). Pe etaj: acoperișul rămâne (2 ape).
-          if (mode === "parter" && isRoofOrCeiling(o.name)) o.visible = false;
+          const n = o.name || "";
+          if (n.startsWith("subsol_")) o.visible = false;
+          // Pe parter: fără acoperiș (vezi placa). Pe etaj: schelet acoperiș DA, învelitoare/PV opțional ascunse ca să vezi coama.
+          if (mode === "parter" && isRoofOrCeiling(n)) o.visible = false;
+          if (mode === "etaj") {
+            if (n.startsWith("acoperis_apa_") || n.startsWith("acoperis_fronton_") || n.startsWith("pv_")) {
+              o.visible = false;
+            }
+            // umplutură: lasă semi-transparent deja; stâlpi continui rămân
+          }
         });
       }
       if (mode === "subsol") {
@@ -626,7 +676,7 @@
       tip.className = "meta";
       tip.style.color = "#e8a87c";
       tip.innerHTML =
-        "<strong>FRAME:</strong> model unic pe site · cadre BA · straturi A1–A8 · <em>1 · Structură</em> / <em>2 · + Pereți</em> · neconstruibil.";
+        "<strong>FRAME:</strong> Planuri P/E = sursă de adevăr; beciul se aliniază pe axe. · <em>1 · Structură</em> = schelet (coamă+căpriori fără țiglă). · <em>Doar etaj</em> = stâlpi + planșeu + schelet acoperiș. · Grindă întoarsă verde = la soffit placă P (z−30), nu „în aer” — e deasupra ușii beci.";
       document.getElementById("meta")?.after(tip);
     }
     document.getElementById("btnClosed").onclick = () => setGate("closed");
