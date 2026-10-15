@@ -1887,8 +1887,9 @@ function main() {
             b.note || `grindă legătură ${b.id}`
           );
         }
-        pushGrindă("subsol_grinda_n", I, I, 650 - I, col, "grindă N cadru");
-        pushGrindă("subsol_grinda_w", I, I, col, 645 - I, "grindă W cadru");
+        // Grinzi subsol: fiecare braț TRECE prin grosimea nodului (overlap), nu butt pe muchie.
+        pushGrindă("subsol_grinda_n", I, I, 650 - I + col, col, "grindă N cadru (prin noduri)");
+        pushGrindă("subsol_grinda_w", I, I, col, 645 - I + col, "grindă W cadru (prin nod S dorm)");
         pushGrindă(
           "subsol_grinda_est",
           650 - (frameStudy.column_section_hypothesis_cm?.local_protrusion_inward_cm ?? 10),
@@ -1897,10 +1898,45 @@ function main() {
           489 - I,
           "grindă E pe C_NE…C_E_PAL"
         );
-        pushGrindă("subsol_grinda_y400", I, 400, 360 - I, col, "grindă Y400 (aliniere C_W_MID / part. subsol)");
-        pushGrindă("subsol_grinda_x360", 360 - col / 2, 400, col, 445, "grindă X360 dorm↔hol (aliniere parter)");
-        pushGrindă("subsol_grinda_y645", I, 645, 360 - I, col, "grindă Y645");
-        pushGrindă("subsol_grinda_y830", 360, 830, 175 + col, col, "grindă Y830 prin C_S_INTRARE_E");
+        pushGrindă("subsol_grinda_y400", I, 400, 535 - I + col, col, "grindă Y400 prin separator X535");
+        pushGrindă(
+          "subsol_grinda_x360",
+          360 - col / 2,
+          400,
+          col,
+          430 + col,
+          "grindă X360 prin nod Y830"
+        );
+        pushGrindă("subsol_grinda_y645", I, 645, 360 - I + col / 2, col, "grindă Y645 prin X360");
+        pushGrindă(
+          "subsol_grinda_y830",
+          360 - col / 2,
+          830,
+          175 + col + col / 2,
+          col,
+          "grindă Y830 prin X360 și X535"
+        );
+        // Noduri pline pe centura subsol (vizibile de sub placă)
+        const x360g = 360 - col / 2;
+        for (const n of [
+          { id: "NW", x: I, y: I },
+          { id: "SW_dorm", x: I, y: 645 },
+          { id: "SE_dorm_X360", x: x360g, y: 645 },
+          { id: "S_intrare_W", x: x360g, y: 830 },
+          { id: "S_intrare_E", x: 535, y: 830 },
+          { id: "W_Y400", x: I, y: 400 },
+          { id: "X360_Y400", x: x360g, y: 400 },
+          { id: "E535_Y400", x: 535, y: 400 },
+        ]) {
+          pushGrindă(
+            `subsol_grinda_node_${n.id}`,
+            n.x,
+            n.y,
+            col,
+            col,
+            `nod centură plin ${n.id}`
+          );
+        }
       } else {
         for (const p of structNodesContinuous) {
           pushStalp(`subsol_stalp_${p.id}`, p.x, p.y, `stâlp ${p.id} (${COL}×${COL} beton)`);
@@ -1922,20 +1958,97 @@ function main() {
       const zFg0 = zFoundBot;
       const zFg1 = zFoundTop;
       if (isFrameStudy && frameColumns) {
-        // O SINGURĂ schemă: grinzi de fundație pe axe (fără talpi locale, fără inel fundatie_N/S/W/E)
-        // Grinzi fundație pe aceleași axe ca stâlpii (X535 separator, X360 dorm|intrare).
-        // Colțuri critice: (1) X360 Y645→830 legat la fg_s_intrare; (2) separator @ X535 nu X525.
-        pushBeton("subsol_fg_n", I, I, 650 - I + col, col, zFg0, zFg1, "fg N continuă", "#5e5a54");
-        pushBeton("subsol_fg_w", I, I, col, 645 - I, zFg0, zFg1, "fg W continuă", "#5e5a54");
-        pushBeton("subsol_fg_e535", 535, I, col, 860 - I, zFg0, zFg1, "fg separator X535 (alin. C_CASA / C_S_INTRARE_E)", "#5e5a54");
+        // Fundație: grinzi pe axe + OVERLAP prin nod (nu butt pe muchie — altfel colț „gol” în viewer).
+        // + piese nod col×col la fiecare L/T ca „colț plin” vizibil/volumetric.
+        const x360 = 360 - col / 2;
+        pushBeton("subsol_fg_n", I, I, 650 - I + col, col, zFg0, zFg1, "fg N (prin noduri)", "#5e5a54");
+        pushBeton("subsol_fg_w", I, I, col, 645 - I + col, zFg0, zFg1, "fg W prin nod S dorm", "#5e5a54");
+        pushBeton(
+          "subsol_fg_e535",
+          535,
+          I,
+          col,
+          860 - I,
+          zFg0,
+          zFg1,
+          "fg separator X535",
+          "#5e5a54"
+        );
         pushBeton("subsol_fg_e640", 640, I, col, 489 - I, zFg0, zFg1, "fg E stâlpi", "#5e5a54");
-        pushBeton("subsol_fg_y400", I, 400, 535 - I, col, zFg0, zFg1, "fg Y400 (alin. parter / part. subsol)", "#5e5a54");
-        // X360: Y400→830 (prin reintrant dorm|intrare) — închide gap-ul 185 cm Y645–830
-        pushBeton("subsol_fg_x360", 360 - col / 2, 400, col, 430, zFg0, zFg1, "fg X360 dorm|hol|intrare → Y830", "#5e5a54");
-        pushBeton("subsol_fg_s", I, 645, 360 - I, col, zFg0, zFg1, "fg S dorm", "#5e5a54");
-        pushBeton("subsol_fg_s_intrare", 360, 830, 175 + col, col, zFg0, zFg1, "fg S intrare", "#5e5a54");
-        // legătură transversală scurtă sub C_SHAFT_E_PIER (zid est puț)
-        pushBeton("subsol_fg_shaft_e", 665, 575, 15, 15, zFg0, zFg1, "fg local pier est grindă întoarsă", "#5e5a54");
+        pushBeton(
+          "subsol_fg_y400",
+          I,
+          400,
+          535 - I + col,
+          col,
+          zFg0,
+          zFg1,
+          "fg Y400 prin X535",
+          "#5e5a54"
+        );
+        pushBeton(
+          "subsol_fg_x360",
+          x360,
+          400,
+          col,
+          430 + col,
+          zFg0,
+          zFg1,
+          "fg X360 prin nod Y830",
+          "#5e5a54"
+        );
+        pushBeton(
+          "subsol_fg_s",
+          I,
+          645,
+          360 - I + col / 2,
+          col,
+          zFg0,
+          zFg1,
+          "fg S dorm prin X360",
+          "#5e5a54"
+        );
+        pushBeton(
+          "subsol_fg_s_intrare",
+          x360,
+          830,
+          175 + col + col / 2,
+          col,
+          zFg0,
+          zFg1,
+          "fg S intrare prin X360+X535",
+          "#5e5a54"
+        );
+        pushBeton("subsol_fg_shaft_e", 665, 575, 15, 15, zFg0, zFg1, "fg pier est grindă întoarsă", "#5e5a54");
+
+        const fgNodes = [
+          { id: "NW", x: I, y: I },
+          { id: "N_e535", x: 535, y: I },
+          { id: "NE_e640", x: 640, y: I },
+          { id: "W_Y400", x: I, y: 400 },
+          { id: "X360_Y400", x: x360, y: 400 },
+          { id: "E535_Y400", x: 535, y: 400 },
+          { id: "SW_dorm", x: I, y: 645 },
+          { id: "SE_dorm_X360", x: x360, y: 645 },
+          { id: "S_intrare_W", x: x360, y: 830 },
+          { id: "S_intrare_E", x: 535, y: 830 },
+          { id: "E_PAL", x: 640, y: 489 - col },
+          { id: "C_W_DORM", x: I, y: 635.8 },
+          { id: "C_S_DORM_E", x: 330, y: 635.8 },
+        ];
+        for (const n of fgNodes) {
+          pushBeton(
+            `subsol_fg_node_${n.id}`,
+            n.x,
+            n.y,
+            col,
+            col,
+            zFg0,
+            zFg1,
+            `nod fundație plin ${n.id} (${col}×${col})`,
+            "#6a6660"
+          );
+        }
       } else {
         pushBeton("subsol_fg_n", I, I, 680 - 2 * I, col, zFg0, zFg1, "grindă fundație N (ipoteză)", "#5e5a54");
         pushBeton("subsol_fg_w", I, I, col, 675 - I, zFg0, zFg1, "grindă fundație W (ipoteză)", "#5e5a54");

@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_frame_study",
-    "generated": "2026-10-15T07:26:56.411Z",
+    "generated": "2026-10-15T07:35:56.961Z",
     "status": "3D_STUDIU_A1_FRAME_CADRE",
     "source_plan": "data/building/v47_a1_frame_study.json",
     "based_on": "v47_a1_study amenajare (aprobată) + schemă cadre separată",
@@ -31966,12 +31966,12 @@
           "y": 17.8427
         },
         {
-          "x": 7.747,
-          "y": 18.1165
+          "x": 8.0468,
+          "y": 18.1294
         },
         {
-          "x": 7.7599,
-          "y": 17.8168
+          "x": 8.0596,
+          "y": 17.8296
         },
         {
           "x": 1.3577,
@@ -31987,7 +31987,7 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "grindă N cadru"
+      "label": "grindă N cadru (prin noduri)"
     },
     {
       "id": "subsol_grinda_w",
@@ -32002,12 +32002,12 @@
           "y": 17.8555
         },
         {
-          "x": 1.9164,
-          "y": 11.5033
+          "x": 1.9292,
+          "y": 11.2036
         },
         {
-          "x": 1.6166,
-          "y": 11.4905
+          "x": 1.6295,
+          "y": 11.1907
         },
         {
           "x": 1.3449,
@@ -32019,7 +32019,7 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "grindă W cadru"
+      "label": "grindă W cadru (prin nod S dorm)"
     },
     {
       "id": "subsol_grinda_est",
@@ -32062,12 +32062,12 @@
           "y": 13.9382
         },
         {
-          "x": 5.0167,
-          "y": 14.0882
+          "x": 7.0648,
+          "y": 14.1758
         },
         {
-          "x": 5.0295,
-          "y": 13.7884
+          "x": 7.0777,
+          "y": 13.8761
         },
         {
           "x": 1.5247,
@@ -32083,7 +32083,7 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "grindă Y400 (aliniere C_W_MID / part. subsol)"
+      "label": "grindă Y400 prin separator X535"
     },
     {
       "id": "subsol_grinda_x360",
@@ -32098,12 +32098,12 @@
           "y": 14.0946
         },
         {
-          "x": 5.3568,
-          "y": 9.6486
+          "x": 5.3632,
+          "y": 9.4988
         },
         {
-          "x": 5.0571,
-          "y": 9.6358
+          "x": 5.0635,
+          "y": 9.486
         },
         {
           "x": 4.8668,
@@ -32115,7 +32115,7 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "grindă X360 dorm↔hol (aliniere parter)"
+      "label": "grindă X360 prin nod Y830"
     },
     {
       "id": "subsol_grinda_y645",
@@ -32126,12 +32126,12 @@
           "y": 11.4905
         },
         {
-          "x": 5.1214,
-          "y": 11.6404
+          "x": 5.2713,
+          "y": 11.6468
         },
         {
-          "x": 5.1342,
-          "y": 11.3407
+          "x": 5.2841,
+          "y": 11.3471
         },
         {
           "x": 1.6295,
@@ -32147,15 +32147,15 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "grindă Y645"
+      "label": "grindă Y645 prin X360"
     },
     {
       "id": "subsol_grinda_y830",
       "type": "extrude",
       "polygon": [
         {
-          "x": 5.2006,
-          "y": 9.7921
+          "x": 5.0507,
+          "y": 9.7857
         },
         {
           "x": 7.2487,
@@ -32166,12 +32166,12 @@
           "y": 9.58
         },
         {
-          "x": 5.2134,
-          "y": 9.4924
+          "x": 5.0635,
+          "y": 9.486
         },
         {
-          "x": 5.2006,
-          "y": 9.7921
+          "x": 5.0507,
+          "y": 9.7857
         }
       ],
       "z0_m": -0.7,
@@ -32179,7 +32179,263 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "grindă Y830 prin C_S_INTRARE_E"
+      "label": "grindă Y830 prin X360 și X535"
+    },
+    {
+      "id": "subsol_grinda_node_NW",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.3449,
+          "y": 17.8427
+        },
+        {
+          "x": 1.6446,
+          "y": 17.8555
+        },
+        {
+          "x": 1.6574,
+          "y": 17.5557
+        },
+        {
+          "x": 1.3577,
+          "y": 17.5429
+        },
+        {
+          "x": 1.3449,
+          "y": 17.8427
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod centură plin NW"
+    },
+    {
+      "id": "subsol_grinda_node_SW_dorm",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6166,
+          "y": 11.4905
+        },
+        {
+          "x": 1.9164,
+          "y": 11.5033
+        },
+        {
+          "x": 1.9292,
+          "y": 11.2036
+        },
+        {
+          "x": 1.6295,
+          "y": 11.1907
+        },
+        {
+          "x": 1.6166,
+          "y": 11.4905
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod centură plin SW_dorm"
+    },
+    {
+      "id": "subsol_grinda_node_SE_dorm_X360",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.9716,
+          "y": 11.634
+        },
+        {
+          "x": 5.2713,
+          "y": 11.6468
+        },
+        {
+          "x": 5.2841,
+          "y": 11.3471
+        },
+        {
+          "x": 4.9844,
+          "y": 11.3343
+        },
+        {
+          "x": 4.9716,
+          "y": 11.634
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod centură plin SE_dorm_X360"
+    },
+    {
+      "id": "subsol_grinda_node_S_intrare_W",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.0507,
+          "y": 9.7857
+        },
+        {
+          "x": 5.3504,
+          "y": 9.7985
+        },
+        {
+          "x": 5.3632,
+          "y": 9.4988
+        },
+        {
+          "x": 5.0635,
+          "y": 9.486
+        },
+        {
+          "x": 5.0507,
+          "y": 9.7857
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod centură plin S_intrare_W"
+    },
+    {
+      "id": "subsol_grinda_node_S_intrare_E",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.949,
+          "y": 9.8669
+        },
+        {
+          "x": 7.2487,
+          "y": 9.8797
+        },
+        {
+          "x": 7.2615,
+          "y": 9.58
+        },
+        {
+          "x": 6.9618,
+          "y": 9.5672
+        },
+        {
+          "x": 6.949,
+          "y": 9.8669
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod centură plin S_intrare_E"
+    },
+    {
+      "id": "subsol_grinda_node_W_Y400",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5119,
+          "y": 13.9382
+        },
+        {
+          "x": 1.8116,
+          "y": 13.951
+        },
+        {
+          "x": 1.8245,
+          "y": 13.6513
+        },
+        {
+          "x": 1.5247,
+          "y": 13.6385
+        },
+        {
+          "x": 1.5119,
+          "y": 13.9382
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod centură plin W_Y400"
+    },
+    {
+      "id": "subsol_grinda_node_X360_Y400",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.8668,
+          "y": 14.0817
+        },
+        {
+          "x": 5.1666,
+          "y": 14.0946
+        },
+        {
+          "x": 5.1794,
+          "y": 13.7948
+        },
+        {
+          "x": 4.8797,
+          "y": 13.782
+        },
+        {
+          "x": 4.8668,
+          "y": 14.0817
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod centură plin X360_Y400"
+    },
+    {
+      "id": "subsol_grinda_node_E535_Y400",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.7651,
+          "y": 14.163
+        },
+        {
+          "x": 7.0648,
+          "y": 14.1758
+        },
+        {
+          "x": 7.0777,
+          "y": 13.8761
+        },
+        {
+          "x": 6.7779,
+          "y": 13.8632
+        },
+        {
+          "x": 6.7651,
+          "y": 14.163
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod centură plin E535_Y400"
     },
     {
       "id": "subsol_fg_n",
@@ -32211,7 +32467,7 @@
       "color": "#5e5a54",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "fg N continuă"
+      "label": "fg N (prin noduri)"
     },
     {
       "id": "subsol_fg_w",
@@ -32226,12 +32482,12 @@
           "y": 17.8555
         },
         {
-          "x": 1.9164,
-          "y": 11.5033
+          "x": 1.9292,
+          "y": 11.2036
         },
         {
-          "x": 1.6166,
-          "y": 11.4905
+          "x": 1.6295,
+          "y": 11.1907
         },
         {
           "x": 1.3449,
@@ -32243,7 +32499,7 @@
       "color": "#5e5a54",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "fg W continuă"
+      "label": "fg W prin nod S dorm"
     },
     {
       "id": "subsol_fg_e535",
@@ -32275,7 +32531,7 @@
       "color": "#5e5a54",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "fg separator X535 (alin. C_CASA / C_S_INTRARE_E)"
+      "label": "fg separator X535"
     },
     {
       "id": "subsol_fg_e640",
@@ -32318,12 +32574,12 @@
           "y": 13.9382
         },
         {
-          "x": 6.7651,
-          "y": 14.163
+          "x": 7.0648,
+          "y": 14.1758
         },
         {
-          "x": 6.7779,
-          "y": 13.8632
+          "x": 7.0777,
+          "y": 13.8761
         },
         {
           "x": 1.5247,
@@ -32339,7 +32595,7 @@
       "color": "#5e5a54",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "fg Y400 (alin. parter / part. subsol)"
+      "label": "fg Y400 prin X535"
     },
     {
       "id": "subsol_fg_x360",
@@ -32354,12 +32610,12 @@
           "y": 14.0946
         },
         {
-          "x": 5.3504,
-          "y": 9.7985
+          "x": 5.3632,
+          "y": 9.4988
         },
         {
-          "x": 5.0507,
-          "y": 9.7857
+          "x": 5.0635,
+          "y": 9.486
         },
         {
           "x": 4.8668,
@@ -32371,7 +32627,7 @@
       "color": "#5e5a54",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "fg X360 dorm|hol|intrare → Y830"
+      "label": "fg X360 prin nod Y830"
     },
     {
       "id": "subsol_fg_s",
@@ -32382,12 +32638,12 @@
           "y": 11.4905
         },
         {
-          "x": 5.1214,
-          "y": 11.6404
+          "x": 5.2713,
+          "y": 11.6468
         },
         {
-          "x": 5.1342,
-          "y": 11.3407
+          "x": 5.2841,
+          "y": 11.3471
         },
         {
           "x": 1.6295,
@@ -32403,15 +32659,15 @@
       "color": "#5e5a54",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "fg S dorm"
+      "label": "fg S dorm prin X360"
     },
     {
       "id": "subsol_fg_s_intrare",
       "type": "extrude",
       "polygon": [
         {
-          "x": 5.2006,
-          "y": 9.7921
+          "x": 5.0507,
+          "y": 9.7857
         },
         {
           "x": 7.2487,
@@ -32422,12 +32678,12 @@
           "y": 9.58
         },
         {
-          "x": 5.2134,
-          "y": 9.4924
+          "x": 5.0635,
+          "y": 9.486
         },
         {
-          "x": 5.2006,
-          "y": 9.7921
+          "x": 5.0507,
+          "y": 9.7857
         }
       ],
       "z0_m": -3.1,
@@ -32435,7 +32691,7 @@
       "color": "#5e5a54",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "fg S intrare"
+      "label": "fg S intrare prin X360+X535"
     },
     {
       "id": "subsol_fg_shaft_e",
@@ -32467,7 +32723,423 @@
       "color": "#5e5a54",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "fg local pier est grindă întoarsă"
+      "label": "fg pier est grindă întoarsă"
+    },
+    {
+      "id": "subsol_fg_node_NW",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.3449,
+          "y": 17.8427
+        },
+        {
+          "x": 1.6446,
+          "y": 17.8555
+        },
+        {
+          "x": 1.6574,
+          "y": 17.5557
+        },
+        {
+          "x": 1.3577,
+          "y": 17.5429
+        },
+        {
+          "x": 1.3449,
+          "y": 17.8427
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6a6660",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod fundație plin NW (30×30)"
+    },
+    {
+      "id": "subsol_fg_node_N_e535",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.5981,
+          "y": 18.0674
+        },
+        {
+          "x": 6.8978,
+          "y": 18.0802
+        },
+        {
+          "x": 6.9106,
+          "y": 17.7805
+        },
+        {
+          "x": 6.6109,
+          "y": 17.7677
+        },
+        {
+          "x": 6.5981,
+          "y": 18.0674
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6a6660",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod fundație plin N_e535 (30×30)"
+    },
+    {
+      "id": "subsol_fg_node_NE_e640",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.6471,
+          "y": 18.1123
+        },
+        {
+          "x": 7.9468,
+          "y": 18.1251
+        },
+        {
+          "x": 7.9597,
+          "y": 17.8254
+        },
+        {
+          "x": 7.6599,
+          "y": 17.8125
+        },
+        {
+          "x": 7.6471,
+          "y": 18.1123
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6a6660",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod fundație plin NE_e640 (30×30)"
+    },
+    {
+      "id": "subsol_fg_node_W_Y400",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5119,
+          "y": 13.9382
+        },
+        {
+          "x": 1.8116,
+          "y": 13.951
+        },
+        {
+          "x": 1.8245,
+          "y": 13.6513
+        },
+        {
+          "x": 1.5247,
+          "y": 13.6385
+        },
+        {
+          "x": 1.5119,
+          "y": 13.9382
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6a6660",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod fundație plin W_Y400 (30×30)"
+    },
+    {
+      "id": "subsol_fg_node_X360_Y400",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.8668,
+          "y": 14.0817
+        },
+        {
+          "x": 5.1666,
+          "y": 14.0946
+        },
+        {
+          "x": 5.1794,
+          "y": 13.7948
+        },
+        {
+          "x": 4.8797,
+          "y": 13.782
+        },
+        {
+          "x": 4.8668,
+          "y": 14.0817
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6a6660",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod fundație plin X360_Y400 (30×30)"
+    },
+    {
+      "id": "subsol_fg_node_E535_Y400",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.7651,
+          "y": 14.163
+        },
+        {
+          "x": 7.0648,
+          "y": 14.1758
+        },
+        {
+          "x": 7.0777,
+          "y": 13.8761
+        },
+        {
+          "x": 6.7779,
+          "y": 13.8632
+        },
+        {
+          "x": 6.7651,
+          "y": 14.163
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6a6660",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod fundație plin E535_Y400 (30×30)"
+    },
+    {
+      "id": "subsol_fg_node_SW_dorm",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6166,
+          "y": 11.4905
+        },
+        {
+          "x": 1.9164,
+          "y": 11.5033
+        },
+        {
+          "x": 1.9292,
+          "y": 11.2036
+        },
+        {
+          "x": 1.6295,
+          "y": 11.1907
+        },
+        {
+          "x": 1.6166,
+          "y": 11.4905
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6a6660",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod fundație plin SW_dorm (30×30)"
+    },
+    {
+      "id": "subsol_fg_node_SE_dorm_X360",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.9716,
+          "y": 11.634
+        },
+        {
+          "x": 5.2713,
+          "y": 11.6468
+        },
+        {
+          "x": 5.2841,
+          "y": 11.3471
+        },
+        {
+          "x": 4.9844,
+          "y": 11.3343
+        },
+        {
+          "x": 4.9716,
+          "y": 11.634
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6a6660",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod fundație plin SE_dorm_X360 (30×30)"
+    },
+    {
+      "id": "subsol_fg_node_S_intrare_W",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.0507,
+          "y": 9.7857
+        },
+        {
+          "x": 5.3504,
+          "y": 9.7985
+        },
+        {
+          "x": 5.3632,
+          "y": 9.4988
+        },
+        {
+          "x": 5.0635,
+          "y": 9.486
+        },
+        {
+          "x": 5.0507,
+          "y": 9.7857
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6a6660",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod fundație plin S_intrare_W (30×30)"
+    },
+    {
+      "id": "subsol_fg_node_S_intrare_E",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.949,
+          "y": 9.8669
+        },
+        {
+          "x": 7.2487,
+          "y": 9.8797
+        },
+        {
+          "x": 7.2615,
+          "y": 9.58
+        },
+        {
+          "x": 6.9618,
+          "y": 9.5672
+        },
+        {
+          "x": 6.949,
+          "y": 9.8669
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6a6660",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod fundație plin S_intrare_E (30×30)"
+    },
+    {
+      "id": "subsol_fg_node_E_PAL",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.8394,
+          "y": 13.6184
+        },
+        {
+          "x": 8.1391,
+          "y": 13.6312
+        },
+        {
+          "x": 8.1519,
+          "y": 13.3315
+        },
+        {
+          "x": 7.8522,
+          "y": 13.3186
+        },
+        {
+          "x": 7.8394,
+          "y": 13.6184
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6a6660",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod fundație plin E_PAL (30×30)"
+    },
+    {
+      "id": "subsol_fg_node_C_W_DORM",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6127,
+          "y": 11.5824
+        },
+        {
+          "x": 1.9124,
+          "y": 11.5952
+        },
+        {
+          "x": 1.9252,
+          "y": 11.2955
+        },
+        {
+          "x": 1.6255,
+          "y": 11.2827
+        },
+        {
+          "x": 1.6127,
+          "y": 11.5824
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6a6660",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod fundație plin C_W_DORM (30×30)"
+    },
+    {
+      "id": "subsol_fg_node_C_S_DORM_E",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.8178,
+          "y": 11.7195
+        },
+        {
+          "x": 5.1175,
+          "y": 11.7323
+        },
+        {
+          "x": 5.1303,
+          "y": 11.4326
+        },
+        {
+          "x": 4.8306,
+          "y": 11.4198
+        },
+        {
+          "x": 4.8178,
+          "y": 11.7195
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#6a6660",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "nod fundație plin C_S_DORM_E (30×30)"
     },
     {
       "id": "subsol_zid_perim_n",
