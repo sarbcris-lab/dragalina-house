@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_frame_study",
-    "generated": "2026-10-15T07:18:10.553Z",
+    "generated": "2026-10-15T07:26:56.411Z",
     "status": "3D_STUDIU_A1_FRAME_CADRE",
     "source_plan": "data/building/v47_a1_frame_study.json",
     "based_on": "v47_a1_study amenajare (aprobată) + schemă cadre separată",
@@ -32246,28 +32246,28 @@
       "label": "fg W continuă"
     },
     {
-      "id": "subsol_fg_e525",
+      "id": "subsol_fg_e535",
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.4982,
-          "y": 18.0631
+          "x": 6.5981,
+          "y": 18.0674
         },
         {
-          "x": 6.7979,
-          "y": 18.0759
+          "x": 6.8978,
+          "y": 18.0802
         },
         {
-          "x": 7.1616,
-          "y": 9.5757
+          "x": 7.2615,
+          "y": 9.58
         },
         {
-          "x": 6.8619,
-          "y": 9.5629
+          "x": 6.9618,
+          "y": 9.5672
         },
         {
-          "x": 6.4982,
-          "y": 18.0631
+          "x": 6.5981,
+          "y": 18.0674
         }
       ],
       "z0_m": -3.1,
@@ -32275,7 +32275,7 @@
       "color": "#5e5a54",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "fg separator X525"
+      "label": "fg separator X535 (alin. C_CASA / C_S_INTRARE_E)"
     },
     {
       "id": "subsol_fg_e640",
@@ -32354,12 +32354,12 @@
           "y": 14.0946
         },
         {
-          "x": 5.2713,
-          "y": 11.6468
+          "x": 5.3504,
+          "y": 9.7985
         },
         {
-          "x": 4.9716,
-          "y": 11.634
+          "x": 5.0507,
+          "y": 9.7857
         },
         {
           "x": 4.8668,
@@ -32371,7 +32371,7 @@
       "color": "#5e5a54",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "fg X360 dorm|hol"
+      "label": "fg X360 dorm|hol|intrare → Y830"
     },
     {
       "id": "subsol_fg_s",
@@ -32436,6 +32436,38 @@
       "opacity": 0.97,
       "site_layer": "structura",
       "label": "fg S intrare"
+    },
+    {
+      "id": "subsol_fg_shaft_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.1387,
+          "y": 12.4701
+        },
+        {
+          "x": 8.2886,
+          "y": 12.4765
+        },
+        {
+          "x": 8.295,
+          "y": 12.3267
+        },
+        {
+          "x": 8.1451,
+          "y": 12.3203
+        },
+        {
+          "x": 8.1387,
+          "y": 12.4701
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#5e5a54",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "fg local pier est grindă întoarsă"
     },
     {
       "id": "subsol_zid_perim_n",

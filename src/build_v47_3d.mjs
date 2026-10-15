@@ -1923,14 +1923,19 @@ function main() {
       const zFg1 = zFoundTop;
       if (isFrameStudy && frameColumns) {
         // O SINGURĂ schemă: grinzi de fundație pe axe (fără talpi locale, fără inel fundatie_N/S/W/E)
+        // Grinzi fundație pe aceleași axe ca stâlpii (X535 separator, X360 dorm|intrare).
+        // Colțuri critice: (1) X360 Y645→830 legat la fg_s_intrare; (2) separator @ X535 nu X525.
         pushBeton("subsol_fg_n", I, I, 650 - I + col, col, zFg0, zFg1, "fg N continuă", "#5e5a54");
         pushBeton("subsol_fg_w", I, I, col, 645 - I, zFg0, zFg1, "fg W continuă", "#5e5a54");
-        pushBeton("subsol_fg_e525", 525, I, col, 860 - I, zFg0, zFg1, "fg separator X525", "#5e5a54");
+        pushBeton("subsol_fg_e535", 535, I, col, 860 - I, zFg0, zFg1, "fg separator X535 (alin. C_CASA / C_S_INTRARE_E)", "#5e5a54");
         pushBeton("subsol_fg_e640", 640, I, col, 489 - I, zFg0, zFg1, "fg E stâlpi", "#5e5a54");
         pushBeton("subsol_fg_y400", I, 400, 535 - I, col, zFg0, zFg1, "fg Y400 (alin. parter / part. subsol)", "#5e5a54");
-        pushBeton("subsol_fg_x360", 360 - col / 2, 400, col, 245, zFg0, zFg1, "fg X360 dorm|hol", "#5e5a54");
+        // X360: Y400→830 (prin reintrant dorm|intrare) — închide gap-ul 185 cm Y645–830
+        pushBeton("subsol_fg_x360", 360 - col / 2, 400, col, 430, zFg0, zFg1, "fg X360 dorm|hol|intrare → Y830", "#5e5a54");
         pushBeton("subsol_fg_s", I, 645, 360 - I, col, zFg0, zFg1, "fg S dorm", "#5e5a54");
         pushBeton("subsol_fg_s_intrare", 360, 830, 175 + col, col, zFg0, zFg1, "fg S intrare", "#5e5a54");
+        // legătură transversală scurtă sub C_SHAFT_E_PIER (zid est puț)
+        pushBeton("subsol_fg_shaft_e", 665, 575, 15, 15, zFg0, zFg1, "fg local pier est grindă întoarsă", "#5e5a54");
       } else {
         pushBeton("subsol_fg_n", I, I, 680 - 2 * I, col, zFg0, zFg1, "grindă fundație N (ipoteză)", "#5e5a54");
         pushBeton("subsol_fg_w", I, I, col, 675 - I, zFg0, zFg1, "grindă fundație W (ipoteză)", "#5e5a54");
