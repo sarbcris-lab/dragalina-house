@@ -152,3 +152,10 @@
 - Schelet: eliminate grinzi/fundații hardcodate pe 650/I (nu închideau nodurile); fg+grinzi din schema stâlpilor.
 - Viewer: pe etaj vezi planșeu+stâlpi+schelet acoperiș; `1 · Structură` ascunde țigla ca să apară coama/căpriorii.
 - Centură E discontinuă sud de C_E_PAL = **intenție** (gol scară), nu bug.
+
+## 2026-10-15 — Audit proiectare structură v03
+
+- Raport: `outputs/reports/v47_a1_frame_structure_design_audit_v03.md`.
+- View Structură: exclus poluare (gard/trepte/teren/țiglă) — doar cadru BA.
+- B_SEP overlap în C_CASA; fg doar pe axe S/P.
+- Calcule: ordine de mărime (B_W M/Mu≈0,63); P100/zăpadă/fundații = LIPSĂ.

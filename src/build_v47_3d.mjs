@@ -2176,13 +2176,11 @@ function main() {
       if (isFrameStudy && frameColumns) {
         // Stâlpii continui se extrudează o singură dată (fundație→acoperiș) în blocul P/E — nu stub-uri aici.
         frameColumnZ0 = zColBot;
-        // DOAR grinzi din schemă (coordonate stâlpi). Fără dubluri hardcodate pe 650/I — alea nu închideau nodurile.
+        // DOAR grinzi cu rol S sau P pe soffit subsol. E-only (ex. B_Y470) nu apar ca grindă „în aer” la beci.
         for (const b of frameStudy.beams || []) {
           const lv = (b.levels || []).join();
           if (/S_inverted/i.test(lv)) continue;
-          // Orice grindă P/E/S = și pe subsol (aceeași axă, pe soffit)
-          if (!(b.levels || []).includes("S") && !(b.levels || []).includes("P") && !(b.levels || []).includes("E"))
-            continue;
+          if (!(b.levels || []).includes("S") && !(b.levels || []).includes("P")) continue;
           pushGrindă(
             `subsol_grinda_${b.id}`,
             b.x,
@@ -2224,9 +2222,11 @@ function main() {
       const zFg0 = zFoundBot;
       const zFg1 = zFoundTop;
       if (isFrameStudy && frameColumns) {
-        // Fundație = aceleași axe ca grinzile/stâlpii din schemă (nu coordonate legacy 650/I).
+        // Fundație pe axe cu stâlpi S/P (nu pe grinzi E-only / întoarse).
         for (const b of frameStudy.beams || []) {
-          if (/S_inverted/i.test((b.levels || []).join())) continue;
+          const lv = (b.levels || []).join();
+          if (/S_inverted/i.test(lv)) continue;
+          if (!(b.levels || []).includes("S") && !(b.levels || []).includes("P")) continue;
           pushBeton(
             `subsol_fg_${b.id}`,
             b.x,

@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_frame_study",
-    "generated": "2026-10-15T20:03:31.381Z",
+    "generated": "2026-10-15T20:11:15.317Z",
     "status": "3D_STUDIU_A1_FRAME_CADRE",
     "source_plan": "data/building/v47_a1_frame_study.json",
     "based_on": "v47_a1_study amenajare (aprobată) + schemă cadre separată",
@@ -34769,12 +34769,12 @@
           "y": 12.177
         },
         {
-          "x": 7.1416,
-          "y": 12.0771
+          "x": 7.1459,
+          "y": 11.9772
         },
         {
-          "x": 6.8419,
-          "y": 12.0643
+          "x": 6.8462,
+          "y": 11.9644
         },
         {
           "x": 6.8376,
@@ -34786,7 +34786,7 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "buiandrug/centură S de ușă Y600–610 — preia traseul de la placa peste palier către C_CASA_SCARA; nu blochează golul"
+      "label": "buiandrug/centură S de ușă — overlap 10 cm în C_CASA_SCARA (Y610–620); nu blochează golul Y500–600"
     },
     {
       "id": "subsol_grinda_B_Y645",
@@ -34883,38 +34883,6 @@
       "opacity": 0.97,
       "site_layer": "structura",
       "label": "sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA"
-    },
-    {
-      "id": "subsol_grinda_B_Y470_PALIER_EDGE",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.782,
-          "y": 13.463
-        },
-        {
-          "x": 8.2307,
-          "y": 13.525
-        },
-        {
-          "x": 8.2435,
-          "y": 13.2253
-        },
-        {
-          "x": 6.7949,
-          "y": 13.1633
-        },
-        {
-          "x": 6.782,
-          "y": 13.463
-        }
-      ],
-      "z0_m": -0.7,
-      "z1_m": -0.3,
-      "color": "#6a6358",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "bordură nord placă palier scară (NU vestibul); sprijin placă = schemă 4 laturi DESCHIS"
     },
     {
       "id": "subsol_grinda_node_C_NW",
@@ -35441,12 +35409,12 @@
           "y": 12.177
         },
         {
-          "x": 7.1416,
-          "y": 12.0771
+          "x": 7.1459,
+          "y": 11.9772
         },
         {
-          "x": 6.8419,
-          "y": 12.0643
+          "x": 6.8462,
+          "y": 11.9644
         },
         {
           "x": 6.8376,
@@ -35555,38 +35523,6 @@
       "opacity": 0.97,
       "site_layer": "structura",
       "label": "fg pe axa B_Y830"
-    },
-    {
-      "id": "subsol_fg_B_Y470_PALIER_EDGE",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.782,
-          "y": 13.463
-        },
-        {
-          "x": 8.2307,
-          "y": 13.525
-        },
-        {
-          "x": 8.2435,
-          "y": 13.2253
-        },
-        {
-          "x": 6.7949,
-          "y": 13.1633
-        },
-        {
-          "x": 6.782,
-          "y": 13.463
-        }
-      ],
-      "z0_m": -3.1,
-      "z1_m": -2.65,
-      "color": "#5e5a54",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "fg pe axa B_Y470_PALIER_EDGE"
     },
     {
       "id": "subsol_fg_pad_C_NW",
@@ -38832,12 +38768,12 @@
           "y": 12.177
         },
         {
-          "x": 7.1416,
-          "y": 12.0771
+          "x": 7.1459,
+          "y": 11.9772
         },
         {
-          "x": 6.8419,
-          "y": 12.0643
+          "x": 6.8462,
+          "y": 11.9644
         },
         {
           "x": 6.8376,
@@ -38849,7 +38785,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "buiandrug/centură S de ușă Y600–610 — preia traseul de la placa peste palier către C_CASA_SCARA; nu blochează golul (intrados 273)"
+      "label": "buiandrug/centură S de ușă — overlap 10 cm în C_CASA_SCARA (Y610–620); nu blochează golul Y500–600 (intrados 273)"
     },
     {
       "id": "parter_centura_B_Y645",

@@ -8563,7 +8563,7 @@
         "x": 536.3,
         "y": 600,
         "dx": 30,
-        "dy": 10,
+        "dy": 20,
         "levels": [
           "S",
           "P"
@@ -8572,7 +8572,7 @@
           "zid_separator",
           "C_CASA_SCARA"
         ],
-        "note": "buiandrug/centură S de ușă Y600–610 — preia traseul de la placa peste palier către C_CASA_SCARA; nu blochează golul"
+        "note": "buiandrug/centură S de ușă — overlap 10 cm în C_CASA_SCARA (Y610–620); nu blochează golul Y500–600"
       },
       {
         "id": "B_Y645",

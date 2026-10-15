@@ -326,28 +326,43 @@
         id.startsWith("poarta_")
       );
     }
-    /** Schelet beton legat L-1 + P + E + scări — fără umplutură sono */
+    /** View „1 · Structură” = DOAR schelet BA casă (stâlpi/grinzi/fg/placă/acoperiș BA).
+     *  Fără: teren, amprentă, gard/porți, trepte, țiglă/PV, paleți finisaj. */
     function isStructuraMesh(m) {
       if (m.site_layer === "umplutura") return false;
       const id = m.id || "";
-      if (/subsol_zid_|part\./i.test(id) && m.site_layer !== "structura") return false;
-      return (
-        m.site_layer === "structura" ||
-        id.startsWith("fundatie_") ||
+      // excluderi explicite (poluau view-ul)
+      if (
+        id === "teren_cf" ||
+        id.startsWith("amprenta_") ||
+        id.startsWith("fundatie_gard") ||
+        id.startsWith("fundatie_poarta") ||
         id.startsWith("stalp_poarta_") ||
-        id.startsWith("structura_r2_") ||
-        id.startsWith("structura_r180_") ||
-        id.startsWith("structura_rampa") ||
+        id.startsWith("subsol_scara") ||
+        id.startsWith("subsol_racord_") ||
+        id.startsWith("subsol_palier") ||
+        id.startsWith("subsol_pardoseala") ||
+        id === "podest_se" ||
+        id.startsWith("palier_superior") ||
+        id.startsWith("treapta_") ||
+        id.startsWith("acoperis_apa_") ||
+        id.startsWith("acoperis_fronton_") ||
+        id.startsWith("pv_") ||
+        id.startsWith("gard_") ||
+        id.startsWith("poarta_")
+      ) {
+        return false;
+      }
+      return (
+        id.startsWith("stalp_continuu_") ||
         id.startsWith("subsol_pier_") ||
         id.startsWith("subsol_stalp_") ||
         id.startsWith("subsol_grinda_") ||
         id.startsWith("subsol_fg_") ||
-        id.startsWith("subsol_grinda_node_") ||
         id.startsWith("subsol_put_beton") ||
         id.startsWith("subsol_fantana_beton") ||
-        id.startsWith("subsol_scara") ||
-        id.startsWith("subsol_racord_") ||
-        id.startsWith("stalp_continuu_") ||
+        id === "subsol_grinda_y590_inverted" ||
+        id === "subsol_intrados_placa" ||
         id.startsWith("parter_stalp_") ||
         id.startsWith("parter_grinda_") ||
         id.startsWith("parter_centura_") ||
@@ -355,24 +370,23 @@
         id.startsWith("etaj_grinda_") ||
         id.startsWith("etaj_centura_") ||
         id === "etaj_placa_structura" ||
-        id === "acoperis_structura_corp" ||
-        id === "acoperis_2_ape" ||
-        id.startsWith("acoperis_apa_") ||
-        id.startsWith("acoperis_fronton_") ||
-        id.startsWith("acoperis_structura_") ||
-        id.startsWith("acoperis_caprior_") ||
+        id.startsWith("structura_rampa") ||
+        id.startsWith("structura_r2_") ||
+        id.startsWith("structura_r180_") ||
         id.startsWith("acoperis_coama_") ||
         id.startsWith("acoperis_solbanc_") ||
-        id === "subsol_grinda_y590_inverted" ||
-        id === "subsol_intrados_placa" ||
-        id === "subsol_palier_jos" ||
-        id === "podest_se" ||
-        id === "palier_superior" ||
-        id.startsWith("subsol_grindă") ||
-        id === "subsol_palier_acces" ||
-        id.startsWith("sandwich_structural") ||
-        id === "teren_cf" ||
-        id.startsWith("amprenta_")
+        id.startsWith("acoperis_caprior_") ||
+        id.startsWith("acoperis_structura_") ||
+        (m.site_layer === "structura" &&
+          (id.startsWith("stalp_") ||
+            id.startsWith("subsol_grinda") ||
+            id.startsWith("subsol_fg") ||
+            id.startsWith("parter_centura") ||
+            id.startsWith("etaj_centura") ||
+            id.startsWith("acoperis_coama") ||
+            id.startsWith("acoperis_caprior") ||
+            id.startsWith("acoperis_solbanc") ||
+            id.startsWith("acoperis_structura")))
       );
     }
     function isUmpluturaMesh(m) {
@@ -676,7 +690,7 @@
       tip.className = "meta";
       tip.style.color = "#e8a87c";
       tip.innerHTML =
-        "<strong>FRAME:</strong> Planuri P/E = sursă de adevăr; beciul se aliniază pe axe. · <em>1 · Structură</em> = schelet (coamă+căpriori fără țiglă). · <em>Doar etaj</em> = stâlpi + planșeu + schelet acoperiș. · Grindă întoarsă verde = la soffit placă P (z−30), nu „în aer” — e deasupra ușii beci.";
+        "<strong>FRAME:</strong> <em>1 · Structură</em> = doar cadru BA (stâlpi/grinzi/fg/placă/coamă) — fără gard, trepte, țiglă. · Planuri P/E = sursă de adevăr. · Audit proiectare: <code>v47_a1_frame_structure_design_audit_v03.md</code>.";
       document.getElementById("meta")?.after(tip);
     }
     document.getElementById("btnClosed").onclick = () => setGate("closed");
