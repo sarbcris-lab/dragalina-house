@@ -762,27 +762,26 @@ function main() {
     }
   }
 
-  // Acoperiș corp + terasă + bucătărie (fără placă planșeu pe golul scării)
+  // Acoperiș 2 ape (stabilit): coamă pe latura 6,8 m (EW), ape N/S, PV pe ambele.
+  // Acoperă anvelopa 680×860 inclusiv banda scară; NU podest SE / rampă 1 (Y≥860, neacoperite).
+  // Viewer: volum unificat (panta gable = schematică până la tip mesh dedicat).
   const roofZ0 = zEtaj + H;
   const roofZ1 = roofZ0 + 0.22;
-  const bandX = st.band_x;
+  const roofMeta = v47.roof_cm || {};
+  const ewRoof = v47.envelope_cm.ew;
+  const nsRoof = v47.envelope_cm.ns;
   meshes.push({
-    id: "acoperis_vest",
+    id: "acoperis_2_ape",
     type: "extrude",
-    polygon: rectPoly(0, 0, bandX, v47.envelope_cm.ns),
+    polygon: rectPoly(0, 0, ewRoof, nsRoof),
     z0_m: roofZ0,
     z1_m: roofZ1,
     color: "#5c564e",
-    label: "Acoperiș corp / terasă / bucătărie",
-  });
-  meshes.push({
-    id: "acoperis_est_nord",
-    type: "extrude",
-    polygon: rectPoly(bandX, 0, st.band_dx, st.ramp2.y),
-    z0_m: roofZ0,
-    z1_m: roofZ1,
-    color: "#5c564e",
-    label: "Acoperiș est nord",
+    site_layer: "structura",
+    label:
+      roofMeta.type === "two_pitch"
+        ? "Acoperiș 2 ape — coamă 6,8 m (EW), PV pe ambele ape; casă+scară"
+        : "Acoperiș casă + scară",
   });
 
   const r2 = st.ramp2;
@@ -993,21 +992,11 @@ function main() {
       });
     }
   }
-  // Copertină pe rampa 2 (acoperită) — nu e placă de planșeu
-  meshes.push({
-    id: "copertina_rampa2",
-    type: "extrude",
-    polygon: rectPoly(r2.x, r2.y, r2.dx, r2.dy),
-    z0_m: roofZ0,
-    z1_m: roofZ1,
-    color: "#7a7368",
-    label: "Copertină rampă 2 (acoperită)",
-    opacity: 0.88,
-  });
+  // Rampă 2 + palier: sub același acoperiș 2 ape (nu copertină separată).
 
-  // Palier superior = placă pe SCARA RECE (acoperită de copertină).
-  // NU vestibul interior, NU ziduri de cameră, NU ușă rampă→vestibul (eliminat — eroare V47).
-  // Jos = plafon living P. Sus = circulație scară. Intrare apt. = intrare_etaj pe separator (dacă există).
+  // Palier superior = placă pe SCARA RECE sub acoperiș 2 ape.
+  // NU vestibul interior, NU ziduri de cameră, NU ușă rampă→vestibul (eliminat).
+  // Jos = plafon living P. Sus = circulație scară. Podest SE = neacoperit (în afara Y0–860).
   if (isFrameStudy && frameStudy?.levels_cm) {
     const lvP = frameStudy.levels_cm;
     meshes.push({
@@ -2772,17 +2761,7 @@ function main() {
       pushPE("etaj_centura_y470", 535, 470, 145, col, zRb0, zTopE, "centură E Y470 bordură palier scară", "#5a554e");
       pushPE("etaj_centura_y590", 535, 590 - col, 145, col, zRb0, zTopE, "centură E Y590", "#5a554e");
     }
-    meshes.push({
-      id: "acoperis_structura_corp",
-      type: "extrude",
-      polygon: rectPoly(0, 0, 650, 860),
-      z0_m: roofZ0,
-      z1_m: roofZ1,
-      color: "#5c564e",
-      opacity: 0.55,
-      site_layer: "structura",
-      label: "acoperiș structură (corp)",
-    });
+    // Structură acoperiș = același contur ca acoperis_2_ape (fără dublură vizuală pe corp-only 650)
   }
 
   // Treptele de acces — ultimele, ca să rămână vizibile peste placă/plintă

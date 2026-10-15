@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_frame_study",
-    "generated": "2026-10-15T08:13:35.183Z",
+    "generated": "2026-10-15T09:13:26.706Z",
     "status": "3D_STUDIU_A1_FRAME_CADRE",
     "source_plan": "data/building/v47_a1_frame_study.json",
     "based_on": "v47_a1_study amenajare (aprobată) + schemă cadre separată",
@@ -28286,7 +28286,7 @@
       "label": "terasa_parapet_vest_etaj"
     },
     {
-      "id": "acoperis_vest",
+      "id": "acoperis_2_ape",
       "type": "extrude",
       "polygon": [
         {
@@ -28294,12 +28294,12 @@
           "y": 17.9306
         },
         {
-          "x": 6.8939,
-          "y": 18.1721
+          "x": 8.0428,
+          "y": 18.2213
         },
         {
-          "x": 7.2615,
-          "y": 9.58
+          "x": 8.4105,
+          "y": 9.6291
         },
         {
           "x": 1.6167,
@@ -28313,37 +28313,8 @@
       "z0_m": 5.81,
       "z1_m": 6.029999999999999,
       "color": "#5c564e",
-      "label": "Acoperiș corp / terasă / bucătărie"
-    },
-    {
-      "id": "acoperis_est_nord",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.8939,
-          "y": 18.1721
-        },
-        {
-          "x": 8.0428,
-          "y": 18.2213
-        },
-        {
-          "x": 8.295,
-          "y": 12.3267
-        },
-        {
-          "x": 7.146,
-          "y": 12.2775
-        },
-        {
-          "x": 6.8939,
-          "y": 18.1721
-        }
-      ],
-      "z0_m": 5.81,
-      "z1_m": 6.029999999999999,
-      "color": "#5c564e",
-      "label": "Acoperiș est nord"
+      "site_layer": "structura",
+      "label": "Acoperiș 2 ape — coamă 6,8 m (EW), PV pe ambele ape; casă+scară"
     },
     {
       "id": "treapta_rampa180_0",
@@ -29555,37 +29526,6 @@
       "opacity": 0.92,
       "site_layer": "structura",
       "label": "Vang E rampă 2 CONTINUU"
-    },
-    {
-      "id": "copertina_rampa2",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.146,
-          "y": 12.2775
-        },
-        {
-          "x": 8.295,
-          "y": 12.3267
-        },
-        {
-          "x": 8.4105,
-          "y": 9.6291
-        },
-        {
-          "x": 7.2615,
-          "y": 9.58
-        },
-        {
-          "x": 7.146,
-          "y": 12.2775
-        }
-      ],
-      "z0_m": 5.81,
-      "z1_m": 6.029999999999999,
-      "color": "#7a7368",
-      "label": "Copertină rampă 2 (acoperită)",
-      "opacity": 0.88
     },
     {
       "id": "palier_superior_placa",
@@ -36214,38 +36154,6 @@
       "opacity": 0.95,
       "site_layer": "structura",
       "label": "bordură nord placă palier scară (NU vestibul); sprijin placă = schemă 4 laturi DESCHIS"
-    },
-    {
-      "id": "acoperis_structura_corp",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 1.249,
-          "y": 17.9306
-        },
-        {
-          "x": 7.7431,
-          "y": 18.2085
-        },
-        {
-          "x": 8.1107,
-          "y": 9.6163
-        },
-        {
-          "x": 1.6167,
-          "y": 9.3385
-        },
-        {
-          "x": 1.249,
-          "y": 17.9306
-        }
-      ],
-      "z0_m": 5.81,
-      "z1_m": 6.029999999999999,
-      "color": "#5c564e",
-      "opacity": 0.55,
-      "site_layer": "structura",
-      "label": "acoperiș structură (corp)"
     },
     {
       "id": "acces_treapta_0",

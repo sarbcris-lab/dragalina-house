@@ -42,6 +42,35 @@
     "ew": 680,
     "ns": 860
   },
+  "roof_cm": {
+    "type": "two_pitch",
+    "status": "stabilit",
+    "ridge": {
+      "on_side_m": 6.8,
+      "along": "ew",
+      "length_cm": 680,
+      "note": "Coamă pe latura 6,8 m (X) — ape spre N și S"
+    },
+    "covers_cm": {
+      "x0": 0,
+      "x1": 680,
+      "y0": 0,
+      "y1": 860,
+      "includes_stair_band": true,
+      "excludes": [
+        "podest_se",
+        "flight_180",
+        "entry_steps",
+        "terasa_neacoperita_sud"
+      ]
+    },
+    "pv": {
+      "both_pitches": true,
+      "note": "Panouri fotovoltaice pe ambele ape — decis"
+    },
+    "not": "copertină pe rampă 2 — acoperiș 2 ape continuu pe casă + scară",
+    "viewer_note": "În 3D: volum unificat la cota acoperiș; panta e schematică până la mesh tip gable"
+  },
   "wall_ext_cm": 30,
   "wall_int_cm": 12.5,
   "levels": 2,
@@ -2913,10 +2942,10 @@
       "enclosed": false,
       "vestibule": false,
       "role": "stair_landing_cold",
-      "covers": "copertină rampă2 / acoperiș est — nu cameră",
+      "covers": "acoperiș 2 ape (coamă 6,8 m) — nu copertină, nu cameră",
       "below": "living_sub_palier (P încălzit) — aceeași placă",
       "entry_from_ramp2": null,
-      "note": "Palier pe SCARA RECE (acoperit). NU vestibul. Jos = plafon living P. Fără ziduri de cameră / fără ușă rampă→vestibul."
+      "note": "Palier pe SCARA RECE sub acoperiș 2 ape. NU vestibul. Jos = plafon living P. Podest SE rămâne neacoperit."
     },
     "storage_under": {
       "under_ramp2": false,
