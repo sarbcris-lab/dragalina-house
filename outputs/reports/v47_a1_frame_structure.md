@@ -70,7 +70,7 @@ Placă +293→+308; grindă +273; FF +320; buildup 12. Stâlpi P+E = continui pr
 | B_Y645 | X9.2–360 Y645–675 | P,E | C_W_DORM, C_S_DORM_E | sud dorm — prin secțiunile stâlpilor de capăt |
 | B_X360_DORM_INTRARE | X330–400 Y645–850.8 | P,E | C_S_DORM_E, C_S_INTRARE_W | prin secțiunea C_S_INTRARE_W (X360–400, Y820.8+) — nod complet, nu doar muchie |
 | B_Y830 | X360–565 Y830–860 | P,E | C_S_INTRARE_W, C_S_INTRARE_E | sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA |
-| B_Y470_VESTIBUL_CANTILEVER | X535–680 Y470–500 | E | C_E_PAL, B_E | acoperire vestibul / consolă E — separat de placa palierului; sprijin placă palier = schemă proprie (DESCHIS) |
+| B_Y470_PALIER_EDGE | X535–680 Y470–500 | E | C_E_PAL, B_E | bordură nord placă palier scară (NU vestibul); sprijin placă = schemă 4 laturi DESCHIS |
 
 ## Tabel elemente (stâlpi + grinzi)
 
@@ -83,7 +83,7 @@ Placă +293→+308; grindă +273; FF +320; buildup 12. Stâlpi P+E = continui pr
 | stalp | C_W_DORM | fundație_S | S/P/E | gol terasă X120–270 | sud dorm W — ETICS Y665.8–675 continuă peste stâlp |
 | stalp | C_S_DORM_E | fundație_S | S/P/E | proximitate circulație / ușă terasă | capăt E sud dorm @ X360 — ETICS continuă afară |
 | stalp | C_E_GEAM_S | fundație_E | S/P/E | — | est S de geam |
-| stalp | C_E_PAL | fundație_E continuu — NU pe placă 15 | S/P/E | proeminență pe palier etaj Y470–489 — recalcul lățime utilă | est sub vestibul / N de palier inferior |
+| stalp | C_E_PAL | fundație_E continuu — NU pe placă 15 | S/P/E | proeminență pe palier etaj Y470–489 — recalcul lățime utilă | est sub palier scară / N de palier inferior |
 | stalp | C_CASA_SCARA | fundație X535 | S/P/E | — | separator X535–565; fără proeminență vest (eliberează frigider/MSV etaj) |
 | stalp | C_SHAFT_E_PIER | diafragmă est puț | S | — | pier sub capăt E grindă întoarsă — în zid, nu în clar X565–665 |
 | stalp | C_S_INTRARE_W | fundație_S_intrare (bandă dedicată) | S/P/E | — | sud intrare X360–535 — ETICS continuă |
@@ -97,16 +97,16 @@ Placă +293→+308; grindă +273; FF +320; buildup 12. Stâlpi P+E = continui pr
 | grinda | B_Y645 | C_W_DORM, C_S_DORM_E | P/E | — | sud dorm — prin secțiunile stâlpilor de capăt |
 | grinda | B_X360_DORM_INTRARE | C_S_DORM_E, C_S_INTRARE_W | P/E | — | prin secțiunea C_S_INTRARE_W (X360–400, Y820.8+) — nod complet, nu doar muchie |
 | grinda | B_Y830 | C_S_INTRARE_W, C_S_INTRARE_E | P/E | — | sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA |
-| grinda | B_Y470_VESTIBUL_CANTILEVER | C_E_PAL, B_E | E | — | acoperire vestibul / consolă E — separat de placa palierului; sprijin placă palier = schemă proprie (DESCHIS) |
+| grinda | B_Y470_PALIER_EDGE | C_E_PAL, B_E | E | — | bordură nord placă palier scară (NU vestibul); sprijin placă = schemă 4 laturi DESCHIS |
 
 ## Suprafețe utile (P și E separate) — NECONFIRMAT
-Metodă: P/E separate: shoelace(poly nivel) − pereți_int − thermal − proeminențe; E = studio fără vestibul; vestibul raportat separat; NU usefulE=usefulP
+Metodă: P/E separate: shoelace − pereți − thermal − proem.; E = studio; palier scară rece raportat separat (NU vestibul); NU usefulE=usefulP
 
 | | m² |
 |--|---:|
 | Util parter (studiu) | 38.605 |
-| Util etaj studio (fara vestibul) | 37.96 |
-| Vestibul palier (separat, nu in util studio) | 1.26 |
+| Util etaj studio | 37.96 |
+| Palier scară rece (exclus din util; nu vestibul) | 1.26 |
 | Pereți int net P / E | 1.056 / 1.131 |
 | Proeminențe stâlpi P / E | 0.369 / 0.369 |
 | Thermal P / E | 0.255 / 0.255 |
@@ -125,7 +125,7 @@ Status: **NECONFIRMAT** · declared_pass_access=false
 - **north_three_supports** (COMPARATIE): C_N_BUC eliminat. C_N_MID@X320 (rost vest de frigider_p@360). B_N pe NW–N_MID–NE. Alternativa: fara N_MID.
 - **amenajare_frame_overlays** (FRAME_ONLY): A1 aprobat neatins. In frame: dus x>=50 (C_NW 40x30); pat x>=45 (C_W_MID 30x40) — nu micsoram stalpii.
 - **column_30_protrusion_vs_37m2** (DESCHIS): Proeminențe locale; util P/E = NECONFIRMAT — nu e rezervă stâlpi.
-- **vestibule_cantilever** (DESCHIS): B_Y470 = acoperire vestibul; placa palierului +320 necesită schemă de sprijin separată — neconfirmat.
+- **palier_plate_support** (DESCHIS): Palier scară rece (fără vestibul): placa = plafon living P. Reazeme pe margini — schemă DESCHIS. Vestibul închis ELIMINAT.
 - **slab_span_without_X320** (DESCHIS): Fără reazem pe compartimentarea 12,5 cm — placă/grinzi pe perimetru; grosime 15 cm neconfirmată.
 - **basement_retaining** (SEPARAT): Pereți subsol retenție teren — sistem separat de cadrele P/E.
 - **p100_min_section** (IPOTEZĂ): 30 cm transversal = studiu preliminar P100; aplicabilitate pe sistem/ductilitate — nu validat.

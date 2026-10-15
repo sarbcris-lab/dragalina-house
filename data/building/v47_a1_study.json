@@ -110,7 +110,10 @@
       "kind": "ext",
       "thermal": "heated_thermosystem",
       "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "note": "doar etaj (palier intrare); pe P spațiul de sub = living deschis; alcătuire EB20+ISOVER — de confirmat",
+      "removed": true,
+      "status": "ELIMINAT",
+      "reason": "Forma vestibul pe palier — eroare; pe P livingul sub placă rămâne deschis fără zid etaj-only",
+      "note": "ELIMINAT: nu mai există zid nord de vestibul pe palier",
       "levels": [
         1
       ]
@@ -485,19 +488,10 @@
     },
     {
       "id": "usa_rampa_palier",
-      "x": 572.5,
-      "y": 575,
-      "dx": 90,
-      "dy": 15,
-      "construction_clear_cm": 90,
-      "passage_clear_cm": 80,
-      "levels": [
-        1
-      ],
-      "role": "stair_to_vestibule",
-      "from": "ramp2_covered",
-      "to": "palier_superior_interior",
-      "note": "V47: ușă sud — din rampă 2 acoperită în vestibul palier (interior)"
+      "removed": true,
+      "status": "ELIMINAT",
+      "reason": "Eroare: palierul superior NU e vestibul închis; fără ușă rampă→vestibul",
+      "note": "Eliminat — palier = scară rece acoperită, nu cameră vestibul"
     },
     {
       "id": "intrare_etaj",
@@ -767,7 +761,7 @@
       "dy": 390,
       "floor": "#dde6e9",
       "outdoor_access": true,
-      "note": "rampă1+podest SE outdoor; rampă2 acoperită; palier_superior = vestibul INTERIOR V47"
+      "note": "rampă1+podest SE outdoor; rampă2 acoperită; palier_superior = placă scară rece (NU vestibul)"
     },
     {
       "id": "living_sub_palier",
@@ -2870,10 +2864,14 @@
       "dx": 105,
       "dy": 120,
       "z_above_ff_cm": 288,
-      "interior": true,
-      "enclosed": true,
-      "entry_from_ramp2": "usa_rampa_palier 90 cm pe sud",
-      "note": "V47: vestibul INTERIOR sub acoperiș (zid est+sud cu ușă din rampă2); nu podest exterior în aer"
+      "interior": false,
+      "enclosed": false,
+      "vestibule": false,
+      "role": "stair_landing_cold",
+      "covers": "copertină rampă2 / acoperiș est — nu cameră",
+      "below": "living_sub_palier (P încălzit) — aceeași placă",
+      "entry_from_ramp2": null,
+      "note": "Palier pe SCARA RECE (acoperit). NU vestibul. Jos = plafon living P. Fără ziduri de cameră / fără ușă rampă→vestibul."
     },
     "storage_under": {
       "under_ramp2": false,

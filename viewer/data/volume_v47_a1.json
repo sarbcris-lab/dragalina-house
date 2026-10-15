@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_study",
-    "generated": "2026-10-14T19:12:36.397Z",
+    "generated": "2026-10-15T08:13:47.000Z",
     "status": "3D_STUDIU_A1",
     "source_plan": "data/building/v47_a1_study.json",
     "based_on": "v47_exact (referință neatinsă)",
@@ -25910,245 +25910,6 @@
       "opacity": 0.97
     },
     {
-      "id": "zid_living_palier_grund_decorativa_e",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 8.2212,
-          "y": 13.8249
-        },
-        {
-          "x": 8.2309,
-          "y": 13.8253
-        },
-        {
-          "x": 8.2437,
-          "y": 13.5256
-        },
-        {
-          "x": 8.234,
-          "y": 13.5252
-        },
-        {
-          "x": 8.2212,
-          "y": 13.8249
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#8a8680",
-      "label": "living_palier: grund și tencuială decorativă (2 mm)",
-      "kind": "ext",
-      "wall_layer": "grund_decorativa",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_palier_strat_armat_e",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 8.197,
-          "y": 13.8238
-        },
-        {
-          "x": 8.2212,
-          "y": 13.8249
-        },
-        {
-          "x": 8.234,
-          "y": 13.5252
-        },
-        {
-          "x": 8.2098,
-          "y": 13.5241
-        },
-        {
-          "x": 8.197,
-          "y": 13.8238
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#a8b0b8",
-      "label": "living_palier: strat armat (5 mm)",
-      "kind": "ext",
-      "wall_layer": "strat_armat",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_palier_vata_isover_fassade_e",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.8094,
-          "y": 13.8073
-        },
-        {
-          "x": 8.197,
-          "y": 13.8238
-        },
-        {
-          "x": 8.2098,
-          "y": 13.5241
-        },
-        {
-          "x": 7.8222,
-          "y": 13.5075
-        },
-        {
-          "x": 7.8094,
-          "y": 13.8073
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#e2d18a",
-      "label": "living_palier: vată minerală fațadă (80 mm)",
-      "kind": "ext",
-      "wall_layer": "vata_isover_fassade",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.85
-    },
-    {
-      "id": "zid_living_palier_adeziv_etics_e",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.7851,
-          "y": 13.8062
-        },
-        {
-          "x": 7.8094,
-          "y": 13.8073
-        },
-        {
-          "x": 7.8222,
-          "y": 13.5075
-        },
-        {
-          "x": 7.798,
-          "y": 13.5065
-        },
-        {
-          "x": 7.7851,
-          "y": 13.8062
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#b0a898",
-      "label": "living_palier: adeziv ETICS (5 mm)",
-      "kind": "ext",
-      "wall_layer": "adeziv_etics",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_palier_caramida_eb20_e",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.8161,
-          "y": 13.7648
-        },
-        {
-          "x": 7.7851,
-          "y": 13.8062
-        },
-        {
-          "x": 7.798,
-          "y": 13.5065
-        },
-        {
-          "x": 6.8289,
-          "y": 13.465
-        },
-        {
-          "x": 6.8161,
-          "y": 13.7648
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#c4a070",
-      "label": "living_palier: EB20 Akustik (200 mm)",
-      "kind": "ext",
-      "wall_layer": "caramida_eb20",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "site_layer": "umplutura",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_palier_tencuiala_int_e",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.7871,
-          "y": 13.7635
-        },
-        {
-          "x": 6.8161,
-          "y": 13.7648
-        },
-        {
-          "x": 6.8289,
-          "y": 13.465
-        },
-        {
-          "x": 6.7999,
-          "y": 13.4638
-        },
-        {
-          "x": 6.7871,
-          "y": 13.7635
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#e8e0d4",
-      "label": "living_palier: tencuială interioară (6 mm)",
-      "kind": "ext",
-      "wall_layer": "tencuiala_int",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_palier_finisare_vopsea_e",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.7822,
-          "y": 13.7633
-        },
-        {
-          "x": 6.7871,
-          "y": 13.7635
-        },
-        {
-          "x": 6.7999,
-          "y": 13.4638
-        },
-        {
-          "x": 6.795,
-          "y": 13.4636
-        },
-        {
-          "x": 6.7822,
-          "y": 13.7633
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#f4f0e8",
-      "label": "living_palier: finisare și vopsea (1 mm)",
-      "kind": "ext",
-      "wall_layer": "finisare_vopsea",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "opacity": 0.97
-    },
-    {
       "id": "zid_sud_bucatarie_grund_decorativa_e",
       "type": "extrude",
       "polygon": [
@@ -29695,160 +29456,9 @@
       ],
       "z0_m": 3.0799999999999996,
       "z1_m": 3.1999999999999997,
-      "color": "#e4ddd0",
+      "color": "#c8c2b6",
       "site_layer": "structura",
-      "label": "Palier superior INTERIOR FF etaj"
-    },
-    {
-      "id": "zid_palier_sup_est",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 8.0938,
-          "y": 13.5192
-        },
-        {
-          "x": 8.2437,
-          "y": 13.5256
-        },
-        {
-          "x": 8.295,
-          "y": 12.3267
-        },
-        {
-          "x": 8.1451,
-          "y": 12.3203
-        },
-        {
-          "x": 8.0938,
-          "y": 13.5192
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#d8d2c6",
-      "label": "Zid est vestibul palier"
-    },
-    {
-      "id": "zid_palier_sup_sud_st",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1396,
-          "y": 12.4274
-        },
-        {
-          "x": 7.2146,
-          "y": 12.4306
-        },
-        {
-          "x": 7.221,
-          "y": 12.2807
-        },
-        {
-          "x": 7.146,
-          "y": 12.2775
-        },
-        {
-          "x": 7.1396,
-          "y": 12.4274
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#d8d2c6",
-      "label": "Zid sud vestibul (stânga ușă)"
-    },
-    {
-      "id": "zid_palier_sup_sud_dr",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 8.1137,
-          "y": 12.469
-        },
-        {
-          "x": 8.1887,
-          "y": 12.4723
-        },
-        {
-          "x": 8.1951,
-          "y": 12.3224
-        },
-        {
-          "x": 8.1202,
-          "y": 12.3192
-        },
-        {
-          "x": 8.1137,
-          "y": 12.469
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.81,
-      "color": "#d8d2c6",
-      "label": "Zid sud vestibul (dreapta ușă)"
-    },
-    {
-      "id": "zid_palier_sup_sud_buiandrug",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.2146,
-          "y": 12.4306
-        },
-        {
-          "x": 8.1137,
-          "y": 12.469
-        },
-        {
-          "x": 8.1202,
-          "y": 12.3192
-        },
-        {
-          "x": 7.221,
-          "y": 12.2807
-        },
-        {
-          "x": 7.2146,
-          "y": 12.4306
-        }
-      ],
-      "z0_m": 5.3,
-      "z1_m": 5.81,
-      "color": "#d8d2c6",
-      "label": "Buiandrug ușă rampă→palier"
-    },
-    {
-      "id": "gol_usa_rampa_palier",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.2146,
-          "y": 12.4306
-        },
-        {
-          "x": 8.1137,
-          "y": 12.469
-        },
-        {
-          "x": 8.1202,
-          "y": 12.3192
-        },
-        {
-          "x": 7.221,
-          "y": 12.2807
-        },
-        {
-          "x": 7.2146,
-          "y": 12.4306
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.3,
-      "color": "#87a0b8",
-      "opacity": 0.35,
-      "label": "Ușă rampă 2 → vestibul etaj"
+      "label": "Palier scară acoperit (fără vestibul)"
     },
     {
       "id": "put_scara_beci_sub_r2",
@@ -30346,37 +29956,6 @@
       "color": "#6aaf7a",
       "opacity": 0.5,
       "label": "intrare_parter"
-    },
-    {
-      "id": "gol_usa_rampa_palier_L1",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.2146,
-          "y": 12.4306
-        },
-        {
-          "x": 8.1137,
-          "y": 12.469
-        },
-        {
-          "x": 8.1202,
-          "y": 12.3192
-        },
-        {
-          "x": 7.221,
-          "y": 12.2807
-        },
-        {
-          "x": 7.2146,
-          "y": 12.4306
-        }
-      ],
-      "z0_m": 3.1999999999999997,
-      "z1_m": 5.3,
-      "color": "#c9e4ef",
-      "opacity": 0.5,
-      "label": "usa_rampa_palier"
     },
     {
       "id": "gol_intrare_etaj_L1",
@@ -32540,24 +32119,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.7218,
-          "y": 11.6233
+          "x": 4.6219,
+          "y": 11.619
         },
         {
-          "x": 5.0215,
-          "y": 11.6361
+          "x": 4.9216,
+          "y": 11.6318
         },
         {
-          "x": 5.0386,
-          "y": 11.2365
+          "x": 4.9387,
+          "y": 11.2322
         },
         {
-          "x": 4.7389,
-          "y": 11.2237
+          "x": 4.639,
+          "y": 11.2194
         },
         {
-          "x": 4.7218,
-          "y": 11.6233
+          "x": 4.6219,
+          "y": 11.619
         }
       ],
       "z0_m": -2.5,
@@ -35873,7 +35452,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E Y470 vestibul"
+      "label": "centură E Y470 bordură palier scară"
     },
     {
       "id": "etaj_centura_y590",

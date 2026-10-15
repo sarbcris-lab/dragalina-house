@@ -106,20 +106,6 @@
       "note": "P+E: X650 Y30–440; finit la X680; EB20 200 + ETICS ISOVER 80; structură beton — neconfirmat"
     },
     {
-      "id": "living_palier",
-      "x": 535,
-      "y": 440,
-      "dx": 145,
-      "dy": 30,
-      "kind": "ext",
-      "thermal": "heated_thermosystem",
-      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
-      "note": "doar etaj (palier intrare); pe P spațiul de sub = living deschis; alcătuire EB20+ISOVER — de confirmat",
-      "levels": [
-        1
-      ]
-    },
-    {
       "id": "sud_bucatarie",
       "x": 360,
       "y": 830,
@@ -504,22 +490,6 @@
       "lands_in": "hol_intrare"
     },
     {
-      "id": "usa_rampa_palier",
-      "x": 572.5,
-      "y": 575,
-      "dx": 90,
-      "dy": 15,
-      "construction_clear_cm": 90,
-      "passage_clear_cm": 80,
-      "levels": [
-        1
-      ],
-      "role": "stair_to_vestibule",
-      "from": "ramp2_covered",
-      "to": "palier_superior_interior",
-      "note": "V47: ușă sud — din rampă 2 acoperită în vestibul palier (interior)"
-    },
-    {
       "id": "intrare_etaj",
       "x": 535,
       "y": 475,
@@ -802,7 +772,7 @@
       "dy": 390,
       "floor": "#dde6e9",
       "outdoor_access": true,
-      "note": "rampă1+podest SE outdoor; rampă2 acoperită; palier_superior = vestibul INTERIOR V47"
+      "note": "rampă1+podest SE outdoor; rampă2 acoperită; palier_superior = placă scară rece (NU vestibul)"
     },
     {
       "id": "living_sub_palier",
@@ -983,17 +953,19 @@
     "useful_ref_copied_was": 37.87875,
     "useful_delta_vs_ref_m2": 0,
     "frame_study_areas": {
-      "method": "P/E separate: shoelace(poly nivel) − pereți_int − thermal − proeminențe; E = studio fără vestibul; vestibul raportat separat; NU usefulE=usefulP",
+      "method": "P/E separate: shoelace − pereți − thermal − proem.; E = studio; palier scară rece raportat separat (NU vestibul); NU usefulE=usefulP",
       "useful_parter_m2": 38.605,
       "useful_etaj_studio_m2": 37.96,
       "useful_etaj_m2": 37.96,
-      "vestibule_palier_m2": 1.26,
-      "vestibule_rect_cm": {
+      "palier_scara_rece_m2": 1.26,
+      "palier_scara_rect_cm": {
         "x": 565,
         "y": 470,
         "dx": 105,
         "dy": 120
       },
+      "vestibule_palier_m2": 0,
+      "vestibule_eliminated": true,
       "gross_parter_m2": 40.285,
       "gross_etaj_studio_m2": 39.715,
       "gross_etaj_m2": 39.715,
@@ -1010,7 +982,7 @@
       "ref_a1_useful_was": 37.87875,
       "status_util": "NECONFIRMAT",
       "declared_pass_util": false,
-      "note": "Fără PASS. Util E = studio (fără vestibul). Vestibul = acces, nu util studio."
+      "note": "Fără PASS. Util E = studio. Palier = scară rece (vestibul ELIMINAT)."
     }
   },
   "furniture_cm": [
@@ -2937,10 +2909,14 @@
       "dx": 105,
       "dy": 120,
       "z_above_ff_cm": 288,
-      "interior": true,
-      "enclosed": true,
-      "entry_from_ramp2": "usa_rampa_palier 90 cm pe sud",
-      "note": "V47: vestibul INTERIOR sub acoperiș (zid est+sud cu ușă din rampă2); nu podest exterior în aer"
+      "interior": false,
+      "enclosed": false,
+      "vestibule": false,
+      "role": "stair_landing_cold",
+      "covers": "copertină rampă2 / acoperiș est — nu cameră",
+      "below": "living_sub_palier (P încălzit) — aceeași placă",
+      "entry_from_ramp2": null,
+      "note": "Palier pe SCARA RECE (acoperit). NU vestibul. Jos = plafon living P. Fără ziduri de cameră / fără ușă rampă→vestibul."
     },
     "storage_under": {
       "under_ramp2": false,
@@ -7524,7 +7500,7 @@
         "protrusion_into_room_cm": 10,
         "section_cm": "30×40",
         "section_status": "de confirmat prin calcul și cerințe normative (P100 — aplicabilitate pe sistem/ductilitate)",
-        "wall": "est sub vestibul / N de palier inferior",
+        "wall": "est sub palier scară / N de palier inferior",
         "replaces": [
           "pal_ne",
           "C_E_SOLID_N@Y550"
@@ -7789,7 +7765,7 @@
         "note": "sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA"
       },
       {
-        "id": "B_Y470_VESTIBUL_CANTILEVER",
+        "id": "B_Y470_PALIER_EDGE",
         "x": 535,
         "y": 470,
         "dx": 145,
@@ -7801,7 +7777,7 @@
           "C_E_PAL",
           "B_E"
         ],
-        "note": "acoperire vestibul / consolă E — separat de placa palierului; sprijin placă palier = schemă proprie (DESCHIS)"
+        "note": "bordură nord placă palier scară (NU vestibul); sprijin placă = schemă 4 laturi DESCHIS"
       }
     ],
     "inverted_edge_beam": {
@@ -7886,9 +7862,9 @@
         "detail": "Proeminențe locale; util P/E = NECONFIRMAT — nu e rezervă stâlpi."
       },
       {
-        "id": "vestibule_cantilever",
+        "id": "palier_plate_support",
         "severity": "DESCHIS",
-        "detail": "B_Y470 = acoperire vestibul; placa palierului +320 necesită schemă de sprijin separată — neconfirmat."
+        "detail": "Palier scară rece (fără vestibul): placa = plafon living P. Reazeme pe margini — schemă DESCHIS. Vestibul închis ELIMINAT."
       },
       {
         "id": "slab_span_without_X320",
@@ -7966,7 +7942,7 @@
     }
   },
   "interior_polygon_etaj_cm": {
-    "note": "Frame E util STUDIO: EXCLUDE vestibul palier_superior + exterior; NU copiază usefulP",
+    "note": "Frame E util STUDIO: EXCLUDE palier scară rece (nu vestibul) + exterior; NU copiază usefulP",
     "vertices": [
       [
         30,
@@ -8017,7 +7993,7 @@
       "terasa",
       "uncovered_south",
       "rampă_exterioară",
-      "vestibul_palier_superior"
+      "palier_scara_rece"
     ]
   }
 }

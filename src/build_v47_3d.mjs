@@ -300,7 +300,7 @@ function main() {
     if (w.assembly && /EB20|ISOVER|FASSADE|20_sono/i.test(w.assembly)) return true;
     // contur încălzit: nu banda scară X565–680 pe nord
     if (w.id === "nord") return true; // layered doar pe segmentul încălzit — vezi split
-    return ["vest", "est_living", "sud_bucatarie", "dormitor_sud", "living_palier"].includes(w.id);
+    return ["vest", "est_living", "sud_bucatarie", "dormitor_sud"].includes(w.id);
   }
   function pushLayeredExteriorWall(w, z0, z1, suffix, opts = {}) {
     const layers = exteriorWallLayersFromOutside();
@@ -538,8 +538,9 @@ function main() {
 
     // Soclu pe pereții exteriori (umple golul sub FF + bandă ~60 cm)
     for (const w of v47.walls_cm) {
+      if (w.removed) continue;
       if (w.kind !== "ext") continue;
-      // nu soclu pe P pentru ziduri doar-etaj (ex. living_palier)
+      // nu soclu pe P pentru ziduri doar-etaj
       if (w.levels && !w.levels.includes(0)) continue;
       meshes.push({
         id: `soclu_${w.id}`,
@@ -648,6 +649,7 @@ function main() {
     }
 
     for (const w of v47.walls_cm) {
+      if (w.removed) continue;
       if (w.kind === "parapet") continue;
       if (w.levels && !w.levels.includes(level)) continue;
       const isExt = w.kind === "ext";
@@ -1003,7 +1005,9 @@ function main() {
     opacity: 0.88,
   });
 
-  // Palier superior = vestibul INTERIOR. FRAME: separă placa structurală de pardoseală (nu le confunda).
+  // Palier superior = placă pe SCARA RECE (acoperită de copertină).
+  // NU vestibul interior, NU ziduri de cameră, NU ușă rampă→vestibul (eliminat — eroare V47).
+  // Jos = plafon living P. Sus = circulație scară. Intrare apt. = intrare_etaj pe separator (dacă există).
   if (isFrameStudy && frameStudy?.levels_cm) {
     const lvP = frameStudy.levels_cm;
     meshes.push({
@@ -1015,7 +1019,7 @@ function main() {
       color: "#8b8680",
       opacity: 0.55,
       site_layer: "structura",
-      label: `Palier placă structurală +${lvP.slab_soffit_etaj}→+${lvP.slab_top_etaj} (nu pardoseală)`,
+      label: `Palier scară — placă +${lvP.slab_soffit_etaj}→+${lvP.slab_top_etaj} (plafon living P / circulație E)`,
     });
     meshes.push({
       id: "palier_superior_pardoseala",
@@ -1023,9 +1027,9 @@ function main() {
       polygon: rectPoly(palSup.x, palSup.y, palSup.dx, palSup.dy),
       z0_m: zEtaj - floorTh,
       z1_m: zEtaj,
-      color: "#e4ddd0",
+      color: "#c8c2b6",
       site_layer: "finisaj",
-      label: "Palier pardoseală FF etaj (decupaj stâlpi — studiu)",
+      label: "Palier scară — finisaj (nu vestibul)",
     });
   } else {
     meshes.push({
@@ -1034,68 +1038,11 @@ function main() {
       polygon: rectPoly(palSup.x, palSup.y, palSup.dx, palSup.dy),
       z0_m: zEtaj - floorTh,
       z1_m: zEtaj,
-      color: "#e4ddd0",
+      color: "#c8c2b6",
       site_layer: "structura",
-      label: "Palier superior INTERIOR FF etaj",
+      label: "Palier scară acoperit (fără vestibul)",
     });
   }
-  const palWallT = 15;
-  const palDoorW = 90;
-  const palDoorX = palSup.x + (palSup.dx - palDoorW) / 2;
-  // Zid est plin până la acoperiș
-  meshes.push({
-    id: "zid_palier_sup_est",
-    type: "extrude",
-    polygon: rectPoly(st.band_x + st.band_dx - palWallT, palSup.y, palWallT, palSup.dy),
-    z0_m: zEtaj,
-    z1_m: roofZ0,
-    color: "#d8d2c6",
-    label: "Zid est vestibul palier",
-  });
-  // Zid sud cu gol ușă din rampă 2 acoperită → vestibul
-  const palSudY = palSup.y + palSup.dy - palWallT;
-  meshes.push({
-    id: "zid_palier_sup_sud_st",
-    type: "extrude",
-    polygon: rectPoly(palSup.x, palSudY, Math.max(0, palDoorX - palSup.x), palWallT),
-    z0_m: zEtaj,
-    z1_m: roofZ0,
-    color: "#d8d2c6",
-    label: "Zid sud vestibul (stânga ușă)",
-  });
-  meshes.push({
-    id: "zid_palier_sup_sud_dr",
-    type: "extrude",
-    polygon: rectPoly(
-      palDoorX + palDoorW,
-      palSudY,
-      Math.max(0, palSup.x + palSup.dx - (palDoorX + palDoorW)),
-      palWallT
-    ),
-    z0_m: zEtaj,
-    z1_m: roofZ0,
-    color: "#d8d2c6",
-    label: "Zid sud vestibul (dreapta ușă)",
-  });
-  meshes.push({
-    id: "zid_palier_sup_sud_buiandrug",
-    type: "extrude",
-    polygon: rectPoly(palDoorX, palSudY, palDoorW, palWallT),
-    z0_m: zEtaj + 2.1,
-    z1_m: roofZ0,
-    color: "#d8d2c6",
-    label: "Buiandrug ușă rampă→palier",
-  });
-  meshes.push({
-    id: "gol_usa_rampa_palier",
-    type: "extrude",
-    polygon: rectPoly(palDoorX, palSudY, palDoorW, palWallT),
-    z0_m: zEtaj,
-    z1_m: zEtaj + 2.1,
-    color: "#87a0b8",
-    opacity: 0.35,
-    label: "Ușă rampă 2 → vestibul etaj",
-  });
 
   // Sub rampă 2: FĂRĂ depozit / FĂRĂ placă FF — puț deschis pentru scară beci
   // (curte engleză −48 → palier −95 → scară −250). Living sub palier (Y470–590) rămâne.
@@ -1129,6 +1076,7 @@ function main() {
 
   // Opening markers (față jos pe FF) + casete pocket (studiu)
   for (const o of v47.openings_cm) {
+    if (o.removed) continue;
     const poly = rectPoly(o.x, o.y, Math.max(o.dx, 8), Math.max(o.dy, 8));
     const sill = o.id.includes("geam") ? 0.9 : 0;
     const oh = o.id.includes("geam") ? 1.5 : 2.1;
@@ -2821,7 +2769,7 @@ function main() {
       pushPE("etaj_centura_w", I, I, col, 830 - I, zRb0, zTopE, "centură E W", "#5a554e");
       pushPE("etaj_centura_x535", 535, I, col, 860 - I, zRb0, zTopE, "centură E casă–scară", "#5a554e");
       pushPE("etaj_centura_x650", 650, I, col, 590 - I, zRb0, zTopE, "centură E X650", "#5a554e");
-      pushPE("etaj_centura_y470", 535, 470, 145, col, zRb0, zTopE, "centură E Y470 vestibul", "#5a554e");
+      pushPE("etaj_centura_y470", 535, 470, 145, col, zRb0, zTopE, "centură E Y470 bordură palier scară", "#5a554e");
       pushPE("etaj_centura_y590", 535, 590 - col, 145, col, zRb0, zTopE, "centură E Y590", "#5a554e");
     }
     meshes.push({

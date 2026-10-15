@@ -218,7 +218,7 @@ function buildFrameSchema() {
       continuous_through_floor: true,
     }),
     colEst("C_E_PAL", ax.Y_E_PAL_END - COL_ALONG, COL_ALONG, {
-      wall: "est sub vestibul / N de palier inferior",
+      wall: "est sub palier scară / N de palier inferior",
       support_below: "fundație_E continuu — NU pe placă 15",
       replaces: ["pal_ne", "C_E_SOLID_N@Y550"],
       conflicts: ["proeminență pe palier etaj Y470–489 — recalcul lățime utilă"],
@@ -387,14 +387,14 @@ function buildFrameSchema() {
       note: "sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA",
     },
     {
-      id: "B_Y470_VESTIBUL_CANTILEVER",
+      id: "B_Y470_PALIER_EDGE",
       x: ax.X_CASA_SCARA,
       y: ax.Y_PAL_N,
       dx: 145,
       dy: COL_THRU,
       levels: ["E"],
       supports: ["C_E_PAL", "B_E"],
-      note: "acoperire vestibul / consolă E — separat de placa palierului; sprijin placă palier = schemă proprie (DESCHIS)",
+      note: "bordură nord placă palier scară (NU vestibul); sprijin placă = schemă 4 laturi DESCHIS",
     },
   ];
 
@@ -430,9 +430,10 @@ function buildFrameSchema() {
       detail: `Proeminențe locale; util P/E = NECONFIRMAT — nu e rezervă stâlpi.`,
     },
     {
-      id: "vestibule_cantilever",
+      id: "palier_plate_support",
       severity: "DESCHIS",
-      detail: "B_Y470 = acoperire vestibul; placa palierului +320 necesită schemă de sprijin separată — neconfirmat.",
+      detail:
+        "Palier scară rece (fără vestibul): placa = plafon living P. Reazeme pe margini — schemă DESCHIS. Vestibul închis ELIMINAT.",
     },
     {
       id: "slab_span_without_X320",
@@ -841,7 +842,7 @@ function applyFrameToStudy(base) {
   out.walls_cm = [...(out.walls_cm || []).filter((w) => w.id !== thermal.id), thermal];
 
   // Contur util încălzit: fără terasă / acces exterior.
-  // P: living sub palier inclus. E: studio FĂRĂ vestibul (palier_superior X565–670 Y470–590 raportat separat).
+  // P: living sub palier inclus. E: studio; palier scară rece exclus (nu e vestibul — e circulație scară).
   const polyP = [
     [30, 30],
     [650, 30],
@@ -868,17 +869,17 @@ function applyFrameToStudy(base) {
     [30, 645],
     [30, 30],
   ];
-  const vestibuleRect = { x: 565, y: 470, dx: 105, dy: 120 };
-  const vestibuleM2 = +rectAreaM2(vestibuleRect).toFixed(3);
+  const palierScaraRect = { x: 565, y: 470, dx: 105, dy: 120 };
+  const palierScaraM2 = +rectAreaM2(palierScaraRect).toFixed(3);
   out.interior_polygon_cm = {
     note: "Frame P util: living sub palier inclus; EXCLUDE terasă/acces exterior",
     vertices: polyP,
     excludes: ["terasa", "uncovered_south", "entry_steps", "curte_engleza", "alee"],
   };
   out.interior_polygon_etaj_cm = {
-    note: "Frame E util STUDIO: EXCLUDE vestibul palier_superior + exterior; NU copiază usefulP",
+    note: "Frame E util STUDIO: EXCLUDE palier scară rece (nu vestibul) + exterior; NU copiază usefulP",
     vertices: polyE,
-    excludes: ["terasa", "uncovered_south", "rampă_exterioară", "vestibul_palier_superior"],
+    excludes: ["terasa", "uncovered_south", "rampă_exterioară", "palier_scara_rece"],
   };
 
   const wallsNetP = intWallsNetM2(out.walls_cm, out.openings_cm, 0);
@@ -906,12 +907,14 @@ function applyFrameToStudy(base) {
     ...out.areas_cm,
     frame_study_areas: {
       method:
-        "P/E separate: shoelace(poly nivel) − pereți_int − thermal − proeminențe; E = studio fără vestibul; vestibul raportat separat; NU usefulE=usefulP",
+        "P/E separate: shoelace − pereți − thermal − proem.; E = studio; palier scară rece raportat separat (NU vestibul); NU usefulE=usefulP",
       useful_parter_m2: usefulP,
       useful_etaj_studio_m2: usefulE,
       useful_etaj_m2: usefulE,
-      vestibule_palier_m2: vestibuleM2,
-      vestibule_rect_cm: vestibuleRect,
+      palier_scara_rece_m2: palierScaraM2,
+      palier_scara_rect_cm: palierScaraRect,
+      vestibule_palier_m2: 0,
+      vestibule_eliminated: true,
       gross_parter_m2: +grossP.toFixed(3),
       gross_etaj_studio_m2: +grossE.toFixed(3),
       gross_etaj_m2: +grossE.toFixed(3),
@@ -928,10 +931,14 @@ function applyFrameToStudy(base) {
       ref_a1_useful_was: base.areas_cm?.useful_recalc_a1?.useful_geometric_m2 ?? base.areas_cm?.useful_geometric_m2 ?? null,
       status_util: "NECONFIRMAT",
       declared_pass_util: false,
-      note: "Fără PASS. Util E = studio (fără vestibul). Vestibul = acces, nu util studio.",
+      note: "Fără PASS. Util E = studio. Palier = scară rece (vestibul ELIMINAT).",
     },
     useful_geometric_m2: usefulP,
   };
+
+  // Scoate din studiu ziduri/uși marcate removed (vestibul eronat)
+  out.walls_cm = (out.walls_cm || []).filter((w) => !w.removed);
+  out.openings_cm = (out.openings_cm || []).filter((o) => !o.removed);
 
   if (out.basement_cm?.door_to_rooms) {
     out.basement_cm.door_to_rooms.frame_study_note =
@@ -1230,8 +1237,8 @@ Metodă: ${ar.method}
 | | m² |
 |--|---:|
 | Util parter (studiu) | ${ar.useful_parter_m2} |
-| Util etaj studio (fara vestibul) | ${ar.useful_etaj_studio_m2 ?? ar.useful_etaj_m2} |
-| Vestibul palier (separat, nu in util studio) | ${ar.vestibule_palier_m2 ?? "—"} |
+| Util etaj studio | ${ar.useful_etaj_studio_m2 ?? ar.useful_etaj_m2} |
+| Palier scară rece (exclus din util; nu vestibul) | ${ar.palier_scara_rece_m2 ?? "—"} |
 | Pereți int net P / E | ${ar.walls_int_net_P_m2} / ${ar.walls_int_net_E_m2} |
 | Proeminențe stâlpi P / E | ${ar.column_protrusion_P_m2} / ${ar.column_protrusion_E_m2} |
 | Thermal P / E | ${ar.thermal_enclosure_P_m2} / ${ar.thermal_enclosure_E_m2} |
