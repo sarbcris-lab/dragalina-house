@@ -49,8 +49,13 @@
       "on_side_m": 6.8,
       "along": "ew",
       "length_cm": 680,
-      "note": "Coamă pe latura 6,8 m (X) — ape spre N și S"
+      "y_cm": 430,
+      "note": "Coamă pe latura 6,8 m (X) — ape spre N și S; Y mid anvelopă"
     },
+    "rise_cm": 140,
+    "shell_cm": 18,
+    "pitch_deg_approx": 18,
+    "pitch_note": "Ipoteză ~18° (rise 140 cm pe run 430 cm) — potrivită PV; confirmare structurist",
     "covers_cm": {
       "x0": 0,
       "x1": 680,
@@ -66,10 +71,12 @@
     },
     "pv": {
       "both_pitches": true,
+      "inset_cm": 40,
+      "above_roof_cm": 6,
       "note": "Panouri fotovoltaice pe ambele ape — decis"
     },
     "not": "copertină pe rampă 2 — acoperiș 2 ape continuu pe casă + scară",
-    "viewer_note": "În 3D: volum unificat la cota acoperiș; panta e schematică până la mesh tip gable"
+    "viewer_note": "Mesh triangles: acoperis_apa_N/S + frontoane + pv_apa_N/S"
   },
   "wall_ext_cm": 30,
   "wall_int_cm": 12.5,

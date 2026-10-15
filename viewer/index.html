@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dragalina 131 — Viewer 3D · V47 / V46</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <title>Dragalina 131 — Viewer 3D · V47 / V46 · gable</title>
   <style>
     :root {
       --bg: #1a1d22;
@@ -218,11 +219,92 @@
       return makeExtrude({ ...m, polygon: [...left, ...right.reverse()] });
     }
 
-    const qs = new URLSearchParams(location.search);
-    const vParam = qs.get("v") || "";
-    const isV47A1Frame = vParam === "v47_a1_frame" || qs.has("v47_a1_frame");
-    const isV47A1 = !isV47A1Frame && (vParam === "v47_a1" || qs.has("v47_a1"));
-    const isV47 = isV47A1Frame || isV47A1 || qs.has("v47") || vParam.startsWith("v47");
+    /**
+     * Triangles: vertices {x,y,z} sit — x est, y nord, z cotă.
+     * Același cadru ca extrude: după Rx(-90°) pe Shape(x,y) → Three (x, z, -y).
+     */
+    function makeTriangles(m) {
+      const verts = m.vertices || [];
+      const faces = m.faces || [];
+      if (verts.length < 3 || faces.length < 1) return new THREE.Group();
+      const pos = new Float32Array(verts.length * 3);
+      for (let i = 0; i < verts.length; i++) {
+        const v = verts[i];
+        pos[i * 3] = Number(v.x) || 0;
+        pos[i * 3 + 1] = Number(v.z) || 0;
+        pos[i * 3 + 2] = -(Number(v.y) || 0);
+      }
+      const idx = [];
+      for (const f of faces) {
+        if (!f || f.length < 3) continue;
+        idx.push(f[0] | 0, f[1] | 0, f[2] | 0);
+      }
+      if (idx.length < 3) return new THREE.Group();
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+      geo.setIndex(new THREE.BufferAttribute(new Uint32Array(idx), 1));
+      geo.computeVertexNormals();
+      geo.computeBoundingSphere();
+      geo.computeBoundingBox();
+      const mat = new THREE.MeshStandardMaterial({
+        color: m.color || "#5c564e",
+        roughness: m.roughness ?? 0.75,
+        metalness: m.metalness ?? 0.05,
+        transparent: m.opacity != null && m.opacity < 1,
+        opacity: m.opacity ?? 1,
+        side: THREE.DoubleSide,
+        depthWrite: m.opacity == null || m.opacity >= 1,
+      });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      mesh.frustumCulled = true;
+      // Muchii pe acoperiș — altfel panta e greu de citit pe schelet gri
+      if ((m.id || "").startsWith("acoperis_")) {
+        const edges = new THREE.EdgesGeometry(geo, 20);
+        const line = new THREE.LineSegments(
+          edges,
+          new THREE.LineBasicMaterial({ color: 0xc4b49a, transparent: true, opacity: 0.85 })
+        );
+        line.raycast = () => {};
+        mesh.add(line);
+      }
+      return mesh;
+    }
+
+    // Robust la query dublu-encodat (ex. ?v%3Dv47_a1_frame din Glass/open_resource)
+    const rawSearch = location.search || "";
+    let searchDecoded = rawSearch;
+    try {
+      searchDecoded = decodeURIComponent(rawSearch);
+      if (/%[0-9A-Fa-f]{2}/.test(searchDecoded)) searchDecoded = decodeURIComponent(searchDecoded);
+    } catch (_) { /* keep raw */ }
+    const qs = new URLSearchParams(rawSearch.startsWith("?") ? rawSearch : `?${rawSearch}`);
+    const qsDec = new URLSearchParams(searchDecoded.startsWith("?") ? searchDecoded : `?${searchDecoded}`);
+    let vParam = qs.get("v") || qsDec.get("v") || "";
+    if (!vParam) {
+      for (const src of [qs, qsDec]) {
+        for (const [k, val] of src.entries()) {
+          if (k.startsWith("v=")) {
+            vParam = k.slice(2);
+            break;
+          }
+          if (/^v47/.test(k) && !val) {
+            vParam = k;
+            break;
+          }
+        }
+        if (vParam) break;
+      }
+    }
+    const blob = `${searchDecoded}&v=${vParam}&${rawSearch}`;
+    const isV47A1Frame =
+      vParam === "v47_a1_frame" || qs.has("v47_a1_frame") || qsDec.has("v47_a1_frame") || /v47_a1_frame/.test(blob);
+    const isV47A1 =
+      !isV47A1Frame &&
+      (vParam === "v47_a1" || qs.has("v47_a1") || qsDec.has("v47_a1") || /(?:^|[?&])v(?:=|%3D)?v47_a1(?!_frame)(?:&|$)/i.test(blob));
+    const isV47 =
+      isV47A1Frame || isV47A1 || qs.has("v47") || qsDec.has("v47") || vParam.startsWith("v47") || /(?:\?|&)v47(?:&|$)/.test(blob);
     const volFile = isV47A1Frame
       ? "./data/volume_v47_a1_frame.json"
       : isV47A1
@@ -230,7 +312,7 @@
         : isV47
           ? "./data/volume_v47.json"
           : "./data/volume.json";
-    const volume = await fetch(`${volFile}?${location.search.slice(1) || Date.now()}`, { cache: "no-store" }).then((r) => r.json());
+    const volume = await fetch(`${volFile}?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.json());
     document.getElementById("viewTitle").textContent = isV47A1Frame
       ? "Dragalina 131 · V47 A1 FRAME (cadre)"
       : isV47A1
@@ -328,6 +410,9 @@
         id.startsWith("etaj_centura_") ||
         id === "etaj_placa_structura" ||
         id === "acoperis_structura_corp" ||
+        id === "acoperis_2_ape" ||
+        id.startsWith("acoperis_apa_") ||
+        id.startsWith("acoperis_fronton_") ||
         id === "subsol_intrados_placa" ||
         id === "subsol_palier_jos" ||
         id === "podest_se" ||
@@ -360,6 +445,7 @@
       let obj;
       if (m.type === "extrude") obj = makeExtrude(m);
       else if (m.type === "ribbon") obj = makeRibbon(m);
+      else if (m.type === "triangles") obj = makeTriangles(m);
       else continue;
 
       obj.name = m.id;
@@ -371,7 +457,10 @@
       if (m.state === "closed" || m.id === "poarta_inchisa") gateClosed.push(obj);
       if (m.state === "open" || m.id === "poarta_deschisa") gateOpen.push(obj);
 
-      const zMid = ((m.z0_m ?? 0) + (m.z1_m ?? 0)) / 2;
+      const zMid =
+        m.type === "triangles" && m.vertices?.length
+          ? m.vertices.reduce((s, v) => s + (v.z || 0), 0) / m.vertices.length
+          : ((m.z0_m ?? 0) + (m.z1_m ?? 0)) / 2;
       const id = m.id || "";
       if (isImprejmuireMesh(m)) fenceObjs.push(obj);
       if (isCurteMesh(m)) curteObjs.push(obj);
@@ -419,6 +508,7 @@
       if (!n) return false;
       return (
         n.startsWith("acoperis") ||
+        n.startsWith("pv_") ||
         n.includes("plafon") ||
         n.includes("copertina") ||
         n.includes("false_ceiling")
@@ -534,7 +624,6 @@
       }
       for (const o of etajObjs) {
         o.visible = mode === "both" || mode === "etaj";
-        if (mode === "etaj" && isRoofOrCeiling(o.name)) o.visible = false;
       }
       for (const o of subsolObjs) {
         // both: show L-1; parter/etaj: hide; subsol: only these
@@ -550,7 +639,7 @@
         root.traverse((o) => {
           if (!o.isMesh) return;
           if ((o.name || "").startsWith("subsol_")) o.visible = false;
-          if (mode === "etaj" && isRoofOrCeiling(o.name)) o.visible = false;
+          // Pe parter: fără acoperiș (vezi placa). Pe etaj: acoperișul rămâne (2 ape).
           if (mode === "parter" && isRoofOrCeiling(o.name)) o.visible = false;
         });
       }

@@ -762,27 +762,184 @@ function main() {
     }
   }
 
-  // Acoperiș 2 ape (stabilit): coamă pe latura 6,8 m (EW), ape N/S, PV pe ambele.
+  // Acoperiș 2 ape real (triangles): coamă pe latura 6,8 m (EW), ape N/S, PV pe ambele.
   // Acoperă anvelopa 680×860 inclusiv banda scară; NU podest SE / rampă 1 (Y≥860, neacoperite).
-  // Viewer: volum unificat (panta gable = schematică până la tip mesh dedicat).
-  const roofZ0 = zEtaj + H;
-  const roofZ1 = roofZ0 + 0.22;
   const roofMeta = v47.roof_cm || {};
-  const ewRoof = v47.envelope_cm.ew;
-  const nsRoof = v47.envelope_cm.ns;
-  meshes.push({
-    id: "acoperis_2_ape",
-    type: "extrude",
-    polygon: rectPoly(0, 0, ewRoof, nsRoof),
-    z0_m: roofZ0,
-    z1_m: roofZ1,
-    color: "#5c564e",
-    site_layer: "structura",
-    label:
-      roofMeta.type === "two_pitch"
-        ? "Acoperiș 2 ape — coamă 6,8 m (EW), PV pe ambele ape; casă+scară"
-        : "Acoperiș casă + scară",
-  });
+  const cover = roofMeta.covers_cm || {};
+  const x0r = cover.x0 ?? 0;
+  const x1r = cover.x1 ?? v47.envelope_cm.ew;
+  const y0r = cover.y0 ?? 0;
+  const y1r = cover.y1 ?? v47.envelope_cm.ns;
+  const ridgeY = roofMeta.ridge?.y_cm ?? (y0r + y1r) / 2;
+  const riseCm = roofMeta.rise_cm ?? 140; // ~18° pe run 4,3 m — ipoteză PV
+  const roofTh = m(roofMeta.shell_cm ?? 18);
+  const eaveZ = zEtaj + H;
+  const ridgeZ = eaveZ + m(riseCm);
+  const runN = Math.abs(ridgeY - y0r);
+  const pitchDeg = (Math.atan2(m(riseCm), m(runN || 1)) * 180) / Math.PI;
+
+  function siteVert(lcmX, lcmY, zM) {
+    const p = toSite(lcmX, lcmY);
+    return { x: p.x, y: p.y, z: +(+zM).toFixed(4) };
+  }
+  function pushTriMesh(id, verts, faces, color, label, extra = {}) {
+    const zs = verts.map((v) => v.z);
+    meshes.push({
+      id,
+      type: "triangles",
+      vertices: verts,
+      faces,
+      color,
+      label,
+      site_layer: extra.site_layer || "structura",
+      z0_m: Math.min(...zs),
+      z1_m: Math.max(...zs),
+      ...extra,
+    });
+  }
+  function zOnPitch(yLocal, yA, zA, yB, zB) {
+    const t = (yLocal - yA) / (yB - yA || 1);
+    return zA + t * (zB - zA);
+  }
+
+  // Apa N (Y nord → coamă)
+  {
+    const v0 = siteVert(x0r, y0r, eaveZ);
+    const v1 = siteVert(x1r, y0r, eaveZ);
+    const v2 = siteVert(x1r, ridgeY, ridgeZ);
+    const v3 = siteVert(x0r, ridgeY, ridgeZ);
+    const v0b = siteVert(x0r, y0r, eaveZ - roofTh);
+    const v1b = siteVert(x1r, y0r, eaveZ - roofTh);
+    const v2b = siteVert(x1r, ridgeY, ridgeZ - roofTh);
+    const v3b = siteVert(x0r, ridgeY, ridgeZ - roofTh);
+    pushTriMesh(
+      "acoperis_apa_N",
+      [v0, v1, v2, v3, v0b, v1b, v2b, v3b],
+      [
+        [0, 1, 2],
+        [0, 2, 3],
+        [4, 6, 5],
+        [4, 7, 6],
+        [0, 4, 5],
+        [0, 5, 1],
+        [3, 2, 6],
+        [3, 6, 7],
+        [0, 3, 7],
+        [0, 7, 4],
+        [1, 5, 6],
+        [1, 6, 2],
+      ],
+      "#6e5040",
+      `Acoperiș apa N — ~${pitchDeg.toFixed(0)}°, coamă EW 6,8 m`
+    );
+  }
+  // Apa S (coamă → Y sud)
+  {
+    const v0 = siteVert(x0r, ridgeY, ridgeZ);
+    const v1 = siteVert(x1r, ridgeY, ridgeZ);
+    const v2 = siteVert(x1r, y1r, eaveZ);
+    const v3 = siteVert(x0r, y1r, eaveZ);
+    const v0b = siteVert(x0r, ridgeY, ridgeZ - roofTh);
+    const v1b = siteVert(x1r, ridgeY, ridgeZ - roofTh);
+    const v2b = siteVert(x1r, y1r, eaveZ - roofTh);
+    const v3b = siteVert(x0r, y1r, eaveZ - roofTh);
+    pushTriMesh(
+      "acoperis_apa_S",
+      [v0, v1, v2, v3, v0b, v1b, v2b, v3b],
+      [
+        [0, 1, 2],
+        [0, 2, 3],
+        [4, 6, 5],
+        [4, 7, 6],
+        [0, 4, 5],
+        [0, 5, 1],
+        [3, 2, 6],
+        [3, 6, 7],
+        [0, 3, 7],
+        [0, 7, 4],
+        [1, 5, 6],
+        [1, 6, 2],
+      ],
+      "#6e5040",
+      `Acoperiș apa S — ~${pitchDeg.toFixed(0)}°, coamă EW 6,8 m`
+    );
+  }
+  // Frontoane W / E (închidere fronton)
+  {
+    const nW = siteVert(x0r, y0r, eaveZ);
+    const sW = siteVert(x0r, y1r, eaveZ);
+    const rW = siteVert(x0r, ridgeY, ridgeZ);
+    const nE = siteVert(x1r, y0r, eaveZ);
+    const sE = siteVert(x1r, y1r, eaveZ);
+    const rE = siteVert(x1r, ridgeY, ridgeZ);
+    pushTriMesh(
+      "acoperis_fronton_W",
+      [nW, sW, rW],
+      [[0, 1, 2]],
+      "#5a4236",
+      "Fronton vest"
+    );
+    pushTriMesh(
+      "acoperis_fronton_E",
+      [nE, rE, sE],
+      [[0, 1, 2]],
+      "#5a4236",
+      "Fronton est (Dragalina)"
+    );
+  }
+  // PV pe ambele ape (inset, deasupra învelitorii)
+  if (roofMeta.pv?.both_pitches !== false) {
+    const inset = roofMeta.pv?.inset_cm ?? 40;
+    const pvOff = m(roofMeta.pv?.above_roof_cm ?? 6);
+    const xa = x0r + inset;
+    const xb = x1r - inset;
+    // Apa N
+    {
+      const ya = y0r + inset;
+      const yb = ridgeY - inset;
+      const za = zOnPitch(ya, y0r, eaveZ, ridgeY, ridgeZ) + pvOff;
+      const zb = zOnPitch(yb, y0r, eaveZ, ridgeY, ridgeZ) + pvOff;
+      pushTriMesh(
+        "pv_apa_N",
+        [
+          siteVert(xa, ya, za),
+          siteVert(xb, ya, za),
+          siteVert(xb, yb, zb),
+          siteVert(xa, yb, zb),
+        ],
+        [
+          [0, 1, 2],
+          [0, 2, 3],
+        ],
+        "#1a2330",
+        "PV apa N",
+        { site_layer: "pv", roughness: 0.35, metalness: 0.55, opacity: 0.95 }
+      );
+    }
+    // Apa S
+    {
+      const ya = ridgeY + inset;
+      const yb = y1r - inset;
+      const za = zOnPitch(ya, ridgeY, ridgeZ, y1r, eaveZ) + pvOff;
+      const zb = zOnPitch(yb, ridgeY, ridgeZ, y1r, eaveZ) + pvOff;
+      pushTriMesh(
+        "pv_apa_S",
+        [
+          siteVert(xa, ya, za),
+          siteVert(xb, ya, za),
+          siteVert(xb, yb, zb),
+          siteVert(xa, yb, zb),
+        ],
+        [
+          [0, 1, 2],
+          [0, 2, 3],
+        ],
+        "#1a2330",
+        "PV apa S",
+        { site_layer: "pv", roughness: 0.35, metalness: 0.55, opacity: 0.95 }
+      );
+    }
+  }
 
   const r2 = st.ramp2;
   const f180 = st.flight_180;
@@ -2552,7 +2709,7 @@ function main() {
     const zBotP = isFrameStudy ? frameColumnZ0 : -0.3;
     const zTopP = isFrameStudy ? zEtaj : slabZ0; // FRAME: prin placă+buildup până la FF etaj
     const zBotE = zEtaj;
-    const zTopE = roofZ0;
+    const zTopE = eaveZ;
     function pushPE(id, x, y, dx, dy, z0, z1, label, color) {
       if (dx < 1 || dy < 1 || z1 <= z0 + 0.02) return;
       meshes.push({
@@ -2761,7 +2918,7 @@ function main() {
       pushPE("etaj_centura_y470", 535, 470, 145, col, zRb0, zTopE, "centură E Y470 bordură palier scară", "#5a554e");
       pushPE("etaj_centura_y590", 535, 590 - col, 145, col, zRb0, zTopE, "centură E Y590", "#5a554e");
     }
-    // Structură acoperiș = același contur ca acoperis_2_ape (fără dublură vizuală pe corp-only 650)
+    // Acoperiș 2 ape = mesh triangles (apa N/S + frontoane) emis mai sus — fără dublură corp-only
   }
 
   // Treptele de acces — ultimele, ca să rămână vizibile peste placă/plintă
