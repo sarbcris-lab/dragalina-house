@@ -51,34 +51,34 @@
 <line x1="520.25" y1="595" x2="618" y2="595" stroke="#3a5060" stroke-width="0.4"/>
 <line x1="520.25" y1="569.5" x2="618" y2="569.5" stroke="#3a5060" stroke-width="0.4"/>
 <text x="569.125" y="579.7" text-anchor="middle" font-size="8" fill="#3a5060" font-family="IBM Plex Sans,Segoe UI,sans-serif">rampă 2</text>
-<rect x="48.925" y="75.82" width="570.18" height="25.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
-<text x="334.015" y="88.57" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_N</text>
-<rect x="48.925" y="75.82" width="25.5" height="558.1099999999999" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
-<text x="61.675" y="354.87499999999994" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_W</text>
-<rect x="593.6049999999999" y="75.82" width="25.5" height="493.67999999999995" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
-<text x="606.3549999999999" y="322.65999999999997" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_E</text>
+<rect x="41.019999999999996" y="67.91499999999999" width="578.0849999999999" height="25.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
+<text x="330.06249999999994" y="80.66499999999999" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_N</text>
+<rect x="41.019999999999996" y="67.91499999999999" width="25.5" height="573.835" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
+<text x="53.769999999999996" y="354.8325" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_W</text>
+<rect x="593.6049999999999" y="67.91499999999999" width="25.5" height="501.585" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
+<text x="606.3549999999999" y="318.7075" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_E</text>
 <rect x="495.85499999999996" y="586.5" width="25.5" height="212.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
 <text x="508.60499999999996" y="692.75" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_CASA_SCARA</text>
 <rect x="495.85499999999996" y="578" width="25.5" height="8.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
 <text x="508.60499999999996" y="582.25" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_SEP_AFTER_DOOR</text>
-<rect x="48.925" y="616.25" width="298.18" height="25.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
-<text x="198.01500000000001" y="629" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_Y645</text>
-<rect x="321.605" y="616.25" width="59.5" height="174.92999999999995" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
-<text x="351.355" y="703.7149999999999" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_X360_DORM_INTRARE</text>
+<rect x="41.019999999999996" y="616.25" width="306.08500000000004" height="25.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
+<text x="194.0625" y="629" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_Y645</text>
+<rect x="321.605" y="616.25" width="59.5" height="182.75" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
+<text x="351.355" y="707.625" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_X360_DORM_INTRARE</text>
 <rect x="347.105" y="773.5" width="174.25" height="25.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
 <text x="434.23" y="786.25" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_Y830</text>
 <rect x="520.25" y="467.5" width="89.25" height="25.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
 <text x="564.875" y="480.25" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_Y470_PALIER_EDGE</text>
-<rect x="48.925" y="75.82" width="34" height="25.5" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
-<text x="65.925" y="74.12" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_NW</text>
-<rect x="313.105" y="75.82" width="34" height="25.5" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
-<text x="330.105" y="74.12" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_N_MID</text>
-<rect x="593.6049999999999" y="75.82" width="25.5" height="34" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
-<text x="606.3549999999999" y="74.12" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_NE</text>
-<rect x="48.925" y="408" width="25.5" height="34" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
-<text x="61.675" y="406.3" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_W_MID</text>
-<rect x="48.925" y="616.25" width="34" height="25.5" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
-<text x="65.925" y="614.55" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_W_DORM</text>
+<rect x="41.019999999999996" y="67.91499999999999" width="34" height="25.5" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
+<text x="58.019999999999996" y="66.215" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_NW</text>
+<rect x="313.105" y="67.91499999999999" width="34" height="25.5" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
+<text x="330.105" y="66.215" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_N_MID</text>
+<rect x="593.6049999999999" y="67.91499999999999" width="25.5" height="34" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
+<text x="606.3549999999999" y="66.215" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_NE</text>
+<rect x="41.019999999999996" y="408" width="25.5" height="34" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
+<text x="53.769999999999996" y="406.3" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_W_MID</text>
+<rect x="41.019999999999996" y="616.25" width="34" height="25.5" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
+<text x="58.019999999999996" y="614.55" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_W_DORM</text>
 <rect x="321.605" y="616.25" width="25.5" height="25.5" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
 <text x="334.355" y="614.55" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_S_DORM_E</text>
 <rect x="593.6049999999999" y="331.5" width="25.5" height="34" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>

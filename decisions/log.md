@@ -272,3 +272,10 @@
 - `B_Y590_EDGE_INVERTED` = `inverted_edge_beam` (aceeași geometrie cu GEO_X0).
 - Palier: XPS 300 5 cm + membrană impact 1 cm + șapă 4 + finisaj 2 (ipoteză; Lnw NECONFIRMAT).
 - Planuri 38/39: goluri, scară, podest, contur plăci; secțiuni noduri → `40_…_stair_sections.svg`.
+
+## 2026-10-16 — Stâlpi flush + fațadă A1/A2 stratificată
+
+- `COL_THRU=30`, flush int. (`PROTRUSION_IN=0`); beton = miez (înlocuiește local EB20).
+- Pe față exterioară: stivă catalog exactă **fără EB20** — A1 nord 9,2 cm (adeziv+vată80+armat+grund); A2 E/S/V 10,5 cm (+klinker Ströher).
+- Finisaj int. pe fețele interioare: tencuială 6 + vopsea 1.
+- Mesh: `col_facade_*` în volum FRAME; view **2 · + Pereți**. Planuri 36–40 regen.

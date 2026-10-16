@@ -34,14 +34,14 @@ Sistem: **cadre beton armat** + **EB20** + **vată 80 mm**. **Nu** pereți struc
 
 | ID | Poziție (cm) | Secțiune + proem. | Niveluri | Reazem inferior | Conflicte |
 |----|--------------|-------------------|----------|-----------------|-----------|
-| C_NW | X10.5–50.5 Y9.2–39.2 | 40×30 (proem. 0) | S–P–E | fundație_N/W | duș decupat local în frame — nu micșorăm stâlpul |
-| C_N_MID | X321.3–361.3 Y9.2–39.2 | 40×30 (proem. 0) | S–P–E | fundație_N | alternativă: fără C_N_MID (doar NW+NE) — comparație |
-| C_NE | X651.3–681.3 Y9.2–49.2 | 30×40 (proem. 0) | S–P–E | fundație_E | — |
-| C_W_MID | X10.5–40.5 Y400–440 | 30×40 (proem. 0) | S–P–E | fundație_W | pat x≥45 în frame — rezervă montaj/tăblie |
-| C_W_DORM | X10.5–50.5 Y645–675 | 40×30 (proem. 0) | S–P–E | fundație_S | gol terasă X120–270 |
+| C_NW | X1.1999999999999993–41.2 Y-0.10000000000000142–29.9 | 40×30 (proem. 0) | S–P–E | fundație_N/W | duș decupat local în frame — nu micșorăm stâlpul |
+| C_N_MID | X321.3–361.3 Y-0.10000000000000142–29.9 | 40×30 (proem. 0) | S–P–E | fundație_N | alternativă: fără C_N_MID (doar NW+NE) — comparație |
+| C_NE | X651.3–681.3 Y-0.10000000000000142–39.9 | 30×40 (proem. 0) | S–P–E | fundație_E | — |
+| C_W_MID | X1.1999999999999993–31.2 Y400–440 | 30×40 (proem. 0) | S–P–E | fundație_W | pat x≥45 în frame — rezervă montaj/tăblie |
+| C_W_DORM | X1.1999999999999993–41.2 Y645–675 | 40×30 (proem. 0) | S–P–E | fundație_S | gol terasă X120–270 |
 | C_S_DORM_E | X331.3–361.3 Y645–675 | 30×30 (proem. 0) | S–P–E | fundație_S | proximitate circulație / ușă terasă |
 | C_E_GEAM_S | X651.3–681.3 Y310–350 | 30×40 (proem. 0) | S–P–E | fundație_E | — |
-| C_E_PAL | X651.3–681.3 Y449–489 | 30×40 (proem. 0) | S–P–E | fundație_E continuu — NU pe placă 15 | proeminență pe palier etaj Y470–489 — recalcul lățime utilă |
+| C_E_PAL | X651.3–681.3 Y449–489 | 30×40 (proem. 0) | S–P–E | fundație_E continuu — NU pe placă 15 | — |
 | C_CASA_SCARA | X536.3–566.3 Y610–650 | 30×40 (proem. 0) | S–P–E | fundație X535 | — |
 | C_SHAFT_E_PIER | X666.3–681.3 Y575–590 | 15×15 (proem. 0) | S | diafragmă est puț | — |
 | C_S_INTRARE_W | X361.3–401.3 Y830–860 | 40×30 (proem. 0) | S–P–E | fundație_S_intrare (bandă dedicată) | — |
@@ -62,14 +62,14 @@ FF P +48 (3×16); placă soffit/top din levels; FF E = FF_P+288. Stâlpi P+E con
 
 | ID | Poziție (cm) | Niveluri | Reazeme | Note / traseu |
 |----|--------------|----------|---------|---------------|
-| B_N | X10.5–681.3 Y9.2–39.2 | P,E | C_NW, C_N_MID, C_NE | centură N — 3 reazeme (fără C_N_BUC); deschideri de dimensionat |
-| B_W | X10.5–40.5 Y9.2–665.8 | P,E | C_NW, C_W_MID, C_W_DORM | centură W prin nodul C_W_DORM (nu se oprește la fața nord a stâlpului) |
-| B_E | X651.3–681.3 Y9.2–590 | P,E | C_NE, C_E_GEAM_S, C_E_PAL | centură E prin C_E_PAL + consolă sud până Y590. LOCK-1R: palier = consolă pe B_E (fără stâlp în living P). Armare/torsiune nod C_E_PAL = calcul. |
+| B_N | X1.1999999999999993–681.3 Y-0.10000000000000142–29.9 | P,E | C_NW, C_N_MID, C_NE | centură N — pe stâlpi flush; 3 reazeme (fără C_N_BUC); deschideri de dimensionat |
+| B_W | X1.1999999999999993–31.2 Y-0.10000000000000142–675 | P,E | C_NW, C_W_MID, C_W_DORM | centură W prin nodul C_W_DORM (nu se oprește la fața nord a stâlpului) |
+| B_E | X651.3–681.3 Y-0.10000000000000142–590 | P,E | C_NE, C_E_GEAM_S, C_E_PAL | centură E prin C_E_PAL + consolă sud până Y590. LOCK-1R: palier = consolă pe B_E (fără stâlp în living P). Armare/torsiune nod C_E_PAL = calcul. |
 | B_CASA_SCARA | X536.3–566.3 Y610–860 | S,P,E | C_CASA_SCARA, C_S_INTRARE_E | separator Y610→sud; nod cu B_Y830 |
 | B_Y590_EDGE_INVERTED | X566.3–681.3 Y575–600 | S_inverted | C_SHAFT_E_PIER, placa_parter_span_to_sep, B_SEP_AFTER_DOOR | E→C_SHAFT_E_PIER (zid est); W→placă parter (întoarsă) → diafragmă/separator S de ușă (B_SEP_AFTER_DOOR+C_CASA_SCARA). Ușă Y500–600 și palier Y490–600 fără stâlp. |
 | B_SEP_AFTER_DOOR | X536.3–566.3 Y600–610 | S,P | zid_separator, C_CASA_SCARA | buiandrug/centură S de ușă Y600–610 — preia traseul de la placa peste palier către C_CASA_SCARA; nu blochează golul |
-| B_Y645 | X10.5–361.3 Y645–675 | P,E | C_W_DORM, C_S_DORM_E | sud dorm — prin secțiunile stâlpilor de capăt |
-| B_X360_DORM_INTRARE | X331.3–401.3 Y645–850.8 | P,E | C_S_DORM_E, C_S_INTRARE_W | STUDIU: dx=70 = pad prin C_S_DORM_E + C_S_INTRARE_W nealiniați; lățime structurală tip 30 — conflict geometric / soluție explicită |
+| B_Y645 | X1.1999999999999993–361.3 Y645–675 | P,E | C_W_DORM, C_S_DORM_E | sud dorm — prin secțiunile stâlpilor de capăt |
+| B_X360_DORM_INTRARE | X331.3–401.3 Y645–860 | P,E | C_S_DORM_E, C_S_INTRARE_W | STUDIU: dx=70 = pad prin C_S_DORM_E + C_S_INTRARE_W nealiniați; lățime structurală tip 30 — conflict geometric / soluție explicită |
 | B_Y830 | X361.3–566.3 Y830–860 | P,E | C_S_INTRARE_W, C_S_INTRARE_E | sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA |
 | B_Y470_PALIER_EDGE | X565–670 Y470–500 | P,E | B_E, C_E_PAL | LOCK-1R: bordură N palier X565–670 (P+E). Fără stâlp V (living P). Consolă pe B_E. NU vestibul. |
 
@@ -78,18 +78,18 @@ FF P +48 (3×16); placă soffit/top din levels; FF E = FF_P+288. Stâlpi P+E con
 | Tip | ID | Reazeme / sprijin | Niveluri | Conflict amenajare | Soluție propusă |
 |-----|----|-------------------|----------|--------------------|-----------------|
 | stalp | C_NW | fundație_N/W | S/P/E | duș decupat local în frame — nu micșorăm stâlpul | dus x≥50 |
-| stalp | C_N_MID | fundație_N | S/P/E | alternativă: fără C_N_MID (doar NW+NE) — comparație | nord X320–360 — 40×30 thru=EB20 |
-| stalp | C_NE | fundație_E | S/P/E | — | est N de geam — 30×40 thru=EB20 |
+| stalp | C_N_MID | fundație_N | S/P/E | alternativă: fără C_N_MID (doar NW+NE) — comparație | nord — 40×30 flush · A1 pe stâlp |
+| stalp | C_NE | fundație_E | S/P/E | — | colț N/E — 30×40 flush · A2 est + A1 nord |
 | stalp | C_W_MID | fundație_W | S/P/E | pat x≥45 în frame — rezervă montaj/tăblie | pat x≥45 |
-| stalp | C_W_DORM | fundație_S | S/P/E | gol terasă X120–270 | sud dorm W — ETICS Y665.8–675 continuă peste stâlp |
-| stalp | C_S_DORM_E | fundație_S | S/P/E | proximitate circulație / ușă terasă | capăt E sud dorm @ X360 — ETICS continuă afară |
-| stalp | C_E_GEAM_S | fundație_E | S/P/E | — | est S de geam |
-| stalp | C_E_PAL | fundație_E continuu — NU pe placă 15 | S/P/E | proeminență pe palier etaj Y470–489 — recalcul lățime utilă | est sub palier scară / N de palier inferior |
+| stalp | C_W_DORM | fundație_S | S/P/E | gol terasă X120–270 | colț S/W dorm — A2 sud + A2 vest (flush int.) |
+| stalp | C_S_DORM_E | fundație_S | S/P/E | proximitate circulație / ușă terasă | capăt E sud dorm @ X360 — A2 pe stâlp |
+| stalp | C_E_GEAM_S | fundație_E | S/P/E | — | est S de geam — A2 pe stâlp |
+| stalp | C_E_PAL | fundație_E continuu — NU pe placă 15 | S/P/E | — | est sub palier scară / N de palier inferior — A2 pe stâlp |
 | stalp | C_CASA_SCARA | fundație X535 | S/P/E | — | separator X535–565; fără proeminență vest (eliberează frigider/MSV etaj) |
 | stalp | C_SHAFT_E_PIER | diafragmă est puț | S | — | pier sub capăt E grindă întoarsă — în zid, nu în clar X565–665 |
 | stalp | C_S_INTRARE_W | fundație_S_intrare (bandă dedicată) | S/P/E | — | sud intrare X360–535 — ETICS continuă |
 | stalp | C_S_INTRARE_E | fundație_S | S/P/E | — | sud @ X535 — ETICS continuă afară |
-| grinda | B_N | C_NW, C_N_MID, C_NE | P/E | — | centură N — 3 reazeme (fără C_N_BUC); deschideri de dimensionat |
+| grinda | B_N | C_NW, C_N_MID, C_NE | P/E | — | centură N — pe stâlpi flush; 3 reazeme (fără C_N_BUC); deschideri de dimensionat |
 | grinda | B_W | C_NW, C_W_MID, C_W_DORM | P/E | — | centură W prin nodul C_W_DORM (nu se oprește la fața nord a stâlpului) |
 | grinda | B_E | C_NE, C_E_GEAM_S, C_E_PAL | P/E | — | centură E prin C_E_PAL + consolă sud până Y590. LOCK-1R: palier = consolă pe B_E (fără stâlp în living P). Armare/torsiune nod C_E_PAL = calcul. |
 | grinda | B_CASA_SCARA | C_CASA_SCARA, C_S_INTRARE_E | S/P/E | — | separator Y610→sud; nod cu B_Y830 |
@@ -133,7 +133,7 @@ Status: **NECONFIRMAT** · declared_pass_access=false
 - **amenajare_frame_overlays** (FRAME_ONLY): A1 aprobat neatins. In frame: dus x>=50; pat x>=45 — nu micsoram stalpii.
 - **column_thru_p100_flush** (LOCK): LOCK Varianta A: COL_THRU=30 (P100 min), PROTRUSION_IN=0 — stâlp înlocuiește local EB20; ETICS afară; fără plăcuire în cameră. Along=40 tip — calcul.
 - **p100_min_section** (LOCK): P100-1/2013 §5.3.2.2+§5.4.2.2: dimensiune minimă stâlp cadru ≥300 mm. Varianta A respectă geometric; armare/ductilitate = calcul. Varianta B = pereți structurali (studiu separat).
-- **etics_wrap_verify** (DESCHIS): Grinzi/stâlpi pe banda ETICS (+9,2 pe S) — corecție geometrică necesară; detalii șantier neconfirmate.
+- **etics_wrap_verify** (LOCK): Stâlpi flush int.; pe față exterioară stivă catalog A1 (9,2) / A2 (10,5) fără EB20 — beton = miez. Mesh 3D stratificat în build_v47_3d. Detalii șantier/colțuri — de confirmat.
 - **B_X360_wide_pad** (DESCHIS): Pad B_X360: dx = COL_THRU+COL_ALONG (compensare C_S_DORM_E vs C_S_INTRARE_W nealiniați). Aliniere stâlpi = rundă separată.
 
 ## Fișiere

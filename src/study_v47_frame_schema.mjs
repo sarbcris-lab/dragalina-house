@@ -26,21 +26,28 @@ const writeText = (rel, text) => {
 };
 
 const REF_USEFUL = 37.0; // prag m²
-const ETICS = 9.2;
+/** A1 afară de miez: 5+80+5+2 = 92 mm. */
+const ETICS_A1 = 9.2;
+/** A2 afară de miez (klinker): 5+80+5+15 = 105 mm. */
+const ETICS_A2 = 10.5;
+const ETICS = ETICS_A1;
+const EB20 = 20;
+const INT_FINISH = 0.7; // tencuială 6 + vopsea 1
 /**
  * Sync cu `apply_geometry_assemblies_v01` (A2 +1.3 cm + recenter vest=0).
- * Pereții din JSON au deja acest shift; cadrul trebuie pe aceleași axe.
  */
 const GEO_X0 = 1.3;
 /**
- * Varianta A (cadre BA): P100 §5.3.2.2 / §5.4.2.2 — dimensiune minimă stâlp ≥ 300 mm.
- * Thru ≥30; along tip 40. Betonul înlocuiește local falie EB20; fără proeminență în cameră; ETICS afară.
- * (STUDII: decisions/structure_two_variants_v01.md)
+ * Varianta A: P100 stâlp ≥300 mm. Flush int.; beton local în loc de EB20;
+ * afară = stivă ETICS/A2 pe fața stâlpului (nu beton aparent).
  */
 const COL_THRU = 30;
 const COL_ALONG = 40;
-/** Zero proeminență interioară: față int. aliniată cu umplutura; stâlp = 30 cm prin zid (nu 20+burtă). */
 const PROTRUSION_IN = 0;
+/** Fețe interioare finite (aliniere stâlp = fără plăcuire în cameră). */
+const X_W_INT = GEO_X0 + ETICS_A1 + EB20 + INT_FINISH;
+const X_E_INT = GEO_X0 + 650;
+const Y_N_INT = ETICS_A1 + EB20 + INT_FINISH;
 /**
  * Grindă totală 35 cm = înălțime totală incluzând zona plăcii (nu coborâre suplimentară 35 sub placă).
  * Intrados grindă = față_sup_placă − 35 = 308 − 35 = 273.
@@ -83,54 +90,78 @@ function rectAreaM2(r) {
   return (r.dx * r.dy) / 10000;
 }
 
-/**
- * Stâlp pe fațadă est: beton COL_THRU în falie EB20 (față int. @ X650+GEO_X0), ETICS afară.
- * Nu intră în clarul scară X565–665 dacă Y1 ≤ 590.
- */
+/** Bandă fațadă pe fața exterioară a stâlpului (straturi fără EB20 — beton = miez). */
+function facadeBand(outward, face0, along0, along1, outTh) {
+  if (outward === "east")
+    return { outward, x0: face0, x1: face0 + outTh, y0: along0, y1: along1, th: outTh };
+  if (outward === "west")
+    return { outward, x0: face0 - outTh, x1: face0, y0: along0, y1: along1, th: outTh };
+  if (outward === "south")
+    return { outward, y0: face0, y1: face0 + outTh, x0: along0, x1: along1, th: outTh };
+  return { outward, y0: face0 - outTh, y1: face0, x0: along0, x1: along1, th: outTh }; // north
+}
+
+/** Stâlp est: față int. = X_E_INT; beton spre est; A2 pe față exterioară. */
 function colEst(id, y, dy, extra = {}) {
+  const x0 = X_E_INT;
+  const x1 = x0 + COL_THRU;
+  const outTh = ETICS_A2;
+  const bands = [facadeBand("east", x1, y, y + dy, outTh)];
   return {
     id,
-    x: GEO_X0 + 650 - PROTRUSION_IN,
+    x: x0,
     y,
     dx: COL_THRU,
     dy,
     orient: "along_E",
     levels: ["S", "P", "E"],
     support_below: "fundație_E",
-    protrusion_into_room_cm: PROTRUSION_IN,
+    protrusion_into_room_cm: 0,
+    facade_catalog: "A2",
+    etics_outside_band_cm: bands[0],
+    etics_outside_bands_cm: bands,
+    envelope_bump_out_cm: Math.max(0, x1 + outTh - (GEO_X0 + 680)),
     section_cm: `${COL_THRU}×${COL_ALONG}`,
-    section_status: "de confirmat prin calcul — thru=EB20, along liber",
+    section_status: "P100≥30 · flush int. · A2 pe stâlp",
     ...extra,
   };
 }
 
+/** Stâlp vest: față int. = X_W_INT; beton spre vest; A2 pe față exterioară. */
 function colVest(id, y, dy, extra = {}) {
+  const x1 = X_W_INT;
+  const x0 = x1 - COL_THRU;
+  const outTh = ETICS_A2;
+  const bands = [facadeBand("west", x0, y, y + dy, outTh)];
   return {
     id,
-    x: GEO_X0 + ETICS,
+    x: x0,
     y,
     dx: COL_THRU,
     dy,
     orient: "along_W",
     levels: ["S", "P", "E"],
     support_below: "fundație_W",
-    protrusion_into_room_cm: PROTRUSION_IN,
+    protrusion_into_room_cm: 0,
+    facade_catalog: "A2",
+    etics_outside_band_cm: bands[0],
+    etics_outside_bands_cm: bands,
+    envelope_bump_out_cm: Math.max(0, -(x0 - outTh)),
     section_cm: `${COL_THRU}×${COL_ALONG}`,
-    section_status: "de confirmat prin calcul și cerințe normative",
+    section_status: "P100≥30 · flush int. · A2 pe stâlp",
     ...extra,
   };
 }
 
 /**
- * Stâlpi sud (Varianta A): față int. = wallY0 (flush, fără plăcuire);
- * beton COL_THRU (≥30 P100) înlocuiește local umplutura; ETICS imediat în afara betonului.
- * Dacă wallY0+COL_THRU+ETICS > exteriorY1 → bump exterior local (nu proem. în cameră).
+ * Stâlpi sud: față int. = wallY0; beton spre sud; A2 pe față exterioară.
  */
 function colSud(id, x, dx, wallY0, exteriorY1, extra = {}) {
   const y0 = wallY0;
   const y1Concrete = y0 + COL_THRU;
-  const y1Etics = y1Concrete + ETICS;
-  const bumpOut = Math.max(0, y1Etics - exteriorY1);
+  const outTh = ETICS_A2;
+  const y1Etics = y1Concrete + outTh;
+  const bands = [facadeBand("south", y1Concrete, x, x + dx, outTh)];
   return {
     id,
     x,
@@ -141,24 +172,26 @@ function colSud(id, x, dx, wallY0, exteriorY1, extra = {}) {
     levels: ["S", "P", "E"],
     support_below: "fundație_S",
     protrusion_into_room_cm: 0,
-    etics_outside_band_cm: { y0: y1Concrete, y1: y1Etics, th: ETICS },
-    envelope_bump_out_cm: bumpOut,
+    facade_catalog: "A2",
+    etics_outside_band_cm: bands[0],
+    etics_outside_bands_cm: bands,
+    envelope_bump_out_cm: Math.max(0, y1Etics - exteriorY1),
     section_cm: `${dx}×${COL_THRU}`,
-    section_status: "de confirmat prin calcul — thru≥30 P100, flush int.",
+    section_status: "P100≥30 · flush int. · A2 pe stâlp",
     ...extra,
   };
 }
 
-/** Stâlpi — thru EB20 (20) × along (40 tip); ETICS continuă afară; fără proem. interior. */
+/** Stâlpi — flush + ETICS/A2 pe față; umplutură EB20 între stâlpi. */
 function buildFrameSchema() {
   const ax = {
-    X_W: GEO_X0 + ETICS,
+    X_W: X_W_INT - COL_THRU,
     X_CASA_SCARA: GEO_X0 + 535,
-    X_E: GEO_X0 + 650,
+    X_E: X_E_INT,
     X_DORM_E: GEO_X0 + 360,
     GEO_X0,
-    Y_N: ETICS,
-    Y_N_MID: 9.2,
+    Y_N: Y_N_INT - COL_THRU,
+    Y_N_MID: Y_N_INT - COL_THRU,
     Y_PAL_N: 470,
     /** Capăt sud C_E_PAL: rezervă finisaj 1 cm N de palier Y490 — NU pe Y490–600. */
     Y_E_PAL_END: 489,
@@ -174,20 +207,28 @@ function buildFrameSchema() {
     Y_INTRARE_S_EXT: 860,
   };
 
+  const colNwX0 = X_W_INT - COL_THRU;
+  const colNwY0 = Y_N_INT - COL_THRU;
+  const nwBands = [
+    facadeBand("north", colNwY0, colNwX0, colNwX0 + COL_ALONG, ETICS_A1),
+    facadeBand("west", colNwX0, colNwY0, colNwY0 + COL_THRU, ETICS_A1),
+  ];
   const columns = [
     {
       id: "C_NW",
-      x: GEO_X0 + ETICS,
-      y: ETICS,
+      x: colNwX0,
+      y: colNwY0,
       dx: COL_ALONG,
       dy: COL_THRU,
       orient: "corner_NW",
       levels: ["S", "P", "E"],
       support_below: "fundație_N/W",
-      protrusion_into_room_cm: PROTRUSION_IN,
+      protrusion_into_room_cm: 0,
+      facade_catalog: "A1",
       section_cm: `${COL_ALONG}×${COL_THRU}`,
-      etics_outside_band_cm: { x0: 0, x1: GEO_X0 + ETICS, y0: 0, y1: ETICS, th: ETICS },
-      wall: `colț N/W — ${COL_ALONG}×${COL_THRU} (thru=EB20; NU redus pt. duș)`,
+      etics_outside_band_cm: nwBands[0],
+      etics_outside_bands_cm: nwBands,
+      wall: `colț N/W — ${COL_ALONG}×${COL_THRU} flush · A1 pe stâlp (N+W)`,
       conflicts: ["duș decupat local în frame — nu micșorăm stâlpul"],
       amenajare_fix: "dus x≥50",
       continuous_through_floor: true,
@@ -195,54 +236,78 @@ function buildFrameSchema() {
     {
       id: "C_N_MID",
       x: GEO_X0 + 320,
-      y: ETICS,
+      y: Y_N_INT - COL_THRU,
       dx: COL_ALONG,
       dy: COL_THRU,
       orient: "along_N",
       levels: ["S", "P", "E"],
       support_below: "fundație_N",
-      protrusion_into_room_cm: PROTRUSION_IN,
+      protrusion_into_room_cm: 0,
+      facade_catalog: "A1",
       section_cm: `${COL_ALONG}×${COL_THRU}`,
-      wall: `nord X320–360 — ${COL_ALONG}×${COL_THRU} thru=EB20`,
+      etics_outside_band_cm: facadeBand(
+        "north",
+        Y_N_INT - COL_THRU,
+        GEO_X0 + 320,
+        GEO_X0 + 320 + COL_ALONG,
+        ETICS_A1
+      ),
+      etics_outside_bands_cm: [
+        facadeBand(
+          "north",
+          Y_N_INT - COL_THRU,
+          GEO_X0 + 320,
+          GEO_X0 + 320 + COL_ALONG,
+          ETICS_A1
+        ),
+      ],
+      wall: `nord — ${COL_ALONG}×${COL_THRU} flush · A1 pe stâlp`,
       conflicts: ["alternativă: fără C_N_MID (doar NW+NE) — comparație"],
       continuous_through_floor: true,
     },
-    colEst("C_NE", ETICS, COL_ALONG, {
-      wall: `est N de geam — ${COL_THRU}×${COL_ALONG} thru=EB20`,
-      conflicts: [],
-      etics_outside_band_cm: { x0: GEO_X0 + 670.8, x1: GEO_X0 + 680, th: ETICS },
-      continuous_through_floor: true,
-    }),
+    (() => {
+      const c = colEst("C_NE", Y_N_INT - COL_THRU, COL_ALONG, {
+        wall: `colț N/E — ${COL_THRU}×${COL_ALONG} flush · A2 est + A1 nord`,
+        conflicts: [],
+        continuous_through_floor: true,
+      });
+      const northBand = facadeBand("north", c.y, c.x, c.x + c.dx, ETICS_A1);
+      c.etics_outside_bands_cm = [c.etics_outside_band_cm, northBand];
+      c.facade_catalog_by_face = { east: "A2", north: "A1" };
+      return c;
+    })(),
     colVest("C_W_MID", 400, COL_ALONG, {
-      wall: `vest — ${COL_THRU}×${COL_ALONG} thru=EB20 (NU redus pt. pat)`,
-      etics_outside_band_cm: { x0: 0, x1: GEO_X0 + ETICS, th: ETICS },
+      wall: `vest — ${COL_THRU}×${COL_ALONG} flush · A2`,
       conflicts: ["pat x≥45 în frame — rezervă montaj/tăblie"],
       amenajare_fix: "pat x≥45",
       continuous_through_floor: true,
     }),
-    colSud("C_W_DORM", GEO_X0 + ETICS, COL_ALONG, ax.Y_DORM_S, ax.Y_DORM_S_EXT, {
-      wall: "sud dorm W — ETICS Y665.8–675 continuă peste stâlp",
-      conflicts: ["gol terasă X120–270"],
-      continuous_through_floor: true,
-    }),
+    (() => {
+      const c = colSud("C_W_DORM", X_W_INT - COL_THRU, COL_ALONG, ax.Y_DORM_S, ax.Y_DORM_S_EXT, {
+        wall: "colț S/W dorm — A2 sud + A2 vest (flush int.)",
+        conflicts: ["gol terasă X120–270"],
+        continuous_through_floor: true,
+      });
+      const westBand = facadeBand("west", c.x, c.y, c.y + c.dy, ETICS_A2);
+      c.etics_outside_bands_cm = [c.etics_outside_band_cm, westBand];
+      return c;
+    })(),
     colSud("C_S_DORM_E", ax.X_DORM_E - COL_THRU, COL_THRU, ax.Y_DORM_S, ax.Y_DORM_S_EXT, {
       orient: "corner_S_dorm_E",
-      wall: "capăt E sud dorm @ X360 — ETICS continuă afară",
+      wall: "capăt E sud dorm @ X360 — A2 pe stâlp",
       conflicts: ["proximitate circulație / ușă terasă"],
       continuous_through_floor: true,
     }),
     colEst("C_E_GEAM_S", 310, COL_ALONG, {
-      wall: "est S de geam",
-      etics_outside_band_cm: { x0: GEO_X0 + 670.8, x1: GEO_X0 + 680, th: ETICS },
+      wall: "est S de geam — A2 pe stâlp",
       continuous_through_floor: true,
     }),
     colEst("C_E_PAL", ax.Y_E_PAL_END - COL_ALONG, COL_ALONG, {
-      wall: "est sub palier scară / N de palier inferior",
+      wall: "est sub palier scară / N de palier inferior — A2 pe stâlp",
       support_below: "fundație_E continuu — NU pe placă 15",
       replaces: ["pal_ne", "C_E_SOLID_N@Y550"],
-      conflicts: ["proeminență pe palier etaj Y470–489 — recalcul lățime utilă"],
+      conflicts: [],
       clear_landing: "y1=489 ≤ lower_landing Y490",
-      etics_outside_band_cm: { x0: GEO_X0 + 670.8, x1: GEO_X0 + 680, th: ETICS },
       continuous_through_floor: true,
     }),
     // C_L_PAL RETRAS: pe P, X536/Y449–489 e living deschis (buc_est începe @ Y590) — stâlp interzis.
@@ -337,29 +402,29 @@ function buildFrameSchema() {
     {
       id: "B_N",
       x: ax.X_W,
-      y: ETICS,
+      y: ax.Y_N,
       dx: ax.X_E - ax.X_W + COL_THRU,
       dy: COL_THRU,
       levels: ["P", "E"],
       supports: ["C_NW", "C_N_MID", "C_NE"],
-      note: "centură N — 3 reazeme (fără C_N_BUC); deschideri de dimensionat",
+      note: "centură N — pe stâlpi flush; 3 reazeme (fără C_N_BUC); deschideri de dimensionat",
     },
     {
       id: "B_W",
       x: ax.X_W,
-      y: ETICS,
+      y: ax.Y_N,
       dx: COL_THRU,
-      dy: ax.Y_DORM_S_EXT - ETICS - ETICS,
+      dy: ax.Y_DORM_S + COL_THRU - ax.Y_N,
       levels: ["P", "E"],
       supports: ["C_NW", "C_W_MID", "C_W_DORM"],
       note: "centură W prin nodul C_W_DORM (nu se oprește la fața nord a stâlpului)",
     },
     {
       id: "B_E",
-      x: GEO_X0 + 650 - PROTRUSION_IN,
-      y: ETICS,
+      x: ax.X_E,
+      y: ax.Y_N,
       dx: COL_THRU,
-      dy: ax.Y_PALIER_ETAJ_S - ETICS,
+      dy: ax.Y_PALIER_ETAJ_S - ax.Y_N,
       levels: ["P", "E"],
       supports: ["C_NE", "C_E_GEAM_S", "C_E_PAL"],
       cantilever_south_of_C_E_PAL_cm: ax.Y_PALIER_ETAJ_S - ax.Y_E_PAL_END,
@@ -403,7 +468,7 @@ function buildFrameSchema() {
       x: ax.X_DORM_E - COL_THRU,
       y: ax.Y_DORM_S,
       dx: COL_THRU + COL_ALONG,
-      dy: ax.Y_INTRARE_S_EXT - ETICS - ax.Y_DORM_S,
+      dy: ax.Y_INTRARE_S + COL_THRU - ax.Y_DORM_S,
       levels: ["P", "E"],
       supports: ["C_S_DORM_E", "C_S_INTRARE_W"],
       note: "STUDIU: dx=70 = pad prin C_S_DORM_E + C_S_INTRARE_W nealiniați; lățime structurală tip 30 — conflict geometric / soluție explicită",
@@ -539,9 +604,10 @@ function buildFrameSchema() {
     },
     {
       id: "etics_wrap_verify",
-      severity: "DESCHIS",
-      registry: "conflict_geometric",
-      detail: "Grinzi/stâlpi pe banda ETICS (+9,2 pe S) — corecție geometrică necesară; detalii șantier neconfirmate.",
+      severity: "LOCK",
+      registry: "rezolvat_geometric",
+      detail:
+        "Stâlpi flush int.; pe față exterioară stivă catalog A1 (9,2) / A2 (10,5) fără EB20 — beton = miez. Mesh 3D stratificat în build_v47_3d. Detalii șantier/colțuri — de confirmat.",
     },
     {
       id: "B_X360_wide_pad",
@@ -569,9 +635,21 @@ function buildFrameSchema() {
       fill_between_columns: "EB20_Akustik_200",
       column_replaces_fill_locally: true,
       etics_continuous_outside: true,
+      facade_on_column: {
+        principle: "beton = miez; straturi catalog pe față exterioară (fără EB20); finisaj int. pe față interioară",
+        A1_outside_brick_cm: ETICS_A1,
+        A2_outside_brick_cm: ETICS_A2,
+        A1_layers_outside_mm: ["adeziv_etics 5", "vata_isover_fassade 80", "strat_armat 5", "grund_decorativa 2"],
+        A2_layers_outside_mm: ["adeziv_etics 5", "vata_isover_fassade 80", "strat_armat 5", "placaj_klinker 15"],
+        interior_finish_mm: ["tencuiala_int 6", "finisare_vopsea 1"],
+        north: "A1",
+        east_south_west: "A2",
+      },
       etics_outside_cm: ETICS,
-      status: "LOCK Varianta A: thru≥30 P100, flush int., ETICS afară; capacitate — calcul",
-      note: "Cadre BA: stâlp min 30 cm (P100). Local înlocuiește EB20; umplutură 20 între stâlpi. Fără proem. interior. Vezi structure_two_variants_v01.",
+      etics_A1_cm: ETICS_A1,
+      etics_A2_cm: ETICS_A2,
+      status: "LOCK Varianta A: thru≥30 P100, flush int., A1/A2 pe stâlp; capacitate — calcul",
+      note: "Cadre BA: stâlp min 30 cm (P100). Local înlocuiește EB20; umplutură 20 între stâlpi. Fără proem. interior. Fațadă = stivă exactă A1/A2 pe beton. Vezi structure_two_variants_v01.",
       study_variants: ["A_cadre_BA_min30", "B_pereti_structurali_BA"],
     },
     columns,

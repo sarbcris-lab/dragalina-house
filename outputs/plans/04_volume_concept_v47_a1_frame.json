@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_frame_study",
-    "generated": "2026-10-16T12:19:20.135Z",
+    "generated": "2026-10-16T13:03:27.507Z",
     "status": "3D_STUDIU_A1_FRAME_CADRE",
     "source_plan": "data/building/v47_a1_frame_study.json",
     "based_on": "v47_a1_study amenajare (aprobată) + schemă cadre separată",
@@ -36737,24 +36737,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         },
         {
-          "x": 8.0338,
-          "y": 18.1288
+          "x": 8.0298,
+          "y": 18.2217
         },
         {
-          "x": 8.0466,
-          "y": 17.8291
+          "x": 8.0426,
+          "y": 17.922
         },
         {
-          "x": 1.3447,
-          "y": 17.5424
+          "x": 1.2478,
+          "y": 17.6313
         },
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         }
       ],
       "z0_m": -0.7,
@@ -36762,31 +36762,31 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "centură N — 3 reazeme (fără C_N_BUC); deschideri de dimensionat"
+      "label": "centură N — pe stâlpi flush; 3 reazeme (fără C_N_BUC); deschideri de dimensionat"
     },
     {
       "id": "subsol_grinda_B_W",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         },
         {
-          "x": 1.6316,
-          "y": 17.8549
+          "x": 1.5347,
+          "y": 17.9439
         },
         {
-          "x": 1.9123,
-          "y": 11.2949
+          "x": 1.8233,
+          "y": 11.199
         },
         {
-          "x": 1.6125,
-          "y": 11.2821
+          "x": 1.5236,
+          "y": 11.1862
         },
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         }
       ],
       "z0_m": -0.7,
@@ -36801,12 +36801,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.734,
-          "y": 18.116
+          "x": 7.7301,
+          "y": 18.2089
         },
         {
-          "x": 8.0338,
-          "y": 18.1288
+          "x": 8.0298,
+          "y": 18.2217
         },
         {
           "x": 8.282,
@@ -36817,8 +36817,8 @@
           "y": 12.3133
         },
         {
-          "x": 7.734,
-          "y": 18.116
+          "x": 7.7301,
+          "y": 18.2089
         }
       ],
       "z0_m": -0.7,
@@ -36897,8 +36897,8 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6036,
-          "y": 11.4899
+          "x": 1.5107,
+          "y": 11.4859
         },
         {
           "x": 5.1084,
@@ -36909,12 +36909,12 @@
           "y": 11.3401
         },
         {
-          "x": 1.6165,
-          "y": 11.1902
+          "x": 1.5236,
+          "y": 11.1862
         },
         {
-          "x": 1.6036,
-          "y": 11.4899
+          "x": 1.5107,
+          "y": 11.4859
         }
       ],
       "z0_m": -0.7,
@@ -36937,12 +36937,12 @@
           "y": 11.6569
         },
         {
-          "x": 5.5961,
-          "y": 9.6008
+          "x": 5.6,
+          "y": 9.5089
         },
         {
-          "x": 4.8967,
-          "y": 9.5709
+          "x": 4.9007,
+          "y": 9.479
         },
         {
           "x": 4.8087,
@@ -36993,24 +36993,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         },
         {
-          "x": 1.7315,
-          "y": 17.8592
+          "x": 1.6346,
+          "y": 17.9481
         },
         {
-          "x": 1.7444,
-          "y": 17.5595
+          "x": 1.6475,
+          "y": 17.6484
         },
         {
-          "x": 1.3447,
-          "y": 17.5424
+          "x": 1.2478,
+          "y": 17.6313
         },
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         }
       ],
       "z0_m": -0.7,
@@ -37025,24 +37025,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.4371,
-          "y": 17.9749
+          "x": 4.4331,
+          "y": 18.0679
         },
         {
-          "x": 4.8367,
-          "y": 17.992
+          "x": 4.8327,
+          "y": 18.0849
         },
         {
-          "x": 4.8495,
-          "y": 17.6923
+          "x": 4.8455,
+          "y": 17.7852
         },
         {
-          "x": 4.4499,
-          "y": 17.6752
+          "x": 4.4459,
+          "y": 17.7681
         },
         {
-          "x": 4.4371,
-          "y": 17.9749
+          "x": 4.4331,
+          "y": 18.0679
         }
       ],
       "z0_m": -0.7,
@@ -37057,24 +37057,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.734,
-          "y": 18.116
+          "x": 7.7301,
+          "y": 18.2089
         },
         {
-          "x": 8.0338,
-          "y": 18.1288
+          "x": 8.0298,
+          "y": 18.2217
         },
         {
-          "x": 8.0509,
-          "y": 17.7292
+          "x": 8.0469,
+          "y": 17.8221
         },
         {
-          "x": 7.7511,
-          "y": 17.7163
+          "x": 7.7472,
+          "y": 17.8093
         },
         {
-          "x": 7.734,
-          "y": 18.116
+          "x": 7.7301,
+          "y": 18.2089
         }
       ],
       "z0_m": -0.7,
@@ -37089,24 +37089,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.4989,
-          "y": 13.9377
+          "x": 1.406,
+          "y": 13.9337
         },
         {
-          "x": 1.7987,
-          "y": 13.9505
+          "x": 1.7057,
+          "y": 13.9465
         },
         {
-          "x": 1.8158,
-          "y": 13.5509
+          "x": 1.7228,
+          "y": 13.5469
         },
         {
-          "x": 1.516,
-          "y": 13.538
+          "x": 1.4231,
+          "y": 13.5341
         },
         {
-          "x": 1.4989,
-          "y": 13.9377
+          "x": 1.406,
+          "y": 13.9337
         }
       ],
       "z0_m": -0.7,
@@ -37121,24 +37121,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6036,
-          "y": 11.4899
+          "x": 1.5107,
+          "y": 11.4859
         },
         {
-          "x": 2.0033,
-          "y": 11.507
+          "x": 1.9104,
+          "y": 11.503
         },
         {
-          "x": 2.0161,
-          "y": 11.2073
+          "x": 1.9232,
+          "y": 11.2033
         },
         {
-          "x": 1.6165,
-          "y": 11.1902
+          "x": 1.5236,
+          "y": 11.1862
         },
         {
-          "x": 1.6036,
-          "y": 11.4899
+          "x": 1.5107,
+          "y": 11.4859
         }
       ],
       "z0_m": -0.7,
@@ -37377,24 +37377,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         },
         {
-          "x": 8.0338,
-          "y": 18.1288
+          "x": 8.0298,
+          "y": 18.2217
         },
         {
-          "x": 8.0466,
-          "y": 17.8291
+          "x": 8.0426,
+          "y": 17.922
         },
         {
-          "x": 1.3447,
-          "y": 17.5424
+          "x": 1.2478,
+          "y": 17.6313
         },
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         }
       ],
       "z0_m": -3.1,
@@ -37409,24 +37409,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         },
         {
-          "x": 1.6316,
-          "y": 17.8549
+          "x": 1.5347,
+          "y": 17.9439
         },
         {
-          "x": 1.9123,
-          "y": 11.2949
+          "x": 1.8233,
+          "y": 11.199
         },
         {
-          "x": 1.6125,
-          "y": 11.2821
+          "x": 1.5236,
+          "y": 11.1862
         },
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         }
       ],
       "z0_m": -3.1,
@@ -37441,12 +37441,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.734,
-          "y": 18.116
+          "x": 7.7301,
+          "y": 18.2089
         },
         {
-          "x": 8.0338,
-          "y": 18.1288
+          "x": 8.0298,
+          "y": 18.2217
         },
         {
           "x": 8.282,
@@ -37457,8 +37457,8 @@
           "y": 12.3133
         },
         {
-          "x": 7.734,
-          "y": 18.116
+          "x": 7.7301,
+          "y": 18.2089
         }
       ],
       "z0_m": -3.1,
@@ -37537,8 +37537,8 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6036,
-          "y": 11.4899
+          "x": 1.5107,
+          "y": 11.4859
         },
         {
           "x": 5.1084,
@@ -37549,12 +37549,12 @@
           "y": 11.3401
         },
         {
-          "x": 1.6165,
-          "y": 11.1902
+          "x": 1.5236,
+          "y": 11.1862
         },
         {
-          "x": 1.6036,
-          "y": 11.4899
+          "x": 1.5107,
+          "y": 11.4859
         }
       ],
       "z0_m": -3.1,
@@ -37577,12 +37577,12 @@
           "y": 11.6569
         },
         {
-          "x": 5.5961,
-          "y": 9.6008
+          "x": 5.6,
+          "y": 9.5089
         },
         {
-          "x": 4.8967,
-          "y": 9.5709
+          "x": 4.9007,
+          "y": 9.479
         },
         {
           "x": 4.8087,
@@ -37633,24 +37633,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         },
         {
-          "x": 1.7315,
-          "y": 17.8592
+          "x": 1.6346,
+          "y": 17.9481
         },
         {
-          "x": 1.7444,
-          "y": 17.5595
+          "x": 1.6475,
+          "y": 17.6484
         },
         {
-          "x": 1.3447,
-          "y": 17.5424
+          "x": 1.2478,
+          "y": 17.6313
         },
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         }
       ],
       "z0_m": -3.1,
@@ -37665,24 +37665,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.4371,
-          "y": 17.9749
+          "x": 4.4331,
+          "y": 18.0679
         },
         {
-          "x": 4.8367,
-          "y": 17.992
+          "x": 4.8327,
+          "y": 18.0849
         },
         {
-          "x": 4.8495,
-          "y": 17.6923
+          "x": 4.8455,
+          "y": 17.7852
         },
         {
-          "x": 4.4499,
-          "y": 17.6752
+          "x": 4.4459,
+          "y": 17.7681
         },
         {
-          "x": 4.4371,
-          "y": 17.9749
+          "x": 4.4331,
+          "y": 18.0679
         }
       ],
       "z0_m": -3.1,
@@ -37697,24 +37697,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.734,
-          "y": 18.116
+          "x": 7.7301,
+          "y": 18.2089
         },
         {
-          "x": 8.0338,
-          "y": 18.1288
+          "x": 8.0298,
+          "y": 18.2217
         },
         {
-          "x": 8.0509,
-          "y": 17.7292
+          "x": 8.0469,
+          "y": 17.8221
         },
         {
-          "x": 7.7511,
-          "y": 17.7163
+          "x": 7.7472,
+          "y": 17.8093
         },
         {
-          "x": 7.734,
-          "y": 18.116
+          "x": 7.7301,
+          "y": 18.2089
         }
       ],
       "z0_m": -3.1,
@@ -37729,24 +37729,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.4989,
-          "y": 13.9377
+          "x": 1.406,
+          "y": 13.9337
         },
         {
-          "x": 1.7987,
-          "y": 13.9505
+          "x": 1.7057,
+          "y": 13.9465
         },
         {
-          "x": 1.8158,
-          "y": 13.5509
+          "x": 1.7228,
+          "y": 13.5469
         },
         {
-          "x": 1.516,
-          "y": 13.538
+          "x": 1.4231,
+          "y": 13.5341
         },
         {
-          "x": 1.4989,
-          "y": 13.9377
+          "x": 1.406,
+          "y": 13.9337
         }
       ],
       "z0_m": -3.1,
@@ -37761,24 +37761,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6036,
-          "y": 11.4899
+          "x": 1.5107,
+          "y": 11.4859
         },
         {
-          "x": 2.0033,
-          "y": 11.507
+          "x": 1.9104,
+          "y": 11.503
         },
         {
-          "x": 2.0161,
-          "y": 11.2073
+          "x": 1.9232,
+          "y": 11.2033
         },
         {
-          "x": 1.6165,
-          "y": 11.1902
+          "x": 1.5236,
+          "y": 11.1862
         },
         {
-          "x": 1.6036,
-          "y": 11.4899
+          "x": 1.5107,
+          "y": 11.4859
         }
       ],
       "z0_m": -3.1,
@@ -40023,24 +40023,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         },
         {
-          "x": 1.7315,
-          "y": 17.8592
+          "x": 1.6346,
+          "y": 17.9481
         },
         {
-          "x": 1.7444,
-          "y": 17.5595
+          "x": 1.6475,
+          "y": 17.6484
         },
         {
-          "x": 1.3447,
-          "y": 17.5424
+          "x": 1.2478,
+          "y": 17.6313
         },
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         }
       ],
       "z0_m": -3.1,
@@ -40055,24 +40055,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.4371,
-          "y": 17.9749
+          "x": 4.4331,
+          "y": 18.0679
         },
         {
-          "x": 4.8367,
-          "y": 17.992
+          "x": 4.8327,
+          "y": 18.0849
         },
         {
-          "x": 4.8495,
-          "y": 17.6923
+          "x": 4.8455,
+          "y": 17.7852
         },
         {
-          "x": 4.4499,
-          "y": 17.6752
+          "x": 4.4459,
+          "y": 17.7681
         },
         {
-          "x": 4.4371,
-          "y": 17.9749
+          "x": 4.4331,
+          "y": 18.0679
         }
       ],
       "z0_m": -3.1,
@@ -40087,24 +40087,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.734,
-          "y": 18.116
+          "x": 7.7301,
+          "y": 18.2089
         },
         {
-          "x": 8.0338,
-          "y": 18.1288
+          "x": 8.0298,
+          "y": 18.2217
         },
         {
-          "x": 8.0509,
-          "y": 17.7292
+          "x": 8.0469,
+          "y": 17.8221
         },
         {
-          "x": 7.7511,
-          "y": 17.7163
+          "x": 7.7472,
+          "y": 17.8093
         },
         {
-          "x": 7.734,
-          "y": 18.116
+          "x": 7.7301,
+          "y": 18.2089
         }
       ],
       "z0_m": -3.1,
@@ -40119,24 +40119,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.4989,
-          "y": 13.9377
+          "x": 1.406,
+          "y": 13.9337
         },
         {
-          "x": 1.7987,
-          "y": 13.9505
+          "x": 1.7057,
+          "y": 13.9465
         },
         {
-          "x": 1.8158,
-          "y": 13.5509
+          "x": 1.7228,
+          "y": 13.5469
         },
         {
-          "x": 1.516,
-          "y": 13.538
+          "x": 1.4231,
+          "y": 13.5341
         },
         {
-          "x": 1.4989,
-          "y": 13.9377
+          "x": 1.406,
+          "y": 13.9337
         }
       ],
       "z0_m": -3.1,
@@ -40151,24 +40151,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6036,
-          "y": 11.4899
+          "x": 1.5107,
+          "y": 11.4859
         },
         {
-          "x": 2.0033,
-          "y": 11.507
+          "x": 1.9104,
+          "y": 11.503
         },
         {
-          "x": 2.0161,
-          "y": 11.2073
+          "x": 1.9232,
+          "y": 11.2033
         },
         {
-          "x": 1.6165,
-          "y": 11.1902
+          "x": 1.5236,
+          "y": 11.1862
         },
         {
-          "x": 1.6036,
-          "y": 11.4899
+          "x": 1.5107,
+          "y": 11.4859
         }
       ],
       "z0_m": -3.1,
@@ -40435,28 +40435,62 @@
       "label": "stâlp C_S_INTRARE_E fundație→acoperiș (30×30), legat pe grinzi fg+centuri"
     },
     {
-      "id": "etics_wrap_C_NW",
+      "id": "col_facade_C_NW_out_north_adeziv_etics",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.2231,
-          "y": 17.9295
+          "x": 1.2348,
+          "y": 17.936
         },
         {
-          "x": 1.328,
-          "y": 17.934
+          "x": 1.6344,
+          "y": 17.9531
         },
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.6346,
+          "y": 17.9481
         },
         {
-          "x": 1.227,
-          "y": 17.8376
+          "x": 1.235,
+          "y": 17.931
         },
         {
-          "x": 1.2231,
-          "y": 17.9295
+          "x": 1.2348,
+          "y": 17.936
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#b0a898",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A1",
+      "label": "C_NW [A1 out_north]: adeziv ETICS Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_NW_out_north_vata_isover_fassade",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2314,
+          "y": 18.016
+        },
+        {
+          "x": 1.631,
+          "y": 18.0331
+        },
+        {
+          "x": 1.6344,
+          "y": 17.9531
+        },
+        {
+          "x": 1.2348,
+          "y": 17.936
+        },
+        {
+          "x": 1.2314,
+          "y": 18.016
         }
       ],
       "z0_m": -3.1,
@@ -40465,31 +40499,134 @@
       "opacity": 0.85,
       "site_layer": "umplutura",
       "wall_layer": "vata_isover_fassade",
-      "label": "ETICS continuă peste C_NW (~9.2 cm)"
+      "catalog_id": "A1",
+      "label": "C_NW [A1 out_north]: vată minerală fațadă (80 mm)"
     },
     {
-      "id": "etics_wrap_C_NE",
+      "id": "col_facade_C_NW_out_north_strat_armat",
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.9419,
-          "y": 18.1249
+          "x": 1.2312,
+          "y": 18.021
         },
         {
-          "x": 8.0338,
-          "y": 18.1288
+          "x": 1.6308,
+          "y": 18.0381
         },
         {
-          "x": 8.0509,
-          "y": 17.7292
+          "x": 1.631,
+          "y": 18.0331
         },
         {
-          "x": 7.9589,
-          "y": 17.7252
+          "x": 1.2314,
+          "y": 18.016
         },
         {
-          "x": 7.9419,
-          "y": 18.1249
+          "x": 1.2312,
+          "y": 18.021
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#a8b0b8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A1",
+      "label": "C_NW [A1 out_north]: strat armat Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_NW_out_north_grund_decorativa",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2311,
+          "y": 18.023
+        },
+        {
+          "x": 1.6307,
+          "y": 18.04
+        },
+        {
+          "x": 1.6308,
+          "y": 18.0381
+        },
+        {
+          "x": 1.2312,
+          "y": 18.021
+        },
+        {
+          "x": 1.2311,
+          "y": 18.023
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#8a8680",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "grund_decorativa",
+      "catalog_id": "A1",
+      "label": "C_NW [A1 out_north]: grund și tencuială decorativă Weber (2 mm)"
+    },
+    {
+      "id": "col_facade_C_NW_out_west_adeziv_etics",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.23,
+          "y": 17.9308
+        },
+        {
+          "x": 1.235,
+          "y": 17.931
+        },
+        {
+          "x": 1.2478,
+          "y": 17.6313
+        },
+        {
+          "x": 1.2428,
+          "y": 17.6311
+        },
+        {
+          "x": 1.23,
+          "y": 17.9308
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#b0a898",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A1",
+      "label": "C_NW [A1 out_west]: adeziv ETICS Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_NW_out_west_vata_isover_fassade",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.1501,
+          "y": 17.9274
+        },
+        {
+          "x": 1.23,
+          "y": 17.9308
+        },
+        {
+          "x": 1.2428,
+          "y": 17.6311
+        },
+        {
+          "x": 1.1629,
+          "y": 17.6277
+        },
+        {
+          "x": 1.1501,
+          "y": 17.9274
         }
       ],
       "z0_m": -3.1,
@@ -40498,31 +40635,270 @@
       "opacity": 0.85,
       "site_layer": "umplutura",
       "wall_layer": "vata_isover_fassade",
-      "label": "ETICS continuă peste C_NE (~9.2 cm)"
+      "catalog_id": "A1",
+      "label": "C_NW [A1 out_west]: vată minerală fațadă (80 mm)"
     },
     {
-      "id": "etics_wrap_C_W_MID",
+      "id": "col_facade_C_NW_out_west_strat_armat",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.394,
-          "y": 13.9332
+          "x": 1.1451,
+          "y": 17.9272
         },
         {
-          "x": 1.4989,
-          "y": 13.9377
+          "x": 1.1501,
+          "y": 17.9274
         },
         {
-          "x": 1.516,
-          "y": 13.538
+          "x": 1.1629,
+          "y": 17.6277
         },
         {
-          "x": 1.4111,
-          "y": 13.5335
+          "x": 1.1579,
+          "y": 17.6275
         },
         {
-          "x": 1.394,
-          "y": 13.9332
+          "x": 1.1451,
+          "y": 17.9272
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#a8b0b8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A1",
+      "label": "C_NW [A1 out_west]: strat armat Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_NW_out_west_grund_decorativa",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.1431,
+          "y": 17.9271
+        },
+        {
+          "x": 1.1451,
+          "y": 17.9272
+        },
+        {
+          "x": 1.1579,
+          "y": 17.6275
+        },
+        {
+          "x": 1.1559,
+          "y": 17.6274
+        },
+        {
+          "x": 1.1431,
+          "y": 17.9271
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#8a8680",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "grund_decorativa",
+      "catalog_id": "A1",
+      "label": "C_NW [A1 out_west]: grund și tencuială decorativă Weber (2 mm)"
+    },
+    {
+      "id": "col_facade_C_NW_int_south_tencuiala_int",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2478,
+          "y": 17.6313
+        },
+        {
+          "x": 1.6475,
+          "y": 17.6484
+        },
+        {
+          "x": 1.6477,
+          "y": 17.6424
+        },
+        {
+          "x": 1.2481,
+          "y": 17.6253
+        },
+        {
+          "x": 1.2478,
+          "y": 17.6313
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e8e0d4",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A1",
+      "label": "C_NW [A1 int_south]: tencuială interioară (6 mm)"
+    },
+    {
+      "id": "col_facade_C_NW_int_south_finisare_vopsea",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.2481,
+          "y": 17.6253
+        },
+        {
+          "x": 1.6477,
+          "y": 17.6424
+        },
+        {
+          "x": 1.6478,
+          "y": 17.6414
+        },
+        {
+          "x": 1.2481,
+          "y": 17.6243
+        },
+        {
+          "x": 1.2481,
+          "y": 17.6253
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#f4f0e8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A1",
+      "label": "C_NW [A1 int_south]: finisare și vopsea (1 mm)"
+    },
+    {
+      "id": "col_facade_C_NW_int_east_tencuiala_int",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6346,
+          "y": 17.9481
+        },
+        {
+          "x": 1.6406,
+          "y": 17.9484
+        },
+        {
+          "x": 1.6535,
+          "y": 17.6487
+        },
+        {
+          "x": 1.6475,
+          "y": 17.6484
+        },
+        {
+          "x": 1.6346,
+          "y": 17.9481
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e8e0d4",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A1",
+      "label": "C_NW [A1 int_east]: tencuială interioară (6 mm)"
+    },
+    {
+      "id": "col_facade_C_NW_int_east_finisare_vopsea",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6406,
+          "y": 17.9484
+        },
+        {
+          "x": 1.6416,
+          "y": 17.9484
+        },
+        {
+          "x": 1.6545,
+          "y": 17.6487
+        },
+        {
+          "x": 1.6535,
+          "y": 17.6487
+        },
+        {
+          "x": 1.6406,
+          "y": 17.9484
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#f4f0e8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A1",
+      "label": "C_NW [A1 int_east]: finisare și vopsea (1 mm)"
+    },
+    {
+      "id": "col_facade_C_N_MID_out_north_adeziv_etics",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.4329,
+          "y": 18.0728
+        },
+        {
+          "x": 4.8325,
+          "y": 18.0899
+        },
+        {
+          "x": 4.8327,
+          "y": 18.0849
+        },
+        {
+          "x": 4.4331,
+          "y": 18.0679
+        },
+        {
+          "x": 4.4329,
+          "y": 18.0728
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#b0a898",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A1",
+      "label": "C_N_MID [A1 out_north]: adeziv ETICS Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_N_MID_out_north_vata_isover_fassade",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.4294,
+          "y": 18.1528
+        },
+        {
+          "x": 4.8291,
+          "y": 18.1699
+        },
+        {
+          "x": 4.8325,
+          "y": 18.0899
+        },
+        {
+          "x": 4.4329,
+          "y": 18.0728
+        },
+        {
+          "x": 4.4294,
+          "y": 18.1528
         }
       ],
       "z0_m": -3.1,
@@ -40531,31 +40907,202 @@
       "opacity": 0.85,
       "site_layer": "umplutura",
       "wall_layer": "vata_isover_fassade",
-      "label": "ETICS continuă peste C_W_MID (~9.2 cm)"
+      "catalog_id": "A1",
+      "label": "C_N_MID [A1 out_north]: vată minerală fațadă (80 mm)"
     },
     {
-      "id": "etics_wrap_C_W_DORM",
+      "id": "col_facade_C_N_MID_out_north_strat_armat",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6165,
-          "y": 11.1902
+          "x": 4.4292,
+          "y": 18.1578
         },
         {
-          "x": 2.0161,
-          "y": 11.2073
+          "x": 4.8289,
+          "y": 18.1749
         },
         {
-          "x": 2.02,
-          "y": 11.1154
+          "x": 4.8291,
+          "y": 18.1699
         },
         {
-          "x": 1.6204,
-          "y": 11.0983
+          "x": 4.4294,
+          "y": 18.1528
         },
         {
-          "x": 1.6165,
-          "y": 11.1902
+          "x": 4.4292,
+          "y": 18.1578
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#a8b0b8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A1",
+      "label": "C_N_MID [A1 out_north]: strat armat Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_N_MID_out_north_grund_decorativa",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.4291,
+          "y": 18.1598
+        },
+        {
+          "x": 4.8288,
+          "y": 18.1769
+        },
+        {
+          "x": 4.8289,
+          "y": 18.1749
+        },
+        {
+          "x": 4.4292,
+          "y": 18.1578
+        },
+        {
+          "x": 4.4291,
+          "y": 18.1598
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#8a8680",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "grund_decorativa",
+      "catalog_id": "A1",
+      "label": "C_N_MID [A1 out_north]: grund și tencuială decorativă Weber (2 mm)"
+    },
+    {
+      "id": "col_facade_C_N_MID_int_south_tencuiala_int",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.4459,
+          "y": 17.7681
+        },
+        {
+          "x": 4.8455,
+          "y": 17.7852
+        },
+        {
+          "x": 4.8458,
+          "y": 17.7792
+        },
+        {
+          "x": 4.4462,
+          "y": 17.7621
+        },
+        {
+          "x": 4.4459,
+          "y": 17.7681
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e8e0d4",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A1",
+      "label": "C_N_MID [A1 int_south]: tencuială interioară (6 mm)"
+    },
+    {
+      "id": "col_facade_C_N_MID_int_south_finisare_vopsea",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.4462,
+          "y": 17.7621
+        },
+        {
+          "x": 4.8458,
+          "y": 17.7792
+        },
+        {
+          "x": 4.8458,
+          "y": 17.7782
+        },
+        {
+          "x": 4.4462,
+          "y": 17.7611
+        },
+        {
+          "x": 4.4462,
+          "y": 17.7621
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#f4f0e8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A1",
+      "label": "C_N_MID [A1 int_south]: finisare și vopsea (1 mm)"
+    },
+    {
+      "id": "col_facade_C_NE_out_east_adeziv_etics",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.0298,
+          "y": 18.2217
+        },
+        {
+          "x": 8.0348,
+          "y": 18.2219
+        },
+        {
+          "x": 8.0519,
+          "y": 17.8223
+        },
+        {
+          "x": 8.0469,
+          "y": 17.8221
+        },
+        {
+          "x": 8.0298,
+          "y": 18.2217
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#b0a898",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A2",
+      "label": "C_NE [A2 out_east]: adeziv ETICS Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_NE_out_east_vata_isover_fassade",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.0348,
+          "y": 18.2219
+        },
+        {
+          "x": 8.1147,
+          "y": 18.2254
+        },
+        {
+          "x": 8.1318,
+          "y": 17.8257
+        },
+        {
+          "x": 8.0519,
+          "y": 17.8223
+        },
+        {
+          "x": 8.0348,
+          "y": 18.2219
         }
       ],
       "z0_m": -3.1,
@@ -40564,10 +41111,963 @@
       "opacity": 0.85,
       "site_layer": "umplutura",
       "wall_layer": "vata_isover_fassade",
-      "label": "ETICS continuă peste C_W_DORM (~9.2 cm)"
+      "catalog_id": "A2",
+      "label": "C_NE [A2 out_east]: vată minerală fațadă (80 mm)"
     },
     {
-      "id": "etics_wrap_C_S_DORM_E",
+      "id": "col_facade_C_NE_out_east_strat_armat",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.1147,
+          "y": 18.2254
+        },
+        {
+          "x": 8.1197,
+          "y": 18.2256
+        },
+        {
+          "x": 8.1368,
+          "y": 17.8259
+        },
+        {
+          "x": 8.1318,
+          "y": 17.8257
+        },
+        {
+          "x": 8.1147,
+          "y": 18.2254
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#a8b0b8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A2",
+      "label": "C_NE [A2 out_east]: strat armat ceramic Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_NE_out_east_placaj_klinker",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.1197,
+          "y": 18.2256
+        },
+        {
+          "x": 8.1347,
+          "y": 18.2262
+        },
+        {
+          "x": 8.1518,
+          "y": 17.8266
+        },
+        {
+          "x": 8.1368,
+          "y": 17.8259
+        },
+        {
+          "x": 8.1197,
+          "y": 18.2256
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#c4a882",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "placaj_klinker",
+      "catalog_id": "A2",
+      "label": "C_NE [A2 out_east]: adeziv + Ströher Riegel 50 (15 mm)"
+    },
+    {
+      "id": "col_facade_C_NE_out_north_adeziv_etics",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7299,
+          "y": 18.2139
+        },
+        {
+          "x": 8.0296,
+          "y": 18.2267
+        },
+        {
+          "x": 8.0298,
+          "y": 18.2217
+        },
+        {
+          "x": 7.7301,
+          "y": 18.2089
+        },
+        {
+          "x": 7.7299,
+          "y": 18.2139
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#b0a898",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A1",
+      "label": "C_NE [A1 out_north]: adeziv ETICS Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_NE_out_north_vata_isover_fassade",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7264,
+          "y": 18.2938
+        },
+        {
+          "x": 8.0262,
+          "y": 18.3066
+        },
+        {
+          "x": 8.0296,
+          "y": 18.2267
+        },
+        {
+          "x": 7.7299,
+          "y": 18.2139
+        },
+        {
+          "x": 7.7264,
+          "y": 18.2938
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e2d18a",
+      "opacity": 0.85,
+      "site_layer": "umplutura",
+      "wall_layer": "vata_isover_fassade",
+      "catalog_id": "A1",
+      "label": "C_NE [A1 out_north]: vată minerală fațadă (80 mm)"
+    },
+    {
+      "id": "col_facade_C_NE_out_north_strat_armat",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7262,
+          "y": 18.2988
+        },
+        {
+          "x": 8.0259,
+          "y": 18.3116
+        },
+        {
+          "x": 8.0262,
+          "y": 18.3066
+        },
+        {
+          "x": 7.7264,
+          "y": 18.2938
+        },
+        {
+          "x": 7.7262,
+          "y": 18.2988
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#a8b0b8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A1",
+      "label": "C_NE [A1 out_north]: strat armat Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_NE_out_north_grund_decorativa",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7261,
+          "y": 18.3008
+        },
+        {
+          "x": 8.0259,
+          "y": 18.3136
+        },
+        {
+          "x": 8.0259,
+          "y": 18.3116
+        },
+        {
+          "x": 7.7262,
+          "y": 18.2988
+        },
+        {
+          "x": 7.7261,
+          "y": 18.3008
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#8a8680",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "grund_decorativa",
+      "catalog_id": "A1",
+      "label": "C_NE [A1 out_north]: grund și tencuială decorativă Weber (2 mm)"
+    },
+    {
+      "id": "col_facade_C_NE_int_west_tencuiala_int",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7241,
+          "y": 18.2086
+        },
+        {
+          "x": 7.7301,
+          "y": 18.2089
+        },
+        {
+          "x": 7.7472,
+          "y": 17.8093
+        },
+        {
+          "x": 7.7412,
+          "y": 17.809
+        },
+        {
+          "x": 7.7241,
+          "y": 18.2086
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e8e0d4",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A2",
+      "label": "C_NE [A2 int_west]: tencuială interioară (6 mm)"
+    },
+    {
+      "id": "col_facade_C_NE_int_west_finisare_vopsea",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7231,
+          "y": 18.2086
+        },
+        {
+          "x": 7.7241,
+          "y": 18.2086
+        },
+        {
+          "x": 7.7412,
+          "y": 17.809
+        },
+        {
+          "x": 7.7402,
+          "y": 17.809
+        },
+        {
+          "x": 7.7231,
+          "y": 18.2086
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#f4f0e8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A2",
+      "label": "C_NE [A2 int_west]: finisare și vopsea (1 mm)"
+    },
+    {
+      "id": "col_facade_C_NE_int_south_tencuiala_int",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7472,
+          "y": 17.8093
+        },
+        {
+          "x": 8.0469,
+          "y": 17.8221
+        },
+        {
+          "x": 8.0471,
+          "y": 17.8161
+        },
+        {
+          "x": 7.7474,
+          "y": 17.8033
+        },
+        {
+          "x": 7.7472,
+          "y": 17.8093
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e8e0d4",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A2",
+      "label": "C_NE [A2 int_south]: tencuială interioară (6 mm)"
+    },
+    {
+      "id": "col_facade_C_NE_int_south_finisare_vopsea",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7474,
+          "y": 17.8033
+        },
+        {
+          "x": 8.0471,
+          "y": 17.8161
+        },
+        {
+          "x": 8.0472,
+          "y": 17.8151
+        },
+        {
+          "x": 7.7475,
+          "y": 17.8023
+        },
+        {
+          "x": 7.7474,
+          "y": 17.8033
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#f4f0e8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A2",
+      "label": "C_NE [A2 int_south]: finisare și vopsea (1 mm)"
+    },
+    {
+      "id": "col_facade_C_W_MID_out_west_adeziv_etics",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.401,
+          "y": 13.9335
+        },
+        {
+          "x": 1.406,
+          "y": 13.9337
+        },
+        {
+          "x": 1.4231,
+          "y": 13.5341
+        },
+        {
+          "x": 1.4181,
+          "y": 13.5338
+        },
+        {
+          "x": 1.401,
+          "y": 13.9335
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#b0a898",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A2",
+      "label": "C_W_MID [A2 out_west]: adeziv ETICS Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_W_MID_out_west_vata_isover_fassade",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.3211,
+          "y": 13.9301
+        },
+        {
+          "x": 1.401,
+          "y": 13.9335
+        },
+        {
+          "x": 1.4181,
+          "y": 13.5338
+        },
+        {
+          "x": 1.3382,
+          "y": 13.5304
+        },
+        {
+          "x": 1.3211,
+          "y": 13.9301
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e2d18a",
+      "opacity": 0.85,
+      "site_layer": "umplutura",
+      "wall_layer": "vata_isover_fassade",
+      "catalog_id": "A2",
+      "label": "C_W_MID [A2 out_west]: vată minerală fațadă (80 mm)"
+    },
+    {
+      "id": "col_facade_C_W_MID_out_west_strat_armat",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.3161,
+          "y": 13.9298
+        },
+        {
+          "x": 1.3211,
+          "y": 13.9301
+        },
+        {
+          "x": 1.3382,
+          "y": 13.5304
+        },
+        {
+          "x": 1.3332,
+          "y": 13.5302
+        },
+        {
+          "x": 1.3161,
+          "y": 13.9298
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#a8b0b8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A2",
+      "label": "C_W_MID [A2 out_west]: strat armat ceramic Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_W_MID_out_west_placaj_klinker",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.3011,
+          "y": 13.9292
+        },
+        {
+          "x": 1.3161,
+          "y": 13.9298
+        },
+        {
+          "x": 1.3332,
+          "y": 13.5302
+        },
+        {
+          "x": 1.3182,
+          "y": 13.5296
+        },
+        {
+          "x": 1.3011,
+          "y": 13.9292
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#c4a882",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "placaj_klinker",
+      "catalog_id": "A2",
+      "label": "C_W_MID [A2 out_west]: adeziv + Ströher Riegel 50 (15 mm)"
+    },
+    {
+      "id": "col_facade_C_W_MID_int_east_tencuiala_int",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.7057,
+          "y": 13.9465
+        },
+        {
+          "x": 1.7117,
+          "y": 13.9468
+        },
+        {
+          "x": 1.7288,
+          "y": 13.5471
+        },
+        {
+          "x": 1.7228,
+          "y": 13.5469
+        },
+        {
+          "x": 1.7057,
+          "y": 13.9465
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e8e0d4",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A2",
+      "label": "C_W_MID [A2 int_east]: tencuială interioară (6 mm)"
+    },
+    {
+      "id": "col_facade_C_W_MID_int_east_finisare_vopsea",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.7117,
+          "y": 13.9468
+        },
+        {
+          "x": 1.7127,
+          "y": 13.9468
+        },
+        {
+          "x": 1.7298,
+          "y": 13.5472
+        },
+        {
+          "x": 1.7288,
+          "y": 13.5471
+        },
+        {
+          "x": 1.7117,
+          "y": 13.9468
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#f4f0e8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A2",
+      "label": "C_W_MID [A2 int_east]: finisare și vopsea (1 mm)"
+    },
+    {
+      "id": "col_facade_C_W_DORM_out_south_adeziv_etics",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5236,
+          "y": 11.1862
+        },
+        {
+          "x": 1.9232,
+          "y": 11.2033
+        },
+        {
+          "x": 1.9234,
+          "y": 11.1983
+        },
+        {
+          "x": 1.5238,
+          "y": 11.1812
+        },
+        {
+          "x": 1.5236,
+          "y": 11.1862
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#b0a898",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A2",
+      "label": "C_W_DORM [A2 out_south]: adeziv ETICS Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_W_DORM_out_south_vata_isover_fassade",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5238,
+          "y": 11.1812
+        },
+        {
+          "x": 1.9234,
+          "y": 11.1983
+        },
+        {
+          "x": 1.9268,
+          "y": 11.1184
+        },
+        {
+          "x": 1.5272,
+          "y": 11.1013
+        },
+        {
+          "x": 1.5238,
+          "y": 11.1812
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e2d18a",
+      "opacity": 0.85,
+      "site_layer": "umplutura",
+      "wall_layer": "vata_isover_fassade",
+      "catalog_id": "A2",
+      "label": "C_W_DORM [A2 out_south]: vată minerală fațadă (80 mm)"
+    },
+    {
+      "id": "col_facade_C_W_DORM_out_south_strat_armat",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5272,
+          "y": 11.1013
+        },
+        {
+          "x": 1.9268,
+          "y": 11.1184
+        },
+        {
+          "x": 1.927,
+          "y": 11.1134
+        },
+        {
+          "x": 1.5274,
+          "y": 11.0963
+        },
+        {
+          "x": 1.5272,
+          "y": 11.1013
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#a8b0b8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A2",
+      "label": "C_W_DORM [A2 out_south]: strat armat ceramic Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_W_DORM_out_south_placaj_klinker",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5274,
+          "y": 11.0963
+        },
+        {
+          "x": 1.927,
+          "y": 11.1134
+        },
+        {
+          "x": 1.9277,
+          "y": 11.0984
+        },
+        {
+          "x": 1.528,
+          "y": 11.0813
+        },
+        {
+          "x": 1.5274,
+          "y": 11.0963
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#c4a882",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "placaj_klinker",
+      "catalog_id": "A2",
+      "label": "C_W_DORM [A2 out_south]: adeziv + Ströher Riegel 50 (15 mm)"
+    },
+    {
+      "id": "col_facade_C_W_DORM_out_west_adeziv_etics",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5057,
+          "y": 11.4857
+        },
+        {
+          "x": 1.5107,
+          "y": 11.4859
+        },
+        {
+          "x": 1.5236,
+          "y": 11.1862
+        },
+        {
+          "x": 1.5186,
+          "y": 11.186
+        },
+        {
+          "x": 1.5057,
+          "y": 11.4857
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#b0a898",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A2",
+      "label": "C_W_DORM [A2 out_west]: adeziv ETICS Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_W_DORM_out_west_vata_isover_fassade",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.4258,
+          "y": 11.4823
+        },
+        {
+          "x": 1.5057,
+          "y": 11.4857
+        },
+        {
+          "x": 1.5186,
+          "y": 11.186
+        },
+        {
+          "x": 1.4386,
+          "y": 11.1826
+        },
+        {
+          "x": 1.4258,
+          "y": 11.4823
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e2d18a",
+      "opacity": 0.85,
+      "site_layer": "umplutura",
+      "wall_layer": "vata_isover_fassade",
+      "catalog_id": "A2",
+      "label": "C_W_DORM [A2 out_west]: vată minerală fațadă (80 mm)"
+    },
+    {
+      "id": "col_facade_C_W_DORM_out_west_strat_armat",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.4208,
+          "y": 11.4821
+        },
+        {
+          "x": 1.4258,
+          "y": 11.4823
+        },
+        {
+          "x": 1.4386,
+          "y": 11.1826
+        },
+        {
+          "x": 1.4336,
+          "y": 11.1824
+        },
+        {
+          "x": 1.4208,
+          "y": 11.4821
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#a8b0b8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A2",
+      "label": "C_W_DORM [A2 out_west]: strat armat ceramic Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_W_DORM_out_west_placaj_klinker",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.4058,
+          "y": 11.4814
+        },
+        {
+          "x": 1.4208,
+          "y": 11.4821
+        },
+        {
+          "x": 1.4336,
+          "y": 11.1824
+        },
+        {
+          "x": 1.4186,
+          "y": 11.1817
+        },
+        {
+          "x": 1.4058,
+          "y": 11.4814
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#c4a882",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "placaj_klinker",
+      "catalog_id": "A2",
+      "label": "C_W_DORM [A2 out_west]: adeziv + Ströher Riegel 50 (15 mm)"
+    },
+    {
+      "id": "col_facade_C_W_DORM_int_north_tencuiala_int",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5105,
+          "y": 11.4919
+        },
+        {
+          "x": 1.9101,
+          "y": 11.509
+        },
+        {
+          "x": 1.9104,
+          "y": 11.503
+        },
+        {
+          "x": 1.5107,
+          "y": 11.4859
+        },
+        {
+          "x": 1.5105,
+          "y": 11.4919
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e8e0d4",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A2",
+      "label": "C_W_DORM [A2 int_north]: tencuială interioară (6 mm)"
+    },
+    {
+      "id": "col_facade_C_W_DORM_int_north_finisare_vopsea",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5104,
+          "y": 11.4929
+        },
+        {
+          "x": 1.9101,
+          "y": 11.51
+        },
+        {
+          "x": 1.9101,
+          "y": 11.509
+        },
+        {
+          "x": 1.5105,
+          "y": 11.4919
+        },
+        {
+          "x": 1.5104,
+          "y": 11.4929
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#f4f0e8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A2",
+      "label": "C_W_DORM [A2 int_north]: finisare și vopsea (1 mm)"
+    },
+    {
+      "id": "col_facade_C_W_DORM_int_east_tencuiala_int",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.9104,
+          "y": 11.503
+        },
+        {
+          "x": 1.9164,
+          "y": 11.5033
+        },
+        {
+          "x": 1.9292,
+          "y": 11.2036
+        },
+        {
+          "x": 1.9232,
+          "y": 11.2033
+        },
+        {
+          "x": 1.9104,
+          "y": 11.503
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e8e0d4",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A2",
+      "label": "C_W_DORM [A2 int_east]: tencuială interioară (6 mm)"
+    },
+    {
+      "id": "col_facade_C_W_DORM_int_east_finisare_vopsea",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.9164,
+          "y": 11.5033
+        },
+        {
+          "x": 1.9174,
+          "y": 11.5033
+        },
+        {
+          "x": 1.9302,
+          "y": 11.2036
+        },
+        {
+          "x": 1.9292,
+          "y": 11.2036
+        },
+        {
+          "x": 1.9164,
+          "y": 11.5033
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#f4f0e8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A2",
+      "label": "C_W_DORM [A2 int_east]: finisare și vopsea (1 mm)"
+    },
+    {
+      "id": "col_facade_C_S_DORM_E_out_south_adeziv_etics",
       "type": "extrude",
       "polygon": [
         {
@@ -40579,12 +42079,12 @@
           "y": 11.3401
         },
         {
-          "x": 5.1252,
-          "y": 11.2482
+          "x": 5.1215,
+          "y": 11.3351
         },
         {
-          "x": 4.8255,
-          "y": 11.2354
+          "x": 4.8217,
+          "y": 11.3223
         },
         {
           "x": 4.8215,
@@ -40593,35 +42093,240 @@
       ],
       "z0_m": -3.1,
       "z1_m": 5.97,
+      "color": "#b0a898",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A2",
+      "label": "C_S_DORM_E [A2 out_south]: adeziv ETICS Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_S_DORM_E_out_south_vata_isover_fassade",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.8217,
+          "y": 11.3223
+        },
+        {
+          "x": 5.1215,
+          "y": 11.3351
+        },
+        {
+          "x": 5.1249,
+          "y": 11.2552
+        },
+        {
+          "x": 4.8252,
+          "y": 11.2424
+        },
+        {
+          "x": 4.8217,
+          "y": 11.3223
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
       "color": "#e2d18a",
       "opacity": 0.85,
       "site_layer": "umplutura",
       "wall_layer": "vata_isover_fassade",
-      "label": "ETICS continuă peste C_S_DORM_E (~9.2 cm)"
+      "catalog_id": "A2",
+      "label": "C_S_DORM_E [A2 out_south]: vată minerală fațadă (80 mm)"
     },
     {
-      "id": "etics_wrap_C_E_GEAM_S",
+      "id": "col_facade_C_S_DORM_E_out_south_strat_armat",
       "type": "extrude",
       "polygon": [
         {
-          "x": 8.0704,
-          "y": 15.1196
+          "x": 4.8252,
+          "y": 11.2424
         },
+        {
+          "x": 5.1249,
+          "y": 11.2552
+        },
+        {
+          "x": 5.1251,
+          "y": 11.2502
+        },
+        {
+          "x": 4.8254,
+          "y": 11.2374
+        },
+        {
+          "x": 4.8252,
+          "y": 11.2424
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#a8b0b8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A2",
+      "label": "C_S_DORM_E [A2 out_south]: strat armat ceramic Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_S_DORM_E_out_south_placaj_klinker",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.8254,
+          "y": 11.2374
+        },
+        {
+          "x": 5.1251,
+          "y": 11.2502
+        },
+        {
+          "x": 5.1257,
+          "y": 11.2352
+        },
+        {
+          "x": 4.826,
+          "y": 11.2224
+        },
+        {
+          "x": 4.8254,
+          "y": 11.2374
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#c4a882",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "placaj_klinker",
+      "catalog_id": "A2",
+      "label": "C_S_DORM_E [A2 out_south]: adeziv + Ströher Riegel 50 (15 mm)"
+    },
+    {
+      "id": "col_facade_C_S_DORM_E_int_north_tencuiala_int",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.8085,
+          "y": 11.633
+        },
+        {
+          "x": 5.1082,
+          "y": 11.6458
+        },
+        {
+          "x": 5.1084,
+          "y": 11.6398
+        },
+        {
+          "x": 4.8087,
+          "y": 11.627
+        },
+        {
+          "x": 4.8085,
+          "y": 11.633
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e8e0d4",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A2",
+      "label": "C_S_DORM_E [A2 int_north]: tencuială interioară (6 mm)"
+    },
+    {
+      "id": "col_facade_C_S_DORM_E_int_north_finisare_vopsea",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.8084,
+          "y": 11.634
+        },
+        {
+          "x": 5.1081,
+          "y": 11.6468
+        },
+        {
+          "x": 5.1082,
+          "y": 11.6458
+        },
+        {
+          "x": 4.8085,
+          "y": 11.633
+        },
+        {
+          "x": 4.8084,
+          "y": 11.634
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#f4f0e8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A2",
+      "label": "C_S_DORM_E [A2 int_north]: finisare și vopsea (1 mm)"
+    },
+    {
+      "id": "col_facade_C_E_GEAM_S_out_east_adeziv_etics",
+      "type": "extrude",
+      "polygon": [
         {
           "x": 8.1623,
           "y": 15.1236
+        },
+        {
+          "x": 8.1673,
+          "y": 15.1238
+        },
+        {
+          "x": 8.1844,
+          "y": 14.7241
         },
         {
           "x": 8.1794,
           "y": 14.7239
         },
         {
-          "x": 8.0875,
-          "y": 14.72
+          "x": 8.1623,
+          "y": 15.1236
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#b0a898",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A2",
+      "label": "C_E_GEAM_S [A2 out_east]: adeziv ETICS Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_E_GEAM_S_out_east_vata_isover_fassade",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.1673,
+          "y": 15.1238
         },
         {
-          "x": 8.0704,
-          "y": 15.1196
+          "x": 8.2473,
+          "y": 15.1272
+        },
+        {
+          "x": 8.2643,
+          "y": 14.7275
+        },
+        {
+          "x": 8.1844,
+          "y": 14.7241
+        },
+        {
+          "x": 8.1673,
+          "y": 15.1238
         }
       ],
       "z0_m": -3.1,
@@ -40630,31 +42335,202 @@
       "opacity": 0.85,
       "site_layer": "umplutura",
       "wall_layer": "vata_isover_fassade",
-      "label": "ETICS continuă peste C_E_GEAM_S (~9.2 cm)"
+      "catalog_id": "A2",
+      "label": "C_E_GEAM_S [A2 out_east]: vată minerală fațadă (80 mm)"
     },
     {
-      "id": "etics_wrap_C_E_PAL",
+      "id": "col_facade_C_E_GEAM_S_out_east_strat_armat",
       "type": "extrude",
       "polygon": [
         {
-          "x": 8.1298,
-          "y": 13.7309
+          "x": 8.2473,
+          "y": 15.1272
         },
+        {
+          "x": 8.2522,
+          "y": 15.1274
+        },
+        {
+          "x": 8.2693,
+          "y": 14.7278
+        },
+        {
+          "x": 8.2643,
+          "y": 14.7275
+        },
+        {
+          "x": 8.2473,
+          "y": 15.1272
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#a8b0b8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A2",
+      "label": "C_E_GEAM_S [A2 out_east]: strat armat ceramic Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_E_GEAM_S_out_east_placaj_klinker",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.2522,
+          "y": 15.1274
+        },
+        {
+          "x": 8.2672,
+          "y": 15.128
+        },
+        {
+          "x": 8.2843,
+          "y": 14.7284
+        },
+        {
+          "x": 8.2693,
+          "y": 14.7278
+        },
+        {
+          "x": 8.2522,
+          "y": 15.1274
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#c4a882",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "placaj_klinker",
+      "catalog_id": "A2",
+      "label": "C_E_GEAM_S [A2 out_east]: adeziv + Ströher Riegel 50 (15 mm)"
+    },
+    {
+      "id": "col_facade_C_E_GEAM_S_int_west_tencuiala_int",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.8566,
+          "y": 15.1105
+        },
+        {
+          "x": 7.8626,
+          "y": 15.1107
+        },
+        {
+          "x": 7.8797,
+          "y": 14.7111
+        },
+        {
+          "x": 7.8737,
+          "y": 14.7108
+        },
+        {
+          "x": 7.8566,
+          "y": 15.1105
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e8e0d4",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A2",
+      "label": "C_E_GEAM_S [A2 int_west]: tencuială interioară (6 mm)"
+    },
+    {
+      "id": "col_facade_C_E_GEAM_S_int_west_finisare_vopsea",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.8556,
+          "y": 15.1104
+        },
+        {
+          "x": 7.8566,
+          "y": 15.1105
+        },
+        {
+          "x": 7.8737,
+          "y": 14.7108
+        },
+        {
+          "x": 7.8727,
+          "y": 14.7108
+        },
+        {
+          "x": 7.8556,
+          "y": 15.1104
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#f4f0e8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A2",
+      "label": "C_E_GEAM_S [A2 int_west]: finisare și vopsea (1 mm)"
+    },
+    {
+      "id": "col_facade_C_E_PAL_out_east_adeziv_etics",
+      "type": "extrude",
+      "polygon": [
         {
           "x": 8.2217,
           "y": 13.7348
+        },
+        {
+          "x": 8.2267,
+          "y": 13.735
+        },
+        {
+          "x": 8.2438,
+          "y": 13.3354
         },
         {
           "x": 8.2388,
           "y": 13.3352
         },
         {
-          "x": 8.1469,
-          "y": 13.3313
+          "x": 8.2217,
+          "y": 13.7348
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#b0a898",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A2",
+      "label": "C_E_PAL [A2 out_east]: adeziv ETICS Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_E_PAL_out_east_vata_isover_fassade",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.2267,
+          "y": 13.735
         },
         {
-          "x": 8.1298,
-          "y": 13.7309
+          "x": 8.3067,
+          "y": 13.7385
+        },
+        {
+          "x": 8.3238,
+          "y": 13.3388
+        },
+        {
+          "x": 8.2438,
+          "y": 13.3354
+        },
+        {
+          "x": 8.2267,
+          "y": 13.735
         }
       ],
       "z0_m": -3.1,
@@ -40663,10 +42539,147 @@
       "opacity": 0.85,
       "site_layer": "umplutura",
       "wall_layer": "vata_isover_fassade",
-      "label": "ETICS continuă peste C_E_PAL (~9.2 cm)"
+      "catalog_id": "A2",
+      "label": "C_E_PAL [A2 out_east]: vată minerală fațadă (80 mm)"
     },
     {
-      "id": "etics_wrap_C_S_INTRARE_W",
+      "id": "col_facade_C_E_PAL_out_east_strat_armat",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.3067,
+          "y": 13.7385
+        },
+        {
+          "x": 8.3117,
+          "y": 13.7387
+        },
+        {
+          "x": 8.3288,
+          "y": 13.339
+        },
+        {
+          "x": 8.3238,
+          "y": 13.3388
+        },
+        {
+          "x": 8.3067,
+          "y": 13.7385
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#a8b0b8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A2",
+      "label": "C_E_PAL [A2 out_east]: strat armat ceramic Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_E_PAL_out_east_placaj_klinker",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.3117,
+          "y": 13.7387
+        },
+        {
+          "x": 8.3266,
+          "y": 13.7393
+        },
+        {
+          "x": 8.3437,
+          "y": 13.3397
+        },
+        {
+          "x": 8.3288,
+          "y": 13.339
+        },
+        {
+          "x": 8.3117,
+          "y": 13.7387
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#c4a882",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "placaj_klinker",
+      "catalog_id": "A2",
+      "label": "C_E_PAL [A2 out_east]: adeziv + Ströher Riegel 50 (15 mm)"
+    },
+    {
+      "id": "col_facade_C_E_PAL_int_west_tencuiala_int",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.916,
+          "y": 13.7217
+        },
+        {
+          "x": 7.922,
+          "y": 13.722
+        },
+        {
+          "x": 7.9391,
+          "y": 13.3224
+        },
+        {
+          "x": 7.9331,
+          "y": 13.3221
+        },
+        {
+          "x": 7.916,
+          "y": 13.7217
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e8e0d4",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A2",
+      "label": "C_E_PAL [A2 int_west]: tencuială interioară (6 mm)"
+    },
+    {
+      "id": "col_facade_C_E_PAL_int_west_finisare_vopsea",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.915,
+          "y": 13.7217
+        },
+        {
+          "x": 7.916,
+          "y": 13.7217
+        },
+        {
+          "x": 7.9331,
+          "y": 13.3221
+        },
+        {
+          "x": 7.9321,
+          "y": 13.3221
+        },
+        {
+          "x": 7.915,
+          "y": 13.7217
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#f4f0e8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A2",
+      "label": "C_E_PAL [A2 int_west]: finisare și vopsea (1 mm)"
+    },
+    {
+      "id": "col_facade_C_S_INTRARE_W_out_south_adeziv_etics",
       "type": "extrude",
       "polygon": [
         {
@@ -40678,12 +42691,12 @@
           "y": 9.5089
         },
         {
-          "x": 5.604,
-          "y": 9.417
+          "x": 5.6002,
+          "y": 9.5039
         },
         {
-          "x": 5.2043,
-          "y": 9.3999
+          "x": 5.2006,
+          "y": 9.4868
         },
         {
           "x": 5.2004,
@@ -40692,14 +42705,185 @@
       ],
       "z0_m": -3.1,
       "z1_m": 5.97,
+      "color": "#b0a898",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A2",
+      "label": "C_S_INTRARE_W [A2 out_south]: adeziv ETICS Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_S_INTRARE_W_out_south_vata_isover_fassade",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.2006,
+          "y": 9.4868
+        },
+        {
+          "x": 5.6002,
+          "y": 9.5039
+        },
+        {
+          "x": 5.6037,
+          "y": 9.424
+        },
+        {
+          "x": 5.204,
+          "y": 9.4069
+        },
+        {
+          "x": 5.2006,
+          "y": 9.4868
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
       "color": "#e2d18a",
       "opacity": 0.85,
       "site_layer": "umplutura",
       "wall_layer": "vata_isover_fassade",
-      "label": "ETICS continuă peste C_S_INTRARE_W (~9.2 cm)"
+      "catalog_id": "A2",
+      "label": "C_S_INTRARE_W [A2 out_south]: vată minerală fațadă (80 mm)"
     },
     {
-      "id": "etics_wrap_C_S_INTRARE_E",
+      "id": "col_facade_C_S_INTRARE_W_out_south_strat_armat",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.204,
+          "y": 9.4069
+        },
+        {
+          "x": 5.6037,
+          "y": 9.424
+        },
+        {
+          "x": 5.6039,
+          "y": 9.419
+        },
+        {
+          "x": 5.2042,
+          "y": 9.4019
+        },
+        {
+          "x": 5.204,
+          "y": 9.4069
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#a8b0b8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A2",
+      "label": "C_S_INTRARE_W [A2 out_south]: strat armat ceramic Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_S_INTRARE_W_out_south_placaj_klinker",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.2042,
+          "y": 9.4019
+        },
+        {
+          "x": 5.6039,
+          "y": 9.419
+        },
+        {
+          "x": 5.6045,
+          "y": 9.404
+        },
+        {
+          "x": 5.2049,
+          "y": 9.3869
+        },
+        {
+          "x": 5.2042,
+          "y": 9.4019
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#c4a882",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "placaj_klinker",
+      "catalog_id": "A2",
+      "label": "C_S_INTRARE_W [A2 out_south]: adeziv + Ströher Riegel 50 (15 mm)"
+    },
+    {
+      "id": "col_facade_C_S_INTRARE_W_int_north_tencuiala_int",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.1873,
+          "y": 9.7975
+        },
+        {
+          "x": 5.587,
+          "y": 9.8146
+        },
+        {
+          "x": 5.5872,
+          "y": 9.8086
+        },
+        {
+          "x": 5.1876,
+          "y": 9.7915
+        },
+        {
+          "x": 5.1873,
+          "y": 9.7975
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e8e0d4",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A2",
+      "label": "C_S_INTRARE_W [A2 int_north]: tencuială interioară (6 mm)"
+    },
+    {
+      "id": "col_facade_C_S_INTRARE_W_int_north_finisare_vopsea",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.1873,
+          "y": 9.7985
+        },
+        {
+          "x": 5.5869,
+          "y": 9.8156
+        },
+        {
+          "x": 5.587,
+          "y": 9.8146
+        },
+        {
+          "x": 5.1873,
+          "y": 9.7975
+        },
+        {
+          "x": 5.1873,
+          "y": 9.7985
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#f4f0e8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A2",
+      "label": "C_S_INTRARE_W [A2 int_north]: finisare și vopsea (1 mm)"
+    },
+    {
+      "id": "col_facade_C_S_INTRARE_E_out_south_adeziv_etics",
       "type": "extrude",
       "polygon": [
         {
@@ -40711,12 +42895,12 @@
           "y": 9.5794
         },
         {
-          "x": 7.2524,
-          "y": 9.4875
+          "x": 7.2487,
+          "y": 9.5744
         },
         {
-          "x": 6.9527,
-          "y": 9.4747
+          "x": 6.949,
+          "y": 9.5616
         },
         {
           "x": 6.9488,
@@ -40725,35 +42909,206 @@
       ],
       "z0_m": -3.1,
       "z1_m": 5.97,
+      "color": "#b0a898",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A2",
+      "label": "C_S_INTRARE_E [A2 out_south]: adeziv ETICS Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_S_INTRARE_E_out_south_vata_isover_fassade",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.949,
+          "y": 9.5616
+        },
+        {
+          "x": 7.2487,
+          "y": 9.5744
+        },
+        {
+          "x": 7.2521,
+          "y": 9.4945
+        },
+        {
+          "x": 6.9524,
+          "y": 9.4817
+        },
+        {
+          "x": 6.949,
+          "y": 9.5616
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
       "color": "#e2d18a",
       "opacity": 0.85,
       "site_layer": "umplutura",
       "wall_layer": "vata_isover_fassade",
-      "label": "ETICS continuă peste C_S_INTRARE_E (~9.2 cm)"
+      "catalog_id": "A2",
+      "label": "C_S_INTRARE_E [A2 out_south]: vată minerală fațadă (80 mm)"
+    },
+    {
+      "id": "col_facade_C_S_INTRARE_E_out_south_strat_armat",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.9524,
+          "y": 9.4817
+        },
+        {
+          "x": 7.2521,
+          "y": 9.4945
+        },
+        {
+          "x": 7.2524,
+          "y": 9.4895
+        },
+        {
+          "x": 6.9526,
+          "y": 9.4767
+        },
+        {
+          "x": 6.9524,
+          "y": 9.4817
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#a8b0b8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A2",
+      "label": "C_S_INTRARE_E [A2 out_south]: strat armat ceramic Weber (5 mm)"
+    },
+    {
+      "id": "col_facade_C_S_INTRARE_E_out_south_placaj_klinker",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.9526,
+          "y": 9.4767
+        },
+        {
+          "x": 7.2524,
+          "y": 9.4895
+        },
+        {
+          "x": 7.253,
+          "y": 9.4745
+        },
+        {
+          "x": 6.9533,
+          "y": 9.4617
+        },
+        {
+          "x": 6.9526,
+          "y": 9.4767
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#c4a882",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "placaj_klinker",
+      "catalog_id": "A2",
+      "label": "C_S_INTRARE_E [A2 out_south]: adeziv + Ströher Riegel 50 (15 mm)"
+    },
+    {
+      "id": "col_facade_C_S_INTRARE_E_int_north_tencuiala_int",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.9357,
+          "y": 9.8723
+        },
+        {
+          "x": 7.2355,
+          "y": 9.8851
+        },
+        {
+          "x": 7.2357,
+          "y": 9.8792
+        },
+        {
+          "x": 6.936,
+          "y": 9.8663
+        },
+        {
+          "x": 6.9357,
+          "y": 9.8723
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#e8e0d4",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A2",
+      "label": "C_S_INTRARE_E [A2 int_north]: tencuială interioară (6 mm)"
+    },
+    {
+      "id": "col_facade_C_S_INTRARE_E_int_north_finisare_vopsea",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.9357,
+          "y": 9.8733
+        },
+        {
+          "x": 7.2354,
+          "y": 9.8861
+        },
+        {
+          "x": 7.2355,
+          "y": 9.8851
+        },
+        {
+          "x": 6.9357,
+          "y": 9.8723
+        },
+        {
+          "x": 6.9357,
+          "y": 9.8733
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 5.97,
+      "color": "#f4f0e8",
+      "opacity": 0.97,
+      "site_layer": "umplutura",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A2",
+      "label": "C_S_INTRARE_E [A2 int_north]: finisare și vopsea (1 mm)"
     },
     {
       "id": "parter_centura_B_N",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         },
         {
-          "x": 8.0338,
-          "y": 18.1288
+          "x": 8.0298,
+          "y": 18.2217
         },
         {
-          "x": 8.0466,
-          "y": 17.8291
+          "x": 8.0426,
+          "y": 17.922
         },
         {
-          "x": 1.3447,
-          "y": 17.5424
+          "x": 1.2478,
+          "y": 17.6313
         },
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         }
       ],
       "z0_m": 2.89,
@@ -40761,31 +43116,31 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură N — 3 reazeme (fără C_N_BUC); deschideri de dimensionat (intrados 289)"
+      "label": "centură N — pe stâlpi flush; 3 reazeme (fără C_N_BUC); deschideri de dimensionat (intrados 289)"
     },
     {
       "id": "parter_centura_B_W",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         },
         {
-          "x": 1.6316,
-          "y": 17.8549
+          "x": 1.5347,
+          "y": 17.9439
         },
         {
-          "x": 1.9123,
-          "y": 11.2949
+          "x": 1.8233,
+          "y": 11.199
         },
         {
-          "x": 1.6125,
-          "y": 11.2821
+          "x": 1.5236,
+          "y": 11.1862
         },
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         }
       ],
       "z0_m": 2.89,
@@ -40800,12 +43155,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.734,
-          "y": 18.116
+          "x": 7.7301,
+          "y": 18.2089
         },
         {
-          "x": 8.0338,
-          "y": 18.1288
+          "x": 8.0298,
+          "y": 18.2217
         },
         {
           "x": 8.282,
@@ -40816,8 +43171,8 @@
           "y": 12.3133
         },
         {
-          "x": 7.734,
-          "y": 18.116
+          "x": 7.7301,
+          "y": 18.2089
         }
       ],
       "z0_m": 2.89,
@@ -40896,8 +43251,8 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6036,
-          "y": 11.4899
+          "x": 1.5107,
+          "y": 11.4859
         },
         {
           "x": 5.1084,
@@ -40908,12 +43263,12 @@
           "y": 11.3401
         },
         {
-          "x": 1.6165,
-          "y": 11.1902
+          "x": 1.5236,
+          "y": 11.1862
         },
         {
-          "x": 1.6036,
-          "y": 11.4899
+          "x": 1.5107,
+          "y": 11.4859
         }
       ],
       "z0_m": 2.89,
@@ -40936,12 +43291,12 @@
           "y": 11.6569
         },
         {
-          "x": 5.5961,
-          "y": 9.6008
+          "x": 5.6,
+          "y": 9.5089
         },
         {
-          "x": 4.8967,
-          "y": 9.5709
+          "x": 4.9007,
+          "y": 9.479
         },
         {
           "x": 4.8087,
@@ -41091,112 +43446,112 @@
         ],
         [
           {
-            "x": 1.3319,
-            "y": 17.8421
+            "x": 1.235,
+            "y": 17.931
           },
           {
-            "x": 1.3447,
-            "y": 17.5424
+            "x": 1.2478,
+            "y": 17.6313
           },
           {
-            "x": 1.7444,
-            "y": 17.5595
+            "x": 1.6475,
+            "y": 17.6484
           },
           {
-            "x": 1.7315,
-            "y": 17.8592
+            "x": 1.6346,
+            "y": 17.9481
           },
           {
-            "x": 1.3319,
-            "y": 17.8421
+            "x": 1.235,
+            "y": 17.931
           }
         ],
         [
           {
-            "x": 4.4371,
-            "y": 17.9749
+            "x": 4.4331,
+            "y": 18.0679
           },
           {
-            "x": 4.4499,
-            "y": 17.6752
+            "x": 4.4459,
+            "y": 17.7681
           },
           {
-            "x": 4.8495,
-            "y": 17.6923
+            "x": 4.8455,
+            "y": 17.7852
           },
           {
-            "x": 4.8367,
-            "y": 17.992
+            "x": 4.8327,
+            "y": 18.0849
           },
           {
-            "x": 4.4371,
-            "y": 17.9749
+            "x": 4.4331,
+            "y": 18.0679
           }
         ],
         [
           {
-            "x": 7.734,
-            "y": 18.116
+            "x": 7.7301,
+            "y": 18.2089
           },
           {
-            "x": 7.7511,
-            "y": 17.7163
+            "x": 7.7472,
+            "y": 17.8093
           },
           {
-            "x": 8.0509,
-            "y": 17.7292
+            "x": 8.0469,
+            "y": 17.8221
           },
           {
-            "x": 8.0338,
-            "y": 18.1288
+            "x": 8.0298,
+            "y": 18.2217
           },
           {
-            "x": 7.734,
-            "y": 18.116
+            "x": 7.7301,
+            "y": 18.2089
           }
         ],
         [
           {
-            "x": 1.4989,
-            "y": 13.9377
+            "x": 1.406,
+            "y": 13.9337
           },
           {
-            "x": 1.516,
-            "y": 13.538
+            "x": 1.4231,
+            "y": 13.5341
           },
           {
-            "x": 1.8158,
-            "y": 13.5509
+            "x": 1.7228,
+            "y": 13.5469
           },
           {
-            "x": 1.7987,
-            "y": 13.9505
+            "x": 1.7057,
+            "y": 13.9465
           },
           {
-            "x": 1.4989,
-            "y": 13.9377
+            "x": 1.406,
+            "y": 13.9337
           }
         ],
         [
           {
-            "x": 1.6036,
-            "y": 11.4899
+            "x": 1.5107,
+            "y": 11.4859
           },
           {
-            "x": 1.6165,
-            "y": 11.1902
+            "x": 1.5236,
+            "y": 11.1862
           },
           {
-            "x": 2.0161,
-            "y": 11.2073
+            "x": 1.9232,
+            "y": 11.2033
           },
           {
-            "x": 2.0033,
-            "y": 11.507
+            "x": 1.9104,
+            "y": 11.503
           },
           {
-            "x": 1.6036,
-            "y": 11.4899
+            "x": 1.5107,
+            "y": 11.4859
           }
         ],
         [
@@ -41344,24 +43699,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         },
         {
-          "x": 8.0338,
-          "y": 18.1288
+          "x": 8.0298,
+          "y": 18.2217
         },
         {
-          "x": 8.0466,
-          "y": 17.8291
+          "x": 8.0426,
+          "y": 17.922
         },
         {
-          "x": 1.3447,
-          "y": 17.5424
+          "x": 1.2478,
+          "y": 17.6313
         },
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         }
       ],
       "z0_m": 5.62,
@@ -41369,31 +43724,31 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură N — 3 reazeme (fără C_N_BUC); deschideri de dimensionat"
+      "label": "centură N — pe stâlpi flush; 3 reazeme (fără C_N_BUC); deschideri de dimensionat"
     },
     {
       "id": "etaj_centura_B_W",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         },
         {
-          "x": 1.6316,
-          "y": 17.8549
+          "x": 1.5347,
+          "y": 17.9439
         },
         {
-          "x": 1.9123,
-          "y": 11.2949
+          "x": 1.8233,
+          "y": 11.199
         },
         {
-          "x": 1.6125,
-          "y": 11.2821
+          "x": 1.5236,
+          "y": 11.1862
         },
         {
-          "x": 1.3319,
-          "y": 17.8421
+          "x": 1.235,
+          "y": 17.931
         }
       ],
       "z0_m": 5.62,
@@ -41408,12 +43763,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.734,
-          "y": 18.116
+          "x": 7.7301,
+          "y": 18.2089
         },
         {
-          "x": 8.0338,
-          "y": 18.1288
+          "x": 8.0298,
+          "y": 18.2217
         },
         {
           "x": 8.282,
@@ -41424,8 +43779,8 @@
           "y": 12.3133
         },
         {
-          "x": 7.734,
-          "y": 18.116
+          "x": 7.7301,
+          "y": 18.2089
         }
       ],
       "z0_m": 5.62,
@@ -41472,8 +43827,8 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6036,
-          "y": 11.4899
+          "x": 1.5107,
+          "y": 11.4859
         },
         {
           "x": 5.1084,
@@ -41484,12 +43839,12 @@
           "y": 11.3401
         },
         {
-          "x": 1.6165,
-          "y": 11.1902
+          "x": 1.5236,
+          "y": 11.1862
         },
         {
-          "x": 1.6036,
-          "y": 11.4899
+          "x": 1.5107,
+          "y": 11.4859
         }
       ],
       "z0_m": 5.62,
@@ -41512,12 +43867,12 @@
           "y": 11.6569
         },
         {
-          "x": 5.5961,
-          "y": 9.6008
+          "x": 5.6,
+          "y": 9.5089
         },
         {
-          "x": 4.8967,
-          "y": 9.5709
+          "x": 4.9007,
+          "y": 9.479
         },
         {
           "x": 4.8087,

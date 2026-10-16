@@ -3198,39 +3198,165 @@ function main() {
           });
         }
       }
-      const eticsTh = THERMO_OUT;
-      for (const c of frameColumns) {
-        const band = c.etics_outside_band_cm;
-        if (!band) continue;
-        let x;
-        let y;
-        let dx;
-        let dy;
-        if (band.y0 != null && band.y1 != null && band.x0 == null) {
-          x = c.x;
-          dx = c.dx;
-          y = band.y0;
-          dy = Math.max(0.05, band.y1 - band.y0);
-        } else if (band.x0 != null && band.x1 != null) {
-          x = band.x0;
-          dx = Math.max(0.05, band.x1 - band.x0);
-          y = band.y0 != null ? band.y0 : c.y;
-          dy = band.y1 != null ? Math.max(0.05, band.y1 - band.y0) : c.dy;
-        } else {
-          continue;
+      /** Pe stâlp: doar straturile din afara cărămizii (beton = miez). */
+      function columnOutsideLayers(catalogId) {
+        return layersFromOutside(catalogId).filter(
+          (L) => !/caramida|eb20|tencuiala_int|finisare_vopsea|faianata|adeziv_faianata/i.test(L.id || "")
+        );
+      }
+      function columnInteriorLayers(catalogId) {
+        const entry =
+          assyCatalog[catalogId] ||
+          (catalogId === "A2" ? v47.construction_assemblies?.exterior_wall_klinker : null) ||
+          assy;
+        const listed = entry?.layers_interior_to_exterior_mm || assy.layers_interior_to_exterior_mm || [];
+        return (listed || []).filter((L) => /tencuiala_int|finisare_vopsea/i.test(L.id || L.name || ""));
+      }
+      function resolveBandOutward(c, band) {
+        if (band.outward) return band.outward;
+        if (band.x0 != null && band.x1 != null && (band.y0 == null || Math.abs((band.y1 ?? 0) - (band.y0 ?? 0) - c.dy) < 1)) {
+          const mid = ((band.x0 ?? 0) + (band.x1 ?? 0)) / 2;
+          return mid >= c.x + c.dx - 0.5 ? "east" : "west";
         }
-        meshes.push({
-          id: `etics_wrap_${c.id}`,
-          type: "extrude",
-          polygon: rectPoly(x, y, dx, dy),
-          z0_m: zBotP,
-          z1_m: zTopE,
-          color: "#e2d18a",
-          opacity: 0.85,
-          site_layer: "umplutura",
-          wall_layer: "vata_isover_fassade",
-          label: `ETICS continuă peste ${c.id} (~${eticsTh} cm)`,
-        });
+        if (band.y0 != null && band.y1 != null) {
+          const mid = ((band.y0 ?? 0) + (band.y1 ?? 0)) / 2;
+          return mid >= c.y + c.dy - 0.5 ? "south" : "north";
+        }
+        return "east";
+      }
+      function pushColumnLayerStack(c, outward, faceCm, along0, along1, layers, z0, z1, sideTag, fromFaceOutward) {
+        let accMm = 0;
+        for (const L of layers) {
+          const thMm = L.th_mm || 0;
+          if (thMm < 0.05) continue;
+          const aCm = accMm / 10;
+          const bCm = (accMm + thMm) / 10;
+          accMm += thMm;
+          let x;
+          let y;
+          let dx;
+          let dy;
+          const span = Math.max(0.05, along1 - along0);
+          if (outward === "east") {
+            x = fromFaceOutward ? faceCm + aCm : faceCm - bCm;
+            dx = Math.max(0.05, bCm - aCm);
+            y = along0;
+            dy = span;
+          } else if (outward === "west") {
+            x = fromFaceOutward ? faceCm - bCm : faceCm + aCm;
+            dx = Math.max(0.05, bCm - aCm);
+            y = along0;
+            dy = span;
+          } else if (outward === "south") {
+            y = fromFaceOutward ? faceCm + aCm : faceCm - bCm;
+            dy = Math.max(0.05, bCm - aCm);
+            x = along0;
+            dx = span;
+          } else {
+            y = fromFaceOutward ? faceCm - bCm : faceCm + aCm;
+            dy = Math.max(0.05, bCm - aCm);
+            x = along0;
+            dx = span;
+          }
+          const isFono = /vata_isover/i.test(L.id || "");
+          meshes.push({
+            id: `col_facade_${c.id}_${sideTag}_${L.id}`,
+            type: "extrude",
+            polygon: rectPoly(x, y, dx, dy),
+            z0_m: z0,
+            z1_m: z1,
+            color: LAYER_COLORS[L.id] || "#d8d2c6",
+            opacity: isFono ? 0.85 : 0.97,
+            // umplutură → vizibile în „2 · + Pereți” (beton stâlp rămâne în Structură)
+            site_layer: "umplutura",
+            wall_layer: L.id,
+            catalog_id: c.facade_catalog || "A2",
+            label: `${c.id} [${c.facade_catalog || "A2"} ${sideTag}]: ${L.name || L.id} (${L.th_mm} mm)`,
+          });
+        }
+      }
+      function pushColumnFacadeWrap(c) {
+        const defaultCat = c.facade_catalog || "A2";
+        const faceCat = c.facade_catalog_by_face || {};
+        const bands = c.etics_outside_bands_cm?.length
+          ? c.etics_outside_bands_cm
+          : c.etics_outside_band_cm
+            ? [c.etics_outside_band_cm]
+            : [];
+        for (const band of bands) {
+          const outward = resolveBandOutward(c, band);
+          const catalogId = faceCat[outward] || defaultCat;
+          const outLayers = columnOutsideLayers(catalogId);
+          let faceCm;
+          let along0;
+          let along1;
+          if (outward === "east") {
+            faceCm = c.x + c.dx;
+            along0 = band.y0 != null ? band.y0 : c.y;
+            along1 = band.y1 != null ? band.y1 : c.y + c.dy;
+          } else if (outward === "west") {
+            faceCm = c.x;
+            along0 = band.y0 != null ? band.y0 : c.y;
+            along1 = band.y1 != null ? band.y1 : c.y + c.dy;
+          } else if (outward === "south") {
+            faceCm = c.y + c.dy;
+            along0 = band.x0 != null ? band.x0 : c.x;
+            along1 = band.x1 != null ? band.x1 : c.x + c.dx;
+          } else {
+            faceCm = c.y;
+            along0 = band.x0 != null ? band.x0 : c.x;
+            along1 = band.x1 != null ? band.x1 : c.x + c.dx;
+          }
+          const cFace = { ...c, facade_catalog: catalogId };
+          // layersFromOutside = exterior→interior; pe stâlp extrudăm din față beton spre afară → reverse
+          pushColumnLayerStack(
+            cFace,
+            outward,
+            faceCm,
+            along0,
+            along1,
+            [...outLayers].reverse(),
+            zBotP,
+            zTopE,
+            `out_${outward}`,
+            true
+          );
+        }
+        const intLayers = columnInteriorLayers(defaultCat);
+        // Finisaj interior pe fețele opuse (flush cu peretele; colț = 2 fețe)
+        if (!bands.length || !intLayers.length) return;
+        const opp = (d) =>
+          d === "east" ? "west" : d === "west" ? "east" : d === "south" ? "north" : "south";
+        const doneInt = new Set();
+        for (const band of bands) {
+          const inward = opp(resolveBandOutward(c, band));
+          if (doneInt.has(inward)) continue;
+          doneInt.add(inward);
+          let iFace;
+          let i0;
+          let i1;
+          if (inward === "west") {
+            iFace = c.x;
+            i0 = c.y;
+            i1 = c.y + c.dy;
+          } else if (inward === "east") {
+            iFace = c.x + c.dx;
+            i0 = c.y;
+            i1 = c.y + c.dy;
+          } else if (inward === "north") {
+            iFace = c.y;
+            i0 = c.x;
+            i1 = c.x + c.dx;
+          } else {
+            iFace = c.y + c.dy;
+            i0 = c.x;
+            i1 = c.x + c.dx;
+          }
+          pushColumnLayerStack(c, inward, iFace, i0, i1, intLayers, zBotP, zTopE, `int_${inward}`, true);
+        }
+      }
+      for (const c of frameColumns) {
+        if (c.etics_outside_band_cm || c.etics_outside_bands_cm?.length) pushColumnFacadeWrap(c);
       }
     } else {
       for (const n of structNodesContinuous) {

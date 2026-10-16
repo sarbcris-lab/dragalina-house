@@ -323,7 +323,7 @@
         1
       ],
       "outward_hint": "east",
-      "note": "L A6 picior V: casă (vest) ↔ scară/palier rece (est) · catalog A6"
+      "note": "L A6 picior V: casă (vest) ↔ scară/palier rece (est)"
     },
     {
       "id": "palier_A6_nord_etaj",
@@ -8144,13 +8144,13 @@
     "declared_buildable": false,
     "structural_walls_PE": false,
     "axes_cm": {
-      "X_W": 10.5,
+      "X_W": 1.1999999999999993,
       "X_CASA_SCARA": 536.3,
       "X_E": 651.3,
       "X_DORM_E": 361.3,
       "GEO_X0": 1.3,
-      "Y_N": 9.2,
-      "Y_N_MID": 9.2,
+      "Y_N": -0.10000000000000142,
+      "Y_N_MID": -0.10000000000000142,
       "Y_PAL_N": 470,
       "Y_E_PAL_END": 489,
       "Y_LANDING_N": 490,
@@ -8171,9 +8171,34 @@
       "fill_between_columns": "EB20_Akustik_200",
       "column_replaces_fill_locally": true,
       "etics_continuous_outside": true,
+      "facade_on_column": {
+        "principle": "beton = miez; straturi catalog pe față exterioară (fără EB20); finisaj int. pe față interioară",
+        "A1_outside_brick_cm": 9.2,
+        "A2_outside_brick_cm": 10.5,
+        "A1_layers_outside_mm": [
+          "adeziv_etics 5",
+          "vata_isover_fassade 80",
+          "strat_armat 5",
+          "grund_decorativa 2"
+        ],
+        "A2_layers_outside_mm": [
+          "adeziv_etics 5",
+          "vata_isover_fassade 80",
+          "strat_armat 5",
+          "placaj_klinker 15"
+        ],
+        "interior_finish_mm": [
+          "tencuiala_int 6",
+          "finisare_vopsea 1"
+        ],
+        "north": "A1",
+        "east_south_west": "A2"
+      },
       "etics_outside_cm": 9.2,
-      "status": "LOCK Varianta A: thru≥30 P100, flush int., ETICS afară; capacitate — calcul",
-      "note": "Cadre BA: stâlp min 30 cm (P100). Local înlocuiește EB20; umplutură 20 între stâlpi. Fără proem. interior. Vezi structure_two_variants_v01.",
+      "etics_A1_cm": 9.2,
+      "etics_A2_cm": 10.5,
+      "status": "LOCK Varianta A: thru≥30 P100, flush int., A1/A2 pe stâlp; capacitate — calcul",
+      "note": "Cadre BA: stâlp min 30 cm (P100). Local înlocuiește EB20; umplutură 20 între stâlpi. Fără proem. interior. Fațadă = stivă exactă A1/A2 pe beton. Vezi structure_two_variants_v01.",
       "study_variants": [
         "A_cadre_BA_min30",
         "B_pereti_structurali_BA"
@@ -8182,8 +8207,8 @@
     "columns": [
       {
         "id": "C_NW",
-        "x": 10.5,
-        "y": 9.2,
+        "x": 1.1999999999999993,
+        "y": -0.10000000000000142,
         "dx": 40,
         "dy": 30,
         "orient": "corner_NW",
@@ -8194,15 +8219,35 @@
         ],
         "support_below": "fundație_N/W",
         "protrusion_into_room_cm": 0,
+        "facade_catalog": "A1",
         "section_cm": "40×30",
         "etics_outside_band_cm": {
-          "x0": 0,
-          "x1": 10.5,
-          "y0": 0,
-          "y1": 9.2,
+          "outward": "north",
+          "y0": -9.3,
+          "y1": -0.10000000000000142,
+          "x0": 1.1999999999999993,
+          "x1": 41.2,
           "th": 9.2
         },
-        "wall": "colț N/W — 40×30 (thru=EB20; NU redus pt. duș)",
+        "etics_outside_bands_cm": [
+          {
+            "outward": "north",
+            "y0": -9.3,
+            "y1": -0.10000000000000142,
+            "x0": 1.1999999999999993,
+            "x1": 41.2,
+            "th": 9.2
+          },
+          {
+            "outward": "west",
+            "x0": -8,
+            "x1": 1.1999999999999993,
+            "y0": -0.10000000000000142,
+            "y1": 29.9,
+            "th": 9.2
+          }
+        ],
+        "wall": "colț N/W — 40×30 flush · A1 pe stâlp (N+W)",
         "conflicts": [
           "duș decupat local în frame — nu micșorăm stâlpul"
         ],
@@ -8212,7 +8257,7 @@
       {
         "id": "C_N_MID",
         "x": 321.3,
-        "y": 9.2,
+        "y": -0.10000000000000142,
         "dx": 40,
         "dy": 30,
         "orient": "along_N",
@@ -8223,8 +8268,27 @@
         ],
         "support_below": "fundație_N",
         "protrusion_into_room_cm": 0,
+        "facade_catalog": "A1",
         "section_cm": "40×30",
-        "wall": "nord X320–360 — 40×30 thru=EB20",
+        "etics_outside_band_cm": {
+          "outward": "north",
+          "y0": -9.3,
+          "y1": -0.10000000000000142,
+          "x0": 321.3,
+          "x1": 361.3,
+          "th": 9.2
+        },
+        "etics_outside_bands_cm": [
+          {
+            "outward": "north",
+            "y0": -9.3,
+            "y1": -0.10000000000000142,
+            "x0": 321.3,
+            "x1": 361.3,
+            "th": 9.2
+          }
+        ],
+        "wall": "nord — 40×30 flush · A1 pe stâlp",
         "conflicts": [
           "alternativă: fără C_N_MID (doar NW+NE) — comparație"
         ],
@@ -8233,7 +8297,7 @@
       {
         "id": "C_NE",
         "x": 651.3,
-        "y": 9.2,
+        "y": -0.10000000000000142,
         "dx": 30,
         "dy": 40,
         "orient": "along_E",
@@ -8244,20 +8308,47 @@
         ],
         "support_below": "fundație_E",
         "protrusion_into_room_cm": 0,
-        "section_cm": "30×40",
-        "section_status": "de confirmat prin calcul — thru=EB20, along liber",
-        "wall": "est N de geam — 30×40 thru=EB20",
-        "conflicts": [],
+        "facade_catalog": "A2",
         "etics_outside_band_cm": {
-          "x0": 672.0999999999999,
-          "x1": 681.3,
-          "th": 9.2
+          "outward": "east",
+          "x0": 681.3,
+          "x1": 691.8,
+          "y0": -0.10000000000000142,
+          "y1": 39.9,
+          "th": 10.5
         },
-        "continuous_through_floor": true
+        "etics_outside_bands_cm": [
+          {
+            "outward": "east",
+            "x0": 681.3,
+            "x1": 691.8,
+            "y0": -0.10000000000000142,
+            "y1": 39.9,
+            "th": 10.5
+          },
+          {
+            "outward": "north",
+            "y0": -9.3,
+            "y1": -0.10000000000000142,
+            "x0": 651.3,
+            "x1": 681.3,
+            "th": 9.2
+          }
+        ],
+        "envelope_bump_out_cm": 10.5,
+        "section_cm": "30×40",
+        "section_status": "P100≥30 · flush int. · A2 pe stâlp",
+        "wall": "colț N/E — 30×40 flush · A2 est + A1 nord",
+        "conflicts": [],
+        "continuous_through_floor": true,
+        "facade_catalog_by_face": {
+          "east": "A2",
+          "north": "A1"
+        }
       },
       {
         "id": "C_W_MID",
-        "x": 10.5,
+        "x": 1.1999999999999993,
         "y": 400,
         "dx": 30,
         "dy": 40,
@@ -8269,14 +8360,29 @@
         ],
         "support_below": "fundație_W",
         "protrusion_into_room_cm": 0,
-        "section_cm": "30×40",
-        "section_status": "de confirmat prin calcul și cerințe normative",
-        "wall": "vest — 30×40 thru=EB20 (NU redus pt. pat)",
+        "facade_catalog": "A2",
         "etics_outside_band_cm": {
-          "x0": 0,
-          "x1": 10.5,
-          "th": 9.2
+          "outward": "west",
+          "x0": -9.3,
+          "x1": 1.1999999999999993,
+          "y0": 400,
+          "y1": 440,
+          "th": 10.5
         },
+        "etics_outside_bands_cm": [
+          {
+            "outward": "west",
+            "x0": -9.3,
+            "x1": 1.1999999999999993,
+            "y0": 400,
+            "y1": 440,
+            "th": 10.5
+          }
+        ],
+        "envelope_bump_out_cm": 9.3,
+        "section_cm": "30×40",
+        "section_status": "P100≥30 · flush int. · A2 pe stâlp",
+        "wall": "vest — 30×40 flush · A2",
         "conflicts": [
           "pat x≥45 în frame — rezervă montaj/tăblie"
         ],
@@ -8285,7 +8391,7 @@
       },
       {
         "id": "C_W_DORM",
-        "x": 10.5,
+        "x": 1.1999999999999993,
         "y": 645,
         "dx": 40,
         "dy": 30,
@@ -8297,15 +8403,37 @@
         ],
         "support_below": "fundație_S",
         "protrusion_into_room_cm": 0,
+        "facade_catalog": "A2",
         "etics_outside_band_cm": {
+          "outward": "south",
           "y0": 675,
-          "y1": 684.2,
-          "th": 9.2
+          "y1": 685.5,
+          "x0": 1.1999999999999993,
+          "x1": 41.2,
+          "th": 10.5
         },
-        "envelope_bump_out_cm": 9.200000000000045,
+        "etics_outside_bands_cm": [
+          {
+            "outward": "south",
+            "y0": 675,
+            "y1": 685.5,
+            "x0": 1.1999999999999993,
+            "x1": 41.2,
+            "th": 10.5
+          },
+          {
+            "outward": "west",
+            "x0": -9.3,
+            "x1": 1.1999999999999993,
+            "y0": 645,
+            "y1": 675,
+            "th": 10.5
+          }
+        ],
+        "envelope_bump_out_cm": 10.5,
         "section_cm": "40×30",
-        "section_status": "de confirmat prin calcul — thru≥30 P100, flush int.",
-        "wall": "sud dorm W — ETICS Y665.8–675 continuă peste stâlp",
+        "section_status": "P100≥30 · flush int. · A2 pe stâlp",
+        "wall": "colț S/W dorm — A2 sud + A2 vest (flush int.)",
         "conflicts": [
           "gol terasă X120–270"
         ],
@@ -8325,15 +8453,29 @@
         ],
         "support_below": "fundație_S",
         "protrusion_into_room_cm": 0,
+        "facade_catalog": "A2",
         "etics_outside_band_cm": {
+          "outward": "south",
           "y0": 675,
-          "y1": 684.2,
-          "th": 9.2
+          "y1": 685.5,
+          "x0": 331.3,
+          "x1": 361.3,
+          "th": 10.5
         },
-        "envelope_bump_out_cm": 9.200000000000045,
+        "etics_outside_bands_cm": [
+          {
+            "outward": "south",
+            "y0": 675,
+            "y1": 685.5,
+            "x0": 331.3,
+            "x1": 361.3,
+            "th": 10.5
+          }
+        ],
+        "envelope_bump_out_cm": 10.5,
         "section_cm": "30×30",
-        "section_status": "de confirmat prin calcul — thru≥30 P100, flush int.",
-        "wall": "capăt E sud dorm @ X360 — ETICS continuă afară",
+        "section_status": "P100≥30 · flush int. · A2 pe stâlp",
+        "wall": "capăt E sud dorm @ X360 — A2 pe stâlp",
         "conflicts": [
           "proximitate circulație / ușă terasă"
         ],
@@ -8353,14 +8495,29 @@
         ],
         "support_below": "fundație_E",
         "protrusion_into_room_cm": 0,
-        "section_cm": "30×40",
-        "section_status": "de confirmat prin calcul — thru=EB20, along liber",
-        "wall": "est S de geam",
+        "facade_catalog": "A2",
         "etics_outside_band_cm": {
-          "x0": 672.0999999999999,
-          "x1": 681.3,
-          "th": 9.2
+          "outward": "east",
+          "x0": 681.3,
+          "x1": 691.8,
+          "y0": 310,
+          "y1": 350,
+          "th": 10.5
         },
+        "etics_outside_bands_cm": [
+          {
+            "outward": "east",
+            "x0": 681.3,
+            "x1": 691.8,
+            "y0": 310,
+            "y1": 350,
+            "th": 10.5
+          }
+        ],
+        "envelope_bump_out_cm": 10.5,
+        "section_cm": "30×40",
+        "section_status": "P100≥30 · flush int. · A2 pe stâlp",
+        "wall": "est S de geam — A2 pe stâlp",
         "continuous_through_floor": true
       },
       {
@@ -8377,22 +8534,35 @@
         ],
         "support_below": "fundație_E continuu — NU pe placă 15",
         "protrusion_into_room_cm": 0,
+        "facade_catalog": "A2",
+        "etics_outside_band_cm": {
+          "outward": "east",
+          "x0": 681.3,
+          "x1": 691.8,
+          "y0": 449,
+          "y1": 489,
+          "th": 10.5
+        },
+        "etics_outside_bands_cm": [
+          {
+            "outward": "east",
+            "x0": 681.3,
+            "x1": 691.8,
+            "y0": 449,
+            "y1": 489,
+            "th": 10.5
+          }
+        ],
+        "envelope_bump_out_cm": 10.5,
         "section_cm": "30×40",
-        "section_status": "de confirmat prin calcul — thru=EB20, along liber",
-        "wall": "est sub palier scară / N de palier inferior",
+        "section_status": "P100≥30 · flush int. · A2 pe stâlp",
+        "wall": "est sub palier scară / N de palier inferior — A2 pe stâlp",
         "replaces": [
           "pal_ne",
           "C_E_SOLID_N@Y550"
         ],
-        "conflicts": [
-          "proeminență pe palier etaj Y470–489 — recalcul lățime utilă"
-        ],
+        "conflicts": [],
         "clear_landing": "y1=489 ≤ lower_landing Y490",
-        "etics_outside_band_cm": {
-          "x0": 672.0999999999999,
-          "x1": 681.3,
-          "th": 9.2
-        },
         "continuous_through_floor": true
       },
       {
@@ -8454,14 +8624,28 @@
         ],
         "support_below": "fundație_S_intrare (bandă dedicată)",
         "protrusion_into_room_cm": 0,
+        "facade_catalog": "A2",
         "etics_outside_band_cm": {
+          "outward": "south",
           "y0": 860,
-          "y1": 869.2,
-          "th": 9.2
+          "y1": 870.5,
+          "x0": 361.3,
+          "x1": 401.3,
+          "th": 10.5
         },
-        "envelope_bump_out_cm": 9.200000000000045,
+        "etics_outside_bands_cm": [
+          {
+            "outward": "south",
+            "y0": 860,
+            "y1": 870.5,
+            "x0": 361.3,
+            "x1": 401.3,
+            "th": 10.5
+          }
+        ],
+        "envelope_bump_out_cm": 10.5,
         "section_cm": "40×30",
-        "section_status": "de confirmat prin calcul — thru≥30 P100, flush int.",
+        "section_status": "P100≥30 · flush int. · A2 pe stâlp",
         "wall": "sud intrare X360–535 — ETICS continuă",
         "conflicts": [],
         "continuous_through_floor": true
@@ -8480,14 +8664,28 @@
         ],
         "support_below": "fundație_S",
         "protrusion_into_room_cm": 0,
+        "facade_catalog": "A2",
         "etics_outside_band_cm": {
+          "outward": "south",
           "y0": 860,
-          "y1": 869.2,
-          "th": 9.2
+          "y1": 870.5,
+          "x0": 536.3,
+          "x1": 566.3,
+          "th": 10.5
         },
-        "envelope_bump_out_cm": 9.200000000000045,
+        "etics_outside_bands_cm": [
+          {
+            "outward": "south",
+            "y0": 860,
+            "y1": 870.5,
+            "x0": 536.3,
+            "x1": 566.3,
+            "th": 10.5
+          }
+        ],
+        "envelope_bump_out_cm": 10.5,
         "section_cm": "30×30",
-        "section_status": "de confirmat prin calcul — thru≥30 P100, flush int.",
+        "section_status": "P100≥30 · flush int. · A2 pe stâlp",
         "wall": "sud @ X535 — ETICS continuă afară",
         "conflicts": [],
         "continuous_through_floor": true
@@ -8496,9 +8694,9 @@
     "beams": [
       {
         "id": "B_N",
-        "x": 10.5,
-        "y": 9.2,
-        "dx": 670.8,
+        "x": 1.1999999999999993,
+        "y": -0.10000000000000142,
+        "dx": 680.0999999999999,
         "dy": 30,
         "levels": [
           "P",
@@ -8509,14 +8707,14 @@
           "C_N_MID",
           "C_NE"
         ],
-        "note": "centură N — 3 reazeme (fără C_N_BUC); deschideri de dimensionat"
+        "note": "centură N — pe stâlpi flush; 3 reazeme (fără C_N_BUC); deschideri de dimensionat"
       },
       {
         "id": "B_W",
-        "x": 10.5,
-        "y": 9.2,
+        "x": 1.1999999999999993,
+        "y": -0.10000000000000142,
         "dx": 30,
-        "dy": 656.5999999999999,
+        "dy": 675.1,
         "levels": [
           "P",
           "E"
@@ -8531,9 +8729,9 @@
       {
         "id": "B_E",
         "x": 651.3,
-        "y": 9.2,
+        "y": -0.10000000000000142,
         "dx": 30,
-        "dy": 580.8,
+        "dy": 590.1,
         "levels": [
           "P",
           "E"
@@ -8602,9 +8800,9 @@
       },
       {
         "id": "B_Y645",
-        "x": 10.5,
+        "x": 1.1999999999999993,
         "y": 645,
-        "dx": 350.8,
+        "dx": 360.1,
         "dy": 30,
         "levels": [
           "P",
@@ -8621,7 +8819,7 @@
         "x": 331.3,
         "y": 645,
         "dx": 70,
-        "dy": 205.79999999999995,
+        "dy": 215,
         "levels": [
           "P",
           "E"
@@ -8856,9 +9054,9 @@
       },
       {
         "id": "etics_wrap_verify",
-        "severity": "DESCHIS",
-        "registry": "conflict_geometric",
-        "detail": "Grinzi/stâlpi pe banda ETICS (+9,2 pe S) — corecție geometrică necesară; detalii șantier neconfirmate."
+        "severity": "LOCK",
+        "registry": "rezolvat_geometric",
+        "detail": "Stâlpi flush int.; pe față exterioară stivă catalog A1 (9,2) / A2 (10,5) fără EB20 — beton = miez. Mesh 3D stratificat în build_v47_3d. Detalii șantier/colțuri — de confirmat."
       },
       {
         "id": "B_X360_wide_pad",
