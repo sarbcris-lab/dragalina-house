@@ -615,8 +615,14 @@
           }
           for (const o of umpluturaObjs) o.visible = true;
         }
-        for (const o of gateClosed) o.visible = document.getElementById("btnClosed").classList.contains("active");
-        for (const o of gateOpen) o.visible = document.getElementById("btnOpen").classList.contains("active");
+        // Poarta/gard NU în Structură — doar pe Împrejmuire / Curte / P+E
+        if (mode === "structura" || mode === "structura_pereti") {
+          for (const o of gateClosed) o.visible = false;
+          for (const o of gateOpen) o.visible = false;
+        } else {
+          for (const o of gateClosed) o.visible = document.getElementById("btnClosed").classList.contains("active");
+          for (const o of gateOpen) o.visible = document.getElementById("btnOpen").classList.contains("active");
+        }
         clearLevelButtons();
         document.getElementById("btnFence")?.classList.toggle("active", mode === "imprejmuire");
         document.getElementById("btnCurte")?.classList.toggle("active", mode === "curte");
@@ -696,11 +702,17 @@
       tip.className = "meta";
       tip.style.color = "#e8a87c";
       tip.innerHTML =
-        "<strong>FRAME:</strong> <em>1 · Structură</em> = doar cadru BA (stâlpi/grinzi/fg/placă/coamă) — fără gard, trepte, țiglă. · Planuri P/E = sursă de adevăr. · Audit proiectare: <code>v47_a1_frame_structure_design_audit_v03.md</code>.";
+        "<strong>FRAME:</strong> <em>1 · Structură</em> = doar cadru BA (stâlpi/grinzi/fg/placă/coamă) — fără gard, poartă, trepte, țiglă. · Planuri P/E = sursă de adevăr. · Audit: <code>v47_a1_frame_structure_design_audit_v04.md</code>.";
       document.getElementById("meta")?.after(tip);
     }
-    document.getElementById("btnClosed").onclick = () => setGate("closed");
-    document.getElementById("btnOpen").onclick = () => setGate("open");
+    document.getElementById("btnClosed").onclick = () => {
+      if (levelMode === "structura" || levelMode === "structura_pereti") return;
+      setGate("closed");
+    };
+    document.getElementById("btnOpen").onclick = () => {
+      if (levelMode === "structura" || levelMode === "structura_pereti") return;
+      setGate("open");
+    };
     document.getElementById("btnBoth").onclick = () => setLevel("both");
     document.getElementById("btnParter").onclick = () => setLevel("parter");
     document.getElementById("btnEtaj").onclick = () => setLevel("etaj");
@@ -713,18 +725,7 @@
       cutaway = !cutaway;
       setLevel(levelMode);
     };
-
-    {
-      const box = new THREE.Box3().setFromObject(root);
-      if (!box.isEmpty()) {
-        const c = box.getCenter(new THREE.Vector3());
-        const s = box.getSize(new THREE.Vector3());
-        const r = Math.max(s.x, s.y, s.z) * 0.85;
-        controls.target.copy(c);
-        camera.position.set(c.x + r * 1.15, c.y + r * 0.75, c.z + r * 1.05);
-        controls.update();
-      }
-    }
+    // Camera: setLevel("structura") deja face frameObjects(structObjs) — nu recadra pe tot situl (teren/gard ascunse)
 
     function frame() {
       resize();

@@ -191,3 +191,10 @@
 - Raport: `outputs/reports/v47_a1_frame_slab_and_landing_v02.md`.
 - v01 east_landing cu stâlp = **RESPINS**.
 - `heights_cm`: slab 15 (alt 20 → clear 250).
+
+## 2026-10-16 — Audit structură v04 + fix viewer/geo
+
+- Raport: `outputs/reports/v47_a1_frame_structure_design_audit_v04.md`.
+- Critice: placă 15/20 insuficientă SLS; acoperiș fără load path; retenție subsol EB20.
+- Fix viewer: poartă scoasă din Structură; fără reframing pe tot situl; banner → v04.
+- Fix geo: `B_Y470` levels **P** (planșeu); etichete `C_S_DORM_E` / `C_S_INTRARE_E` = 30×30.

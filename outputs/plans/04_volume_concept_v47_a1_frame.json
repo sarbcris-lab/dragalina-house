@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_frame_study",
-    "generated": "2026-10-16T06:26:47.976Z",
+    "generated": "2026-10-16T06:42:02.620Z",
     "status": "3D_STUDIU_A1_FRAME_CADRE",
     "source_plan": "data/building/v47_a1_frame_study.json",
     "based_on": "v47_a1_study amenajare (aprobată) + schemă cadre separată",
@@ -35910,7 +35910,7 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "prin secțiunea C_S_INTRARE_W (X360–400, Y820.8+) — nod complet, nu doar muchie"
+      "label": "STUDIU: dx=70 = pad prin C_S_DORM_E (30) + C_S_INTRARE_W (40) nealiniați pe X; lățime structurală tipică 30 — de redus după aliniere stâlpi"
     },
     {
       "id": "subsol_grinda_B_Y830",
@@ -35943,6 +35943,38 @@
       "opacity": 0.97,
       "site_layer": "structura",
       "label": "sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA"
+    },
+    {
+      "id": "subsol_grinda_B_Y470_PALIER_EDGE",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.782,
+          "y": 13.463
+        },
+        {
+          "x": 8.2307,
+          "y": 13.525
+        },
+        {
+          "x": 8.2435,
+          "y": 13.2253
+        },
+        {
+          "x": 6.7949,
+          "y": 13.1633
+        },
+        {
+          "x": 6.782,
+          "y": 13.463
+        }
+      ],
+      "z0_m": -0.7,
+      "z1_m": -0.3,
+      "color": "#6a6358",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "bordură N placă palier la PLANȘEU (levels P = intrados etaj, nu streșină). Capăt V @X536 încă fără stâlp — STUDIU. NU vestibul."
     },
     {
       "id": "subsol_grinda_node_C_NW",
@@ -36583,6 +36615,38 @@
       "opacity": 0.97,
       "site_layer": "structura",
       "label": "fg pe axa B_Y830"
+    },
+    {
+      "id": "subsol_fg_B_Y470_PALIER_EDGE",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.782,
+          "y": 13.463
+        },
+        {
+          "x": 8.2307,
+          "y": 13.525
+        },
+        {
+          "x": 8.2435,
+          "y": 13.2253
+        },
+        {
+          "x": 6.7949,
+          "y": 13.1633
+        },
+        {
+          "x": 6.782,
+          "y": 13.463
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": -2.65,
+      "color": "#5e5a54",
+      "opacity": 0.97,
+      "site_layer": "structura",
+      "label": "fg pe axa B_Y470_PALIER_EDGE"
     },
     {
       "id": "subsol_fg_pad_C_NW",
@@ -39909,7 +39973,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "prin secțiunea C_S_INTRARE_W (X360–400, Y820.8+) — nod complet, nu doar muchie (intrados 273)"
+      "label": "STUDIU: dx=70 = pad prin C_S_DORM_E (30) + C_S_INTRARE_W (40) nealiniați pe X; lățime structurală tipică 30 — de redus după aliniere stâlpi (intrados 273)"
     },
     {
       "id": "parter_centura_B_Y830",
@@ -39942,6 +40006,38 @@
       "opacity": 0.95,
       "site_layer": "structura",
       "label": "sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA (intrados 273)"
+    },
+    {
+      "id": "parter_centura_B_Y470_PALIER_EDGE",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.782,
+          "y": 13.463
+        },
+        {
+          "x": 8.2307,
+          "y": 13.525
+        },
+        {
+          "x": 8.2435,
+          "y": 13.2253
+        },
+        {
+          "x": 6.7949,
+          "y": 13.1633
+        },
+        {
+          "x": 6.782,
+          "y": 13.463
+        }
+      ],
+      "z0_m": 2.73,
+      "z1_m": 3.08,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "bordură N placă palier la PLANȘEU (levels P = intrados etaj, nu streșină). Capăt V @X536 încă fără stâlp — STUDIU. NU vestibul. (intrados 273)"
     },
     {
       "id": "etaj_placa_structura",
@@ -40431,7 +40527,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "prin secțiunea C_S_INTRARE_W (X360–400, Y820.8+) — nod complet, nu doar muchie"
+      "label": "STUDIU: dx=70 = pad prin C_S_DORM_E (30) + C_S_INTRARE_W (40) nealiniați pe X; lățime structurală tipică 30 — de redus după aliniere stâlpi"
     },
     {
       "id": "etaj_centura_B_Y830",
@@ -40464,38 +40560,6 @@
       "opacity": 0.95,
       "site_layer": "structura",
       "label": "sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA"
-    },
-    {
-      "id": "etaj_centura_B_Y470_PALIER_EDGE",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.782,
-          "y": 13.463
-        },
-        {
-          "x": 8.2307,
-          "y": 13.525
-        },
-        {
-          "x": 8.2435,
-          "y": 13.2253
-        },
-        {
-          "x": 6.7949,
-          "y": 13.1633
-        },
-        {
-          "x": 6.782,
-          "y": 13.463
-        }
-      ],
-      "z0_m": 5.46,
-      "z1_m": 5.81,
-      "color": "#5a554e",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "bordură nord placă palier scară (NU vestibul); N-reazem pe C_E_PAL"
     },
     {
       "id": "acces_treapta_0",
