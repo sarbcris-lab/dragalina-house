@@ -65,7 +65,7 @@ Placă +293→+308; grindă +273; FF +320; buildup 12. Stâlpi P+E = continui pr
 | B_W | X10.5–40.5 Y9.2–665.8 | P,E | C_NW, C_W_MID, C_W_DORM | centură W prin nodul C_W_DORM (nu se oprește la fața nord a stâlpului) |
 | B_E | X641.3–671.3 Y9.2–590 | P,E | C_NE, C_E_GEAM_S, C_E_PAL | centură E prin C_E_PAL + consolă sud până Y590 (muchie S palier etaj). Fără stâlp. Nu intră în rampă2 Y590+. Decisive: torsiune/nod — calcul lipsă |
 | B_CASA_SCARA | X536.3–566.3 Y610–860 | S,P,E | C_CASA_SCARA, C_S_INTRARE_E | separator Y610→sud; nod cu B_Y830 |
-| B_Y590_EDGE_INVERTED | X566.3–681.3 Y575–590 | S_inverted | C_SHAFT_E_PIER, placa_parter_span_to_sep, B_SEP_AFTER_DOOR | E→C_SHAFT_E_PIER (zid est); W→placă parter (întoarsă) → diafragmă/separator S de ușă (B_SEP_AFTER_DOOR+C_CASA_SCARA). Ușă Y500–600 și palier Y490–600 fără stâlp. |
+| B_Y590_EDGE_INVERTED | X566.3–681.3 Y575–600 | S_inverted | C_SHAFT_E_PIER, placa_parter_span_to_sep, B_SEP_AFTER_DOOR | E→C_SHAFT_E_PIER (zid est); W→placă parter (întoarsă) → diafragmă/separator S de ușă (B_SEP_AFTER_DOOR+C_CASA_SCARA). Ușă Y500–600 și palier Y490–600 fără stâlp. |
 | B_SEP_AFTER_DOOR | X536.3–566.3 Y600–610 | S,P | zid_separator, C_CASA_SCARA | buiandrug/centură S de ușă Y600–610 — preia traseul de la placa peste palier către C_CASA_SCARA; nu blochează golul |
 | B_Y645 | X10.5–361.3 Y645–675 | P,E | C_W_DORM, C_S_DORM_E | sud dorm — prin secțiunile stâlpilor de capăt |
 | B_X360_DORM_INTRARE | X331.3–401.3 Y645–850.8 | P,E | C_S_DORM_E, C_S_INTRARE_W | STUDIU: dx=70 = pad prin C_S_DORM_E + C_S_INTRARE_W nealiniați; lățime structurală tip 30 — conflict geometric / soluție explicită |
@@ -122,8 +122,9 @@ Status: **NECONFIRMAT** · declared_pass_access=false
 ## Conflicte nerezolvate (păstrate explicit)
 - **east_landing_span** (STUDIU_CONSOLA): Placă podest consolă transversală pe B_E (Y489→590). Fără stâlp living/puț. Torsiune, ancorare, nod C_E_PAL, ridicare pe C_E_GEAM_S = de verificat prin calcul — nu demonstrate.
 - **palier_plate_support** (STUDIU_CONSOLA): P: living sub podest. E: circulație rece. Reazem consolă + C_E_PAL/B_Y470; pachet termic/acustic distinct — nu dublură beton.
-- **slab_span_without_X320** (COMPARATIE_15_20): L/d pe fâșie = semnal de verificare, NU demonstrație SLS fail. Compară 15 vs 20 pe schemă reală (2D, goluri, armare, fisurare, lungă durată) cu săgeți calculate. Nu adopta 25–28 fără impact FF288. Fără grindă A7 ca primă opțiune.
-- **inverted_beam_fit** (DESCHIS_CALCUL): Capăt V grindă întoarsă pe buiandrug 15 cm / gap vs B_SEP — nerezolvat complet. E→C_SHAFT_E_PIER OK geometric.
+- **slab_span_without_X320** (COMPARATIE_15_20): Țintă proiect: clear ≥255 sub placă @ FF288 → preferință 15 cm. 20 cm → clear 250 (sub țintă). FE pe schemă reală trebuie să încerce întâi 15; dacă 15 eșuează SLS → pachet tradeoff (vezi decisions/conflicts_resolution_v01.md). L/d ≠ fail. Nu 25–28 fără ridicare FF.
+- **inverted_beam_fit** (DESCHIS_CALCUL): Geometrie: dy→25 (Y575–600) nod sud cu B_SEP@Y600; ușa X535–565 Y500–600 liberă; fără impact POT/util/255. Rămâne calcul: capăt V / transmitere prin placă / sandwich −30…+32.
+- **B_Y470_basement_mirror** (FIX_GENERATOR): B_Y470 levels P = bordură planșeu — exclusă din subsol_grinda_*/subsol_fg_* (filtru: S sau P+E, nu P-only). Fără impact 40%/37/255.
 - **basement_retaining** (CRITIC): Pereți retenție = EB20 umplutură în model. Demolare integrală 131 (inclusiv beci/fundații existente). Subsol+pereți BA+fundații NOI. Ipoteză geo vecinătate — decisions/geotech_hypothesis_v01.md.
 - **roof_load_path** (DESCHIS): Stâlpișori: contact geometric parțial cu grinzi la +581 — nu „plutitori absenți”. Capacitate/excentricitate nevalidate. Completare căpriori pe E; comparație șarpantă ușoară vs BA. Fără stâlpi noi în camere.
 - **foundations_width** (DESCHIS): FG = lățime grindă = preliminar insuficient geometric. Pconv 310 kPa = reper vecinătate 120, nu Rc calcul 131. Nu declara conform/neconform din ~250 kPa ordin.
@@ -132,7 +133,7 @@ Status: **NECONFIRMAT** · declared_pass_access=false
 - **column_30_protrusion_vs_37m2** (DESCHIS): Proeminențe locale; util P/E = NECONFIRMAT — nu e rezervă stâlpi.
 - **p100_min_section** (IPOTEZĂ): 30 cm transversal = studiu preliminar P100; aplicabilitate pe sistem/ductilitate — nu validat.
 - **etics_wrap_verify** (DESCHIS): Grinzi/stâlpi pe banda ETICS (+9,2 pe S) — corecție geometrică necesară; detalii șantier neconfirmate.
-- **B_X360_wide_pad** (DESCHIS): dx=70 pentru reazeme decalate — necesită soluție structurală explicită (aliniere sau grindă pe ax).
+- **B_X360_wide_pad** (DESCHIS): Acceptat geometric provizoriu: dx=70 ca bandă de compensare între stâlpi nealiniați — FĂRĂ mutare A1 (protejează util ≥37). Variante cu aliniere stâlpi = Δ util de cuantificat ÎNAINTE. Soluție structurală = calcul pe pad, nu redesign amenajare acum.
 
 ## Fișiere
 - `data/building/v47_a1_frame_study.json`

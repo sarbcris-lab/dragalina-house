@@ -217,6 +217,18 @@
 - `podest_se_placa` în Structură; Viewer `sharedFloorObjs` — grinzi/plăci pe Doar parter.
 - Gol placă = contur exact palier; planuri FRAME `38`/`39` din frame study (nu v47_exact).
 
+## 2026-10-16 — Prioritate: legea întâi
+
+- Lock: `decisions/priorities_legal_first_v01.md` — POT ~40%, util ≥37 m², clear ≥255 cm, apoi restul.
+- Subsol/terasă/scări = flexibile dacă minimele legale sunt îndeplinite.
+- Orice „alege varianta” trebuie cu impact pe aceste praguri (sau explicit: fără impact).
+
+## 2026-10-16 — Audit structură: acord + rezolvări fără impact legal
+
+- Doc: `decisions/conflicts_resolution_v01.md`.
+- Fix: B_Y470 exclus din soffit/fg L-1; grindă întoarsă dy=25 (nod B_SEP); B_X360 pad păstrat + calcul.
+- Placă: **preferință 15 cm** (clear 255); 20 doar după FE fail + tradeoff explicit. Clear sub grindă **241** = conflict separat de întrebat.
+
 ## 2026-10-16 — Închidere geometrie scară (post-78ec6a2)
 
 - Podest BA **15 cm** separat (+133→+148); pachet finisaj 12 cm deasupra — nu 3 cm.

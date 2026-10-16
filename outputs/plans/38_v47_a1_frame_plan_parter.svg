@@ -44,8 +44,8 @@
 <text x="597.8549999999999" y="322.65999999999997" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_E</text>
 <rect x="495.85499999999996" y="586.5" width="25.5" height="212.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
 <text x="508.60499999999996" y="692.75" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_CASA_SCARA</text>
-<rect x="521.355" y="556.75" width="97.75" height="12.75" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
-<text x="570.2299999999999" y="563.125" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_Y590_EDGE_INVERTED</text>
+<rect x="521.355" y="556.75" width="97.75" height="21.25" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
+<text x="570.2299999999999" y="567.375" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_Y590_EDGE_INVERTED</text>
 <rect x="495.85499999999996" y="578" width="25.5" height="8.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
 <text x="508.60499999999996" y="582.25" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_SEP_AFTER_DOOR</text>
 <rect x="48.925" y="616.25" width="298.18" height="25.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>

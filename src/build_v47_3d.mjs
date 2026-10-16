@@ -2307,11 +2307,16 @@ function main() {
       if (isFrameStudy && frameColumns) {
         // Stâlpii continui se extrudează o singură dată (fundație→acoperiș) în blocul P/E — nu stub-uri aici.
         frameColumnZ0 = zColBot;
-        // DOAR grinzi cu rol S sau P pe soffit subsol. E-only (ex. B_Y470) nu apar ca grindă „în aer” la beci.
+        // Soffit L-1: grinzi pe traseu subsol/cadru continuu — NU borduri de planșeu P-only (ex. B_Y470).
+        // Regulă: include dacă levels are "S", sau "P"+"E" (centură pe stâlpi). Exclude: doar ["P"] (muchie placă).
         for (const b of frameStudy.beams || []) {
-          const lv = (b.levels || []).join();
-          if (/S_inverted/i.test(lv)) continue;
-          if (!(b.levels || []).includes("S") && !(b.levels || []).includes("P")) continue;
+          const lv = b.levels || [];
+          const tag = lv.join();
+          if (/S_inverted/i.test(tag)) continue;
+          const hasS = lv.includes("S");
+          const hasP = lv.includes("P");
+          const hasE = lv.includes("E");
+          if (!hasS && !(hasP && hasE)) continue;
           pushGrindă(
             `subsol_grinda_${b.id}`,
             b.x,
@@ -2353,11 +2358,15 @@ function main() {
       const zFg0 = zFoundBot;
       const zFg1 = zFoundTop;
       if (isFrameStudy && frameColumns) {
-        // Fundație pe axe cu stâlpi S/P (nu pe grinzi E-only / întoarse).
+        // Fundație pe axe cadre (S sau P+E). Nu pe bordură planșeu P-only / întoarse.
         for (const b of frameStudy.beams || []) {
-          const lv = (b.levels || []).join();
-          if (/S_inverted/i.test(lv)) continue;
-          if (!(b.levels || []).includes("S") && !(b.levels || []).includes("P")) continue;
+          const lv = b.levels || [];
+          const tag = lv.join();
+          if (/S_inverted/i.test(tag)) continue;
+          const hasS = lv.includes("S");
+          const hasP = lv.includes("P");
+          const hasE = lv.includes("E");
+          if (!hasS && !(hasP && hasE)) continue;
           pushBeton(
             `subsol_fg_${b.id}`,
             b.x,

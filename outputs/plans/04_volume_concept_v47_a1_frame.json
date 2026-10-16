@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_frame_study",
-    "generated": "2026-10-16T08:33:31.851Z",
+    "generated": "2026-10-16T09:14:43.868Z",
     "status": "3D_STUDIU_A1_FRAME_CADRE",
     "source_plan": "data/building/v47_a1_frame_study.json",
     "based_on": "v47_a1_study amenajare (aprobată) + schemă cadre separată",
@@ -36733,38 +36733,6 @@
       "label": "sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA"
     },
     {
-      "id": "subsol_grinda_B_Y470_PALIER_EDGE",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.782,
-          "y": 13.463
-        },
-        {
-          "x": 8.2307,
-          "y": 13.525
-        },
-        {
-          "x": 8.2435,
-          "y": 13.2253
-        },
-        {
-          "x": 6.7949,
-          "y": 13.1633
-        },
-        {
-          "x": 6.782,
-          "y": 13.463
-        }
-      ],
-      "z0_m": -0.7,
-      "z1_m": -0.3,
-      "color": "#6a6358",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "bordură N placă palier la PLANȘEU (levels P = intrados etaj, nu streșină). Capăt V fără stâlp — calcul lipsă. NU vestibul."
-    },
-    {
       "id": "subsol_grinda_node_C_NW",
       "type": "extrude",
       "polygon": [
@@ -37403,38 +37371,6 @@
       "opacity": 0.97,
       "site_layer": "structura",
       "label": "fg pe axa B_Y830"
-    },
-    {
-      "id": "subsol_fg_B_Y470_PALIER_EDGE",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.782,
-          "y": 13.463
-        },
-        {
-          "x": 8.2307,
-          "y": 13.525
-        },
-        {
-          "x": 8.2435,
-          "y": 13.2253
-        },
-        {
-          "x": 6.7949,
-          "y": 13.1633
-        },
-        {
-          "x": 6.782,
-          "y": 13.463
-        }
-      ],
-      "z0_m": -3.1,
-      "z1_m": -2.65,
-      "color": "#5e5a54",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "fg pe axa B_Y470_PALIER_EDGE"
     },
     {
       "id": "subsol_fg_pad_C_NW",
@@ -38525,12 +38461,12 @@
           "y": 12.476
         },
         {
-          "x": 8.282,
-          "y": 12.3261
+          "x": 8.2863,
+          "y": 12.2262
         },
         {
-          "x": 7.1331,
-          "y": 12.277
+          "x": 7.1373,
+          "y": 12.177
         },
         {
           "x": 7.1266,

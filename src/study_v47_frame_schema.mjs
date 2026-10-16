@@ -55,10 +55,11 @@ const INVERTED_BEAM_LOCAL = {
   x: 565,
   y: 575,
   dx: 115,
-  dy: 15,
+  /** dy 25: Y575→600 — închide gap-ul față de B_SEP_AFTER_DOOR@Y600; nu intră în golul ușii X535–565. */
+  dy: 25,
   z0_cm: -30,
   z1_cm: -5,
-  note: "variantă studiu: grindă întoarsă deasupra intrados −30; eliberează clear acces; încape în sandwich? — calcul",
+  note: "grindă întoarsă −30…−5; nod sud la Y600 cu B_SEP; ușa Y500–600 X535–565 liberă; fit sandwich + calcul",
 };
 
 function clone(o) {
@@ -434,18 +435,27 @@ function buildFrameSchema() {
       severity: "COMPARATIE_15_20",
       registry: "calcul_lipsă",
       detail:
-        "L/d pe fâșie = semnal de verificare, NU demonstrație SLS fail. Compară 15 vs 20 pe schemă reală (2D, goluri, armare, fisurare, lungă durată) cu săgeți calculate. Nu adopta 25–28 fără impact FF288. Fără grindă A7 ca primă opțiune.",
+        "Țintă proiect: clear ≥255 sub placă @ FF288 → preferință 15 cm. 20 cm → clear 250 (sub țintă). FE pe schemă reală trebuie să încerce întâi 15; dacă 15 eșuează SLS → pachet tradeoff (vezi decisions/conflicts_resolution_v01.md). L/d ≠ fail. Nu 25–28 fără ridicare FF.",
       structural_slab_cm_current: 15,
       structural_slab_alt_cm: 20,
       clear_cm: { slab_15: 255, slab_20: 250, slab_25: 245, slab_28: 242 },
+      legal_priority: "clear_255_before_thicker_slab",
     },
     {
       id: "inverted_beam_fit",
       severity: "DESCHIS_CALCUL",
-      registry: "conflict_geometric",
+      registry: "calcul_lipsă",
       detail:
-        "Capăt V grindă întoarsă pe buiandrug 15 cm / gap vs B_SEP — nerezolvat complet. E→C_SHAFT_E_PIER OK geometric.",
+        "Geometrie: dy→25 (Y575–600) nod sud cu B_SEP@Y600; ușa X535–565 Y500–600 liberă; fără impact POT/util/255. Rămâne calcul: capăt V / transmitere prin placă / sandwich −30…+32.",
       door_kept: { y0: 500, y1: 600 },
+      geometry_closed: { y0: 575, y1: 600, dy: 25 },
+    },
+    {
+      id: "B_Y470_basement_mirror",
+      severity: "FIX_GENERATOR",
+      registry: "rezolvat_geometric",
+      detail:
+        "B_Y470 levels P = bordură planșeu — exclusă din subsol_grinda_*/subsol_fg_* (filtru: S sau P+E, nu P-only). Fără impact 40%/37/255.",
     },
     {
       id: "basement_retaining",
@@ -503,8 +513,10 @@ function buildFrameSchema() {
     {
       id: "B_X360_wide_pad",
       severity: "DESCHIS",
-      registry: "conflict_geometric",
-      detail: "dx=70 pentru reazeme decalate — necesită soluție structurală explicită (aliniere sau grindă pe ax).",
+      registry: "calcul_lipsă",
+      detail:
+        "Acceptat geometric provizoriu: dx=70 ca bandă de compensare între stâlpi nealiniați — FĂRĂ mutare A1 (protejează util ≥37). Variante cu aliniere stâlpi = Δ util de cuantificat ÎNAINTE. Soluție structurală = calcul pe pad, nu redesign amenajare acum.",
+      legal_note: "Nu atinge POT/255; alinierea stâlpilor ar putea reduce util — interzis fără Δ m².",
     },
   ];
 
@@ -554,7 +566,10 @@ function buildFrameSchema() {
       current_cm: SLAB_TH,
       alt_cm: 20,
       clear_ff288_cm: { 15: 255, 20: 250, 25: 245, 28: 242 },
-      note: "Nu schimba grosimea fără impact pe clear + calcul SLS pe schemă reală. L/d ≠ verdict SLS.",
+      preferred_until_fe: 15,
+      legal_clear_target_cm: 255,
+      note: "Preferință 15 (clear 255). 20→250. Tradeoff doar dacă FE infirmă 15 — decisions/conflicts_resolution_v01.md. L/d ≠ SLS fail. Clear sub grindă 241 = conflict separat.",
+      clear_under_beam_cm: CLEAR_P_UNDER_BEAM,
     },
     geotech_ref: "decisions/geotech_hypothesis_v01.md",
     levels_cm: {
