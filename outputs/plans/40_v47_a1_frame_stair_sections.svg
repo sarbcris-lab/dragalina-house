@@ -2,67 +2,67 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="980" height="720" viewBox="0 0 980 720">
 <rect width="100%" height="100%" fill="#f7f4ef"/>
 <text x="50" y="28" font-size="14" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">FRAME · Secțiuni scară — noduri rampă↔podest</text>
-<text x="50" y="46" font-size="9" fill="#555" font-family="IBM Plex Sans,Segoe UI,sans-serif">sistem: trepte_pe_placi_BA_cu_vanguri · podest BA 15 cm (+133→+148) · pachet 12 cm · plăci treaptă 20 cm · neconstruibil</text>
+<text x="50" y="46" font-size="9" fill="#555" font-family="IBM Plex Sans,Segoe UI,sans-serif">sistem: trepte_pe_placi_BA_cu_vanguri · podest BA 15 cm (+149→+164) · pachet 12 cm · plăci treaptă 20 cm · neconstruibil</text>
 <g transform="translate(50,70)">
 <rect width="420" height="280" fill="#fff" stroke="#ccc"/>
 <text x="12" y="18" font-size="11" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">A — Rampă 1 (X) → reazem podest</text>
-<rect x="30" y="197.2" width="33" height="6.6000000000000005" fill="#6a8498"/>
-<rect x="30" y="203.8" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<rect x="63" y="179.6" width="33" height="6.6000000000000005" fill="#6a8498"/>
-<rect x="63" y="186.2" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<rect x="96" y="162" width="33" height="6.6000000000000005" fill="#6a8498"/>
-<rect x="96" y="168.6" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<rect x="129" y="144.39999999999998" width="33" height="6.6000000000000005" fill="#6a8498"/>
-<rect x="129" y="151" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<rect x="162" y="126.79999999999998" width="33" height="6.6000000000000005" fill="#6a8498"/>
-<rect x="162" y="133.39999999999998" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<rect x="195" y="109.19999999999999" width="33" height="6.6000000000000005" fill="#6a8498"/>
-<rect x="195" y="115.79999999999998" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<rect x="228.00000000000003" y="91.6" width="33" height="6.6000000000000005" fill="#6a8498"/>
-<rect x="228.00000000000003" y="98.19999999999999" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<rect x="261" y="87.19999999999999" width="126.50000000000001" height="16.5" fill="#8b8680"/>
-<rect x="261" y="74" width="126.50000000000001" height="13.200000000000001" fill="#c4b496"/>
-<rect x="261" y="87.19999999999999" width="16.5" height="16.5" fill="#4a5560" fill-opacity="0.7" stroke="#222"/>
-<text x="30" y="272" font-size="8" fill="#444" font-family="IBM Plex Sans,Segoe UI,sans-serif">X355→680 · FF podest +160 · BA +133→+148</text>
+<rect x="30" y="179.6" width="33" height="6.6000000000000005" fill="#6a8498"/>
+<rect x="30" y="186.2" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<rect x="63" y="162" width="33" height="6.6000000000000005" fill="#6a8498"/>
+<rect x="63" y="168.6" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<rect x="96" y="144.39999999999998" width="33" height="6.6000000000000005" fill="#6a8498"/>
+<rect x="96" y="151" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<rect x="129" y="126.79999999999998" width="33" height="6.6000000000000005" fill="#6a8498"/>
+<rect x="129" y="133.39999999999998" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<rect x="162" y="109.19999999999999" width="33" height="6.6000000000000005" fill="#6a8498"/>
+<rect x="162" y="115.79999999999998" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<rect x="195" y="91.6" width="33" height="6.6000000000000005" fill="#6a8498"/>
+<rect x="195" y="98.19999999999999" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<rect x="228.00000000000003" y="74" width="33" height="6.6000000000000005" fill="#6a8498"/>
+<rect x="228.00000000000003" y="80.6" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<rect x="261" y="69.6" width="126.50000000000001" height="16.5" fill="#8b8680"/>
+<rect x="261" y="56.39999999999998" width="126.50000000000001" height="13.200000000000001" fill="#c4b496"/>
+<rect x="261" y="69.6" width="16.5" height="16.5" fill="#4a5560" fill-opacity="0.7" stroke="#222"/>
+<text x="30" y="272" font-size="8" fill="#444" font-family="IBM Plex Sans,Segoe UI,sans-serif">X355→680 · FF podest +176 · BA +149→+164</text>
 </g>
 <g transform="translate(510,70)">
 <rect width="420" height="280" fill="#fff" stroke="#ccc"/>
 <text x="12" y="18" font-size="11" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">B — Nod podest SE (grosimi)</text>
-<rect x="30" y="87.19999999999999" width="88" height="16.5" fill="#8b8680"/>
-<rect x="30" y="74" width="88" height="13.200000000000001" fill="#c4b496"/>
-<line x1="123.50000000000001" y1="103.69999999999999" x2="123.50000000000001" y2="87.19999999999999" stroke="#c44" stroke-width="1.5"/>
-<text x="126.80000000000001" y="95.44999999999999" font-size="9" fill="#c44" font-family="IBM Plex Sans,Segoe UI,sans-serif">15 cm BA</text>
-<text x="126.80000000000001" y="80.6" font-size="9" fill="#666" font-family="IBM Plex Sans,Segoe UI,sans-serif">12 cm finisaj</text>
-<text x="30" y="112.5" font-size="8" fill="#333" font-family="IBM Plex Sans,Segoe UI,sans-serif">+133 (intrados) · +148 (față BA) · +160 (FF)</text>
-<rect x="-14" y="98.19999999999999" width="44" height="22" fill="#5a6570"/>
-<text x="-11.800000000000004" y="170.8" font-size="8" fill="#333" font-family="IBM Plex Sans,Segoe UI,sans-serif">← r1</text>
-<rect x="118" y="62.99999999999997" width="44" height="24.200000000000003" fill="#4a5560" fill-opacity="0.5"/>
-<text x="120.2" y="40.99999999999997" font-size="8" fill="#333" font-family="IBM Plex Sans,Segoe UI,sans-serif">r2 →</text>
+<rect x="30" y="69.6" width="88" height="16.5" fill="#8b8680"/>
+<rect x="30" y="56.39999999999998" width="88" height="13.200000000000001" fill="#c4b496"/>
+<line x1="123.50000000000001" y1="86.1" x2="123.50000000000001" y2="69.6" stroke="#c44" stroke-width="1.5"/>
+<text x="126.80000000000001" y="77.85" font-size="9" fill="#c44" font-family="IBM Plex Sans,Segoe UI,sans-serif">15 cm BA</text>
+<text x="126.80000000000001" y="62.99999999999997" font-size="9" fill="#666" font-family="IBM Plex Sans,Segoe UI,sans-serif">12 cm finisaj</text>
+<text x="30" y="94.89999999999998" font-size="8" fill="#333" font-family="IBM Plex Sans,Segoe UI,sans-serif">+149 (intrados) · +164 (față BA) · +176 (FF)</text>
+<rect x="-14" y="80.6" width="44" height="22" fill="#5a6570"/>
+<text x="-11.800000000000004" y="153.2" font-size="8" fill="#333" font-family="IBM Plex Sans,Segoe UI,sans-serif">← r1</text>
+<rect x="118" y="45.39999999999998" width="44" height="24.200000000000003" fill="#4a5560" fill-opacity="0.5"/>
+<text x="120.2" y="23.399999999999977" font-size="8" fill="#333" font-family="IBM Plex Sans,Segoe UI,sans-serif">r2 →</text>
 </g>
 <g transform="translate(50,370)">
 <rect width="420" height="280" fill="#fff" stroke="#ccc"/>
 <text x="12" y="18" font-size="11" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">C — Rampă 2 (Y) din podest → palier</text>
-<rect x="30" y="87.19999999999999" width="44" height="16.5" fill="#8b8680"/>
-<rect x="30" y="74" width="44" height="13.200000000000001" fill="#c4b496"/>
-<rect x="74" y="56.39999999999998" width="33" height="6.6000000000000005" fill="#8a93a0"/>
-<rect x="74" y="62.99999999999997" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<rect x="107" y="38.79999999999998" width="33" height="6.6000000000000005" fill="#8a93a0"/>
-<rect x="107" y="45.39999999999998" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<rect x="140" y="21.19999999999999" width="33" height="6.6000000000000005" fill="#8a93a0"/>
-<rect x="140" y="27.799999999999983" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<rect x="173" y="3.599999999999966" width="33" height="6.6000000000000005" fill="#8a93a0"/>
-<rect x="173" y="10.199999999999989" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<rect x="206" y="-14" width="33" height="6.6000000000000005" fill="#8a93a0"/>
-<rect x="206" y="-7.400000000000034" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<rect x="239.00000000000003" y="-31.600000000000023" width="33" height="6.6000000000000005" fill="#8a93a0"/>
-<rect x="239.00000000000003" y="-25" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<rect x="272" y="-49.200000000000045" width="33" height="6.6000000000000005" fill="#8a93a0"/>
-<rect x="272" y="-42.60000000000002" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<rect x="305" y="-66.80000000000001" width="33" height="6.6000000000000005" fill="#8a93a0"/>
-<rect x="305" y="-60.200000000000045" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<rect x="338" y="-84.40000000000003" width="33" height="6.6000000000000005" fill="#8a93a0"/>
-<rect x="338" y="-77.80000000000001" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
-<line x1="74" y1="87.19999999999999" x2="371" y2="-77.80000000000001" stroke="#4a5560" stroke-width="3"/>
+<rect x="30" y="69.6" width="44" height="16.5" fill="#8b8680"/>
+<rect x="30" y="56.39999999999998" width="44" height="13.200000000000001" fill="#c4b496"/>
+<rect x="74" y="38.79999999999998" width="33" height="6.6000000000000005" fill="#8a93a0"/>
+<rect x="74" y="45.39999999999998" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<rect x="107" y="21.19999999999999" width="33" height="6.6000000000000005" fill="#8a93a0"/>
+<rect x="107" y="27.799999999999983" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<rect x="140" y="3.599999999999966" width="33" height="6.6000000000000005" fill="#8a93a0"/>
+<rect x="140" y="10.199999999999989" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<rect x="173" y="-14" width="33" height="6.6000000000000005" fill="#8a93a0"/>
+<rect x="173" y="-7.400000000000034" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<rect x="206" y="-31.600000000000023" width="33" height="6.6000000000000005" fill="#8a93a0"/>
+<rect x="206" y="-25" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<rect x="239.00000000000003" y="-49.200000000000045" width="33" height="6.6000000000000005" fill="#8a93a0"/>
+<rect x="239.00000000000003" y="-42.60000000000002" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<rect x="272" y="-66.80000000000001" width="33" height="6.6000000000000005" fill="#8a93a0"/>
+<rect x="272" y="-60.200000000000045" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<rect x="305" y="-84.40000000000003" width="33" height="6.6000000000000005" fill="#8a93a0"/>
+<rect x="305" y="-77.80000000000001" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<rect x="338" y="-102" width="33" height="6.6000000000000005" fill="#8a93a0"/>
+<rect x="338" y="-95.40000000000003" width="33" height="22" fill="#5a6570" fill-opacity="0.85"/>
+<line x1="74" y1="69.6" x2="371" y2="-95.40000000000003" stroke="#4a5560" stroke-width="3"/>
 <text x="30" y="272" font-size="8" fill="#444" font-family="IBM Plex Sans,Segoe UI,sans-serif">contact trepte = plăci BA pe intrados; vang = colector pe muchie + reazem podest</text>
 </g>
 <g transform="translate(510,370)">

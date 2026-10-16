@@ -97,10 +97,10 @@
     "stair_risers_ff": 18,
     "riser_cm": 16,
     "wall_to_soffit_cm": 261,
-    "entry_steps_to_terrace": 2,
+    "entry_steps_to_terrace": 3,
     "entry_step_riser_cm": 16,
-    "entry_steps_status": "ipoteză",
-    "z_parter_ff_note": "zParter = 2 × riser = ipoteză elevație"
+    "entry_steps_status": "locked_3_risers",
+    "z_parter_ff_note": "zParter = 3 × 16 = +48 cm (3 ridicări acces; ajută și Δ vs beci)"
   },
   "envelope_notes": {
     "palier_nord_wall_cm": 30,
@@ -3040,21 +3040,21 @@
     "entry_connection": "PARTER: intrare din terasă (intrare_parter @ X330 Y680). ETAJ: intrare_etaj pe buc_est Y475–565 de pe palier_superior.",
     "entry_steps": {
       "covered": false,
-      "steps": 2,
+      "steps": 3,
       "riser_cm": 16,
       "riser_status": "ipoteză",
       "x": 210,
       "y": 978,
       "dx": 130,
-      "dy": 60,
-      "note": "2 trepte VIZIBILE complet sud de placă (Y978–1038); gap 3 cm față de Y975",
+      "dy": 90,
+      "note": "3 ridicări VIZIBILE sud de placă (Y978–1068); FF terasă/P = +48; gap față de Y975",
       "connects_to_landing": true,
       "parapet_gap": [
         210,
         340
       ],
       "outside_terrace_slab": true,
-      "status": "stabilit",
+      "status": "locked_ff48",
       "alongside_uncovered": true
     },
     "palier_parter": {
@@ -5401,7 +5401,7 @@
     "absolute_from_grade_cm": {
       "datum": "teren_amenajat_0",
       "grade_cm": 0,
-      "ff_parter_cm": 32,
+      "ff_parter_cm": 48,
       "access_landing_cm": -95,
       "basement_ff_cm": -250,
       "slab_soffit_cm": -30,
@@ -5410,7 +5410,7 @@
       "door_to_rooms_opening_h_cm": 200,
       "door_lintel_reserve_cm": 15,
       "door_stack_needed_cm": 215,
-      "note": "clear_declared = 220 e ȚINTĂ de studiu; validarea = intersecții cu scară etaj / grinzi / planșeu, nu FF−soffit.",
+      "note": "clear_declared = 220 e ȚINTĂ de studiu; validarea = intersecții cu scară etaj / grinzi / planșeu, nu FF−soffit. | FF P +48 (3×16)",
       "floor_sandwich_cm": {
         "layers": [
           {
@@ -5446,17 +5446,17 @@
           },
           {
             "id": "make_up_to_ff",
-            "th_cm": 27,
+            "th_cm": 43,
             "color": "#b0a898",
             "z0_cm": 5,
-            "z1_cm": 32,
-            "note": "rest până la FF+32 = ipoteză elevație/terasă — NU strat structural; de clarificat cu structurist"
+            "z1_cm": 48,
+            "note": "rest până la FF+48 = elevație/terasă — NU strat structural"
           }
         ],
-        "sum_th_cm": 62,
-        "span_soffit_to_ff_cm": 62,
+        "sum_th_cm": 78,
+        "span_soffit_to_ff_cm": 78,
         "closes_span": true,
-        "note": "O singură placă structurală 15 cm (−30…−15). Fără strat structural 20 cm suprapus. make_up_to_ff = rest elevație, nu beton."
+        "note": "O singură placă 15 (−30…−15). make_up_to_ff până +48."
       },
       "clear_height_cm": 220
     },
@@ -5492,11 +5492,11 @@
       },
       {
         "id": "make_up_to_ff",
-        "th_cm": 27,
+        "th_cm": 43,
         "color": "#b0a898",
         "note": "rest elevație până FF+32 — nu structural",
         "z0_cm": 5,
-        "z1_cm": 32
+        "z1_cm": 48
       }
     ],
     "wall_thickness_study_cm": {

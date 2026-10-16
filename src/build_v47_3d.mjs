@@ -483,25 +483,27 @@ function main() {
     opacity: 0.35,
   });
 
-  // 2 trepte: de pe alee (sud) → FF terasă. Desenate mai jos din nou (după placă) ca să rămână vizibile.
+  // Trepte acces: de pe alee (sud) → FF terasă (= zParter). Nr. ridicări = entry_steps_to_terrace.
   function pushEntrySteps() {
     const es = st.entry_steps;
     if (!es || !es.steps) return;
-    const stepDy = es.dy / es.steps;
+    const n = es.steps;
+    const stepDy = es.dy / n;
+    const entryR = m(es.riser_cm || ht.entry_step_riser_cm || ht.riser_cm);
     // Y crește spre sud: treapta cea mai sudică = cotă 0, urcă spre nord (spre terasă).
-    // Placa se oprește la es.y (Y975) — treptele sunt SUD de placă, vizibile.
-    for (let i = 0; i < es.steps; i++) {
+    // Ultima ridicare: fața de sus = FF terasă (zParter).
+    for (let i = 0; i < n; i++) {
       const ySouth = es.y + es.dy - (i + 1) * stepDy;
-      const z0s = riser * i;
-      const z1s = z0s + Math.max(riser, 0.05);
+      const z0s = entryR * i;
+      const z1s = entryR * (i + 1);
       meshes.push({
         id: `acces_treapta_${i}`,
         type: "extrude",
         polygon: rectPoly(es.x, ySouth, es.dx, stepDy),
         z0_m: z0s,
-        z1_m: z1s + 0.03,
+        z1_m: z1s + 0.02,
         color: i % 2 === 0 ? "#e8a020" : "#d4890a",
-        label: `treaptă acces ${i + 1}/2 (sud de terasă)`,
+        label: `treaptă acces ${i + 1}/${n} → FF +${Math.round(zParter * 100)} (sud de terasă)`,
       });
     }
   }

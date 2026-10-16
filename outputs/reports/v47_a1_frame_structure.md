@@ -47,14 +47,14 @@ Sistem: **cadre beton armat** + **EB20** + **vată 80 mm**. **Nu** pereți struc
 | C_S_INTRARE_E | X536.3–566.3 Y820.8–850.8 | 30×30 (proem. 9.200000000000045) | S–P–E | fundație_S | — |
 
 ## Cote etaj / planșeu
-Placă +293→+308; grindă +273; FF +320; buildup 12. Stâlpi P+E = continui prin nod (beton până la FF etaj / mai sus); pardoseala se decupează.
+FF P +48 (3×16); placă soffit/top din levels; FF E = FF_P+288. Stâlpi P+E continui prin nod; pardoseala se decupează.
 
 | Cotă | cm |
 |------|---:|
-| FF etaj | 320 |
-| Față sup. placă | 308 |
-| Intrados placă | 293 |
-| Intrados grindă (h total 35) | 273 |
+| FF etaj | 336 |
+| Față sup. placă | 324 |
+| Intrados placă | 309 |
+| Intrados grindă (h total 35) | 289 |
 | Clear P sub grindă | 241 |
 
 ## Tabel grinzi

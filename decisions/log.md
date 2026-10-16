@@ -217,6 +217,16 @@
 - `podest_se_placa` în Structură; Viewer `sharedFloorObjs` — grinzi/plăci pe Doar parter.
 - Gol placă = contur exact palier; planuri FRAME `38`/`39` din frame study (nu v47_exact).
 
+## 2026-10-16 — Geometrie anvelopă/FF înainte de FE
+
+- Proces: `decisions/roadmap_geometry_then_calc_v01.md` — pereți L + FF locked → apoi calcule (consolă, colțuri, centuri).
+- **FF P = +48 cm** (3×16 ridicări acces) — lock; beci −250 absolut neschimbat (Δ mai bun la acces).
+
+## 2026-10-16 — 2 unități = garsoniere · clear 2,55 m
+
+- Lock: `decisions/legal_height_studios_v01.md` — Legea 114/1996 Anexa 1: **2,55 m** camere de locuit.
+- Placă 15 = OK la limită; 20 = 250 (sub lege); sub grindă 241 = conflict de rezolvat.
+
 ## 2026-10-16 — Prioritate: legea întâi
 
 - Lock: `decisions/priorities_legal_first_v01.md` — POT ~40%, util ≥37 m², clear ≥255 cm, apoi restul.

@@ -44,12 +44,13 @@ const PROTRUSION_IN = 10;
 const BEAM_H_TOTAL = 35;
 const SLAB_TH = 15;
 const FLOOR_BUILDUP = 12;
-const FF_PARTER = 32;
-const FF_ETAJ = FF_PARTER + 288; // 320
-const SLAB_TOP_ETAJ = FF_ETAJ - FLOOR_BUILDUP; // 308
-const SLAB_SOFFIT_ETAJ = SLAB_TOP_ETAJ - SLAB_TH; // 293
-const BEAM_SOFFIT_P = SLAB_TOP_ETAJ - BEAM_H_TOTAL; // 273
-const CLEAR_P_UNDER_BEAM = BEAM_SOFFIT_P - FF_PARTER; // 241
+/** FF parter = 3 ridicări × 16 cm de la teren (acces terasă + ajutor beci). */
+const FF_PARTER = 48;
+const FF_ETAJ = FF_PARTER + 288; // 336
+const SLAB_TOP_ETAJ = FF_ETAJ - FLOOR_BUILDUP; // 324
+const SLAB_SOFFIT_ETAJ = SLAB_TOP_ETAJ - SLAB_TH; // 309
+const BEAM_SOFFIT_P = SLAB_TOP_ETAJ - BEAM_H_TOTAL; // 289
+const CLEAR_P_UNDER_BEAM = BEAM_SOFFIT_P - FF_PARTER; // 241 (neschimbat relativ la FF)
 /** Grindă întoarsă — cotă locală înainte de GEO_X0 (o singură sursă pentru grinzi + volum). */
 const INVERTED_BEAM_LOCAL = {
   x: 565,
@@ -583,8 +584,8 @@ function buildFrameSchema() {
       beam_definition: "35 cm = înălțime totală grindă (inclusiv zona plăcii), NU coborâre suplimentară 35 sub placă",
       beam_soffit_over_parter: BEAM_SOFFIT_P,
       clear_parter_under_beam_cm: CLEAR_P_UNDER_BEAM,
-      note: "Placă +293→+308; grindă +273; FF +320; buildup 12. Stâlpi P+E = continui prin nod (beton până la FF etaj / mai sus); pardoseala se decupează.",
-      column_continuity: "stâlpi cu levels P+E traversează placa și buildup; fără gap +293…+320",
+      note: "FF P +48 (3×16); placă soffit/top din levels; FF E = FF_P+288. Stâlpi P+E continui prin nod; pardoseala se decupează.",
+      column_continuity: "stâlpi cu levels P+E traversează placa și buildup; fără gap pe FF",
     },
     access_clearances: {
       basement_stair_clear: { x0: GEO_X0 + 565, x1: GEO_X0 + 665, y0: 600, y1: 800 },
