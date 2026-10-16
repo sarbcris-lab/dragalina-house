@@ -176,3 +176,18 @@
 - `terasa_est` → **A1** (nu A5); A6 = **300** exact.
 - Generator: fără auto-scale straturi; normală interior corectă (grosime, nu lungime).
 - Decizie: `decisions/materials_v01.md`.
+
+## 2026-10-16 — Schemă structură (predimensionare, nu execuție)
+
+- **P ≠ E** la podest: P = living sub placă; E = circulație rece. Fără stâlp în living / acces beci.
+- **Podest:** studiu consolă transversală (~1 m) pe B_E scurt din C_E_PAL — nu consolă 3,7 m; nu C_E_LAND_SP.
+- **Placă principală:** comparație **15 vs 20 cm** pe 2 direcții; **fără** grindă lungă pe compartimentare A7 ca primă opțiune.
+- Punctul care decide casa = placa 15/20, nu umplerea zonei podest cu stâlpi.
+- Status conflicts: `east_landing_span` / `palier_plate_support` → STUDIU_CONSOLA; `slab_span_without_X320` → COMPARATIE_15_20.
+
+## 2026-10-16 — Podest consolă + placă 15/20 în geometrie
+
+- `B_E` prelungit la Y600 (consolă sud **111 cm** din C_E_PAL) — fără stâlp.
+- Raport: `outputs/reports/v47_a1_frame_slab_and_landing_v02.md`.
+- v01 east_landing cu stâlp = **RESPINS**.
+- `heights_cm`: slab 15 (alt 20 → clear 250).

@@ -1,7 +1,8 @@
 # Soluție studiu — east_landing_span v01
 
-**Status:** STUDIU_SOLUTIE · **NEVALIDAT** structurist  
-**Prioritate planuri:** P/E neschimbate · stâlp **nu** în circulația etaj scară
+**Status:** **RESPINS 2026-10-16** — `C_E_LAND_SP` bloca palier/rampă beci.  
+**Înlocuit de:** `outputs/reports/v47_a1_frame_slab_and_landing_v02.md` (consolă pe B_E).  
+**Prioritate planuri:** P/E neschimbate · stâlp **nu** în circulația etaj scară / acces beci
 
 ---
 

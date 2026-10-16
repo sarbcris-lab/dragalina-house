@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_frame_study",
-    "generated": "2026-10-16T05:11:11.499Z",
+    "generated": "2026-10-16T06:26:47.976Z",
     "status": "3D_STUDIU_A1_FRAME_CADRE",
     "source_plan": "data/building/v47_a1_frame_study.json",
     "based_on": "v47_a1_study amenajare (aprobată) + schemă cadre separată",
@@ -35765,12 +35765,12 @@
           "y": 18.1245
         },
         {
-          "x": 8.1389,
-          "y": 13.3309
+          "x": 8.1864,
+          "y": 12.2219
         },
         {
-          "x": 7.8392,
-          "y": 13.3181
+          "x": 7.8866,
+          "y": 12.2091
         },
         {
           "x": 7.6341,
@@ -35782,7 +35782,7 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "centură E până la C_E_PAL (Y489). C_E_LAND_SP RETRAS 2026-10-16 — bloca palier/rampă beci; east_landing = DESCHIS reproiectare cu scară"
+      "label": "centură E prin C_E_PAL + consolă sud ~111 cm până Y600 (studiu podest). Fără C_E_LAND_SP. Decisive: torsiune + ancorare + nod — NEVALIDAT"
     },
     {
       "id": "subsol_grinda_B_CASA_SCARA",
@@ -36405,12 +36405,12 @@
           "y": 18.1245
         },
         {
-          "x": 8.1389,
-          "y": 13.3309
+          "x": 8.1864,
+          "y": 12.2219
         },
         {
-          "x": 7.8392,
-          "y": 13.3181
+          "x": 7.8866,
+          "y": 12.2091
         },
         {
           "x": 7.6341,
@@ -39764,12 +39764,12 @@
           "y": 18.1245
         },
         {
-          "x": 8.1389,
-          "y": 13.3309
+          "x": 8.1864,
+          "y": 12.2219
         },
         {
-          "x": 7.8392,
-          "y": 13.3181
+          "x": 7.8866,
+          "y": 12.2091
         },
         {
           "x": 7.6341,
@@ -39781,7 +39781,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E până la C_E_PAL (Y489). C_E_LAND_SP RETRAS 2026-10-16 — bloca palier/rampă beci; east_landing = DESCHIS reproiectare cu scară (intrados 273)"
+      "label": "centură E prin C_E_PAL + consolă sud ~111 cm până Y600 (studiu podest). Fără C_E_LAND_SP. Decisive: torsiune + ancorare + nod — NEVALIDAT (intrados 273)"
     },
     {
       "id": "parter_centura_B_CASA_SCARA",
@@ -40318,12 +40318,12 @@
           "y": 18.1245
         },
         {
-          "x": 8.1389,
-          "y": 13.3309
+          "x": 8.1864,
+          "y": 12.2219
         },
         {
-          "x": 7.8392,
-          "y": 13.3181
+          "x": 7.8866,
+          "y": 12.2091
         },
         {
           "x": 7.6341,
@@ -40335,7 +40335,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E până la C_E_PAL (Y489). C_E_LAND_SP RETRAS 2026-10-16 — bloca palier/rampă beci; east_landing = DESCHIS reproiectare cu scară"
+      "label": "centură E prin C_E_PAL + consolă sud ~111 cm până Y600 (studiu podest). Fără C_E_LAND_SP. Decisive: torsiune + ancorare + nod — NEVALIDAT"
     },
     {
       "id": "etaj_centura_B_CASA_SCARA",
