@@ -69,6 +69,8 @@
 <text x="434.23" y="786.25" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_Y830</text>
 <rect x="495.85499999999996" y="467.5" width="123.25" height="25.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
 <text x="557.4799999999999" y="480.25" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_Y470_PALIER_EDGE</text>
+<rect x="495.85499999999996" y="467.5" width="25.5" height="25.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
+<text x="508.60499999999996" y="480.25" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_X535_PAL_N</text>
 <rect x="48.925" y="75.82" width="34" height="25.5" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
 <text x="65.925" y="74.12" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_NW</text>
 <rect x="313.105" y="75.82" width="34" height="25.5" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
@@ -85,6 +87,8 @@
 <text x="597.8549999999999" y="329.8" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_E_GEAM_S</text>
 <rect x="585.1049999999999" y="449.65" width="25.5" height="34" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
 <text x="597.8549999999999" y="447.95" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_E_PAL</text>
+<rect x="495.85499999999996" y="449.65" width="25.5" height="34" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
+<text x="508.60499999999996" y="447.95" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_L_PAL</text>
 <rect x="495.85499999999996" y="586.5" width="25.5" height="34" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>
 <text x="508.60499999999996" y="584.8" text-anchor="middle" font-size="6.5" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_CASA_SCARA</text>
 <rect x="606.3549999999999" y="556.75" width="12.75" height="12.75" fill="#2c2a28" stroke="#111" stroke-width="0.6"/>

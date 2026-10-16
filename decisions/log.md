@@ -217,6 +217,12 @@
 - `podest_se_placa` în Structură; Viewer `sharedFloorObjs` — grinzi/plăci pe Doar parter.
 - Gol placă = contur exact palier; planuri FRAME `38`/`39` din frame study (nu v47_exact).
 
+## 2026-10-16 — LOCK-1 palier / colț L
+
+- Aprobat: inel N+E+V + stâlp `C_L_PAL` (X536,3 Y449–489).
+- `B_Y470` P+E; `B_X535_PAL_N` Y470→500; `exclude_basement` pe borduri.
+- Geometrie închisă; armare/torsiune = calcul (nu capete libere).
+
 ## 2026-10-16 — Palier etaj AFARĂ + L A6 + gol Y590
 
 - `living_put_thermal_y590` doar pe **P** (nu pe E — băga palierul în casă); `outward_hint: north`.

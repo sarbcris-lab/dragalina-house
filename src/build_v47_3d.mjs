@@ -2420,12 +2420,14 @@ function main() {
       if (isFrameStudy && frameColumns) {
         // Stâlpii continui se extrudează o singură dată (fundație→acoperiș) în blocul P/E — nu stub-uri aici.
         frameColumnZ0 = zColBot;
-        // Soffit L-1: grinzi pe traseu subsol/cadru continuu — NU borduri de planșeu P-only (ex. B_Y470).
-        // Regulă: include dacă levels are "S", sau "P"+"E" (centură pe stâlpi). Exclude: doar ["P"] (muchie placă).
+        // Soffit L-1: grinzi pe traseu subsol/cadru continuu.
+        // Include: levels "S", sau "P"+"E" (centură pe stâlpi).
+        // Exclude: doar ["P"]; S_inverted; exclude_basement (bordură palier LOCK-1).
         for (const b of frameStudy.beams || []) {
           const lv = b.levels || [];
           const tag = lv.join();
           if (/S_inverted/i.test(tag)) continue;
+          if (b.exclude_basement) continue;
           const hasS = lv.includes("S");
           const hasP = lv.includes("P");
           const hasE = lv.includes("E");
@@ -2471,11 +2473,12 @@ function main() {
       const zFg0 = zFoundBot;
       const zFg1 = zFoundTop;
       if (isFrameStudy && frameColumns) {
-        // Fundație pe axe cadre (S sau P+E). Nu pe bordură planșeu P-only / întoarse.
+        // Fundație pe axe cadre (S sau P+E). Nu pe bordură palier / întoarse / exclude_basement.
         for (const b of frameStudy.beams || []) {
           const lv = b.levels || [];
           const tag = lv.join();
           if (/S_inverted/i.test(tag)) continue;
+          if (b.exclude_basement) continue;
           const hasS = lv.includes("S");
           const hasP = lv.includes("P");
           const hasE = lv.includes("E");

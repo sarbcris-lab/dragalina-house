@@ -120,7 +120,7 @@
       "dy": 30,
       "kind": "ext",
       "thermal": "mixed",
-      "note": "X0–565 casă încălzită (EB20 200 + ISOVER FASSADE 80, total nom. 299 mm); X565–680 bandă scară — cold_stair (fără ETICS) · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4",
+      "note": "X0–565 casă încălzită (EB20 200 + ISOVER FASSADE 80, total nom. 299 mm); X565–680 bandă scară — cold_stair (fără ETICS) · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4",
       "assembly": "A1+A4_split",
       "catalog_id_heated": "A1",
       "catalog_id_cold": "A4"
@@ -134,7 +134,7 @@
       "kind": "ext",
       "thermal": "heated_thermosystem",
       "assembly": "A2",
-      "note": "Y30–645; alcătuire P/E încălzită EB20+ISOVER FASSADE — de confirmat ETICS/proiectant · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
+      "note": "Y30–645; alcătuire P/E încălzită EB20+ISOVER FASSADE — de confirmat ETICS/proiectant · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
       "catalog_id": "A2",
       "thickness_finished_mm": 312,
       "geometry_note": "A2 +1.3 cm spre exterior"
@@ -148,7 +148,7 @@
       "kind": "ext",
       "thermal": "heated_thermosystem",
       "assembly": "A2",
-      "note": "P+E: X650 Y30–440; finit la X680; EB20 200 + ETICS ISOVER 80; structură beton — neconfirmat · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
+      "note": "P+E: X650 Y30–440; finit la X680; EB20 200 + ETICS ISOVER 80; structură beton — neconfirmat · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
       "catalog_id": "A2",
       "thickness_finished_mm": 312,
       "geometry_note": "A2 +1.3 cm spre exterior"
@@ -162,7 +162,7 @@
       "kind": "ext",
       "thermal": "heated_thermosystem",
       "assembly": "A2",
-      "note": "fațadă SUD exterioară casă (P+E) — restaurat; nu = bucătărie pe P; EB20+ISOVER FASSADE · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
+      "note": "fațadă SUD exterioară casă (P+E) — restaurat; nu = bucătărie pe P; EB20+ISOVER FASSADE · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
       "catalog_id": "A2",
       "thickness_finished_mm": 312,
       "geometry_note": "A2 +1.3 cm spre exterior"
@@ -176,7 +176,7 @@
       "kind": "ext",
       "thermal": "heated_thermosystem",
       "assembly": "A2",
-      "note": "Y645–675; terasă de la Y675; EB20+ISOVER FASSADE — de confirmat ETICS/proiectant · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
+      "note": "Y645–675; terasă de la Y675; EB20+ISOVER FASSADE — de confirmat ETICS/proiectant · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
       "catalog_id": "A2",
       "thickness_finished_mm": 312,
       "geometry_note": "A2 +1.3 cm spre exterior"
@@ -188,7 +188,7 @@
       "dx": 12.5,
       "dy": 615,
       "kind": "int",
-      "note": "V46r3: studiu casete — grosime actuală 12,5 cm; îngroșare locală propusă 15 cm spre living dacă se aleg pocket (vezi pocket_doors_study) · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7",
+      "note": "V46r3: studiu casete — grosime actuală 12,5 cm; îngroșare locală propusă 15 cm spre living dacă se aleg pocket (vezi pocket_doors_study) · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7",
       "catalog_id": "A7",
       "assembly": "A7",
       "thickness_finished_mm": 125
@@ -200,7 +200,7 @@
       "dx": 120,
       "dy": 15,
       "kind": "int",
-      "note": "spate nișă; adâncită 10 cm spre baie vs captură anterioară · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8",
+      "note": "spate nișă; adâncită 10 cm spre baie vs captură anterioară · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8",
       "catalog_id": "A8",
       "assembly": "A8",
       "thickness_finished_mm": 150,
@@ -213,7 +213,7 @@
       "dx": 15,
       "dy": 95,
       "kind": "int",
-      "note": "lateral est nișă Y187.5–282.5 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8",
+      "note": "lateral est nișă Y187.5–282.5 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8",
       "catalog_id": "A8",
       "assembly": "A8",
       "thickness_finished_mm": 150,
@@ -226,7 +226,7 @@
       "dx": 185,
       "dy": 15,
       "kind": "int",
-      "note": "rest perete baie–dormitor X162.5–347.5; front nișă deschis spre dormitor · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8",
+      "note": "rest perete baie–dormitor X162.5–347.5; front nișă deschis spre dormitor · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8",
       "catalog_id": "A8",
       "assembly": "A8",
       "thickness_finished_mm": 150,
@@ -240,7 +240,7 @@
       "dy": 270,
       "kind": "ext",
       "thermal": "house_stair_separator",
-      "note": "separator termic casă încălzită ↔ scară rece; P: vest scară Y590+; Y470–590 deschis (sub palier etaj) · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6",
+      "note": "separator termic casă încălzită ↔ scară rece; P: vest scară Y590+; Y470–590 deschis (sub palier etaj) · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6",
       "levels": [
         0
       ],
@@ -255,7 +255,7 @@
       "dx": 60,
       "dy": 12.5,
       "kind": "int",
-      "note": "doar etaj / scos de pe traseul P10 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7",
+      "note": "doar etaj / scos de pe traseul P10 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7",
       "levels": [
         1
       ],
@@ -270,7 +270,7 @@
       "dx": 30,
       "dy": 185,
       "kind": "ext",
-      "note": "Y675–860; gol buc_terasa_etaj Y680–770 pe L1; pe P = intrare_parter · catalog A5 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1",
+      "note": "Y675–860; gol buc_terasa_etaj Y680–770 pe L1; pe P = intrare_parter · catalog A5 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1",
       "catalog_id": "A1",
       "assembly": "A1",
       "thickness_finished_mm": 299
@@ -285,7 +285,7 @@
       "levels": [
         0
       ],
-      "note": "ext limită est sub palier — păstrat; canapea pe el · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
+      "note": "ext limită est sub palier — păstrat; canapea pe el · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
       "catalog_id": "A2",
       "assembly": "A2",
       "thickness_finished_mm": 312,
@@ -8389,6 +8389,26 @@
         "continuous_through_floor": true
       },
       {
+        "id": "C_L_PAL",
+        "x": 536.3,
+        "y": 449,
+        "dx": 30,
+        "dy": 40,
+        "orient": "corner_L_palier",
+        "levels": [
+          "S",
+          "P",
+          "E"
+        ],
+        "support_below": "fundație X535",
+        "protrusion_into_room_cm": 0,
+        "wall": "colț L A6 @ Y470 — casă (V/S) ↔ palier rece (E/N); fără proeminență în living",
+        "clear_landing": "y1=489 ≤ lower_landing Y490; nord de ușă Y500–600",
+        "door_clearance": "y1=489 < door Y0=500",
+        "lock": "structure_landing_lock_v01 LOCK-1",
+        "continuous_through_floor": true
+      },
+      {
         "id": "C_CASA_SCARA",
         "x": 536.3,
         "y": 610,
@@ -8537,7 +8557,7 @@
         "cantilever_south_of_C_E_PAL_cm": 101,
         "cantilever_y0": 489,
         "cantilever_y1": 590,
-        "note": "centură E prin C_E_PAL + consolă sud până Y590 (muchie S palier etaj). Fără stâlp. Nu intră în rampă2 Y590+. Decisive: torsiune/nod — calcul lipsă"
+        "note": "centură E prin C_E_PAL + consolă sud până Y590. LOCK-1: inel palier închis V cu C_L_PAL+B_Y470+B_X535_PAL_N. Armare/torsiune nod = calcul, nu geometrie deschisă."
       },
       {
         "id": "B_CASA_SCARA",
@@ -8646,13 +8666,35 @@
         "dx": 145,
         "dy": 30,
         "levels": [
-          "P"
+          "P",
+          "E"
         ],
         "supports": [
+          "C_L_PAL",
           "C_E_PAL",
           "B_E"
         ],
-        "note": "bordură N placă palier la PLANȘEU (levels P = intrados etaj, nu streșină). Capăt V fără stâlp — calcul lipsă. NU vestibul."
+        "exclude_basement": true,
+        "note": "LOCK-1: bordură N palier — planșeu + streșină (P+E). Capăt V pe C_L_PAL. NU vestibul. exclude_basement: nu e axă FG.",
+        "lock": "structure_landing_lock_v01 LOCK-1"
+      },
+      {
+        "id": "B_X535_PAL_N",
+        "x": 536.3,
+        "y": 470,
+        "dx": 30,
+        "dy": 30,
+        "levels": [
+          "P",
+          "E"
+        ],
+        "supports": [
+          "C_L_PAL",
+          "zid_separator_to_door"
+        ],
+        "exclude_basement": true,
+        "note": "LOCK-1: picior V inel palier Y470→500 (fața N a golului ușă). Sud: B_SEP + C_CASA_SCARA. exclude_basement.",
+        "lock": "structure_landing_lock_v01 LOCK-1"
       }
     ],
     "inverted_edge_beam": {
@@ -8740,19 +8782,23 @@
         "id": "east_landing_span",
         "severity": "STUDIU_CONSOLA",
         "registry": "calcul_lipsă",
-        "detail": "Placă podest consolă transversală pe B_E (Y489→590). Fără stâlp living/puț. Torsiune, ancorare, nod C_E_PAL, ridicare pe C_E_GEAM_S = de verificat prin calcul — nu demonstrate.",
-        "solution_ref": "outputs/reports/v47_a1_frame_slab_and_landing_v02.md",
+        "detail": "LOCK-1 geometric: inel N+E+V (C_L_PAL, B_Y470 P+E, B_X535_PAL_N, B_E→Y590). Rămâne calcul: armare, torsiune nod C_E_PAL/C_L_PAL, ridicare. Fără stâlp în living X565+.",
+        "solution_ref": "decisions/structure_landing_lock_v01.md",
         "geometry": {
           "B_E_cantilever_y0": 489,
           "B_E_cantilever_y1": 590,
-          "B_E_cantilever_cm": 101
-        }
+          "B_E_cantilever_cm": 101,
+          "C_L_PAL": "X536.3 Y449–489",
+          "lock": "LOCK-1"
+        },
+        "geometry_status": "rezolvat_geometric_LOCK1"
       },
       {
         "id": "palier_plate_support",
         "severity": "STUDIU_CONSOLA",
         "registry": "calcul_lipsă",
-        "detail": "P: living sub podest. E: circulație rece. Reazem consolă + C_E_PAL/B_Y470; pachet termic/acustic distinct — nu dublură beton."
+        "detail": "LOCK-1: placă pe inel N+E+V (nu consolă pe un singur reazem V). P: living sub placă. E: circulație rece. Armare/pachet fono = calcul.",
+        "geometry_status": "rezolvat_geometric_LOCK1"
       },
       {
         "id": "slab_span_without_X320",
@@ -8788,7 +8834,7 @@
         "id": "B_Y470_basement_mirror",
         "severity": "FIX_GENERATOR",
         "registry": "rezolvat_geometric",
-        "detail": "B_Y470 levels P = bordură planșeu — exclusă din subsol_grinda_*/subsol_fg_* (filtru: S sau P+E, nu P-only). Fără impact 40%/37/255."
+        "detail": "LOCK-1: B_Y470 + B_X535_PAL_N pe P+E (viewer) cu exclude_basement:true — nu oglindă FG/subsol. C_L_PAL are FG pe stâlp."
       },
       {
         "id": "basement_retaining",
