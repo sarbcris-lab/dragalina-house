@@ -5427,21 +5427,31 @@
         "note": "doar sub rampă2 / curte engleză — fără pardoseală living deasupra"
       },
       "edge_beam_y": 590,
-      "edge_beam_note": "FRAME: grindă întoarsă Y575–590 X565–680, z −30…−5 (nu coborâre −70). Clear acces liber pe h ușă; fit sandwich −30…+32 = calcul.",
+      "edge_beam_note": "FRAME: grindă întoarsă Y575–590 X566.3–681.3, z −30…−5 (nu coborâre −70). Clear acces liber pe h ușă; fit sandwich −30…+32 = calcul.",
       "edge_beam_clear_under_cm": null,
       "edge_beam_depth_cm": null,
       "edge_beam_depth_status": "ipoteză structurist",
-      "edge_beam_x0": 565,
+      "edge_beam_x0": 566.3,
       "edge_beam_dx": 115,
       "edge_beam_mode": "inverted_study",
       "inverted_edge_beam": {
-        "x": 565,
+        "id": "B_Y590_EDGE_INVERTED",
+        "x": 566.3,
         "y": 575,
         "dx": 115,
         "dy": 15,
         "z0_cm": -30,
         "z1_cm": -5,
-        "note": "variantă studiu: grindă întoarsă deasupra intrados −30; eliberează clear acces; încape în sandwich? — calcul"
+        "note": "ansamblu muchie puț — nu etichetă via_slab goală",
+        "levels": [
+          "S_inverted"
+        ],
+        "supports": [
+          "C_SHAFT_E_PIER",
+          "placa_parter_span_to_sep",
+          "B_SEP_AFTER_DOOR"
+        ],
+        "load_path": "E→C_SHAFT_E_PIER (zid est); W→placă parter (întoarsă) → diafragmă/separator S de ușă (B_SEP_AFTER_DOOR+C_CASA_SCARA). Ușă Y500–600 și palier Y490–600 fără stâlp."
       }
     },
     "absolute_from_grade_cm": {
@@ -8626,13 +8636,32 @@
       }
     ],
     "inverted_edge_beam": {
-      "x": 565,
+      "id": "B_Y590_EDGE_INVERTED",
+      "x": 566.3,
       "y": 575,
       "dx": 115,
       "dy": 15,
       "z0_cm": -30,
       "z1_cm": -5,
-      "note": "variantă studiu: grindă întoarsă deasupra intrados −30; eliberează clear acces; încape în sandwich? — calcul"
+      "note": "ansamblu muchie puț — nu etichetă via_slab goală",
+      "levels": [
+        "S_inverted"
+      ],
+      "supports": [
+        "C_SHAFT_E_PIER",
+        "placa_parter_span_to_sep",
+        "B_SEP_AFTER_DOOR"
+      ],
+      "load_path": "E→C_SHAFT_E_PIER (zid est); W→placă parter (întoarsă) → diafragmă/separator S de ușă (B_SEP_AFTER_DOOR+C_CASA_SCARA). Ușă Y500–600 și palier Y490–600 fără stâlp."
+    },
+    "stair_structure_system": {
+      "system": "trepte_pe_placi_BA_cu_vanguri",
+      "podest_ba_cm": 15,
+      "podest_finish_pack_cm": 12,
+      "ramp_plate_cm": 20,
+      "stringer_th_cm": 12,
+      "bearing_into_podest_cm": 15,
+      "note": "Fiecare treaptă pe placă BA proprie (contact intrados); vanguri pe muchii rezemate în placa podestului. Grosimi neconfirmate prin calcul."
     },
     "removed_from_prior_grid": [
       {

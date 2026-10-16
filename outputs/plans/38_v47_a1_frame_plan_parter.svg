@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="660" height="848" viewBox="0 0 660.21 848.1049999999999">
+<svg xmlns="http://www.w3.org/2000/svg" width="660" height="860" viewBox="0 0 660.21 860.1049999999999">
 <rect width="100%" height="100%" fill="#f7f4ef"/>
-<text x="40" y="22" font-size="14" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">FRAME · Parter — pereți + stâlpi + grinzi P</text>
-<text x="40" y="836.1049999999999" font-size="9" fill="#555" font-family="IBM Plex Sans,Segoe UI,sans-serif">sursa: v47_a1_frame_study.json · envelope 682.6×861.3 · GEO_X0=1.3 · neconstruibil</text>
+<text x="40" y="22" font-size="14" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">FRAME · Parter — pereți, goluri, stâlpi, grinzi, scară, podest</text>
+<text x="40" y="848.1049999999999" font-size="9" fill="#555" font-family="IBM Plex Sans,Segoe UI,sans-serif">sursa: v47_a1_frame_study.json · GEO_X0=1.3 · scară=trepte_pe_placi_BA_cu_vanguri · neconstruibil</text>
 <rect x="40" y="68" width="580.21" height="732.1049999999999" fill="none" stroke="#888" stroke-width="1"/>
 <rect x="41.105" y="68" width="578" height="25.5" fill="#c4a882" fill-opacity="0.55" stroke="#666" stroke-width="0.4"/>
 <rect x="40" y="93.5" width="26.605" height="522.75" fill="#c4a882" fill-opacity="0.55" stroke="#666" stroke-width="0.4"/>
@@ -17,6 +17,25 @@
 <rect x="321.605" y="641.75" width="25.5" height="157.25" fill="#c4a882" fill-opacity="0.55" stroke="#666" stroke-width="0.4"/>
 <rect x="593.6049999999999" y="442" width="26.605" height="127.5" fill="#c4a882" fill-opacity="0.55" stroke="#666" stroke-width="0.4"/>
 <rect x="520.25" y="544" width="72.25" height="25.5" fill="#c4a882" fill-opacity="0.55" stroke="#666" stroke-width="0.4"/>
+<rect x="336.48" y="221" width="10.625" height="68" fill="#fff" fill-opacity="0.9" stroke="#333" stroke-width="0.8"/>
+<rect x="249.35500000000002" y="297.5" width="68" height="10.625" fill="#fff" fill-opacity="0.9" stroke="#333" stroke-width="0.8"/>
+<rect x="336.48" y="316.625" width="10.625" height="76.5" fill="#fff" fill-opacity="0.9" stroke="#333" stroke-width="0.8"/>
+<rect x="143.105" y="616.25" width="127.5" height="25.5" fill="#cfe8ff" fill-opacity="0.9" stroke="#4a7ab0" stroke-width="0.8"/>
+<rect x="321.605" y="646" width="25.5" height="76.5" fill="#cfe8ff" fill-opacity="0.9" stroke="#4a7ab0" stroke-width="0.8"/>
+<rect x="593.6049999999999" y="157.25" width="25.5" height="174.25" fill="#cfe8ff" fill-opacity="0.9" stroke="#4a7ab0" stroke-width="0.8"/>
+<rect x="341.75" y="799" width="178.5" height="97.75" fill="#6a8498" fill-opacity="0.35" stroke="#3a5060" stroke-width="0.8"/>
+<line x1="341.75" y1="799" x2="341.75" y2="896.75" stroke="#3a5060" stroke-width="0.4"/>
+<line x1="367.25" y1="799" x2="367.25" y2="896.75" stroke="#3a5060" stroke-width="0.4"/>
+<line x1="392.75" y1="799" x2="392.75" y2="896.75" stroke="#3a5060" stroke-width="0.4"/>
+<line x1="418.25" y1="799" x2="418.25" y2="896.75" stroke="#3a5060" stroke-width="0.4"/>
+<line x1="443.75" y1="799" x2="443.75" y2="896.75" stroke="#3a5060" stroke-width="0.4"/>
+<line x1="469.25" y1="799" x2="469.25" y2="896.75" stroke="#3a5060" stroke-width="0.4"/>
+<line x1="494.75" y1="799" x2="494.75" y2="896.75" stroke="#3a5060" stroke-width="0.4"/>
+<text x="431" y="795.6" text-anchor="middle" font-size="8" fill="#3a5060" font-family="IBM Plex Sans,Segoe UI,sans-serif">rampă 1</text>
+<rect x="520.25" y="799" width="97.75" height="97.75" fill="#8b8680" fill-opacity="0.5" stroke="#333" stroke-width="1"/>
+<text x="569.125" y="847.875" text-anchor="middle" font-size="8" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">podest BA 15</text>
+<rect x="520.25" y="569.5" width="97.75" height="229.5" fill="none" stroke="#a33" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="569.125" y="684.25" text-anchor="middle" font-size="8" fill="#a33" font-family="IBM Plex Sans,Segoe UI,sans-serif">puț scară (P)</text>
 <rect x="48.925" y="75.82" width="570.18" height="25.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
 <text x="334.015" y="88.57" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_N</text>
 <rect x="48.925" y="75.82" width="25.5" height="558.1099999999999" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
@@ -25,6 +44,8 @@
 <text x="597.8549999999999" y="322.65999999999997" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_E</text>
 <rect x="495.85499999999996" y="586.5" width="25.5" height="212.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
 <text x="508.60499999999996" y="692.75" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_CASA_SCARA</text>
+<rect x="521.355" y="556.75" width="97.75" height="12.75" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
+<text x="570.2299999999999" y="563.125" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_Y590_EDGE_INVERTED</text>
 <rect x="495.85499999999996" y="578" width="25.5" height="8.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>
 <text x="508.60499999999996" y="582.25" text-anchor="middle" font-size="7" fill="#fff" font-family="IBM Plex Sans,Segoe UI,sans-serif">B_SEP_AFTER_DOOR</text>
 <rect x="48.925" y="616.25" width="298.18" height="25.5" fill="#5a554e" fill-opacity="0.85" stroke="#222" stroke-width="0.5"/>

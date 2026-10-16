@@ -50,8 +50,8 @@ const SLAB_TOP_ETAJ = FF_ETAJ - FLOOR_BUILDUP; // 308
 const SLAB_SOFFIT_ETAJ = SLAB_TOP_ETAJ - SLAB_TH; // 293
 const BEAM_SOFFIT_P = SLAB_TOP_ETAJ - BEAM_H_TOTAL; // 273
 const CLEAR_P_UNDER_BEAM = BEAM_SOFFIT_P - FF_PARTER; // 241
-/** Grindă întoarsă la muchia beciului: în pachetul −30…+32, fără coborâre sub −30 pe clarul ușii. */
-const INVERTED_BEAM = {
+/** Grindă întoarsă — cotă locală înainte de GEO_X0 (o singură sursă pentru grinzi + volum). */
+const INVERTED_BEAM_LOCAL = {
   x: 565,
   y: 575,
   dx: 115,
@@ -304,6 +304,18 @@ function buildFrameSchema() {
     { id: "20x40_in_20cm_leaf", reason: "nu demonstrăm încadrarea în banda de 20 cm" },
   ];
 
+  /** O singură definiție geometrică — folosită de beams[], inverted_edge_beam, volum, planuri. */
+  const invertedEdgeBeam = {
+    id: "B_Y590_EDGE_INVERTED",
+    ...INVERTED_BEAM_LOCAL,
+    x: GEO_X0 + INVERTED_BEAM_LOCAL.x,
+    levels: ["S_inverted"],
+    supports: ["C_SHAFT_E_PIER", "placa_parter_span_to_sep", "B_SEP_AFTER_DOOR"],
+    load_path:
+      "E→C_SHAFT_E_PIER (zid est); W→placă parter (întoarsă) → diafragmă/separator S de ușă (B_SEP_AFTER_DOOR+C_CASA_SCARA). Ușă Y500–600 și palier Y490–600 fără stâlp.",
+    note: "ansamblu muchie puț — nu etichetă via_slab goală",
+  };
+
   const beams = [
     {
       id: "B_N",
@@ -348,16 +360,7 @@ function buildFrameSchema() {
       supports: ["C_CASA_SCARA", "C_S_INTRARE_E"],
       note: "separator Y610→sud; nod cu B_Y830",
     },
-    {
-      id: "B_Y590_EDGE_INVERTED",
-      ...INVERTED_BEAM,
-      x: GEO_X0 + INVERTED_BEAM.x,
-      levels: ["S_inverted"],
-      supports: ["C_SHAFT_E_PIER", "placa_parter_span_to_sep", "B_SEP_AFTER_DOOR"],
-      load_path:
-        "E→C_SHAFT_E_PIER (zid est); W→placă parter (întoarsă) → diafragmă/separator S de ușă (B_SEP_AFTER_DOOR+C_CASA_SCARA). Ușă Y500–600 și palier Y490–600 fără stâlp.",
-      note: "ansamblu muchie puț — nu etichetă via_slab goală",
-    },
+    invertedEdgeBeam,
     {
       id: "B_SEP_AFTER_DOOR",
       x: ax.X_CASA_SCARA,
@@ -525,7 +528,16 @@ function buildFrameSchema() {
     },
     columns,
     beams,
-    inverted_edge_beam: INVERTED_BEAM,
+    inverted_edge_beam: invertedEdgeBeam,
+    stair_structure_system: {
+      system: "trepte_pe_placi_BA_cu_vanguri",
+      podest_ba_cm: 15,
+      podest_finish_pack_cm: 12,
+      ramp_plate_cm: 20,
+      stringer_th_cm: 12,
+      bearing_into_podest_cm: 15,
+      note: "Fiecare treaptă pe placă BA proprie (contact intrados); vanguri pe muchii rezemate în placa podestului. Grosimi neconfirmate prin calcul.",
+    },
     removed_from_prior_grid: removed,
     removed_from_east_landing_study: [
       {
@@ -1016,14 +1028,13 @@ function applyFrameToStudy(base) {
   if (out.basement_cm?.slab_coordination_cm) {
     const sc = out.basement_cm.slab_coordination_cm;
     sc.edge_beam_y = 590;
-    sc.edge_beam_x0 = INVERTED_BEAM.x;
-    sc.edge_beam_dx = INVERTED_BEAM.dx;
+    sc.edge_beam_x0 = fr.inverted_edge_beam.x;
+    sc.edge_beam_dx = fr.inverted_edge_beam.dx;
     sc.edge_beam_mode = "inverted_study";
     sc.edge_beam_depth_cm = null;
     sc.edge_beam_clear_under_cm = null;
-    sc.edge_beam_note =
-      "FRAME: grindă întoarsă Y575–590 X565–680, z −30…−5 (nu coborâre −70). Clear acces liber pe h ușă; fit sandwich −30…+32 = calcul.";
-    sc.inverted_edge_beam = INVERTED_BEAM;
+    sc.edge_beam_note = `FRAME: grindă întoarsă Y575–590 X${fr.inverted_edge_beam.x}–${fr.inverted_edge_beam.x + fr.inverted_edge_beam.dx}, z −30…−5 (nu coborâre −70). Clear acces liber pe h ușă; fit sandwich −30…+32 = calcul.`;
+    sc.inverted_edge_beam = fr.inverted_edge_beam;
   }
 
   out.basement_cm = out.basement_cm || {};
@@ -1392,6 +1403,7 @@ function main() {
           "outputs/plans/37_v47_a1_frame_sections.svg",
           "outputs/plans/38_v47_a1_frame_plan_parter.svg",
           "outputs/plans/39_v47_a1_frame_plan_etaj.svg",
+          "outputs/plans/40_v47_a1_frame_stair_sections.svg",
           "outputs/reports/v47_a1_frame_structure.md",
         ],
       },

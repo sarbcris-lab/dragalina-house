@@ -215,10 +215,11 @@ function main() {
         (b) => !/S_soffit|S_inverted/i.test((b.levels || []).join())
       )
     : null;
+  // O singură geometrie: preferă grinda din listă (cu GEO_X0); inverted_edge_beam trebuie să fie același obiect
   const invertedEdgeBeam =
     isFrameStudy &&
-    (frameStudy.inverted_edge_beam ||
-      (frameStudy.beams || []).find((b) => (b.levels || []).includes("S_inverted")));
+    ((frameStudy.beams || []).find((b) => (b.levels || []).includes("S_inverted") || b.id === "B_Y590_EDGE_INVERTED") ||
+      frameStudy.inverted_edge_beam);
   /** Z inferior stâlpi FRAME (pe talpa fundației) — un singur corp până la acoperiș. */
   let frameColumnZ0 = -0.3;
   // Legacy A1 (amenajare) — neschimbat de varianta frame
@@ -1174,10 +1175,32 @@ function main() {
   const parapetT = st.parapet_thick_cm || 10;
 
   // Rampă 1 (sud→est): NU e terasă — culoare scară, separat de placa terasă (X≤340)
+  // FRAME: sistem explicit = trepte pe plăci BA treaptă-cu-treaptă + vanguri pe muchii care se reazemă în placa podestului.
   const tread = st.tread_cm || 30;
   const nTread180 = n180 - 1;
   const rampStruct180 = m(st.ramp2_structure_cm || 20);
-  const stringerTh = 12; // cm — vanguri continue (FRAME)
+  const stringerTh = 12; // cm — vanguri pe muchii (FRAME)
+  const stairBearCm = 15; // cm — reazem în placa podestului
+  const zPod = zParter + riser * n180;
+  const podSlabThCm = 15; // BA structural — separat de pachetul de finisaj
+  const podFinishTh = floorTh; // 12 cm pachet superior
+  const zPodConcreteTop = zPod - podFinishTh; // +148 dacă FF=+160
+  const zPodConcreteBot = zPodConcreteTop - m(podSlabThCm); // +133
+  const boxFacesBeam = [
+    [0, 1, 2],
+    [0, 2, 3],
+    [4, 6, 5],
+    [4, 7, 6],
+    [0, 4, 5],
+    [0, 5, 1],
+    [3, 2, 6],
+    [3, 6, 7],
+    [0, 3, 7],
+    [0, 7, 4],
+    [1, 5, 6],
+    [1, 6, 2],
+  ];
+
   for (let i = 0; i < nTread180; i++) {
     const xWest = f180.x + i * tread;
     const zTop = zParter + riser * (i + 1);
@@ -1190,19 +1213,20 @@ function main() {
       color: i % 2 === 0 ? "#6a8498" : "#5a7488",
       label: "SCARĂ rampă 1 (nu terasă)",
     });
-    if (!isFrameStudy) {
-      meshes.push({
-        id: `structura_r180_${i}`,
-        type: "extrude",
-        polygon: rectPoly(xWest, f180.y, tread, st.width_clear_cm),
-        z0_m: zTop - rampStruct180,
-        z1_m: zTop - treadTh,
-        color: "#5a6570",
-        opacity: 0.9,
-        site_layer: "structura",
-        label: `Structură rampă 1 ${st.ramp2_structure_cm || 20} cm`,
-      });
-    }
+    // Placă BA sub fiecare treaptă — contact pe tot intradosul (nu doar coarda înclinată)
+    meshes.push({
+      id: `structura_r180_${i}`,
+      type: "extrude",
+      polygon: rectPoly(xWest, f180.y, tread, st.width_clear_cm),
+      z0_m: zTop - treadTh - rampStruct180,
+      z1_m: zTop - treadTh,
+      color: "#5a6570",
+      opacity: 0.9,
+      site_layer: "structura",
+      label: isFrameStudy
+        ? `Placă BA treaptă rampă 1 (${st.ramp2_structure_cm || 20} cm) — sistem trepte pe vanguri`
+        : `Structură rampă 1 ${st.ramp2_structure_cm || 20} cm`,
+    });
     meshes.push({
       id: `parapet_r180_${i}`,
       type: "extrude",
@@ -1214,28 +1238,16 @@ function main() {
     });
   }
   if (isFrameStudy && nTread180 > 0) {
-    // Capătul superior = intrados ultima treaptă (nTread180 risers), nu n180
+    // Vanguri: fața de sus = linia nasurilor (intrados la nas); reazem E în placa podestului
     const zTopW = zParter + riser - treadTh;
     const zTopE = zParter + riser * nTread180 - treadTh;
-    const zBotW = zTopW - rampStruct180;
-    const zBotE = zTopE - rampStruct180;
-    const runDx180 = nTread180 * tread;
     const x0 = f180.x;
-    const x1 = f180.x + runDx180;
-    const boxFacesR1 = [
-      [0, 1, 2],
-      [0, 2, 3],
-      [4, 6, 5],
-      [4, 7, 6],
-      [0, 4, 5],
-      [0, 5, 1],
-      [3, 2, 6],
-      [3, 6, 7],
-      [0, 3, 7],
-      [0, 7, 4],
-      [1, 5, 6],
-      [1, 6, 2],
-    ];
+    const xRun1 = f180.x + nTread180 * tread; // = muchia W podest
+    const x1 = Math.min(pod.x + stairBearCm, pod.x + pod.dx); // pătrundere în placă
+    // La reazem: vangul intră în grosimea plăcii podest (+133…+148)
+    const zTopBear = zPodConcreteTop;
+    const zBotW = zTopW - rampStruct180;
+    const zBotBear = zPodConcreteBot;
     function pushRamp180Stringer(id, y0, dy, label) {
       const y1 = y0 + dy;
       meshes.push({
@@ -1243,53 +1255,56 @@ function main() {
         type: "triangles",
         vertices: [
           siteVert(x0, y0, zTopW),
-          siteVert(x1, y0, zTopE),
-          siteVert(x1, y1, zTopE),
+          siteVert(x1, y0, zTopBear),
+          siteVert(x1, y1, zTopBear),
           siteVert(x0, y1, zTopW),
           siteVert(x0, y0, zBotW),
-          siteVert(x1, y0, zBotE),
-          siteVert(x1, y1, zBotE),
+          siteVert(x1, y0, zBotBear),
+          siteVert(x1, y1, zBotBear),
           siteVert(x0, y1, zBotW),
         ],
-        faces: boxFacesR1,
-        color: "#5a6570",
+        faces: boxFacesBeam,
+        color: "#4a5560",
         opacity: 0.92,
         site_layer: "structura",
         label,
       });
     }
-    pushRamp180Stringer("structura_rampa180_continua_N", f180.y, stringerTh, "Vang N rampă 1 ÎNCLINAT");
+    pushRamp180Stringer(
+      "structura_rampa180_continua_N",
+      f180.y,
+      stringerTh,
+      `Vang N rampă 1 — reazem podest X${xRun1}→${x1} (BA ${podSlabThCm} cm)`
+    );
     pushRamp180Stringer(
       "structura_rampa180_continua_S",
       f180.y + st.width_clear_cm - stringerTh,
       stringerTh,
-      "Vang S rampă 1 ÎNCLINAT"
+      `Vang S rampă 1 — reazem podest`
     );
   }
 
-  // Podest SE: placă BA + finisaj
-  const zPod = zParter + riser * n180;
-  const podSlabTh = m(15);
+  // Podest SE: BA structural SEPARAT de pachetul de finisaj (nu 15−12=3)
   meshes.push({
     id: "podest_se_placa",
     type: "extrude",
     polygon: rectPoly(pod.x, pod.y, pod.dx, pod.dy),
-    z0_m: zPod - podSlabTh,
-    z1_m: zPod - floorTh,
+    z0_m: zPodConcreteBot,
+    z1_m: zPodConcreteTop,
     color: "#8b8680",
     opacity: 0.9,
     site_layer: "structura",
-    label: "Podest SE — placă BA",
+    label: `Podest SE — placă BA ${podSlabThCm} cm (+${Math.round(zPodConcreteBot * 100)}→+${Math.round(zPodConcreteTop * 100)}; neconfirmat calcul)`,
   });
   meshes.push({
     id: "podest_se",
     type: "extrude",
     polygon: rectPoly(pod.x, pod.y, pod.dx, pod.dy),
-    z0_m: zPod - floorTh,
+    z0_m: zPodConcreteTop,
     z1_m: zPod,
     color: "#c4b496",
     site_layer: "finisaj",
-    label: "Podest SE — finisaj (FF=+128 cm)",
+    label: `Podest SE — pachet finisaj ${Math.round(podFinishTh * 100)} cm (FF=+${Math.round(zPod * 100)})`,
   });
   meshes.push({
     id: "parapet_podest_sud",
@@ -1329,19 +1344,19 @@ function main() {
         color: i % 2 === 0 ? "#8a93a0" : "#7a8390",
         label: "Rampă est (FF treaptă = sus)",
       });
-      if (!isFrameStudy) {
-        meshes.push({
-          id: `structura_r2_${i}`,
-          type: "extrude",
-          polygon: rectPoly(r2.x, ySouth, r2.dx, tread),
-          z0_m: zTopStep - rampStruct,
-          z1_m: zTopStep - treadTh,
-          color: "#5a6570",
-          label: `Structură rampă ${st.ramp2_structure_cm || 20} cm`,
-          opacity: 0.9,
-          site_layer: "structura",
-        });
-      }
+      meshes.push({
+        id: `structura_r2_${i}`,
+        type: "extrude",
+        polygon: rectPoly(r2.x, ySouth, r2.dx, tread),
+        z0_m: zTopStep - treadTh - rampStruct,
+        z1_m: zTopStep - treadTh,
+        color: "#5a6570",
+        label: isFrameStudy
+          ? `Placă BA treaptă rampă 2 (${st.ramp2_structure_cm || 20} cm)`
+          : `Structură rampă ${st.ramp2_structure_cm || 20} cm`,
+        opacity: 0.9,
+        site_layer: "structura",
+      });
       meshes.push({
         id: `parapet_r2_${i}`,
         type: "extrude",
@@ -1352,7 +1367,7 @@ function main() {
         label: "Parapet rampa 2",
       });
       if (storageUnderRamp2) {
-        const zFill = Math.max(zParter, zTopStep - rampStruct);
+        const zFill = Math.max(zParter, zTopStep - treadTh - rampStruct);
         if (zFill > zParter + 0.05) {
           meshes.push({
             id: `depozit_sub_r2_${i}`,
@@ -1368,45 +1383,44 @@ function main() {
       }
     }
     if (isFrameStudy && nTread330 > 0) {
-      // Vanguri: fața de sus = intrados trepte; grosime = rampStruct pe verticală
-      // Capăt N = intrados ultima treaptă (nTread330), nu n330 (altfel +1 ridicare → +314 vs treaptă +304)
-      const zTopS = zPod + riser - treadTh;
+      // Vanguri pe muchii: sus = nasuri; sud = reazem în placa podestului (nu plutire la +150 peste +148)
       const zTopN = zPod + riser * nTread330 - treadTh;
-      const zBotS = zTopS - rampStruct;
-      const zBotN = zTopN - rampStruct;
+      const zTopFirst = zPod + riser - treadTh;
       const runDy2 = nTread330 * tread;
       const yRun0 = ySouthEdge - runDy2; // nord (sus)
-      const boxFacesRamp = [
-        [0, 1, 2],
-        [0, 2, 3],
-        [4, 6, 5],
-        [4, 7, 6],
-        [0, 4, 5],
-        [0, 5, 1],
-        [3, 2, 6],
-        [3, 6, 7],
-        [0, 3, 7],
-        [0, 7, 4],
-        [1, 5, 6],
-        [1, 6, 2],
-      ];
+      const yBear0 = ySouthEdge; // muchie N podest
+      const yBear1 = Math.min(ySouthEdge + stairBearCm, pod.y + pod.dy); // în placă spre sud
+      const zBotN = zTopN - rampStruct;
       function pushInclinedStringer(id, x0, dx, label) {
         const x1 = x0 + dx;
+        // Segment reazem pe/în placă podest (orizontal pe Y bear)
+        meshes.push({
+          id: `${id}_reazem_podest`,
+          type: "extrude",
+          polygon: rectPoly(x0, yBear0, dx, yBear1 - yBear0),
+          z0_m: zPodConcreteBot,
+          z1_m: zPodConcreteTop,
+          color: "#4a5560",
+          opacity: 0.95,
+          site_layer: "structura",
+          label: `Reazem vang rampă 2 pe placă podest BA`,
+        });
+        // Segment înclinat: din muchia podestului (cotă placă) până la ultima treaptă
         meshes.push({
           id,
           type: "triangles",
           vertices: [
-            siteVert(x0, ySouthEdge, zTopS),
-            siteVert(x1, ySouthEdge, zTopS),
+            siteVert(x0, yBear0, zPodConcreteTop),
+            siteVert(x1, yBear0, zPodConcreteTop),
             siteVert(x1, yRun0, zTopN),
             siteVert(x0, yRun0, zTopN),
-            siteVert(x0, ySouthEdge, zBotS),
-            siteVert(x1, ySouthEdge, zBotS),
+            siteVert(x0, yBear0, zPodConcreteBot),
+            siteVert(x1, yBear0, zPodConcreteBot),
             siteVert(x1, yRun0, zBotN),
             siteVert(x0, yRun0, zBotN),
           ],
-          faces: boxFacesRamp,
-          color: "#5a6570",
+          faces: boxFacesBeam,
+          color: "#4a5560",
           opacity: 0.92,
           site_layer: "structura",
           label,
@@ -1416,14 +1430,16 @@ function main() {
         "structura_rampa2_continua_W",
         r2.x,
         stringerTh,
-        "Vang W rampă 2 ÎNCLINAT (sub intrados trepte)"
+        `Vang W rampă 2 — din placă podest (+${Math.round(zPodConcreteTop * 100)}) → intrados +${Math.round(zTopN * 100)}`
       );
       pushInclinedStringer(
         "structura_rampa2_continua_E",
         r2.x + r2.dx - stringerTh,
         stringerTh,
-        "Vang E rampă 2 ÎNCLINAT"
+        `Vang E rampă 2 — reazem podest`
       );
+      // notă: zTopFirst folosit pentru audit aliniere; plăcile pe treaptă asigură contactul
+      void zTopFirst;
     }
   }
   // Rampă 2 + palier: sub același acoperiș 2 ape (nu copertină separată).
@@ -1433,20 +1449,21 @@ function main() {
   // Jos = plafon living P. Sus = circulație scară. Podest SE = neacoperit (în afara Y0–860).
   if (isFrameStudy && frameStudy?.levels_cm) {
     const lvP = frameStudy.levels_cm;
-    // Buildup 12 cm peste placă (FF−12): izol. termoacustică 6 + șapă 4 + finisaj 2 — living cald jos / circulație rece sus
-    const landIsoCm = 6;
+    // Buildup 12 cm: XPS 5 + impact 1 + șapă 4 + finisaj 2 — living cald jos / circulație rece sus (performanțe NECONFIRMATE)
+    const landXpsCm = 5;
+    const landImpactCm = 1;
     const landScreedCm = 4;
     const landFinishCm = 2;
-    const landBuild = landIsoCm + landScreedCm + landFinishCm;
+    const landBuild = landXpsCm + landImpactCm + landScreedCm + landFinishCm;
     if (Math.abs(landBuild - floorTh * 100) > 0.2) {
       console.warn(
         `[build_v47_3d] palier buildup ${landBuild} cm ≠ floorTh ${Math.round(floorTh * 100)} — conflict cote`
       );
     }
     const zSlabTop = m(lvP.slab_top_etaj);
-    const zIso1 = zSlabTop + m(landIsoCm);
-    const zScreed1 = zIso1 + m(landScreedCm);
-    // O singură placă BA pe zonă (gol exact în etaj_placa_structura).
+    const zXps1 = zSlabTop + m(landXpsCm);
+    const zImpact1 = zXps1 + m(landImpactCm);
+    const zScreed1 = zImpact1 + m(landScreedCm);
     meshes.push({
       id: "palier_superior_placa",
       type: "extrude",
@@ -1463,17 +1480,28 @@ function main() {
       type: "extrude",
       polygon: rectPoly(palSup.x, palSup.y, palSup.dx, palSup.dy),
       z0_m: zSlabTop,
-      z1_m: zIso1,
+      z1_m: zXps1,
       color: "#e2d18a",
       opacity: 0.75,
       site_layer: "finisaj",
-      label: `Palier — XPS/mat fono ${landIsoCm} cm (rece peste living)`,
+      label: `Palier — XPS 300 ${landXpsCm} cm (termic; ipoteză)`,
+    });
+    meshes.push({
+      id: "palier_superior_membrana_impact",
+      type: "extrude",
+      polygon: rectPoly(palSup.x, palSup.y, palSup.dx, palSup.dy),
+      z0_m: zXps1,
+      z1_m: zImpact1,
+      color: "#c4a35a",
+      opacity: 0.8,
+      site_layer: "finisaj",
+      label: `Palier — membrană impact ${landImpactCm} cm (Regupol/Schöck-type; Lnw NECONFIRMAT)`,
     });
     meshes.push({
       id: "palier_superior_sapa",
       type: "extrude",
       polygon: rectPoly(palSup.x, palSup.y, palSup.dx, palSup.dy),
-      z0_m: zIso1,
+      z0_m: zImpact1,
       z1_m: zScreed1,
       color: "#b8b0a4",
       opacity: 0.85,
@@ -1488,7 +1516,7 @@ function main() {
       z1_m: zEtaj,
       color: "#c8c2b6",
       site_layer: "finisaj",
-      label: `Palier — finisaj ${landFinishCm} cm (nu vestibul)`,
+      label: `Palier — finisaj ${landFinishCm} cm; racord grindă/perete/prag = secțiune`,
     });
   } else {
     meshes.push({

@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_frame_study",
-    "generated": "2026-10-16T07:57:44.589Z",
+    "generated": "2026-10-16T08:33:31.851Z",
     "status": "3D_STUDIU_A1_FRAME_CADRE",
     "source_plan": "data/building/v47_a1_frame_study.json",
     "based_on": "v47_a1_study amenajare (aprobată) + schemă cadre separată",
@@ -32611,6 +32611,38 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
+      "id": "structura_r180_0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.1374,
+          "y": 9.4891
+        },
+        {
+          "x": 5.4372,
+          "y": 9.5019
+        },
+        {
+          "x": 5.482,
+          "y": 8.4529
+        },
+        {
+          "x": 5.1823,
+          "y": 8.4401
+        },
+        {
+          "x": 5.1374,
+          "y": 9.4891
+        }
+      ],
+      "z0_m": 0.21999999999999997,
+      "z1_m": 0.42,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Placă BA treaptă rampă 1 (20 cm) — sistem trepte pe vanguri"
+    },
+    {
       "id": "parapet_r180_0",
       "type": "extrude",
       "polygon": [
@@ -32669,6 +32701,38 @@
       "z1_m": 0.64,
       "color": "#5a7488",
       "label": "SCARĂ rampă 1 (nu terasă)"
+    },
+    {
+      "id": "structura_r180_1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.4372,
+          "y": 9.5019
+        },
+        {
+          "x": 5.7369,
+          "y": 9.5148
+        },
+        {
+          "x": 5.7817,
+          "y": 8.4657
+        },
+        {
+          "x": 5.482,
+          "y": 8.4529
+        },
+        {
+          "x": 5.4372,
+          "y": 9.5019
+        }
+      ],
+      "z0_m": 0.38000000000000006,
+      "z1_m": 0.5800000000000001,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Placă BA treaptă rampă 1 (20 cm) — sistem trepte pe vanguri"
     },
     {
       "id": "parapet_r180_1",
@@ -32731,6 +32795,38 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
+      "id": "structura_r180_2",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.7369,
+          "y": 9.5148
+        },
+        {
+          "x": 6.0366,
+          "y": 9.5276
+        },
+        {
+          "x": 6.0814,
+          "y": 8.4785
+        },
+        {
+          "x": 5.7817,
+          "y": 8.4657
+        },
+        {
+          "x": 5.7369,
+          "y": 9.5148
+        }
+      ],
+      "z0_m": 0.54,
+      "z1_m": 0.74,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Placă BA treaptă rampă 1 (20 cm) — sistem trepte pe vanguri"
+    },
+    {
       "id": "parapet_r180_2",
       "type": "extrude",
       "polygon": [
@@ -32789,6 +32885,38 @@
       "z1_m": 0.96,
       "color": "#5a7488",
       "label": "SCARĂ rampă 1 (nu terasă)"
+    },
+    {
+      "id": "structura_r180_3",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.0366,
+          "y": 9.5276
+        },
+        {
+          "x": 6.3364,
+          "y": 9.5404
+        },
+        {
+          "x": 6.3812,
+          "y": 8.4914
+        },
+        {
+          "x": 6.0814,
+          "y": 8.4785
+        },
+        {
+          "x": 6.0366,
+          "y": 9.5276
+        }
+      ],
+      "z0_m": 0.7,
+      "z1_m": 0.8999999999999999,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Placă BA treaptă rampă 1 (20 cm) — sistem trepte pe vanguri"
     },
     {
       "id": "parapet_r180_3",
@@ -32851,6 +32979,38 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
+      "id": "structura_r180_4",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.3364,
+          "y": 9.5404
+        },
+        {
+          "x": 6.6361,
+          "y": 9.5532
+        },
+        {
+          "x": 6.6809,
+          "y": 8.5042
+        },
+        {
+          "x": 6.3812,
+          "y": 8.4914
+        },
+        {
+          "x": 6.3364,
+          "y": 9.5404
+        }
+      ],
+      "z0_m": 0.8600000000000001,
+      "z1_m": 1.06,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Placă BA treaptă rampă 1 (20 cm) — sistem trepte pe vanguri"
+    },
+    {
       "id": "parapet_r180_4",
       "type": "extrude",
       "polygon": [
@@ -32909,6 +33069,38 @@
       "z1_m": 1.28,
       "color": "#5a7488",
       "label": "SCARĂ rampă 1 (nu terasă)"
+    },
+    {
+      "id": "structura_r180_5",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.6361,
+          "y": 9.5532
+        },
+        {
+          "x": 6.9358,
+          "y": 9.566
+        },
+        {
+          "x": 6.9806,
+          "y": 8.517
+        },
+        {
+          "x": 6.6809,
+          "y": 8.5042
+        },
+        {
+          "x": 6.6361,
+          "y": 9.5532
+        }
+      ],
+      "z0_m": 1.02,
+      "z1_m": 1.22,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Placă BA treaptă rampă 1 (20 cm) — sistem trepte pe vanguri"
     },
     {
       "id": "parapet_r180_5",
@@ -32971,6 +33163,38 @@
       "label": "SCARĂ rampă 1 (nu terasă)"
     },
     {
+      "id": "structura_r180_6",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.9358,
+          "y": 9.566
+        },
+        {
+          "x": 7.2355,
+          "y": 9.5789
+        },
+        {
+          "x": 7.2804,
+          "y": 8.5298
+        },
+        {
+          "x": 6.9806,
+          "y": 8.517
+        },
+        {
+          "x": 6.9358,
+          "y": 9.566
+        }
+      ],
+      "z0_m": 1.1800000000000002,
+      "z1_m": 1.3800000000000001,
+      "color": "#5a6570",
+      "opacity": 0.9,
+      "site_layer": "structura",
+      "label": "Placă BA treaptă rampă 1 (20 cm) — sistem trepte pe vanguri"
+    },
+    {
       "id": "parapet_r180_6",
       "type": "extrude",
       "polygon": [
@@ -33010,14 +33234,14 @@
           "z": 0.42
         },
         {
-          "x": 7.2355,
-          "y": 9.5789,
-          "z": 1.38
+          "x": 7.3854,
+          "y": 9.5853,
+          "z": 1.48
         },
         {
-          "x": 7.2407,
-          "y": 9.459,
-          "z": 1.38
+          "x": 7.3905,
+          "y": 9.4654,
+          "z": 1.48
         },
         {
           "x": 5.1426,
@@ -33030,14 +33254,14 @@
           "z": 0.22
         },
         {
-          "x": 7.2355,
-          "y": 9.5789,
-          "z": 1.18
+          "x": 7.3854,
+          "y": 9.5853,
+          "z": 1.33
         },
         {
-          "x": 7.2407,
-          "y": 9.459,
-          "z": 1.18
+          "x": 7.3905,
+          "y": 9.4654,
+          "z": 1.33
         },
         {
           "x": 5.1426,
@@ -33107,10 +33331,10 @@
           2
         ]
       ],
-      "color": "#5a6570",
+      "color": "#4a5560",
       "opacity": 0.92,
       "site_layer": "structura",
-      "label": "Vang N rampă 1 ÎNCLINAT"
+      "label": "Vang N rampă 1 — reazem podest X565→580 (BA 15 cm)"
     },
     {
       "id": "structura_rampa180_continua_S",
@@ -33122,14 +33346,14 @@
           "z": 0.42
         },
         {
-          "x": 7.2752,
-          "y": 8.6497,
-          "z": 1.38
+          "x": 7.4251,
+          "y": 8.6561,
+          "z": 1.48
         },
         {
-          "x": 7.2804,
-          "y": 8.5298,
-          "z": 1.38
+          "x": 7.4302,
+          "y": 8.5362,
+          "z": 1.48
         },
         {
           "x": 5.1823,
@@ -33142,14 +33366,14 @@
           "z": 0.22
         },
         {
-          "x": 7.2752,
-          "y": 8.6497,
-          "z": 1.18
+          "x": 7.4251,
+          "y": 8.6561,
+          "z": 1.33
         },
         {
-          "x": 7.2804,
-          "y": 8.5298,
-          "z": 1.18
+          "x": 7.4302,
+          "y": 8.5362,
+          "z": 1.33
         },
         {
           "x": 5.1823,
@@ -33219,10 +33443,10 @@
           2
         ]
       ],
-      "color": "#5a6570",
+      "color": "#4a5560",
       "opacity": 0.92,
       "site_layer": "structura",
-      "label": "Vang S rampă 1 ÎNCLINAT"
+      "label": "Vang S rampă 1 — reazem podest"
     },
     {
       "id": "podest_se_placa",
@@ -33249,12 +33473,12 @@
           "y": 9.5789
         }
       ],
-      "z0_m": 1.4500000000000002,
+      "z0_m": 1.33,
       "z1_m": 1.48,
       "color": "#8b8680",
       "opacity": 0.9,
       "site_layer": "structura",
-      "label": "Podest SE — placă BA"
+      "label": "Podest SE — placă BA 15 cm (+133→+148; neconfirmat calcul)"
     },
     {
       "id": "podest_se",
@@ -33285,7 +33509,7 @@
       "z1_m": 1.6,
       "color": "#c4b496",
       "site_layer": "finisaj",
-      "label": "Podest SE — finisaj (FF=+128 cm)"
+      "label": "Podest SE — pachet finisaj 12 cm (FF=+160)"
     },
     {
       "id": "parapet_podest_sud",
@@ -33378,6 +33602,38 @@
       "label": "Rampă est (FF treaptă = sus)"
     },
     {
+      "id": "structura_r2_0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.2227,
+          "y": 9.8786
+        },
+        {
+          "x": 8.3717,
+          "y": 9.9278
+        },
+        {
+          "x": 8.3845,
+          "y": 9.628
+        },
+        {
+          "x": 7.2355,
+          "y": 9.5789
+        },
+        {
+          "x": 7.2227,
+          "y": 9.8786
+        }
+      ],
+      "z0_m": 1.5,
+      "z1_m": 1.7,
+      "color": "#5a6570",
+      "label": "Placă BA treaptă rampă 2 (20 cm)",
+      "opacity": 0.9,
+      "site_layer": "structura"
+    },
+    {
       "id": "parapet_r2_0",
       "type": "extrude",
       "polygon": [
@@ -33436,6 +33692,38 @@
       "z1_m": 1.9200000000000002,
       "color": "#7a8390",
       "label": "Rampă est (FF treaptă = sus)"
+    },
+    {
+      "id": "structura_r2_1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.2099,
+          "y": 10.1783
+        },
+        {
+          "x": 8.3589,
+          "y": 10.2275
+        },
+        {
+          "x": 8.3717,
+          "y": 9.9278
+        },
+        {
+          "x": 7.2227,
+          "y": 9.8786
+        },
+        {
+          "x": 7.2099,
+          "y": 10.1783
+        }
+      ],
+      "z0_m": 1.6600000000000001,
+      "z1_m": 1.86,
+      "color": "#5a6570",
+      "label": "Placă BA treaptă rampă 2 (20 cm)",
+      "opacity": 0.9,
+      "site_layer": "structura"
     },
     {
       "id": "parapet_r2_1",
@@ -33498,6 +33786,38 @@
       "label": "Rampă est (FF treaptă = sus)"
     },
     {
+      "id": "structura_r2_2",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1971,
+          "y": 10.4781
+        },
+        {
+          "x": 8.346,
+          "y": 10.5272
+        },
+        {
+          "x": 8.3589,
+          "y": 10.2275
+        },
+        {
+          "x": 7.2099,
+          "y": 10.1783
+        },
+        {
+          "x": 7.1971,
+          "y": 10.4781
+        }
+      ],
+      "z0_m": 1.82,
+      "z1_m": 2.02,
+      "color": "#5a6570",
+      "label": "Placă BA treaptă rampă 2 (20 cm)",
+      "opacity": 0.9,
+      "site_layer": "structura"
+    },
+    {
       "id": "parapet_r2_2",
       "type": "extrude",
       "polygon": [
@@ -33556,6 +33876,38 @@
       "z1_m": 2.24,
       "color": "#7a8390",
       "label": "Rampă est (FF treaptă = sus)"
+    },
+    {
+      "id": "structura_r2_3",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1842,
+          "y": 10.7778
+        },
+        {
+          "x": 8.3331,
+          "y": 10.8269
+        },
+        {
+          "x": 8.346,
+          "y": 10.5272
+        },
+        {
+          "x": 7.1971,
+          "y": 10.4781
+        },
+        {
+          "x": 7.1842,
+          "y": 10.7778
+        }
+      ],
+      "z0_m": 1.9800000000000002,
+      "z1_m": 2.18,
+      "color": "#5a6570",
+      "label": "Placă BA treaptă rampă 2 (20 cm)",
+      "opacity": 0.9,
+      "site_layer": "structura"
     },
     {
       "id": "parapet_r2_3",
@@ -33618,6 +33970,38 @@
       "label": "Rampă est (FF treaptă = sus)"
     },
     {
+      "id": "structura_r2_4",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1714,
+          "y": 11.0775
+        },
+        {
+          "x": 8.3203,
+          "y": 11.1267
+        },
+        {
+          "x": 8.3331,
+          "y": 10.8269
+        },
+        {
+          "x": 7.1842,
+          "y": 10.7778
+        },
+        {
+          "x": 7.1714,
+          "y": 11.0775
+        }
+      ],
+      "z0_m": 2.14,
+      "z1_m": 2.3400000000000003,
+      "color": "#5a6570",
+      "label": "Placă BA treaptă rampă 2 (20 cm)",
+      "opacity": 0.9,
+      "site_layer": "structura"
+    },
+    {
       "id": "parapet_r2_4",
       "type": "extrude",
       "polygon": [
@@ -33676,6 +34060,38 @@
       "z1_m": 2.56,
       "color": "#7a8390",
       "label": "Rampă est (FF treaptă = sus)"
+    },
+    {
+      "id": "structura_r2_5",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1585,
+          "y": 11.3772
+        },
+        {
+          "x": 8.3075,
+          "y": 11.4264
+        },
+        {
+          "x": 8.3203,
+          "y": 11.1267
+        },
+        {
+          "x": 7.1714,
+          "y": 11.0775
+        },
+        {
+          "x": 7.1585,
+          "y": 11.3772
+        }
+      ],
+      "z0_m": 2.3,
+      "z1_m": 2.5,
+      "color": "#5a6570",
+      "label": "Placă BA treaptă rampă 2 (20 cm)",
+      "opacity": 0.9,
+      "site_layer": "structura"
     },
     {
       "id": "parapet_r2_5",
@@ -33738,6 +34154,38 @@
       "label": "Rampă est (FF treaptă = sus)"
     },
     {
+      "id": "structura_r2_6",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1457,
+          "y": 11.677
+        },
+        {
+          "x": 8.2947,
+          "y": 11.7261
+        },
+        {
+          "x": 8.3075,
+          "y": 11.4264
+        },
+        {
+          "x": 7.1585,
+          "y": 11.3772
+        },
+        {
+          "x": 7.1457,
+          "y": 11.677
+        }
+      ],
+      "z0_m": 2.46,
+      "z1_m": 2.66,
+      "color": "#5a6570",
+      "label": "Placă BA treaptă rampă 2 (20 cm)",
+      "opacity": 0.9,
+      "site_layer": "structura"
+    },
+    {
       "id": "parapet_r2_6",
       "type": "extrude",
       "polygon": [
@@ -33796,6 +34244,38 @@
       "z1_m": 2.88,
       "color": "#7a8390",
       "label": "Rampă est (FF treaptă = sus)"
+    },
+    {
+      "id": "structura_r2_7",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1329,
+          "y": 11.9767
+        },
+        {
+          "x": 8.2818,
+          "y": 12.0258
+        },
+        {
+          "x": 8.2947,
+          "y": 11.7261
+        },
+        {
+          "x": 7.1457,
+          "y": 11.677
+        },
+        {
+          "x": 7.1329,
+          "y": 11.9767
+        }
+      ],
+      "z0_m": 2.6199999999999997,
+      "z1_m": 2.82,
+      "color": "#5a6570",
+      "label": "Placă BA treaptă rampă 2 (20 cm)",
+      "opacity": 0.9,
+      "site_layer": "structura"
     },
     {
       "id": "parapet_r2_7",
@@ -33858,6 +34338,38 @@
       "label": "Rampă est (FF treaptă = sus)"
     },
     {
+      "id": "structura_r2_8",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1201,
+          "y": 12.2764
+        },
+        {
+          "x": 8.269,
+          "y": 12.3256
+        },
+        {
+          "x": 8.2818,
+          "y": 12.0258
+        },
+        {
+          "x": 7.1329,
+          "y": 11.9767
+        },
+        {
+          "x": 7.1201,
+          "y": 12.2764
+        }
+      ],
+      "z0_m": 2.78,
+      "z1_m": 2.98,
+      "color": "#5a6570",
+      "label": "Placă BA treaptă rampă 2 (20 cm)",
+      "opacity": 0.9,
+      "site_layer": "structura"
+    },
+    {
       "id": "parapet_r2_8",
       "type": "extrude",
       "polygon": [
@@ -33888,18 +34400,50 @@
       "label": "Parapet rampa 2"
     },
     {
+      "id": "structura_rampa2_continua_W_reazem_podest",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.2355,
+          "y": 9.5789
+        },
+        {
+          "x": 7.3554,
+          "y": 9.584
+        },
+        {
+          "x": 7.3618,
+          "y": 9.4341
+        },
+        {
+          "x": 7.2419,
+          "y": 9.429
+        },
+        {
+          "x": 7.2355,
+          "y": 9.5789
+        }
+      ],
+      "z0_m": 1.33,
+      "z1_m": 1.48,
+      "color": "#4a5560",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "Reazem vang rampă 2 pe placă podest BA"
+    },
+    {
       "id": "structura_rampa2_continua_W",
       "type": "triangles",
       "vertices": [
         {
           "x": 7.2355,
           "y": 9.5789,
-          "z": 1.7
+          "z": 1.48
         },
         {
           "x": 7.3554,
           "y": 9.584,
-          "z": 1.7
+          "z": 1.48
         },
         {
           "x": 7.24,
@@ -33914,12 +34458,12 @@
         {
           "x": 7.2355,
           "y": 9.5789,
-          "z": 1.5
+          "z": 1.33
         },
         {
           "x": 7.3554,
           "y": 9.584,
-          "z": 1.5
+          "z": 1.33
         },
         {
           "x": 7.24,
@@ -33994,10 +34538,42 @@
           2
         ]
       ],
-      "color": "#5a6570",
+      "color": "#4a5560",
       "opacity": 0.92,
       "site_layer": "structura",
-      "label": "Vang W rampă 2 ÎNCLINAT (sub intrados trepte)"
+      "label": "Vang W rampă 2 — din placă podest (+148) → intrados +298"
+    },
+    {
+      "id": "structura_rampa2_continua_E_reazem_podest",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.2646,
+          "y": 9.6229
+        },
+        {
+          "x": 8.3845,
+          "y": 9.628
+        },
+        {
+          "x": 8.3909,
+          "y": 9.4782
+        },
+        {
+          "x": 8.271,
+          "y": 9.473
+        },
+        {
+          "x": 8.2646,
+          "y": 9.6229
+        }
+      ],
+      "z0_m": 1.33,
+      "z1_m": 1.48,
+      "color": "#4a5560",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "Reazem vang rampă 2 pe placă podest BA"
     },
     {
       "id": "structura_rampa2_continua_E",
@@ -34006,12 +34582,12 @@
         {
           "x": 8.2646,
           "y": 9.6229,
-          "z": 1.7
+          "z": 1.48
         },
         {
           "x": 8.3845,
           "y": 9.628,
-          "z": 1.7
+          "z": 1.48
         },
         {
           "x": 8.269,
@@ -34026,12 +34602,12 @@
         {
           "x": 8.2646,
           "y": 9.6229,
-          "z": 1.5
+          "z": 1.33
         },
         {
           "x": 8.3845,
           "y": 9.628,
-          "z": 1.5
+          "z": 1.33
         },
         {
           "x": 8.269,
@@ -34106,10 +34682,10 @@
           2
         ]
       ],
-      "color": "#5a6570",
+      "color": "#4a5560",
       "opacity": 0.92,
       "site_layer": "structura",
-      "label": "Vang E rampă 2 ÎNCLINAT"
+      "label": "Vang E rampă 2 — reazem podest"
     },
     {
       "id": "palier_superior_placa",
@@ -34169,11 +34745,43 @@
         }
       ],
       "z0_m": 3.08,
-      "z1_m": 3.14,
+      "z1_m": 3.13,
       "color": "#e2d18a",
       "opacity": 0.75,
       "site_layer": "finisaj",
-      "label": "Palier — XPS/mat fono 6 cm (rece peste living)"
+      "label": "Palier — XPS 300 5 cm (termic; ipoteză)"
+    },
+    {
+      "id": "palier_superior_membrana_impact",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.0688,
+          "y": 13.4753
+        },
+        {
+          "x": 8.1178,
+          "y": 13.5202
+        },
+        {
+          "x": 8.1691,
+          "y": 12.3213
+        },
+        {
+          "x": 7.1201,
+          "y": 12.2764
+        },
+        {
+          "x": 7.0688,
+          "y": 13.4753
+        }
+      ],
+      "z0_m": 3.13,
+      "z1_m": 3.1399999999999997,
+      "color": "#c4a35a",
+      "opacity": 0.8,
+      "site_layer": "finisaj",
+      "label": "Palier — membrană impact 1 cm (Regupol/Schöck-type; Lnw NECONFIRMAT)"
     },
     {
       "id": "palier_superior_sapa",
@@ -34200,8 +34808,8 @@
           "y": 13.4753
         }
       ],
-      "z0_m": 3.14,
-      "z1_m": 3.18,
+      "z0_m": 3.1399999999999997,
+      "z1_m": 3.1799999999999997,
       "color": "#b8b0a4",
       "opacity": 0.85,
       "site_layer": "finisaj",
@@ -34232,11 +34840,11 @@
           "y": 13.4753
         }
       ],
-      "z0_m": 3.18,
+      "z0_m": 3.1799999999999997,
       "z1_m": 3.1999999999999997,
       "color": "#c8c2b6",
       "site_layer": "finisaj",
-      "label": "Palier — finisaj 2 cm (nu vestibul)"
+      "label": "Palier — finisaj 2 cm; racord grindă/perete/prag = secțiune"
     },
     {
       "id": "put_scara_beci_sub_r2",
@@ -37909,24 +38517,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.1137,
-          "y": 12.4263
+          "x": 7.1266,
+          "y": 12.4268
         },
         {
-          "x": 8.2626,
-          "y": 12.4754
+          "x": 8.2756,
+          "y": 12.476
         },
         {
-          "x": 8.269,
-          "y": 12.3256
+          "x": 8.282,
+          "y": 12.3261
         },
         {
-          "x": 7.1201,
-          "y": 12.2764
+          "x": 7.1331,
+          "y": 12.277
         },
         {
-          "x": 7.1137,
-          "y": 12.4263
+          "x": 7.1266,
+          "y": 12.4268
         }
       ],
       "z0_m": -0.3,

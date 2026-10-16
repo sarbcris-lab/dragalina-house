@@ -216,3 +216,11 @@
 - Rampă 1+2: vanguri înclinate sub intrados; capăt superior = nTread (nu nRiser) — aliniază la +298 Intrados / +304 FF.
 - `podest_se_placa` în Structură; Viewer `sharedFloorObjs` — grinzi/plăci pe Doar parter.
 - Gol placă = contur exact palier; planuri FRAME `38`/`39` din frame study (nu v47_exact).
+
+## 2026-10-16 — Închidere geometrie scară (post-78ec6a2)
+
+- Podest BA **15 cm** separat (+133→+148); pachet finisaj 12 cm deasupra — nu 3 cm.
+- Sistem: **trepte pe plăci BA** + vanguri pe muchii cu **reazem 15 cm în placa podestului**.
+- `B_Y590_EDGE_INVERTED` = `inverted_edge_beam` (aceeași geometrie cu GEO_X0).
+- Palier: XPS 300 5 cm + membrană impact 1 cm + șapă 4 + finisaj 2 (ipoteză; Lnw NECONFIRMAT).
+- Planuri 38/39: goluri, scară, podest, contur plăci; secțiuni noduri → `40_…_stair_sections.svg`.
