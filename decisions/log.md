@@ -217,6 +217,13 @@
 - `podest_se_placa` în Structură; Viewer `sharedFloorObjs` — grinzi/plăci pe Doar parter.
 - Gol placă = contur exact palier; planuri FRAME `38`/`39` din frame study (nu v47_exact).
 
+## 2026-10-16 — Cadre BA: audit stadiu → pachet calcul
+
+- Proem. interior = 0; bump sud ~9 cm afară.
+- Minim stâlp = 30 cm (P100); along 40 = încă ipoteză până la FE.
+- `frame_calc_package_v01.md` + roadmap: calcul înainte de tăiere terasă/scară pentru util.
+- Util E sub 37 = onest (palier afară); recuperare terasă/scară după structură.
+
 ## 2026-10-16 — Două variante studiu + cadre ≥30 cm
 
 - LOCK: `structure_two_variants_v01.md` — **A** cadre BA min 30 cm (P100); **B** BA cu pereți structurali.

@@ -1,54 +1,34 @@
-# Ordine de lucru: geometrie anvelopă + FF → apoi calcule structură
+# Ordine de lucru: geometrie → calcule structură → util din terasă/scară
 
-**Status:** LOCK proces · 2026-10-16  
-**Motiv:** Calcule FE pe geometrie greșită (pereți, cote FF, grinzi) = timp pierdut.
+**Status:** LOCK proces · actualizat 2026-10-16  
+**Variantă activă:** A — cadre BA (`structure_two_variants_v01.md`)
 
-## 1. Când facem calculele?
+## 1. Geometrie anvelopă + FF — ÎNCHIS (Varianta A)
 
-**Nu acum** ca livrabil final.  
-**Da**, imediat **după** ce închidem:
+- [x] FF = **+48** (2 trepte + ridicare palier)
+- [x] L A6 etaj — palier rece AFARĂ din studio
+- [x] Fațadă / A6 vizibile în pipeline frame
+- [x] Stâlpi **≥30 cm** P100, **proem. interior 0**, ETICS afară (bump sud afară)
+- [x] B_E → Y590; B_Y470 P+E; LOCK-1R consolă (fără stâlp living)
 
-1. **Pereții termici** unde ai spus (L la palier E; fațadă stradă P) — vizibili corect în view  
-2. **Cotele FF** (teren → trepte → terasă / palier P / interior) — un singur sistem de cote  
-3. **Traseul grinzilor** față de living (întoarse / în afara camerei) ca să respectăm **255**  
+## 2. Acum — pachet calcul (obligatoriu)
 
-Apoi FE pe schema reală, cu prioritate:
-- consolă B_E + placă palier  
-- colțuri / deschideri fără stâlp  
-- centuri care nu închid perimetrul  
-- placă 15 (țintă clear 255)  
-- grinzi vs 255 în garsoniere  
+Vezi **`decisions/frame_calc_package_v01.md`**.
 
-## 2. FF +48 cm — LOCK (3 ridicări)
+Ordine: stâlpi (min/optim) → consolă palier → placă living/255 → grinzi/pad → întoarsă → FG/retenție → acoperiș.
 
-| Cotă | Valoare | Sens |
-|------|---------|------|
-| Teren / alee (referință) | **0** | |
-| `entry_steps` | **2 trepte** mesh (+16, +32) | `acces_treapta_0/1` · dy 60 |
-| A 3-a ridicare | pe **palier / terasă** | FF = **+48** (nu a 3-a treaptă galbenă) |
-| FF terasă + palier P + interior P | **+48 cm** | 3 × 16 ridicări totale |
-| Beci (absolut) | **−250** | neschimbat vs teren |
+**Nu** tăiem încă terasa/scara pentru util până minimul structural e stabilit pe calcule.
 
-**Lock:** 2 trepte + ridicare pe palier = FF +48.
+## 3. Apoi — util ≥37 pe E
 
-## 3. Pereți — ce lipsește / ce trebuie locked (înainte de FE)
+- Recuperare din **terasă + scară** (cerință beneficiar)
+- Fără a băga palierul rece în util studio
+- Corecție contabilă A6 (dacă e supra-scădere) = paralel, fără a înlocui calculul
 
-### Etaj — palier scară rece (în afara casei încălzite)
-- **Nevoie:** anvelopă caldă în **L spre interior** (A6 ~300 mm):  
-  - picior **V** (vest scară) — există intenție `buc_est_etaj` A6  
-  - picior **N** (pe muchia palier Y470, spre living/camere) — **de confirmat / adăugat** dacă lipsește din view  
-- Jos = living încălzit (aceeași placă); sus = circulație rece — deci L-ul e critic termic, nu doar „desen”.
+## 4. Ce nu mai e „presupunere”
 
-### Parter — fațadă spre stradă
-- Peretele **exterior izolat** pe direcția stradă (catalog A1/A2) trebuie să apară corect în view-uri (straturi, nu doar volum gri).  
-- Separat: separator casă↔scară (A6) pe P unde e cazul.
-
-**Regulă:** până pereții ăștia sunt cotăți și văzuți corect → **nu** începem FE „definitiv”.
-
-## 4. Checklist scurt
-
-- [x] FF = **+48** (3 ridicări × 16)  
-- [ ] Lock geometrie L A6 la palier etaj + verificare view  
-- [ ] Lock / corecție perete stradă P în view (straturi A1/A2)  
-- [ ] Traseu grinzi vs clear 255 în garsoniere  
-- [ ] Abia apoi: pachet calcul (consolă, colțuri, centuri deschise, placă 15)
+| Afirmație | Bază |
+|-----------|------|
+| Stâlp cadru ≥300 mm | P100 §5.3.2.2 / 5.4.2.2 |
+| Along = 40 cm | **Încă ipoteză** până la FE |
+| Consolă palier OK | **Doar geo**; capacitate = calcul |
