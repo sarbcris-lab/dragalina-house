@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_frame_study",
-    "generated": "2026-10-16T10:43:37.302Z",
+    "generated": "2026-10-16T10:47:35.698Z",
     "status": "3D_STUDIU_A1_FRAME_CADRE",
     "source_plan": "data/building/v47_a1_frame_study.json",
     "based_on": "v47_a1_study amenajare (aprobată) + schemă cadre separată",
@@ -36826,7 +36826,7 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "centură E prin C_E_PAL + consolă sud până Y590. LOCK-1: inel palier închis V cu C_L_PAL+B_Y470+B_X535_PAL_N. Armare/torsiune nod = calcul, nu geometrie deschisă."
+      "label": "centură E prin C_E_PAL + consolă sud până Y590. LOCK-1R: palier = consolă pe B_E (fără stâlp în living P). Armare/torsiune nod C_E_PAL = calcul."
     },
     {
       "id": "subsol_grinda_B_CASA_SCARA",
@@ -37243,38 +37243,6 @@
       "opacity": 0.97,
       "site_layer": "structura",
       "label": "nod centură pe C_E_PAL"
-    },
-    {
-      "id": "subsol_grinda_node_C_L_PAL",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.7731,
-          "y": 13.6728
-        },
-        {
-          "x": 7.0728,
-          "y": 13.6857
-        },
-        {
-          "x": 7.0899,
-          "y": 13.286
-        },
-        {
-          "x": 6.7902,
-          "y": 13.2732
-        },
-        {
-          "x": 6.7731,
-          "y": 13.6728
-        }
-      ],
-      "z0_m": -0.7,
-      "z1_m": -0.3,
-      "color": "#6a6358",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "nod centură pe C_L_PAL"
     },
     {
       "id": "subsol_grinda_node_C_CASA_SCARA",
@@ -37915,38 +37883,6 @@
       "opacity": 0.97,
       "site_layer": "structura",
       "label": "talpă locală C_E_PAL"
-    },
-    {
-      "id": "subsol_fg_pad_C_L_PAL",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.7731,
-          "y": 13.6728
-        },
-        {
-          "x": 7.0728,
-          "y": 13.6857
-        },
-        {
-          "x": 7.0899,
-          "y": 13.286
-        },
-        {
-          "x": 6.7902,
-          "y": 13.2732
-        },
-        {
-          "x": 6.7731,
-          "y": 13.6728
-        }
-      ],
-      "z0_m": -3.1,
-      "z1_m": -2.65,
-      "color": "#6a6660",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "talpă locală C_L_PAL"
     },
     {
       "id": "subsol_fg_pad_C_CASA_SCARA",
@@ -40339,38 +40275,6 @@
       "label": "stâlp C_E_PAL fundație→acoperiș (30×40), legat pe grinzi fg+centuri"
     },
     {
-      "id": "stalp_continuu_C_L_PAL",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.7731,
-          "y": 13.6728
-        },
-        {
-          "x": 7.0728,
-          "y": 13.6857
-        },
-        {
-          "x": 7.0899,
-          "y": 13.286
-        },
-        {
-          "x": 6.7902,
-          "y": 13.2732
-        },
-        {
-          "x": 6.7731,
-          "y": 13.6728
-        }
-      ],
-      "z0_m": -3.1,
-      "z1_m": 5.97,
-      "color": "#6e6a64",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "stâlp C_L_PAL fundație→acoperiș (30×40), legat pe grinzi fg+centuri"
-    },
-    {
       "id": "stalp_continuu_C_CASA_SCARA",
       "type": "extrude",
       "polygon": [
@@ -40921,7 +40825,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E prin C_E_PAL + consolă sud până Y590. LOCK-1: inel palier închis V cu C_L_PAL+B_Y470+B_X535_PAL_N. Armare/torsiune nod = calcul, nu geometrie deschisă. (intrados 289)"
+      "label": "centură E prin C_E_PAL + consolă sud până Y590. LOCK-1R: palier = consolă pe B_E (fără stâlp în living P). Armare/torsiune nod C_E_PAL = calcul. (intrados 289)"
     },
     {
       "id": "parter_centura_B_CASA_SCARA",
@@ -41088,24 +40992,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.782,
-          "y": 13.463
+          "x": 7.0688,
+          "y": 13.4753
         },
         {
-          "x": 8.2307,
-          "y": 13.525
+          "x": 8.1178,
+          "y": 13.5202
         },
         {
-          "x": 8.2435,
-          "y": 13.2253
+          "x": 8.1306,
+          "y": 13.2205
         },
         {
-          "x": 6.7949,
-          "y": 13.1633
+          "x": 7.0816,
+          "y": 13.1756
         },
         {
-          "x": 6.782,
-          "y": 13.463
+          "x": 7.0688,
+          "y": 13.4753
         }
       ],
       "z0_m": 2.89,
@@ -41113,39 +41017,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "LOCK-1: bordură N palier — planșeu + streșină (P+E). Capăt V pe C_L_PAL. NU vestibul. exclude_basement: nu e axă FG. (intrados 289)"
-    },
-    {
-      "id": "parter_centura_B_X535_PAL_N",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.782,
-          "y": 13.463
-        },
-        {
-          "x": 7.0818,
-          "y": 13.4759
-        },
-        {
-          "x": 7.0946,
-          "y": 13.1761
-        },
-        {
-          "x": 6.7949,
-          "y": 13.1633
-        },
-        {
-          "x": 6.782,
-          "y": 13.463
-        }
-      ],
-      "z0_m": 2.89,
-      "z1_m": 3.24,
-      "color": "#5a554e",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "LOCK-1: picior V inel palier Y470→500 (fața N a golului ușă). Sud: B_SEP + C_CASA_SCARA. exclude_basement. (intrados 289)"
+      "label": "LOCK-1R: bordură N palier X565–670 (P+E). Fără stâlp V (living P). Consolă pe B_E. NU vestibul. (intrados 289)"
     },
     {
       "id": "etaj_placa_structura",
@@ -41395,28 +41267,6 @@
         ],
         [
           {
-            "x": 6.7731,
-            "y": 13.6728
-          },
-          {
-            "x": 6.7902,
-            "y": 13.2732
-          },
-          {
-            "x": 7.0899,
-            "y": 13.286
-          },
-          {
-            "x": 7.0728,
-            "y": 13.6857
-          },
-          {
-            "x": 6.7731,
-            "y": 13.6728
-          }
-        ],
-        [
-          {
             "x": 6.8419,
             "y": 12.0643
           },
@@ -41583,7 +41433,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E prin C_E_PAL + consolă sud până Y590. LOCK-1: inel palier închis V cu C_L_PAL+B_Y470+B_X535_PAL_N. Armare/torsiune nod = calcul, nu geometrie deschisă."
+      "label": "centură E prin C_E_PAL + consolă sud până Y590. LOCK-1R: palier = consolă pe B_E (fără stâlp în living P). Armare/torsiune nod C_E_PAL = calcul."
     },
     {
       "id": "etaj_centura_B_CASA_SCARA",
@@ -41718,24 +41568,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.782,
-          "y": 13.463
+          "x": 7.0688,
+          "y": 13.4753
         },
         {
-          "x": 8.2307,
-          "y": 13.525
+          "x": 8.1178,
+          "y": 13.5202
         },
         {
-          "x": 8.2435,
-          "y": 13.2253
+          "x": 8.1306,
+          "y": 13.2205
         },
         {
-          "x": 6.7949,
-          "y": 13.1633
+          "x": 7.0816,
+          "y": 13.1756
         },
         {
-          "x": 6.782,
-          "y": 13.463
+          "x": 7.0688,
+          "y": 13.4753
         }
       ],
       "z0_m": 5.62,
@@ -41743,39 +41593,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "LOCK-1: bordură N palier — planșeu + streșină (P+E). Capăt V pe C_L_PAL. NU vestibul. exclude_basement: nu e axă FG."
-    },
-    {
-      "id": "etaj_centura_B_X535_PAL_N",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.782,
-          "y": 13.463
-        },
-        {
-          "x": 7.0818,
-          "y": 13.4759
-        },
-        {
-          "x": 7.0946,
-          "y": 13.1761
-        },
-        {
-          "x": 6.7949,
-          "y": 13.1633
-        },
-        {
-          "x": 6.782,
-          "y": 13.463
-        }
-      ],
-      "z0_m": 5.62,
-      "z1_m": 5.97,
-      "color": "#5a554e",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "LOCK-1: picior V inel palier Y470→500 (fața N a golului ușă). Sud: B_SEP + C_CASA_SCARA. exclude_basement."
+      "label": "LOCK-1R: bordură N palier X565–670 (P+E). Fără stâlp V (living P). Consolă pe B_E. NU vestibul."
     },
     {
       "id": "acces_treapta_0",

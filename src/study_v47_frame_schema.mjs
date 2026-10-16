@@ -236,23 +236,7 @@ function buildFrameSchema() {
       etics_outside_band_cm: { x0: GEO_X0 + 670.8, x1: GEO_X0 + 680, th: ETICS },
       continuous_through_floor: true,
     }),
-    // LOCK-1: nod colț L casă↔palier — nord de ușă (Y500+), în linia separator A6
-    {
-      id: "C_L_PAL",
-      x: ax.X_CASA_SCARA,
-      y: ax.Y_E_PAL_END - COL_ALONG,
-      dx: COL_THRU,
-      dy: COL_ALONG,
-      orient: "corner_L_palier",
-      levels: ["S", "P", "E"],
-      support_below: "fundație X535",
-      protrusion_into_room_cm: 0,
-      wall: "colț L A6 @ Y470 — casă (V/S) ↔ palier rece (E/N); fără proeminență în living",
-      clear_landing: "y1=489 ≤ lower_landing Y490; nord de ușă Y500–600",
-      door_clearance: "y1=489 < door Y0=500",
-      lock: "structure_landing_lock_v01 LOCK-1",
-      continuous_through_floor: true,
-    },
+    // C_L_PAL RETRAS: pe P, X536/Y449–489 e living deschis (buc_est începe @ Y590) — stâlp interzis.
     {
       id: "C_CASA_SCARA",
       x: ax.X_CASA_SCARA,
@@ -318,6 +302,11 @@ function buildFrameSchema() {
         "suprapunere certă plită/cuptor/hotă/chiuvetă P — eliminat din grilă; B_N cu 3 reazeme (NW, N_MID, NE); repoziție în rost real = comparație viitoare",
     },
     { id: "C_CASA_SCARA@Y590", reason: "intersecta gol ușă — mutat la Y610+" },
+    {
+      id: "C_L_PAL",
+      reason:
+        "LOCK-1R: retras — pe P cade în living deschis sub/lângă palier (separator abia @ Y590). Palier = consolă pe B_E.",
+    },
     { id: "grinda_X320", reason: "nu pe fală compartimentare" },
     { id: "pereți_structurali_P_E", reason: "respins — doar cadre" },
     { id: "20x40_in_20cm_leaf", reason: "nu demonstrăm încadrarea în banda de 20 cm" },
@@ -367,7 +356,7 @@ function buildFrameSchema() {
       cantilever_south_of_C_E_PAL_cm: ax.Y_PALIER_ETAJ_S - ax.Y_E_PAL_END,
       cantilever_y0: ax.Y_E_PAL_END,
       cantilever_y1: ax.Y_PALIER_ETAJ_S,
-      note: "centură E prin C_E_PAL + consolă sud până Y590. LOCK-1: inel palier închis V cu C_L_PAL+B_Y470+B_X535_PAL_N. Armare/torsiune nod = calcul, nu geometrie deschisă.",
+      note: "centură E prin C_E_PAL + consolă sud până Y590. LOCK-1R: palier = consolă pe B_E (fără stâlp în living P). Armare/torsiune nod C_E_PAL = calcul.",
     },
     {
       id: "B_CASA_SCARA",
@@ -421,28 +410,19 @@ function buildFrameSchema() {
       note: "sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA",
     },
     {
+      // Bordură N doar pe conturul palierului (X565+), nu în livingul de la X536.
+      // Capăt V = liber: consolă odată cu placa pe B_E (LOCK-1R). Levels P+E = planșeu + streșină.
       id: "B_Y470_PALIER_EDGE",
-      x: ax.X_CASA_SCARA,
+      x: 565,
       y: ax.Y_PAL_N,
-      dx: 145,
+      dx: 105,
       dy: COL_THRU,
       levels: ["P", "E"],
-      supports: ["C_L_PAL", "C_E_PAL", "B_E"],
+      supports: ["B_E", "C_E_PAL"],
       exclude_basement: true,
-      note: "LOCK-1: bordură N palier — planșeu + streșină (P+E). Capăt V pe C_L_PAL. NU vestibul. exclude_basement: nu e axă FG.",
-      lock: "structure_landing_lock_v01 LOCK-1",
-    },
-    {
-      id: "B_X535_PAL_N",
-      x: ax.X_CASA_SCARA,
-      y: ax.Y_PAL_N,
-      dx: COL_THRU,
-      dy: 500 - ax.Y_PAL_N,
-      levels: ["P", "E"],
-      supports: ["C_L_PAL", "zid_separator_to_door"],
-      exclude_basement: true,
-      note: "LOCK-1: picior V inel palier Y470→500 (fața N a golului ușă). Sud: B_SEP + C_CASA_SCARA. exclude_basement.",
-      lock: "structure_landing_lock_v01 LOCK-1",
+      cantilever_west_of_B_E_cm: 105,
+      note: "LOCK-1R: bordură N palier X565–670 (P+E). Fără stâlp V (living P). Consolă pe B_E. NU vestibul.",
+      lock: "structure_landing_lock_v01 LOCK-1R",
     },
   ];
 
@@ -452,24 +432,25 @@ function buildFrameSchema() {
       severity: "STUDIU_CONSOLA",
       registry: "calcul_lipsă",
       detail:
-        "LOCK-1 geometric: inel N+E+V (C_L_PAL, B_Y470 P+E, B_X535_PAL_N, B_E→Y590). Rămâne calcul: armare, torsiune nod C_E_PAL/C_L_PAL, ridicare. Fără stâlp în living X565+.",
+        "LOCK-1R: palier = consolă pe B_E (sud 101 cm + vest ~105 cm cu B_Y470). Fără stâlp în living P (C_L_PAL retras). Calcul obligatoriu: armare consolă, torsiune/ancorare nod C_E_PAL.",
       solution_ref: "decisions/structure_landing_lock_v01.md",
       geometry: {
         B_E_cantilever_y0: 489,
         B_E_cantilever_y1: 590,
         B_E_cantilever_cm: 101,
-        C_L_PAL: "X536.3 Y449–489",
-        lock: "LOCK-1",
+        B_Y470_cantilever_west_cm: 105,
+        C_L_PAL: "retras — living P",
+        lock: "LOCK-1R",
       },
-      geometry_status: "rezolvat_geometric_LOCK1",
+      geometry_status: "rezolvat_geometric_LOCK1R_consola",
     },
     {
       id: "palier_plate_support",
       severity: "STUDIU_CONSOLA",
       registry: "calcul_lipsă",
       detail:
-        "LOCK-1: placă pe inel N+E+V (nu consolă pe un singur reazem V). P: living sub placă. E: circulație rece. Armare/pachet fono = calcul.",
-      geometry_status: "rezolvat_geometric_LOCK1",
+        "LOCK-1R: placă palier consolă pe B_E + bordură N B_Y470 (P+E). P: living liber sub placă. E: circulație rece. Armare/pachet fono = calcul — schema geometrică asumată.",
+      geometry_status: "rezolvat_geometric_LOCK1R_consola",
     },
     {
       id: "slab_span_without_X320",
@@ -496,7 +477,7 @@ function buildFrameSchema() {
       severity: "FIX_GENERATOR",
       registry: "rezolvat_geometric",
       detail:
-        "LOCK-1: B_Y470 + B_X535_PAL_N pe P+E (viewer) cu exclude_basement:true — nu oglindă FG/subsol. C_L_PAL are FG pe stâlp.",
+        "LOCK-1R: B_Y470 pe P+E (X565–670) exclude_basement:true. Fără C_L_PAL / B_X535_PAL_N.",
     },
     {
       id: "basement_retaining",

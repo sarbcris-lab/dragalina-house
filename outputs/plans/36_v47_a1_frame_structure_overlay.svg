@@ -50,8 +50,7 @@
 <rect x="45.775" y="394.75000000000006" width="192.94000000000003" height="16.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
 <rect x="222.21500000000003" y="394.75000000000006" width="38.5" height="113.18999999999998" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
 <rect x="238.71500000000003" y="496.50000000000006" width="112.75000000000001" height="16.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
-<rect x="334.965" y="298.5" width="79.75" height="16.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
-<rect x="334.965" y="298.5" width="16.5" height="16.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
+<rect x="350.75" y="298.5" width="57.75000000000001" height="16.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
 <rect x="45.775" y="45.06" width="22" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
 <text x="46.775" y="43.06" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_NW</text>
 <rect x="216.71500000000003" y="45.06" width="22" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
@@ -68,8 +67,6 @@
 <text x="393.71500000000003" y="208.5" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_E_GEAM_S</text>
 <rect x="392.71500000000003" y="286.95000000000005" width="16.5" height="22" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
 <text x="393.71500000000003" y="284.95000000000005" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_E_PAL</text>
-<rect x="334.965" y="286.95000000000005" width="16.5" height="22" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
-<text x="335.965" y="284.95000000000005" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_L_PAL</text>
 <rect x="334.965" y="375.5" width="16.5" height="22" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
 <text x="335.965" y="373.5" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_CASA_SCARA</text>
 <rect x="406.46500000000003" y="356.25" width="8.25" height="8.25" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
