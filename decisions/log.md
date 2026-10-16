@@ -217,11 +217,11 @@
 - `podest_se_placa` în Structură; Viewer `sharedFloorObjs` — grinzi/plăci pe Doar parter.
 - Gol placă = contur exact palier; planuri FRAME `38`/`39` din frame study (nu v47_exact).
 
-## 2026-10-16 — Stâlpi thru = EB20 (20 cm)
+## 2026-10-16 — Două variante studiu + cadre ≥30 cm
 
-- `COL_THRU=20`, `PROTRUSION_IN=0` — beton aliniat cu umplutura, fără plăcuire în cameră.
-- `COL_ALONG=40` tip (pe lungul zidului) — capacitate de confirmat la calcul.
-- ETICS rămâne afară, neschimbat.
+- LOCK: `structure_two_variants_v01.md` — **A** cadre BA min 30 cm (P100); **B** BA cu pereți structurali.
+- Ținte comune: util ≥37, POT ~40%, clear ≥255, calcul forțe, fonic+termic.
+- Varianta A: `COL_THRU=30`, `PROTRUSION_IN=0` (stâlp înlocuiește local EB20; ETICS afară). 20 cm retras — neconform P100.
 
 ## 2026-10-16 — LOCK-1R palier (fără stâlp în living)
 

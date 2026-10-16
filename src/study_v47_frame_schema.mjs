@@ -33,12 +33,13 @@ const ETICS = 9.2;
  */
 const GEO_X0 = 1.3;
 /**
- * Transversal pe zid = umplutură EB20 (20 cm) — aliniat cu cărămida, fără „burtă” de plăcuit.
- * Pe lungul zidului poate fi mai lat (COL_ALONG) — de confirmat la calcul.
+ * Varianta A (cadre BA): P100 §5.3.2.2 / §5.4.2.2 — dimensiune minimă stâlp ≥ 300 mm.
+ * Thru ≥30; along tip 40. Betonul înlocuiește local falie EB20; fără proeminență în cameră; ETICS afară.
+ * (STUDII: decisions/structure_two_variants_v01.md)
  */
-const COL_THRU = 20;
+const COL_THRU = 30;
 const COL_ALONG = 40;
-/** Zero proeminență interioară: betonul stă în falie EB20, nu iese în cameră. */
+/** Zero proeminență interioară: față int. aliniată cu umplutura; stâlp = 30 cm prin zid (nu 20+burtă). */
 const PROTRUSION_IN = 0;
 /**
  * Grindă totală 35 cm = înălțime totală incluzând zona plăcii (nu coborâre suplimentară 35 sub placă).
@@ -121,12 +122,15 @@ function colVest(id, y, dy, extra = {}) {
 }
 
 /**
- * Stâlpi sud: beton = falie EB20 (COL_THRU), se oprește înaintea benzii ETICS (~9,2 cm).
- * Cu COL_THRU=20, y0 ≈ wallY0 → proeminență interioară 0.
+ * Stâlpi sud (Varianta A): față int. = wallY0 (flush, fără plăcuire);
+ * beton COL_THRU (≥30 P100) înlocuiește local umplutura; ETICS imediat în afara betonului.
+ * Dacă wallY0+COL_THRU+ETICS > exteriorY1 → bump exterior local (nu proem. în cameră).
  */
 function colSud(id, x, dx, wallY0, exteriorY1, extra = {}) {
-  const y1Concrete = exteriorY1 - ETICS; // lasă banda ETICS afară
-  const y0 = y1Concrete - COL_THRU; // = falie EB20
+  const y0 = wallY0;
+  const y1Concrete = y0 + COL_THRU;
+  const y1Etics = y1Concrete + ETICS;
+  const bumpOut = Math.max(0, y1Etics - exteriorY1);
   return {
     id,
     x,
@@ -136,10 +140,11 @@ function colSud(id, x, dx, wallY0, exteriorY1, extra = {}) {
     orient: "along_S",
     levels: ["S", "P", "E"],
     support_below: "fundație_S",
-    protrusion_into_room_cm: Math.max(0, wallY0 - y0),
-    etics_outside_band_cm: { y0: y1Concrete, y1: exteriorY1, th: ETICS },
+    protrusion_into_room_cm: 0,
+    etics_outside_band_cm: { y0: y1Concrete, y1: y1Etics, th: ETICS },
+    envelope_bump_out_cm: bumpOut,
     section_cm: `${dx}×${COL_THRU}`,
-    section_status: "de confirmat prin calcul — thru=EB20, along liber",
+    section_status: "de confirmat prin calcul — thru≥30 P100, flush int.",
     ...extra,
   };
 }
@@ -519,18 +524,18 @@ function buildFrameSchema() {
         "A1 aprobat neatins. In frame: dus x>=50; pat x>=45 — nu micsoram stalpii.",
     },
     {
-      id: "column_thru_eb20_flush",
+      id: "column_thru_p100_flush",
       severity: "LOCK",
       registry: "rezolvat_geometric",
       detail:
-        "LOCK 2026-10-16: COL_THRU=20 (=EB20), PROTRUSION_IN=0 — stâlpii aliniați cu umplutura, fără plăcuire în cameră. Along=40 tip, de confirmat calcul.",
+        "LOCK Varianta A: COL_THRU=30 (P100 min), PROTRUSION_IN=0 — stâlp înlocuiește local EB20; ETICS afară; fără plăcuire în cameră. Along=40 tip — calcul.",
     },
     {
       id: "p100_min_section",
-      severity: "IPOTEZĂ",
-      registry: "calcul_lipsă",
+      severity: "LOCK",
+      registry: "rezolvat_geometric",
       detail:
-        "Thru 20 cm = aliniere EB20 (cerință arhitectură). Capacitate/ductilitate P100 pe 20×40 — de verificat la calcul; nu majora thru fără motiv structural demonstrat.",
+        "P100-1/2013 §5.3.2.2+§5.4.2.2: dimensiune minimă stâlp cadru ≥300 mm. Varianta A respectă geometric; armare/ductilitate = calcul. Varianta B = pereți structurali (studiu separat).",
     },
     {
       id: "etics_wrap_verify",
@@ -560,12 +565,14 @@ function buildFrameSchema() {
       through_wall_cm: COL_THRU,
       along_wall_cm: COL_ALONG,
       local_protrusion_inward_cm: PROTRUSION_IN,
-      finished_wall_kept_cm: 20,
-      fill_match: "EB20_Akustik_200",
+      finished_wall_kept_cm: 30,
+      fill_between_columns: "EB20_Akustik_200",
+      column_replaces_fill_locally: true,
       etics_continuous_outside: true,
       etics_outside_cm: ETICS,
-      status: "LOCK geometric thru=EB20; capacitate along — calcul",
-      note: "Beton transversal = EB20 (20 cm), aliniat cu umplutura; fără proeminență interioară. ETICS rămâne afară. Along tip 40 cm.",
+      status: "LOCK Varianta A: thru≥30 P100, flush int., ETICS afară; capacitate — calcul",
+      note: "Cadre BA: stâlp min 30 cm (P100). Local înlocuiește EB20; umplutură 20 între stâlpi. Fără proem. interior. Vezi structure_two_variants_v01.",
+      study_variants: ["A_cadre_BA_min30", "B_pereti_structurali_BA"],
     },
     columns,
     beams,
@@ -1221,7 +1228,7 @@ function svgOverlay(study) {
   );
   const ar = study.areas_cm.frame_study_areas;
   parts.push(
-    `<text x="40" y="${H - 16}" font-size="8" fill="#555">Stâlpi ${COL_THRU}×${COL_ALONG} thru=EB20 · fără proem. · ETICS afară · util P ${ar.useful_parter_m2} / E ${ar.useful_etaj_m2} m² (NECONFIRMAT)</text>`
+    `<text x="40" y="${H - 16}" font-size="8" fill="#555">Stâlpi ${COL_THRU}×${COL_ALONG} P100 min · flush int. · ETICS afară · util P ${ar.useful_parter_m2} / E ${ar.useful_etaj_m2} m² (NECONFIRMAT)</text>`
   );
   parts.push(`</svg>`);
   return parts.join("\n");

@@ -120,7 +120,7 @@
       "dy": 30,
       "kind": "ext",
       "thermal": "mixed",
-      "note": "X0–565 casă încălzită (EB20 200 + ISOVER FASSADE 80, total nom. 299 mm); X565–680 bandă scară — cold_stair (fără ETICS) · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4",
+      "note": "X0–565 casă încălzită (EB20 200 + ISOVER FASSADE 80, total nom. 299 mm); X565–680 bandă scară — cold_stair (fără ETICS) · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4 · heated A1 / cold A4",
       "assembly": "A1+A4_split",
       "catalog_id_heated": "A1",
       "catalog_id_cold": "A4"
@@ -134,7 +134,7 @@
       "kind": "ext",
       "thermal": "heated_thermosystem",
       "assembly": "A2",
-      "note": "Y30–645; alcătuire P/E încălzită EB20+ISOVER FASSADE — de confirmat ETICS/proiectant · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
+      "note": "Y30–645; alcătuire P/E încălzită EB20+ISOVER FASSADE — de confirmat ETICS/proiectant · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
       "catalog_id": "A2",
       "thickness_finished_mm": 312,
       "geometry_note": "A2 +1.3 cm spre exterior"
@@ -148,7 +148,7 @@
       "kind": "ext",
       "thermal": "heated_thermosystem",
       "assembly": "A2",
-      "note": "P+E: X650 Y30–440; finit la X680; EB20 200 + ETICS ISOVER 80; structură beton — neconfirmat · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
+      "note": "P+E: X650 Y30–440; finit la X680; EB20 200 + ETICS ISOVER 80; structură beton — neconfirmat · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
       "catalog_id": "A2",
       "thickness_finished_mm": 312,
       "geometry_note": "A2 +1.3 cm spre exterior"
@@ -162,7 +162,7 @@
       "kind": "ext",
       "thermal": "heated_thermosystem",
       "assembly": "A2",
-      "note": "fațadă SUD exterioară casă (P+E) — restaurat; nu = bucătărie pe P; EB20+ISOVER FASSADE · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
+      "note": "fațadă SUD exterioară casă (P+E) — restaurat; nu = bucătărie pe P; EB20+ISOVER FASSADE · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
       "catalog_id": "A2",
       "thickness_finished_mm": 312,
       "geometry_note": "A2 +1.3 cm spre exterior"
@@ -176,7 +176,7 @@
       "kind": "ext",
       "thermal": "heated_thermosystem",
       "assembly": "A2",
-      "note": "Y645–675; terasă de la Y675; EB20+ISOVER FASSADE — de confirmat ETICS/proiectant · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
+      "note": "Y645–675; terasă de la Y675; EB20+ISOVER FASSADE — de confirmat ETICS/proiectant · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
       "catalog_id": "A2",
       "thickness_finished_mm": 312,
       "geometry_note": "A2 +1.3 cm spre exterior"
@@ -188,7 +188,7 @@
       "dx": 12.5,
       "dy": 615,
       "kind": "int",
-      "note": "V46r3: studiu casete — grosime actuală 12,5 cm; îngroșare locală propusă 15 cm spre living dacă se aleg pocket (vezi pocket_doors_study) · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7",
+      "note": "V46r3: studiu casete — grosime actuală 12,5 cm; îngroșare locală propusă 15 cm spre living dacă se aleg pocket (vezi pocket_doors_study) · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7",
       "catalog_id": "A7",
       "assembly": "A7",
       "thickness_finished_mm": 125
@@ -200,7 +200,7 @@
       "dx": 120,
       "dy": 15,
       "kind": "int",
-      "note": "spate nișă; adâncită 10 cm spre baie vs captură anterioară · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8",
+      "note": "spate nișă; adâncită 10 cm spre baie vs captură anterioară · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8",
       "catalog_id": "A8",
       "assembly": "A8",
       "thickness_finished_mm": 150,
@@ -213,7 +213,7 @@
       "dx": 15,
       "dy": 95,
       "kind": "int",
-      "note": "lateral est nișă Y187.5–282.5 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8",
+      "note": "lateral est nișă Y187.5–282.5 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8",
       "catalog_id": "A8",
       "assembly": "A8",
       "thickness_finished_mm": 150,
@@ -226,7 +226,7 @@
       "dx": 185,
       "dy": 15,
       "kind": "int",
-      "note": "rest perete baie–dormitor X162.5–347.5; front nișă deschis spre dormitor · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8",
+      "note": "rest perete baie–dormitor X162.5–347.5; front nișă deschis spre dormitor · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8 · catalog A8",
       "catalog_id": "A8",
       "assembly": "A8",
       "thickness_finished_mm": 150,
@@ -240,7 +240,7 @@
       "dy": 270,
       "kind": "ext",
       "thermal": "house_stair_separator",
-      "note": "separator termic casă încălzită ↔ scară rece; P: vest scară Y590+; Y470–590 deschis (sub palier etaj) · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6",
+      "note": "separator termic casă încălzită ↔ scară rece; P: vest scară Y590+; Y470–590 deschis (sub palier etaj) · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6 · catalog A6",
       "levels": [
         0
       ],
@@ -255,7 +255,7 @@
       "dx": 60,
       "dy": 12.5,
       "kind": "int",
-      "note": "doar etaj / scos de pe traseul P10 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7",
+      "note": "doar etaj / scos de pe traseul P10 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7 · catalog A7",
       "levels": [
         1
       ],
@@ -270,7 +270,7 @@
       "dx": 30,
       "dy": 185,
       "kind": "ext",
-      "note": "Y675–860; gol buc_terasa_etaj Y680–770 pe L1; pe P = intrare_parter · catalog A5 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1",
+      "note": "Y675–860; gol buc_terasa_etaj Y680–770 pe L1; pe P = intrare_parter · catalog A5 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1 · catalog A1",
       "catalog_id": "A1",
       "assembly": "A1",
       "thickness_finished_mm": 299
@@ -285,7 +285,7 @@
       "levels": [
         0
       ],
-      "note": "ext limită est sub palier — păstrat; canapea pe el · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
+      "note": "ext limită est sub palier — păstrat; canapea pe el · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2 · catalog A2",
       "catalog_id": "A2",
       "assembly": "A2",
       "thickness_finished_mm": 312,
@@ -8164,15 +8164,20 @@
       "Y_INTRARE_S_EXT": 860
     },
     "column_section_hypothesis_cm": {
-      "through_wall_cm": 20,
+      "through_wall_cm": 30,
       "along_wall_cm": 40,
       "local_protrusion_inward_cm": 0,
-      "finished_wall_kept_cm": 20,
-      "fill_match": "EB20_Akustik_200",
+      "finished_wall_kept_cm": 30,
+      "fill_between_columns": "EB20_Akustik_200",
+      "column_replaces_fill_locally": true,
       "etics_continuous_outside": true,
       "etics_outside_cm": 9.2,
-      "status": "LOCK geometric thru=EB20; capacitate along — calcul",
-      "note": "Beton transversal = EB20 (20 cm), aliniat cu umplutura; fără proeminență interioară. ETICS rămâne afară. Along tip 40 cm."
+      "status": "LOCK Varianta A: thru≥30 P100, flush int., ETICS afară; capacitate — calcul",
+      "note": "Cadre BA: stâlp min 30 cm (P100). Local înlocuiește EB20; umplutură 20 între stâlpi. Fără proem. interior. Vezi structure_two_variants_v01.",
+      "study_variants": [
+        "A_cadre_BA_min30",
+        "B_pereti_structurali_BA"
+      ]
     },
     "columns": [
       {
@@ -8180,7 +8185,7 @@
         "x": 10.5,
         "y": 9.2,
         "dx": 40,
-        "dy": 20,
+        "dy": 30,
         "orient": "corner_NW",
         "levels": [
           "S",
@@ -8189,7 +8194,7 @@
         ],
         "support_below": "fundație_N/W",
         "protrusion_into_room_cm": 0,
-        "section_cm": "40×20",
+        "section_cm": "40×30",
         "etics_outside_band_cm": {
           "x0": 0,
           "x1": 10.5,
@@ -8197,7 +8202,7 @@
           "y1": 9.2,
           "th": 9.2
         },
-        "wall": "colț N/W — 40×20 (thru=EB20; NU redus pt. duș)",
+        "wall": "colț N/W — 40×30 (thru=EB20; NU redus pt. duș)",
         "conflicts": [
           "duș decupat local în frame — nu micșorăm stâlpul"
         ],
@@ -8209,7 +8214,7 @@
         "x": 321.3,
         "y": 9.2,
         "dx": 40,
-        "dy": 20,
+        "dy": 30,
         "orient": "along_N",
         "levels": [
           "S",
@@ -8218,8 +8223,8 @@
         ],
         "support_below": "fundație_N",
         "protrusion_into_room_cm": 0,
-        "section_cm": "40×20",
-        "wall": "nord X320–360 — 40×20 thru=EB20",
+        "section_cm": "40×30",
+        "wall": "nord X320–360 — 40×30 thru=EB20",
         "conflicts": [
           "alternativă: fără C_N_MID (doar NW+NE) — comparație"
         ],
@@ -8229,7 +8234,7 @@
         "id": "C_NE",
         "x": 651.3,
         "y": 9.2,
-        "dx": 20,
+        "dx": 30,
         "dy": 40,
         "orient": "along_E",
         "levels": [
@@ -8239,9 +8244,9 @@
         ],
         "support_below": "fundație_E",
         "protrusion_into_room_cm": 0,
-        "section_cm": "20×40",
+        "section_cm": "30×40",
         "section_status": "de confirmat prin calcul — thru=EB20, along liber",
-        "wall": "est N de geam — 20×40 thru=EB20",
+        "wall": "est N de geam — 30×40 thru=EB20",
         "conflicts": [],
         "etics_outside_band_cm": {
           "x0": 672.0999999999999,
@@ -8254,7 +8259,7 @@
         "id": "C_W_MID",
         "x": 10.5,
         "y": 400,
-        "dx": 20,
+        "dx": 30,
         "dy": 40,
         "orient": "along_W",
         "levels": [
@@ -8264,9 +8269,9 @@
         ],
         "support_below": "fundație_W",
         "protrusion_into_room_cm": 0,
-        "section_cm": "20×40",
+        "section_cm": "30×40",
         "section_status": "de confirmat prin calcul și cerințe normative",
-        "wall": "vest — 20×40 thru=EB20 (NU redus pt. pat)",
+        "wall": "vest — 30×40 thru=EB20 (NU redus pt. pat)",
         "etics_outside_band_cm": {
           "x0": 0,
           "x1": 10.5,
@@ -8281,9 +8286,9 @@
       {
         "id": "C_W_DORM",
         "x": 10.5,
-        "y": 645.8,
+        "y": 645,
         "dx": 40,
-        "dy": 20,
+        "dy": 30,
         "orient": "along_S",
         "levels": [
           "S",
@@ -8293,12 +8298,13 @@
         "support_below": "fundație_S",
         "protrusion_into_room_cm": 0,
         "etics_outside_band_cm": {
-          "y0": 665.8,
-          "y1": 675,
+          "y0": 675,
+          "y1": 684.2,
           "th": 9.2
         },
-        "section_cm": "40×20",
-        "section_status": "de confirmat prin calcul — thru=EB20, along liber",
+        "envelope_bump_out_cm": 9.200000000000045,
+        "section_cm": "40×30",
+        "section_status": "de confirmat prin calcul — thru≥30 P100, flush int.",
         "wall": "sud dorm W — ETICS Y665.8–675 continuă peste stâlp",
         "conflicts": [
           "gol terasă X120–270"
@@ -8307,10 +8313,10 @@
       },
       {
         "id": "C_S_DORM_E",
-        "x": 341.3,
-        "y": 645.8,
-        "dx": 20,
-        "dy": 20,
+        "x": 331.3,
+        "y": 645,
+        "dx": 30,
+        "dy": 30,
         "orient": "corner_S_dorm_E",
         "levels": [
           "S",
@@ -8320,12 +8326,13 @@
         "support_below": "fundație_S",
         "protrusion_into_room_cm": 0,
         "etics_outside_band_cm": {
-          "y0": 665.8,
-          "y1": 675,
+          "y0": 675,
+          "y1": 684.2,
           "th": 9.2
         },
-        "section_cm": "20×20",
-        "section_status": "de confirmat prin calcul — thru=EB20, along liber",
+        "envelope_bump_out_cm": 9.200000000000045,
+        "section_cm": "30×30",
+        "section_status": "de confirmat prin calcul — thru≥30 P100, flush int.",
         "wall": "capăt E sud dorm @ X360 — ETICS continuă afară",
         "conflicts": [
           "proximitate circulație / ușă terasă"
@@ -8336,7 +8343,7 @@
         "id": "C_E_GEAM_S",
         "x": 651.3,
         "y": 310,
-        "dx": 20,
+        "dx": 30,
         "dy": 40,
         "orient": "along_E",
         "levels": [
@@ -8346,7 +8353,7 @@
         ],
         "support_below": "fundație_E",
         "protrusion_into_room_cm": 0,
-        "section_cm": "20×40",
+        "section_cm": "30×40",
         "section_status": "de confirmat prin calcul — thru=EB20, along liber",
         "wall": "est S de geam",
         "etics_outside_band_cm": {
@@ -8360,7 +8367,7 @@
         "id": "C_E_PAL",
         "x": 651.3,
         "y": 449,
-        "dx": 20,
+        "dx": 30,
         "dy": 40,
         "orient": "along_E",
         "levels": [
@@ -8370,7 +8377,7 @@
         ],
         "support_below": "fundație_E continuu — NU pe placă 15",
         "protrusion_into_room_cm": 0,
-        "section_cm": "20×40",
+        "section_cm": "30×40",
         "section_status": "de confirmat prin calcul — thru=EB20, along liber",
         "wall": "est sub palier scară / N de palier inferior",
         "replaces": [
@@ -8392,7 +8399,7 @@
         "id": "C_CASA_SCARA",
         "x": 536.3,
         "y": 610,
-        "dx": 20,
+        "dx": 30,
         "dy": 40,
         "orient": "along_separator",
         "levels": [
@@ -8436,9 +8443,9 @@
       {
         "id": "C_S_INTRARE_W",
         "x": 361.3,
-        "y": 830.8,
+        "y": 830,
         "dx": 40,
-        "dy": 20,
+        "dy": 30,
         "orient": "along_S",
         "levels": [
           "S",
@@ -8448,12 +8455,13 @@
         "support_below": "fundație_S_intrare (bandă dedicată)",
         "protrusion_into_room_cm": 0,
         "etics_outside_band_cm": {
-          "y0": 850.8,
-          "y1": 860,
+          "y0": 860,
+          "y1": 869.2,
           "th": 9.2
         },
-        "section_cm": "40×20",
-        "section_status": "de confirmat prin calcul — thru=EB20, along liber",
+        "envelope_bump_out_cm": 9.200000000000045,
+        "section_cm": "40×30",
+        "section_status": "de confirmat prin calcul — thru≥30 P100, flush int.",
         "wall": "sud intrare X360–535 — ETICS continuă",
         "conflicts": [],
         "continuous_through_floor": true
@@ -8461,9 +8469,9 @@
       {
         "id": "C_S_INTRARE_E",
         "x": 536.3,
-        "y": 830.8,
-        "dx": 20,
-        "dy": 20,
+        "y": 830,
+        "dx": 30,
+        "dy": 30,
         "orient": "corner_S",
         "levels": [
           "S",
@@ -8473,12 +8481,13 @@
         "support_below": "fundație_S",
         "protrusion_into_room_cm": 0,
         "etics_outside_band_cm": {
-          "y0": 850.8,
-          "y1": 860,
+          "y0": 860,
+          "y1": 869.2,
           "th": 9.2
         },
-        "section_cm": "20×20",
-        "section_status": "de confirmat prin calcul — thru=EB20, along liber",
+        "envelope_bump_out_cm": 9.200000000000045,
+        "section_cm": "30×30",
+        "section_status": "de confirmat prin calcul — thru≥30 P100, flush int.",
         "wall": "sud @ X535 — ETICS continuă afară",
         "conflicts": [],
         "continuous_through_floor": true
@@ -8489,8 +8498,8 @@
         "id": "B_N",
         "x": 10.5,
         "y": 9.2,
-        "dx": 660.8,
-        "dy": 20,
+        "dx": 670.8,
+        "dy": 30,
         "levels": [
           "P",
           "E"
@@ -8506,7 +8515,7 @@
         "id": "B_W",
         "x": 10.5,
         "y": 9.2,
-        "dx": 20,
+        "dx": 30,
         "dy": 656.5999999999999,
         "levels": [
           "P",
@@ -8523,7 +8532,7 @@
         "id": "B_E",
         "x": 651.3,
         "y": 9.2,
-        "dx": 20,
+        "dx": 30,
         "dy": 580.8,
         "levels": [
           "P",
@@ -8543,7 +8552,7 @@
         "id": "B_CASA_SCARA",
         "x": 536.3,
         "y": 610,
-        "dx": 20,
+        "dx": 30,
         "dy": 250,
         "levels": [
           "S",
@@ -8596,7 +8605,7 @@
         "x": 10.5,
         "y": 645,
         "dx": 350.8,
-        "dy": 20,
+        "dy": 30,
         "levels": [
           "P",
           "E"
@@ -8609,9 +8618,9 @@
       },
       {
         "id": "B_X360_DORM_INTRARE",
-        "x": 341.3,
+        "x": 331.3,
         "y": 645,
-        "dx": 60,
+        "dx": 70,
         "dy": 205.79999999999995,
         "levels": [
           "P",
@@ -8627,8 +8636,8 @@
         "id": "B_Y830",
         "x": 361.3,
         "y": 830,
-        "dx": 195,
-        "dy": 20,
+        "dx": 205,
+        "dy": 30,
         "levels": [
           "P",
           "E"
@@ -8644,7 +8653,7 @@
         "x": 565,
         "y": 470,
         "dx": 105,
-        "dy": 20,
+        "dy": 30,
         "levels": [
           "P",
           "E"
@@ -8834,16 +8843,16 @@
         "detail": "A1 aprobat neatins. In frame: dus x>=50; pat x>=45 — nu micsoram stalpii."
       },
       {
-        "id": "column_thru_eb20_flush",
+        "id": "column_thru_p100_flush",
         "severity": "LOCK",
         "registry": "rezolvat_geometric",
-        "detail": "LOCK 2026-10-16: COL_THRU=20 (=EB20), PROTRUSION_IN=0 — stâlpii aliniați cu umplutura, fără plăcuire în cameră. Along=40 tip, de confirmat calcul."
+        "detail": "LOCK Varianta A: COL_THRU=30 (P100 min), PROTRUSION_IN=0 — stâlp înlocuiește local EB20; ETICS afară; fără plăcuire în cameră. Along=40 tip — calcul."
       },
       {
         "id": "p100_min_section",
-        "severity": "IPOTEZĂ",
-        "registry": "calcul_lipsă",
-        "detail": "Thru 20 cm = aliniere EB20 (cerință arhitectură). Capacitate/ductilitate P100 pe 20×40 — de verificat la calcul; nu majora thru fără motiv structural demonstrat."
+        "severity": "LOCK",
+        "registry": "rezolvat_geometric",
+        "detail": "P100-1/2013 §5.3.2.2+§5.4.2.2: dimensiune minimă stâlp cadru ≥300 mm. Varianta A respectă geometric; armare/ductilitate = calcul. Varianta B = pereți structurali (studiu separat)."
       },
       {
         "id": "etics_wrap_verify",
