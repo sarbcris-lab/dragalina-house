@@ -21,8 +21,8 @@
 
 ## Nuanță cărămidă (parțial deschis)
 
-- **Țintă:** deschisă sau **între** Belgian (crem/bej deschis) și Industrial (teracotă multi-tonală) — **nu închisă**.
-- Nu se blochează SKU / producător acum.
+- **Țintă:** deschisă / gri-argintiu (nu industrial dark pe corp).
+- **SKU locked:** Ströher **Riegel 50** LF 490×40 **silver-grau used look** (`decisions/materials_v01.md`).
 - Industrial dark (cărămidă + tencuială antracit pe corp) = **respins** ca țintă.
 
 ## Criterii care au dus la alegere

@@ -1,6 +1,8 @@
 # Fațade cărămidă + alcătuire perete — locked 2026-10-15
 
-**Status:** CONFIRMAT ca țintă de proiect. Grosimi finisaj exterior klinker = **ipoteză studiu** (SKU nedecis) — orice +1…2 cm față de anvelopa finită 30 cm **contează la POT / limite**.
+**Status:** CONFIRMAT ca țintă de proiect.  
+**SKU klinker locked 2026-10-16:** Ströher **Riegel 50** LF 490×40 silver-grau · ETICS **Weber webertherm CERAMIC PREMIUM** — vezi `decisions/materials_v01.md`.  
+Δ finit A2 vs A1 = **+13 mm** pe E/S/V — deja în anvelopa studiu; pe EST nu se mai adaugă peste A2.
 
 Stil vizual: `decisions/style_target_v01.md` (Belgian · Cărămidă + tencuială).  
 Secțiune perete: `outputs/plans/35_v47_a1_exterior_wall_section.svg`.  

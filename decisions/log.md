@@ -166,3 +166,13 @@
 - `B_E` prelungit; `B_LAND_S_EDGE` pe muchia sud palier.
 - Raport: `outputs/reports/v47_a1_frame_east_landing_solution_v01.md`.
 - Conflict → `STUDIU_SOLUTIE` (NEVALIDAT structurist).
+
+## 2026-10-16 — Materiale + A7 Knauf + retragere landing
+
+- **Retras** `C_E_LAND_SP` + `B_LAND_S_EDGE` (blocau palier/rampă beci); `B_E` din nou până la `C_E_PAL`; east_landing = DESCHIS_REPROIECTARE.
+- **A7 = Knauf W112** CW75 · 2×12,5/față · **125 mm**.
+- **Klinker:** Ströher Riegel 50 LF 490×40 silver-grau.
+- **ETICS:** Weber webertherm CERAMIC PREMIUM (vată) — recomandare locked.
+- `terasa_est` → **A1** (nu A5); A6 = **300** exact.
+- Generator: fără auto-scale straturi; normală interior corectă (grosime, nu lungime).
+- Decizie: `decisions/materials_v01.md`.

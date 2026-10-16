@@ -1,14 +1,46 @@
 {
   "meta": {
     "id": "assemblies_v01",
-    "status": "CONFIRMAT_2026-10-15",
+    "status": "CONFIRMAT_2026-10-16",
     "decision_ref": "decisions/assemblies_catalog_v01.md",
+    "materials_ref": "decisions/materials_v01.md",
     "units": "mm",
     "notes": [
       "A1/A6 ≈300 mm anvelopă caldă; A2=312 vată 80 neschimbată (iese afară)",
-      "A7 fono 125 fără BCA; A8 baie ≈150",
+      "A7 = Knauf W112 CW75 125 mm; A8 baie ≈150",
+      "ETICS = Weber webertherm; klinker = Ströher Riegel 50 LF 490×40 silver-grau",
       "Spații/POT de recalculat unde A2/A3/A8 îngroașă"
     ]
+  },
+  "products": {
+    "klinker": {
+      "brand": "Ströher",
+      "line": "Riegel 50",
+      "sku": "LF 490×40 silver-grau used look",
+      "th_mm_budget": 15,
+      "applies": ["A2", "A3_K", "A4_ext", "A10"]
+    },
+    "etics": {
+      "brand": "Weber",
+      "system_ceramic": "webertherm CERAMIC PREMIUM (vată minerală)",
+      "system_plaster": "webertherm + tencuială decorativă",
+      "insulation": "ISOVER FASSADE 80",
+      "applies": ["A1", "A2", "A3_N", "A3_K", "A6"]
+    },
+    "interior_partition": {
+      "brand": "Knauf",
+      "system": "W112",
+      "studs": "CW 75",
+      "boards": "2×12.5 mm GKB each face",
+      "fill": "vată minerală fono",
+      "thickness_finished_mm": 125,
+      "applies": ["A7", "A9"]
+    },
+    "fill_masonry": {
+      "product": "EB20 Akustik",
+      "th_mm": 200,
+      "applies": ["A1", "A2", "A3_N", "A3_K", "A6"]
+    }
   },
   "by_id": {
     "A1": {
@@ -20,10 +52,10 @@
         { "id": "tencuiala_int", "name": "tencuială interioară", "th_mm": 6 },
         { "id": "finisare_vopsea", "name": "finisare și vopsea", "th_mm": 1 },
         { "id": "caramida_eb20", "name": "EB20 Akustik", "th_mm": 200, "product": "EB20 Akustik" },
-        { "id": "adeziv_etics", "name": "adeziv ETICS", "th_mm": 5 },
+        { "id": "adeziv_etics", "name": "adeziv ETICS Weber", "th_mm": 5, "product": "Weber webertherm" },
         { "id": "vata_isover_fassade", "name": "vată minerală fațadă", "th_mm": 80, "product": "ISOVER FASSADE" },
-        { "id": "strat_armat", "name": "strat armat", "th_mm": 5 },
-        { "id": "grund_decorativa", "name": "grund și tencuială decorativă", "th_mm": 2 }
+        { "id": "strat_armat", "name": "strat armat Weber", "th_mm": 5, "product": "Weber webertherm" },
+        { "id": "grund_decorativa", "name": "grund și tencuială decorativă Weber", "th_mm": 2, "product": "Weber webertherm" }
       ]
     },
     "A2": {
@@ -36,10 +68,10 @@
         { "id": "tencuiala_int", "name": "tencuială interioară", "th_mm": 6 },
         { "id": "finisare_vopsea", "name": "finisare și vopsea", "th_mm": 1 },
         { "id": "caramida_eb20", "name": "EB20 Akustik", "th_mm": 200, "product": "EB20 Akustik" },
-        { "id": "adeziv_etics", "name": "adeziv ETICS", "th_mm": 5 },
+        { "id": "adeziv_etics", "name": "adeziv ETICS Weber", "th_mm": 5, "product": "Weber webertherm CERAMIC PREMIUM" },
         { "id": "vata_isover_fassade", "name": "vată minerală fațadă", "th_mm": 80, "product": "ISOVER FASSADE" },
-        { "id": "strat_armat", "name": "strat armat ceramic", "th_mm": 5 },
-        { "id": "placaj_klinker", "name": "adeziv + placaj klinker", "th_mm": 15 }
+        { "id": "strat_armat", "name": "strat armat ceramic Weber", "th_mm": 5, "product": "Weber webertherm CERAMIC PREMIUM" },
+        { "id": "placaj_klinker", "name": "adeziv + Ströher Riegel 50", "th_mm": 15, "product": "Ströher Riegel 50 LF 490×40 silver-grau" }
       ]
     },
     "A3_N": {
@@ -51,10 +83,10 @@
         { "id": "adeziv_faianata", "name": "adeziv faianță", "th_mm": 5 },
         { "id": "tencuiala_int", "name": "tencuială interioară", "th_mm": 6 },
         { "id": "caramida_eb20", "name": "EB20 Akustik", "th_mm": 200 },
-        { "id": "adeziv_etics", "name": "adeziv ETICS", "th_mm": 5 },
-        { "id": "vata_isover_fassade", "name": "vată minerală fațadă", "th_mm": 80 },
-        { "id": "strat_armat", "name": "strat armat", "th_mm": 5 },
-        { "id": "grund_decorativa", "name": "grund și tencuială decorativă", "th_mm": 2 }
+        { "id": "adeziv_etics", "name": "adeziv ETICS Weber", "th_mm": 5, "product": "Weber webertherm" },
+        { "id": "vata_isover_fassade", "name": "vată minerală fațadă", "th_mm": 80, "product": "ISOVER FASSADE" },
+        { "id": "strat_armat", "name": "strat armat Weber", "th_mm": 5, "product": "Weber webertherm" },
+        { "id": "grund_decorativa", "name": "grund și tencuială decorativă Weber", "th_mm": 2, "product": "Weber webertherm" }
       ]
     },
     "A3_K": {
@@ -65,11 +97,11 @@
         { "id": "faianata", "name": "faianță", "th_mm": 8 },
         { "id": "adeziv_faianata", "name": "adeziv faianță", "th_mm": 5 },
         { "id": "tencuiala_int", "name": "tencuială interioară", "th_mm": 6 },
-        { "id": "caramida_eb20", "name": "EB20 Akustik", "th_mm": 200 },
-        { "id": "adeziv_etics", "name": "adeziv ETICS", "th_mm": 5 },
-        { "id": "vata_isover_fassade", "name": "vată minerală fațadă", "th_mm": 80 },
-        { "id": "strat_armat", "name": "strat armat ceramic", "th_mm": 5 },
-        { "id": "placaj_klinker", "name": "adeziv + placaj klinker", "th_mm": 15 }
+        { "id": "caramida_eb20", "name": "EB20 Akustik", "th_mm": 200, "product": "EB20 Akustik" },
+        { "id": "adeziv_etics", "name": "adeziv ETICS Weber", "th_mm": 5, "product": "Weber webertherm CERAMIC PREMIUM" },
+        { "id": "vata_isover_fassade", "name": "vată minerală fațadă", "th_mm": 80, "product": "ISOVER FASSADE" },
+        { "id": "strat_armat", "name": "strat armat ceramic Weber", "th_mm": 5, "product": "Weber webertherm CERAMIC PREMIUM" },
+        { "id": "placaj_klinker", "name": "adeziv + Ströher Riegel 50", "th_mm": 15, "product": "Ströher Riegel 50 LF 490×40 silver-grau" }
       ]
     },
     "A4": {
@@ -80,19 +112,21 @@
       "layers_interior_to_exterior_mm": [
         { "id": "tencuiala_scara", "name": "tencuială volum scară", "th_mm": 8 },
         { "id": "miez_scara", "name": "miez cărămidă/BA", "th_mm": 120 },
-        { "id": "strat_armat", "name": "strat armat / suport", "th_mm": 5 },
-        { "id": "placaj_klinker", "name": "adeziv + placaj klinker", "th_mm": 15 }
+        { "id": "strat_armat", "name": "strat armat / suport Weber", "th_mm": 5 },
+        { "id": "placaj_klinker", "name": "adeziv + Ströher Riegel 50", "th_mm": 15, "product": "Ströher Riegel 50 LF 490×40 silver-grau" }
       ]
     },
     "A5": {
       "id": "A5",
       "name": "Parapet",
+      "applies": ["parapets_cm"],
       "thickness_finished_mm": 116,
       "layers_interior_to_exterior_mm": [
         { "id": "tencuiala_fata_1", "name": "tencuială față 1", "th_mm": 8 },
         { "id": "miez_parapet", "name": "miez beton/zidărie", "th_mm": 100 },
         { "id": "tencuiala_fata_2", "name": "tencuială față 2", "th_mm": 8 }
-      ]
+      ],
+      "note": "doar parapete (parapets_cm); NU pe terasa_est (acela e A1)"
     },
     "A6": {
       "id": "A6",
@@ -102,52 +136,61 @@
       "layers_interior_to_exterior_mm": [
         { "id": "tencuiala_int", "name": "tencuială interioară casă", "th_mm": 6 },
         { "id": "finisare_vopsea", "name": "vopsea", "th_mm": 1 },
-        { "id": "caramida_eb20", "name": "EB20 Akustik", "th_mm": 200 },
-        { "id": "adeziv_etics", "name": "adeziv", "th_mm": 5 },
-        { "id": "vata_isover_fassade", "name": "vată minerală spre scară", "th_mm": 80 },
+        { "id": "caramida_eb20", "name": "EB20 Akustik", "th_mm": 200, "product": "EB20 Akustik" },
+        { "id": "adeziv_etics", "name": "adeziv Weber", "th_mm": 5, "product": "Weber webertherm" },
+        { "id": "vata_isover_fassade", "name": "vată minerală spre scară", "th_mm": 80, "product": "ISOVER FASSADE" },
         { "id": "strat_armat", "name": "strat armat / suport", "th_mm": 5 },
-        { "id": "tencuiala_scara", "name": "tencuială volum scară", "th_mm": 8 }
+        { "id": "tencuiala_scara", "name": "tencuială volum scară", "th_mm": 3 }
       ],
-      "sum_note": "305 mm → holaj în 300 mm la detalii"
+      "sum_note": "straturi 300 mm exact (tencuială scară holată 8→3); lock A6=300"
     },
     "A7": {
       "id": "A7",
-      "name": "Interior fono camere",
+      "name": "Interior fono camere — Knauf W112",
+      "system": "Knauf W112",
+      "applies": ["perete_comun_est", "ecran_frigider", "interior_dry"],
       "thickness_finished_mm": 125,
       "layers_interior_to_exterior_mm": [
-        { "id": "gk_vopsea_1", "name": "GK + vopsea", "th_mm": 12.5 },
-        { "id": "montanti_vata_fono", "name": "montanți + vată fono", "th_mm": 100 },
-        { "id": "gk_vopsea_2", "name": "GK + vopsea", "th_mm": 12.5 }
-      ]
+        { "id": "gk_vopsea_1a", "name": "Knauf GKB 12.5 + vopsea", "th_mm": 12.5, "product": "Knauf GKB" },
+        { "id": "gk_vopsea_1b", "name": "Knauf GKB 12.5", "th_mm": 12.5, "product": "Knauf GKB" },
+        { "id": "montanti_vata_fono", "name": "CW75 + vată fono", "th_mm": 75, "product": "Knauf CW 75 + vată fono" },
+        { "id": "gk_vopsea_2b", "name": "Knauf GKB 12.5", "th_mm": 12.5, "product": "Knauf GKB" },
+        { "id": "gk_vopsea_2a", "name": "Knauf GKB 12.5 + vopsea", "th_mm": 12.5, "product": "Knauf GKB" }
+      ],
+      "sum_note": "W112: 2×12.5 + CW75 + 2×12.5 = 125 mm"
     },
     "A8": {
       "id": "A8",
-      "name": "Interior baie fono + faianță",
+      "name": "Interior baie — W112 + faianță",
+      "system": "Knauf W112 + GKBI",
       "thickness_finished_mm": 150,
       "layers_interior_to_exterior_mm": [
         { "id": "faianata", "name": "faianță", "th_mm": 8 },
         { "id": "adeziv_faianata", "name": "adeziv", "th_mm": 5 },
-        { "id": "gkbi_hidro", "name": "hidro / GKBI", "th_mm": 12.5 },
-        { "id": "montanti_vata_fono", "name": "montanți + vată", "th_mm": 100 },
-        { "id": "gk_vopsea_2", "name": "GK + vopsea cameră", "th_mm": 12.5 }
+        { "id": "gkbi_hidro", "name": "hidro / Knauf GKBI", "th_mm": 12.5, "product": "Knauf GKBI" },
+        { "id": "gk_vopsea_1b", "name": "Knauf GKB 12.5", "th_mm": 12.5, "product": "Knauf GKB" },
+        { "id": "montanti_vata_fono", "name": "CW75 + vată", "th_mm": 75, "product": "Knauf CW 75" },
+        { "id": "gk_vopsea_2b", "name": "Knauf GKB 12.5", "th_mm": 12.5, "product": "Knauf GKB" },
+        { "id": "gk_vopsea_2a", "name": "Knauf GKB 12.5 + vopsea cameră", "th_mm": 12.5, "product": "Knauf GKB" }
       ],
-      "sum_note": "138.5 mm → lock gabarit 150 mm"
+      "sum_note": "138.5 mm → lock gabarit 150 mm (holaj / dublu GK pe baie)"
     },
     "A9": {
       "id": "A9",
       "name": "Pocket / TV",
       "thickness_finished_mm": 125,
       "thickness_tv_band_mm": 150,
-      "alias_of": "A7"
+      "alias_of": "A7",
+      "system": "Knauf W112"
     },
     "A10": {
       "id": "A10",
       "name": "Gard trotuar",
       "thickness_finished_mm": 230,
       "layers_interior_to_exterior_mm": [
-        { "id": "placaj_klinker", "name": "klinker stradă", "th_mm": 15 },
+        { "id": "placaj_klinker", "name": "Ströher Riegel 50 stradă", "th_mm": 15, "product": "Ströher Riegel 50" },
         { "id": "miez_gard", "name": "miez BA/zidărie", "th_mm": 200 },
-        { "id": "placaj_klinker_curte", "name": "klinker curte", "th_mm": 15 }
+        { "id": "placaj_klinker_curte", "name": "Ströher Riegel 50 curte", "th_mm": 15, "product": "Ströher Riegel 50" }
       ]
     },
     "A11": {
@@ -236,6 +279,6 @@
     "nisa_dulap_est": "A8",
     "dorm_baie_nord": "A8",
     "ecran_frigider": "A7",
-    "terasa_est": "A5"
+    "terasa_est": "A1"
   }
 }

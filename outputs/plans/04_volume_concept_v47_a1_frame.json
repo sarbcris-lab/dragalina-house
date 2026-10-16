@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_frame_study",
-    "generated": "2026-10-15T20:16:55.389Z",
+    "generated": "2026-10-16T05:11:11.499Z",
     "status": "3D_STUDIU_A1_FRAME_CADRE",
     "source_plan": "data/building/v47_a1_frame_study.json",
     "based_on": "v47_a1_study amenajare (aprobată) + schemă cadre separată",
@@ -22340,7 +22340,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#8a8680",
-      "label": "nord_heated [A1]: grund și tencuială decorativă (2 mm)",
+      "label": "nord_heated [A1]: grund și tencuială decorativă Weber (2 mm)",
       "kind": "ext",
       "wall_layer": "grund_decorativa",
       "catalog_id": "A1",
@@ -22375,7 +22375,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#a8b0b8",
-      "label": "nord_heated [A1]: strat armat (5 mm)",
+      "label": "nord_heated [A1]: strat armat Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
       "catalog_id": "A1",
@@ -22445,7 +22445,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#b0a898",
-      "label": "nord_heated [A1]: adeziv ETICS (5 mm)",
+      "label": "nord_heated [A1]: adeziv ETICS Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
       "catalog_id": "A1",
@@ -22571,12 +22571,12 @@
           "y": 18.2202
         },
         {
-          "x": 8.0181,
-          "y": 18.1898
+          "x": 8.0175,
+          "y": 18.2052
         },
         {
-          "x": 6.8692,
-          "y": 18.1406
+          "x": 6.8685,
+          "y": 18.156
         },
         {
           "x": 6.8679,
@@ -22586,7 +22586,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#c4a882",
-      "label": "nord_cold_stair [A4]: adeziv + placaj klinker (15 mm)",
+      "label": "nord_cold_stair [A4]: adeziv + Ströher Riegel 50 (15 mm)",
       "kind": "ext",
       "wall_layer": "placaj_klinker",
       "catalog_id": "A4",
@@ -22598,30 +22598,30 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.8692,
-          "y": 18.1406
+          "x": 6.8685,
+          "y": 18.156
         },
         {
-          "x": 8.0181,
-          "y": 18.1898
+          "x": 8.0175,
+          "y": 18.2052
         },
         {
-          "x": 8.0186,
-          "y": 18.1797
+          "x": 8.0177,
+          "y": 18.2002
         },
         {
-          "x": 6.8696,
-          "y": 18.1305
+          "x": 6.8688,
+          "y": 18.151
         },
         {
-          "x": 6.8692,
-          "y": 18.1406
+          "x": 6.8685,
+          "y": 18.156
         }
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#a8b0b8",
-      "label": "nord_cold_stair [A4]: strat armat / suport (5 mm)",
+      "label": "nord_cold_stair [A4]: strat armat / suport Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
       "catalog_id": "A4",
@@ -22633,24 +22633,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.8696,
-          "y": 18.1305
+          "x": 6.8688,
+          "y": 18.151
         },
         {
-          "x": 8.0186,
-          "y": 18.1797
+          "x": 8.0177,
+          "y": 18.2002
         },
         {
-          "x": 8.029,
-          "y": 17.9366
+          "x": 8.0228,
+          "y": 18.0803
         },
         {
-          "x": 6.88,
-          "y": 17.8875
+          "x": 6.8739,
+          "y": 18.0311
         },
         {
-          "x": 6.8696,
-          "y": 18.1305
+          "x": 6.8688,
+          "y": 18.151
         }
       ],
       "z0_m": 0.32,
@@ -22669,24 +22669,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.88,
-          "y": 17.8875
+          "x": 6.8739,
+          "y": 18.0311
         },
         {
-          "x": 8.029,
-          "y": 17.9366
+          "x": 8.0228,
+          "y": 18.0803
         },
         {
-          "x": 8.0297,
-          "y": 17.9204
+          "x": 8.0232,
+          "y": 18.0723
         },
         {
-          "x": 6.8807,
-          "y": 17.8713
+          "x": 6.8742,
+          "y": 18.0231
         },
         {
-          "x": 6.88,
-          "y": 17.8875
+          "x": 6.8739,
+          "y": 18.0311
         }
       ],
       "z0_m": 0.32,
@@ -22727,7 +22727,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#c4a882",
-      "label": "vest [A2]: adeziv + placaj klinker (15 mm)",
+      "label": "vest [A2]: adeziv + Ströher Riegel 50 (15 mm)",
       "kind": "ext",
       "wall_layer": "placaj_klinker",
       "catalog_id": "A2",
@@ -22762,7 +22762,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#a8b0b8",
-      "label": "vest [A2]: strat armat ceramic (5 mm)",
+      "label": "vest [A2]: strat armat ceramic Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
       "catalog_id": "A2",
@@ -22832,7 +22832,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#b0a898",
-      "label": "vest [A2]: adeziv ETICS (5 mm)",
+      "label": "vest [A2]: adeziv ETICS Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
       "catalog_id": "A2",
@@ -22973,7 +22973,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#c4a882",
-      "label": "est_living [A2]: adeziv + placaj klinker (15 mm)",
+      "label": "est_living [A2]: adeziv + Ströher Riegel 50 (15 mm)",
       "kind": "ext",
       "wall_layer": "placaj_klinker",
       "catalog_id": "A2",
@@ -23008,7 +23008,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#a8b0b8",
-      "label": "est_living [A2]: strat armat ceramic (5 mm)",
+      "label": "est_living [A2]: strat armat ceramic Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
       "catalog_id": "A2",
@@ -23078,7 +23078,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#b0a898",
-      "label": "est_living [A2]: adeziv ETICS (5 mm)",
+      "label": "est_living [A2]: adeziv ETICS Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
       "catalog_id": "A2",
@@ -23219,7 +23219,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#c4a882",
-      "label": "sud_bucatarie [A2]: adeziv + placaj klinker (15 mm)",
+      "label": "sud_bucatarie [A2]: adeziv + Ströher Riegel 50 (15 mm)",
       "kind": "ext",
       "wall_layer": "placaj_klinker",
       "catalog_id": "A2",
@@ -23254,7 +23254,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#a8b0b8",
-      "label": "sud_bucatarie [A2]: strat armat ceramic (5 mm)",
+      "label": "sud_bucatarie [A2]: strat armat ceramic Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
       "catalog_id": "A2",
@@ -23324,7 +23324,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#b0a898",
-      "label": "sud_bucatarie [A2]: adeziv ETICS (5 mm)",
+      "label": "sud_bucatarie [A2]: adeziv ETICS Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
       "catalog_id": "A2",
@@ -23465,7 +23465,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#c4a882",
-      "label": "dormitor_sud [A2]: adeziv + placaj klinker (15 mm)",
+      "label": "dormitor_sud [A2]: adeziv + Ströher Riegel 50 (15 mm)",
       "kind": "ext",
       "wall_layer": "placaj_klinker",
       "catalog_id": "A2",
@@ -23500,7 +23500,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#a8b0b8",
-      "label": "dormitor_sud [A2]: strat armat ceramic (5 mm)",
+      "label": "dormitor_sud [A2]: strat armat ceramic Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
       "catalog_id": "A2",
@@ -23570,7 +23570,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#b0a898",
-      "label": "dormitor_sud [A2]: adeziv ETICS (5 mm)",
+      "label": "dormitor_sud [A2]: adeziv ETICS Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
       "catalog_id": "A2",
@@ -23684,36 +23684,71 @@
       "opacity": 0.97
     },
     {
-      "id": "zid_perete_comun_est_gk_vopsea_2_p",
+      "id": "zid_perete_comun_est_gk_vopsea_2a_p",
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.9573,
-          "y": 12.2489
+          "x": 4.8331,
+          "y": 17.7837
         },
         {
-          "x": 5.0822,
-          "y": 12.2543
+          "x": 4.8456,
+          "y": 17.7842
         },
         {
           "x": 5.1084,
           "y": 11.6398
         },
         {
-          "x": 4.9836,
-          "y": 11.6345
+          "x": 5.0959,
+          "y": 11.6393
         },
         {
-          "x": 4.9573,
-          "y": 12.2489
+          "x": 4.8331,
+          "y": 17.7837
         }
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#f0ebe3",
-      "label": "perete_comun_est [A7]: GK + vopsea (12.5 mm)",
+      "label": "perete_comun_est [A7]: Knauf GKB 12.5 + vopsea (12.5 mm)",
       "kind": "int",
-      "wall_layer": "gk_vopsea_2",
+      "wall_layer": "gk_vopsea_2a",
+      "catalog_id": "A7",
+      "assembly": "A7",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_perete_comun_est_gk_vopsea_2b_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.8206,
+          "y": 17.7832
+        },
+        {
+          "x": 4.8331,
+          "y": 17.7837
+        },
+        {
+          "x": 5.0959,
+          "y": 11.6393
+        },
+        {
+          "x": 5.0835,
+          "y": 11.6388
+        },
+        {
+          "x": 4.8206,
+          "y": 17.7832
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#ebe6dc",
+      "label": "perete_comun_est [A7]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_2b",
       "catalog_id": "A7",
       "assembly": "A7",
       "opacity": 0.97
@@ -23723,30 +23758,30 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.747,
-          "y": 17.1644
+          "x": 4.7457,
+          "y": 17.7799
         },
         {
-          "x": 4.8719,
-          "y": 17.1698
+          "x": 4.8206,
+          "y": 17.7832
         },
         {
-          "x": 5.0822,
-          "y": 12.2543
+          "x": 5.0835,
+          "y": 11.6388
         },
         {
-          "x": 4.9573,
-          "y": 12.2489
+          "x": 5.0085,
+          "y": 11.6356
         },
         {
-          "x": 4.747,
-          "y": 17.1644
+          "x": 4.7457,
+          "y": 17.7799
         }
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#d8d090",
-      "label": "perete_comun_est [A7]: montanți + vată fono (100 mm)",
+      "label": "perete_comun_est [A7]: CW75 + vată fono (75 mm)",
       "kind": "int",
       "wall_layer": "montanti_vata_fono",
       "catalog_id": "A7",
@@ -23754,7 +23789,42 @@
       "opacity": 0.85
     },
     {
-      "id": "zid_perete_comun_est_gk_vopsea_1_p",
+      "id": "zid_perete_comun_est_gk_vopsea_1b_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.7332,
+          "y": 17.7794
+        },
+        {
+          "x": 4.7457,
+          "y": 17.7799
+        },
+        {
+          "x": 5.0085,
+          "y": 11.6356
+        },
+        {
+          "x": 4.996,
+          "y": 11.635
+        },
+        {
+          "x": 4.7332,
+          "y": 17.7794
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#ebe6dc",
+      "label": "perete_comun_est [A7]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_1b",
+      "catalog_id": "A7",
+      "assembly": "A7",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_perete_comun_est_gk_vopsea_1a_p",
       "type": "extrude",
       "polygon": [
         {
@@ -23762,16 +23832,16 @@
           "y": 17.7789
         },
         {
-          "x": 4.8456,
-          "y": 17.7842
+          "x": 4.7332,
+          "y": 17.7794
         },
         {
-          "x": 4.8719,
-          "y": 17.1698
+          "x": 4.996,
+          "y": 11.635
         },
         {
-          "x": 4.747,
-          "y": 17.1644
+          "x": 4.9836,
+          "y": 11.6345
         },
         {
           "x": 4.7207,
@@ -23781,44 +23851,79 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#f0ebe3",
-      "label": "perete_comun_est [A7]: GK + vopsea (12.5 mm)",
+      "label": "perete_comun_est [A7]: Knauf GKB 12.5 + vopsea (12.5 mm)",
       "kind": "int",
-      "wall_layer": "gk_vopsea_1",
+      "wall_layer": "gk_vopsea_1a",
       "catalog_id": "A7",
       "assembly": "A7",
       "opacity": 0.97
     },
     {
-      "id": "zid_nisa_dulap_spate_gk_vopsea_2_p",
+      "id": "zid_nisa_dulap_spate_gk_vopsea_2a_p",
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.7062,
-          "y": 16.1163
+          "x": 1.6218,
+          "y": 15.9322
         },
         {
-          "x": 2.8148,
-          "y": 16.1209
+          "x": 2.8207,
+          "y": 15.9835
         },
         {
           "x": 2.8212,
           "y": 15.971
         },
         {
-          "x": 2.7126,
-          "y": 15.9664
+          "x": 1.6223,
+          "y": 15.9198
         },
         {
-          "x": 2.7062,
-          "y": 16.1163
+          "x": 1.6218,
+          "y": 15.9322
         }
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#f0ebe3",
-      "label": "nisa_dulap_spate [A8]: GK + vopsea cameră (12.5 mm)",
+      "label": "nisa_dulap_spate [A8]: Knauf GKB 12.5 + vopsea cameră (12.5 mm)",
       "kind": "int",
-      "wall_layer": "gk_vopsea_2",
+      "wall_layer": "gk_vopsea_2a",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nisa_dulap_spate_gk_vopsea_2b_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6213,
+          "y": 15.9447
+        },
+        {
+          "x": 2.8202,
+          "y": 15.996
+        },
+        {
+          "x": 2.8207,
+          "y": 15.9835
+        },
+        {
+          "x": 1.6218,
+          "y": 15.9322
+        },
+        {
+          "x": 1.6213,
+          "y": 15.9447
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#ebe6dc",
+      "label": "nisa_dulap_spate [A8]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_2b",
       "catalog_id": "A8",
       "assembly": "A8",
       "opacity": 0.97
@@ -23828,30 +23933,30 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.8374,
-          "y": 16.0791
+          "x": 1.6181,
+          "y": 16.0197
         },
         {
-          "x": 2.7062,
-          "y": 16.1163
+          "x": 2.817,
+          "y": 16.071
         },
         {
-          "x": 2.7126,
-          "y": 15.9664
+          "x": 2.8202,
+          "y": 15.996
         },
         {
-          "x": 1.8439,
-          "y": 15.9292
+          "x": 1.6213,
+          "y": 15.9447
         },
         {
-          "x": 1.8374,
-          "y": 16.0791
+          "x": 1.6181,
+          "y": 16.0197
         }
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#d8d090",
-      "label": "nisa_dulap_spate [A8]: montanți + vată (100 mm)",
+      "label": "nisa_dulap_spate [A8]: CW75 + vată (75 mm)",
       "kind": "int",
       "wall_layer": "montanti_vata_fono",
       "catalog_id": "A8",
@@ -23859,34 +23964,69 @@
       "opacity": 0.85
     },
     {
+      "id": "zid_nisa_dulap_spate_gk_vopsea_1b_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6175,
+          "y": 16.0321
+        },
+        {
+          "x": 2.8164,
+          "y": 16.0834
+        },
+        {
+          "x": 2.817,
+          "y": 16.071
+        },
+        {
+          "x": 1.6181,
+          "y": 16.0197
+        },
+        {
+          "x": 1.6175,
+          "y": 16.0321
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#ebe6dc",
+      "label": "nisa_dulap_spate [A8]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_1b",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "opacity": 0.97
+    },
+    {
       "id": "zid_nisa_dulap_spate_gkbi_hidro_p",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.7289,
-          "y": 16.0744
+          "x": 1.617,
+          "y": 16.0446
         },
         {
-          "x": 1.8374,
-          "y": 16.0791
+          "x": 2.8159,
+          "y": 16.0959
         },
         {
-          "x": 1.8439,
-          "y": 15.9292
+          "x": 2.8164,
+          "y": 16.0834
         },
         {
-          "x": 1.7353,
-          "y": 15.9246
+          "x": 1.6175,
+          "y": 16.0321
         },
         {
-          "x": 1.7289,
-          "y": 16.0744
+          "x": 1.617,
+          "y": 16.0446
         }
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#dde8f0",
-      "label": "nisa_dulap_spate [A8]: hidro / GKBI (12.5 mm)",
+      "label": "nisa_dulap_spate [A8]: hidro / Knauf GKBI (12.5 mm)",
       "kind": "int",
       "wall_layer": "gkbi_hidro",
       "catalog_id": "A8",
@@ -23898,24 +24038,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6854,
-          "y": 16.0726
+          "x": 1.6168,
+          "y": 16.0496
         },
         {
-          "x": 1.7289,
-          "y": 16.0744
+          "x": 2.8157,
+          "y": 16.1009
         },
         {
-          "x": 1.7353,
-          "y": 15.9246
+          "x": 2.8159,
+          "y": 16.0959
         },
         {
-          "x": 1.6918,
-          "y": 15.9227
+          "x": 1.617,
+          "y": 16.0446
         },
         {
-          "x": 1.6854,
-          "y": 16.0726
+          "x": 1.6168,
+          "y": 16.0496
         }
       ],
       "z0_m": 0.32,
@@ -23933,24 +24073,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6159,
-          "y": 16.0696
+          "x": 1.6164,
+          "y": 16.0576
         },
         {
-          "x": 1.6854,
-          "y": 16.0726
+          "x": 2.8153,
+          "y": 16.1089
         },
         {
-          "x": 1.6918,
-          "y": 15.9227
+          "x": 2.8157,
+          "y": 16.1009
         },
         {
-          "x": 1.6223,
-          "y": 15.9198
+          "x": 1.6168,
+          "y": 16.0496
         },
         {
-          "x": 1.6159,
-          "y": 16.0696
+          "x": 1.6164,
+          "y": 16.0576
         }
       ],
       "z0_m": 0.32,
@@ -23964,36 +24104,71 @@
       "opacity": 0.97
     },
     {
-      "id": "zid_nisa_dulap_est_gk_vopsea_2_p",
+      "id": "zid_nisa_dulap_est_gk_vopsea_2a_p",
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.8268,
-          "y": 15.2567
+          "x": 2.9272,
+          "y": 16.1257
         },
         {
-          "x": 2.9766,
-          "y": 15.2631
+          "x": 2.9397,
+          "y": 16.1262
         },
         {
           "x": 2.9803,
           "y": 15.1771
         },
         {
-          "x": 2.8304,
-          "y": 15.1707
+          "x": 2.9678,
+          "y": 15.1766
         },
         {
-          "x": 2.8268,
-          "y": 15.2567
+          "x": 2.9272,
+          "y": 16.1257
         }
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#f0ebe3",
-      "label": "nisa_dulap_est [A8]: GK + vopsea cameră (12.5 mm)",
+      "label": "nisa_dulap_est [A8]: Knauf GKB 12.5 + vopsea cameră (12.5 mm)",
       "kind": "int",
-      "wall_layer": "gk_vopsea_2",
+      "wall_layer": "gk_vopsea_2a",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nisa_dulap_est_gk_vopsea_2b_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.9147,
+          "y": 16.1252
+        },
+        {
+          "x": 2.9272,
+          "y": 16.1257
+        },
+        {
+          "x": 2.9678,
+          "y": 15.1766
+        },
+        {
+          "x": 2.9553,
+          "y": 15.176
+        },
+        {
+          "x": 2.9147,
+          "y": 16.1252
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#ebe6dc",
+      "label": "nisa_dulap_est [A8]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_2b",
       "catalog_id": "A8",
       "assembly": "A8",
       "opacity": 0.97
@@ -24003,30 +24178,30 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.7973,
-          "y": 15.9445
+          "x": 2.8398,
+          "y": 16.122
         },
         {
-          "x": 2.9472,
-          "y": 15.9509
+          "x": 2.9147,
+          "y": 16.1252
         },
         {
-          "x": 2.9766,
-          "y": 15.2631
+          "x": 2.9553,
+          "y": 15.176
         },
         {
-          "x": 2.8268,
-          "y": 15.2567
+          "x": 2.8804,
+          "y": 15.1728
         },
         {
-          "x": 2.7973,
-          "y": 15.9445
+          "x": 2.8398,
+          "y": 16.122
         }
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#d8d090",
-      "label": "nisa_dulap_est [A8]: montanți + vată (100 mm)",
+      "label": "nisa_dulap_est [A8]: CW75 + vată (75 mm)",
       "kind": "int",
       "wall_layer": "montanti_vata_fono",
       "catalog_id": "A8",
@@ -24034,34 +24209,69 @@
       "opacity": 0.85
     },
     {
+      "id": "zid_nisa_dulap_est_gk_vopsea_1b_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.8273,
+          "y": 16.1214
+        },
+        {
+          "x": 2.8398,
+          "y": 16.122
+        },
+        {
+          "x": 2.8804,
+          "y": 15.1728
+        },
+        {
+          "x": 2.8679,
+          "y": 15.1723
+        },
+        {
+          "x": 2.8273,
+          "y": 16.1214
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#ebe6dc",
+      "label": "nisa_dulap_est [A8]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_1b",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "opacity": 0.97
+    },
+    {
       "id": "zid_nisa_dulap_est_gkbi_hidro_p",
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.7937,
-          "y": 16.0304
+          "x": 2.8148,
+          "y": 16.1209
         },
         {
-          "x": 2.9435,
-          "y": 16.0368
+          "x": 2.8273,
+          "y": 16.1214
         },
         {
-          "x": 2.9472,
-          "y": 15.9509
+          "x": 2.8679,
+          "y": 15.1723
         },
         {
-          "x": 2.7973,
-          "y": 15.9445
+          "x": 2.8554,
+          "y": 15.1718
         },
         {
-          "x": 2.7937,
-          "y": 16.0304
+          "x": 2.8148,
+          "y": 16.1209
         }
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#dde8f0",
-      "label": "nisa_dulap_est [A8]: hidro / GKBI (12.5 mm)",
+      "label": "nisa_dulap_est [A8]: hidro / Knauf GKBI (12.5 mm)",
       "kind": "int",
       "wall_layer": "gkbi_hidro",
       "catalog_id": "A8",
@@ -24073,24 +24283,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.7922,
-          "y": 16.0648
+          "x": 2.8098,
+          "y": 16.1207
         },
         {
-          "x": 2.9421,
-          "y": 16.0712
+          "x": 2.8148,
+          "y": 16.1209
         },
         {
-          "x": 2.9435,
-          "y": 16.0368
+          "x": 2.8554,
+          "y": 15.1718
         },
         {
-          "x": 2.7937,
-          "y": 16.0304
+          "x": 2.8504,
+          "y": 15.1716
         },
         {
-          "x": 2.7922,
-          "y": 16.0648
+          "x": 2.8098,
+          "y": 16.1207
         }
       ],
       "z0_m": 0.32,
@@ -24108,24 +24318,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.7898,
-          "y": 16.1198
+          "x": 2.8018,
+          "y": 16.1203
         },
         {
-          "x": 2.9397,
-          "y": 16.1262
+          "x": 2.8098,
+          "y": 16.1207
         },
         {
-          "x": 2.9421,
-          "y": 16.0712
+          "x": 2.8504,
+          "y": 15.1716
         },
         {
-          "x": 2.7922,
-          "y": 16.0648
+          "x": 2.8424,
+          "y": 15.1712
         },
         {
-          "x": 2.7898,
-          "y": 16.1198
+          "x": 2.8018,
+          "y": 16.1203
         }
       ],
       "z0_m": 0.32,
@@ -24139,36 +24349,71 @@
       "opacity": 0.97
     },
     {
-      "id": "zid_dorm_baie_nord_gk_vopsea_2_p",
+      "id": "zid_dorm_baie_nord_gk_vopsea_2a_p",
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.6548,
-          "y": 15.3989
+          "x": 2.9798,
+          "y": 15.1896
         },
         {
-          "x": 4.8222,
-          "y": 15.406
+          "x": 4.8281,
+          "y": 15.2687
         },
         {
           "x": 4.8286,
           "y": 15.2562
         },
         {
-          "x": 4.6612,
-          "y": 15.249
+          "x": 2.9803,
+          "y": 15.1771
         },
         {
-          "x": 4.6548,
-          "y": 15.3989
+          "x": 2.9798,
+          "y": 15.1896
         }
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#f0ebe3",
-      "label": "dorm_baie_nord [A8]: GK + vopsea cameră (12.5 mm)",
+      "label": "dorm_baie_nord [A8]: Knauf GKB 12.5 + vopsea cameră (12.5 mm)",
       "kind": "int",
-      "wall_layer": "gk_vopsea_2",
+      "wall_layer": "gk_vopsea_2a",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_dorm_baie_nord_gk_vopsea_2b_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.9792,
+          "y": 15.2021
+        },
+        {
+          "x": 4.8275,
+          "y": 15.2812
+        },
+        {
+          "x": 4.8281,
+          "y": 15.2687
+        },
+        {
+          "x": 2.9798,
+          "y": 15.1896
+        },
+        {
+          "x": 2.9792,
+          "y": 15.2021
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#ebe6dc",
+      "label": "dorm_baie_nord [A8]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_2b",
       "catalog_id": "A8",
       "assembly": "A8",
       "opacity": 0.97
@@ -24178,30 +24423,30 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 3.3154,
-          "y": 15.3416
+          "x": 2.976,
+          "y": 15.277
         },
         {
-          "x": 4.6548,
-          "y": 15.3989
+          "x": 4.8243,
+          "y": 15.3561
         },
         {
-          "x": 4.6612,
-          "y": 15.249
+          "x": 4.8275,
+          "y": 15.2812
         },
         {
-          "x": 3.3218,
-          "y": 15.1917
+          "x": 2.9792,
+          "y": 15.2021
         },
         {
-          "x": 3.3154,
-          "y": 15.3416
+          "x": 2.976,
+          "y": 15.277
         }
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#d8d090",
-      "label": "dorm_baie_nord [A8]: montanți + vată (100 mm)",
+      "label": "dorm_baie_nord [A8]: CW75 + vată (75 mm)",
       "kind": "int",
       "wall_layer": "montanti_vata_fono",
       "catalog_id": "A8",
@@ -24209,34 +24454,69 @@
       "opacity": 0.85
     },
     {
+      "id": "zid_dorm_baie_nord_gk_vopsea_1b_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.9755,
+          "y": 15.2895
+        },
+        {
+          "x": 4.8238,
+          "y": 15.3686
+        },
+        {
+          "x": 4.8243,
+          "y": 15.3561
+        },
+        {
+          "x": 2.976,
+          "y": 15.277
+        },
+        {
+          "x": 2.9755,
+          "y": 15.2895
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#ebe6dc",
+      "label": "dorm_baie_nord [A8]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_1b",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "opacity": 0.97
+    },
+    {
       "id": "zid_dorm_baie_nord_gkbi_hidro_p",
       "type": "extrude",
       "polygon": [
         {
-          "x": 3.148,
-          "y": 15.3344
+          "x": 2.975,
+          "y": 15.302
         },
         {
-          "x": 3.3154,
-          "y": 15.3416
+          "x": 4.8233,
+          "y": 15.3811
         },
         {
-          "x": 3.3218,
-          "y": 15.1917
+          "x": 4.8238,
+          "y": 15.3686
         },
         {
-          "x": 3.1544,
-          "y": 15.1846
+          "x": 2.9755,
+          "y": 15.2895
         },
         {
-          "x": 3.148,
-          "y": 15.3344
+          "x": 2.975,
+          "y": 15.302
         }
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#dde8f0",
-      "label": "dorm_baie_nord [A8]: hidro / GKBI (12.5 mm)",
+      "label": "dorm_baie_nord [A8]: hidro / Knauf GKBI (12.5 mm)",
       "kind": "int",
       "wall_layer": "gkbi_hidro",
       "catalog_id": "A8",
@@ -24248,24 +24528,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 3.081,
-          "y": 15.3316
+          "x": 2.9748,
+          "y": 15.307
         },
         {
-          "x": 3.148,
-          "y": 15.3344
+          "x": 4.8231,
+          "y": 15.3861
         },
         {
-          "x": 3.1544,
-          "y": 15.1846
+          "x": 4.8233,
+          "y": 15.3811
         },
         {
-          "x": 3.0875,
-          "y": 15.1817
+          "x": 2.975,
+          "y": 15.302
         },
         {
-          "x": 3.081,
-          "y": 15.3316
+          "x": 2.9748,
+          "y": 15.307
         }
       ],
       "z0_m": 0.32,
@@ -24283,24 +24563,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.9739,
-          "y": 15.327
+          "x": 2.9744,
+          "y": 15.315
         },
         {
-          "x": 3.081,
-          "y": 15.3316
+          "x": 4.8227,
+          "y": 15.3941
         },
         {
-          "x": 3.0875,
-          "y": 15.1817
+          "x": 4.8231,
+          "y": 15.3861
         },
         {
-          "x": 2.9803,
-          "y": 15.1771
+          "x": 2.9748,
+          "y": 15.307
         },
         {
-          "x": 2.9739,
-          "y": 15.327
+          "x": 2.9744,
+          "y": 15.315
         }
       ],
       "z0_m": 0.32,
@@ -24322,12 +24602,12 @@
           "y": 12.2768
         },
         {
-          "x": 7.1381,
-          "y": 12.2772
+          "x": 7.1331,
+          "y": 12.277
         },
         {
-          "x": 7.2535,
-          "y": 9.5796
+          "x": 7.2485,
+          "y": 9.5794
         },
         {
           "x": 7.2455,
@@ -24341,7 +24621,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#d4cfc4",
-      "label": "buc_est [A6]: tencuială volum scară (8 mm)",
+      "label": "buc_est [A6]: tencuială volum scară (3 mm)",
       "kind": "ext",
       "wall_layer": "tencuiala_scara",
       "catalog_id": "A6",
@@ -24446,7 +24726,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#b0a898",
-      "label": "buc_est [A6]: adeziv (5 mm)",
+      "label": "buc_est [A6]: adeziv Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
       "catalog_id": "A6",
@@ -24560,12 +24840,12 @@
       "opacity": 0.97
     },
     {
-      "id": "zid_terasa_est_p",
+      "id": "zid_terasa_est_grund_decorativa_p",
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.8215,
-          "y": 11.3273
+          "x": 5.1193,
+          "y": 11.34
         },
         {
           "x": 5.1213,
@@ -24576,19 +24856,234 @@
           "y": 9.4918
         },
         {
-          "x": 4.9007,
+          "x": 5.1984,
+          "y": 9.4917
+        },
+        {
+          "x": 5.1193,
+          "y": 11.34
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#8a8680",
+      "label": "terasa_est [A1]: grund și tencuială decorativă Weber (2 mm)",
+      "kind": "ext",
+      "wall_layer": "grund_decorativa",
+      "catalog_id": "A1",
+      "assembly": "A1",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_terasa_est_strat_armat_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.1143,
+          "y": 11.3398
+        },
+        {
+          "x": 5.1193,
+          "y": 11.34
+        },
+        {
+          "x": 5.1984,
+          "y": 9.4917
+        },
+        {
+          "x": 5.1934,
+          "y": 9.4915
+        },
+        {
+          "x": 5.1143,
+          "y": 11.3398
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#a8b0b8",
+      "label": "terasa_est [A1]: strat armat Weber (5 mm)",
+      "kind": "ext",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A1",
+      "assembly": "A1",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_terasa_est_vata_isover_fassade_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.0343,
+          "y": 11.3364
+        },
+        {
+          "x": 5.1143,
+          "y": 11.3398
+        },
+        {
+          "x": 5.1934,
+          "y": 9.4915
+        },
+        {
+          "x": 5.1135,
+          "y": 9.4881
+        },
+        {
+          "x": 5.0343,
+          "y": 11.3364
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#e2d18a",
+      "label": "terasa_est [A1]: vată minerală fațadă (80 mm)",
+      "kind": "ext",
+      "wall_layer": "vata_isover_fassade",
+      "catalog_id": "A1",
+      "assembly": "A1",
+      "opacity": 0.85
+    },
+    {
+      "id": "zid_terasa_est_adeziv_etics_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.0293,
+          "y": 11.3362
+        },
+        {
+          "x": 5.0343,
+          "y": 11.3364
+        },
+        {
+          "x": 5.1135,
+          "y": 9.4881
+        },
+        {
+          "x": 5.1085,
+          "y": 9.4879
+        },
+        {
+          "x": 5.0293,
+          "y": 11.3362
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#b0a898",
+      "label": "terasa_est [A1]: adeziv ETICS Weber (5 mm)",
+      "kind": "ext",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A1",
+      "assembly": "A1",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_terasa_est_caramida_eb20_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.8295,
+          "y": 11.3276
+        },
+        {
+          "x": 5.0293,
+          "y": 11.3362
+        },
+        {
+          "x": 5.1085,
+          "y": 9.4879
+        },
+        {
+          "x": 4.9087,
+          "y": 9.4793
+        },
+        {
+          "x": 4.8295,
+          "y": 11.3276
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#c4a070",
+      "label": "terasa_est [A1]: EB20 Akustik (200 mm)",
+      "kind": "ext",
+      "wall_layer": "caramida_eb20",
+      "catalog_id": "A1",
+      "assembly": "A1",
+      "site_layer": "umplutura",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_terasa_est_tencuiala_int_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.8235,
+          "y": 11.3274
+        },
+        {
+          "x": 4.8295,
+          "y": 11.3276
+        },
+        {
+          "x": 4.9087,
+          "y": 9.4793
+        },
+        {
+          "x": 4.9027,
+          "y": 9.4791
+        },
+        {
+          "x": 4.8235,
+          "y": 11.3274
+        }
+      ],
+      "z0_m": 0.32,
+      "z1_m": 2.9299999999999997,
+      "color": "#e8e0d4",
+      "label": "terasa_est [A1]: tencuială interioară (6 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A1",
+      "assembly": "A1",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_terasa_est_finisare_vopsea_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.8225,
+          "y": 11.3273
+        },
+        {
+          "x": 4.8235,
+          "y": 11.3274
+        },
+        {
+          "x": 4.9027,
+          "y": 9.4791
+        },
+        {
+          "x": 4.9017,
           "y": 9.479
         },
         {
-          "x": 4.8215,
+          "x": 4.8225,
           "y": 11.3273
         }
       ],
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
-      "color": "#d8d2c6",
-      "label": "terasa_est",
-      "kind": "ext"
+      "color": "#f4f0e8",
+      "label": "terasa_est [A1]: finisare și vopsea (1 mm)",
+      "kind": "ext",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A1",
+      "assembly": "A1",
+      "opacity": 0.97
     },
     {
       "id": "zid_est_recuperat_p_p",
@@ -24649,7 +25144,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#8a8680",
-      "label": "living_put_thermal_y590 [A1]: grund și tencuială decorativă (2 mm)",
+      "label": "living_put_thermal_y590 [A1]: grund și tencuială decorativă Weber (2 mm)",
       "kind": "ext",
       "wall_layer": "grund_decorativa",
       "catalog_id": "A1",
@@ -24684,7 +25179,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#a8b0b8",
-      "label": "living_put_thermal_y590 [A1]: strat armat (5 mm)",
+      "label": "living_put_thermal_y590 [A1]: strat armat Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
       "catalog_id": "A1",
@@ -24754,7 +25249,7 @@
       "z0_m": 0.32,
       "z1_m": 2.9299999999999997,
       "color": "#b0a898",
-      "label": "living_put_thermal_y590 [A1]: adeziv ETICS (5 mm)",
+      "label": "living_put_thermal_y590 [A1]: adeziv ETICS Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
       "catalog_id": "A1",
@@ -26282,7 +26777,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#8a8680",
-      "label": "nord_heated [A1]: grund și tencuială decorativă (2 mm)",
+      "label": "nord_heated [A1]: grund și tencuială decorativă Weber (2 mm)",
       "kind": "ext",
       "wall_layer": "grund_decorativa",
       "catalog_id": "A1",
@@ -26317,7 +26812,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#a8b0b8",
-      "label": "nord_heated [A1]: strat armat (5 mm)",
+      "label": "nord_heated [A1]: strat armat Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
       "catalog_id": "A1",
@@ -26387,7 +26882,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#b0a898",
-      "label": "nord_heated [A1]: adeziv ETICS (5 mm)",
+      "label": "nord_heated [A1]: adeziv ETICS Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
       "catalog_id": "A1",
@@ -26513,12 +27008,12 @@
           "y": 18.2202
         },
         {
-          "x": 8.0181,
-          "y": 18.1898
+          "x": 8.0175,
+          "y": 18.2052
         },
         {
-          "x": 6.8692,
-          "y": 18.1406
+          "x": 6.8685,
+          "y": 18.156
         },
         {
           "x": 6.8679,
@@ -26528,7 +27023,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#c4a882",
-      "label": "nord_cold_stair [A4]: adeziv + placaj klinker (15 mm)",
+      "label": "nord_cold_stair [A4]: adeziv + Ströher Riegel 50 (15 mm)",
       "kind": "ext",
       "wall_layer": "placaj_klinker",
       "catalog_id": "A4",
@@ -26540,30 +27035,30 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.8692,
-          "y": 18.1406
+          "x": 6.8685,
+          "y": 18.156
         },
         {
-          "x": 8.0181,
-          "y": 18.1898
+          "x": 8.0175,
+          "y": 18.2052
         },
         {
-          "x": 8.0186,
-          "y": 18.1797
+          "x": 8.0177,
+          "y": 18.2002
         },
         {
-          "x": 6.8696,
-          "y": 18.1305
+          "x": 6.8688,
+          "y": 18.151
         },
         {
-          "x": 6.8692,
-          "y": 18.1406
+          "x": 6.8685,
+          "y": 18.156
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#a8b0b8",
-      "label": "nord_cold_stair [A4]: strat armat / suport (5 mm)",
+      "label": "nord_cold_stair [A4]: strat armat / suport Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
       "catalog_id": "A4",
@@ -26575,24 +27070,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.8696,
-          "y": 18.1305
+          "x": 6.8688,
+          "y": 18.151
         },
         {
-          "x": 8.0186,
-          "y": 18.1797
+          "x": 8.0177,
+          "y": 18.2002
         },
         {
-          "x": 8.029,
-          "y": 17.9366
+          "x": 8.0228,
+          "y": 18.0803
         },
         {
-          "x": 6.88,
-          "y": 17.8875
+          "x": 6.8739,
+          "y": 18.0311
         },
         {
-          "x": 6.8696,
-          "y": 18.1305
+          "x": 6.8688,
+          "y": 18.151
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -26611,24 +27106,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.88,
-          "y": 17.8875
+          "x": 6.8739,
+          "y": 18.0311
         },
         {
-          "x": 8.029,
-          "y": 17.9366
+          "x": 8.0228,
+          "y": 18.0803
         },
         {
-          "x": 8.0297,
-          "y": 17.9204
+          "x": 8.0232,
+          "y": 18.0723
         },
         {
-          "x": 6.8807,
-          "y": 17.8713
+          "x": 6.8742,
+          "y": 18.0231
         },
         {
-          "x": 6.88,
-          "y": 17.8875
+          "x": 6.8739,
+          "y": 18.0311
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -26669,7 +27164,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#c4a882",
-      "label": "vest [A2]: adeziv + placaj klinker (15 mm)",
+      "label": "vest [A2]: adeziv + Ströher Riegel 50 (15 mm)",
       "kind": "ext",
       "wall_layer": "placaj_klinker",
       "catalog_id": "A2",
@@ -26704,7 +27199,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#a8b0b8",
-      "label": "vest [A2]: strat armat ceramic (5 mm)",
+      "label": "vest [A2]: strat armat ceramic Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
       "catalog_id": "A2",
@@ -26774,7 +27269,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#b0a898",
-      "label": "vest [A2]: adeziv ETICS (5 mm)",
+      "label": "vest [A2]: adeziv ETICS Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
       "catalog_id": "A2",
@@ -26915,7 +27410,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#c4a882",
-      "label": "est_living [A2]: adeziv + placaj klinker (15 mm)",
+      "label": "est_living [A2]: adeziv + Ströher Riegel 50 (15 mm)",
       "kind": "ext",
       "wall_layer": "placaj_klinker",
       "catalog_id": "A2",
@@ -26950,7 +27445,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#a8b0b8",
-      "label": "est_living [A2]: strat armat ceramic (5 mm)",
+      "label": "est_living [A2]: strat armat ceramic Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
       "catalog_id": "A2",
@@ -27020,7 +27515,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#b0a898",
-      "label": "est_living [A2]: adeziv ETICS (5 mm)",
+      "label": "est_living [A2]: adeziv ETICS Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
       "catalog_id": "A2",
@@ -27161,7 +27656,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#c4a882",
-      "label": "sud_bucatarie [A2]: adeziv + placaj klinker (15 mm)",
+      "label": "sud_bucatarie [A2]: adeziv + Ströher Riegel 50 (15 mm)",
       "kind": "ext",
       "wall_layer": "placaj_klinker",
       "catalog_id": "A2",
@@ -27196,7 +27691,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#a8b0b8",
-      "label": "sud_bucatarie [A2]: strat armat ceramic (5 mm)",
+      "label": "sud_bucatarie [A2]: strat armat ceramic Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
       "catalog_id": "A2",
@@ -27266,7 +27761,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#b0a898",
-      "label": "sud_bucatarie [A2]: adeziv ETICS (5 mm)",
+      "label": "sud_bucatarie [A2]: adeziv ETICS Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
       "catalog_id": "A2",
@@ -27407,7 +27902,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#c4a882",
-      "label": "dormitor_sud [A2]: adeziv + placaj klinker (15 mm)",
+      "label": "dormitor_sud [A2]: adeziv + Ströher Riegel 50 (15 mm)",
       "kind": "ext",
       "wall_layer": "placaj_klinker",
       "catalog_id": "A2",
@@ -27442,7 +27937,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#a8b0b8",
-      "label": "dormitor_sud [A2]: strat armat ceramic (5 mm)",
+      "label": "dormitor_sud [A2]: strat armat ceramic Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
       "catalog_id": "A2",
@@ -27512,7 +28007,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#b0a898",
-      "label": "dormitor_sud [A2]: adeziv ETICS (5 mm)",
+      "label": "dormitor_sud [A2]: adeziv ETICS Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
       "catalog_id": "A2",
@@ -27626,36 +28121,71 @@
       "opacity": 0.97
     },
     {
-      "id": "zid_perete_comun_est_gk_vopsea_2_e",
+      "id": "zid_perete_comun_est_gk_vopsea_2a_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.9573,
-          "y": 12.2489
+          "x": 4.8331,
+          "y": 17.7837
         },
         {
-          "x": 5.0822,
-          "y": 12.2543
+          "x": 4.8456,
+          "y": 17.7842
         },
         {
           "x": 5.1084,
           "y": 11.6398
         },
         {
-          "x": 4.9836,
-          "y": 11.6345
+          "x": 5.0959,
+          "y": 11.6393
         },
         {
-          "x": 4.9573,
-          "y": 12.2489
+          "x": 4.8331,
+          "y": 17.7837
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#f0ebe3",
-      "label": "perete_comun_est [A7]: GK + vopsea (12.5 mm)",
+      "label": "perete_comun_est [A7]: Knauf GKB 12.5 + vopsea (12.5 mm)",
       "kind": "int",
-      "wall_layer": "gk_vopsea_2",
+      "wall_layer": "gk_vopsea_2a",
+      "catalog_id": "A7",
+      "assembly": "A7",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_perete_comun_est_gk_vopsea_2b_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.8206,
+          "y": 17.7832
+        },
+        {
+          "x": 4.8331,
+          "y": 17.7837
+        },
+        {
+          "x": 5.0959,
+          "y": 11.6393
+        },
+        {
+          "x": 5.0835,
+          "y": 11.6388
+        },
+        {
+          "x": 4.8206,
+          "y": 17.7832
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#ebe6dc",
+      "label": "perete_comun_est [A7]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_2b",
       "catalog_id": "A7",
       "assembly": "A7",
       "opacity": 0.97
@@ -27665,30 +28195,30 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.747,
-          "y": 17.1644
+          "x": 4.7457,
+          "y": 17.7799
         },
         {
-          "x": 4.8719,
-          "y": 17.1698
+          "x": 4.8206,
+          "y": 17.7832
         },
         {
-          "x": 5.0822,
-          "y": 12.2543
+          "x": 5.0835,
+          "y": 11.6388
         },
         {
-          "x": 4.9573,
-          "y": 12.2489
+          "x": 5.0085,
+          "y": 11.6356
         },
         {
-          "x": 4.747,
-          "y": 17.1644
+          "x": 4.7457,
+          "y": 17.7799
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#d8d090",
-      "label": "perete_comun_est [A7]: montanți + vată fono (100 mm)",
+      "label": "perete_comun_est [A7]: CW75 + vată fono (75 mm)",
       "kind": "int",
       "wall_layer": "montanti_vata_fono",
       "catalog_id": "A7",
@@ -27696,7 +28226,42 @@
       "opacity": 0.85
     },
     {
-      "id": "zid_perete_comun_est_gk_vopsea_1_e",
+      "id": "zid_perete_comun_est_gk_vopsea_1b_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.7332,
+          "y": 17.7794
+        },
+        {
+          "x": 4.7457,
+          "y": 17.7799
+        },
+        {
+          "x": 5.0085,
+          "y": 11.6356
+        },
+        {
+          "x": 4.996,
+          "y": 11.635
+        },
+        {
+          "x": 4.7332,
+          "y": 17.7794
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#ebe6dc",
+      "label": "perete_comun_est [A7]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_1b",
+      "catalog_id": "A7",
+      "assembly": "A7",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_perete_comun_est_gk_vopsea_1a_e",
       "type": "extrude",
       "polygon": [
         {
@@ -27704,16 +28269,16 @@
           "y": 17.7789
         },
         {
-          "x": 4.8456,
-          "y": 17.7842
+          "x": 4.7332,
+          "y": 17.7794
         },
         {
-          "x": 4.8719,
-          "y": 17.1698
+          "x": 4.996,
+          "y": 11.635
         },
         {
-          "x": 4.747,
-          "y": 17.1644
+          "x": 4.9836,
+          "y": 11.6345
         },
         {
           "x": 4.7207,
@@ -27723,44 +28288,79 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#f0ebe3",
-      "label": "perete_comun_est [A7]: GK + vopsea (12.5 mm)",
+      "label": "perete_comun_est [A7]: Knauf GKB 12.5 + vopsea (12.5 mm)",
       "kind": "int",
-      "wall_layer": "gk_vopsea_1",
+      "wall_layer": "gk_vopsea_1a",
       "catalog_id": "A7",
       "assembly": "A7",
       "opacity": 0.97
     },
     {
-      "id": "zid_nisa_dulap_spate_gk_vopsea_2_e",
+      "id": "zid_nisa_dulap_spate_gk_vopsea_2a_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.7062,
-          "y": 16.1163
+          "x": 1.6218,
+          "y": 15.9322
         },
         {
-          "x": 2.8148,
-          "y": 16.1209
+          "x": 2.8207,
+          "y": 15.9835
         },
         {
           "x": 2.8212,
           "y": 15.971
         },
         {
-          "x": 2.7126,
-          "y": 15.9664
+          "x": 1.6223,
+          "y": 15.9198
         },
         {
-          "x": 2.7062,
-          "y": 16.1163
+          "x": 1.6218,
+          "y": 15.9322
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#f0ebe3",
-      "label": "nisa_dulap_spate [A8]: GK + vopsea cameră (12.5 mm)",
+      "label": "nisa_dulap_spate [A8]: Knauf GKB 12.5 + vopsea cameră (12.5 mm)",
       "kind": "int",
-      "wall_layer": "gk_vopsea_2",
+      "wall_layer": "gk_vopsea_2a",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nisa_dulap_spate_gk_vopsea_2b_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6213,
+          "y": 15.9447
+        },
+        {
+          "x": 2.8202,
+          "y": 15.996
+        },
+        {
+          "x": 2.8207,
+          "y": 15.9835
+        },
+        {
+          "x": 1.6218,
+          "y": 15.9322
+        },
+        {
+          "x": 1.6213,
+          "y": 15.9447
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#ebe6dc",
+      "label": "nisa_dulap_spate [A8]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_2b",
       "catalog_id": "A8",
       "assembly": "A8",
       "opacity": 0.97
@@ -27770,30 +28370,30 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.8374,
-          "y": 16.0791
+          "x": 1.6181,
+          "y": 16.0197
         },
         {
-          "x": 2.7062,
-          "y": 16.1163
+          "x": 2.817,
+          "y": 16.071
         },
         {
-          "x": 2.7126,
-          "y": 15.9664
+          "x": 2.8202,
+          "y": 15.996
         },
         {
-          "x": 1.8439,
-          "y": 15.9292
+          "x": 1.6213,
+          "y": 15.9447
         },
         {
-          "x": 1.8374,
-          "y": 16.0791
+          "x": 1.6181,
+          "y": 16.0197
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#d8d090",
-      "label": "nisa_dulap_spate [A8]: montanți + vată (100 mm)",
+      "label": "nisa_dulap_spate [A8]: CW75 + vată (75 mm)",
       "kind": "int",
       "wall_layer": "montanti_vata_fono",
       "catalog_id": "A8",
@@ -27801,34 +28401,69 @@
       "opacity": 0.85
     },
     {
+      "id": "zid_nisa_dulap_spate_gk_vopsea_1b_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6175,
+          "y": 16.0321
+        },
+        {
+          "x": 2.8164,
+          "y": 16.0834
+        },
+        {
+          "x": 2.817,
+          "y": 16.071
+        },
+        {
+          "x": 1.6181,
+          "y": 16.0197
+        },
+        {
+          "x": 1.6175,
+          "y": 16.0321
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#ebe6dc",
+      "label": "nisa_dulap_spate [A8]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_1b",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "opacity": 0.97
+    },
+    {
       "id": "zid_nisa_dulap_spate_gkbi_hidro_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.7289,
-          "y": 16.0744
+          "x": 1.617,
+          "y": 16.0446
         },
         {
-          "x": 1.8374,
-          "y": 16.0791
+          "x": 2.8159,
+          "y": 16.0959
         },
         {
-          "x": 1.8439,
-          "y": 15.9292
+          "x": 2.8164,
+          "y": 16.0834
         },
         {
-          "x": 1.7353,
-          "y": 15.9246
+          "x": 1.6175,
+          "y": 16.0321
         },
         {
-          "x": 1.7289,
-          "y": 16.0744
+          "x": 1.617,
+          "y": 16.0446
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#dde8f0",
-      "label": "nisa_dulap_spate [A8]: hidro / GKBI (12.5 mm)",
+      "label": "nisa_dulap_spate [A8]: hidro / Knauf GKBI (12.5 mm)",
       "kind": "int",
       "wall_layer": "gkbi_hidro",
       "catalog_id": "A8",
@@ -27840,24 +28475,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6854,
-          "y": 16.0726
+          "x": 1.6168,
+          "y": 16.0496
         },
         {
-          "x": 1.7289,
-          "y": 16.0744
+          "x": 2.8157,
+          "y": 16.1009
         },
         {
-          "x": 1.7353,
-          "y": 15.9246
+          "x": 2.8159,
+          "y": 16.0959
         },
         {
-          "x": 1.6918,
-          "y": 15.9227
+          "x": 1.617,
+          "y": 16.0446
         },
         {
-          "x": 1.6854,
-          "y": 16.0726
+          "x": 1.6168,
+          "y": 16.0496
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -27875,24 +28510,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.6159,
-          "y": 16.0696
+          "x": 1.6164,
+          "y": 16.0576
         },
         {
-          "x": 1.6854,
-          "y": 16.0726
+          "x": 2.8153,
+          "y": 16.1089
         },
         {
-          "x": 1.6918,
-          "y": 15.9227
+          "x": 2.8157,
+          "y": 16.1009
         },
         {
-          "x": 1.6223,
-          "y": 15.9198
+          "x": 1.6168,
+          "y": 16.0496
         },
         {
-          "x": 1.6159,
-          "y": 16.0696
+          "x": 1.6164,
+          "y": 16.0576
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -27906,36 +28541,71 @@
       "opacity": 0.97
     },
     {
-      "id": "zid_nisa_dulap_est_gk_vopsea_2_e",
+      "id": "zid_nisa_dulap_est_gk_vopsea_2a_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.8268,
-          "y": 15.2567
+          "x": 2.9272,
+          "y": 16.1257
         },
         {
-          "x": 2.9766,
-          "y": 15.2631
+          "x": 2.9397,
+          "y": 16.1262
         },
         {
           "x": 2.9803,
           "y": 15.1771
         },
         {
-          "x": 2.8304,
-          "y": 15.1707
+          "x": 2.9678,
+          "y": 15.1766
         },
         {
-          "x": 2.8268,
-          "y": 15.2567
+          "x": 2.9272,
+          "y": 16.1257
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#f0ebe3",
-      "label": "nisa_dulap_est [A8]: GK + vopsea cameră (12.5 mm)",
+      "label": "nisa_dulap_est [A8]: Knauf GKB 12.5 + vopsea cameră (12.5 mm)",
       "kind": "int",
-      "wall_layer": "gk_vopsea_2",
+      "wall_layer": "gk_vopsea_2a",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_nisa_dulap_est_gk_vopsea_2b_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.9147,
+          "y": 16.1252
+        },
+        {
+          "x": 2.9272,
+          "y": 16.1257
+        },
+        {
+          "x": 2.9678,
+          "y": 15.1766
+        },
+        {
+          "x": 2.9553,
+          "y": 15.176
+        },
+        {
+          "x": 2.9147,
+          "y": 16.1252
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#ebe6dc",
+      "label": "nisa_dulap_est [A8]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_2b",
       "catalog_id": "A8",
       "assembly": "A8",
       "opacity": 0.97
@@ -27945,30 +28615,30 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.7973,
-          "y": 15.9445
+          "x": 2.8398,
+          "y": 16.122
         },
         {
-          "x": 2.9472,
-          "y": 15.9509
+          "x": 2.9147,
+          "y": 16.1252
         },
         {
-          "x": 2.9766,
-          "y": 15.2631
+          "x": 2.9553,
+          "y": 15.176
         },
         {
-          "x": 2.8268,
-          "y": 15.2567
+          "x": 2.8804,
+          "y": 15.1728
         },
         {
-          "x": 2.7973,
-          "y": 15.9445
+          "x": 2.8398,
+          "y": 16.122
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#d8d090",
-      "label": "nisa_dulap_est [A8]: montanți + vată (100 mm)",
+      "label": "nisa_dulap_est [A8]: CW75 + vată (75 mm)",
       "kind": "int",
       "wall_layer": "montanti_vata_fono",
       "catalog_id": "A8",
@@ -27976,34 +28646,69 @@
       "opacity": 0.85
     },
     {
+      "id": "zid_nisa_dulap_est_gk_vopsea_1b_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.8273,
+          "y": 16.1214
+        },
+        {
+          "x": 2.8398,
+          "y": 16.122
+        },
+        {
+          "x": 2.8804,
+          "y": 15.1728
+        },
+        {
+          "x": 2.8679,
+          "y": 15.1723
+        },
+        {
+          "x": 2.8273,
+          "y": 16.1214
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#ebe6dc",
+      "label": "nisa_dulap_est [A8]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_1b",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "opacity": 0.97
+    },
+    {
       "id": "zid_nisa_dulap_est_gkbi_hidro_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.7937,
-          "y": 16.0304
+          "x": 2.8148,
+          "y": 16.1209
         },
         {
-          "x": 2.9435,
-          "y": 16.0368
+          "x": 2.8273,
+          "y": 16.1214
         },
         {
-          "x": 2.9472,
-          "y": 15.9509
+          "x": 2.8679,
+          "y": 15.1723
         },
         {
-          "x": 2.7973,
-          "y": 15.9445
+          "x": 2.8554,
+          "y": 15.1718
         },
         {
-          "x": 2.7937,
-          "y": 16.0304
+          "x": 2.8148,
+          "y": 16.1209
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#dde8f0",
-      "label": "nisa_dulap_est [A8]: hidro / GKBI (12.5 mm)",
+      "label": "nisa_dulap_est [A8]: hidro / Knauf GKBI (12.5 mm)",
       "kind": "int",
       "wall_layer": "gkbi_hidro",
       "catalog_id": "A8",
@@ -28015,24 +28720,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.7922,
-          "y": 16.0648
+          "x": 2.8098,
+          "y": 16.1207
         },
         {
-          "x": 2.9421,
-          "y": 16.0712
+          "x": 2.8148,
+          "y": 16.1209
         },
         {
-          "x": 2.9435,
-          "y": 16.0368
+          "x": 2.8554,
+          "y": 15.1718
         },
         {
-          "x": 2.7937,
-          "y": 16.0304
+          "x": 2.8504,
+          "y": 15.1716
         },
         {
-          "x": 2.7922,
-          "y": 16.0648
+          "x": 2.8098,
+          "y": 16.1207
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -28050,24 +28755,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.7898,
-          "y": 16.1198
+          "x": 2.8018,
+          "y": 16.1203
         },
         {
-          "x": 2.9397,
-          "y": 16.1262
+          "x": 2.8098,
+          "y": 16.1207
         },
         {
-          "x": 2.9421,
-          "y": 16.0712
+          "x": 2.8504,
+          "y": 15.1716
         },
         {
-          "x": 2.7922,
-          "y": 16.0648
+          "x": 2.8424,
+          "y": 15.1712
         },
         {
-          "x": 2.7898,
-          "y": 16.1198
+          "x": 2.8018,
+          "y": 16.1203
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -28081,36 +28786,71 @@
       "opacity": 0.97
     },
     {
-      "id": "zid_dorm_baie_nord_gk_vopsea_2_e",
+      "id": "zid_dorm_baie_nord_gk_vopsea_2a_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.6548,
-          "y": 15.3989
+          "x": 2.9798,
+          "y": 15.1896
         },
         {
-          "x": 4.8222,
-          "y": 15.406
+          "x": 4.8281,
+          "y": 15.2687
         },
         {
           "x": 4.8286,
           "y": 15.2562
         },
         {
-          "x": 4.6612,
-          "y": 15.249
+          "x": 2.9803,
+          "y": 15.1771
         },
         {
-          "x": 4.6548,
-          "y": 15.3989
+          "x": 2.9798,
+          "y": 15.1896
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#f0ebe3",
-      "label": "dorm_baie_nord [A8]: GK + vopsea cameră (12.5 mm)",
+      "label": "dorm_baie_nord [A8]: Knauf GKB 12.5 + vopsea cameră (12.5 mm)",
       "kind": "int",
-      "wall_layer": "gk_vopsea_2",
+      "wall_layer": "gk_vopsea_2a",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_dorm_baie_nord_gk_vopsea_2b_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.9792,
+          "y": 15.2021
+        },
+        {
+          "x": 4.8275,
+          "y": 15.2812
+        },
+        {
+          "x": 4.8281,
+          "y": 15.2687
+        },
+        {
+          "x": 2.9798,
+          "y": 15.1896
+        },
+        {
+          "x": 2.9792,
+          "y": 15.2021
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#ebe6dc",
+      "label": "dorm_baie_nord [A8]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_2b",
       "catalog_id": "A8",
       "assembly": "A8",
       "opacity": 0.97
@@ -28120,30 +28860,30 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 3.3154,
-          "y": 15.3416
+          "x": 2.976,
+          "y": 15.277
         },
         {
-          "x": 4.6548,
-          "y": 15.3989
+          "x": 4.8243,
+          "y": 15.3561
         },
         {
-          "x": 4.6612,
-          "y": 15.249
+          "x": 4.8275,
+          "y": 15.2812
         },
         {
-          "x": 3.3218,
-          "y": 15.1917
+          "x": 2.9792,
+          "y": 15.2021
         },
         {
-          "x": 3.3154,
-          "y": 15.3416
+          "x": 2.976,
+          "y": 15.277
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#d8d090",
-      "label": "dorm_baie_nord [A8]: montanți + vată (100 mm)",
+      "label": "dorm_baie_nord [A8]: CW75 + vată (75 mm)",
       "kind": "int",
       "wall_layer": "montanti_vata_fono",
       "catalog_id": "A8",
@@ -28151,34 +28891,69 @@
       "opacity": 0.85
     },
     {
+      "id": "zid_dorm_baie_nord_gk_vopsea_1b_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.9755,
+          "y": 15.2895
+        },
+        {
+          "x": 4.8238,
+          "y": 15.3686
+        },
+        {
+          "x": 4.8243,
+          "y": 15.3561
+        },
+        {
+          "x": 2.976,
+          "y": 15.277
+        },
+        {
+          "x": 2.9755,
+          "y": 15.2895
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#ebe6dc",
+      "label": "dorm_baie_nord [A8]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_1b",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "opacity": 0.97
+    },
+    {
       "id": "zid_dorm_baie_nord_gkbi_hidro_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 3.148,
-          "y": 15.3344
+          "x": 2.975,
+          "y": 15.302
         },
         {
-          "x": 3.3154,
-          "y": 15.3416
+          "x": 4.8233,
+          "y": 15.3811
         },
         {
-          "x": 3.3218,
-          "y": 15.1917
+          "x": 4.8238,
+          "y": 15.3686
         },
         {
-          "x": 3.1544,
-          "y": 15.1846
+          "x": 2.9755,
+          "y": 15.2895
         },
         {
-          "x": 3.148,
-          "y": 15.3344
+          "x": 2.975,
+          "y": 15.302
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#dde8f0",
-      "label": "dorm_baie_nord [A8]: hidro / GKBI (12.5 mm)",
+      "label": "dorm_baie_nord [A8]: hidro / Knauf GKBI (12.5 mm)",
       "kind": "int",
       "wall_layer": "gkbi_hidro",
       "catalog_id": "A8",
@@ -28190,24 +28965,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 3.081,
-          "y": 15.3316
+          "x": 2.9748,
+          "y": 15.307
         },
         {
-          "x": 3.148,
-          "y": 15.3344
+          "x": 4.8231,
+          "y": 15.3861
         },
         {
-          "x": 3.1544,
-          "y": 15.1846
+          "x": 4.8233,
+          "y": 15.3811
         },
         {
-          "x": 3.0875,
-          "y": 15.1817
+          "x": 2.975,
+          "y": 15.302
         },
         {
-          "x": 3.081,
-          "y": 15.3316
+          "x": 2.9748,
+          "y": 15.307
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -28225,24 +29000,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.9739,
-          "y": 15.327
+          "x": 2.9744,
+          "y": 15.315
         },
         {
-          "x": 3.081,
-          "y": 15.3316
+          "x": 4.8227,
+          "y": 15.3941
         },
         {
-          "x": 3.0875,
-          "y": 15.1817
+          "x": 4.8231,
+          "y": 15.3861
         },
         {
-          "x": 2.9803,
-          "y": 15.1771
+          "x": 2.9748,
+          "y": 15.307
         },
         {
-          "x": 2.9739,
-          "y": 15.327
+          "x": 2.9744,
+          "y": 15.315
         }
       ],
       "z0_m": 3.1999999999999997,
@@ -28256,36 +29031,71 @@
       "opacity": 0.97
     },
     {
-      "id": "zid_ecran_frigider_gk_vopsea_2_e",
+      "id": "zid_ecran_frigider_gk_vopsea_2a_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.7627,
-          "y": 12.5113
+          "x": 6.228,
+          "y": 12.3759
         },
         {
-          "x": 6.8226,
-          "y": 12.5139
+          "x": 6.8275,
+          "y": 12.4015
         },
         {
           "x": 6.828,
           "y": 12.389
         },
         {
-          "x": 6.768,
-          "y": 12.3865
+          "x": 6.2285,
+          "y": 12.3634
         },
         {
-          "x": 6.7627,
-          "y": 12.5113
+          "x": 6.228,
+          "y": 12.3759
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#f0ebe3",
-      "label": "ecran_frigider [A7]: GK + vopsea (12.5 mm)",
+      "label": "ecran_frigider [A7]: Knauf GKB 12.5 + vopsea (12.5 mm)",
       "kind": "int",
-      "wall_layer": "gk_vopsea_2",
+      "wall_layer": "gk_vopsea_2a",
+      "catalog_id": "A7",
+      "assembly": "A7",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_ecran_frigider_gk_vopsea_2b_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.2275,
+          "y": 12.3884
+        },
+        {
+          "x": 6.8269,
+          "y": 12.414
+        },
+        {
+          "x": 6.8275,
+          "y": 12.4015
+        },
+        {
+          "x": 6.228,
+          "y": 12.3759
+        },
+        {
+          "x": 6.2275,
+          "y": 12.3884
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#ebe6dc",
+      "label": "ecran_frigider [A7]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_2b",
       "catalog_id": "A7",
       "assembly": "A7",
       "opacity": 0.97
@@ -28295,30 +29105,30 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.2831,
-          "y": 12.4908
+          "x": 6.2243,
+          "y": 12.4633
         },
         {
-          "x": 6.7627,
-          "y": 12.5113
+          "x": 6.8237,
+          "y": 12.4889
         },
         {
-          "x": 6.768,
-          "y": 12.3865
+          "x": 6.8269,
+          "y": 12.414
         },
         {
-          "x": 6.2885,
-          "y": 12.3659
+          "x": 6.2275,
+          "y": 12.3884
         },
         {
-          "x": 6.2831,
-          "y": 12.4908
+          "x": 6.2243,
+          "y": 12.4633
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#d8d090",
-      "label": "ecran_frigider [A7]: montanți + vată fono (100 mm)",
+      "label": "ecran_frigider [A7]: CW75 + vată fono (75 mm)",
       "kind": "int",
       "wall_layer": "montanti_vata_fono",
       "catalog_id": "A7",
@@ -28326,7 +29136,42 @@
       "opacity": 0.85
     },
     {
-      "id": "zid_ecran_frigider_gk_vopsea_1_e",
+      "id": "zid_ecran_frigider_gk_vopsea_1b_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.2237,
+          "y": 12.4758
+        },
+        {
+          "x": 6.8232,
+          "y": 12.5014
+        },
+        {
+          "x": 6.8237,
+          "y": 12.4889
+        },
+        {
+          "x": 6.2243,
+          "y": 12.4633
+        },
+        {
+          "x": 6.2237,
+          "y": 12.4758
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#ebe6dc",
+      "label": "ecran_frigider [A7]: Knauf GKB 12.5 (12.5 mm)",
+      "kind": "int",
+      "wall_layer": "gk_vopsea_1b",
+      "catalog_id": "A7",
+      "assembly": "A7",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_ecran_frigider_gk_vopsea_1a_e",
       "type": "extrude",
       "polygon": [
         {
@@ -28334,16 +29179,16 @@
           "y": 12.4883
         },
         {
-          "x": 6.2831,
-          "y": 12.4908
+          "x": 6.8226,
+          "y": 12.5139
         },
         {
-          "x": 6.2885,
-          "y": 12.3659
+          "x": 6.8232,
+          "y": 12.5014
         },
         {
-          "x": 6.2285,
-          "y": 12.3634
+          "x": 6.2237,
+          "y": 12.4758
         },
         {
           "x": 6.2232,
@@ -28353,20 +29198,20 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#f0ebe3",
-      "label": "ecran_frigider [A7]: GK + vopsea (12.5 mm)",
+      "label": "ecran_frigider [A7]: Knauf GKB 12.5 + vopsea (12.5 mm)",
       "kind": "int",
-      "wall_layer": "gk_vopsea_1",
+      "wall_layer": "gk_vopsea_1a",
       "catalog_id": "A7",
       "assembly": "A7",
       "opacity": 0.97
     },
     {
-      "id": "zid_terasa_est_e",
+      "id": "zid_terasa_est_grund_decorativa_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.8215,
-          "y": 11.3273
+          "x": 5.1193,
+          "y": 11.34
         },
         {
           "x": 5.1213,
@@ -28377,19 +29222,234 @@
           "y": 9.4918
         },
         {
-          "x": 4.9007,
+          "x": 5.1984,
+          "y": 9.4917
+        },
+        {
+          "x": 5.1193,
+          "y": 11.34
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#8a8680",
+      "label": "terasa_est [A1]: grund și tencuială decorativă Weber (2 mm)",
+      "kind": "ext",
+      "wall_layer": "grund_decorativa",
+      "catalog_id": "A1",
+      "assembly": "A1",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_terasa_est_strat_armat_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.1143,
+          "y": 11.3398
+        },
+        {
+          "x": 5.1193,
+          "y": 11.34
+        },
+        {
+          "x": 5.1984,
+          "y": 9.4917
+        },
+        {
+          "x": 5.1934,
+          "y": 9.4915
+        },
+        {
+          "x": 5.1143,
+          "y": 11.3398
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#a8b0b8",
+      "label": "terasa_est [A1]: strat armat Weber (5 mm)",
+      "kind": "ext",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A1",
+      "assembly": "A1",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_terasa_est_vata_isover_fassade_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.0343,
+          "y": 11.3364
+        },
+        {
+          "x": 5.1143,
+          "y": 11.3398
+        },
+        {
+          "x": 5.1934,
+          "y": 9.4915
+        },
+        {
+          "x": 5.1135,
+          "y": 9.4881
+        },
+        {
+          "x": 5.0343,
+          "y": 11.3364
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#e2d18a",
+      "label": "terasa_est [A1]: vată minerală fațadă (80 mm)",
+      "kind": "ext",
+      "wall_layer": "vata_isover_fassade",
+      "catalog_id": "A1",
+      "assembly": "A1",
+      "opacity": 0.85
+    },
+    {
+      "id": "zid_terasa_est_adeziv_etics_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 5.0293,
+          "y": 11.3362
+        },
+        {
+          "x": 5.0343,
+          "y": 11.3364
+        },
+        {
+          "x": 5.1135,
+          "y": 9.4881
+        },
+        {
+          "x": 5.1085,
+          "y": 9.4879
+        },
+        {
+          "x": 5.0293,
+          "y": 11.3362
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#b0a898",
+      "label": "terasa_est [A1]: adeziv ETICS Weber (5 mm)",
+      "kind": "ext",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A1",
+      "assembly": "A1",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_terasa_est_caramida_eb20_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.8295,
+          "y": 11.3276
+        },
+        {
+          "x": 5.0293,
+          "y": 11.3362
+        },
+        {
+          "x": 5.1085,
+          "y": 9.4879
+        },
+        {
+          "x": 4.9087,
+          "y": 9.4793
+        },
+        {
+          "x": 4.8295,
+          "y": 11.3276
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#c4a070",
+      "label": "terasa_est [A1]: EB20 Akustik (200 mm)",
+      "kind": "ext",
+      "wall_layer": "caramida_eb20",
+      "catalog_id": "A1",
+      "assembly": "A1",
+      "site_layer": "umplutura",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_terasa_est_tencuiala_int_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.8235,
+          "y": 11.3274
+        },
+        {
+          "x": 4.8295,
+          "y": 11.3276
+        },
+        {
+          "x": 4.9087,
+          "y": 9.4793
+        },
+        {
+          "x": 4.9027,
+          "y": 9.4791
+        },
+        {
+          "x": 4.8235,
+          "y": 11.3274
+        }
+      ],
+      "z0_m": 3.1999999999999997,
+      "z1_m": 5.81,
+      "color": "#e8e0d4",
+      "label": "terasa_est [A1]: tencuială interioară (6 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A1",
+      "assembly": "A1",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_terasa_est_finisare_vopsea_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.8225,
+          "y": 11.3273
+        },
+        {
+          "x": 4.8235,
+          "y": 11.3274
+        },
+        {
+          "x": 4.9027,
+          "y": 9.4791
+        },
+        {
+          "x": 4.9017,
           "y": 9.479
         },
         {
-          "x": 4.8215,
+          "x": 4.8225,
           "y": 11.3273
         }
       ],
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
-      "color": "#d8d2c6",
-      "label": "terasa_est",
-      "kind": "ext"
+      "color": "#f4f0e8",
+      "label": "terasa_est [A1]: finisare și vopsea (1 mm)",
+      "kind": "ext",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A1",
+      "assembly": "A1",
+      "opacity": 0.97
     },
     {
       "id": "zid_buc_est_etaj_tencuiala_scara_e",
@@ -28400,12 +29460,12 @@
           "y": 13.4757
         },
         {
-          "x": 7.0868,
-          "y": 13.4761
+          "x": 7.0818,
+          "y": 13.4759
         },
         {
-          "x": 7.2535,
-          "y": 9.5796
+          "x": 7.2485,
+          "y": 9.5794
         },
         {
           "x": 7.2455,
@@ -28419,7 +29479,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#d4cfc4",
-      "label": "buc_est_etaj [A6]: tencuială volum scară (8 mm)",
+      "label": "buc_est_etaj [A6]: tencuială volum scară (3 mm)",
       "kind": "ext",
       "wall_layer": "tencuiala_scara",
       "catalog_id": "A6",
@@ -28524,7 +29584,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#b0a898",
-      "label": "buc_est_etaj [A6]: adeziv (5 mm)",
+      "label": "buc_est_etaj [A6]: adeziv Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
       "catalog_id": "A6",
@@ -28665,7 +29725,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#8a8680",
-      "label": "living_put_thermal_y590 [A1]: grund și tencuială decorativă (2 mm)",
+      "label": "living_put_thermal_y590 [A1]: grund și tencuială decorativă Weber (2 mm)",
       "kind": "ext",
       "wall_layer": "grund_decorativa",
       "catalog_id": "A1",
@@ -28700,7 +29760,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#a8b0b8",
-      "label": "living_put_thermal_y590 [A1]: strat armat (5 mm)",
+      "label": "living_put_thermal_y590 [A1]: strat armat Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
       "catalog_id": "A1",
@@ -28770,7 +29830,7 @@
       "z0_m": 3.1999999999999997,
       "z1_m": 5.81,
       "color": "#b0a898",
-      "label": "living_put_thermal_y590 [A1]: adeziv ETICS (5 mm)",
+      "label": "living_put_thermal_y590 [A1]: adeziv ETICS Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
       "catalog_id": "A1",
@@ -34705,12 +35765,12 @@
           "y": 18.1245
         },
         {
-          "x": 8.1885,
-          "y": 12.172
+          "x": 8.1389,
+          "y": 13.3309
         },
         {
-          "x": 7.8888,
-          "y": 12.1592
+          "x": 7.8392,
+          "y": 13.3181
         },
         {
           "x": 7.6341,
@@ -34722,7 +35782,7 @@
       "color": "#6a6358",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "centură E prelungită până la C_E_LAND_SP @Y575 (studiu east_landing); pe E grindă la streșină pe același ax — C_E_LAND_SP nu urcă la etaj"
+      "label": "centură E până la C_E_PAL (Y489). C_E_LAND_SP RETRAS 2026-10-16 — bloca palier/rampă beci; east_landing = DESCHIS reproiectare cu scară"
     },
     {
       "id": "subsol_grinda_B_CASA_SCARA",
@@ -34883,38 +35943,6 @@
       "opacity": 0.97,
       "site_layer": "structura",
       "label": "sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA"
-    },
-    {
-      "id": "subsol_grinda_B_LAND_S_EDGE",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.8269,
-          "y": 12.414
-        },
-        {
-          "x": 8.1757,
-          "y": 12.4717
-        },
-        {
-          "x": 8.1949,
-          "y": 12.0221
-        },
-        {
-          "x": 6.8462,
-          "y": 11.9644
-        },
-        {
-          "x": 6.8269,
-          "y": 12.414
-        }
-      ],
-      "z0_m": -0.7,
-      "z1_m": -0.3,
-      "color": "#6a6358",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "muchie sud placă palier: X535→C_E_LAND_SP; dy 575–610 overlap C_CASA + B_SEP; bandă Y cu grindă întoarsă"
     },
     {
       "id": "subsol_grinda_node_C_NW",
@@ -35173,38 +36201,6 @@
       "label": "nod centură pe C_E_PAL"
     },
     {
-      "id": "subsol_grinda_node_C_E_LAND_SP",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.876,
-          "y": 12.4589
-        },
-        {
-          "x": 8.1757,
-          "y": 12.4717
-        },
-        {
-          "x": 8.1885,
-          "y": 12.172
-        },
-        {
-          "x": 7.8888,
-          "y": 12.1592
-        },
-        {
-          "x": 7.876,
-          "y": 12.4589
-        }
-      ],
-      "z0_m": -0.7,
-      "z1_m": -0.3,
-      "color": "#6a6358",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "nod centură pe C_E_LAND_SP"
-    },
-    {
       "id": "subsol_grinda_node_C_CASA_SCARA",
       "type": "extrude",
       "polygon": [
@@ -35409,12 +36405,12 @@
           "y": 18.1245
         },
         {
-          "x": 8.1885,
-          "y": 12.172
+          "x": 8.1389,
+          "y": 13.3309
         },
         {
-          "x": 7.8888,
-          "y": 12.1592
+          "x": 7.8392,
+          "y": 13.3181
         },
         {
           "x": 7.6341,
@@ -35587,38 +36583,6 @@
       "opacity": 0.97,
       "site_layer": "structura",
       "label": "fg pe axa B_Y830"
-    },
-    {
-      "id": "subsol_fg_B_LAND_S_EDGE",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.8269,
-          "y": 12.414
-        },
-        {
-          "x": 8.1757,
-          "y": 12.4717
-        },
-        {
-          "x": 8.1949,
-          "y": 12.0221
-        },
-        {
-          "x": 6.8462,
-          "y": 11.9644
-        },
-        {
-          "x": 6.8269,
-          "y": 12.414
-        }
-      ],
-      "z0_m": -3.1,
-      "z1_m": -2.65,
-      "color": "#5e5a54",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "fg pe axa B_LAND_S_EDGE"
     },
     {
       "id": "subsol_fg_pad_C_NW",
@@ -35875,38 +36839,6 @@
       "opacity": 0.97,
       "site_layer": "structura",
       "label": "talpă locală C_E_PAL"
-    },
-    {
-      "id": "subsol_fg_pad_C_E_LAND_SP",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.876,
-          "y": 12.4589
-        },
-        {
-          "x": 8.1757,
-          "y": 12.4717
-        },
-        {
-          "x": 8.1885,
-          "y": 12.172
-        },
-        {
-          "x": 7.8888,
-          "y": 12.1592
-        },
-        {
-          "x": 7.876,
-          "y": 12.4589
-        }
-      ],
-      "z0_m": -3.1,
-      "z1_m": -2.65,
-      "color": "#6a6660",
-      "opacity": 0.97,
-      "site_layer": "structura",
-      "label": "talpă locală C_E_LAND_SP"
     },
     {
       "id": "subsol_fg_pad_C_CASA_SCARA",
@@ -38299,38 +39231,6 @@
       "label": "stâlp C_E_PAL fundație→acoperiș (30×40), legat pe grinzi fg+centuri"
     },
     {
-      "id": "stalp_SP_C_E_LAND_SP",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.876,
-          "y": 12.4589
-        },
-        {
-          "x": 8.1757,
-          "y": 12.4717
-        },
-        {
-          "x": 8.1885,
-          "y": 12.172
-        },
-        {
-          "x": 7.8888,
-          "y": 12.1592
-        },
-        {
-          "x": 7.876,
-          "y": 12.4589
-        }
-      ],
-      "z0_m": -3.1,
-      "z1_m": 3.1999999999999997,
-      "color": "#7a9e6a",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "stâlp S+P C_E_LAND_SP (oprire sub etaj — circulație scară etaj liberă; placa palier rezemată de jos (stâlp S+P))"
-    },
-    {
       "id": "stalp_continuu_C_CASA_SCARA",
       "type": "extrude",
       "polygon": [
@@ -38864,12 +39764,12 @@
           "y": 18.1245
         },
         {
-          "x": 8.1885,
-          "y": 12.172
+          "x": 8.1389,
+          "y": 13.3309
         },
         {
-          "x": 7.8888,
-          "y": 12.1592
+          "x": 7.8392,
+          "y": 13.3181
         },
         {
           "x": 7.6341,
@@ -38881,7 +39781,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E prelungită până la C_E_LAND_SP @Y575 (studiu east_landing); pe E grindă la streșină pe același ax — C_E_LAND_SP nu urcă la etaj (intrados 273)"
+      "label": "centură E până la C_E_PAL (Y489). C_E_LAND_SP RETRAS 2026-10-16 — bloca palier/rampă beci; east_landing = DESCHIS reproiectare cu scară (intrados 273)"
     },
     {
       "id": "parter_centura_B_CASA_SCARA",
@@ -39042,38 +39942,6 @@
       "opacity": 0.95,
       "site_layer": "structura",
       "label": "sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA (intrados 273)"
-    },
-    {
-      "id": "parter_centura_B_LAND_S_EDGE",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 6.8269,
-          "y": 12.414
-        },
-        {
-          "x": 8.1757,
-          "y": 12.4717
-        },
-        {
-          "x": 8.1949,
-          "y": 12.0221
-        },
-        {
-          "x": 6.8462,
-          "y": 11.9644
-        },
-        {
-          "x": 6.8269,
-          "y": 12.414
-        }
-      ],
-      "z0_m": 2.73,
-      "z1_m": 3.08,
-      "color": "#5a554e",
-      "opacity": 0.95,
-      "site_layer": "structura",
-      "label": "muchie sud placă palier: X535→C_E_LAND_SP; dy 575–610 overlap C_CASA + B_SEP; bandă Y cu grindă întoarsă (intrados 273)"
     },
     {
       "id": "etaj_placa_structura",
@@ -39301,28 +40169,6 @@
         ],
         [
           {
-            "x": 7.876,
-            "y": 12.4589
-          },
-          {
-            "x": 7.8888,
-            "y": 12.1592
-          },
-          {
-            "x": 8.1885,
-            "y": 12.172
-          },
-          {
-            "x": 8.1757,
-            "y": 12.4717
-          },
-          {
-            "x": 7.876,
-            "y": 12.4589
-          }
-        ],
-        [
-          {
             "x": 6.8419,
             "y": 12.0643
           },
@@ -39472,12 +40318,12 @@
           "y": 18.1245
         },
         {
-          "x": 8.1885,
-          "y": 12.172
+          "x": 8.1389,
+          "y": 13.3309
         },
         {
-          "x": 7.8888,
-          "y": 12.1592
+          "x": 7.8392,
+          "y": 13.3181
         },
         {
           "x": 7.6341,
@@ -39489,7 +40335,7 @@
       "color": "#5a554e",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "centură E prelungită până la C_E_LAND_SP @Y575 (studiu east_landing); pe E grindă la streșină pe același ax — C_E_LAND_SP nu urcă la etaj"
+      "label": "centură E până la C_E_PAL (Y489). C_E_LAND_SP RETRAS 2026-10-16 — bloca palier/rampă beci; east_landing = DESCHIS reproiectare cu scară"
     },
     {
       "id": "etaj_centura_B_CASA_SCARA",

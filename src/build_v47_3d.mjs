@@ -314,7 +314,11 @@ function main() {
     faianata: "#e8eef2",
     adeziv_faianata: "#c5d0d8",
     gk_vopsea_1: "#f0ebe3",
+    gk_vopsea_1a: "#f0ebe3",
+    gk_vopsea_1b: "#ebe6dc",
     gk_vopsea_2: "#f0ebe3",
+    gk_vopsea_2a: "#f0ebe3",
+    gk_vopsea_2b: "#ebe6dc",
     gkbi_hidro: "#dde8f0",
     montanti_vata_fono: "#d8d090",
   };
@@ -354,12 +358,10 @@ function main() {
     const sumMm = layers.reduce((s, L) => s + (L.th_mm || 0), 0);
     const trueThCm = sumMm / 10;
     const W = expandWallOutward(w, outward, trueThCm);
-    const wallThMm = (outward === "north" || outward === "south" ? W.dy : W.dx) * 10;
-    // Dacă bbox ≈ suma straturilor → mm reale; altfel scalează în bbox (holaj A6 305→300)
-    const scale = wallThMm > 0 && Math.abs(wallThMm - sumMm) > 2 ? wallThMm / sumMm : 1;
+    // Fără auto-scale: straturile rămân la mm din catalog (evită A4/A7 „umflate” pe lungime)
     let accMm = 0;
     for (const L of layers) {
-      const thMm = (L.th_mm || 0) * scale;
+      const thMm = L.th_mm || 0;
       if (thMm < 0.05) continue;
       const aCm = accMm / 10;
       const bCm = (accMm + thMm) / 10;
@@ -749,8 +751,8 @@ function main() {
       }
       if (!isExt && (w.catalog_id === "A7" || w.catalog_id === "A8" || w.kind === "int")) {
         const cid = w.catalog_id || (/baie|nisa_dulap/i.test(w.id || "") ? "A8" : "A7");
-        // interior: outward arbitrary — stack along thickness axis
-        const out = w.dx >= w.dy ? "east" : "south";
+        // thickness axis: long in X → stack N/S; long in Y → stack E/W
+        const out = w.dx >= w.dy ? "south" : "east";
         pushLayeredExteriorWall(w, zFf, z1, suffix, { outward: out, catalogId: cid });
         continue;
       }
