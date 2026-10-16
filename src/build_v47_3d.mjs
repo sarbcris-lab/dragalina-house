@@ -1096,12 +1096,21 @@ function main() {
         label: `solbanc S BA ${plateSec[0]}×${plateSec[1]} cm`,
       });
     }
-    // Căpriori pe ape N și S
+    // Căpriori pe ape N și S — acoperă toată lățimea (inclusiv banda estică)
     {
       const w = rafSec[0];
       const hz = rafSec[1];
-      let idx = 0;
+      const rafXs = [];
       for (let x = x0r + spacing / 2; x <= x1r - spacing / 2 + 0.1; x += spacing) {
+        rafXs.push(x);
+      }
+      const last = rafXs[rafXs.length - 1];
+      const eastTarget = x1r - Math.max(spacing / 2, w);
+      if (last == null || x1r - last > spacing * 0.45) {
+        rafXs.push(Math.max(x0r + w, eastTarget));
+      }
+      let idx = 0;
+      for (const x of rafXs) {
         const xa = x - w / 2;
         const xb = x + w / 2;
         pushPitchBeam(
@@ -1333,32 +1342,60 @@ function main() {
       }
     }
     if (isFrameStudy && nTread330 > 0) {
+      // Vanguri înclinate (profil structural pe pantă) — nu prisme verticale
       const zLo2 = zPod + riser - rampStruct;
       const zHi2 = zPod + riser * n330 - treadTh;
       const runDy2 = nTread330 * tread;
-      const yRun0 = ySouthEdge - runDy2;
-      meshes.push({
-        id: "structura_rampa2_continua_W",
-        type: "extrude",
-        polygon: rectPoly(r2.x, yRun0, stringerTh, runDy2),
-        z0_m: zLo2,
-        z1_m: zHi2,
-        color: "#5a6570",
-        opacity: 0.92,
-        site_layer: "structura",
-        label: "Vang W rampă 2 CONTINUU (gol puț păstrat între vanguri)",
-      });
-      meshes.push({
-        id: "structura_rampa2_continua_E",
-        type: "extrude",
-        polygon: rectPoly(r2.x + r2.dx - stringerTh, yRun0, stringerTh, runDy2),
-        z0_m: zLo2,
-        z1_m: zHi2,
-        color: "#5a6570",
-        opacity: 0.92,
-        site_layer: "structura",
-        label: "Vang E rampă 2 CONTINUU",
-      });
+      const yRun0 = ySouthEdge - runDy2; // nord (sus) → y mic
+      const boxFacesRamp = [
+        [0, 1, 2],
+        [0, 2, 3],
+        [4, 6, 5],
+        [4, 7, 6],
+        [0, 4, 5],
+        [0, 5, 1],
+        [3, 2, 6],
+        [3, 6, 7],
+        [0, 3, 7],
+        [0, 7, 4],
+        [1, 5, 6],
+        [1, 6, 2],
+      ];
+      function pushInclinedStringer(id, x0, dx, label) {
+        const x1 = x0 + dx;
+        // sud (jos) → nord (sus): ySouthEdge@zLo → yRun0@zHi
+        meshes.push({
+          id,
+          type: "triangles",
+          vertices: [
+            siteVert(x0, ySouthEdge, zLo2),
+            siteVert(x1, ySouthEdge, zLo2),
+            siteVert(x1, yRun0, zHi2),
+            siteVert(x0, yRun0, zHi2),
+            siteVert(x0, ySouthEdge, zLo2 - m(8)),
+            siteVert(x1, ySouthEdge, zLo2 - m(8)),
+            siteVert(x1, yRun0, zHi2 - m(8)),
+            siteVert(x0, yRun0, zHi2 - m(8)),
+          ],
+          faces: boxFacesRamp,
+          color: "#5a6570",
+          opacity: 0.92,
+          site_layer: "structura",
+          label,
+        });
+      }
+      pushInclinedStringer(
+        "structura_rampa2_continua_W",
+        r2.x,
+        stringerTh,
+        "Vang W rampă 2 ÎNCLINAT (gol puț între vanguri)"
+      );
+      pushInclinedStringer(
+        "structura_rampa2_continua_E",
+        r2.x + r2.dx - stringerTh,
+        stringerTh,
+        "Vang E rampă 2 ÎNCLINAT"
+      );
     }
   }
   // Rampă 2 + palier: sub același acoperiș 2 ape (nu copertină separată).
@@ -1368,6 +1405,7 @@ function main() {
   // Jos = plafon living P. Sus = circulație scară. Podest SE = neacoperit (în afara Y0–860).
   if (isFrameStudy && frameStudy?.levels_cm) {
     const lvP = frameStudy.levels_cm;
+    // O singură placă BA pe zonă (gol ulterior în etaj_placa_structura). Pachet termic/acustic = separat.
     meshes.push({
       id: "palier_superior_placa",
       type: "extrude",
@@ -1377,7 +1415,18 @@ function main() {
       color: "#8b8680",
       opacity: 0.55,
       site_layer: "structura",
-      label: `Palier scară — placă +${lvP.slab_soffit_etaj}→+${lvP.slab_top_etaj} (plafon living P / circulație E)`,
+      label: `Palier scară — placă BA +${lvP.slab_soffit_etaj}→+${lvP.slab_top_etaj} (plafon living P / circulație E)`,
+    });
+    meshes.push({
+      id: "palier_superior_izolatie_fono",
+      type: "extrude",
+      polygon: rectPoly(palSup.x, palSup.y, palSup.dx, palSup.dy),
+      z0_m: m(lvP.slab_top_etaj),
+      z1_m: zEtaj - floorTh,
+      color: "#e2d18a",
+      opacity: 0.7,
+      site_layer: "finisaj",
+      label: "Palier — pachet termic/acustic (acces rece peste living; nu dublură beton)",
     });
     meshes.push({
       id: "palier_superior_pardoseala",
@@ -3022,18 +3071,24 @@ function main() {
     const etajSlabHole =
       rectHoleInside(r2.x + 2, r2.y + 2, r2.dx - 4, Math.min(r2.dy, nsCm - r2.y) - 4) ||
       rectHole(r2.x + 5, r2.y + 5, r2.dx - 10, Math.min(r2.dy, nsCm - r2.y) - 10);
+    // Gol pe zona palier: o singură placă BA = palier_superior_placa (fără dublură)
+    const palHole =
+      isFrameStudy && palSup
+        ? rectHoleInside(palSup.x + 1, palSup.y + 1, palSup.dx - 2, palSup.dy - 2) ||
+          rectHole(palSup.x + 2, palSup.y + 2, palSup.dx - 4, palSup.dy - 4)
+        : null;
     meshes.push({
       id: "etaj_placa_structura",
       type: "extrude",
       polygon: rectPoly(0, 0, ewCm, nsCm),
-      holes: [etajSlabHole, ...colHoles].filter(Boolean),
+      holes: [etajSlabHole, palHole, ...colHoles].filter(Boolean),
       z0_m: slabZ0,
       z1_m: slabZ1,
       color: "#8b8680",
       opacity: 0.5,
       site_layer: "structura",
       label: isFrameStudy
-        ? `placă ${Math.round(slabStructTh * 100)} cm (+${lvFrame?.slab_soffit_etaj ?? 293}→+${lvFrame?.slab_top_etaj ?? 308}; FF +${lvFrame?.ff_etaj ?? 320}; buildup ${Math.round(floorTh * 100)} separat)`
+        ? `placă ${Math.round(slabStructTh * 100)} cm (+${lvFrame?.slab_soffit_etaj ?? 293}→+${lvFrame?.slab_top_etaj ?? 308}; FF +${lvFrame?.ff_etaj ?? 320}; buildup ${Math.round(floorTh * 100)} separat; gol palier→palier_superior_placa)`
         : `planșeu etaj structural ${Math.round(slabStructTh * 100)} cm (nu buildup ${Math.round(floorTh * 100)} cm)`,
     });
     const zRb0 = zTopE - beamH;

@@ -63,14 +63,14 @@ Placă +293→+308; grindă +273; FF +320; buildup 12. Stâlpi P+E = continui pr
 |----|--------------|----------|---------|---------------|
 | B_N | X9.2–680 Y9.2–39.2 | P,E | C_NW, C_N_MID, C_NE | centură N — 3 reazeme (fără C_N_BUC); deschideri de dimensionat |
 | B_W | X9.2–39.2 Y9.2–665.8 | P,E | C_NW, C_W_MID, C_W_DORM | centură W prin nodul C_W_DORM (nu se oprește la fața nord a stâlpului) |
-| B_E | X640–670 Y9.2–489 | P,E | C_NE, C_E_GEAM_S, C_E_PAL | centură E până la C_E_PAL; fără stâlp pe palier/scară |
+| B_E | X640–670 Y9.2–590 | P,E | C_NE, C_E_GEAM_S, C_E_PAL | centură E prin C_E_PAL + consolă sud până Y590 (muchie S palier etaj). Fără stâlp. Nu intră în rampă2 Y590+. Decisive: torsiune/nod — calcul lipsă |
 | B_CASA_SCARA | X535–565 Y610–860 | S,P,E | C_CASA_SCARA, C_S_INTRARE_E | separator Y610→sud; nod cu B_Y830 |
 | B_Y590_EDGE_INVERTED | X565–680 Y575–590 | S_inverted | C_SHAFT_E_PIER, placa_parter_span_to_sep, B_SEP_AFTER_DOOR | E→C_SHAFT_E_PIER (zid est); W→placă parter (întoarsă) → diafragmă/separator S de ușă (B_SEP_AFTER_DOOR+C_CASA_SCARA). Ușă Y500–600 și palier Y490–600 fără stâlp. |
 | B_SEP_AFTER_DOOR | X535–565 Y600–610 | S,P | zid_separator, C_CASA_SCARA | buiandrug/centură S de ușă Y600–610 — preia traseul de la placa peste palier către C_CASA_SCARA; nu blochează golul |
 | B_Y645 | X9.2–360 Y645–675 | P,E | C_W_DORM, C_S_DORM_E | sud dorm — prin secțiunile stâlpilor de capăt |
-| B_X360_DORM_INTRARE | X330–400 Y645–850.8 | P,E | C_S_DORM_E, C_S_INTRARE_W | prin secțiunea C_S_INTRARE_W (X360–400, Y820.8+) — nod complet, nu doar muchie |
+| B_X360_DORM_INTRARE | X330–400 Y645–850.8 | P,E | C_S_DORM_E, C_S_INTRARE_W | STUDIU: dx=70 = pad prin C_S_DORM_E + C_S_INTRARE_W nealiniați; lățime structurală tip 30 — conflict geometric / soluție explicită |
 | B_Y830 | X360–565 Y830–860 | P,E | C_S_INTRARE_W, C_S_INTRARE_E | sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA |
-| B_Y470_PALIER_EDGE | X535–680 Y470–500 | E | C_E_PAL, B_E | bordură nord placă palier scară (NU vestibul); sprijin placă = schemă 4 laturi DESCHIS |
+| B_Y470_PALIER_EDGE | X535–680 Y470–500 | P | C_E_PAL, B_E | bordură N placă palier la PLANȘEU (levels P = intrados etaj, nu streșină). Capăt V fără stâlp — calcul lipsă. NU vestibul. |
 
 ## Tabel elemente (stâlpi + grinzi)
 
@@ -90,46 +90,49 @@ Placă +293→+308; grindă +273; FF +320; buildup 12. Stâlpi P+E = continui pr
 | stalp | C_S_INTRARE_E | fundație_S | S/P/E | — | sud @ X535 — ETICS continuă afară |
 | grinda | B_N | C_NW, C_N_MID, C_NE | P/E | — | centură N — 3 reazeme (fără C_N_BUC); deschideri de dimensionat |
 | grinda | B_W | C_NW, C_W_MID, C_W_DORM | P/E | — | centură W prin nodul C_W_DORM (nu se oprește la fața nord a stâlpului) |
-| grinda | B_E | C_NE, C_E_GEAM_S, C_E_PAL | P/E | — | centură E până la C_E_PAL; fără stâlp pe palier/scară |
+| grinda | B_E | C_NE, C_E_GEAM_S, C_E_PAL | P/E | — | centură E prin C_E_PAL + consolă sud până Y590 (muchie S palier etaj). Fără stâlp. Nu intră în rampă2 Y590+. Decisive: torsiune/nod — calcul lipsă |
 | grinda | B_CASA_SCARA | C_CASA_SCARA, C_S_INTRARE_E | S/P/E | — | separator Y610→sud; nod cu B_Y830 |
 | grinda | B_Y590_EDGE_INVERTED | C_SHAFT_E_PIER, placa_parter_span_to_sep, B_SEP_AFTER_DOOR | S_inverted | traseu incarcari — calcul | ansamblu muchie puț — nu etichetă via_slab goală |
 | grinda | B_SEP_AFTER_DOOR | zid_separator, C_CASA_SCARA | S/P | — | buiandrug/centură S de ușă Y600–610 — preia traseul de la placa peste palier către C_CASA_SCARA; nu blochează golul |
 | grinda | B_Y645 | C_W_DORM, C_S_DORM_E | P/E | — | sud dorm — prin secțiunile stâlpilor de capăt |
-| grinda | B_X360_DORM_INTRARE | C_S_DORM_E, C_S_INTRARE_W | P/E | — | prin secțiunea C_S_INTRARE_W (X360–400, Y820.8+) — nod complet, nu doar muchie |
+| grinda | B_X360_DORM_INTRARE | C_S_DORM_E, C_S_INTRARE_W | P/E | — | STUDIU: dx=70 = pad prin C_S_DORM_E + C_S_INTRARE_W nealiniați; lățime structurală tip 30 — conflict geometric / soluție explicită |
 | grinda | B_Y830 | C_S_INTRARE_W, C_S_INTRARE_E | P/E | — | sud intrare prin secțiunea C_S_INTRARE_E (X535–565), nod cu B_CASA_SCARA |
-| grinda | B_Y470_PALIER_EDGE | C_E_PAL, B_E | E | — | bordură nord placă palier scară (NU vestibul); sprijin placă = schemă 4 laturi DESCHIS |
+| grinda | B_Y470_PALIER_EDGE | C_E_PAL, B_E | P | — | bordură N placă palier la PLANȘEU (levels P = intrados etaj, nu streșină). Capăt V fără stâlp — calcul lipsă. NU vestibul. |
 
 ## Suprafețe utile (P și E separate) — NECONFIRMAT
 Metodă: P/E separate: shoelace − pereți − thermal − proem.; E = studio; palier scară rece raportat separat (NU vestibul); NU usefulE=usefulP
 
 | | m² |
 |--|---:|
-| Util parter (studiu) | 38.605 |
-| Util etaj studio | 37.96 |
+| Util parter (studiu) | 38.505 |
+| Util etaj studio | 37.86 |
 | Palier scară rece (exclus din util; nu vestibul) | 1.26 |
-| Pereți int net P / E | 1.056 / 1.131 |
+| Pereți int net P / E | 1.156 / 1.231 |
 | Proeminențe stâlpi P / E | 0.369 / 0.369 |
 | Thermal P / E | 0.255 / 0.255 |
-| Δ vs 37 (informativ) | 1.605 / 0.96 |
+| Δ vs 37 (informativ) | 1.505 / 0.86 |
 | Verdict util | **NECONFIRMAT** (declared_pass=false) |
 
 ## Transport palier (stâlpi + finisaje)
 Status: **NECONFIRMAT** · declared_pass_access=false
 - Niciun stâlp pe AABB palier inferior după mutarea C_E_PAL N de Y490
-- Coliziuni: intoarcere_15[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,finisaj_zid_w,treapta_7]; intoarcere_30[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,finisaj_zid_w,foaie_deschisa_hol,treapta_7]; intoarcere_45[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,finisaj_zid_w,zid_put_n,finisaj_zid_n,foaie_deschisa_hol,treapta_7,stalp_C_CASA_SCARA]; intoarcere_60[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,finisaj_zid_w,foaie_deschisa_hol,treapta_7]; intoarcere_75[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,finisaj_zid_w,foaie_deschisa_hol,treapta_7]; intoarcere_90[finisaj_zid_w,foaie_deschisa_hol]; in_gol_usa[finisaj_zid_w,foaie_deschisa_hol]; in_hol[foaie_deschisa_hol]
+- Coliziuni: intoarcere_15[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,finisaj_zid_w,treapta_7]; intoarcere_30[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,finisaj_zid_w,treapta_7]; intoarcere_45[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,finisaj_zid_w,zid_put_n,finisaj_zid_n,foaie_deschisa_hol,treapta_7,stalp_C_CASA_SCARA]; intoarcere_60[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,finisaj_zid_w,foaie_deschisa_hol,treapta_7]; intoarcere_75[zid_put_w_solid_n,zid_put_w_solid_s,toc_n,toc_s,finisaj_zid_w,foaie_deschisa_hol,treapta_7]; intoarcere_90[finisaj_zid_w,foaie_deschisa_hol]; in_gol_usa[finisaj_zid_w,foaie_deschisa_hol]; in_hol[foaie_deschisa_hol]
 - TRANSPORT / ACCES = NECONFIRMAT
 
 ## Conflicte nerezolvate (păstrate explicit)
-- **inverted_beam_fit** (DESCHIS_CALCUL): Ansamblu B_Y590_EDGE_INVERTED: E→C_SHAFT_E_PIER; W→placă+B_SEP_AFTER_DOOR→C_CASA_SCARA. Fit sandwich −30…+32 = calcul. Ușă/palier libere.
-- **east_landing_span** (DESCHIS): Un singur reazem est C_E_PAL (Y449–489). Deschidere spre sud fără stâlp pe palier/scară — de dimensionat.
-- **north_three_supports** (COMPARATIE): C_N_BUC eliminat. C_N_MID@X320 (rost vest de frigider_p@360). B_N pe NW–N_MID–NE. Alternativa: fara N_MID.
-- **amenajare_frame_overlays** (FRAME_ONLY): A1 aprobat neatins. In frame: dus x>=50 (C_NW 40x30); pat x>=45 (C_W_MID 30x40) — nu micsoram stalpii.
+- **east_landing_span** (STUDIU_CONSOLA): Placă podest consolă transversală pe B_E (Y489→590). Fără stâlp living/puț. Torsiune, ancorare, nod C_E_PAL, ridicare pe C_E_GEAM_S = de verificat prin calcul — nu demonstrate.
+- **palier_plate_support** (STUDIU_CONSOLA): P: living sub podest. E: circulație rece. Reazem consolă + C_E_PAL/B_Y470; pachet termic/acustic distinct — nu dublură beton.
+- **slab_span_without_X320** (COMPARATIE_15_20): L/d pe fâșie = semnal de verificare, NU demonstrație SLS fail. Compară 15 vs 20 pe schemă reală (2D, goluri, armare, fisurare, lungă durată) cu săgeți calculate. Nu adopta 25–28 fără impact FF288. Fără grindă A7 ca primă opțiune.
+- **inverted_beam_fit** (DESCHIS_CALCUL): Capăt V grindă întoarsă pe buiandrug 15 cm / gap vs B_SEP — nerezolvat complet. E→C_SHAFT_E_PIER OK geometric.
+- **basement_retaining** (CRITIC): Pereți retenție = EB20 umplutură în model. Demolare integrală 131 (inclusiv beci/fundații existente). Subsol+pereți BA+fundații NOI. Ipoteză geo vecinătate — decisions/geotech_hypothesis_v01.md.
+- **roof_load_path** (DESCHIS): Stâlpișori: contact geometric parțial cu grinzi la +581 — nu „plutitori absenți”. Capacitate/excentricitate nevalidate. Completare căpriori pe E; comparație șarpantă ușoară vs BA. Fără stâlpi noi în camere.
+- **foundations_width** (DESCHIS): FG = lățime grindă = preliminar insuficient geometric. Pconv 310 kPa = reper vecinătate 120, nu Rc calcul 131. Nu declara conform/neconform din ~250 kPa ordin.
+- **north_three_supports** (COMPARATIE): C_N_BUC eliminat. C_N_MID@X320. B_N pe NW–N_MID–NE. Alternativa: fara N_MID.
+- **amenajare_frame_overlays** (FRAME_ONLY): A1 aprobat neatins. In frame: dus x>=50; pat x>=45 — nu micsoram stalpii.
 - **column_30_protrusion_vs_37m2** (DESCHIS): Proeminențe locale; util P/E = NECONFIRMAT — nu e rezervă stâlpi.
-- **palier_plate_support** (DESCHIS): Palier scară rece (fără vestibul): placa = plafon living P. Reazeme pe margini — schemă DESCHIS. Vestibul închis ELIMINAT.
-- **slab_span_without_X320** (DESCHIS): Fără reazem pe compartimentarea 12,5 cm — placă/grinzi pe perimetru; grosime 15 cm neconfirmată.
-- **basement_retaining** (SEPARAT): Pereți subsol retenție teren — sistem separat de cadrele P/E.
 - **p100_min_section** (IPOTEZĂ): 30 cm transversal = studiu preliminar P100; aplicabilitate pe sistem/ductilitate — nu validat.
-- **etics_wrap_verify** (DESCHIS): ETICS peste stâlpi în model; detalii șantier neconfirmate.
+- **etics_wrap_verify** (DESCHIS): Grinzi/stâlpi pe banda ETICS (+9,2 pe S) — corecție geometrică necesară; detalii șantier neconfirmate.
+- **B_X360_wide_pad** (DESCHIS): dx=70 pentru reazeme decalate — necesită soluție structurală explicită (aliniere sau grindă pe ax).
 
 ## Fișiere
 - `data/building/v47_a1_frame_study.json`

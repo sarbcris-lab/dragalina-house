@@ -26,7 +26,7 @@
 |---|---|
 | Placă palier (contur tip) | X≈535–680 · Y≈470–590 |
 | Lucru placă | **transversal** (E→V), L ≈ **0,8–1,05 m** |
-| Grindă B_E | prelungită sud de `C_E_PAL` (Y489) → **Y600** · consolă ≈ **1,11 m** |
+| Grindă B_E | prelungită sud de `C_E_PAL` (Y489) → **Y590** (muchie S palier / N rampă2) · consolă ≈ **1,01 m** — **nu** Y600 (evită intersect treaptă) |
 | Stâlp nou | **nu** |
 | `B_LAND_S_EDGE` | **nu** se reintroduce în forma care taie treapta |
 
@@ -123,8 +123,8 @@ EB20 ≈ 5,2 kN/m pe ~2,61 m înălțime (cu rezervă) — pe grinzile care duc 
 
 | ID | Stare |
 |---|---|
-| `B_E` | dy până Y600 · consolă sud 111 cm · fără stâlp nou |
+| `B_E` | dy până **Y590** · consolă sud **101 cm** · fără stâlp nou (în generator) |
 | `C_E_LAND_SP` / `B_LAND_S_EDGE` | retrași |
-| `east_landing_span` | `STUDIU_CONSOLA` |
-| `slab_span_without_X320` | `COMPARATIE_15_20` |
-| `heights_cm.structural_slab_cm` | 15 (alt 20 → clear 250) |
+| `east_landing_span` | `STUDIU_CONSOLA` · registru `calcul_lipsă` |
+| `slab_span_without_X320` | `COMPARATIE_15_20` · L/d ≠ SLS fail demonstrat |
+| `heights_cm.structural_slab_cm` | 15 (alt 20 → clear 250) — **neschimbat fără calcul** |

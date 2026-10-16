@@ -198,3 +198,13 @@
 - Critice: placă 15/20 insuficientă SLS; acoperiș fără load path; retenție subsol EB20.
 - Fix viewer: poartă scoasă din Structură; fără reframing pe tot situl; banner → v04.
 - Fix geo: `B_Y470` levels **P** (planșeu); etichete `C_S_DORM_E` / `C_S_INTRARE_E` = 30×30.
+
+## 2026-10-16 — v05: corecție audit + generator regenerabil + geo
+
+- **Nu** adopta placă 25–28: L/d = semnal, nu SLS fail demonstrat.
+- Acoperiș: stâlpișori = contact parțial (nu plutitori absenți); căpriori completați pe E.
+- Generator `study_v47_frame_schema.mjs`: `B_E`→Y590, `B_Y470` levels P — persistă după regen.
+- Fără dublură placă palier; vanguri rampă2 înclinate; Structură include `palier_superior_placa`.
+- Vizibilitate P/E: `continuousObjs` o decizie.
+- Geo: `decisions/geotech_hypothesis_v01.md` (vecinătate 120; demolare integrală 131).
+- Audit: `v47_a1_frame_structure_design_audit_v05.md` + registru status.

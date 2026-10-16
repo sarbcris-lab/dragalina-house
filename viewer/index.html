@@ -293,6 +293,7 @@
     const curteObjs = [];
     const structObjs = [];
     const umpluturaObjs = [];
+    const continuousObjs = [];
     const list = document.getElementById("meshes");
     const root = new THREE.Group();
     scene.add(root);
@@ -343,7 +344,8 @@
         id.startsWith("subsol_palier") ||
         id.startsWith("subsol_pardoseala") ||
         id === "podest_se" ||
-        id.startsWith("palier_superior") ||
+        id === "palier_superior_pardoseala" ||
+        id === "palier_superior_izolatie_fono" ||
         id.startsWith("treapta_") ||
         id.startsWith("acoperis_apa_") ||
         id.startsWith("acoperis_fronton_") ||
@@ -371,6 +373,8 @@
         id.startsWith("etaj_grinda_") ||
         id.startsWith("etaj_centura_") ||
         id === "etaj_placa_structura" ||
+        id === "palier_superior_placa" ||
+        id === "palier_superior" ||
         id.startsWith("structura_rampa") ||
         id.startsWith("structura_r2_") ||
         id.startsWith("structura_r180_") ||
@@ -461,20 +465,16 @@
         id.startsWith("acoperis_structura_") ||
         id.startsWith("acoperis_caprior_") ||
         id.startsWith("acoperis_coama_") ||
-        id.startsWith("acoperis_solbanc_")
+        id.startsWith("acoperis_solbanc_") ||
+        id.startsWith("stalp_SP_")
       ) {
-        // Stâlpi fundație→acoperiș + schelet acoperiș: vizibili pe S / P / E (nu doar pe zMid)
+        // O singură listă — nu în parter+etaj (altfel setLevel se calcă pe vizibilitate)
+        continuousObjs.push(obj);
         subsolObjs.push(obj);
-        parterObjs.push(obj);
-        etajObjs.push(obj);
-      } else if (id.startsWith("stalp_SP_")) {
-        // S+P: vizibil subsol+parter (+ etaj ca reazem sub placă), nu ca stâlp în volumul E
-        subsolObjs.push(obj);
-        parterObjs.push(obj);
-        etajObjs.push(obj);
       } else if (
         id.startsWith("parter_centura_") ||
-        id === "etaj_placa_structura"
+        id === "etaj_placa_structura" ||
+        id === "palier_superior_placa"
       ) {
         // Planșeu P↔E = plafon parter / pardoseală etaj → vizibil și pe etaj
         parterObjs.push(obj);
@@ -641,7 +641,13 @@
       }
       for (const o of subsolObjs) {
         // both: show L-1; parter/etaj: hide; subsol: only these
+        // continuousObjs sunt și în subsolObjs — le setăm separat imediat
+        if (continuousObjs.includes(o)) continue;
         o.visible = mode === "both" || mode === "subsol";
+      }
+      // Stâlpi continui / schelet acoperiș: o singură decizie (vizibili pe P, E, both, subsol)
+      for (const o of continuousObjs) {
+        o.visible = mode === "both" || mode === "parter" || mode === "etaj" || mode === "subsol";
       }
       // niciodată pe fațadă EST/NORD ca „gard”; zone studiu curte doar în view Curte
       root.traverse((o) => {
@@ -702,7 +708,7 @@
       tip.className = "meta";
       tip.style.color = "#e8a87c";
       tip.innerHTML =
-        "<strong>FRAME:</strong> <em>1 · Structură</em> = doar cadru BA (stâlpi/grinzi/fg/placă/coamă) — fără gard, poartă, trepte, țiglă. · Planuri P/E = sursă de adevăr. · Audit: <code>v47_a1_frame_structure_design_audit_v04.md</code>.";
+        "<strong>FRAME:</strong> <em>1 · Structură</em> = cadru BA + plăci portante (inclusiv palier) — fără gard/poartă/finisaje/țiglă. · Audit: <code>v47_a1_frame_structure_design_audit_v05.md</code> · Geo: <code>geotech_hypothesis_v01.md</code>.";
       document.getElementById("meta")?.after(tip);
     }
     document.getElementById("btnClosed").onclick = () => {

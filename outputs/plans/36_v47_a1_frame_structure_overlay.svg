@@ -4,20 +4,20 @@
 <text x="40" y="22" font-size="13" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">V47 A1 FRAME · plan structural suprapus pe amenajare (neconstruibil)</text>
 <text x="40" y="38" font-size="9" fill="#444" font-family="IBM Plex Sans,Segoe UI,sans-serif">Cadre BA + EB20 + vată 80 · fără pereți structurali P/E · anvelopă 680×860 · max perete 300 mm</text>
 <rect x="40" y="40" width="374.00000000000006" height="473.00000000000006" fill="none" stroke="#333" stroke-width="1.2"/>
-<rect x="40" y="40" width="374.00000000000006" height="16.5" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
-<rect x="40" y="56.5" width="16.5" height="338.25" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
-<rect x="397.50000000000006" y="56.5" width="16.5" height="225.50000000000003" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
-<rect x="238.00000000000003" y="496.50000000000006" width="96.25000000000001" height="16.5" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
-<rect x="40" y="394.75000000000006" width="198.00000000000003" height="16.5" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
-<rect x="231.12500000000003" y="56.5" width="6.875000000000001" height="338.25" fill="#eee8e0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
-<rect x="56.5" y="143.125" width="66" height="6.875000000000001" fill="#eee8e0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
-<rect x="122.5" y="143.125" width="6.875000000000001" height="52.25000000000001" fill="#eee8e0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
-<rect x="129.375" y="188.5" width="101.75000000000001" height="6.875000000000001" fill="#eee8e0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
-<rect x="334.25" y="364.5" width="16.5" height="148.5" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
-<rect x="301.25" y="350.75" width="33" height="6.875000000000001" fill="#eee8e0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
-<rect x="221.50000000000003" y="411.25000000000006" width="16.5" height="101.75000000000001" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
-<rect x="397.50000000000006" y="282" width="16.5" height="82.5" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
-<rect x="334.25" y="298.5" width="16.5" height="214.50000000000003" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
+<rect x="40.715" y="40" width="374.00000000000006" height="16.5" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
+<rect x="40" y="56.5" width="17.215000000000003" height="338.25" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
+<rect x="398.21500000000003" y="56.5" width="17.215000000000003" height="225.50000000000003" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
+<rect x="238.71500000000003" y="496.50000000000006" width="96.25000000000001" height="17.215000000000003" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
+<rect x="40.715" y="394.75000000000006" width="198.00000000000003" height="17.215000000000003" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
+<rect x="231.84000000000003" y="56.5" width="6.875000000000001" height="338.25" fill="#eee8e0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
+<rect x="57.215" y="143.125" width="66" height="8.25" fill="#eee8e0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
+<rect x="121.84000000000002" y="143.125" width="8.25" height="52.25000000000001" fill="#eee8e0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
+<rect x="130.09000000000003" y="187.125" width="101.75000000000001" height="8.25" fill="#eee8e0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
+<rect x="334.965" y="364.5" width="16.5" height="148.5" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
+<rect x="301.96500000000003" y="350.75" width="33" height="6.875000000000001" fill="#eee8e0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
+<rect x="222.21500000000003" y="411.25000000000006" width="16.5" height="101.75000000000001" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
+<rect x="398.21500000000003" y="282" width="17.215000000000003" height="82.5" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
+<rect x="334.965" y="298.5" width="16.5" height="214.50000000000003" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
 <rect x="350.75" y="348" width="46.75000000000001" height="16.5" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
 <line x1="45.06" y1="40" x2="45.06" y2="513" stroke="#c45c26" stroke-width="0.6" stroke-dasharray="4 3"/>
 <text x="47.06" y="36" font-size="7" fill="#c45c26">X_W=9.2</text>
@@ -32,6 +32,7 @@
 <line x1="40" y1="298.5" x2="414.00000000000006" y2="298.5" stroke="#2a6f97" stroke-width="0.6" stroke-dasharray="4 3"/>
 <line x1="40" y1="308.95000000000005" x2="414.00000000000006" y2="308.95000000000005" stroke="#2a6f97" stroke-width="0.6" stroke-dasharray="4 3"/>
 <line x1="40" y1="309.5" x2="414.00000000000006" y2="309.5" stroke="#2a6f97" stroke-width="0.6" stroke-dasharray="4 3"/>
+<line x1="40" y1="364.5" x2="414.00000000000006" y2="364.5" stroke="#2a6f97" stroke-width="0.6" stroke-dasharray="4 3"/>
 <line x1="40" y1="370" x2="414.00000000000006" y2="370" stroke="#2a6f97" stroke-width="0.6" stroke-dasharray="4 3"/>
 <line x1="40" y1="370" x2="414.00000000000006" y2="370" stroke="#2a6f97" stroke-width="0.6" stroke-dasharray="4 3"/>
 <line x1="40" y1="375.5" x2="414.00000000000006" y2="375.5" stroke="#2a6f97" stroke-width="0.6" stroke-dasharray="4 3"/>
@@ -41,7 +42,7 @@
 <line x1="40" y1="513" x2="414.00000000000006" y2="513" stroke="#2a6f97" stroke-width="0.6" stroke-dasharray="4 3"/>
 <rect x="45.06" y="45.06" width="368.94" height="16.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
 <rect x="45.06" y="45.06" width="16.5" height="361.13" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
-<rect x="392" y="45.06" width="16.5" height="263.89000000000004" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
+<rect x="392" y="45.06" width="16.5" height="319.44" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
 <rect x="334.25" y="375.5" width="16.5" height="137.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
 <rect x="350.75" y="356.25" width="63.25000000000001" height="8.25" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
 <rect x="334.25" y="370" width="16.5" height="5.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
@@ -77,5 +78,5 @@
 <text x="353.5" y="339.75" font-size="8" fill="#2a6f97">ușă Y500–600 LIBERĂ</text>
 <rect x="350.75" y="356.25" width="63.25000000000001" height="8.25" fill="#5a8f6a" opacity="0.45" stroke="#2d5a27"/>
 <text x="353.5" y="354.6" font-size="7" fill="#2d5a27">grindă întoarsă X565 (studiu)</text>
-<text x="40" y="599" font-size="8" fill="#555">Stâlpi 30×40 + proem. · ETICS afară · util P 38.605 / E 37.96 m² (NECONFIRMAT) · fără PASS</text>
+<text x="40" y="599" font-size="8" fill="#555">Stâlpi 30×40 + proem. · ETICS afară · util P 38.505 / E 37.86 m² (NECONFIRMAT) · fără PASS</text>
 </svg>

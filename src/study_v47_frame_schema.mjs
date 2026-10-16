@@ -128,7 +128,7 @@ function colSud(id, x, dx, wallY0, exteriorY1, extra = {}) {
     support_below: "fundație_S",
     protrusion_into_room_cm: Math.max(0, wallY0 - y0),
     etics_outside_band_cm: { y0: y1Concrete, y1: exteriorY1, th: ETICS },
-    section_cm: `${COL_THRU}×${COL_ALONG}`,
+    section_cm: `${dx}×${COL_THRU}`,
     section_status: "de confirmat prin calcul și cerințe normative",
     ...extra,
   };
@@ -147,6 +147,8 @@ function buildFrameSchema() {
     /** Capăt sud C_E_PAL: rezervă finisaj 1 cm N de palier Y490 — NU pe Y490–600. */
     Y_E_PAL_END: 489,
     Y_LANDING_N: 490,
+    /** Sud placă palier etaj (= N rampă2) — consolă B_E se oprește aici, nu în trepte. */
+    Y_PALIER_ETAJ_S: 590,
     Y_LANDING_S: 600,
     Y_DOOR_END: 600,
     Y_CASA_AFTER_DOOR: 610,
@@ -322,10 +324,13 @@ function buildFrameSchema() {
       x: 650 - PROTRUSION_IN,
       y: ETICS,
       dx: COL_THRU,
-      dy: ax.Y_E_PAL_END - ETICS,
+      dy: ax.Y_PALIER_ETAJ_S - ETICS,
       levels: ["P", "E"],
       supports: ["C_NE", "C_E_GEAM_S", "C_E_PAL"],
-      note: "centură E până la C_E_PAL; fără stâlp pe palier/scară",
+      cantilever_south_of_C_E_PAL_cm: ax.Y_PALIER_ETAJ_S - ax.Y_E_PAL_END,
+      cantilever_y0: ax.Y_E_PAL_END,
+      cantilever_y1: ax.Y_PALIER_ETAJ_S,
+      note: "centură E prin C_E_PAL + consolă sud până Y590 (muchie S palier etaj). Fără stâlp. Nu intră în rampă2 Y590+. Decisive: torsiune/nod — calcul lipsă",
     },
     {
       id: "B_CASA_SCARA",
@@ -374,7 +379,7 @@ function buildFrameSchema() {
       dy: ax.Y_INTRARE_S_EXT - ETICS - ax.Y_DORM_S,
       levels: ["P", "E"],
       supports: ["C_S_DORM_E", "C_S_INTRARE_W"],
-      note: "prin secțiunea C_S_INTRARE_W (X360–400, Y820.8+) — nod complet, nu doar muchie",
+      note: "STUDIU: dx=70 = pad prin C_S_DORM_E + C_S_INTRARE_W nealiniați; lățime structurală tip 30 — conflict geometric / soluție explicită",
     },
     {
       id: "B_Y830",
@@ -392,68 +397,104 @@ function buildFrameSchema() {
       y: ax.Y_PAL_N,
       dx: 145,
       dy: COL_THRU,
-      levels: ["E"],
+      levels: ["P"],
       supports: ["C_E_PAL", "B_E"],
-      note: "bordură nord placă palier scară (NU vestibul); sprijin placă = schemă 4 laturi DESCHIS",
+      note: "bordură N placă palier la PLANȘEU (levels P = intrados etaj, nu streșină). Capăt V fără stâlp — calcul lipsă. NU vestibul.",
     },
   ];
 
   const conflicts = [
     {
+      id: "east_landing_span",
+      severity: "STUDIU_CONSOLA",
+      registry: "calcul_lipsă",
+      detail:
+        "Placă podest consolă transversală pe B_E (Y489→590). Fără stâlp living/puț. Torsiune, ancorare, nod C_E_PAL, ridicare pe C_E_GEAM_S = de verificat prin calcul — nu demonstrate.",
+      solution_ref: "outputs/reports/v47_a1_frame_slab_and_landing_v02.md",
+      geometry: { B_E_cantilever_y0: 489, B_E_cantilever_y1: 590, B_E_cantilever_cm: 101 },
+    },
+    {
+      id: "palier_plate_support",
+      severity: "STUDIU_CONSOLA",
+      registry: "calcul_lipsă",
+      detail: "P: living sub podest. E: circulație rece. Reazem consolă + C_E_PAL/B_Y470; pachet termic/acustic distinct — nu dublură beton.",
+    },
+    {
+      id: "slab_span_without_X320",
+      severity: "COMPARATIE_15_20",
+      registry: "calcul_lipsă",
+      detail:
+        "L/d pe fâșie = semnal de verificare, NU demonstrație SLS fail. Compară 15 vs 20 pe schemă reală (2D, goluri, armare, fisurare, lungă durată) cu săgeți calculate. Nu adopta 25–28 fără impact FF288. Fără grindă A7 ca primă opțiune.",
+      structural_slab_cm_current: 15,
+      structural_slab_alt_cm: 20,
+      clear_cm: { slab_15: 255, slab_20: 250, slab_25: 245, slab_28: 242 },
+    },
+    {
       id: "inverted_beam_fit",
       severity: "DESCHIS_CALCUL",
+      registry: "conflict_geometric",
       detail:
-        "Ansamblu B_Y590_EDGE_INVERTED: E→C_SHAFT_E_PIER; W→placă+B_SEP_AFTER_DOOR→C_CASA_SCARA. Fit sandwich −30…+32 = calcul. Ușă/palier libere.",
+        "Capăt V grindă întoarsă pe buiandrug 15 cm / gap vs B_SEP — nerezolvat complet. E→C_SHAFT_E_PIER OK geometric.",
       door_kept: { y0: 500, y1: 600 },
     },
     {
-      id: "east_landing_span",
-      severity: "DESCHIS",
+      id: "basement_retaining",
+      severity: "CRITIC",
+      registry: "conflict_geometric",
       detail:
-        "Un singur reazem est C_E_PAL (Y449–489). Deschidere spre sud fără stâlp pe palier/scară — de dimensionat.",
+        "Pereți retenție = EB20 umplutură în model. Demolare integrală 131 (inclusiv beci/fundații existente). Subsol+pereți BA+fundații NOI. Ipoteză geo vecinătate — decisions/geotech_hypothesis_v01.md.",
+    },
+    {
+      id: "roof_load_path",
+      severity: "DESCHIS",
+      registry: "calcul_lipsă",
+      detail:
+        "Stâlpișori: contact geometric parțial cu grinzi la +581 — nu „plutitori absenți”. Capacitate/excentricitate nevalidate. Completare căpriori pe E; comparație șarpantă ușoară vs BA. Fără stâlpi noi în camere.",
+    },
+    {
+      id: "foundations_width",
+      severity: "DESCHIS",
+      registry: "calcul_lipsă",
+      detail:
+        "FG = lățime grindă = preliminar insuficient geometric. Pconv 310 kPa = reper vecinătate 120, nu Rc calcul 131. Nu declara conform/neconform din ~250 kPa ordin.",
     },
     {
       id: "north_three_supports",
       severity: "COMPARATIE",
+      registry: "calcul_lipsă",
       detail:
-        "C_N_BUC eliminat. C_N_MID@X320 (rost vest de frigider_p@360). B_N pe NW–N_MID–NE. Alternativa: fara N_MID.",
+        "C_N_BUC eliminat. C_N_MID@X320. B_N pe NW–N_MID–NE. Alternativa: fara N_MID.",
     },
     {
       id: "amenajare_frame_overlays",
       severity: "FRAME_ONLY",
+      registry: "rezolvat_geometric",
       detail:
-        "A1 aprobat neatins. In frame: dus x>=50 (C_NW 40x30); pat x>=45 (C_W_MID 30x40) — nu micsoram stalpii.",
+        "A1 aprobat neatins. In frame: dus x>=50; pat x>=45 — nu micsoram stalpii.",
     },
     {
       id: "column_30_protrusion_vs_37m2",
       severity: "DESCHIS",
-      detail: `Proeminențe locale; util P/E = NECONFIRMAT — nu e rezervă stâlpi.`,
-    },
-    {
-      id: "palier_plate_support",
-      severity: "DESCHIS",
-      detail:
-        "Palier scară rece (fără vestibul): placa = plafon living P. Reazeme pe margini — schemă DESCHIS. Vestibul închis ELIMINAT.",
-    },
-    {
-      id: "slab_span_without_X320",
-      severity: "DESCHIS",
-      detail: "Fără reazem pe compartimentarea 12,5 cm — placă/grinzi pe perimetru; grosime 15 cm neconfirmată.",
-    },
-    {
-      id: "basement_retaining",
-      severity: "SEPARAT",
-      detail: "Pereți subsol retenție teren — sistem separat de cadrele P/E.",
+      registry: "calcul_lipsă",
+      detail: "Proeminențe locale; util P/E = NECONFIRMAT — nu e rezervă stâlpi.",
     },
     {
       id: "p100_min_section",
       severity: "IPOTEZĂ",
+      registry: "calcul_lipsă",
       detail: "30 cm transversal = studiu preliminar P100; aplicabilitate pe sistem/ductilitate — nu validat.",
     },
     {
       id: "etics_wrap_verify",
       severity: "DESCHIS",
-      detail: "ETICS peste stâlpi în model; detalii șantier neconfirmate.",
+      registry: "conflict_geometric",
+      detail: "Grinzi/stâlpi pe banda ETICS (+9,2 pe S) — corecție geometrică necesară; detalii șantier neconfirmate.",
+    },
+    {
+      id: "B_X360_wide_pad",
+      severity: "DESCHIS",
+      registry: "conflict_geometric",
+      detail: "dx=70 pentru reazeme decalate — necesită soluție structurală explicită (aliniere sau grindă pe ax).",
     },
   ];
 
@@ -479,7 +520,24 @@ function buildFrameSchema() {
     beams,
     inverted_edge_beam: INVERTED_BEAM,
     removed_from_prior_grid: removed,
+    removed_from_east_landing_study: [
+      {
+        id: "C_E_LAND_SP",
+        reason: "RETRAS: bloca palier/rampă beci — nu se reintroduce",
+      },
+      {
+        id: "B_LAND_S_EDGE",
+        reason: "RETRAS odată cu stâlpul; formă care taie treapta interzisă",
+      },
+    ],
     conflicts_unresolved: conflicts,
+    slab_policy: {
+      current_cm: SLAB_TH,
+      alt_cm: 20,
+      clear_ff288_cm: { 15: 255, 20: 250, 25: 245, 28: 242 },
+      note: "Nu schimba grosimea fără impact pe clear + calcul SLS pe schemă reală. L/d ≠ verdict SLS.",
+    },
+    geotech_ref: "decisions/geotech_hypothesis_v01.md",
     levels_cm: {
       ff_parter: FF_PARTER,
       ff_etaj: FF_ETAJ,
