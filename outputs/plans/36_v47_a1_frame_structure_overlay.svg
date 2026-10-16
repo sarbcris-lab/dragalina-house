@@ -19,14 +19,14 @@
 <rect x="398.21500000000003" y="282" width="17.215000000000003" height="82.5" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
 <rect x="334.965" y="298.5" width="16.5" height="214.50000000000003" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
 <rect x="350.75" y="348" width="46.75000000000001" height="16.5" fill="#e8e0d0" stroke="#999" stroke-width="0.4" opacity="0.85"/>
-<line x1="45.06" y1="40" x2="45.06" y2="513" stroke="#c45c26" stroke-width="0.6" stroke-dasharray="4 3"/>
-<text x="47.06" y="36" font-size="7" fill="#c45c26">X_W=9.2</text>
-<line x1="334.25" y1="40" x2="334.25" y2="513" stroke="#c45c26" stroke-width="0.6" stroke-dasharray="4 3"/>
-<text x="336.25" y="36" font-size="7" fill="#c45c26">X_CASA_SCARA=535</text>
-<line x1="397.50000000000006" y1="40" x2="397.50000000000006" y2="513" stroke="#c45c26" stroke-width="0.6" stroke-dasharray="4 3"/>
-<text x="399.50000000000006" y="36" font-size="7" fill="#c45c26">X_E=650</text>
-<line x1="238.00000000000003" y1="40" x2="238.00000000000003" y2="513" stroke="#c45c26" stroke-width="0.6" stroke-dasharray="4 3"/>
-<text x="240.00000000000003" y="36" font-size="7" fill="#c45c26">X_DORM_E=360</text>
+<line x1="45.775" y1="40" x2="45.775" y2="513" stroke="#c45c26" stroke-width="0.6" stroke-dasharray="4 3"/>
+<text x="47.775" y="36" font-size="7" fill="#c45c26">X_W=10.5</text>
+<line x1="334.965" y1="40" x2="334.965" y2="513" stroke="#c45c26" stroke-width="0.6" stroke-dasharray="4 3"/>
+<text x="336.965" y="36" font-size="7" fill="#c45c26">X_CASA_SCARA=536.3</text>
+<line x1="398.21500000000003" y1="40" x2="398.21500000000003" y2="513" stroke="#c45c26" stroke-width="0.6" stroke-dasharray="4 3"/>
+<text x="400.21500000000003" y="36" font-size="7" fill="#c45c26">X_E=651.3</text>
+<line x1="238.71500000000003" y1="40" x2="238.71500000000003" y2="513" stroke="#c45c26" stroke-width="0.6" stroke-dasharray="4 3"/>
+<text x="240.71500000000003" y="36" font-size="7" fill="#c45c26">X_DORM_E=361.3</text>
 <line x1="40" y1="45.06" x2="414.00000000000006" y2="45.06" stroke="#2a6f97" stroke-width="0.6" stroke-dasharray="4 3"/>
 <line x1="40" y1="45.06" x2="414.00000000000006" y2="45.06" stroke="#2a6f97" stroke-width="0.6" stroke-dasharray="4 3"/>
 <line x1="40" y1="298.5" x2="414.00000000000006" y2="298.5" stroke="#2a6f97" stroke-width="0.6" stroke-dasharray="4 3"/>
@@ -40,40 +40,40 @@
 <line x1="40" y1="411.25000000000006" x2="414.00000000000006" y2="411.25000000000006" stroke="#2a6f97" stroke-width="0.6" stroke-dasharray="4 3"/>
 <line x1="40" y1="496.50000000000006" x2="414.00000000000006" y2="496.50000000000006" stroke="#2a6f97" stroke-width="0.6" stroke-dasharray="4 3"/>
 <line x1="40" y1="513" x2="414.00000000000006" y2="513" stroke="#2a6f97" stroke-width="0.6" stroke-dasharray="4 3"/>
-<rect x="45.06" y="45.06" width="368.94" height="16.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
-<rect x="45.06" y="45.06" width="16.5" height="361.13" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
-<rect x="392" y="45.06" width="16.5" height="319.44" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
-<rect x="334.25" y="375.5" width="16.5" height="137.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
-<rect x="350.75" y="356.25" width="63.25000000000001" height="8.25" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
-<rect x="334.25" y="370" width="16.5" height="5.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
-<rect x="45.06" y="394.75000000000006" width="192.94000000000003" height="16.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
-<rect x="221.50000000000003" y="394.75000000000006" width="38.5" height="113.18999999999998" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
-<rect x="238.00000000000003" y="496.50000000000006" width="112.75000000000001" height="16.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
-<rect x="334.25" y="298.5" width="79.75" height="16.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
-<rect x="45.06" y="45.06" width="22" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
-<text x="46.06" y="43.06" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_NW</text>
-<rect x="216" y="45.06" width="22" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
-<text x="217" y="43.06" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_N_MID</text>
-<rect x="392" y="45.06" width="16.5" height="22" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
-<text x="393" y="43.06" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_NE</text>
-<rect x="45.06" y="260" width="16.5" height="22" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
-<text x="46.06" y="258" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_W_MID</text>
-<rect x="45.06" y="389.69" width="22" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
-<text x="46.06" y="387.69" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_W_DORM</text>
-<rect x="221.50000000000003" y="389.69" width="16.5" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
-<text x="222.50000000000003" y="387.69" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_S_DORM_E</text>
-<rect x="392" y="210.5" width="16.5" height="22" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
-<text x="393" y="208.5" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_E_GEAM_S</text>
-<rect x="392" y="286.95000000000005" width="16.5" height="22" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
-<text x="393" y="284.95000000000005" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_E_PAL</text>
-<rect x="334.25" y="375.5" width="16.5" height="22" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
-<text x="335.25" y="373.5" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_CASA_SCARA</text>
-<rect x="405.75000000000006" y="356.25" width="8.25" height="8.25" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
-<text x="406.75000000000006" y="354.25" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_SHAFT_E_PIER</text>
-<rect x="238.00000000000003" y="491.44" width="22" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
-<text x="239.00000000000003" y="489.44" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_S_INTRARE_W</text>
-<rect x="334.25" y="491.44" width="16.5" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
-<text x="335.25" y="489.44" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_S_INTRARE_E</text>
+<rect x="45.775" y="45.06" width="368.94" height="16.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
+<rect x="45.775" y="45.06" width="16.5" height="361.13" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
+<rect x="392.71500000000003" y="45.06" width="16.5" height="319.44" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
+<rect x="334.965" y="375.5" width="16.5" height="137.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
+<rect x="351.465" y="356.25" width="63.25000000000001" height="8.25" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
+<rect x="334.965" y="370" width="16.5" height="5.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
+<rect x="45.775" y="394.75000000000006" width="192.94000000000003" height="16.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
+<rect x="222.21500000000003" y="394.75000000000006" width="38.5" height="113.18999999999998" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
+<rect x="238.71500000000003" y="496.50000000000006" width="112.75000000000001" height="16.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
+<rect x="334.965" y="298.5" width="79.75" height="16.5" fill="#6a6358" opacity="0.55" stroke="#333" stroke-width="0.5"/>
+<rect x="45.775" y="45.06" width="22" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
+<text x="46.775" y="43.06" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_NW</text>
+<rect x="216.71500000000003" y="45.06" width="22" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
+<text x="217.71500000000003" y="43.06" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_N_MID</text>
+<rect x="392.71500000000003" y="45.06" width="16.5" height="22" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
+<text x="393.71500000000003" y="43.06" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_NE</text>
+<rect x="45.775" y="260" width="16.5" height="22" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
+<text x="46.775" y="258" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_W_MID</text>
+<rect x="45.775" y="389.69" width="22" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
+<text x="46.775" y="387.69" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_W_DORM</text>
+<rect x="222.21500000000003" y="389.69" width="16.5" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
+<text x="223.21500000000003" y="387.69" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_S_DORM_E</text>
+<rect x="392.71500000000003" y="210.5" width="16.5" height="22" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
+<text x="393.71500000000003" y="208.5" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_E_GEAM_S</text>
+<rect x="392.71500000000003" y="286.95000000000005" width="16.5" height="22" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
+<text x="393.71500000000003" y="284.95000000000005" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_E_PAL</text>
+<rect x="334.965" y="375.5" width="16.5" height="22" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
+<text x="335.965" y="373.5" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_CASA_SCARA</text>
+<rect x="406.46500000000003" y="356.25" width="8.25" height="8.25" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
+<text x="407.46500000000003" y="354.25" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_SHAFT_E_PIER</text>
+<rect x="238.71500000000003" y="491.44" width="22" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
+<text x="239.71500000000003" y="489.44" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_S_INTRARE_W</text>
+<rect x="334.965" y="491.44" width="16.5" height="16.5" fill="#3d3a36" stroke="#111" stroke-width="0.8"/>
+<text x="335.965" y="489.44" font-size="6.5" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">C_S_INTRARE_E</text>
 <rect x="334.25" y="315" width="16.5" height="55.00000000000001" fill="none" stroke="#2a6f97" stroke-width="1.5"/>
 <text x="353.5" y="339.75" font-size="8" fill="#2a6f97">ușă Y500–600 LIBERĂ</text>
 <rect x="350.75" y="356.25" width="63.25000000000001" height="8.25" fill="#5a8f6a" opacity="0.45" stroke="#2d5a27"/>

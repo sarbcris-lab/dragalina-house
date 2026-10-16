@@ -30,6 +30,7 @@
     "build:v47": "npm run volume:v47:studies && npm run docs:v47",
     "build:frame": "npm run assemblies:apply && npm run volume:v47:studies",
     "study:frame": "node src/study_v47_frame_schema.mjs",
+    "plans:frame": "node src/export_v47_frame_plans.mjs",
     "restore:r7g": "node tmp_restore_r7g.mjs && npm run build:v46",
     "viewer": "npx --yes serve . -p 5173"
   },

@@ -208,3 +208,11 @@
 - Vizibilitate P/E: `continuousObjs` o decizie.
 - Geo: `decisions/geotech_hypothesis_v01.md` (vecinătate 120; demolare integrală 131).
 - Audit: `v47_a1_frame_structure_design_audit_v05.md` + registru status.
+
+## 2026-10-16 — Coordonare geometrie (runda post-v05)
+
+- `GEO_X0=1.3` în generator cadru (= A2 recenter) — C_NE@641.3 etc.
+- Palier: izol. 6 + șapă 4 + finisaj 2 cm (nu grosime 0).
+- Rampă 1+2: vanguri înclinate sub intrados; capăt superior = nTread (nu nRiser) — aliniază la +298 Intrados / +304 FF.
+- `podest_se_placa` în Structură; Viewer `sharedFloorObjs` — grinzi/plăci pe Doar parter.
+- Gol placă = contur exact palier; planuri FRAME `38`/`39` din frame study (nu v47_exact).

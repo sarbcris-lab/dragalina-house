@@ -71,10 +71,12 @@ Subsol păstrat în studiu. Retenție BA + variante radier/tălpi = deschise. Nu
 
 ---
 
-## Următorii pași
+## Următorii pași (geometrie v06 în curs / după)
 
-1. Regresie: `study:frame` → verifică B_E@590 + B_Y470@P  
+1. ~~GEO_X0 sync cadru↔pereți~~ · ~~palier straturi reale~~ · ~~scară înclinată~~ · ~~filtre shared~~ · ~~planuri 38/39 FRAME~~  
 2. FE placă 15 vs 20 (săgeți + limite) — sau marchează explicit calcul lipsă  
 3. Nod consolă B_E + grindă întoarsă V  
 4. Retenție BA + variante fundație cu presiuni afișate  
 5. Șarpantă ușoară vs BA (comparție)
+
+**Notă:** planurile 21–25 din `v47_exact` **nu** sunt dovadă FRAME. Folosește `38_…_parter.svg` / `39_…_etaj.svg`.

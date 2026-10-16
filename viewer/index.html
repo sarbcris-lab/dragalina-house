@@ -294,6 +294,7 @@
     const structObjs = [];
     const umpluturaObjs = [];
     const continuousObjs = [];
+    const sharedFloorObjs = [];
     const list = document.getElementById("meshes");
     const root = new THREE.Group();
     scene.add(root);
@@ -346,6 +347,7 @@
         id === "podest_se" ||
         id === "palier_superior_pardoseala" ||
         id === "palier_superior_izolatie_fono" ||
+        id === "palier_superior_sapa" ||
         id.startsWith("treapta_") ||
         id.startsWith("acoperis_apa_") ||
         id.startsWith("acoperis_fronton_") ||
@@ -375,6 +377,7 @@
         id === "etaj_placa_structura" ||
         id === "palier_superior_placa" ||
         id === "palier_superior" ||
+        id === "podest_se_placa" ||
         id.startsWith("structura_rampa") ||
         id.startsWith("structura_r2_") ||
         id.startsWith("structura_r180_") ||
@@ -474,11 +477,11 @@
       } else if (
         id.startsWith("parter_centura_") ||
         id === "etaj_placa_structura" ||
-        id === "palier_superior_placa"
+        id === "palier_superior_placa" ||
+        id === "podest_se_placa"
       ) {
-        // Planșeu P↔E = plafon parter / pardoseală etaj → vizibil și pe etaj
-        parterObjs.push(obj);
-        etajObjs.push(obj);
+        // O singură listă — altfel „Doar parter” le afișează apoi bucla etaj le ascunde
+        sharedFloorObjs.push(obj);
       } else if (id.startsWith("subsol_")) {
         subsolObjs.push(obj);
       } else if (zMid >= H - 0.05) etajObjs.push(obj);
@@ -648,6 +651,10 @@
       // Stâlpi continui / schelet acoperiș: o singură decizie (vizibili pe P, E, both, subsol)
       for (const o of continuousObjs) {
         o.visible = mode === "both" || mode === "parter" || mode === "etaj" || mode === "subsol";
+      }
+      // Grinzi planșeu + plăci: vizibile pe P și E (plafon P / pardoseală E)
+      for (const o of sharedFloorObjs) {
+        o.visible = mode === "both" || mode === "parter" || mode === "etaj";
       }
       // niciodată pe fațadă EST/NORD ca „gard”; zone studiu curte doar în view Curte
       root.traverse((o) => {

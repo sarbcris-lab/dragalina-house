@@ -27,6 +27,11 @@ const writeText = (rel, text) => {
 
 const REF_USEFUL = 37.0; // prag m²
 const ETICS = 9.2;
+/**
+ * Sync cu `apply_geometry_assemblies_v01` (A2 +1.3 cm + recenter vest=0).
+ * Pereții din JSON au deja acest shift; cadrul trebuie pe aceleași axe.
+ */
+const GEO_X0 = 1.3;
 /** Studiu preliminar: min. beton pe direcție transversală perete ≈30 cm (P100 — aplicabilitate de confirmat). */
 const COL_THRU = 30;
 const COL_ALONG = 40;
@@ -79,7 +84,7 @@ function rectAreaM2(r) {
 function colEst(id, y, dy, extra = {}) {
   return {
     id,
-    x: 650 - PROTRUSION_IN,
+    x: GEO_X0 + 650 - PROTRUSION_IN,
     y,
     dx: COL_THRU,
     dy,
@@ -96,7 +101,7 @@ function colEst(id, y, dy, extra = {}) {
 function colVest(id, y, dy, extra = {}) {
   return {
     id,
-    x: ETICS,
+    x: GEO_X0 + ETICS,
     y,
     dx: COL_THRU,
     dy,
@@ -137,10 +142,11 @@ function colSud(id, x, dx, wallY0, exteriorY1, extra = {}) {
 /** Stâlpi — secțiuni preliminare 30×40 cu îngroșare locală; ETICS continuă afară. */
 function buildFrameSchema() {
   const ax = {
-    X_W: ETICS,
-    X_CASA_SCARA: 535,
-    X_E: 650,
-    X_DORM_E: 360,
+    X_W: GEO_X0 + ETICS,
+    X_CASA_SCARA: GEO_X0 + 535,
+    X_E: GEO_X0 + 650,
+    X_DORM_E: GEO_X0 + 360,
+    GEO_X0,
     Y_N: ETICS,
     Y_N_MID: 9.2,
     Y_PAL_N: 470,
@@ -161,7 +167,7 @@ function buildFrameSchema() {
   const columns = [
     {
       id: "C_NW",
-      x: ETICS,
+      x: GEO_X0 + ETICS,
       y: ETICS,
       dx: COL_ALONG,
       dy: COL_THRU,
@@ -170,7 +176,7 @@ function buildFrameSchema() {
       support_below: "fundație_N/W",
       protrusion_into_room_cm: PROTRUSION_IN,
       section_cm: `${COL_ALONG}×${COL_THRU}`,
-      etics_outside_band_cm: { x0: 0, x1: ETICS, y0: 0, y1: ETICS, th: ETICS },
+      etics_outside_band_cm: { x0: 0, x1: GEO_X0 + ETICS, y0: 0, y1: ETICS, th: ETICS },
       wall: "colț N/W — 40×30 preliminar (NU redus pt. duș)",
       conflicts: ["duș decupat local în frame — nu micșorăm stâlpul"],
       amenajare_fix: "dus x≥50",
@@ -178,7 +184,7 @@ function buildFrameSchema() {
     },
     {
       id: "C_N_MID",
-      x: 320,
+      x: GEO_X0 + 320,
       y: ETICS,
       dx: COL_ALONG,
       dy: COL_THRU,
@@ -193,17 +199,17 @@ function buildFrameSchema() {
     colEst("C_NE", ETICS, COL_ALONG, {
       wall: "est N de geam",
       conflicts: ["proeminență în capăt blat_tail_p — capăt mobilier adaptat"],
-      etics_outside_band_cm: { x0: 670.8, x1: 680, th: ETICS },
+      etics_outside_band_cm: { x0: GEO_X0 + 670.8, x1: GEO_X0 + 680, th: ETICS },
       continuous_through_floor: true,
     }),
     colVest("C_W_MID", 400, COL_ALONG, {
       wall: "vest — 30×40 (NU redus pt. pat)",
-      etics_outside_band_cm: { x0: 0, x1: ETICS, th: ETICS },
+      etics_outside_band_cm: { x0: 0, x1: GEO_X0 + ETICS, th: ETICS },
       conflicts: ["pat x≥45 în frame — rezervă montaj/tăblie"],
       amenajare_fix: "pat x≥45",
       continuous_through_floor: true,
     }),
-    colSud("C_W_DORM", ETICS, COL_ALONG, ax.Y_DORM_S, ax.Y_DORM_S_EXT, {
+    colSud("C_W_DORM", GEO_X0 + ETICS, COL_ALONG, ax.Y_DORM_S, ax.Y_DORM_S_EXT, {
       wall: "sud dorm W — ETICS Y665.8–675 continuă peste stâlp",
       conflicts: ["gol terasă X120–270"],
       continuous_through_floor: true,
@@ -216,7 +222,7 @@ function buildFrameSchema() {
     }),
     colEst("C_E_GEAM_S", 310, COL_ALONG, {
       wall: "est S de geam",
-      etics_outside_band_cm: { x0: 670.8, x1: 680, th: ETICS },
+      etics_outside_band_cm: { x0: GEO_X0 + 670.8, x1: GEO_X0 + 680, th: ETICS },
       continuous_through_floor: true,
     }),
     colEst("C_E_PAL", ax.Y_E_PAL_END - COL_ALONG, COL_ALONG, {
@@ -225,7 +231,7 @@ function buildFrameSchema() {
       replaces: ["pal_ne", "C_E_SOLID_N@Y550"],
       conflicts: ["proeminență pe palier etaj Y470–489 — recalcul lățime utilă"],
       clear_landing: "y1=489 ≤ lower_landing Y490",
-      etics_outside_band_cm: { x0: 670.8, x1: 680, th: ETICS },
+      etics_outside_band_cm: { x0: GEO_X0 + 670.8, x1: GEO_X0 + 680, th: ETICS },
       continuous_through_floor: true,
     }),
     {
@@ -239,8 +245,8 @@ function buildFrameSchema() {
       support_below: "fundație X535",
       protrusion_into_room_cm: 0,
       etics_cold_band_cm: {
-        x0: 565,
-        x1: 565 + ETICS,
+        x0: GEO_X0 + 565,
+        x1: GEO_X0 + 565 + ETICS,
         th: ETICS,
         note: "vată pe fața rece scară; beton doar în falie X535–565",
       },
@@ -252,7 +258,7 @@ function buildFrameSchema() {
     },
     {
       id: "C_SHAFT_E_PIER",
-      x: 665,
+      x: GEO_X0 + 665,
       y: 575,
       dx: 15,
       dy: 15,
@@ -264,13 +270,13 @@ function buildFrameSchema() {
       role: "reazem_vertical_grinda_intoarsa_E",
       conflicts: [],
     },
-    colSud("C_S_INTRARE_W", 360, COL_ALONG, ax.Y_INTRARE_S, ax.Y_INTRARE_S_EXT, {
+    colSud("C_S_INTRARE_W", GEO_X0 + 360, COL_ALONG, ax.Y_INTRARE_S, ax.Y_INTRARE_S_EXT, {
       wall: "sud intrare X360–535 — ETICS continuă",
       support_below: "fundație_S_intrare (bandă dedicată)",
       conflicts: [],
       continuous_through_floor: true,
     }),
-    colSud("C_S_INTRARE_E", ax.X_CASA_SCARA, COL_THRU, ax.Y_INTRARE_S, ax.Y_INTRARE_S_EXT, {
+    colSud("C_S_INTRARE_E", GEO_X0 + 535, COL_THRU, ax.Y_INTRARE_S, ax.Y_INTRARE_S_EXT, {
       orient: "corner_S",
       wall: "sud @ X535 — ETICS continuă afară",
       conflicts: [],
@@ -301,9 +307,9 @@ function buildFrameSchema() {
   const beams = [
     {
       id: "B_N",
-      x: ETICS,
+      x: ax.X_W,
       y: ETICS,
-      dx: 650 - ETICS + COL_THRU,
+      dx: ax.X_E - ax.X_W + COL_THRU,
       dy: COL_THRU,
       levels: ["P", "E"],
       supports: ["C_NW", "C_N_MID", "C_NE"],
@@ -311,7 +317,7 @@ function buildFrameSchema() {
     },
     {
       id: "B_W",
-      x: ETICS,
+      x: ax.X_W,
       y: ETICS,
       dx: COL_THRU,
       dy: ax.Y_DORM_S_EXT - ETICS - ETICS,
@@ -321,7 +327,7 @@ function buildFrameSchema() {
     },
     {
       id: "B_E",
-      x: 650 - PROTRUSION_IN,
+      x: GEO_X0 + 650 - PROTRUSION_IN,
       y: ETICS,
       dx: COL_THRU,
       dy: ax.Y_PALIER_ETAJ_S - ETICS,
@@ -345,6 +351,7 @@ function buildFrameSchema() {
     {
       id: "B_Y590_EDGE_INVERTED",
       ...INVERTED_BEAM,
+      x: GEO_X0 + INVERTED_BEAM.x,
       levels: ["S_inverted"],
       supports: ["C_SHAFT_E_PIER", "placa_parter_span_to_sep", "B_SEP_AFTER_DOOR"],
       load_path:
@@ -353,7 +360,7 @@ function buildFrameSchema() {
     },
     {
       id: "B_SEP_AFTER_DOOR",
-      x: 535,
+      x: ax.X_CASA_SCARA,
       y: 600,
       dx: 30,
       dy: 10,
@@ -363,9 +370,9 @@ function buildFrameSchema() {
     },
     {
       id: "B_Y645",
-      x: ETICS,
+      x: ax.X_W,
       y: ax.Y_DORM_S,
-      dx: ax.X_DORM_E - ETICS,
+      dx: ax.X_DORM_E - ax.X_W,
       dy: COL_THRU,
       levels: ["P", "E"],
       supports: ["C_W_DORM", "C_S_DORM_E"],
@@ -383,7 +390,7 @@ function buildFrameSchema() {
     },
     {
       id: "B_Y830",
-      x: 360,
+      x: GEO_X0 + 360,
       y: ax.Y_INTRARE_S,
       dx: 175 + COL_THRU,
       dy: COL_THRU,
@@ -553,12 +560,16 @@ function buildFrameSchema() {
       column_continuity: "stâlpi cu levels P+E traversează placa și buildup; fără gap +293…+320",
     },
     access_clearances: {
-      basement_stair_clear: { x0: 565, x1: 665, y0: 600, y1: 800 },
-      lower_landing: { x0: 565, x1: 680, y0: 490, y1: 600 },
-      door: { x0: 535, x1: 565, y0: 500, y1: 600 },
+      basement_stair_clear: { x0: GEO_X0 + 565, x1: GEO_X0 + 665, y0: 600, y1: 800 },
+      lower_landing: { x0: GEO_X0 + 565, x1: GEO_X0 + 680, y0: 490, y1: 600 },
+      door: { x0: GEO_X0 + 535, x1: GEO_X0 + 565, y0: 500, y1: 600 },
       C_E_PAL: { y0: 449, y1: 489, note: "N de palier (rezervă finisaj) — nu pe clar transport" },
       C_CASA_SCARA: { y0: 610, y1: 650, note: "S de ușă + rezervă" },
       C_E_SOLID_N: { removed: true, reason: "intra în palier inferior" },
+    },
+    coordinate_sync: {
+      GEO_X0,
+      note: "Axe cadru = aceleași ca pereții după geometry_assemblies v01 (A2 +1.3 + recenter)",
     },
   };
 }
@@ -1349,6 +1360,16 @@ function main() {
   writeText("outputs/plans/37_v47_a1_frame_sections.svg", svgSections(study));
   writeText("outputs/reports/v47_a1_frame_structure.md", mdReport(study));
 
+  const plans = spawnSync(process.execPath, [path.join(ROOT, "src/export_v47_frame_plans.mjs")], {
+    cwd: ROOT,
+    encoding: "utf8",
+  });
+  if (plans.status !== 0) {
+    console.error(plans.stdout, plans.stderr);
+    process.exit(plans.status || 1);
+  }
+  console.log(plans.stdout);
+
   console.log(
     JSON.stringify(
       {
@@ -1363,11 +1384,14 @@ function main() {
         transport: study.basement_cm.frame_transport_audit?.status,
         columns_on_landing: study.basement_cm.frame_transport_audit?.columns_intersecting_landing,
         approved_a1_untouched: true,
+        GEO_X0: study.structure_frame_study_cm.axes_cm?.GEO_X0,
         files: [
           "data/building/v47_a1_frame_study.json",
           "viewer/data/volume_v47_a1_frame.json",
           "outputs/plans/36_v47_a1_frame_structure_overlay.svg",
           "outputs/plans/37_v47_a1_frame_sections.svg",
+          "outputs/plans/38_v47_a1_frame_plan_parter.svg",
+          "outputs/plans/39_v47_a1_frame_plan_etaj.svg",
           "outputs/reports/v47_a1_frame_structure.md",
         ],
       },

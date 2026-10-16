@@ -8114,10 +8114,11 @@
     "declared_buildable": false,
     "structural_walls_PE": false,
     "axes_cm": {
-      "X_W": 9.2,
-      "X_CASA_SCARA": 535,
-      "X_E": 650,
-      "X_DORM_E": 360,
+      "X_W": 10.5,
+      "X_CASA_SCARA": 536.3,
+      "X_E": 651.3,
+      "X_DORM_E": 361.3,
+      "GEO_X0": 1.3,
       "Y_N": 9.2,
       "Y_N_MID": 9.2,
       "Y_PAL_N": 470,
@@ -8145,7 +8146,7 @@
     "columns": [
       {
         "id": "C_NW",
-        "x": 9.2,
+        "x": 10.5,
         "y": 9.2,
         "dx": 40,
         "dy": 30,
@@ -8160,7 +8161,7 @@
         "section_cm": "40×30",
         "etics_outside_band_cm": {
           "x0": 0,
-          "x1": 9.2,
+          "x1": 10.5,
           "y0": 0,
           "y1": 9.2,
           "th": 9.2
@@ -8174,7 +8175,7 @@
       },
       {
         "id": "C_N_MID",
-        "x": 320,
+        "x": 321.3,
         "y": 9.2,
         "dx": 40,
         "dy": 30,
@@ -8194,7 +8195,7 @@
       },
       {
         "id": "C_NE",
-        "x": 640,
+        "x": 641.3,
         "y": 9.2,
         "dx": 30,
         "dy": 40,
@@ -8213,15 +8214,15 @@
           "proeminență în capăt blat_tail_p — capăt mobilier adaptat"
         ],
         "etics_outside_band_cm": {
-          "x0": 670.8,
-          "x1": 680,
+          "x0": 672.0999999999999,
+          "x1": 681.3,
           "th": 9.2
         },
         "continuous_through_floor": true
       },
       {
         "id": "C_W_MID",
-        "x": 9.2,
+        "x": 10.5,
         "y": 400,
         "dx": 30,
         "dy": 40,
@@ -8238,7 +8239,7 @@
         "wall": "vest — 30×40 (NU redus pt. pat)",
         "etics_outside_band_cm": {
           "x0": 0,
-          "x1": 9.2,
+          "x1": 10.5,
           "th": 9.2
         },
         "conflicts": [
@@ -8249,7 +8250,7 @@
       },
       {
         "id": "C_W_DORM",
-        "x": 9.2,
+        "x": 10.5,
         "y": 635.8,
         "dx": 40,
         "dy": 30,
@@ -8276,7 +8277,7 @@
       },
       {
         "id": "C_S_DORM_E",
-        "x": 330,
+        "x": 331.3,
         "y": 635.8,
         "dx": 30,
         "dy": 30,
@@ -8303,7 +8304,7 @@
       },
       {
         "id": "C_E_GEAM_S",
-        "x": 640,
+        "x": 641.3,
         "y": 310,
         "dx": 30,
         "dy": 40,
@@ -8319,15 +8320,15 @@
         "section_status": "de confirmat prin calcul și cerințe normative (P100 — aplicabilitate pe sistem/ductilitate)",
         "wall": "est S de geam",
         "etics_outside_band_cm": {
-          "x0": 670.8,
-          "x1": 680,
+          "x0": 672.0999999999999,
+          "x1": 681.3,
           "th": 9.2
         },
         "continuous_through_floor": true
       },
       {
         "id": "C_E_PAL",
-        "x": 640,
+        "x": 641.3,
         "y": 449,
         "dx": 30,
         "dy": 40,
@@ -8351,15 +8352,15 @@
         ],
         "clear_landing": "y1=489 ≤ lower_landing Y490",
         "etics_outside_band_cm": {
-          "x0": 670.8,
-          "x1": 680,
+          "x0": 672.0999999999999,
+          "x1": 681.3,
           "th": 9.2
         },
         "continuous_through_floor": true
       },
       {
         "id": "C_CASA_SCARA",
-        "x": 535,
+        "x": 536.3,
         "y": 610,
         "dx": 30,
         "dy": 40,
@@ -8372,8 +8373,8 @@
         "support_below": "fundație X535",
         "protrusion_into_room_cm": 0,
         "etics_cold_band_cm": {
-          "x0": 565,
-          "x1": 574.2,
+          "x0": 566.3,
+          "x1": 575.5,
           "th": 9.2,
           "note": "vată pe fața rece scară; beton doar în falie X535–565"
         },
@@ -8388,7 +8389,7 @@
       },
       {
         "id": "C_SHAFT_E_PIER",
-        "x": 665,
+        "x": 666.3,
         "y": 575,
         "dx": 15,
         "dy": 15,
@@ -8404,7 +8405,7 @@
       },
       {
         "id": "C_S_INTRARE_W",
-        "x": 360,
+        "x": 361.3,
         "y": 820.8,
         "dx": 40,
         "dy": 30,
@@ -8429,7 +8430,7 @@
       },
       {
         "id": "C_S_INTRARE_E",
-        "x": 535,
+        "x": 536.3,
         "y": 820.8,
         "dx": 30,
         "dy": 30,
@@ -8456,7 +8457,7 @@
     "beams": [
       {
         "id": "B_N",
-        "x": 9.2,
+        "x": 10.5,
         "y": 9.2,
         "dx": 670.8,
         "dy": 30,
@@ -8473,7 +8474,7 @@
       },
       {
         "id": "B_W",
-        "x": 9.2,
+        "x": 10.5,
         "y": 9.2,
         "dx": 30,
         "dy": 656.5999999999999,
@@ -8490,7 +8491,7 @@
       },
       {
         "id": "B_E",
-        "x": 640,
+        "x": 641.3,
         "y": 9.2,
         "dx": 30,
         "dy": 580.8,
@@ -8510,7 +8511,7 @@
       },
       {
         "id": "B_CASA_SCARA",
-        "x": 535,
+        "x": 536.3,
         "y": 610,
         "dx": 30,
         "dy": 250,
@@ -8527,7 +8528,7 @@
       },
       {
         "id": "B_Y590_EDGE_INVERTED",
-        "x": 565,
+        "x": 566.3,
         "y": 575,
         "dx": 115,
         "dy": 15,
@@ -8546,7 +8547,7 @@
       },
       {
         "id": "B_SEP_AFTER_DOOR",
-        "x": 535,
+        "x": 536.3,
         "y": 600,
         "dx": 30,
         "dy": 10,
@@ -8562,7 +8563,7 @@
       },
       {
         "id": "B_Y645",
-        "x": 9.2,
+        "x": 10.5,
         "y": 645,
         "dx": 350.8,
         "dy": 30,
@@ -8578,7 +8579,7 @@
       },
       {
         "id": "B_X360_DORM_INTRARE",
-        "x": 330,
+        "x": 331.3,
         "y": 645,
         "dx": 70,
         "dy": 205.79999999999995,
@@ -8594,7 +8595,7 @@
       },
       {
         "id": "B_Y830",
-        "x": 360,
+        "x": 361.3,
         "y": 830,
         "dx": 205,
         "dy": 30,
@@ -8610,7 +8611,7 @@
       },
       {
         "id": "B_Y470_PALIER_EDGE",
-        "x": 535,
+        "x": 536.3,
         "y": 470,
         "dx": 145,
         "dy": 30,
@@ -8811,20 +8812,20 @@
     },
     "access_clearances": {
       "basement_stair_clear": {
-        "x0": 565,
-        "x1": 665,
+        "x0": 566.3,
+        "x1": 666.3,
         "y0": 600,
         "y1": 800
       },
       "lower_landing": {
-        "x0": 565,
-        "x1": 680,
+        "x0": 566.3,
+        "x1": 681.3,
         "y0": 490,
         "y1": 600
       },
       "door": {
-        "x0": 535,
-        "x1": 565,
+        "x0": 536.3,
+        "x1": 566.3,
         "y0": 500,
         "y1": 600
       },
@@ -8842,6 +8843,10 @@
         "removed": true,
         "reason": "intra în palier inferior"
       }
+    },
+    "coordinate_sync": {
+      "GEO_X0": 1.3,
+      "note": "Axe cadru = aceleași ca pereții după geometry_assemblies v01 (A2 +1.3 + recenter)"
     },
     "transport_status": {
       "status": "NECONFIRMAT",
