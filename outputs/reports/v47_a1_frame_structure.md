@@ -105,12 +105,12 @@ Metodă: P/E separate: shoelace − pereți − thermal − proem.; E = studio; 
 | | m² |
 |--|---:|
 | Util parter (studiu) | 38.505 |
-| Util etaj studio | 37.86 |
+| Util etaj studio | 36.24 |
 | Palier scară rece (exclus din util; nu vestibul) | 1.26 |
 | Pereți int net P / E | 1.156 / 1.231 |
 | Proeminențe stâlpi P / E | 0.369 / 0.369 |
-| Thermal P / E | 0.255 / 0.255 |
-| Δ vs 37 (informativ) | 1.505 / 0.86 |
+| Thermal P / E | 0.255 / 1.515 |
+| Δ vs 37 (informativ) | 1.505 / -0.76 |
 | Verdict util | **NECONFIRMAT** (declared_pass=false) |
 
 ## Transport palier (stâlpi + finisaje)

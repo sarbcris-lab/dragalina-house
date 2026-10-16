@@ -923,7 +923,8 @@ function applyFrameToStudy(base) {
       "Partiții subsol mutate pe X360 / Y400 ca parterul; pot fi ajustate — nu dictează cadrul.";
   }
 
-  const thermal = {
+  // P only: living sub palier ↔ puț. Pe etaj NU — altfel bagă palierul rece în casă.
+  const livingPutWall = {
     id: "living_put_thermal_y590",
     x: 565,
     y: 560,
@@ -932,14 +933,55 @@ function applyFrameToStudy(base) {
     kind: "ext",
     thermal: "heated_thermosystem",
     assembly: "EB20_Akustik_200_ISOVER_FASSADE_80",
-    levels: [0, 1],
+    catalog_id: "A6",
+    levels: [0],
+    outward_hint: "north",
     toward: "shaft_cold",
-    note: "închidere termică living↔puț; scăzut din util pe nivelurile unde există",
+    note: "P only: living↔puț sub palier; izolație spre N (puț); pe E înlocuit de L A6 (palier afară)",
   };
-  out.walls_cm = [...(out.walls_cm || []).filter((w) => w.id !== thermal.id), thermal];
+  // L A6 etaj: palier scară RECE în afara apartamentului
+  const a6West = {
+    id: "buc_est_etaj",
+    x: GEO_X0 + 535,
+    y: 470,
+    dx: 30,
+    dy: 390,
+    kind: "ext",
+    thermal: "house_stair_separator",
+    catalog_id: "A6",
+    assembly: "A6",
+    thickness_finished_mm: 300,
+    levels: [1],
+    outward_hint: "east",
+    note: "L A6 picior V: casă (vest) ↔ scară/palier rece (est)",
+  };
+  const a6Nord = {
+    id: "palier_A6_nord_etaj",
+    // picior N al L: pe Y470 (marginea sud a palierului) — casă la SUD, palier la NORD
+    x: GEO_X0 + 535 + 30,
+    y: 470,
+    dx: 145 - 30,
+    dy: 30,
+    kind: "ext",
+    thermal: "house_stair_separator",
+    catalog_id: "A6",
+    assembly: "A6",
+    thickness_finished_mm: 300,
+    levels: [1],
+    outward_hint: "north",
+    note: "L A6 picior N @ Y470: casă (sud) ↔ palier scară rece (nord) — izolație spre palier; palier AFARĂ",
+  };
+  out.walls_cm = [
+    ...(out.walls_cm || []).filter(
+      (w) => !["living_put_thermal_y590", "buc_est_etaj", "palier_A6_nord_etaj"].includes(w.id)
+    ),
+    livingPutWall,
+    a6West,
+    a6Nord,
+  ];
 
   // Contur util încălzit: fără terasă / acces exterior.
-  // P: living sub palier inclus. E: studio; palier scară rece exclus (nu e vestibul — e circulație scară).
+  // P: living sub palier inclus. E: studio; palier scară rece EXCLUS (afară din apartament).
   const polyP = [
     [30, 30],
     [650, 30],
@@ -953,13 +995,12 @@ function applyFrameToStudy(base) {
     [30, 645],
     [30, 30],
   ];
+  // E: anvelopă se oprește la Y470 pe est + la X535 pe banda scară (palier X535–650 Y470–590 = AFARĂ)
   const polyE = [
     [30, 30],
     [650, 30],
     [650, 470],
-    [565, 470],
-    [565, 590],
-    [535, 590],
+    [535, 470],
     [535, 830],
     [360, 830],
     [360, 645],
@@ -974,15 +1015,27 @@ function applyFrameToStudy(base) {
     excludes: ["terasa", "uncovered_south", "entry_steps", "curte_engleza", "alee"],
   };
   out.interior_polygon_etaj_cm = {
-    note: "Frame E util STUDIO: EXCLUDE palier scară rece (nu vestibul) + exterior; NU copiază usefulP",
+    note: "Frame E util STUDIO: EXCLUDE palier scară rece (L A6 — afară din apartament) + exterior",
     vertices: polyE,
     excludes: ["terasa", "uncovered_south", "rampă_exterioară", "palier_scara_rece"],
+  };
+  out.stair_cm = out.stair_cm || {};
+  out.stair_cm.palier_ramp2_nosing = {
+    x: 565,
+    y: 580,
+    dx: 105,
+    dy: 20,
+    note: "bandă legătură palier→rampă2 @ Y590 — închide golul",
+    role: "landing_to_flight_nosing",
   };
 
   const wallsNetP = intWallsNetM2(out.walls_cm, out.openings_cm, 0);
   const wallsNetE = intWallsNetM2(out.walls_cm, out.openings_cm, 1);
-  const thermalP = wallOnLevel(thermal, 0) ? rectAreaM2(thermal) : 0;
-  const thermalE = wallOnLevel(thermal, 1) ? rectAreaM2(thermal) : 0;
+  const thermalP = wallOnLevel(livingPutWall, 0) ? rectAreaM2(livingPutWall) : 0;
+  // E: L A6 vest + nord (separator scară) — footprint pe etaj
+  const thermalE =
+    (wallOnLevel(a6West, 1) ? rectAreaM2(a6West) : 0) +
+    (wallOnLevel(a6Nord, 1) ? rectAreaM2(a6Nord) : 0);
 
   let protrP = 0;
   let protrE = 0;

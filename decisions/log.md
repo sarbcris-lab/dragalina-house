@@ -217,6 +217,13 @@
 - `podest_se_placa` în Structură; Viewer `sharedFloorObjs` — grinzi/plăci pe Doar parter.
 - Gol placă = contur exact palier; planuri FRAME `38`/`39` din frame study (nu v47_exact).
 
+## 2026-10-16 — Palier etaj AFARĂ + L A6 + gol Y590
+
+- `living_put_thermal_y590` doar pe **P** (nu pe E — băga palierul în casă); `outward_hint: north`.
+- L A6 etaj: `buc_est_etaj` (V, out E) + `palier_A6_nord_etaj` @ Y470 (out **N** = spre palier rece); polyE exclus palierul.
+- Gol palier↔rampă2 @ Y590: stivă prag (placă+XPS+impact+șapă+finisaj) + reazem vanguri în placă palier + bandă BA.
+- Util E studio ≈36.24 (<37) — consecință palier AFARĂ; de recuperat altundeva (NECONFIRMAT).
+
 ## 2026-10-16 — Geometrie anvelopă/FF înainte de FE
 
 - Proces: `decisions/roadmap_geometry_then_calc_v01.md` — pereți L + FF locked → apoi calcule (consolă, colțuri, centuri).

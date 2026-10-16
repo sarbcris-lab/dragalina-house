@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_study",
-    "generated": "2026-10-16T09:51:43.380Z",
+    "generated": "2026-10-16T10:12:12.549Z",
     "status": "3D_STUDIU_A1",
     "source_plan": "data/building/v47_a1_study.json",
     "based_on": "v47_exact (referință neatinsă)",
@@ -28983,6 +28983,252 @@
       "z1_m": 5.97,
       "color": "#f4f0e8",
       "label": "buc_est_etaj [A6]: vopsea (1 mm)",
+      "kind": "ext",
+      "wall_layer": "finisare_vopsea",
+      "catalog_id": "A6",
+      "assembly": "A6",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_palier_A6_nord_etaj_tencuiala_scara_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.7947,
+          "y": 13.1663
+        },
+        {
+          "x": 8.2434,
+          "y": 13.2283
+        },
+        {
+          "x": 8.2435,
+          "y": 13.2253
+        },
+        {
+          "x": 6.7949,
+          "y": 13.1633
+        },
+        {
+          "x": 6.7947,
+          "y": 13.1663
+        }
+      ],
+      "z0_m": 3.36,
+      "z1_m": 5.97,
+      "color": "#d4cfc4",
+      "label": "palier_A6_nord_etaj [A6]: tencuială volum scară (3 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_scara",
+      "catalog_id": "A6",
+      "assembly": "A6",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_palier_A6_nord_etaj_strat_armat_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.7945,
+          "y": 13.1713
+        },
+        {
+          "x": 8.2432,
+          "y": 13.2333
+        },
+        {
+          "x": 8.2434,
+          "y": 13.2283
+        },
+        {
+          "x": 6.7947,
+          "y": 13.1663
+        },
+        {
+          "x": 6.7945,
+          "y": 13.1713
+        }
+      ],
+      "z0_m": 3.36,
+      "z1_m": 5.97,
+      "color": "#a8b0b8",
+      "label": "palier_A6_nord_etaj [A6]: strat armat / suport (5 mm)",
+      "kind": "ext",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A6",
+      "assembly": "A6",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_palier_A6_nord_etaj_vata_isover_fassade_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.7911,
+          "y": 13.2512
+        },
+        {
+          "x": 8.2398,
+          "y": 13.3132
+        },
+        {
+          "x": 8.2432,
+          "y": 13.2333
+        },
+        {
+          "x": 6.7945,
+          "y": 13.1713
+        },
+        {
+          "x": 6.7911,
+          "y": 13.2512
+        }
+      ],
+      "z0_m": 3.36,
+      "z1_m": 5.97,
+      "color": "#e2d18a",
+      "label": "palier_A6_nord_etaj [A6]: vată minerală spre scară (80 mm)",
+      "kind": "ext",
+      "wall_layer": "vata_isover_fassade",
+      "catalog_id": "A6",
+      "assembly": "A6",
+      "opacity": 0.85
+    },
+    {
+      "id": "zid_palier_A6_nord_etaj_adeziv_etics_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.7909,
+          "y": 13.2562
+        },
+        {
+          "x": 8.2396,
+          "y": 13.3182
+        },
+        {
+          "x": 8.2398,
+          "y": 13.3132
+        },
+        {
+          "x": 6.7911,
+          "y": 13.2512
+        },
+        {
+          "x": 6.7909,
+          "y": 13.2562
+        }
+      ],
+      "z0_m": 3.36,
+      "z1_m": 5.97,
+      "color": "#b0a898",
+      "label": "palier_A6_nord_etaj [A6]: adeziv Weber (5 mm)",
+      "kind": "ext",
+      "wall_layer": "adeziv_etics",
+      "catalog_id": "A6",
+      "assembly": "A6",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_palier_A6_nord_etaj_caramida_eb20_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.7823,
+          "y": 13.456
+        },
+        {
+          "x": 8.231,
+          "y": 13.518
+        },
+        {
+          "x": 8.2396,
+          "y": 13.3182
+        },
+        {
+          "x": 6.7909,
+          "y": 13.2562
+        },
+        {
+          "x": 6.7823,
+          "y": 13.456
+        }
+      ],
+      "z0_m": 3.36,
+      "z1_m": 5.97,
+      "color": "#c4a070",
+      "label": "palier_A6_nord_etaj [A6]: EB20 Akustik (200 mm)",
+      "kind": "ext",
+      "wall_layer": "caramida_eb20",
+      "catalog_id": "A6",
+      "assembly": "A6",
+      "site_layer": "umplutura",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_palier_A6_nord_etaj_tencuiala_int_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.7821,
+          "y": 13.462
+        },
+        {
+          "x": 8.2308,
+          "y": 13.524
+        },
+        {
+          "x": 8.231,
+          "y": 13.518
+        },
+        {
+          "x": 6.7823,
+          "y": 13.456
+        },
+        {
+          "x": 6.7821,
+          "y": 13.462
+        }
+      ],
+      "z0_m": 3.36,
+      "z1_m": 5.97,
+      "color": "#e8e0d4",
+      "label": "palier_A6_nord_etaj [A6]: tencuială interioară casă (6 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A6",
+      "assembly": "A6",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_palier_A6_nord_etaj_finisare_vopsea_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.782,
+          "y": 13.463
+        },
+        {
+          "x": 8.2307,
+          "y": 13.525
+        },
+        {
+          "x": 8.2308,
+          "y": 13.524
+        },
+        {
+          "x": 6.7821,
+          "y": 13.462
+        },
+        {
+          "x": 6.782,
+          "y": 13.463
+        }
+      ],
+      "z0_m": 3.36,
+      "z1_m": 5.97,
+      "color": "#f4f0e8",
+      "label": "palier_A6_nord_etaj [A6]: vopsea (1 mm)",
       "kind": "ext",
       "wall_layer": "finisare_vopsea",
       "catalog_id": "A6",

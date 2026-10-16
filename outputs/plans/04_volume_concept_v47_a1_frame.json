@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_frame_study",
-    "generated": "2026-10-16T09:51:33.536Z",
+    "generated": "2026-10-16T10:12:12.610Z",
     "status": "3D_STUDIU_A1_FRAME_CADRE",
     "source_plan": "data/building/v47_a1_frame_study.json",
     "based_on": "v47_a1_study amenajare (aprobată) + schemă cadre separată",
@@ -24902,7 +24902,7 @@
       "kind": "ext"
     },
     {
-      "id": "zid_living_put_thermal_y590_grund_decorativa_p",
+      "id": "zid_living_put_thermal_y590_tencuiala_scara_p",
       "type": "extrude",
       "polygon": [
         {
@@ -24915,11 +24915,11 @@
         },
         {
           "x": 7.9566,
-          "y": 12.6105
+          "y": 12.6095
         },
         {
-          "x": 7.1073,
-          "y": 12.5741
+          "x": 7.1074,
+          "y": 12.5731
         },
         {
           "x": 7.1072,
@@ -24928,12 +24928,12 @@
       ],
       "z0_m": 0.48,
       "z1_m": 3.09,
-      "color": "#8a8680",
-      "label": "living_put_thermal_y590 [A1]: grund și tencuială decorativă Weber (2 mm)",
+      "color": "#d4cfc4",
+      "label": "living_put_thermal_y590 [A6]: tencuială volum scară (3 mm)",
       "kind": "ext",
-      "wall_layer": "grund_decorativa",
-      "catalog_id": "A1",
-      "assembly": "A1",
+      "wall_layer": "tencuiala_scara",
+      "catalog_id": "A6",
+      "assembly": "A6",
       "opacity": 0.97
     },
     {
@@ -24941,34 +24941,34 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.1073,
-          "y": 12.5741
+          "x": 7.1074,
+          "y": 12.5731
         },
         {
           "x": 7.9566,
-          "y": 12.6105
+          "y": 12.6095
         },
         {
           "x": 7.9568,
-          "y": 12.6055
+          "y": 12.6045
         },
         {
-          "x": 7.1075,
-          "y": 12.5691
+          "x": 7.1076,
+          "y": 12.5681
         },
         {
-          "x": 7.1073,
-          "y": 12.5741
+          "x": 7.1074,
+          "y": 12.5731
         }
       ],
       "z0_m": 0.48,
       "z1_m": 3.09,
       "color": "#a8b0b8",
-      "label": "living_put_thermal_y590 [A1]: strat armat Weber (5 mm)",
+      "label": "living_put_thermal_y590 [A6]: strat armat / suport (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
-      "catalog_id": "A1",
-      "assembly": "A1",
+      "catalog_id": "A6",
+      "assembly": "A6",
       "opacity": 0.97
     },
     {
@@ -24976,34 +24976,34 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.1075,
-          "y": 12.5691
+          "x": 7.1076,
+          "y": 12.5681
         },
         {
           "x": 7.9568,
-          "y": 12.6055
+          "y": 12.6045
         },
         {
           "x": 7.9602,
-          "y": 12.5255
+          "y": 12.5245
         },
         {
           "x": 7.111,
-          "y": 12.4892
+          "y": 12.4882
         },
         {
-          "x": 7.1075,
-          "y": 12.5691
+          "x": 7.1076,
+          "y": 12.5681
         }
       ],
       "z0_m": 0.48,
       "z1_m": 3.09,
       "color": "#e2d18a",
-      "label": "living_put_thermal_y590 [A1]: vată minerală fațadă (80 mm)",
+      "label": "living_put_thermal_y590 [A6]: vată minerală spre scară (80 mm)",
       "kind": "ext",
       "wall_layer": "vata_isover_fassade",
-      "catalog_id": "A1",
-      "assembly": "A1",
+      "catalog_id": "A6",
+      "assembly": "A6",
       "opacity": 0.85
     },
     {
@@ -25012,33 +25012,33 @@
       "polygon": [
         {
           "x": 7.111,
-          "y": 12.4892
+          "y": 12.4882
         },
         {
           "x": 7.9602,
-          "y": 12.5255
+          "y": 12.5245
         },
         {
           "x": 7.9604,
-          "y": 12.5205
+          "y": 12.5195
         },
         {
           "x": 7.1112,
-          "y": 12.4842
+          "y": 12.4832
         },
         {
           "x": 7.111,
-          "y": 12.4892
+          "y": 12.4882
         }
       ],
       "z0_m": 0.48,
       "z1_m": 3.09,
       "color": "#b0a898",
-      "label": "living_put_thermal_y590 [A1]: adeziv ETICS Weber (5 mm)",
+      "label": "living_put_thermal_y590 [A6]: adeziv Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
-      "catalog_id": "A1",
-      "assembly": "A1",
+      "catalog_id": "A6",
+      "assembly": "A6",
       "opacity": 0.97
     },
     {
@@ -25047,33 +25047,33 @@
       "polygon": [
         {
           "x": 7.1112,
-          "y": 12.4842
+          "y": 12.4832
         },
         {
           "x": 7.9604,
-          "y": 12.5205
+          "y": 12.5195
         },
         {
-          "x": 7.9689,
-          "y": 12.3207
+          "x": 7.969,
+          "y": 12.3197
         },
         {
-          "x": 7.1197,
-          "y": 12.2844
+          "x": 7.1198,
+          "y": 12.2834
         },
         {
           "x": 7.1112,
-          "y": 12.4842
+          "y": 12.4832
         }
       ],
       "z0_m": 0.48,
       "z1_m": 3.09,
       "color": "#c4a070",
-      "label": "living_put_thermal_y590 [A1]: EB20 Akustik (200 mm)",
+      "label": "living_put_thermal_y590 [A6]: EB20 Akustik (200 mm)",
       "kind": "ext",
       "wall_layer": "caramida_eb20",
-      "catalog_id": "A1",
-      "assembly": "A1",
+      "catalog_id": "A6",
+      "assembly": "A6",
       "site_layer": "umplutura",
       "opacity": 0.97
     },
@@ -25082,47 +25082,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.1197,
-          "y": 12.2844
+          "x": 7.1198,
+          "y": 12.2834
         },
         {
-          "x": 7.9689,
-          "y": 12.3207
-        },
-        {
-          "x": 7.9692,
-          "y": 12.3147
-        },
-        {
-          "x": 7.12,
-          "y": 12.2784
-        },
-        {
-          "x": 7.1197,
-          "y": 12.2844
-        }
-      ],
-      "z0_m": 0.48,
-      "z1_m": 3.09,
-      "color": "#e8e0d4",
-      "label": "living_put_thermal_y590 [A1]: tencuială interioară (6 mm)",
-      "kind": "ext",
-      "wall_layer": "tencuiala_int",
-      "catalog_id": "A1",
-      "assembly": "A1",
-      "opacity": 0.97
-    },
-    {
-      "id": "zid_living_put_thermal_y590_finisare_vopsea_p",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.12,
-          "y": 12.2784
-        },
-        {
-          "x": 7.9692,
-          "y": 12.3147
+          "x": 7.969,
+          "y": 12.3197
         },
         {
           "x": 7.9692,
@@ -25133,18 +25098,53 @@
           "y": 12.2774
         },
         {
+          "x": 7.1198,
+          "y": 12.2834
+        }
+      ],
+      "z0_m": 0.48,
+      "z1_m": 3.09,
+      "color": "#e8e0d4",
+      "label": "living_put_thermal_y590 [A6]: tencuială interioară casă (6 mm)",
+      "kind": "ext",
+      "wall_layer": "tencuiala_int",
+      "catalog_id": "A6",
+      "assembly": "A6",
+      "opacity": 0.97
+    },
+    {
+      "id": "zid_living_put_thermal_y590_finisare_vopsea_p",
+      "type": "extrude",
+      "polygon": [
+        {
           "x": 7.12,
-          "y": 12.2784
+          "y": 12.2774
+        },
+        {
+          "x": 7.9692,
+          "y": 12.3137
+        },
+        {
+          "x": 7.9693,
+          "y": 12.3127
+        },
+        {
+          "x": 7.1201,
+          "y": 12.2764
+        },
+        {
+          "x": 7.12,
+          "y": 12.2774
         }
       ],
       "z0_m": 0.48,
       "z1_m": 3.09,
       "color": "#f4f0e8",
-      "label": "living_put_thermal_y590 [A1]: finisare și vopsea (1 mm)",
+      "label": "living_put_thermal_y590 [A6]: vopsea (1 mm)",
       "kind": "ext",
       "wall_layer": "finisare_vopsea",
-      "catalog_id": "A1",
-      "assembly": "A1",
+      "catalog_id": "A6",
+      "assembly": "A6",
       "opacity": 0.97
     },
     {
@@ -29268,249 +29268,249 @@
       "opacity": 0.97
     },
     {
-      "id": "zid_living_put_thermal_y590_grund_decorativa_e",
+      "id": "zid_palier_A6_nord_etaj_tencuiala_scara_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.1072,
-          "y": 12.5761
+          "x": 7.0818,
+          "y": 13.4759
         },
         {
-          "x": 7.9565,
-          "y": 12.6125
+          "x": 8.2307,
+          "y": 13.525
         },
         {
-          "x": 7.9566,
-          "y": 12.6105
+          "x": 8.2308,
+          "y": 13.522
         },
         {
-          "x": 7.1073,
-          "y": 12.5741
+          "x": 7.0819,
+          "y": 13.4729
         },
         {
-          "x": 7.1072,
-          "y": 12.5761
+          "x": 7.0818,
+          "y": 13.4759
         }
       ],
       "z0_m": 3.36,
       "z1_m": 5.97,
-      "color": "#8a8680",
-      "label": "living_put_thermal_y590 [A1]: grund și tencuială decorativă Weber (2 mm)",
+      "color": "#d4cfc4",
+      "label": "palier_A6_nord_etaj [A6]: tencuială volum scară (3 mm)",
       "kind": "ext",
-      "wall_layer": "grund_decorativa",
-      "catalog_id": "A1",
-      "assembly": "A1",
+      "wall_layer": "tencuiala_scara",
+      "catalog_id": "A6",
+      "assembly": "A6",
       "opacity": 0.97
     },
     {
-      "id": "zid_living_put_thermal_y590_strat_armat_e",
+      "id": "zid_palier_A6_nord_etaj_strat_armat_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.1073,
-          "y": 12.5741
+          "x": 7.0819,
+          "y": 13.4729
         },
         {
-          "x": 7.9566,
-          "y": 12.6105
+          "x": 8.2308,
+          "y": 13.522
         },
         {
-          "x": 7.9568,
-          "y": 12.6055
+          "x": 8.2311,
+          "y": 13.517
         },
         {
-          "x": 7.1075,
-          "y": 12.5691
+          "x": 7.0821,
+          "y": 13.4679
         },
         {
-          "x": 7.1073,
-          "y": 12.5741
+          "x": 7.0819,
+          "y": 13.4729
         }
       ],
       "z0_m": 3.36,
       "z1_m": 5.97,
       "color": "#a8b0b8",
-      "label": "living_put_thermal_y590 [A1]: strat armat Weber (5 mm)",
+      "label": "palier_A6_nord_etaj [A6]: strat armat / suport (5 mm)",
       "kind": "ext",
       "wall_layer": "strat_armat",
-      "catalog_id": "A1",
-      "assembly": "A1",
+      "catalog_id": "A6",
+      "assembly": "A6",
       "opacity": 0.97
     },
     {
-      "id": "zid_living_put_thermal_y590_vata_isover_fassade_e",
+      "id": "zid_palier_A6_nord_etaj_vata_isover_fassade_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.1075,
-          "y": 12.5691
+          "x": 7.0821,
+          "y": 13.4679
         },
         {
-          "x": 7.9568,
-          "y": 12.6055
+          "x": 8.2311,
+          "y": 13.517
         },
         {
-          "x": 7.9602,
-          "y": 12.5255
+          "x": 8.2345,
+          "y": 13.4371
         },
         {
-          "x": 7.111,
-          "y": 12.4892
+          "x": 7.0855,
+          "y": 13.3879
         },
         {
-          "x": 7.1075,
-          "y": 12.5691
+          "x": 7.0821,
+          "y": 13.4679
         }
       ],
       "z0_m": 3.36,
       "z1_m": 5.97,
       "color": "#e2d18a",
-      "label": "living_put_thermal_y590 [A1]: vată minerală fațadă (80 mm)",
+      "label": "palier_A6_nord_etaj [A6]: vată minerală spre scară (80 mm)",
       "kind": "ext",
       "wall_layer": "vata_isover_fassade",
-      "catalog_id": "A1",
-      "assembly": "A1",
+      "catalog_id": "A6",
+      "assembly": "A6",
       "opacity": 0.85
     },
     {
-      "id": "zid_living_put_thermal_y590_adeziv_etics_e",
+      "id": "zid_palier_A6_nord_etaj_adeziv_etics_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.111,
-          "y": 12.4892
+          "x": 7.0855,
+          "y": 13.3879
         },
         {
-          "x": 7.9602,
-          "y": 12.5255
+          "x": 8.2345,
+          "y": 13.4371
         },
         {
-          "x": 7.9604,
-          "y": 12.5205
+          "x": 8.2347,
+          "y": 13.4321
         },
         {
-          "x": 7.1112,
-          "y": 12.4842
+          "x": 7.0857,
+          "y": 13.3829
         },
         {
-          "x": 7.111,
-          "y": 12.4892
+          "x": 7.0855,
+          "y": 13.3879
         }
       ],
       "z0_m": 3.36,
       "z1_m": 5.97,
       "color": "#b0a898",
-      "label": "living_put_thermal_y590 [A1]: adeziv ETICS Weber (5 mm)",
+      "label": "palier_A6_nord_etaj [A6]: adeziv Weber (5 mm)",
       "kind": "ext",
       "wall_layer": "adeziv_etics",
-      "catalog_id": "A1",
-      "assembly": "A1",
+      "catalog_id": "A6",
+      "assembly": "A6",
       "opacity": 0.97
     },
     {
-      "id": "zid_living_put_thermal_y590_caramida_eb20_e",
+      "id": "zid_palier_A6_nord_etaj_caramida_eb20_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.1112,
-          "y": 12.4842
+          "x": 7.0857,
+          "y": 13.3829
         },
         {
-          "x": 7.9604,
-          "y": 12.5205
+          "x": 8.2347,
+          "y": 13.4321
         },
         {
-          "x": 7.9689,
-          "y": 12.3207
+          "x": 8.2432,
+          "y": 13.2323
         },
         {
-          "x": 7.1197,
-          "y": 12.2844
+          "x": 7.0943,
+          "y": 13.1831
         },
         {
-          "x": 7.1112,
-          "y": 12.4842
+          "x": 7.0857,
+          "y": 13.3829
         }
       ],
       "z0_m": 3.36,
       "z1_m": 5.97,
       "color": "#c4a070",
-      "label": "living_put_thermal_y590 [A1]: EB20 Akustik (200 mm)",
+      "label": "palier_A6_nord_etaj [A6]: EB20 Akustik (200 mm)",
       "kind": "ext",
       "wall_layer": "caramida_eb20",
-      "catalog_id": "A1",
-      "assembly": "A1",
+      "catalog_id": "A6",
+      "assembly": "A6",
       "site_layer": "umplutura",
       "opacity": 0.97
     },
     {
-      "id": "zid_living_put_thermal_y590_tencuiala_int_e",
+      "id": "zid_palier_A6_nord_etaj_tencuiala_int_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.1197,
-          "y": 12.2844
+          "x": 7.0943,
+          "y": 13.1831
         },
         {
-          "x": 7.9689,
-          "y": 12.3207
+          "x": 8.2432,
+          "y": 13.2323
         },
         {
-          "x": 7.9692,
-          "y": 12.3147
+          "x": 8.2435,
+          "y": 13.2263
         },
         {
-          "x": 7.12,
-          "y": 12.2784
+          "x": 7.0945,
+          "y": 13.1771
         },
         {
-          "x": 7.1197,
-          "y": 12.2844
+          "x": 7.0943,
+          "y": 13.1831
         }
       ],
       "z0_m": 3.36,
       "z1_m": 5.97,
       "color": "#e8e0d4",
-      "label": "living_put_thermal_y590 [A1]: tencuială interioară (6 mm)",
+      "label": "palier_A6_nord_etaj [A6]: tencuială interioară casă (6 mm)",
       "kind": "ext",
       "wall_layer": "tencuiala_int",
-      "catalog_id": "A1",
-      "assembly": "A1",
+      "catalog_id": "A6",
+      "assembly": "A6",
       "opacity": 0.97
     },
     {
-      "id": "zid_living_put_thermal_y590_finisare_vopsea_e",
+      "id": "zid_palier_A6_nord_etaj_finisare_vopsea_e",
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.12,
-          "y": 12.2784
+          "x": 7.0945,
+          "y": 13.1771
         },
         {
-          "x": 7.9692,
-          "y": 12.3147
+          "x": 8.2435,
+          "y": 13.2263
         },
         {
-          "x": 7.9692,
-          "y": 12.3137
+          "x": 8.2435,
+          "y": 13.2253
         },
         {
-          "x": 7.12,
-          "y": 12.2774
+          "x": 7.0946,
+          "y": 13.1761
         },
         {
-          "x": 7.12,
-          "y": 12.2784
+          "x": 7.0945,
+          "y": 13.1771
         }
       ],
       "z0_m": 3.36,
       "z1_m": 5.97,
       "color": "#f4f0e8",
-      "label": "living_put_thermal_y590 [A1]: finisare și vopsea (1 mm)",
+      "label": "palier_A6_nord_etaj [A6]: vopsea (1 mm)",
       "kind": "ext",
       "wall_layer": "finisare_vopsea",
-      "catalog_id": "A1",
-      "assembly": "A1",
+      "catalog_id": "A6",
+      "assembly": "A6",
       "opacity": 0.97
     },
     {
@@ -34432,6 +34432,38 @@
       "label": "Reazem vang rampă 2 pe placă podest BA"
     },
     {
+      "id": "structura_rampa2_continua_W_reazem_palier",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1137,
+          "y": 12.4263
+        },
+        {
+          "x": 7.2335,
+          "y": 12.4314
+        },
+        {
+          "x": 7.24,
+          "y": 12.2815
+        },
+        {
+          "x": 7.1201,
+          "y": 12.2764
+        },
+        {
+          "x": 7.1137,
+          "y": 12.4263
+        }
+      ],
+      "z0_m": 3.09,
+      "z1_m": 3.24,
+      "color": "#4a5560",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "Reazem vang rampă 2 în placă palier BA @ Y590"
+    },
+    {
       "id": "structura_rampa2_continua_W",
       "type": "triangles",
       "vertices": [
@@ -34448,12 +34480,12 @@
         {
           "x": 7.24,
           "y": 12.2815,
-          "z": 3.14
+          "z": 3.24
         },
         {
           "x": 7.1201,
           "y": 12.2764,
-          "z": 3.14
+          "z": 3.24
         },
         {
           "x": 7.2355,
@@ -34468,12 +34500,12 @@
         {
           "x": 7.24,
           "y": 12.2815,
-          "z": 2.94
+          "z": 3.09
         },
         {
           "x": 7.1201,
           "y": 12.2764,
-          "z": 2.94
+          "z": 3.09
         }
       ],
       "faces": [
@@ -34541,7 +34573,7 @@
       "color": "#4a5560",
       "opacity": 0.92,
       "site_layer": "structura",
-      "label": "Vang W rampă 2 — din placă podest (+164) → intrados +314"
+      "label": "Vang W rampă 2 — podest → placă palier (+324)"
     },
     {
       "id": "structura_rampa2_continua_E_reazem_podest",
@@ -34576,6 +34608,38 @@
       "label": "Reazem vang rampă 2 pe placă podest BA"
     },
     {
+      "id": "structura_rampa2_continua_E_reazem_palier",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.1427,
+          "y": 12.4703
+        },
+        {
+          "x": 8.2626,
+          "y": 12.4754
+        },
+        {
+          "x": 8.269,
+          "y": 12.3256
+        },
+        {
+          "x": 8.1491,
+          "y": 12.3204
+        },
+        {
+          "x": 8.1427,
+          "y": 12.4703
+        }
+      ],
+      "z0_m": 3.09,
+      "z1_m": 3.24,
+      "color": "#4a5560",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "Reazem vang rampă 2 în placă palier BA @ Y590"
+    },
+    {
       "id": "structura_rampa2_continua_E",
       "type": "triangles",
       "vertices": [
@@ -34592,12 +34656,12 @@
         {
           "x": 8.269,
           "y": 12.3256,
-          "z": 3.14
+          "z": 3.24
         },
         {
           "x": 8.1491,
           "y": 12.3204,
-          "z": 3.14
+          "z": 3.24
         },
         {
           "x": 8.2646,
@@ -34612,12 +34676,12 @@
         {
           "x": 8.269,
           "y": 12.3256,
-          "z": 2.94
+          "z": 3.09
         },
         {
           "x": 8.1491,
           "y": 12.3204,
-          "z": 2.94
+          "z": 3.09
         }
       ],
       "faces": [
@@ -34685,7 +34749,39 @@
       "color": "#4a5560",
       "opacity": 0.92,
       "site_layer": "structura",
-      "label": "Vang E rampă 2 — reazem podest"
+      "label": "Vang E rampă 2 — reazem podest + palier"
+    },
+    {
+      "id": "palier_ramp2_reazem_placa",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1137,
+          "y": 12.4263
+        },
+        {
+          "x": 8.1627,
+          "y": 12.4711
+        },
+        {
+          "x": 8.1755,
+          "y": 12.1714
+        },
+        {
+          "x": 7.1265,
+          "y": 12.1265
+        },
+        {
+          "x": 7.1137,
+          "y": 12.4263
+        }
+      ],
+      "z0_m": 3.09,
+      "z1_m": 3.24,
+      "color": "#6a6560",
+      "opacity": 0.7,
+      "site_layer": "structura",
+      "label": "Bandă BA legătură palier↔rampă2 (gol Y590)"
     },
     {
       "id": "palier_superior_placa",
@@ -34845,6 +34941,166 @@
       "color": "#c8c2b6",
       "site_layer": "finisaj",
       "label": "Palier — finisaj 2 cm; racord grindă/perete/prag = secțiune"
+    },
+    {
+      "id": "palier_ramp2_prag_placa",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1158,
+          "y": 12.3763
+        },
+        {
+          "x": 8.1648,
+          "y": 12.4212
+        },
+        {
+          "x": 8.1734,
+          "y": 12.2214
+        },
+        {
+          "x": 7.1243,
+          "y": 12.1765
+        },
+        {
+          "x": 7.1158,
+          "y": 12.3763
+        }
+      ],
+      "z0_m": 3.09,
+      "z1_m": 3.24,
+      "color": "#8b8680",
+      "opacity": 0.55,
+      "site_layer": "structura",
+      "label": "Prag palier→rampă2 — placă BA (continuare)"
+    },
+    {
+      "id": "palier_ramp2_prag_izolatie",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1158,
+          "y": 12.3763
+        },
+        {
+          "x": 8.1648,
+          "y": 12.4212
+        },
+        {
+          "x": 8.1734,
+          "y": 12.2214
+        },
+        {
+          "x": 7.1243,
+          "y": 12.1765
+        },
+        {
+          "x": 7.1158,
+          "y": 12.3763
+        }
+      ],
+      "z0_m": 3.24,
+      "z1_m": 3.29,
+      "color": "#e2d18a",
+      "opacity": 0.75,
+      "site_layer": "finisaj",
+      "label": "Prag — XPS 5 cm"
+    },
+    {
+      "id": "palier_ramp2_prag_membrana",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1158,
+          "y": 12.3763
+        },
+        {
+          "x": 8.1648,
+          "y": 12.4212
+        },
+        {
+          "x": 8.1734,
+          "y": 12.2214
+        },
+        {
+          "x": 7.1243,
+          "y": 12.1765
+        },
+        {
+          "x": 7.1158,
+          "y": 12.3763
+        }
+      ],
+      "z0_m": 3.29,
+      "z1_m": 3.3,
+      "color": "#c4a35a",
+      "opacity": 0.8,
+      "site_layer": "finisaj",
+      "label": "Prag — membrană impact 1 cm"
+    },
+    {
+      "id": "palier_ramp2_prag_sapa",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1158,
+          "y": 12.3763
+        },
+        {
+          "x": 8.1648,
+          "y": 12.4212
+        },
+        {
+          "x": 8.1734,
+          "y": 12.2214
+        },
+        {
+          "x": 7.1243,
+          "y": 12.1765
+        },
+        {
+          "x": 7.1158,
+          "y": 12.3763
+        }
+      ],
+      "z0_m": 3.3,
+      "z1_m": 3.34,
+      "color": "#b8b0a4",
+      "opacity": 0.85,
+      "site_layer": "finisaj",
+      "label": "Prag — șapă 4 cm"
+    },
+    {
+      "id": "palier_ramp2_prag",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.1158,
+          "y": 12.3763
+        },
+        {
+          "x": 8.1648,
+          "y": 12.4212
+        },
+        {
+          "x": 8.1734,
+          "y": 12.2214
+        },
+        {
+          "x": 7.1243,
+          "y": 12.1765
+        },
+        {
+          "x": 7.1158,
+          "y": 12.3763
+        }
+      ],
+      "z0_m": 3.34,
+      "z1_m": 3.36,
+      "color": "#c8c2b6",
+      "opacity": 1,
+      "site_layer": "finisaj",
+      "label": "Prag palier→rampă2 — finisaj (închide gol Y590)"
     },
     {
       "id": "put_scara_beci_sub_r2",

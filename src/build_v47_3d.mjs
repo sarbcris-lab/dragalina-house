@@ -742,9 +742,16 @@ function main() {
         pushLayeredExteriorWall(cold, zFf, z1, suffix, { outward: "north", catalogId: "A4" });
         continue;
       }
-      if (isExt && (w.thermal === "house_stair_separator" || /buc_est/i.test(w.id || ""))) {
+      if (
+        isExt &&
+        (w.thermal === "house_stair_separator" ||
+          /buc_est|palier_A6/i.test(w.id || "") ||
+          w.catalog_id === "A6")
+      ) {
+        // A6: outward = spre scară/palier rece (implicit est pe picior V; sud pe picior N)
+        const outA6 = w.outward_hint || (w.dx >= w.dy ? "south" : "east");
         pushLayeredExteriorWall(w, zFf, z1, suffix, {
-          outward: "east",
+          outward: outA6,
           catalogId: "A6",
         });
         continue;
@@ -1386,17 +1393,22 @@ function main() {
       }
     }
     if (isFrameStudy && nTread330 > 0) {
-      // Vanguri pe muchii: sus = nasuri; sud = reazem în placa podestului (nu plutire la +150 peste +148)
+      // Vanguri pe muchii: sud = reazem podest; nord = reazem în placa palier (Y590)
       const zTopN = zPod + riser * nTread330 - treadTh;
       const zTopFirst = zPod + riser - treadTh;
       const runDy2 = nTread330 * tread;
-      const yRun0 = ySouthEdge - runDy2; // nord (sus)
+      const yRun0 = ySouthEdge - runDy2; // nord (muchie S palier = Y590)
       const yBear0 = ySouthEdge; // muchie N podest
       const yBear1 = Math.min(ySouthEdge + stairBearCm, pod.y + pod.dy); // în placă spre sud
+      const yPalBear1 = yRun0; // Y590
+      const yPalBear0 = yRun0 - stairBearCm; // în placă palier spre nord
       const zBotN = zTopN - rampStruct;
+      // Cote placă palier (alin. levels_cm dacă există)
+      const lvPal = frameStudy?.levels_cm;
+      const zPalSlabTop = lvPal?.slab_top_etaj != null ? m(lvPal.slab_top_etaj) : zEtaj - floorTh;
+      const zPalSlabBot = lvPal?.slab_soffit_etaj != null ? m(lvPal.slab_soffit_etaj) : zPalSlabTop - m(15);
       function pushInclinedStringer(id, x0, dx, label) {
         const x1 = x0 + dx;
-        // Segment reazem pe/în placă podest (orizontal pe Y bear)
         meshes.push({
           id: `${id}_reazem_podest`,
           type: "extrude",
@@ -1408,19 +1420,31 @@ function main() {
           site_layer: "structura",
           label: `Reazem vang rampă 2 pe placă podest BA`,
         });
-        // Segment înclinat: din muchia podestului (cotă placă) până la ultima treaptă
+        // Reazem nord în placa palier (închide golul structural palier↔rampă)
+        meshes.push({
+          id: `${id}_reazem_palier`,
+          type: "extrude",
+          polygon: rectPoly(x0, yPalBear0, dx, yPalBear1 - yPalBear0),
+          z0_m: zPalSlabBot,
+          z1_m: zPalSlabTop,
+          color: "#4a5560",
+          opacity: 0.95,
+          site_layer: "structura",
+          label: `Reazem vang rampă 2 în placă palier BA @ Y590`,
+        });
+        // Segment înclinat: podest → muchie palier (intrados în zona plăcii)
         meshes.push({
           id,
           type: "triangles",
           vertices: [
             siteVert(x0, yBear0, zPodConcreteTop),
             siteVert(x1, yBear0, zPodConcreteTop),
-            siteVert(x1, yRun0, zTopN),
-            siteVert(x0, yRun0, zTopN),
+            siteVert(x1, yRun0, zPalSlabTop),
+            siteVert(x0, yRun0, zPalSlabTop),
             siteVert(x0, yBear0, zPodConcreteBot),
             siteVert(x1, yBear0, zPodConcreteBot),
-            siteVert(x1, yRun0, zBotN),
-            siteVert(x0, yRun0, zBotN),
+            siteVert(x1, yRun0, zPalSlabBot),
+            siteVert(x0, yRun0, zPalSlabBot),
           ],
           faces: boxFacesBeam,
           color: "#4a5560",
@@ -1433,19 +1457,31 @@ function main() {
         "structura_rampa2_continua_W",
         r2.x,
         stringerTh,
-        `Vang W rampă 2 — din placă podest (+${Math.round(zPodConcreteTop * 100)}) → intrados +${Math.round(zTopN * 100)}`
+        `Vang W rampă 2 — podest → placă palier (+${Math.round(zPalSlabTop * 100)})`
       );
       pushInclinedStringer(
         "structura_rampa2_continua_E",
         r2.x + r2.dx - stringerTh,
         stringerTh,
-        `Vang E rampă 2 — reazem podest`
+        `Vang E rampă 2 — reazem podest + palier`
       );
-      // notă: zTopFirst folosit pentru audit aliniere; plăcile pe treaptă asigură contactul
+      // Bandă BA pe toată lățimea clară: legătură placă palier → prima placă treaptă
+      meshes.push({
+        id: "palier_ramp2_reazem_placa",
+        type: "extrude",
+        polygon: rectPoly(r2.x, yPalBear0, st.width_clear_cm || 105, stairBearCm + 15),
+        z0_m: zPalSlabBot,
+        z1_m: zPalSlabTop,
+        color: "#6a6560",
+        opacity: 0.7,
+        site_layer: "structura",
+        label: "Bandă BA legătură palier↔rampă2 (gol Y590)",
+      });
       void zTopFirst;
+      void zTopN;
+      void zBotN;
     }
   }
-  // Rampă 2 + palier: sub același acoperiș 2 ape (nu copertină separată).
 
   // Palier superior = placă pe SCARA RECE sub acoperiș 2 ape.
   // NU vestibul interior, NU ziduri de cameră, NU ușă rampă→vestibul (eliminat).
@@ -1521,6 +1557,67 @@ function main() {
       site_layer: "finisaj",
       label: `Palier — finisaj ${landFinishCm} cm; racord grindă/perete/prag = secțiune`,
     });
+    // Aceeași stivă pe banda palier↔rampă2 (golul de la Y590) — nu doar un prag monolitic
+    if (st.palier_ramp2_nosing) {
+      const nos = st.palier_ramp2_nosing;
+      const np = (id, z0, z1, color, opacity, layer, label) =>
+        meshes.push({
+          id,
+          type: "extrude",
+          polygon: rectPoly(nos.x, nos.y, nos.dx, nos.dy),
+          z0_m: z0,
+          z1_m: z1,
+          color,
+          opacity,
+          site_layer: layer,
+          label,
+        });
+      np(
+        "palier_ramp2_prag_placa",
+        m(lvP.slab_soffit_etaj),
+        zSlabTop,
+        "#8b8680",
+        0.55,
+        "structura",
+        "Prag palier→rampă2 — placă BA (continuare)"
+      );
+      np(
+        "palier_ramp2_prag_izolatie",
+        zSlabTop,
+        zXps1,
+        "#e2d18a",
+        0.75,
+        "finisaj",
+        `Prag — XPS ${landXpsCm} cm`
+      );
+      np(
+        "palier_ramp2_prag_membrana",
+        zXps1,
+        zImpact1,
+        "#c4a35a",
+        0.8,
+        "finisaj",
+        `Prag — membrană impact ${landImpactCm} cm`
+      );
+      np(
+        "palier_ramp2_prag_sapa",
+        zImpact1,
+        zScreed1,
+        "#b8b0a4",
+        0.85,
+        "finisaj",
+        `Prag — șapă ${landScreedCm} cm`
+      );
+      np(
+        "palier_ramp2_prag",
+        zScreed1,
+        zEtaj,
+        "#c8c2b6",
+        1,
+        "finisaj",
+        "Prag palier→rampă2 — finisaj (închide gol Y590)"
+      );
+    }
   } else {
     meshes.push({
       id: "palier_superior",
@@ -1532,6 +1629,19 @@ function main() {
       site_layer: "structura",
       label: "Palier scară acoperit (fără vestibul)",
     });
+    if (isFrameStudy && st.palier_ramp2_nosing) {
+      const nos = st.palier_ramp2_nosing;
+      meshes.push({
+        id: "palier_ramp2_prag",
+        type: "extrude",
+        polygon: rectPoly(nos.x, nos.y, nos.dx, nos.dy),
+        z0_m: zEtaj - floorTh,
+        z1_m: zEtaj,
+        color: "#c8c2b6",
+        site_layer: "finisaj",
+        label: "Prag palier→rampă2 (legătură Y590)",
+      });
+    }
   }
 
   // Sub rampă 2: FĂRĂ depozit / FĂRĂ placă FF — puț deschis pentru scară beci
