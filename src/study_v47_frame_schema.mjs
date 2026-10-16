@@ -32,11 +32,14 @@ const ETICS = 9.2;
  * Pereții din JSON au deja acest shift; cadrul trebuie pe aceleași axe.
  */
 const GEO_X0 = 1.3;
-/** Studiu preliminar: min. beton pe direcție transversală perete ≈30 cm (P100 — aplicabilitate de confirmat). */
-const COL_THRU = 30;
+/**
+ * Transversal pe zid = umplutură EB20 (20 cm) — aliniat cu cărămida, fără „burtă” de plăcuit.
+ * Pe lungul zidului poate fi mai lat (COL_ALONG) — de confirmat la calcul.
+ */
+const COL_THRU = 20;
 const COL_ALONG = 40;
-/** Proeminență locală spre interior față de fața finită interioară a peretelui 30 cm. */
-const PROTRUSION_IN = 10;
+/** Zero proeminență interioară: betonul stă în falie EB20, nu iese în cameră. */
+const PROTRUSION_IN = 0;
 /**
  * Grindă totală 35 cm = înălțime totală incluzând zona plăcii (nu coborâre suplimentară 35 sub placă).
  * Intrados grindă = față_sup_placă − 35 = 308 − 35 = 273.
@@ -80,7 +83,7 @@ function rectAreaM2(r) {
 }
 
 /**
- * Stâlp pe fațadă est: beton 30 cm + ~10 cm proeminență spre interior (X640–670).
+ * Stâlp pe fațadă est: beton COL_THRU în falie EB20 (față int. @ X650+GEO_X0), ETICS afară.
  * Nu intră în clarul scară X565–665 dacă Y1 ≤ 590.
  */
 function colEst(id, y, dy, extra = {}) {
@@ -95,7 +98,7 @@ function colEst(id, y, dy, extra = {}) {
     support_below: "fundație_E",
     protrusion_into_room_cm: PROTRUSION_IN,
     section_cm: `${COL_THRU}×${COL_ALONG}`,
-    section_status: "de confirmat prin calcul și cerințe normative (P100 — aplicabilitate pe sistem/ductilitate)",
+    section_status: "de confirmat prin calcul — thru=EB20, along liber",
     ...extra,
   };
 }
@@ -118,12 +121,12 @@ function colVest(id, y, dy, extra = {}) {
 }
 
 /**
- * Stâlpi sud: beton se oprește înaintea benzii ETICS exterioare (~9,2 cm),
- * cu proeminență locală spre interior. Fața exterioară a peretelui finit rămâne liberă pentru vată.
+ * Stâlpi sud: beton = falie EB20 (COL_THRU), se oprește înaintea benzii ETICS (~9,2 cm).
+ * Cu COL_THRU=20, y0 ≈ wallY0 → proeminență interioară 0.
  */
 function colSud(id, x, dx, wallY0, exteriorY1, extra = {}) {
   const y1Concrete = exteriorY1 - ETICS; // lasă banda ETICS afară
-  const y0 = y1Concrete - COL_THRU; // COL_THRU spre interior (= proeminență + falie)
+  const y0 = y1Concrete - COL_THRU; // = falie EB20
   return {
     id,
     x,
@@ -136,12 +139,12 @@ function colSud(id, x, dx, wallY0, exteriorY1, extra = {}) {
     protrusion_into_room_cm: Math.max(0, wallY0 - y0),
     etics_outside_band_cm: { y0: y1Concrete, y1: exteriorY1, th: ETICS },
     section_cm: `${dx}×${COL_THRU}`,
-    section_status: "de confirmat prin calcul și cerințe normative",
+    section_status: "de confirmat prin calcul — thru=EB20, along liber",
     ...extra,
   };
 }
 
-/** Stâlpi — secțiuni preliminare 30×40 cu îngroșare locală; ETICS continuă afară. */
+/** Stâlpi — thru EB20 (20) × along (40 tip); ETICS continuă afară; fără proem. interior. */
 function buildFrameSchema() {
   const ax = {
     X_W: GEO_X0 + ETICS,
@@ -179,7 +182,7 @@ function buildFrameSchema() {
       protrusion_into_room_cm: PROTRUSION_IN,
       section_cm: `${COL_ALONG}×${COL_THRU}`,
       etics_outside_band_cm: { x0: 0, x1: GEO_X0 + ETICS, y0: 0, y1: ETICS, th: ETICS },
-      wall: "colț N/W — 40×30 preliminar (NU redus pt. duș)",
+      wall: `colț N/W — ${COL_ALONG}×${COL_THRU} (thru=EB20; NU redus pt. duș)`,
       conflicts: ["duș decupat local în frame — nu micșorăm stâlpul"],
       amenajare_fix: "dus x≥50",
       continuous_through_floor: true,
@@ -194,18 +197,19 @@ function buildFrameSchema() {
       levels: ["S", "P", "E"],
       support_below: "fundație_N",
       protrusion_into_room_cm: PROTRUSION_IN,
-      wall: "nord X320–360 — rost vest de frigider_p@X360",
+      section_cm: `${COL_ALONG}×${COL_THRU}`,
+      wall: `nord X320–360 — ${COL_ALONG}×${COL_THRU} thru=EB20`,
       conflicts: ["alternativă: fără C_N_MID (doar NW+NE) — comparație"],
       continuous_through_floor: true,
     },
     colEst("C_NE", ETICS, COL_ALONG, {
-      wall: "est N de geam",
-      conflicts: ["proeminență în capăt blat_tail_p — capăt mobilier adaptat"],
+      wall: `est N de geam — ${COL_THRU}×${COL_ALONG} thru=EB20`,
+      conflicts: [],
       etics_outside_band_cm: { x0: GEO_X0 + 670.8, x1: GEO_X0 + 680, th: ETICS },
       continuous_through_floor: true,
     }),
     colVest("C_W_MID", 400, COL_ALONG, {
-      wall: "vest — 30×40 (NU redus pt. pat)",
+      wall: `vest — ${COL_THRU}×${COL_ALONG} thru=EB20 (NU redus pt. pat)`,
       etics_outside_band_cm: { x0: 0, x1: GEO_X0 + ETICS, th: ETICS },
       conflicts: ["pat x≥45 în frame — rezervă montaj/tăblie"],
       amenajare_fix: "pat x≥45",
@@ -515,16 +519,18 @@ function buildFrameSchema() {
         "A1 aprobat neatins. In frame: dus x>=50; pat x>=45 — nu micsoram stalpii.",
     },
     {
-      id: "column_30_protrusion_vs_37m2",
-      severity: "DESCHIS",
-      registry: "calcul_lipsă",
-      detail: "Proeminențe locale; util P/E = NECONFIRMAT — nu e rezervă stâlpi.",
+      id: "column_thru_eb20_flush",
+      severity: "LOCK",
+      registry: "rezolvat_geometric",
+      detail:
+        "LOCK 2026-10-16: COL_THRU=20 (=EB20), PROTRUSION_IN=0 — stâlpii aliniați cu umplutura, fără plăcuire în cameră. Along=40 tip, de confirmat calcul.",
     },
     {
       id: "p100_min_section",
       severity: "IPOTEZĂ",
       registry: "calcul_lipsă",
-      detail: "30 cm transversal = studiu preliminar P100; aplicabilitate pe sistem/ductilitate — nu validat.",
+      detail:
+        "Thru 20 cm = aliniere EB20 (cerință arhitectură). Capacitate/ductilitate P100 pe 20×40 — de verificat la calcul; nu majora thru fără motiv structural demonstrat.",
     },
     {
       id: "etics_wrap_verify",
@@ -537,8 +543,8 @@ function buildFrameSchema() {
       severity: "DESCHIS",
       registry: "calcul_lipsă",
       detail:
-        "Acceptat geometric provizoriu: dx=70 ca bandă de compensare între stâlpi nealiniați — FĂRĂ mutare A1 (protejează util ≥37). Variante cu aliniere stâlpi = Δ util de cuantificat ÎNAINTE. Soluție structurală = calcul pe pad, nu redesign amenajare acum.",
-      legal_note: "Nu atinge POT/255; alinierea stâlpilor ar putea reduce util — interzis fără Δ m².",
+        "Pad B_X360: dx = COL_THRU+COL_ALONG (compensare C_S_DORM_E vs C_S_INTRARE_W nealiniați). Aliniere stâlpi = rundă separată.",
+      legal_note: "Nu atinge POT/255; alinierea stâlpilor — Δ util de cuantificat înainte.",
     },
   ];
 
@@ -554,11 +560,12 @@ function buildFrameSchema() {
       through_wall_cm: COL_THRU,
       along_wall_cm: COL_ALONG,
       local_protrusion_inward_cm: PROTRUSION_IN,
-      finished_wall_kept_cm: 30,
+      finished_wall_kept_cm: 20,
+      fill_match: "EB20_Akustik_200",
       etics_continuous_outside: true,
       etics_outside_cm: ETICS,
-      status: "de confirmat prin calcul și verificarea cerințelor normative",
-      note: "Beton nu înlocuiește banda ETICS exterioară. Sud: stâlpi inset; vată continuă pe Y exterior.",
+      status: "LOCK geometric thru=EB20; capacitate along — calcul",
+      note: "Beton transversal = EB20 (20 cm), aliniat cu umplutura; fără proeminență interioară. ETICS rămâne afară. Along tip 40 cm.",
     },
     columns,
     beams,
@@ -1214,7 +1221,7 @@ function svgOverlay(study) {
   );
   const ar = study.areas_cm.frame_study_areas;
   parts.push(
-    `<text x="40" y="${H - 16}" font-size="8" fill="#555">Stâlpi ${COL_THRU}×${COL_ALONG} + proem. · ETICS afară · util P ${ar.useful_parter_m2} / E ${ar.useful_etaj_m2} m² (NECONFIRMAT) · fără PASS</text>`
+    `<text x="40" y="${H - 16}" font-size="8" fill="#555">Stâlpi ${COL_THRU}×${COL_ALONG} thru=EB20 · fără proem. · ETICS afară · util P ${ar.useful_parter_m2} / E ${ar.useful_etaj_m2} m² (NECONFIRMAT)</text>`
   );
   parts.push(`</svg>`);
   return parts.join("\n");
