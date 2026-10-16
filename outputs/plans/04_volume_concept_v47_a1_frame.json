@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_frame_study",
-    "generated": "2026-10-16T09:47:52.553Z",
+    "generated": "2026-10-16T09:51:33.536Z",
     "status": "3D_STUDIU_A1_FRAME_CADRE",
     "source_plan": "data/building/v47_a1_frame_study.json",
     "based_on": "v47_a1_study amenajare (aprobată) + schemă cadre separată",
@@ -41312,36 +41312,6 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 3.7648,
-          "y": 7.6488
-        },
-        {
-          "x": 5.0636,
-          "y": 7.7043
-        },
-        {
-          "x": 5.0764,
-          "y": 7.4046
-        },
-        {
-          "x": 3.7776,
-          "y": 7.349
-        },
-        {
-          "x": 3.7648,
-          "y": 7.6488
-        }
-      ],
-      "z0_m": 0,
-      "z1_m": 0.18,
-      "color": "#e8a020",
-      "label": "treaptă acces 1/3 → FF +48 (sud de terasă)"
-    },
-    {
-      "id": "acces_treapta_1",
-      "type": "extrude",
-      "polygon": [
-        {
           "x": 3.7519,
           "y": 7.9485
         },
@@ -41362,13 +41332,13 @@
           "y": 7.9485
         }
       ],
-      "z0_m": 0.16,
-      "z1_m": 0.34,
-      "color": "#d4890a",
-      "label": "treaptă acces 2/3 → FF +48 (sud de terasă)"
+      "z0_m": 0,
+      "z1_m": 0.18,
+      "color": "#e8a020",
+      "label": "treaptă acces 1/2 (sus +16; FF palier +48 = ridicare 3)"
     },
     {
-      "id": "acces_treapta_2",
+      "id": "acces_treapta_1",
       "type": "extrude",
       "polygon": [
         {
@@ -41392,10 +41362,10 @@
           "y": 8.2482
         }
       ],
-      "z0_m": 0.32,
-      "z1_m": 0.5,
-      "color": "#e8a020",
-      "label": "treaptă acces 3/3 → FF +48 (sud de terasă)"
+      "z0_m": 0.16,
+      "z1_m": 0.34,
+      "color": "#d4890a",
+      "label": "treaptă acces 2/2 (sus +32; FF palier +48 = ridicare 3)"
     }
   ]
 }

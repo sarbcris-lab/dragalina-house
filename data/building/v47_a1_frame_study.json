@@ -103,8 +103,8 @@
     "wall_to_soffit_cm": 261,
     "entry_steps_to_terrace": 3,
     "entry_step_riser_cm": 16,
-    "entry_steps_status": "locked_3_risers",
-    "z_parter_ff_note": "zParter = 3 × 16 = +48 cm (3 ridicări acces; ajută și Δ vs beci)"
+    "entry_steps_status": "locked_2_treads_3_risers",
+    "z_parter_ff_note": "zParter = 3 × 16 = +48: 2 trepte (+16,+32) + ridicare pe palier/terasă (+48)"
   },
   "envelope_notes": {
     "palier_nord_wall_cm": 30,
@@ -3071,21 +3071,21 @@
     "entry_connection": "PARTER: intrare din terasă (intrare_parter @ X330 Y680). ETAJ: intrare_etaj pe buc_est Y475–565 de pe palier_superior.",
     "entry_steps": {
       "covered": false,
-      "steps": 3,
+      "steps": 2,
       "riser_cm": 16,
       "riser_status": "ipoteză",
       "x": 210,
       "y": 978,
       "dx": 130,
-      "dy": 90,
-      "note": "3 ridicări VIZIBILE sud de placă (Y978–1068); FF terasă/P = +48; gap față de Y975",
+      "dy": 60,
+      "note": "2 trepte VIZIBILE sud de placă (Y978–1038); a 3-a ridicare = pe palier/terasă FF+48; gap 3 cm față de Y975",
       "connects_to_landing": true,
       "parapet_gap": [
         210,
         340
       ],
       "outside_terrace_slab": true,
-      "status": "locked_ff48",
+      "status": "locked_2_treads_ff48",
       "alongside_uncovered": true
     },
     "palier_parter": {

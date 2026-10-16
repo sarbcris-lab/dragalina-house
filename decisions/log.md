@@ -220,7 +220,7 @@
 ## 2026-10-16 — Geometrie anvelopă/FF înainte de FE
 
 - Proces: `decisions/roadmap_geometry_then_calc_v01.md` — pereți L + FF locked → apoi calcule (consolă, colțuri, centuri).
-- **FF P = +48 cm** (3×16 ridicări acces) — lock; beci −250 absolut neschimbat (Δ mai bun la acces).
+- **FF P = +48 cm** — 2 trepte (+16/+32) + a 3-a ridicare pe palier/terasă; beci −250 absolut.
 
 ## 2026-10-16 — 2 unități = garsoniere · clear 2,55 m
 

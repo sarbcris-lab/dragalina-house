@@ -483,15 +483,16 @@ function main() {
     opacity: 0.35,
   });
 
-  // Trepte acces: de pe alee (sud) → FF terasă (= zParter). Nr. ridicări = entry_steps_to_terrace.
+  // Trepte acces: DOAR n mesh-uri (călcări). Ridicările totale = entry_steps_to_terrace (≥ n).
+  // Ex.: 2 trepte (+16, +32) + a 3-a ridicare pe palier/terasă (FF = +48).
   function pushEntrySteps() {
     const es = st.entry_steps;
     if (!es || !es.steps) return;
     const n = es.steps;
     const stepDy = es.dy / n;
     const entryR = m(es.riser_cm || ht.entry_step_riser_cm || ht.riser_cm);
-    // Y crește spre sud: treapta cea mai sudică = cotă 0, urcă spre nord (spre terasă).
-    // Ultima ridicare: fața de sus = FF terasă (zParter).
+    const nRise = ht.entry_steps_to_terrace || n;
+    // Y crește spre sud: treapta cea mai sudică jos, urcă spre nord (spre terasă).
     for (let i = 0; i < n; i++) {
       const ySouth = es.y + es.dy - (i + 1) * stepDy;
       const z0s = entryR * i;
@@ -503,7 +504,7 @@ function main() {
         z0_m: z0s,
         z1_m: z1s + 0.02,
         color: i % 2 === 0 ? "#e8a020" : "#d4890a",
-        label: `treaptă acces ${i + 1}/${n} → FF +${Math.round(zParter * 100)} (sud de terasă)`,
+        label: `treaptă acces ${i + 1}/${n} (sus +${Math.round(z1s * 100)}; FF palier +${Math.round(zParter * 100)} = ridicare ${nRise})`,
       });
     }
   }

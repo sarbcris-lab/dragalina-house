@@ -24,11 +24,12 @@ Apoi FE pe schema reală, cu prioritate:
 | Cotă | Valoare | Sens |
 |------|---------|------|
 | Teren / alee (referință) | **0** | |
-| `entry_steps` | **3** ridicări × **16 cm** | mesh `acces_treapta_0/1/2` · dy 90 |
-| FF terasă + palier P + interior P | **+48 cm** | `zParter = 3 × 16` |
-| Beci (absolut) | **−250** | neschimbat vs teren → Δ față de FF P mai mare (ajută acces) |
+| `entry_steps` | **2 trepte** mesh (+16, +32) | `acces_treapta_0/1` · dy 60 |
+| A 3-a ridicare | pe **palier / terasă** | FF = **+48** (nu a 3-a treaptă galbenă) |
+| FF terasă + palier P + interior P | **+48 cm** | 3 × 16 ridicări totale |
+| Beci (absolut) | **−250** | neschimbat vs teren |
 
-**Lock beneficiar 2026-10-16.**
+**Lock:** 2 trepte + ridicare pe palier = FF +48.
 
 ## 3. Pereți — ce lipsește / ce trebuie locked (înainte de FE)
 
