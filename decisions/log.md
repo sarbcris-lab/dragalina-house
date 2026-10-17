@@ -1,5 +1,11 @@
 # Jurnal decizii
 
+## 2026-10-18 — A1.130: parter = etaj (baie + dorm)
+
+- Parter aliniat la etaj: **MS în baie** lângă duș pe sud; **nișă 180×60** culoare dorm + 3 glisante.
+- Scoase pe parter: nișa MS în hol, dressing L, flancuri hol_nisa / prosoape.
+- Ziduri A8 (spate nișă 180, est nișă, est MS→hol) pe **P+E**.
+
 ## 2026-10-18 — A1.129: A8 est MS fără stub N în baie
 
 - `baie_dus_est_e` începea la Y129 → proeminență care tăia baia.

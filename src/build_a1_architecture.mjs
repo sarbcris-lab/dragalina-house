@@ -348,23 +348,22 @@ walls = walls.map((w) => {
       y: +(NS - (w.thickness_cm || TH.A2)).toFixed(1),
     };
   }
-  // A1.91/94: zid baie↔dorm pe sud duș — până la vestul nișei MS (unește cu hol_nisa_S)
-  // A1.122: pe etaj spatele nișei living e 180 (vezi nisa_dulap_spate_e)
+  // A1.130: spate nișă 180×60 baie↔dorm — P+E (ca etaj A1.122)
   if (w.id === "nisa_dulap_spate") {
     const { removed, status, reason, ...rest } = w;
     return {
       ...rest,
       x: TH.A2,
       y: Y_BAIE_DORM_SEP,
-      dx: +(HOL_NISA_X0 - TH.A2).toFixed(1), // 135 — până la X166,2
+      dx: NISA_GLIS_W, // 180
       dy: TH.A8,
       kind: "int",
       catalog_id: "A8",
       assembly: "A8",
       thickness_cm: TH.A8,
       thickness_finished_mm: 150,
-      levels: [0],
-      note: `A1.94: baie↔dorm Y${Y_BAIE_DORM_SEP}–${Y_DULAP_0}; X${TH.A2}→${HOL_NISA_X0} (parter)`,
+      levels: [0, 1],
+      note: `A1.130: spate nișă 180×60 Y${Y_BAIE_DORM_SEP}–${Y_DULAP_0} (P+E)`,
     };
   }
   if (w.id === "nisa_dulap_est") {
@@ -389,22 +388,8 @@ walls = walls.map((w) => {
   return w;
 });
 
-/** A1.122 etaj: spate nișă living 180×60 (baie↔nișă). */
-walls.push({
-  id: "nisa_dulap_spate_e",
-  x: TH.A2,
-  y: Y_BAIE_DORM_SEP,
-  dx: NISA_GLIS_W, // 180
-  dy: TH.A8,
-  kind: "int",
-  catalog_id: "A8",
-  assembly: "A8",
-  thickness_cm: TH.A8,
-  thickness_finished_mm: 150,
-  levels: [1],
-  note: `A1.122: spate nișă living 180×60 Y${Y_BAIE_DORM_SEP}–${Y_DULAP_0}`,
-});
-/** A1.123: fără nisa_living_sud_e — gura nișei = 3 glisante spre dorm. */
+/** A1.130: nisa_dulap_spate_e absorbit în nisa_dulap_spate (P+E). */
+/** A1.123: fără zid sud nișă — gura = 3 glisante spre dorm. */
 
 /**
  * P: perete A6 paralel cu sudul — unește holul (buc_est) de limita de proprietate (est).
@@ -441,7 +426,7 @@ walls.push({
   note: `A1.76: N de gol ${BAIE_LIVING_GOL}; paralel dorm_baie_nord; X${X_DUPA_NISA}→separator`,
 });
 
-/** A1.85: duș|dulap vest; prosoape+MS+raft est (MS = nișa baie↔dorm, acces hol). */
+/** A1.130: duș|MS|nișă — același pe P+E (ca etaj A1.122–129). */
 function pushA8(id, x, y, dx, dy, note, levels = [0, 1]) {
   walls.push({
     id,
@@ -458,75 +443,9 @@ function pushA8(id, x, y, dx, dy, note, levels = [0, 1]) {
     note,
   });
 }
-/** Parter: nișa MS + L dressing. Etaj A1.122: fără MS în nișă — vezi ziduri _e. */
-pushA8(
-  "nisa_est_N",
-  X_HOL_NISA_BACK,
-  Y_NISA_EST_KEEP_0, // colț N MS — aliniat cu hol_nisa_N
-  TH.A8,
-  NISA_EST_KEEP_DY,
-  `A1.116: A8 Y${Y_NISA_EST_KEEP_0}–${Y_DUS_1} duș↔MS (colt); N 15×${NISA_EST_REMOVE_DY} = util+sticlă`,
-  [0]
-);
-pushA8(
-  "baie_flanc_est",
-  +(HOL_NISA_X1 - TH.A8).toFixed(1),
-  Y_STACK_0,
-  TH.A8,
-  BAIE_FLANC_DY,
-  "A1.109: prosoape 45×35 — închide spre hol (dy până la zid N MS)",
-  [0]
-);
-/** A8 15 N + S ale nișei MS — pe flancul nișei, NU sub aparat. */
-pushA8(
-  "hol_nisa_N",
-  HOL_NISA_X0,
-  Y_HOL_NISA_WALL_N, // 179
-  HOL_NISA_W,
-  TH.A8, // →189
-  "A1.109: nord MS A8 15",
-  [0]
-);
 /**
- * A1.94: uneste nisa_dulap_spate + hol_nisa_S + dorm_flanc_est (colț închis).
- * hol_nisa_S prelungit vest pe X151,2 (peste A8); flanc est de la zid S → DORM_N.
- */
-pushA8(
-  "hol_nisa_S",
-  X_HOL_NISA_BACK, // 151,2 — unește cu estul nisa_dulap_spate
-  Y_HOL_NISA_WALL_S, // 254
-  +(HOL_NISA_X1 - X_HOL_NISA_BACK).toFixed(1), // 75 →226,2
-  TH.A8, // →264
-  "A1.109: sud MS + colț vest — separator dressing",
-  [0]
-);
-/**
- * A1.99: zid ⊥ pe glisante — doar până la colțul L (sud MS).
- * Fără zid în L: rafturile dressingului sunt continue.
- */
-pushA8(
-  "nisa_est_S",
-  X_NISA_E_WALL, // 151,2
-  Y_DULAP_0, // 234
-  TH.A8,
-  +(Y_HOL_NISA_WALL_S - Y_DULAP_0).toFixed(1), // 12,5 →246,5 (colt L)
-  "A1.99: ⊥ glisante → colț L (MS↔dressing); stop, nu taie L",
-  [0]
-);
-const Y_DORM_FLANC_0 = Y_HOL_NISA_WALL_S; // 246,5
-const DORM_FLANC_DY = +(DORM_N - Y_DORM_FLANC_0).toFixed(1); // 47,5
-pushA8(
-  "dorm_flanc_est",
-  +(HOL_NISA_X1 - TH.A8).toFixed(1), // 211,2
-  Y_DORM_FLANC_0,
-  TH.A8,
-  DORM_FLANC_DY,
-  `A1.94: flanc est ${DORM_FLANC_DY} cm — colț L cu hol_nisa_S + dorm_baie_nord`,
-  [0]
-);
-/**
- * A1.123 etaj: nișă living 180×60 — spate A8; est A8 plin (nu gol);
- * gura sud = 3 glisante spre dorm. MS lipită de duș; A8 est după MS.
+ * A1.130 P+E: nișă 180×60 — spate A8; est A8 plin; gura sud = 3 glisante.
+ * MS lipită de duș; A8 est după MS → hol.
  */
 pushA8(
   "nisa_living_est_e",
@@ -534,23 +453,18 @@ pushA8(
   Y_DULAP_0,
   TH.A8,
   +(DORM_N - Y_DULAP_0).toFixed(1), // 60
-  "A1.123: flanc est nișă living 180×60 — zid plin A8 (etaj)",
-  [1]
+  "A1.130: flanc est nișă 180×60 — zid plin A8 (P+E)",
+  [0, 1]
 );
-/**
- * A8 est după MS → hol: de la sudul băii (nu urcă în baia N — evita proeminența
- * care tăia utilul), până la spatele nișei.
- */
 pushA8(
   "baie_dus_est_e",
   +(X_HOL_NISA_BACK + 60).toFixed(1), // 211,2 = est MS
   Y_BAIE_SUD_ZID, // 144 — aliniat cu baie_sud_gol, nu Y129
   TH.A8,
   +(Y_DULAP_0 - Y_BAIE_SUD_ZID).toFixed(1), // 144→234
-  "A1.129: A8 est MS→hol; fără stub N în baie",
-  [1]
+  "A1.130: A8 est MS→hol; fără stub N în baie (P+E)",
+  [0, 1]
 );
-// MS parter: gura EST deschisă spre hol; S = zid separator dressing
 
 /**
  * Stâlpi — regulă unică A0:
@@ -1338,8 +1252,6 @@ const DORM_FLOOR = "#e9e0d5";
 const BAIE_FLOOR = "#d4e6e9";
 const HOL_FLOOR = "#e8d5c4";
 const LIVING_FLOOR = "#e8efe4"; // living_p / living_e
-/** Flanc util E–V = 60 − A8 est. */
-const FLANC_UTIL_W = +(HOL_NISA_W - TH.A8).toFixed(1); // 45
 /** Duș 120×90 — vest; +15 N; sud = zid baie↔dorm (A1.91). */
 const DUS_ZONE = {
   x: TH_W,
@@ -1349,67 +1261,9 @@ const DUS_ZONE = {
   util_dx: NISA_UTIL_W,
   util_dy: DUS_D,
 };
-/** Prosoape est — până la zid N MS. */
-const BAIE_FLANC = {
-  x: HOL_NISA_X0,
-  y: Y_STACK_0,
-  dx: FLANC_UTIL_W,
-  dy: BAIE_FLANC_DY,
-  util_dx: FLANC_UTIL_W,
-  util_dy: BAIE_FLANC_DY,
-};
-/** A1.116: fost A8 N de colțul MS — pardoseală util; sticlă pe ax. */
-const BAIE_EST_LIBER = {
-  id: "baie_est_liber",
-  role: "floor_add",
-  x: X_HOL_NISA_BACK,
-  y: Y_DUS_0,
-  dx: TH.A8,
-  dy: NISA_EST_REMOVE_DY,
-  util_dx: TH.A8,
-  util_dy: NISA_EST_REMOVE_DY,
-  floor: BAIE_FLOOR,
-  note: `A1.116: 15×${NISA_EST_REMOVE_DY} fost zid → util; sticlă până la colț MS`,
-};
-/**
- * Dressing în L în spatele glisantelor 180 (fără zid între rafturi):
- * — braț lung: X31,2→211,2 pe adâncime (vest de MS / sub uși)
- * — braț scurt: sud MS (colț L = unde se oprește nisa_est_S)
- * Parter. Etaj A1.122: nișă living 180×60 (NISA_LIVING_E).
- */
+/** A1.130 P+E: nișă 180×60 dorm (clear; ziduri A8 spate/est). */
 const NISA_DORM_DY = +(DORM_N - Y_DULAP_0).toFixed(1); // 60
-/** Braț lung L — până la fața vest a zidului ⊥ (nu acoperă zidul). */
-const NISA = {
-  x: NISA_GLIS_X0,
-  y: Y_DULAP_0,
-  dx: +(X_NISA_E_WALL - NISA_GLIS_X0).toFixed(1), // 120 →151,2
-  dy: NISA_DORM_DY,
-  util_dx: NISA_GLIS_W, // gură 180
-  util_dy: NISA_DORM_DY,
-};
-/**
- * Braț scurt L (est) — sud de hol_nisa_S, de la colț L → flanc.
- * Continuă rafturile fără separator.
- */
-const NISA_FLANC_DORM = {
-  x: X_NISA_E_WALL, // 151,2 — colț L
-  y: Y_RAFT_0, // 261,5
-  dx: +(HOL_NISA_X1 - TH.A8 - X_NISA_E_WALL).toFixed(1), // 60
-  dy: NISA_UTIL_D,
-  util_dx: +(HOL_NISA_X1 - TH.A8 - X_NISA_E_WALL).toFixed(1),
-  util_dy: NISA_UTIL_D,
-};
-/** MS 60×60 — est, acces din hol (parter). */
-const HOL_NISA = {
-  x: HOL_NISA_X0,
-  y: HOL_NISA_Y0,
-  dx: HOL_NISA_W,
-  dy: HOL_NISA_H,
-  util_dx: HOL_NISA_W,
-  util_dy: HOL_NISA_H,
-};
-/** A1.122 etaj: nișă 180×60 în living (clear; ziduri A8 spate/est/sud). */
-const NISA_LIVING_E = {
+const NISA_DORM = {
   x: NISA_GLIS_X0,
   y: Y_DULAP_0,
   dx: NISA_GLIS_W, // 180
@@ -1418,21 +1272,25 @@ const NISA_LIVING_E = {
   util_dy: NISA_DORM_DY,
 };
 /**
- * A1.123: MS în baie etaj — lipită de duș (est); A8 după MS.
+ * A1.130: MS în baie P+E — lipită de duș (est); A8 după MS.
  */
-const MS_BAIE_E = {
+const MS_BAIE = {
   x: X_HOL_NISA_BACK, // 151,2 — fața E duș
   y: +(Y_DUS_1 - 54).toFixed(1), // 165 — sud aliniat cu fața S duș
   dx: 60,
   dy: 54,
 };
-/** A1.124: bandă N de MS (est de duș) = util baie pe etaj. */
-const BAIE_EST_N_MS_E = {
+/** A1.130: bandă N de MS (est de duș) = util baie P+E. */
+const BAIE_EST_N_MS = {
   x: X_HOL_NISA_BACK,
   y: Y_DUS_0, // 129 — aliniat N duș
   dx: 60,
-  dy: +(MS_BAIE_E.y - Y_DUS_0).toFixed(1), // →165
+  dy: +(MS_BAIE.y - Y_DUS_0).toFixed(1), // →165
 };
+/** Alias vechi (etaj) — aceleași rect-uri. */
+const MS_BAIE_E = MS_BAIE;
+const BAIE_EST_N_MS_E = BAIE_EST_N_MS;
+const NISA_LIVING_E = NISA_DORM;
 
 /**
  * Compartimentare A1 — doar camerele cerute.
@@ -1450,8 +1308,8 @@ const rooms = [
     // sud = față N zid baie_sud_gol (est) / gura nișei baie (vest)
     dy: +(Y_BAIE_SUD_ZID - Y_N).toFixed(1),
     floor: BAIE_FLOOR,
-    note: `A1.91: duș 120×${DUS_D} Y${Y_DUS_0}–${Y_DUS_1}; zid baie↔dorm sud; WC/lavoar nord`,
-    includes: ["dus_zone", "baie_flanc", "baie_est_liber", "ms_baie_e"],
+    note: `A1.130: duș 120×${DUS_D}; MS lângă duș pe sud; WC/lavoar nord (P+E)`,
+    includes: ["dus_zone", "baie_est_n_ms", "ms_baie"],
     parts: [
       {
         id: "dus_zone",
@@ -1461,29 +1319,20 @@ const rooms = [
         note: `Duș; util ${DUS_ZONE.util_dx}×${DUS_ZONE.util_dy}`,
       },
       {
-        id: "baie_flanc",
-        role: "dressing_baie",
-        levels: [0],
-        ...BAIE_FLANC,
-        floor: BAIE_FLOOR,
-        note: `Prosoape; util ${BAIE_FLANC.util_dx}×${BAIE_FLANC.util_dy}`,
-      },
-      { ...BAIE_EST_LIBER, levels: [0] },
-      {
-        id: "baie_est_n_ms_e",
+        id: "baie_est_n_ms",
         role: "floor_add",
-        levels: [1],
-        ...BAIE_EST_N_MS_E,
+        levels: [0, 1],
+        ...BAIE_EST_N_MS,
         floor: BAIE_FLOOR,
-        note: "A1.124: bandă N de MS = util baie (etaj)",
+        note: "A1.130: bandă N de MS = util baie (P+E)",
       },
       {
-        id: "ms_baie_e",
+        id: "ms_baie",
         role: "floor_add",
-        levels: [1],
-        ...MS_BAIE_E,
+        levels: [0, 1],
+        ...MS_BAIE,
         floor: BAIE_FLOOR,
-        note: "A1.123: MS lângă duș pe sud (etaj)",
+        note: "A1.130: MS lângă duș pe sud (P+E)",
       },
     ],
   },
@@ -1496,36 +1345,20 @@ const rooms = [
     dx: +(XI - TH_W - 12.5).toFixed(1),
     dy: +(Y_DORM_S - DORM_N).toFixed(1),
     floor: DORM_FLOOR,
-    note: `A1.99/127: dressing L pe parter; etaj nișă 180×60 culoare dorm`,
-    includes: ["dressing_nisa", "dorm_flanc", "nisa_dorm_e"],
+    note: `A1.130: nișă 180×60 culoare dorm + 3 glisante (P+E)`,
+    includes: ["nisa_dorm"],
     parts: [
       {
-        id: "dressing_nisa",
-        role: "dressing",
-        levels: [0],
-        ...NISA,
-        floor: DORM_FLOOR,
-        note: `L braț lung; gură ${NISA.util_dx}×${NISA.util_dy}`,
-      },
-      {
-        id: "dorm_flanc",
-        role: "dressing",
-        levels: [0],
-        ...NISA_FLANC_DORM,
-        floor: DORM_FLOOR,
-        note: `L braț scurt ${NISA_FLANC_DORM.util_dx}×${NISA_FLANC_DORM.util_dy}`,
-      },
-      {
-        id: "nisa_dorm_e",
+        id: "nisa_dorm",
         role: "floor_add",
-        levels: [1],
-        ...NISA_LIVING_E,
+        levels: [0, 1],
+        ...NISA_DORM,
         floor: DORM_FLOOR,
-        note: "A1.127: nișă 180×60 etaj — culoare dormitor",
+        note: "A1.130: nișă 180×60 — culoare dormitor (P+E)",
       },
     ],
   },
-  /** Hol vest (vestibul baie) + MS 60×60 pe parter */
+  /** Hol vest (vestibul baie) — fără MS (MS e în baie) */
   {
     id: "hol_vest",
     label: "HOL",
@@ -1535,18 +1368,7 @@ const rooms = [
     dx: +(XI - TH_SEP_A7 - X_DUPA_NISA).toFixed(1),
     dy: BAIE_LIVING_GOL,
     floor: HOL_FLOOR,
-    note: "A1.85/122: vestibul 120; MS nișă doar parter; etaj nișă = living",
-    includes: ["hol_nisa"],
-    parts: [
-      {
-        id: "hol_nisa",
-        role: "floor_add",
-        levels: [0],
-        ...HOL_NISA,
-        floor: HOL_FLOOR,
-        note: `MS nișă baie↔dorm; util ${HOL_NISA.util_dx}×${HOL_NISA.util_dy}; acces hol`,
-      },
-    ],
+    note: "A1.130: vestibul 120; MS în baie (nu în hol)",
   },
 
   // —— parter est ——
@@ -1777,9 +1599,9 @@ const axes = {
  * Pat 210×170; 90 sud / 10 vest / 90 nord până la ușă+nișă (A1.73).
  */
 /**
- * A1.83 sanitare — exact schița:
- * WC NV (facing E, clear 65), blat N 30/40 + lavoar 60×40, duș 120×90 vest glisantă,
- * MS în nișa hol.
+ * A1.83/130 sanitare:
+ * WC NV (facing E, clear 65), blat N 30/40 + lavoar 60×40, duș 120×90 vest,
+ * MS în baie lângă duș pe sud (P+E).
  */
 const BAIE_Y0 = Y_N;
 const BAIE_CLEAR_NS = +(Y_BAIE_SUD_ZID - BAIE_Y0).toFixed(1); // 114
@@ -1805,11 +1627,6 @@ const BLAT_LEN = 169;
 const BLAT_X1 = +(BLAT_X0 + BLAT_LEN).toFixed(1);
 const LAV_X = +(BLAT_X0 + 55).toFixed(1); // pe banda lată
 const LAV_Y = +(BLAT_Y + 2).toFixed(1);
-const MS_W = 60;
-const MS_D = 54;
-const MS_X = HOL_NISA_X0;
-const MS_Y = +(HOL_NISA_Y0 + (HOL_NISA_H - MS_D) / 2).toFixed(1); // centrat în nișa mutată S
-
 const furniture = [
   {
     id: "pat",
@@ -1908,36 +1725,22 @@ const furniture = [
     color: "#b8d4d8",
     label: `DUȘ 120×${String(DUS_D).replace(".", ",")}`,
     glass_east: true,
-    glass_east_dy: NISA_EST_REMOVE_DY, // sticlă pe zona fără A8
-    note: `A1.114: 120×${DUS_D}; est N 15×45 = util+sticlă; est S = A8 duș↔MS`,
+    glass_east_dy: BAIE_EST_N_MS.dy, // sticlă pe banda N de MS
+    note: `A1.130: 120×${DUS_D}; est N = util+sticlă; est S = MS lipită`,
   },
   {
     id: "masina_spalat",
-    levels: [0],
-    zone: "hol_vest",
-    x: MS_X,
-    y: MS_Y,
-    dx: MS_W,
-    dy: MS_D,
-    h: 85,
-    color: "#9aa3a8",
-    facing: "east",
-    label: "MS",
-    note: `A1.109: MS Y${MS_Y}; A8 15 N+S; clear 60; nișă hol (parter)`,
-  },
-  {
-    id: "masina_spalat_e",
-    levels: [1],
+    levels: [0, 1],
     zone: "baie",
-    x: MS_BAIE_E.x,
-    y: MS_BAIE_E.y,
-    dx: MS_BAIE_E.dx,
-    dy: MS_BAIE_E.dy,
+    x: MS_BAIE.x,
+    y: MS_BAIE.y,
+    dx: MS_BAIE.dx,
+    dy: MS_BAIE.dy,
     h: 85,
     color: "#9aa3a8",
     facing: "east",
     label: "MS",
-    note: "A1.122: MS în baie etaj — lângă duș pe sud",
+    note: "A1.130: MS în baie — lângă duș pe sud (P+E)",
   },
 ];
 
@@ -2258,12 +2061,12 @@ function computeUsefulAreas() {
   const shoelaceP = +shoelaceM2(polyP).toFixed(4);
   const shoelaceE = +shoelaceM2(polyE).toFixed(4);
 
-  /** A1.106: detaliu util baie (L) — același pe P/E. */
+  /** A1.130: detaliu util baie — același pe P/E (MS + bandă N). */
   const baieRoom = rooms.find((r) => r.id === "baie");
   const baieRow = roomRows.find((r) => r.id === "baie" && r.level === 0);
   const baieCorpCm2 = baieRoom ? baieRoom.dx * baieRoom.dy : 0;
   const baieDusExtraCm2 = DUS_ZONE.dx * Math.max(0, Y_DUS_1 - Y_BAIE_SUD_ZID); // sud de Y144
-  const baieFlancCm2 = BAIE_FLANC.dx * BAIE_FLANC.dy;
+  const baieMsBandCm2 = BAIE_EST_N_MS.dx * BAIE_EST_N_MS.dy + MS_BAIE.dx * MS_BAIE.dy;
   const passageDetail = [0, 1].map((lv) => {
     const list = openings.filter(
       (o) => isHeatedInteriorPassage(o) && openingOnLevel(o, lv)
@@ -2286,11 +2089,10 @@ function computeUsefulAreas() {
   const baieDetail = baieRow
     ? {
         method:
-          `A1.116/121: corp + duș + flanc + liber 15×${NISA_EST_REMOVE_DY} − geo obstacole; goluri uși în hol_vest`,
+          "A1.130/121: corp + duș + bandă N MS + amprentă MS − geo obstacole; goluri uși în hol_vest",
         corp_m2: +(baieCorpCm2 / 10000).toFixed(4),
         dus_sud_de_Y144_m2: +(baieDusExtraCm2 / 10000).toFixed(4),
-        flanc_prosoape_m2: +(baieFlancCm2 / 10000).toFixed(4),
-        est_liber_m2: +((TH.A8 * NISA_EST_REMOVE_DY) / 10000).toFixed(4),
+        ms_si_banda_n_m2: +(baieMsBandCm2 / 10000).toFixed(4),
         gross_m2: baieRow.gross_m2,
         column_protrusion_m2: baieRow.column_protrusion_m2,
         int_walls_m2: baieRow.int_walls_m2,
@@ -2323,9 +2125,9 @@ function computeUsefulAreas() {
       "A1.121: goluri încălzite prin zid (baie_usa, baie_usa_dorm, baie_living_gol) = util; zid obstacol = amprentă ∖ gol.",
       "A1.110: net = brut − uniune obstacole (geo stâlpi + A6/A7/A8); etichete din același net. Nu pin×faceLen.",
       "A1.110: living E scade A6 palier (pardoseala desenată nu e util sub zid).",
-      "A1.106/109: baie L (corp+duș sud+flanc); vezi useful_baie_detail.",
-      "A1.100: uniune rect (baie+duș+flanc, dorm+L dressing, hol+MS) — fără sumă naivă.",
-      "Hol: fără banda zid A6 est (zid_nu_util). MS în hol. Uși baie→hol/dorm în hol_vest.",
+      "A1.130: baie = corp+duș+MS+bandă N; dorm = nișă 180×60 (P+E). Vezi useful_baie_detail.",
+      "A1.130: uniune rect (baie+duș+MS, dorm+nișă) — fără sumă naivă.",
+      "Hol: fără banda zid A6 est (zid_nu_util). MS în baie. Uși baie→hol/dorm în hol_vest.",
       "Living E: L — N de mid până la XE; S de mid doar până la buc_est (fără palier rece).",
       "Bucătărie E: est = față V buc_est.",
       "Ținta 37 m²: nu bloca compartimentarea pe sute de cm² — util geometric ≠ finisaj executat.",
@@ -2495,13 +2297,10 @@ function planSvg(levelIdx, title) {
     fillRect(r);
     for (const p of r.parts || []) {
       if (p.levels && !p.levels.includes(levelIdx)) continue;
-      // flanc L: după ziduri (vezi jos)
-      if (p.id === "dorm_flanc") continue;
       fillRect(p, p.floor || r.floor);
     }
   }
-  if (levelIdx === 0) fillRect(NISA, DORM_FLOOR, 1);
-  else fillRect(NISA_LIVING_E, DORM_FLOOR, 1);
+  fillRect(NISA_DORM, DORM_FLOOR, 1);
 
   parts.push(
     `<rect x="${sx(0)}" y="${sy(0)}" width="${EW * scale}" height="${NS * scale}" fill="none" stroke="#111" stroke-width="2.2"/>`
@@ -2787,8 +2586,6 @@ function planSvg(levelIdx, title) {
     if (cat === "A7" || cat === "A8") drawInteriorWallSimple(w);
     else drawExteriorWallFrame(w);
   }
-  /** Braț scurt L — după ziduri (parter); etaj = nișă living plină. */
-  if (levelIdx === 0) fillRect(NISA_FLANC_DORM, DORM_FLOOR, 1);
   // gol 120 hol↔living (bandă A7 tăiată) — culoare living, nu alb
   {
     const gol = openings.find(
@@ -3314,55 +3111,26 @@ function planSvg(levelIdx, title) {
       dimV(yBaie0, yBaie1, xChain, -28, baie.dy, " baie");
       if (band >= 20) {
         dimV(yBaie1, yDorm0, xChain, -28, band, " bandă");
-        if (levelIdx === 0) {
-          noteAt(
-            HOL_NISA.x + HOL_NISA.dx / 2,
-            HOL_NISA.y + HOL_NISA.dy / 2,
-            `nișă hol ${fmtCm(HOL_NISA.util_dx)}×${fmtCm(HOL_NISA.util_dy)}`,
-            { fontSize: 10, bold: true, fill: "#bf360c", dir: "down" }
-          );
-          dimH(HOL_NISA.x, HOL_NISA.x + HOL_NISA.dx, HOL_NISA.y + HOL_NISA.dy / 2, 16, HOL_NISA.util_dx);
-          dimV(HOL_NISA.y, HOL_NISA.y + HOL_NISA.dy, HOL_NISA.x + HOL_NISA.dx / 2, -16, HOL_NISA.util_dy);
-          noteAt(
-            BAIE_FLANC.x + BAIE_FLANC.dx / 2,
-            BAIE_FLANC.y + BAIE_FLANC.dy / 2,
-            `${fmtCm(BAIE_FLANC.util_dx)}×${fmtCm(BAIE_FLANC.util_dy)}`,
-            { fontSize: 8, fill: "#00695c", dir: "up" }
-          );
-          noteAt(
-            NISA.x + NISA.dx / 2,
-            NISA.y + NISA.dy / 2,
-            `dulap ${fmtCm(NISA.util_dx)}×${fmtCm(NISA.util_dy)}`,
-            { fontSize: 8, fill: "#6a1b9a", dir: "down" }
-          );
-          noteAt(
-            NISA_FLANC_DORM.x + NISA_FLANC_DORM.dx / 2,
-            NISA_FLANC_DORM.y + NISA_FLANC_DORM.dy / 2,
-            `${fmtCm(NISA_FLANC_DORM.util_dx)}×${fmtCm(NISA_FLANC_DORM.util_dy)}`,
-            { fontSize: 8, fill: "#6a1b9a", dir: "down" }
-          );
-        } else {
-          noteAt(
-            NISA_LIVING_E.x + NISA_LIVING_E.dx / 2,
-            NISA_LIVING_E.y + NISA_LIVING_E.dy / 2,
-            `nișă dorm ${fmtCm(NISA_LIVING_E.util_dx)}×${fmtCm(NISA_LIVING_E.util_dy)}`,
-            { fontSize: 10, bold: true, fill: "#6a1b9a", dir: "down" }
-          );
-          dimH(
-            NISA_LIVING_E.x,
-            NISA_LIVING_E.x + NISA_LIVING_E.dx,
-            NISA_LIVING_E.y + NISA_LIVING_E.dy / 2,
-            16,
-            NISA_LIVING_E.util_dx
-          );
-          dimV(
-            NISA_LIVING_E.y,
-            NISA_LIVING_E.y + NISA_LIVING_E.dy,
-            NISA_LIVING_E.x + NISA_LIVING_E.dx / 2,
-            -16,
-            NISA_LIVING_E.util_dy
-          );
-        }
+        noteAt(
+          NISA_DORM.x + NISA_DORM.dx / 2,
+          NISA_DORM.y + NISA_DORM.dy / 2,
+          `nișă dorm ${fmtCm(NISA_DORM.util_dx)}×${fmtCm(NISA_DORM.util_dy)}`,
+          { fontSize: 10, bold: true, fill: "#6a1b9a", dir: "down" }
+        );
+        dimH(
+          NISA_DORM.x,
+          NISA_DORM.x + NISA_DORM.dx,
+          NISA_DORM.y + NISA_DORM.dy / 2,
+          16,
+          NISA_DORM.util_dx
+        );
+        dimV(
+          NISA_DORM.y,
+          NISA_DORM.y + NISA_DORM.dy,
+          NISA_DORM.x + NISA_DORM.dx / 2,
+          -16,
+          NISA_DORM.util_dy
+        );
       }
       dimV(yDorm0, yDorm1, xChain, -28, dorm.dy, " dorm");
     }

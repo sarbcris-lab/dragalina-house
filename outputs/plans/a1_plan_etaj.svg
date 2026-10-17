@@ -54,6 +54,8 @@
 <rect x="830.785" y="144.5" width="26.875" height="277.34999999999997" fill="none" stroke="#666" stroke-width="0.8"/>
 <rect x="830.785" y="679.85" width="26.875" height="784.965" fill="#ddd6c8" stroke="#888" stroke-width="0.45"/>
 <rect x="830.785" y="679.85" width="26.875" height="784.965" fill="none" stroke="#666" stroke-width="0.8"/>
+<rect x="167.07999999999998" y="550.8499999999999" width="387" height="32.25" fill="#ddd6c8" stroke="#888" stroke-width="0.45"/>
+<rect x="167.07999999999998" y="550.8499999999999" width="387" height="32.25" fill="none" stroke="#666" stroke-width="0.8"/>
 <rect x="586.3299999999999" y="679.85" width="32.25" height="32.25" fill="#ddd6c8" stroke="#888" stroke-width="0.45"/>
 <rect x="586.3299999999999" y="679.85" width="32.25" height="32.25" fill="none" stroke="#666" stroke-width="0.8"/>
 <rect x="812.0799999999999" y="679.85" width="18.705" height="32.25" fill="#ddd6c8" stroke="#888" stroke-width="0.45"/>
@@ -69,8 +71,6 @@
 <rect x="1248.745" y="1026" width="313.2550000000001" height="21.5" fill="url(#patInsul)" stroke="#8a7a20" stroke-width="0.45"/>
 <rect x="1248.745" y="983" width="289.175" height="43" fill="url(#patBrick)" stroke="#6b4e32" stroke-width="0.45"/>
 <rect x="1248.745" y="983" width="313.25499999999994" height="64.5" fill="none" stroke="#333" stroke-width="0.9"/>
-<rect x="167.07999999999998" y="550.8499999999999" width="387" height="32.25" fill="#ddd6c8" stroke="#888" stroke-width="0.45"/>
-<rect x="167.07999999999998" y="550.8499999999999" width="387" height="32.25" fill="none" stroke="#666" stroke-width="0.8"/>
 <rect x="586.3299999999999" y="389.59999999999997" width="29.455" height="32.25" fill="#ddd6c8" stroke="#888" stroke-width="0.45"/>
 <rect x="586.3299999999999" y="389.59999999999997" width="29.455" height="32.25" fill="none" stroke="#666" stroke-width="0.8"/>
 <rect x="809.285" y="389.59999999999997" width="21.5" height="32.25" fill="#ddd6c8" stroke="#888" stroke-width="0.45"/>
@@ -137,7 +137,7 @@
 <rect x="474.53" y="148.8" width="129" height="86" fill="#d0d8dc" fill-opacity="0.85" stroke="#5a4030" stroke-width="1.4"/>
 <text x="539.03" y="191.8" text-anchor="middle" dominant-baseline="middle" font-size="9" font-weight="700" fill="#3a2a1a" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">LAVOAR</text>
 <rect x="167.07999999999998" y="357.34999999999997" width="258" height="193.5" fill="#b8d4d8" fill-opacity="0.85" stroke="#5a4030" stroke-width="1.4"/>
-<line x1="425.08" y1="357.34999999999997" x2="425.08" y2="464.84999999999997" stroke="#5a8aaa" stroke-width="2" stroke-dasharray="5 3"/>
+<line x1="425.08" y1="357.34999999999997" x2="425.08" y2="434.75" stroke="#5a8aaa" stroke-width="2" stroke-dasharray="5 3"/>
 <text x="296.08" y="454.09999999999997" text-anchor="middle" dominant-baseline="middle" font-size="9" font-weight="700" fill="#3a2a1a" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">DUȘ 120×90</text>
 <rect x="425.08" y="434.75" width="129" height="116.1" fill="#9aa3a8" fill-opacity="0.85" stroke="#5a4030" stroke-width="1.4"/>
 <text x="489.58" y="492.79999999999995" text-anchor="middle" dominant-baseline="middle" font-size="9" font-weight="700" fill="#3a2a1a" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">MS</text>
