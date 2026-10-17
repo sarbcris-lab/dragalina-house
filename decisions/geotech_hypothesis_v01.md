@@ -36,6 +36,9 @@ Existența beciului la 131 și a fostului beci la 120 (front Dragalina) = doar *
 
 Document util de recuperat: **studiul EMDI original** (fișe + laborator).
 
+**Sursă locală 2026-10-16:** arhive în `inputs/` extrase → `inputs/_extracted/` — inventar `decisions/inputs_archives_inventory_v01.md`.  
+Memoriu 120: `…/CASA SARB FAZA PTH…/PARTE SCRISA FAZA PTH CASA SARB_TURDA.pdf` (confirmă Pconv 310, D=1,15 m, tălpi 50×70). **PDF EMDI original tot absent.**
+
 ---
 
 ## Ipoteză de lucru (până la geo 131)

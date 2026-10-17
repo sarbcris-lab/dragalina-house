@@ -14,28 +14,29 @@
 | `B_Y470` fantomă L-1 | conflict / bug | **Acord** | **reparat** — filtru soffit/fg: doar `S` sau `P+E`, nu P-only |
 | `inverted_beam_fit` gap Y590–600 | conflict + calcul | **Acord pe gap**; calcul rămâne | **geo închisă**: dy 15→25 (Y575–600), ușa neatinsă; fără impact 40/37/255 |
 | `B_X360_wide_pad` | opțiuni aliniere | **Parțial acord** | **nu aliniez stâlpii acum** (risc util). Pad dx=70 acceptat provizoriu + **calcul**. Aliniere = doar cu Δ m² util pe masă |
-| `slab_span` 15 vs 20 | FE, fără 25–28 | **Acord + prioritate legală** | vezi §2 — **recomand 15** până la FE |
+| `slab_span` 15 vs 20 | FE, fără 25–28 | **LOCK P 2026-10-17** | **placă 20 fără bandă** în mesh; FE pe 6,2 |
 | `east_landing` / B_E | calcul_lipsă | **Acord** | nu reintroduc C_E_LAND_SP; FE nod |
 | `basement_retaining` | BA nou | **Acord** | model BA retenție = rundă separată subsol (flexibil, minime legale dacă există) — **nu** „EB20=structură” |
 | `foundations_width` | calcul + geo 131 | **Acord** | nu „fix” din 310 kPa vecin |
 | `roof_load_path` | calcul / BA vs ușoară | **Acord** | comparație ulterioară; fără stâlpi în camere |
 | `etics_wrap_verify` | detalii șantier | **Acord** | fără redesign A1; detalii la execuție |
+| `facade_slab_edge_masonry` | — | **LOCK 2026-10-16** | beton perimetru pe muchie placă; falie=zidărie (N/V afară, E/S interior la cheie); supersede flush-int / N@9,9 |
 | `palier_plate_support` | calcul / Lnw | **Acord** | geometrie OK; performanță NECONFIRMATĂ |
 | Placă 25–28 din L/d | respins ca demonstrație | **Acord** | nu adopt |
 
 ---
 
-## 2. Grosimea plăcii — cum alegem o dată
+## 2. Grosimea plăcii — LOCK P (2026-10-17)
 
-**Măsură proiect (FF etaj−parter = 288 cm, buildup 12 cm):**
+**Măsură proiect (FF→FF = 306 cm, buildup 12 cm, riser 17):**
 
-| Grosime BA | Clear sub placă (model) | vs ținta ta ≥255 | POT / util 37 |
-|------------|-------------------------|------------------|---------------|
-| **15 cm** (acum) | **255** | **OK** | neschimbat |
-| 20 cm | **250** | **sub țintă (−5)** | neschimbat amprentă |
-| 25 / 28 cm | 245 / 242 | mai rău | neschimbat amprentă |
+| Grosime BA | Clear sub placă | vs ≥255 | Bandă | Status |
+|------------|----------------:|:-------:|-------|--------|
+| 15 cm | 273 | OK | necesară ordin | istoric R |
+| **20 cm** | **268** | **OK** | **nu** | **LOCK P — mesh** |
+| 25 / 28 cm | 263 / … | OK | nu | doar dacă FE cere |
 
-**Atenție paralelă:** clear sub **grindă** (h total 35) = **241 cm** — deja sub 255 pe traseul grinzilor. Asta e independent de 15 vs 20. Dacă legea cere 255 **și sub grinzi** în living, trebuie pachet separat (ridicare FF, grinzi mai plate, sau acceptare locală) — **înainte** de a îngroșa placa.
+Clear sub **grindă** (h total 35) = **259 cm** (≥255). Bandă retrasă.
 
 ### Recomandare implementator (optimă față de legea ta)
 
@@ -50,7 +51,9 @@
 | C. Reduci buildup pardoseală (12→7) + placă 20 | clear recuperat | mai puțină izol. termoacustică pe etaj |
 | D. Bandă/grindă locală / PT | rigiditate pe deschideri critice | util / clear local; complexitate |
 
-**Nu alegem A/B/C/D acum.** Alegem: **rămânem pe 15 + FE**. Tu confirmi că **255 sub placă** e hard; dacă și **255 sub grindă** e hard, următorul conflict de rezolvat e cei **241 cm**, nu îngroșarea plăcii.
+**Nu alegem A/B/C/D acum.** Alegem: **rămânem pe 15 + FE**.
+
+**LOCK D1 (2026-10-16 beneficiar):** 255 hard **sub placă**; **241 OK sub grindă** h35.
 
 ---
 

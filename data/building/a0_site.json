@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "id": "a0_site",
+    "version": "0.1",
+    "status": "AMPLASAMENT_STUDIU",
+    "generated": "2026-10-17T08:17:46.662Z",
+    "brief": "decisions/brief_A0_v01.md",
+    "note": "Corp finit 680×860 · fără pilastri afară · pe limită Dragalina + N · curte sud Cloșca"
+  },
+  "parcel": {
+    "cf": "54602 Turda",
+    "area_m2": 147,
+    "area_basis": "ridicare_topo_2011",
+    "area_note": "147 m² = teren canonic. 172 m² din acte/CF vechi = eronat — nu se folosește.",
+    "polygon_reconstructed_m2": 145.741,
+    "streets": {
+      "dragalina": "DREAPTA (est) — latura 1-2-3-4-5; C1 pe limită",
+      "closca": "JOS (sud) — latura 10-1; curte către Cloșca"
+    }
+  },
+  "body_cm": {
+    "ew": 680,
+    "ns": 860,
+    "pilasters_outside": false,
+    "excess_absorbed": "interior"
+  },
+  "footprint": {
+    "area_m2": 58.48,
+    "pot_pct": 39.78,
+    "pot_pct_147": 39.78,
+    "pot_basis": "finit_680x860_on_147_topo_2011",
+    "corners_site_m": {
+      "NW": {
+        "x": 1.249,
+        "y": 17.9306
+      },
+      "NE": {
+        "x": 8.0428,
+        "y": 18.2213
+      },
+      "SE": {
+        "x": 8.4105,
+        "y": 9.6291
+      },
+      "SW": {
+        "x": 1.6167,
+        "y": 9.3385
+      }
+    },
+    "along0_m_from_dragalina_N": 0.3,
+    "dragalina_edge_length_m": 18.538,
+    "placement": {
+      "east": "pe limita Dragalina",
+      "north": "spre vecin N (along minim în parcelă)",
+      "west": "în parcelă",
+      "south": "curte către Cloșca"
+    }
+  },
+  "constraints_from_brief": {
+    "clear_min_cm": 255,
+    "riser_max_cm": 16,
+    "useful_min_m2": 37,
+    "basement": "necessary_form_free",
+    "keep_layout": "mostly_v47_intent"
+  },
+  "next": "Etapa 2/3 — planuri ARH A1 pe acest corp (nu structură încă)"
+}

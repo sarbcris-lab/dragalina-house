@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_v47_a1_study",
-    "generated": "2026-10-16T12:19:20.076Z",
+    "generated": "2026-10-16T17:15:35.749Z",
     "status": "3D_STUDIU_A1",
     "source_plan": "data/building/v47_a1_study.json",
     "based_on": "v47_exact (referință neatinsă)",
@@ -35067,7 +35067,7 @@
       "z1_m": -0.3,
       "color": "#d8d0c0",
       "opacity": 0.98,
-      "label": "umplutură perim S hol (studiu)",
+      "label": "umplutură perim S hol",
       "site_layer": "umplutura"
     },
     {
@@ -35099,7 +35099,7 @@
       "z1_m": -0.3,
       "color": "#d8d0c0",
       "opacity": 0.98,
-      "label": "umplutură hol vest reintrant",
+      "label": "umplutură perim hol vest reintrant",
       "site_layer": "umplutura"
     },
     {

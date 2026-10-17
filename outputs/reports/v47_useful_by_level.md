@@ -1,27 +1,26 @@
-# Util pe nivel — P ≠ E (2026-10-15)
+# Util pe nivel — fețe walls (2026-10-17)
 
-Metodă: shoelace contur încălzit − pereți int. net − închidere termică puț − proem. stâlpi (FRAME).
+**Status:** NECONFIRMAT · o geometrie cu volumul (fațadă unică)
 
-## A1 amenajare
+**Metodă:** shoelace(fețe int. walls) − pereți int. net − thermal în poly − proem. stâlpi E/S.
 
-| Nivel | Brut (shoelace) | Pereți int net | Thermal | **Util** |
-|-------|----------------:|---------------:|--------:|---------:|
-| **Parter** | 40.285 | 1.156 | 0 | **39.129 m²** |
-| **Etaj (studio)** | 39.715 | 1.231 | 0 | **38.484 m²** |
-| Δ E − P | | | | **-0.645 m²** |
+## Fețe
 
-Palier scară rece (exclus din etaj): 1.26 m²
+| | Finit | Beton | Interior |
+|--|------:|------:|---------:|
+| E | 682,6 | 672,1 | **651,3** |
+| W | 0 | 0 | **31,3** |
+| N | 0 | 0 | **29,9** |
+| S intrare | 861,3 | 850,8 | **830,0** |
+| S dorm | 676,3 | 665,8 | **645** |
 
-## A1 FRAME (cu proeminențe stâlpi)
+## Tabel
 
-| Nivel | Brut | Pereți | Thermal | Proem. | **Util** |
-|-------|-----:|-------:|--------:|-------:|---------:|
-| **Parter** | 40.285 | 1.156 | 0.255 | 0.369 | **38.505 m²** |
-| **Etaj (studio)** | 39.715 | 1.231 | 0.255 | 0.369 | **37.86 m²** |
-| Δ E − P | | | | | **-0.645 m²** |
+| Nivel | Util geometric m² |
+|-------|------------------:|
+| **Parter** | **38,652** |
+| **Etaj (studio)** | **37,886** |
 
-## De ce diferă
+Etichete libere E (informativ): 37,469 m² — nu înlocuiesc geometricul.
 
-- **Parter:** include livingul de sub palierul scării (zona Y440–590 / X565–650 în contur).
-- **Etaj:** studio — **fără** palierul scării reci (circulație scară, nu apartament).
-- A8 (baie 15 cm) reduce utilul pe ambele nivele la fel (aceiași pereți int.).
+Δ vs util umflat (661,9): P/E ≈ **−1,0 m²** (corecție — nu pierdere reală de cameră).

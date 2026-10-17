@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="877" viewBox="0 0 519.592 876.7560000000001">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="72" y="36" font-size="18" font-weight="700" fill="#111111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">A0 · Plan situație</text>
+<text x="72" y="58" font-size="14" fill="#222222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Corp finit 680 × 860 cm · fără pilastri afară</text>
+<text x="72" y="78" font-size="13" fill="#333333" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">CF 54602 Turda · Dragalina = EST · Cloșca = SUD</text>
+<polygon points="389.6,766.8 388.9,751.7 373.5,390.2 373.1,380.2 361.1,100.0 352.9,100.6 72.0,121.1 72.4,129.3 94.5,574.9 104.0,766.8 389.6,766.8" fill="#e8f0e0" stroke="#1a3d1a" stroke-width="2.2"/>
+<polygon points="117.0,121.3 361.5,110.8 374.8,420.1 130.2,430.6 117.0,121.3" fill="#4a453f" stroke="#111111" stroke-width="2.5"/>
+<rect x="183.87085658042966" y="252.68011966554639" width="124" height="32" rx="4" fill="#000000" fill-opacity="0.8"/>
+<text x="245.87085658042966" y="276.6801196655464" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">680 × 860</text>
+<text x="407.592" y="433.37800000000004" font-size="15" font-weight="700" fill="#0d3d0d" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif" transform="rotate(90 407.592 433.37800000000004)">DRAGALINA</text>
+<text x="246.79799999999997" y="798.7560000000001" text-anchor="middle" font-size="15" font-weight="700" fill="#0d3d0d" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">CLOȘCA</text>
+<text x="239.25345314005864" y="98.79013082252068" text-anchor="middle" font-size="13" font-weight="700" fill="#111111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">N ↑</text>
+<rect x="64" y="784.7560000000001" width="400" height="76" rx="6" fill="#f5f3ee" stroke="#bbbbbb" stroke-width="1"/>
+<text x="72" y="810.7560000000001" font-size="14" font-weight="700" fill="#111111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Amprentă 58.48 m²</text>
+<text x="72" y="830.7560000000001" font-size="14" fill="#111111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">POT = 39.78% pe teren 147 m² (topo 2011)</text>
+<text x="72" y="850.7560000000001" font-size="12" fill="#333333" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Curte sud liberă · studiu neconstruibil</text>
+</svg>

@@ -1,0 +1,83 @@
+{
+  "recommended_id": "R",
+  "note": "Optimă pe brief studiu — NU validată FE/P100",
+  "variants": [
+    {
+      "id": "R",
+      "name": "A + placă15 + B_BAND_X320 + D3a",
+      "clear": 255,
+      "util": 37.469,
+      "slab_sls": "OK_ordin",
+      "facade_concrete": "pilastri A1/A2",
+      "calc_risk": "mediu",
+      "score": 9,
+      "pick": true
+    },
+    {
+      "id": "1",
+      "name": "A + placă15 fără bandă",
+      "clear": 255,
+      "util": 37.469,
+      "slab_sls": "FAIL_ordin",
+      "facade_concrete": "pilastri",
+      "calc_risk": "ridicat_placa",
+      "score": 4,
+      "pick": false
+    },
+    {
+      "id": "2",
+      "name": "A + placă20 fără bandă",
+      "clear": 250,
+      "util": 37.469,
+      "slab_sls": "marginal",
+      "facade_concrete": "pilastri",
+      "calc_risk": "mediu",
+      "score": 5,
+      "pick": false
+    },
+    {
+      "id": "3",
+      "name": "A + placă28",
+      "clear": 242,
+      "util": 37.469,
+      "slab_sls": "OK_ordin",
+      "facade_concrete": "pilastri",
+      "calc_risk": "scazut_placa",
+      "score": 3,
+      "pick": false
+    },
+    {
+      "id": "4",
+      "name": "A fără C_N_MID (cu bandă)",
+      "clear": 255,
+      "util": 37.469,
+      "slab_sls": "bandă fără reazem N",
+      "facade_concrete": "mai puțin pe N",
+      "calc_risk": "ridicat",
+      "score": 2,
+      "pick": false
+    },
+    {
+      "id": "5",
+      "name": "Along toți → 30×30 acum",
+      "clear": 255,
+      "util": 37.469,
+      "slab_sls": "depinde bandă",
+      "facade_concrete": "mai puțin",
+      "calc_risk": "prematur_seism",
+      "score": 6,
+      "pick": false
+    },
+    {
+      "id": "6",
+      "name": "Varianta B diafragme",
+      "clear": 255,
+      "util": "necunoscut",
+      "slab_sls": "alt sistem",
+      "facade_concrete": "posibil mai curat",
+      "calc_risk": "studiu_nou",
+      "score": null,
+      "pick": false
+    }
+  ]
+}

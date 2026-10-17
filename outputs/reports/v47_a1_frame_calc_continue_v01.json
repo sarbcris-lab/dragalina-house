@@ -1,0 +1,245 @@
+{
+  "status": "preliminar_continuare — nu adoptare",
+  "slab_2_3": {
+    "Q_qp": 5.85,
+    "opts": {
+      "flat_15_full": {
+        "L": 6.2,
+        "h_cm": 15,
+        "d_cm": 12.5,
+        "L_over_d": 49.6,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": false,
+        "defl": {
+          "delta_mm": 22.3,
+          "limit_L250_mm": 24.8,
+          "pass_L250": true,
+          "note": "elastic nefisurat — optimist; fisurat ≈ 2–3×"
+        },
+        "label": "placă 15 pe 6,2 m (fără bandă)"
+      },
+      "flat_15_cont_K15": {
+        "L": 6.2,
+        "h_cm": 15,
+        "d_cm": 12.5,
+        "L_over_d": 49.6,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true,
+        "defl": {
+          "delta_mm": 22.3,
+          "limit_L250_mm": 24.8,
+          "pass_L250": true,
+          "note": "elastic nefisurat — optimist; fisurat ≈ 2–3×"
+        },
+        "label": "placă 15 · K=1,5 continuu (tot 6,2)"
+      },
+      "flat_20_full": {
+        "L": 6.2,
+        "h_cm": 20,
+        "d_cm": 17.5,
+        "L_over_d": 35.4,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true,
+        "defl": {
+          "delta_mm": 9.9,
+          "limit_L250_mm": 24.8,
+          "pass_L250": true,
+          "note": "elastic nefisurat — optimist; fisurat ≈ 2–3×"
+        },
+        "label": "placă 20 pe 6,2 m"
+      },
+      "band_15_half": {
+        "L": 3.1,
+        "h_cm": 15,
+        "d_cm": 12.5,
+        "L_over_d": 24.8,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true,
+        "defl": {
+          "delta_mm": 1.4,
+          "limit_L250_mm": 12.4,
+          "pass_L250": true,
+          "note": "elastic nefisurat — optimist; fisurat ≈ 2–3×"
+        },
+        "label": "placă 15 + bandă pe axa C_N_MID–C_S_DORM_E (L≈3,1)"
+      },
+      "flat_28_full": {
+        "L": 6.2,
+        "h_cm": 28.000000000000004,
+        "d_cm": 25.5,
+        "L_over_d": 24.3,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true,
+        "defl": {
+          "delta_mm": 4.1,
+          "limit_L250_mm": 24.8,
+          "pass_L250": true,
+          "note": "elastic nefisurat — optimist; fisurat ≈ 2–3×"
+        },
+        "label": "placă 28 pe 6,2 (comparație — impact clear)"
+      }
+    },
+    "bandBeam": {
+      "L_m": 6.45,
+      "trib_m": 3.1,
+      "q_kNm": 31.3,
+      "M_kNm": 162.6,
+      "section": "30×35 tip",
+      "As_mm2": 1385,
+      "mu": 0.361,
+      "flex_ok": false,
+      "clear_impact": "h=35 → clear 241 pe bandă (D1 OK); NU pe A7 compartimentare ca grindă vizibilă — bandă în placă / grindă îngropată de studiat"
+    }
+  },
+  "seismic_2_1b": {
+    "hypothesis": "ag=0.10g · S=1.2 · q=3 · λ=0.85 — IPÓTEZĂ, nu zonare 131",
+    "W_tot_kN": 672,
+    "Sd_g": 0.1,
+    "Vb_kN": 57.1,
+    "V_per_col_avg_kN": 5.19,
+    "M_story_ord_kNm": 7.48,
+    "Nrd_30x30": 1200,
+    "M_rd_30x30_ord_kNm": 55,
+    "M_rd_30x40_ord_kNm": 75,
+    "note": "V/M medii pe stâlp; colțurile iau mai mult — FE+P100 obligatoriu înainte de along→30",
+    "columns": [
+      {
+        "id": "C_NW",
+        "role": "colț",
+        "M_factor": 1.4,
+        "M_ord_kNm": 10.5,
+        "try_30x30_after_FE": true,
+        "keep_30x40_hint": false,
+        "ok_vs_Mrd30_70pct": true,
+        "ok_vs_Mrd40_70pct": true
+      },
+      {
+        "id": "C_N_MID",
+        "role": "fațadă N",
+        "M_factor": 1.1,
+        "M_ord_kNm": 8.2,
+        "try_30x30_after_FE": true,
+        "keep_30x40_hint": false,
+        "ok_vs_Mrd30_70pct": true,
+        "ok_vs_Mrd40_70pct": true
+      },
+      {
+        "id": "C_NE",
+        "role": "colț",
+        "M_factor": 1.4,
+        "M_ord_kNm": 10.5,
+        "try_30x30_after_FE": true,
+        "keep_30x40_hint": false,
+        "ok_vs_Mrd30_70pct": true,
+        "ok_vs_Mrd40_70pct": true
+      },
+      {
+        "id": "C_W_MID",
+        "role": "fațadă",
+        "M_factor": 1.1,
+        "M_ord_kNm": 8.2,
+        "try_30x30_after_FE": true,
+        "keep_30x40_hint": false,
+        "ok_vs_Mrd30_70pct": true,
+        "ok_vs_Mrd40_70pct": true
+      },
+      {
+        "id": "C_W_DORM",
+        "role": "colț",
+        "M_factor": 1.3,
+        "M_ord_kNm": 9.7,
+        "try_30x30_after_FE": true,
+        "keep_30x40_hint": false,
+        "ok_vs_Mrd30_70pct": true,
+        "ok_vs_Mrd40_70pct": true
+      },
+      {
+        "id": "C_S_DORM_E",
+        "role": "30×30",
+        "M_factor": 1,
+        "M_ord_kNm": 7.5,
+        "try_30x30_after_FE": true,
+        "keep_30x40_hint": false,
+        "ok_vs_Mrd30_70pct": true,
+        "ok_vs_Mrd40_70pct": true
+      },
+      {
+        "id": "C_E_GEAM_S",
+        "role": "fațadă E",
+        "M_factor": 1.2,
+        "M_ord_kNm": 9,
+        "try_30x30_after_FE": true,
+        "keep_30x40_hint": false,
+        "ok_vs_Mrd30_70pct": true,
+        "ok_vs_Mrd40_70pct": true
+      },
+      {
+        "id": "C_E_PAL",
+        "role": "nod consolă",
+        "M_factor": 1.5,
+        "M_ord_kNm": 11.2,
+        "try_30x30_after_FE": false,
+        "keep_30x40_hint": true,
+        "ok_vs_Mrd30_70pct": true,
+        "ok_vs_Mrd40_70pct": true
+      },
+      {
+        "id": "C_CASA_SCARA",
+        "role": "separator",
+        "M_factor": 1,
+        "M_ord_kNm": 7.5,
+        "try_30x30_after_FE": true,
+        "keep_30x40_hint": false,
+        "ok_vs_Mrd30_70pct": true,
+        "ok_vs_Mrd40_70pct": true
+      },
+      {
+        "id": "C_S_INTRARE_W",
+        "role": "fațadă S",
+        "M_factor": 1.1,
+        "M_ord_kNm": 8.2,
+        "try_30x30_after_FE": true,
+        "keep_30x40_hint": false,
+        "ok_vs_Mrd30_70pct": true,
+        "ok_vs_Mrd40_70pct": true
+      },
+      {
+        "id": "C_S_INTRARE_E",
+        "role": "30×30",
+        "M_factor": 1,
+        "M_ord_kNm": 7.5,
+        "try_30x30_after_FE": true,
+        "keep_30x40_hint": false,
+        "ok_vs_Mrd30_70pct": true,
+        "ok_vs_Mrd40_70pct": true
+      }
+    ]
+  },
+  "inverted_2_5": {
+    "id": "B_Y590_EDGE_INVERTED",
+    "L_m": 1.15,
+    "geo": "Y575–600 dy=25 · X566.3 dx=115 · z sandwich −30…+32",
+    "q_kNm": 25,
+    "M_kNm": 4.1,
+    "V_kN": 14.4,
+    "west_support": "placă + B_SEP_AFTER_DOOR + C_CASA_SCARA — slab pe V dacă placa e subțire",
+    "east_support": "C_SHAFT_E_PIER",
+    "pier": {
+      "section": "15×15",
+      "N_ord": 44,
+      "Nrd_15": 300,
+      "note": "pier mic — OK axial ordin; confinare/legătură la grindă = detaliu"
+    },
+    "verdict": "Geo OK (ușă liberă). Calcul: armare întoarsă + transmitere V prin placă 15 = FE local. Nu schimba dy=25 acum."
+  },
+  "model_actions": {
+    "change_sections": false,
+    "change_slab_th": false,
+    "recommend_next": "FE placă 15 cu/fără bandă pe axa N_MID–S_DORM_E; FE P100 pe cadre; detaliu nod întoarsă V"
+  }
+}

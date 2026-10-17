@@ -1,5 +1,530 @@
 # Jurnal decizii
 
+## 2026-10-17 — A1.108: MS −2,5 cm sud
+
+- Nișă MS (A8 N+S + aparat): **+2,5 cm sud** (anulează A1.93).
+- Clear MS Y189–249; flanc prosoape dy 30; raft est Y264–294.
+
+## 2026-10-17 — A1.107: C_N_MID pe axa N–S mid
+
+- `C_N_MID` mutat: **față est = XI** (ca `C_S_DORM_E` / `C_S_INTRARE_W`).
+- Ax B: N_MID + S_DORM_E + S_INTRARE_W aliniați pe separator.
+
+## 2026-10-17 — A1.106: util baie recalculat (L)
+
+- Baie net **4,4504 m²** = corp 3,5192 + duș sud 0,90 + flanc 0,1238 − proem. 0,07 − A8 0,0225.
+- Detaliu în `areas.useful_baie_detail`; etichetă plan „util (L)”.
+
+## 2026-10-17 — A1.105: gol hol↔living = culoare living
+
+- `baie_living_gol` (bandă A7 fără ușă) umplut cu **living** `#e8efe4` pe plan.
+
+## 2026-10-17 — A1.104: undo ×2 (A1.103 + A1.102)
+
+- Anulate alinierea A7 pe C_N_MID est și jog-ul hol.
+- Separator A7 continuu la XI; `baie_sud_gol` din nou până la separator.
+
+## 2026-10-17 — A1.103 / A1.102 / A1.101 — anulate
+
+- (vezi A1.104)
+
+## 2026-10-17 — A1.100: suprafețe utile = uniune corectă
+
+- Brut = **uniune** rect+parts (fără dublă numărare duș/dressing/MS).
+- Pereți A7/A8 scăzuți pe uniune; etichete plan = net pe nivel.
+
+## 2026-10-17 — A1.99: dressing în L, zid ⊥ la colț
+
+- În spatele glisantelor **180**: dressing **L** continuu (fără zid între rafturi).
+- **nisa_est_S** (⊥ pe uși) doar Y234–246,5 — se oprește la **colțul L** (sud MS).
+- Braț scurt L = sud MS, X151,2→211,2.
+
+## 2026-10-17 — A1.98: separator MS↔dulap vizibil
+
+- Fill dressing nu mai acoperă **nisa_est_S** (începe la X166,2, sud MS).
+- Separator redesenat **după** fill — zid A8 între MS și dulap.
+
+## 2026-10-17 — A1.97: zid dreapta dulap + nișă spate
+
+- Refăcut **nisa_est_S** A8 X151,2 Y234–294 (înlocuiește stub `nisa_colt_dressing`).
+- Dulap **120** vest; **nișă raft** în dreapta spate (est de zid).
+- Glisante 180 rămân pe gură.
+
+## 2026-10-17 — A1.96: dressing = culoare dormitor
+
+- Verde + alb din dulap (inclusiv **45×32,5**) → **dorm** `#e9e0d5` (nu living).
+- Living revenit la `#e8efe4`.
+
+## 2026-10-17 — A1.95: sanitare
+
+- Blat + lavoar **+15 cm est**; WC **+10 cm sud**.
+
+
+
+## 2026-10-17 — A1.94: colț dressing închis (~45)
+
+- `nisa_dulap_spate` prelungit până la X166,2; `hol_nisa_S` de la X151,2.
+- Colț vertical Y234–246,5; `dorm_flanc_est` **47,5** cm (Y246,5–294) — L închis cu `dorm_baie_nord`.
+
+## 2026-10-17 — A1.93: MS +2,5 N + zid S dressing
+
+- MS clear Y186,5–246,5 (+2,5 N); prosoape dy 27,5 până la zid N.
+- Refăcut **hol_nisa_S** Y246,5–261,5 — separator MS ↔ dressing (dulap 3 glisante).
+- Raft est Y261,5–294.
+
+## 2026-10-17 — A1.92: gol zid = nișă dormitor
+
+- Fosta amprentă **nisa_est_S** (golul unde era zidul) + dulap + raft = **nișă dorm 180×60**, culoare dormitor.
+- Un singur `dressing_nisa` pe Y234–294.
+
+## 2026-10-17 — A1.91: duș +15 N + zid baie↔dorm
+
+- Duș **120×90** Y129–219 (+15 N).
+- Refăcut **nisa_dulap_spate** A8 pe sud duș (Y219–234, dx 120) — separator baie↔dorm (lipsea din A1.85).
+- Dulap rămâne Y234–294; prosoape/MS pe banda Y144.
+
+## 2026-10-17 — A1.90: fără zid est în dulap
+
+- Scos **nisa_est_S** (A8 pe spatele dulapului / între dulap și bandă MS).
+- Dressing continuous pe 180 în spatele glisantelor.
+
+## 2026-10-17 — A1.89: glisante dressing 3×60 pe 180
+
+- Scos **hol_nisa_S** (colț E–V / paralel sud al nișei dorm).
+- Gura nișei spre dorm: **3 uși glisante** pe **180** (X31,2–211,2).
+- Flanc est prelungit Y249–294; raft est 45; MS rămâne cu A8 nord + acces hol.
+
+## 2026-10-17 — A1.87: MS cu A8 15 N+S
+
+- Nișă MS: zid N Y174–189 · clear Y189–249 · zid S Y249–264 (A8 15).
+- Aparatul în clear (nu pe/sub ziduri); gura est spre hol.
+
+## 2026-10-17 — A1.86: MS +15 cm spre sud
+
+- (înlocuit A1.87 — lipseau zidurile N/S)
+
+## 2026-10-17 — A1.85: MS în nișa baie↔dorm (schiță)
+
+- MS **60×60** est de duș (Y174–234), acces hol — nu lângă dulap.
+- Stivă: duș **120×90** + prosoape 30 | MS 60; dulap **120×60** + raft 30.
+- Corecție A1.84: MS era greșit pe banda dulapului (Y234–294).
+
+## 2026-10-17 — A1.84: duș în nișă (fără +15 în dorm)
+
+- (parțial — MS mutat corect în A1.85)
+
+## 2026-10-17 — A1.83: schiță baie+hol+dorm
+
+- (corectat A1.84 — duș 90 ieșea 15 cm din nișă)
+
+## 2026-10-17 — A1.82: dus / WC / lavoar ca V47
+
+- (înlocuit de A1.83 / schiță)
+
+## 2026-10-17 — A1.81: nișă MS +2 cm spre dorm
+
+- Hol-nișă Y191–251 (era 189–249); baie util net **4,52 m²** (≥4,5).
+
+## 2026-10-17 — A1.80: colțuri nișă închise baie/dorm
+
+- Flancuri vest prelungite până la nișa hol; est flancuri închis spre hol (deschidere doar baie/dorm).
+
+## 2026-10-17 — A1.79: nișă hol 60×60 la mijloc
+
+- Nișă hol util **60×60**, centru Y219 (mijloc hol 159–279); gura spre hol.
+- Flancuri baie/dorm **60×30**; dressing vest util **120**.
+
+## 2026-10-17 — A1.78: ușă hol→baie
+
+- Batantă pe `baie_sud_gol` gol **80**; balama E = **dreapta din hol**; foaie → nord în baie.
+
+## 2026-10-17 — A1.77: a 2-a nișă spre baie
+
+- `nisa_dulap_est` prelungit S→N până la `baie_sud_gol` (Y144–294).
+- Nișă baie util **180×51**, deschisă nord spre baie; spate comun cu nișa dorm.
+
+## 2026-10-17 — A1.76: zid baie N de gol 120
+
+- `baie_sud_gol` A8: Y144–159, X226,2→separator — paralel `dorm_baie_nord`, îndreptul nișei.
+- Baie utilă până la fața N a zidului (dy 114).
+
+## 2026-10-17 — A1.75 UNDO
+
+- Revenit la A1.74b (gol 120 după colț dorm). Cererea „închide baie simetric + ușă din hol” neînțeleasă — de clarificat.
+
+## 2026-10-17 — A1.74: gol 120 living–baie
+
+- Gol **120** imediat N de colț dorm (Y279→159); colț Y279–294 plin.
+
+## 2026-10-17 — A1.73: nișă+ușă la 90 cm de pat
+
+- `DORM_N` 270→**294**; nișă+`baie_usa_dorm` odată; clear N pat→ușă **90**.
+
+## 2026-10-17 — A1.72: fără pocket · batantă baie→dorm
+
+- Scoase `baie_usa` + `dorm_usa` (casete) → **zid plin** living↔dorm/baie.
+- `baie_usa_dorm`: batantă gol **80**, balama V, deschidere **stânga în dorm** (sud).
+
+## 2026-10-17 — A1.71: pat −10 cm de vest
+
+- Pat X**41,2** (era 31,2) — clear 10 față de perete, evită stâlp +10.
+
+## 2026-10-17 — A1.70: nișă util 180×60
+
+- Clear 180 E–V × 60 N–S; A8 15 pe spate+est; front @Y270.
+- Baie N–S → **165** (era 157,2).
+
+## 2026-10-17 — A1.69: pat 210×170
+
+- Căpătâi vest @X31,2; Y384–554; **90 cm** clear până la față N `dormitor_sud` (Y644). Pe P+E.
+
+## 2026-10-17 — A1.68: cote utile pe plan
+
+- Pe cameră: clear `L×l` + m² util (nu doar etichetă).
+- Lanț N→S vest: baie / bandă nișă / dorm + cotă A7; goluri uși cu clear.
+
+## 2026-10-17 — A1.67: uși glisante pe separator / terasa_est
+
+- `baie_usa` + `dorm_usa` (pocket) → X**339,9** (= perete_comun_est); casete incluse.
+- `buc_terasa_etaj` → X**322,5** (= terasa_est); balama pe perete mutat.
+- `dorm_terasa` / `intrare_parter` erau deja pe geometrie nouă.
+
+## 2026-10-17 — A1.66b: cote coerente (nu zero)
+
+- Readus: cote clear pe camere, goluri cheie, clear scară, +10 stâlpi, gabarit.
+- Rămân scoase: axe A–D/1–6, cote pe fiecare segment perete, spam parapet/note.
+
+## 2026-10-17 — A1.66: plan curat (fără zgomot)
+
+- (prea agresiv — corectat 66b)
+
+## 2026-10-17 — A1.65: separator XI −7,6 · ușă etaj 100
+
+- `XI` 360→**352,4**; perete_comun / terasa_est / suduri / C_S_DORM_E odată cu el.
+- `intrare_etaj` gol **100** (Y450–550); buc E net ≥5; **scară neschimbată**.
+
+## 2026-10-17 — Audit planuri A1 v02
+
+- Verdict: P/E **OK studiu**; nu îngheț. Rezerve: gol ușă **86**; pier 20×40 FE.
+- Raport: `decisions/audit_a1_plans_v02.md` · canvas `audit-planuri-a1-v02`.
+
+## 2026-10-17 — A1.64: parapet + placă terasă −8 cm sud (spre N)
+
+- Muchia sud placă/parapet retrasă **8 cm** spre nord (P + E); parapete V/E scurtate la fel.
+
+## 2026-10-17 — A1.63b: fără izolație pe C_S_DORM_E (NE terasă)
+
+- Scos placarea 8 cm de pe colțul NE terasă — despărțea stâlpul de zid.
+
+## 2026-10-17 — A1.63: izolație canturi · placă terasă −8 · util detaliat
+
+- Izolație 8 cm pe cant: `C_S_INTRARE_E` (S+E), + capăt est `palier_inchidere_sud_p`. (`C_S_DORM_E` anulat în 63b.)
+- Placă terasă P/E retrasă **8 cm** pe laterale V+E; parapet vest pe fața stâlpilor (nu pe ETICS).
+- Colț L / ușă: gol **86**, stâlp @**536** (ușă Y450–536); buc etaj net ≥5 m² (față V buc_est − proem.).
+- Living E în L (fără palier rece). Util net P/E recalculat pe camere − proem. − A7/A8.
+
+## 2026-10-17 — A1.62: C_CASA_SCARA + intrare_etaj → N
+
+- Colț L / stâlp / ușă: **579.1→550** (= `Y_PALIER_N`+gol100). Ușa Y450–550 (lipită de mid).
+- Bucătărie etaj crește (~203×279 ≈ 5,65 m²).
+
+## 2026-10-17 — A1.61b: undo podest→pier · palier superior până la mid
+
+- Anulat: mărirea podestului SE până la `C_E_LAMELE` (R2/podest ca A1.60).
+- Palier superior: nord clear = față S mid (`Y_PALIER_N`); zid A6 pe stâlpii mid.
+
+## 2026-10-17 — A1.60: C_E_LAMELE și pe parter
+
+- Stâlpul apare pe P+E (continuu / fundație posibilă). Parapet + lamele + zid plin est scară = **doar etaj**.
+
+## 2026-10-17 — A1.59: parapet/lamele est scară doar pe etaj
+
+- Parapet/lamele nu pe plan P. (Stâlpul readus pe P în A1.60.)
+
+## 2026-10-17 — A1.58: pier 20×40 · parapet continuă după stâlp
+
+- Pier lungime fațadă **40** (≈¼–⅓ din L lamele ~130); parapet jos de imediat sud de pier (≥70 sub acoperiș + podest). Fără gap gol.
+
+## 2026-10-17 — A1.57: lamele mai înalte (proporție randare vs geam)
+
+- H **210** (z FF+30→+240): vârf ≈ lintou geam; jos sub prag (~⅓×H geam).
+
+## 2026-10-17 — A1.56: est scară — plin / lamele / pier / gap70 / parapet podest
+
+- Geam living neschimbat.
+- Zid plin pe palier (+1 treaptă); gol lamele de la a 2-a treaptă: **L≈145 · H** (→210 în A1.57).
+- Pier `C_E_LAMELE` 20×25; gap **70** la limita acoperiș R2; parapet jos pe podest E+S.
+
+## 2026-10-17 — A1.55: geam est centrat în jumătatea nordică
+
+- `geam_est` mărit spre sud: centru @ **Y215** (=860/4); L≈220,4 (Y104,8→325,2).
+
+## 2026-10-17 — A1.54: stâlpi mid pe axa ½860 · palier odată cu ei
+
+- `C_W_MID` + `C_E_PAL`: centru @ **Y430** (y=410, dy=40); `Y_PALIER_N`=**450** (fața S).
+
+## 2026-10-17 — A1.53: axe mijloc clădire 680/2 · 860/2
+
+- Pe plan: albastru **½680** @ X340 · **½860** @ Y430 (gabarit finit).
+
+## 2026-10-17 — A1.52: scos C_E_GEAM_S · C_E_PAL pe ax mid · palier +N
+
+- `C_E_GEAM_S` eliminat (stâlp pe R2 rece — ulterior).
+- `C_E_PAL` pe aceeași Y cu `C_W_MID`; `Y_PALIER_N` = fața S stâlpi mid → palier mărit N–S.
+- Ax 3 unificat (fără 3').
+
+## 2026-10-17 — A1.51: axe pe plan (centre stâlpi)
+
+- A–D (V→E) · cifre N→S pe centre stâlpi; (mid E/V erau nealiniate — rezolvat în A1.52).
+
+## 2026-10-17 — A1.50: plan A3 mărit · cote complete · detaliu fațadă E
+
+- Scale ~2,15 · hârtie A3; cote pe camere, segmente perete, goluri, scară clear/parapet.
+- Pe geam: L + H=150 + prag=90; pe parapete: h (105/120). Anti-suprapunere texte.
+- `outputs/plans/a1_detaliu_fatada_est.svg` — desfășurare S→N cu lungimi pe fiecare segment.
+
+## 2026-10-17 — A1.49: undo A1.45–48 → A1.44 (parapet est continuu)
+
+- Scos `C_E_JALUZELE`, gol jaluzele, zid descendent. Parapet est scară = bandă continuă palier→capăt R2 (ca înainte de Belgian).
+
+## 2026-10-17 — A1.48 / A1.47 / A1.46 / A1.45 — ANULATE
+
+- (est scară Belgian — undo complet)
+
+## 2026-10-17 — A1.44: C_CASA_SCARA −10 N · bucătărie ≥5 m²
+
+- Colț L / stâlp / ușă: 589.1→**579.1**; bucătărie etaj **≈202,8×249,7 ≈ 5,06 m²** (240×203 ar fi 4,87 — sub 5).
+- Palier clear N–S rămâne până la R2 (~115); R2/podest nemișcate.
+
+## 2026-10-17 — A1.43: palier 115×115 · zid N −25,2 · ușă 100
+
+- Clarificare: mutarea **ocolțului L** (`C_CASA_SCARA`) odată cu zidul N **nu** mărește clear-ul.
+- `Y_PALIER_N` 469.3→**444.1** (−25,2); `C_E_PAL` urmează zidul; `C_CASA_SCARA` rămâne @589.1.
+- Palier clear **105×115** → bandă **115×115** (ca podestul); `intrare_etaj` gol **100**.
+
+## 2026-10-17 — A1.42: gol 90 · palier sub zid N · ușă stânga
+
+- `intrare_etaj`: **gol 90** cm; deschidere **stânga înăuntru** (balama S, foaie vest).
+- `palier_superior`: deck de la fața **sud** a `palier_A6_nord_etaj` (nu peste perete); clear ~105×90.
+
+## 2026-10-17 — A1.41: intrare etaj lângă stâlp · fără ecran
+
+- `intrare_etaj`: gol 90, sud exact pe fața N a `C_CASA_SCARA` (Y499.1–589.1).
+- `ecran_frigider`: **ELIMINAT**; `Y_BUC_E` = 589.1 (bucătărie sud de colț L).
+
+## 2026-10-17 — A1.40: C_CASA_SCARA pe colțul L hol NE
+
+- `C_CASA_SCARA`: mutat nord pe colț (`Y589.1` = `palier_inchidere_sud_p` × `buc_est`); X neschimbat (+10 în hol).
+
+## 2026-10-17 — A1.39: geam dorm→terasă centrat între stâlpi
+
+- `dorm_terasa`: gol 150 cm centrat între `C_W_DORM` și `C_S_DORM_E` (mai la vest față de proba X120).
+
+## 2026-10-17 — A1.38: ușă intrare P — gol 100 · dreapta înăuntru
+
+- `intrare_parter`: gol **100** cm; de pe terasă deschizi **spre dreapta înăuntru** (balama S; foaie est în hol).
+
+## 2026-10-17 — A1.37: trepte + parapet est −20 vest · sud −20
+
+- 2 trepte + `terasa_parapet_est_neacoperit` mutate 20 cm vest; `terasa_parapet_sud_w` + deck `palier_parter` scurtate 20 cm.
+
+## 2026-10-17 — A1.36: +1 treaptă R1 · 19×16 FF↔FF
+
+- +1 treaptă la baza R1 (going 210→**240**, 8×30); R1 **9**↑, R2 **10**↑ → **19×16 = +304** FF↔FF; podest **+144**.
+
+## 2026-10-17 — A1.35: C_S_INTRARE_W −10 cm vest
+
+- Stâlp hol SV mutat 10 cm spre vest (x = terasa_est.x − 10).
+
+## 2026-10-17 — A1.34: C_S_INTRARE_W — placare unită cu sud
+
+- Placare vest prelungită +8 cm sud; bandă sud pe stâlp — unește cu izolația fațadei sud.
+
+## 2026-10-17 — A1.33: fără placare pe C_S_DORM_E (colț)
+
+- Placare 8 cm doar `C_W_DORM` (sud) + `C_S_INTRARE_W` (vest); colțul `C_S_DORM_E` fără.
+
+## 2026-10-17 — A1.32: placare 8 cm pe stâlpi terasă
+
+- Stâlpi nemișcați. Pe fețele spre terasă: **8 cm izolație** (proeminență pe pereții terasei) — `C_W_DORM` sud, `C_S_DORM_E` sud+vest, `C_S_INTRARE_W` vest.
+
+## 2026-10-17 — A1.31: undo A1.29–A1.30
+
+- Revenire la A1.28: stâlpi dorm/SV pe finit; fără overlay/mutări greșite pentru izolație pe stâlpi terasă.
+
+## 2026-10-17 — A1.28: C_S_INTRARE_W pe finit vest
+
+- Stâlp SV bucătărie: față vest = `terasa_est.x` (perete finit), nu +10 inset.
+
+## 2026-10-17 — A1.27: trepte calculate (going = n×30)
+
+- Going R1/R2 forțat `n×tread` (nu remap ~29,9). Etichetă = `going/n` din geometrie, nu text hardcodat.
+
+## 2026-10-17 — A1.26: trepte pe plan = going/30
+
+- R1 desenat cu **7×30**, R2 cu **9×30** (nu 8/10 contratrepte ca benzi).
+
+## 2026-10-17 — A1.25: stâlpi dormitor sud pe finit
+
+- `C_W_DORM` + `C_S_DORM_E`: față sud coborâtă pe `dormitor_sud` finit (nu pe extrema EB20).
+
+## 2026-10-17 — A1.24: fără EB20 pe vest terasă
+
+- Peretele `vest` tăiat la nordul `dormitor_sud` (ca în sursă Y30–645). Pe terasă vest rămâne doar parapet A5 — fără umplutură EB20.
+
+## 2026-10-17 — A1.23: C_S_INTRARE_W pe colțul L (terasa × sud)
+
+- Stâlp SV bucătărie în colțul real: vest = `terasa_est.x + 10` (limita izolației pe terasă), sud = `NS − 11,2`.
+
+## 2026-10-17 — A1.22: C_S_INTRARE_W în colț SV (limita izolației)
+
+- (suprascris de A1.23) vest era doar pe capătul sud_buc; prea est față de colțul L.
+
+## 2026-10-17 — A1.21: parapet fără EB20 · izolație corectă · colțuri stâlpi
+
+- Parapet terasă = gri solid A5 (fără cărămidă/hașură EB20).
+- `terasa_est`: izolație spre **terasă (V)**, nu spre hol (era pe „interior”).
+- Scos peticul de izolație pe capătul est dormitor_sud (față interioară).
+- Goluri colț stâlpi: izolație pe finit în fața stâlpilor + colțuri N/W N/E.
+
+## 2026-10-17 — A1.20: parapet · gaura living · scară curățată · palier
+
+- Parapete terasă din `parapets_cm` = **beton/zidărie A5** (nu izolație).
+- Gaura living P est: EB20 lipsea după C_E_PAL → 589; fix span după ultimul stâlp.
+- Scara: pe P doar R1+podest (+ghost R2/palier); pe E palier+R2 — ca plan real (ref. Dragalina 120 A03/A04).
+- Palier: **105×120 clear** + parapet est 10 = bandă **115** (V47; nu redus).
+
+## 2026-10-17 — A1.19: 3 straturi · goluri pe falie · izolație colțuri
+
+- Doar **beton / EB20 Akustik / izolație** pe plan (fără tencuială/klinker/GKB).
+- Uși & geamuri pe falie (nu pe izolație).
+- Petice izolație: colț buc SE, capăt dorm SE, bandă est living continuă.
+
+## 2026-10-17 — A1.18: fără EB20 pe exterior
+
+- Beneficiar: încă era umplutură pe exterior.
+- Cauze: (1) span perete→primul stâlp = banda de colț ~11 cm; (2) A6 fără stâlpi până la finit est.
+- Fix: EB20 doar între stâlpi consecutivi + clip față de inset-ul de colț (nu pe finit).
+
+## 2026-10-17 — A1.17: izolație continuă · EB20 între stâlpi
+
+- Beneficiar: lipsea izolația continuă pe exterior; cărămida nu stă „lângă” stâlpi pe fața ext.
+- Pe plan: ETICS/ISOVER bandă continuă (și peste stâlpi); EB20 doar în span-urile dintre stâlpi; beton = stâlpi.
+
+## 2026-10-17 — A1.16: audit + fix straturi
+
+- Audit: `decisions/audit_a1_plans_layers_v01.md`
+- Fix CRITICAL: A6 nord etaj — ISOVER spre sud (rece), nu nord.
+- Fix A8 nișă est — faianță spre baie; benzi plan fără micro-adeziv; `living_palier` scos.
+
+## 2026-10-17 — A1.15: plan cu straturi (A3)
+
+- Pereții pe plan nu mai sunt un dreptunghi maro: straturi vizibile (EB20, ISOVER, ETICS/klinker, GKB, faianță) + stâlpi beton hașurați.
+- Legendă materiale pe dreapta; catalog `assemblies_catalog_v01`.
+
+## 2026-10-17 — A1.14b: stâlpi ≠ aliniați cu finit
+
+- Beneficiar: avem **lungimi finite** → stâlp 30 **nu** se egalizează cu cărămidă 20 pe aceeași muchie.
+- **Pereți** pe finit 680×860. **Stâlpi** pe extrema cărămizii (retrași: A1 −10 / A2 −11,2 de pe finit).
+- Proem. în cameră rămâne **+10** (30−20) — nu e inset-ul de pe finit.
+
+## 2026-10-17 — A1.14: proem. stâlpi = cărămidă pe extremă
+
+- Beneficiar: cărămidă pe extrema plăcii/stâlpilor → din 30 cm stâlp, **20 pe extremă**, **+10 în interior**.
+- Corectat în A1.14b (poziție retrasă; nu flush pe finit).
+
+## 2026-10-17 — A1.13: hol scurt · SCARĂ nu sub palier
+
+- Hol P doar sud de A6 (~Y619). Sub palier = living, fără etichetă SCARĂ.
+
+## 2026-10-17 — A1.12: închidere palier P (E–V → limită)
+
+- Perete A6 paralel sud: de la hol (X534) până la limita est (Dragalina).
+- Închide palierul înăuntru; living sub placă nord de zid.
+
+## 2026-10-17 — A1.11: reverse A1.8–A1.9
+
+- Beneficiar: greșit complet — reverse. Scoase închiderile A6 inventate pe P.
+- Rămâne doar continuitatea perete est → palier (A1.5).
+
+## 2026-10-17 — A1.7: C_SHAFT_E_PIER scos (nu C_E_PAL)
+
+- Beneficiar: „de celălalt ziceam” — stâlpul pe palier = **C_SHAFT_E_PIER** (acces scară).
+- Scos din A1 (în V47 era doar S). **C_E_PAL** readus (est / living sub palier).
+
+## 2026-10-17 — A1.6: C_E_PAL scos (acces scară) — ANULAT
+
+- Confuzie: beneficiarul vorbea de C_SHAFT, nu C_E_PAL. Corectat în A1.7.
+
+## 2026-10-17 — A1.5: gol palier + stâlpi buc_est
+
+- Perete est continuu până la palier (fără bandă albă); C_E_PAL unește.
+- C_CASA_SCARA + C_S_INTRARE_E trase în hol/buc (~+10 cm vest de buc_est).
+
+## 2026-10-17 — A1.4: toți stâlpii ies în interior
+
+- Regulă: stâlp > perete pe normală → **toți** proem. în cameră (N/V/E/S, hol est).
+- Fără pilastru afară. **C_SE** scos (adăugat aiurea).
+- Pereți catalog A1/A2/A7/A8 neschimbat.
+
+## 2026-10-17 — A1.3: grosimi reale + stâlpi pe plan
+
+- Pereți pe catalog (A1≈30 · A2=31,2 · A7=12,5 · A8=15) — nu 30 peste tot.
+- Stâlpi pe plan (corectat ulterior A1.4).
+- Cote = linii de cotă fețe int.
+
+## 2026-10-17 — A1.2: nișă=dormitor · buc E de la perete
+
+- Nișă dressing = culoare dormitor (P+E), nu baie.
+- Etaj: bucătărie doar sud de perete despărțitor; zona ușii = living+dining.
+- Cote = **studiu de lucru**; îngheț după confirmare planuri.
+
+## 2026-10-17 — A1.1 compartimentare (beneficiar)
+
+- Fără legătură / circulație / nișă / living_sub_palier ca camere.
+- P: terasă · dormitor(+dressing) · bucătărie(+dining) · living(+ext. palier) · hol.
+- E: bucătărie intrare→sud · living+dining intrare→nord · dormitor(+dressing).
+- Regen planuri + `a1_architecture` v0.2.
+
+## 2026-10-17 — Arhitectură A1.0 (Etapa 2/3)
+
+- Corp **680×860** din A0; amenajare remapată din V47 (fără structură).
+- Planuri: `outputs/plans/a1_plan_parter.svg` · `a1_plan_etaj.svg`.
+- Date: `data/building/a1_architecture.json` · doc `decisions/arhitectura_A1_v01.md`.
+- Util: ref V47 ~37,78 m² (PROVIZORIU) · țintă ≥37. Poartă: confirmare P/E → A1.1 / S1.
+
+## 2026-10-17 — Teren = 147 m² (172 scos)
+
+- Beneficiar: **172 m²** din acte/CF vechi = **eronat**; nu se mai raportează.
+- Canonic: **147 m²** ridicare topo **2011**. Sync A0 + `parcel.json`.
+
+## 2026-10-17 — Amplasament A0 (Etapa 1)
+
+- Corp **680×860** pe sit CF · fără pilastri afară · EST pe Dragalina · curte sud.
+- Amprentă **58,48 m²** · POT **39,78%** / 147.
+- Fișiere: `data/building/a0_site.json` · `outputs/plans/a0_plan_situatie.svg` · `decisions/amplasament_A0_v01.md`.
+- Generator: `node src/build_a0_site.mjs` (nu FRAME).
+
+## 2026-10-17 — Brief A0: finit 680×860 fără pilastri afară
+
+- Beneficiar: pilastri N/V afară **nu** (ar crește POT ~+1,5 m² @10 cm).
+- **LOCK:** finit **680×860** = POT; exces stâlp/placă **absorbit în interior**.
+- Sync `brief_A0_v01.md`. Următor: amplasament A0.
+
+## 2026-10-17 — Brief A0 confirmat (restart)
+
+- Subsol necesar; formă nerelevantă; fără prioritate stâlpi/desen subsol.
+- Amenajare + dimensiuni păstrate majoritar.
+- Clear ≥255 · riser ≤**16** · util ≥37.
+- Doc: `decisions/brief_A0_v01.md`.
+
+## 2026-10-17 — RESTART proiect (V47 FRAME înghețat)
+
+- Beneficiar: oprim ciclul de corecții; model nou, fără amestec ARH/R/Inst.
+- Doc: `decisions/project_restart_v01.md` — etape 0→6, reguli, brief seed.
+- **V47 A1 FRAME = arhivă** — nu se mai petecează forma pe `study_v47_frame_schema`.
+- Următor: confirmare brief (§4) → `brief_A0_v01` → amplasament A0.
+
 ## 2026-10-12 — Organizare + start concept_v01
 
 - Documentele mutate în `inputs/{cadastru,sketches,references}/`.
@@ -279,3 +804,208 @@
 - Pe față exterioară: stivă catalog exactă **fără EB20** — A1 nord 9,2 cm (adeziv+vată80+armat+grund); A2 E/S/V 10,5 cm (+klinker Ströher).
 - Finisaj int. pe fețele interioare: tencuială 6 + vopsea 1.
 - Mesh: `col_facade_*` în volum FRAME; view **2 · + Pereți**. Planuri 36–40 regen.
+
+## 2026-10-16 — Plan definitivare structură 100%
+
+- Doc: `decisions/structure_finalize_100_v01.md` — faze 0–5, D1 clear sub grindă / D2 pilastrii / D3 acoperiș, FE ordine, poartă done.
+- Roadmap actualizat: pointer către plan.
+
+## 2026-10-16 — D1–D3 implicite acceptate
+
+- D1=(b) clear 255 sub placă; 241 sub grindă acceptat provizoriu până la FE.
+- D2=(a) pilastrii pe fațadă.
+- D3=comparație șarpantă ușoară vs BA la FE.
+
+## 2026-10-16 — Cote plan din contur liber (nu rooms_cm AABB)
+
+- `interior_free_spaces_v01.mjs`: baie L ≈ **6,48 m²** (nu 7,62); nișă ≈ **0,76 m²** (fețe pereți); circulație living–buc etichetată separat.
+- Planuri 38/39: etichete „liber”; util studio rămâne shoelace FRAME (**≠** suma etichetelor).
+
+## 2026-10-16 — Util E = suma etichetelor (beneficiar)
+
+- LOCK: util etaj studio = **37,469 m²** = baie+nișă+dorm+living+buc+circulație.
+- Palier scară rece **1,26 m²** rămas exclus; scară = doar lățime liberă, nu m² util ap.
+
+## 2026-10-16 — Continuare FE cadre (minim stâlpi/grinzi)
+
+- Varianta B (diafragme) **parcată**; lucrăm **Varianta A**.
+- „Minim” = secțiuni minime **care trec** calculul (P100 ≥30 stâlp, b≥20 grindă); along 40→30 doar dacă FE permite.
+- Faza 0: `outputs/reports/v47_a1_frame_fe_input_pack_v01.md` + `decisions/frame_min_sections_calc_v01.md`.
+
+## 2026-10-16 — Calc preliminar 2.1–2.4 (ordin, nu adoptare)
+
+- Scripturi: `calc_v47_frame_columns_prelim_v01.mjs`, `…_cantilever_…`, `…_beams_slab_…`
+- Rapoarte: `outputs/reports/v47_a1_frame_calc_2_1_columns_v01.md`, `_2_2_cantilever_`, `_2_3_2_4_slab_beams_`
+- Stâlpi: axial → candidați along 30 (fără C_E_PAL); **nu** schimbat în generator
+- Consolă: M/T ordin mici; nod C_E_PAL rămâne 30×40 până FE
+- Placă 15/20 @6,2 m: semnal SLS; grinzi 30×35 flexiune ordin OK
+- Model: secțiuni **neschimbate**; următor = FE cu M+V+P100
+
+## 2026-10-16 — Continuare calc 2.3/2.1b/2.5 + pad B_X360
+
+- Raport: `outputs/reports/v47_a1_frame_calc_continue_v01.md`
+- Placă 15 @6,2: fail ordin; **15 + bandă** N_MID–S_DORM_E @3,1: OK ordin
+- Seism ipoteză ag=0,10: Vb~57 kN; along→30 doar după FE P100
+- Întoarsă: geo OK; FE local capăt V
+- LOCK: accept pad B_X360 dx=70 (`rezolvat_geometric`)
+- Util E **37,469** înghețat în `study_v47_frame_schema` (shoelace separat)
+
+## 2026-10-16 — Retenție subsol BA (Faza 1 geo)
+
+- Contur subsol: **BA 20 cm** (`subsol_reten_ba_*`, layer Structură) — nu EB20 umplutură.
+- Partiții int. subsol: rămân umplutură 12,5.
+- `basement_retaining` → `rezolvat_geometric` · calc împingere/talpă/XPS încă deschis.
+- Bandă placă: opțiune în conflict `slab_span_without_X320` (nu activă în beams[]).
+
+## 2026-10-16 — Fundații studiu 80+60 + acoperiș D3a/D3b
+
+- Raport: `outputs/reports/v47_a1_frame_calc_2_6_2_7_foundations_roof_v01.md`
+- Model: talpă **80×80** · FG bandă **60** (nu lățime grindă); EST excentric interior
+- `foundations_width` → `rezolvat_geometric` · Rc 131 încă deschis
+- Acoperiș: FE întâi **D3a** ușoară; D3b BA ≈ +172 kN pe ~48 m²
+
+## 2026-10-16 — Variantă recomandată studiu R
+
+- `decisions/frame_recommended_variant_v01.md` + `outputs/reports/v47_a1_frame_variant_compare_v01.md`
+- **R** = A + placă15 + **B_BAND_X320** + D3a (optima pe brief, nu FE semnat)
+- Bandă activată în `beams[]` (studiu); C_N_MID păstrat ca reazem N
+
+## 2026-10-16 — Continuare R: bandă + retenție + brief FE
+
+- `outputs/reports/v47_a1_frame_variant_R_continue_v01.md`
+- Brief structurist: `outputs/reports/v47_a1_frame_fe_brief_variant_R_v01.md`
+- Bandă: flex OK ordin; **C_N_MID obligatoriu** pe R; retenție uscată plauzibilă @20 cm
+
+## 2026-10-16 — Bandă: reazem Y400 (fără stâlp cameră)
+
+- \`B_Y400_BAND_TIE\` activ în beams (C_W_MID → X535 @Y400)
+- Comparație: `outputs/reports/v47_a1_frame_band_options_v01.md`
+- Țintă As bandă ≈**360** mm² (Y400+2-way) vs 1450 (1-way full)
+
+## 2026-10-16 — Y400 scurtat (nu living) + checklist R
+
+- \`B_Y400_BAND_TIE\`: doar C_W_MID→bandă (~3,2 m); fără C_CASA_SCARA (@Y610)
+- Clash: dorm clear 241 OK (D1); living neatins
+- Calc Y400: As mic (≈4φ12); status R: `outputs/reports/v47_a1_frame_y400_tie_and_R_status_v01.md`
+
+## 2026-10-16 — Master status R + roof path + planuri
+
+- `outputs/reports/v47_a1_frame_variant_R_master_status_v01.md` — un singur status
+- `outputs/reports/v47_a1_frame_roof_path_R_v01.md` — D3a geo centuri→stâlpi
+- Planuri 38/39 regen: etichete B_BAND + B_Y400 vizibile
+
+## 2026-10-16 — Țintă = formă (nu autorizație)
+
+- Beneficiar: forma corectă din calcule de studiu; autorizația nu e acum.
+- `decisions/form_target_R_v01.md`
+- Întoarsă: capăt V explicit pe B_SEP (formă închisă); fără reazem „placă” vag
+
+## 2026-10-16 — Arhive inputs (Casa Sârb 120)
+
+- 8 arhive extrase în `inputs/_extracted/`; inventar `decisions/inputs_archives_inventory_v01.md`
+- Tot = **Dragalina 120**; nimic dedicat 131; EMDI original absent
+- Confirmă geo citat: Pconv **310**, D=1,15, tălpi 50×70; structură 120 = zidărie + stâlpișori **25×25** (≠ cadre R pe 131)
+
+## 2026-10-16 — Dorm LOCK: fără B_Y400
+
+- Beneficiar: **în dormitor nu modificăm** — `B_Y400_BAND_TIE` retras.
+- Bandă rămâne `B_BAND_X320` pe C_N_MID–C_S_DORM_E; FE pe 2-way (fără reazem @Y400).
+
+## 2026-10-16 — REVERSE: 6 stâlpi flush-ext
+
+- Anulat: `C_E_MID_N` / `C_E_MID_S` + flush-ext pe E/S — revenire flush-int, 3 stâlpi EST (`C_NE`, `C_E_GEAM_S`, `C_E_PAL`).
+- Rămâne: dorm LOCK (fără B_Y400).
+
+## 2026-10-16 — EST + SUD intrare pe muchia plăcii
+
+- EST×3: `C_NE`, `C_E_GEAM_S`, `C_E_PAL` — față E = SLAB_E 682,6
+- SUD intrare×2: `C_S_INTRARE_W/E` — față S = SLAB_S 861,3
+- `C_SHAFT_E_PIER` → 30×30 pe muchie placă (ex 15×15)
+- **REVERSE** `C_E_SCARA_N/S` — adăugați greșit; scoși. „2 est scară” ≠ stâlpi noi.
+- Fix P+E: goluri tăiate în straturile zidului (`geam_est` etc.); fără wrap ETICS pe stâlpi E/S la muchie placă (dispar pilastrii dubli).
+
+## 2026-10-17 — Inel E închis: C_SE + B_E_S + B_S_SE
+
+- Beneficiar: da la închiderea inelului.
+- **C_SE** colț S/E pe CONC · **B_E_S** Y590→S · **B_S_SE** C_S_INTRARE_E→C_SE.
+- C_SHAFT_E_PIER rămâne **S-only** (nu pe palier P). Span B_E_S ~261 = FE.
+- `ring_E_SE_gap` → rezolvat_geometric · calcul_lipsă.
+
+## 2026-10-17 — Acoperiș: calc PV+zăpadă + reazeme + inel E
+
+- Calc ordin: D3a+PV · sk Turda 1,5 → q_Ed ~2,85 kN/m²; căprior 12×25 @1,2 m ordin OK; **FE lipsă**.
+- Stâlpișori erau pe muchie B_W/B_E → centrați pe grindă; solbanc/coamă pe CONC.
+- Plăci: etaj **20** · peste subsol **20**. Centuri P+E da; **inel E gol** EST Y590→S / SE.
+- „2 segmente în aer” = console LOCK-1R (B_Y470 + B_E), nu golul SE.
+- Raport: `outputs/reports/v47_a1_frame_roof_pv_snow_bearing_v01.md`.
+
+## 2026-10-17 — Fix view Structură: placă pe muchie CONC (E/S)
+
+- Audit: stâlpi E/S păreau inset → consolă falsă placă +10,5 cm (= ETICS pe anvelopă finită).
+- Placă structurală (subsol + etaj) = `structural_footprint_cm` **672,1×850,8** (față beton); finit 682,6×861,3 rămâne doar POT/ETICS.
+- Raport: `outputs/reports/v47_structure_view_slab_edge_audit_v01.md`.
+
+## 2026-10-17 — LOCK fațadă unică (E/S plan · N/V pilastru)
+
+- **E/S:** finit plan; beton = finit−A2 (672,1 / 850,8); ETICS continuu pe stâlpi; proem. în interior.
+- **N/V:** interior la linie (baie/living N, dorm/baie V); pilastri pe exterior; fără wrap.
+- Util din **aceleași** fețe ca `walls_cm`: P **38,652** · E **37,886** (nu 39,7/38,8 pe bandă-perete).
+- POT neschimbat (amprentă finită). Raport: `outputs/reports/v47_facade_alignment_audit_v01.md`.
+
+## 2026-10-17 — LOCK P: placă 20 fără bandă
+
+- Beneficiar: îngheț **placă 20** · **`B_BAND_X320` retras** (min proeminențe).
+- Clear plafon **268** · sub grindă **259** · FF→FF **306** neschimbat.
+- `C_N_MID` păstrat până la FE (drop = rundă separată).
+- Docs: `form_target_R_v01` → țintă P; `frame_recommended_variant_v01`.
+- FE pe L≈6,2 rămâne `calcul_lipsă`.
+
+## 2026-10-17 — Calc placă ± bandă (clear nou) → min proeminențe
+
+- Script: `src/calc_v47_frame_slab_band_protrusion_v01.mjs` · raport `outputs/reports/v47_a1_frame_slab_band_protrusion_v01.md`.
+- **h≥18–20 fără bandă:** L/d ordin OK pe 6,2 m @K=1,3; clear ≥268.
+- **h=15 fără bandă:** FAIL ordin (bandă încă necesară pe 15).
+- Optim proem. studiu: **placă ~18–20, fără `B_BAND_X320`**.
+
+## 2026-10-17 — Util + POT pe falie la cheie (N/V vs E/S)
+
+- Contur util pe fețe falie: W/N **30,7** · E **661,9** · S intrare **840,6** · S dorm **654,3**.
+- Proem. stâlpi E/S = **+10 cm** față de falie (scăzut din util); N/V = 0.
+- **Util P 39,705** · **E 38,812** m² (NECONFIRMAT). Δ vs contur vechi ≈ +0,83 / +0,69.
+- **POT 39,99%** pe 147 (amprentă **58,7923** m²) — neschimbat (max extent = anvelopă; falie N/V inset).
+- Raport: `outputs/reports/v47_useful_by_level.md`.
+
+## 2026-10-17 — Scară P→E: contratrepă 17 cm (clear +18)
+
+- Rampa 1 + 2: **18 × 17 = 306** cm FF→FF (era 18×16=288).
+- Entry / FF P **+48** neschimbat (3×16).
+- Clear plafon **273** · sub grindă **259** (≥255).
+- Podest SE @ FF+**136**; intrados podest ~+157.
+
+## 2026-10-16 — LOCK N = muchie placă (clarificare audit structură)
+
+- **Decizie unică:** stâlpi N (`C_NW`, `C_N_MID`, `C_NE`) pe **SLAB_N Y=0** (muchie placă), ca restul perimetrului.
+- **Supersede** log „Nord NU pe muchie / Y=9,9”.
+- Falie N/V vs E/S = zidărie la cheie (nu mută betonul).
+- Sync: `axes.X_E = SLAB_E`; etichetă mesh întoarsă **Y575–600** (dy=25).
+
+## 2026-10-16 — Autorizare: 1 cameră (perete dorm jos)
+
+- Beneficiar: la autorizare se demontează peretele dorm↔living → o cameră.
+- Nu urmărim pragul 52 m² / 2 camere ca blocaj pe studiu.
+
+## 2026-10-16 — Audit extern: rundă 1 util (fără schimbări plan)
+
+- Preluat feedback audit pe `83f6534` → `decisions/audit_external_feedback_r1_v01.md`.
+- **Legal:** 37 m² ≠ PASS locuință 2 camere (Legea 114 Anexa 1); destinație = arhitect.
+- **Fix util:** nu mai scădea A6 L din afara `polyE` (dublă scădere ~1,515). Thermal = intersecție cu contur.
+- Un tabel canonic P/E: `areas_cm.useful_by_level` = `frame_study_areas`. Etichete = informativ. NECONFIRMAT.
+- Backlog: goluri reale, anvelopă N, parcelă finite, scară/beci, FE, planuri unificate.
+
+## 2026-10-16 — LOCK: tot perimetrul pe muchie placă + falie=zidărie
+
+- **Supersede** nota anterioară „Nord NU pe muchie” / flush-ext N@9,9.
+- Beneficiar: beton (stâlpi + centuri) pe muchia plăcii pe **N/V/E/S**; umplutura 20 decide la zidărie pe ce parte cade excesul 30−20.
+- La cheie: **N/V** — proem. pe exterior; **E/S** — fațadă plană (exces în interior).
+- Mesh FRAME: fără wrap ETICS pe stâlpi perimetrali; warning viewer Y575 actualizat (formă întoarsă **închisă**, armare = calcul).
+- Docs sync: `form_target_R`, registru `column_thru` / `etics_wrap` / `facade_slab_edge_masonry`, FE brief.

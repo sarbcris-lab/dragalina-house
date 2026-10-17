@@ -1,0 +1,33 @@
+{
+  "y400": {
+    "id": "B_Y400_BAND_TIE",
+    "status": "RETRAS",
+    "reason": "beneficiar: în dormitor nu modificăm — grindă @Y400 trecea peste dorm",
+    "path_was": "C_W_MID → B_BAND_X320 (~X361)",
+    "replacement": "B_BAND_X320 pe C_N_MID–C_S_DORM_E; FE țintă 2-way (caz B)"
+  },
+  "checklist": {
+    "closed_geo": [
+      "cadre A · stâlpi ≥30 flush · ETICS pe stâlp",
+      "placă 15 + B_BAND_X320 (fără Y400 — dorm LOCK)",
+      "consolă LOCK-1R",
+      "retenție BA 20",
+      "FG 80+60",
+      "pad B_X360 acceptat",
+      "util E 37,469",
+      "D1/D2",
+      "dormitor neatins (fără grindă transversală)"
+    ],
+    "open_calc": [
+      "FE placă+bandă 2-way (fără Y400)",
+      "FE nod C_E_PAL",
+      "P100 stâlpi along→30",
+      "grinzi perimetrale pe eforturi FE",
+      "împingere retenție + hidro geo 131",
+      "Rc fundații 131",
+      "D3a vs D3b pe FE",
+      "întoarsă capăt V"
+    ],
+    "variant_R": "țintă studiu — dorm LOCK · nu autorizabil"
+  }
+}

@@ -1,0 +1,700 @@
+{
+  "status": "preliminar — nu Rc 131",
+  "p_work_kPa": 200,
+  "pconv_ref_kPa": 310,
+  "N_ed_to_ser": 1.4,
+  "study_pad_side_cm": 80,
+  "study_strip_width_cm": 60,
+  "pads": [
+    {
+      "id": "C_NW",
+      "N_Ed_kN": 242.5,
+      "N_ser_kN": 173.2,
+      "section": "40×30",
+      "pads": [
+        {
+          "side_cm": 30,
+          "A_m2": 0.09,
+          "p_kPa": 1925,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 50,
+          "A_m2": 0.25,
+          "p_kPa": 693,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 60,
+          "A_m2": 0.36,
+          "p_kPa": 481,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 70,
+          "A_m2": 0.49,
+          "p_kPa": 353,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 80,
+          "A_m2": 0.64,
+          "p_kPa": 271,
+          "vs_200": "peste_200",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 100,
+          "A_m2": 1,
+          "p_kPa": 173,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 120,
+          "A_m2": 1.44,
+          "p_kPa": 120,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        }
+      ],
+      "recommend_isolated_cm": 100,
+      "east_limit": false
+    },
+    {
+      "id": "C_N_MID",
+      "N_Ed_kN": 323.3,
+      "N_ser_kN": 230.9,
+      "section": "40×30",
+      "pads": [
+        {
+          "side_cm": 30,
+          "A_m2": 0.09,
+          "p_kPa": 2566,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 50,
+          "A_m2": 0.25,
+          "p_kPa": 924,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 60,
+          "A_m2": 0.36,
+          "p_kPa": 641,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 70,
+          "A_m2": 0.49,
+          "p_kPa": 471,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 80,
+          "A_m2": 0.64,
+          "p_kPa": 361,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 100,
+          "A_m2": 1,
+          "p_kPa": 231,
+          "vs_200": "peste_200",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 120,
+          "A_m2": 1.44,
+          "p_kPa": 160,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        }
+      ],
+      "recommend_isolated_cm": 120,
+      "east_limit": false
+    },
+    {
+      "id": "C_NE",
+      "N_Ed_kN": 206.6,
+      "N_ser_kN": 147.6,
+      "section": "30×40",
+      "pads": [
+        {
+          "side_cm": 30,
+          "A_m2": 0.09,
+          "p_kPa": 1640,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 50,
+          "A_m2": 0.25,
+          "p_kPa": 590,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 60,
+          "A_m2": 0.36,
+          "p_kPa": 410,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 70,
+          "A_m2": 0.49,
+          "p_kPa": 301,
+          "vs_200": "peste_200",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 80,
+          "A_m2": 0.64,
+          "p_kPa": 231,
+          "vs_200": "peste_200",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 100,
+          "A_m2": 1,
+          "p_kPa": 148,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 120,
+          "A_m2": 1.44,
+          "p_kPa": 102,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        }
+      ],
+      "recommend_isolated_cm": 100,
+      "east_limit": true
+    },
+    {
+      "id": "C_W_MID",
+      "N_Ed_kN": 242.5,
+      "N_ser_kN": 173.2,
+      "section": "30×40",
+      "pads": [
+        {
+          "side_cm": 30,
+          "A_m2": 0.09,
+          "p_kPa": 1925,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 50,
+          "A_m2": 0.25,
+          "p_kPa": 693,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 60,
+          "A_m2": 0.36,
+          "p_kPa": 481,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 70,
+          "A_m2": 0.49,
+          "p_kPa": 353,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 80,
+          "A_m2": 0.64,
+          "p_kPa": 271,
+          "vs_200": "peste_200",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 100,
+          "A_m2": 1,
+          "p_kPa": 173,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 120,
+          "A_m2": 1.44,
+          "p_kPa": 120,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        }
+      ],
+      "recommend_isolated_cm": 100,
+      "east_limit": false
+    },
+    {
+      "id": "C_W_DORM",
+      "N_Ed_kN": 161.7,
+      "N_ser_kN": 115.5,
+      "section": "40×30",
+      "pads": [
+        {
+          "side_cm": 30,
+          "A_m2": 0.09,
+          "p_kPa": 1283,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 50,
+          "A_m2": 0.25,
+          "p_kPa": 462,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 60,
+          "A_m2": 0.36,
+          "p_kPa": 321,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 70,
+          "A_m2": 0.49,
+          "p_kPa": 236,
+          "vs_200": "peste_200",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 80,
+          "A_m2": 0.64,
+          "p_kPa": 180,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 100,
+          "A_m2": 1,
+          "p_kPa": 116,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 120,
+          "A_m2": 1.44,
+          "p_kPa": 80,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        }
+      ],
+      "recommend_isolated_cm": 80,
+      "east_limit": false
+    },
+    {
+      "id": "C_S_DORM_E",
+      "N_Ed_kN": 132.5,
+      "N_ser_kN": 94.6,
+      "section": "30×30",
+      "pads": [
+        {
+          "side_cm": 30,
+          "A_m2": 0.09,
+          "p_kPa": 1052,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 50,
+          "A_m2": 0.25,
+          "p_kPa": 379,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 60,
+          "A_m2": 0.36,
+          "p_kPa": 263,
+          "vs_200": "peste_200",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 70,
+          "A_m2": 0.49,
+          "p_kPa": 193,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 80,
+          "A_m2": 0.64,
+          "p_kPa": 148,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 100,
+          "A_m2": 1,
+          "p_kPa": 95,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 120,
+          "A_m2": 1.44,
+          "p_kPa": 66,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        }
+      ],
+      "recommend_isolated_cm": 70,
+      "east_limit": false
+    },
+    {
+      "id": "C_E_GEAM_S",
+      "N_Ed_kN": 138.1,
+      "N_ser_kN": 98.6,
+      "section": "30×40",
+      "pads": [
+        {
+          "side_cm": 30,
+          "A_m2": 0.09,
+          "p_kPa": 1096,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 50,
+          "A_m2": 0.25,
+          "p_kPa": 395,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 60,
+          "A_m2": 0.36,
+          "p_kPa": 274,
+          "vs_200": "peste_200",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 70,
+          "A_m2": 0.49,
+          "p_kPa": 201,
+          "vs_200": "peste_200",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 80,
+          "A_m2": 0.64,
+          "p_kPa": 154,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 100,
+          "A_m2": 1,
+          "p_kPa": 99,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 120,
+          "A_m2": 1.44,
+          "p_kPa": 69,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        }
+      ],
+      "recommend_isolated_cm": 80,
+      "east_limit": true
+    },
+    {
+      "id": "C_E_PAL",
+      "N_Ed_kN": 131.8,
+      "N_ser_kN": 94.1,
+      "section": "30×40",
+      "pads": [
+        {
+          "side_cm": 30,
+          "A_m2": 0.09,
+          "p_kPa": 1046,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 50,
+          "A_m2": 0.25,
+          "p_kPa": 377,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 60,
+          "A_m2": 0.36,
+          "p_kPa": 262,
+          "vs_200": "peste_200",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 70,
+          "A_m2": 0.49,
+          "p_kPa": 192,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 80,
+          "A_m2": 0.64,
+          "p_kPa": 147,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 100,
+          "A_m2": 1,
+          "p_kPa": 94,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 120,
+          "A_m2": 1.44,
+          "p_kPa": 65,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        }
+      ],
+      "recommend_isolated_cm": 70,
+      "east_limit": true
+    },
+    {
+      "id": "C_CASA_SCARA",
+      "N_Ed_kN": 119.6,
+      "N_ser_kN": 85.4,
+      "section": "30×40",
+      "pads": [
+        {
+          "side_cm": 30,
+          "A_m2": 0.09,
+          "p_kPa": 949,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 50,
+          "A_m2": 0.25,
+          "p_kPa": 342,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 60,
+          "A_m2": 0.36,
+          "p_kPa": 237,
+          "vs_200": "peste_200",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 70,
+          "A_m2": 0.49,
+          "p_kPa": 174,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 80,
+          "A_m2": 0.64,
+          "p_kPa": 133,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 100,
+          "A_m2": 1,
+          "p_kPa": 85,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 120,
+          "A_m2": 1.44,
+          "p_kPa": 59,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        }
+      ],
+      "recommend_isolated_cm": 70,
+      "east_limit": true
+    },
+    {
+      "id": "C_S_INTRARE_W",
+      "N_Ed_kN": 111.2,
+      "N_ser_kN": 79.4,
+      "section": "40×30",
+      "pads": [
+        {
+          "side_cm": 30,
+          "A_m2": 0.09,
+          "p_kPa": 883,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 50,
+          "A_m2": 0.25,
+          "p_kPa": 318,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 60,
+          "A_m2": 0.36,
+          "p_kPa": 221,
+          "vs_200": "peste_200",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 70,
+          "A_m2": 0.49,
+          "p_kPa": 162,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 80,
+          "A_m2": 0.64,
+          "p_kPa": 124,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 100,
+          "A_m2": 1,
+          "p_kPa": 79,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 120,
+          "A_m2": 1.44,
+          "p_kPa": 55,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        }
+      ],
+      "recommend_isolated_cm": 70,
+      "east_limit": false
+    },
+    {
+      "id": "C_S_INTRARE_E",
+      "N_Ed_kN": 83.4,
+      "N_ser_kN": 59.6,
+      "section": "30×30",
+      "pads": [
+        {
+          "side_cm": 30,
+          "A_m2": 0.09,
+          "p_kPa": 662,
+          "vs_200": "peste_200",
+          "vs_310_ref": "peste_ref_vecin"
+        },
+        {
+          "side_cm": 50,
+          "A_m2": 0.25,
+          "p_kPa": 238,
+          "vs_200": "peste_200",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 60,
+          "A_m2": 0.36,
+          "p_kPa": 165,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 70,
+          "A_m2": 0.49,
+          "p_kPa": 122,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 80,
+          "A_m2": 0.64,
+          "p_kPa": 93,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 100,
+          "A_m2": 1,
+          "p_kPa": 60,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        },
+        {
+          "side_cm": 120,
+          "A_m2": 1.44,
+          "p_kPa": 41,
+          "vs_200": "OK_studiu",
+          "vs_310_ref": "sub_ref_vecin"
+        }
+      ],
+      "recommend_isolated_cm": 60,
+      "east_limit": true
+    }
+  ],
+  "stripCheck": {
+    "width_cm": 60,
+    "note": "FG bandă 60 pe axe + pad 80 la stâlpi; p local pe pad e conservator — încărcarea se împrăștie în bandă/retenție",
+    "length_N_m": 6.5,
+    "N_share_ser_kN": 552,
+    "p_avg_kPa": 142
+  },
+  "raftApprox": {
+    "footprint_m2": 42,
+    "N_tot_ser_kN": 1352,
+    "p_avg_kPa": 32
+  },
+  "roof": {
+    "light": {
+      "id": "D3a_sarpanta_usoara",
+      "Gk_kN_m2": 0.85,
+      "Qk_snow_kN_m2": 1.5,
+      "q_Ed": 3.4,
+      "W_kN": 163,
+      "path": "căpriori → centuri B_N/B_E/B_W → stâlpi; stâlpișori fronton pe streșină",
+      "pros": "greutate mică pe stâlpi; seism mai blând",
+      "cons": "detaliu ancorare + excentricitate stâlpișori"
+    },
+    "ba": {
+      "id": "D3b_acoperis_BA",
+      "Gk_kN_m2": 3.5,
+      "Qk_snow_kN_m2": 1.5,
+      "q_Ed": 6.98,
+      "W_kN": 335,
+      "path": "placă/coamă BA → aceleași stâlpi; fără stâlpișori slabi",
+      "pros": "load path clar; masă/fonic",
+      "cons": "+172 kN pe structură vs ușoară; fundații+seism"
+    },
+    "delta_W_kN": 172,
+    "verdict": "Pentru FE: rulează întâi D3a (ușoară) pe schema actuală; D3b ca sensibilitate. Nu alege BA doar ca să „salveze” stâlpișorii."
+  },
+  "model_actions": {
+    "adopt_pad_cm": 80,
+    "adopt_strip_cm": 60,
+    "note": "excentric pe EST spre interior (hotar Dragalina); sistem bandă+pad nu talpă izolată pură"
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "method": "tributar aproximativ × q_Ed audit v04; Nrd=0.8·Ac·fcd C25/30; FĂRĂ M/V/P100/flambaj",
+  "status": "preliminar_ordin — nu adoptare",
+  "q_Ed_floor": 11.78,
+  "q_Ed_landing": 11.93,
+  "columns": [
+    {
+      "id": "C_NW",
+      "section_cm": "40×30",
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "trib_m2": {
+        "floor": 7.68,
+        "roof": 7.68,
+        "note": "colț N/W"
+      },
+      "N_Ed_roof_light_kN": 242.5,
+      "N_Ed_roof_BA_kN": 261.7,
+      "Nrd_30x30_kN": 1200,
+      "Nrd_actual_kN": 1600,
+      "Nrd_30x40_kN": 1600,
+      "ratio_Nrd30_over_N_light": 4.95,
+      "ratio_Nrd_actual_over_N_light": 6.6,
+      "along_40_to_30_candidate": true,
+      "verdict": "axial_OK_incerc_30x30",
+      "note": "colț N/W"
+    },
+    {
+      "id": "C_N_MID",
+      "section_cm": "40×30",
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "trib_m2": {
+        "floor": 10.56,
+        "roof": 10.56,
+        "note": "nord mid; fără el → redistribuie pe NW+NE"
+      },
+      "N_Ed_roof_light_kN": 323.3,
+      "N_Ed_roof_BA_kN": 349.7,
+      "Nrd_30x30_kN": 1200,
+      "Nrd_actual_kN": 1600,
+      "Nrd_30x40_kN": 1600,
+      "ratio_Nrd30_over_N_light": 3.71,
+      "ratio_Nrd_actual_over_N_light": 4.95,
+      "along_40_to_30_candidate": true,
+      "verdict": "axial_OK_incerc_30x30",
+      "note": "nord mid; fără el → redistribuie pe NW+NE"
+    },
+    {
+      "id": "C_NE",
+      "section_cm": "30×40",
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "trib_m2": {
+        "floor": 6.4,
+        "roof": 6.4,
+        "note": "colț N/E"
+      },
+      "N_Ed_roof_light_kN": 206.6,
+      "N_Ed_roof_BA_kN": 222.6,
+      "Nrd_30x30_kN": 1200,
+      "Nrd_actual_kN": 1600,
+      "Nrd_30x40_kN": 1600,
+      "ratio_Nrd30_over_N_light": 5.81,
+      "ratio_Nrd_actual_over_N_light": 7.75,
+      "along_40_to_30_candidate": true,
+      "verdict": "axial_OK_incerc_30x30",
+      "note": "colț N/E"
+    },
+    {
+      "id": "C_W_MID",
+      "section_cm": "30×40",
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "trib_m2": {
+        "floor": 7.68,
+        "roof": 7.68,
+        "note": "vest mid"
+      },
+      "N_Ed_roof_light_kN": 242.5,
+      "N_Ed_roof_BA_kN": 261.7,
+      "Nrd_30x30_kN": 1200,
+      "Nrd_actual_kN": 1600,
+      "Nrd_30x40_kN": 1600,
+      "ratio_Nrd30_over_N_light": 4.95,
+      "ratio_Nrd_actual_over_N_light": 6.6,
+      "along_40_to_30_candidate": true,
+      "verdict": "axial_OK_incerc_30x30",
+      "note": "vest mid"
+    },
+    {
+      "id": "C_W_DORM",
+      "section_cm": "40×30",
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "trib_m2": {
+        "floor": 4.8,
+        "roof": 4.8,
+        "note": "colț S/W dorm"
+      },
+      "N_Ed_roof_light_kN": 161.7,
+      "N_Ed_roof_BA_kN": 173.7,
+      "Nrd_30x30_kN": 1200,
+      "Nrd_actual_kN": 1600,
+      "Nrd_30x40_kN": 1600,
+      "ratio_Nrd30_over_N_light": 7.42,
+      "ratio_Nrd_actual_over_N_light": 9.9,
+      "along_40_to_30_candidate": true,
+      "verdict": "axial_OK_incerc_30x30",
+      "note": "colț S/W dorm"
+    },
+    {
+      "id": "C_S_DORM_E",
+      "section_cm": "30×30",
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "trib_m2": {
+        "floor": 4,
+        "roof": 4,
+        "note": "sud dorm E — 30×30"
+      },
+      "N_Ed_roof_light_kN": 132.5,
+      "N_Ed_roof_BA_kN": 142.5,
+      "Nrd_30x30_kN": 1200,
+      "Nrd_actual_kN": 1200,
+      "Nrd_30x40_kN": 1600,
+      "ratio_Nrd30_over_N_light": 9.06,
+      "ratio_Nrd_actual_over_N_light": 9.06,
+      "along_40_to_30_candidate": false,
+      "verdict": "axial_OK_incerc_30x30",
+      "note": "sud dorm E — 30×30"
+    },
+    {
+      "id": "C_E_GEAM_S",
+      "section_cm": "30×40",
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "trib_m2": {
+        "floor": 3.9600000000000004,
+        "roof": 3.9600000000000004,
+        "note": "est geam"
+      },
+      "N_Ed_roof_light_kN": 138.1,
+      "N_Ed_roof_BA_kN": 148,
+      "Nrd_30x30_kN": 1200,
+      "Nrd_actual_kN": 1600,
+      "Nrd_30x40_kN": 1600,
+      "ratio_Nrd30_over_N_light": 8.69,
+      "ratio_Nrd_actual_over_N_light": 11.58,
+      "along_40_to_30_candidate": true,
+      "verdict": "axial_OK_incerc_30x30",
+      "note": "est geam"
+    },
+    {
+      "id": "C_E_PAL",
+      "section_cm": "30×40",
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "trib_m2": {
+        "floor": 3.2,
+        "landing": 1.26,
+        "roof": 3.2,
+        "note": "est palier — +consolă palier pe trib"
+      },
+      "N_Ed_roof_light_kN": 131.8,
+      "N_Ed_roof_BA_kN": 139.8,
+      "Nrd_30x30_kN": 1200,
+      "Nrd_actual_kN": 1600,
+      "Nrd_30x40_kN": 1600,
+      "ratio_Nrd30_over_N_light": 9.1,
+      "ratio_Nrd_actual_over_N_light": 12.14,
+      "along_40_to_30_candidate": false,
+      "verdict": "axial_OK_dar_pastreaza_30x40_nod_consola",
+      "note": "est palier — +consolă palier pe trib"
+    },
+    {
+      "id": "C_CASA_SCARA",
+      "section_cm": "30×40",
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "trib_m2": {
+        "floor": 3.3000000000000003,
+        "roof": 3.3000000000000003,
+        "note": "separator scară"
+      },
+      "N_Ed_roof_light_kN": 119.6,
+      "N_Ed_roof_BA_kN": 127.8,
+      "Nrd_30x30_kN": 1200,
+      "Nrd_actual_kN": 1600,
+      "Nrd_30x40_kN": 1600,
+      "ratio_Nrd30_over_N_light": 10.03,
+      "ratio_Nrd_actual_over_N_light": 13.38,
+      "along_40_to_30_candidate": true,
+      "verdict": "axial_OK_incerc_30x30",
+      "note": "separator scară"
+    },
+    {
+      "id": "C_S_INTRARE_W",
+      "section_cm": "40×30",
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "trib_m2": {
+        "floor": 3,
+        "roof": 3,
+        "note": "sud intrare W"
+      },
+      "N_Ed_roof_light_kN": 111.2,
+      "N_Ed_roof_BA_kN": 118.7,
+      "Nrd_30x30_kN": 1200,
+      "Nrd_actual_kN": 1600,
+      "Nrd_30x40_kN": 1600,
+      "ratio_Nrd30_over_N_light": 10.79,
+      "ratio_Nrd_actual_over_N_light": 14.39,
+      "along_40_to_30_candidate": true,
+      "verdict": "axial_OK_incerc_30x30",
+      "note": "sud intrare W"
+    },
+    {
+      "id": "C_S_INTRARE_E",
+      "section_cm": "30×30",
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "trib_m2": {
+        "floor": 2.25,
+        "roof": 2.25,
+        "note": "sud intrare E — 30×30"
+      },
+      "N_Ed_roof_light_kN": 83.4,
+      "N_Ed_roof_BA_kN": 89,
+      "Nrd_30x30_kN": 1200,
+      "Nrd_actual_kN": 1200,
+      "Nrd_30x40_kN": 1600,
+      "ratio_Nrd30_over_N_light": 14.39,
+      "ratio_Nrd_actual_over_N_light": 14.39,
+      "along_40_to_30_candidate": false,
+      "verdict": "axial_OK_incerc_30x30",
+      "note": "sud intrare E — 30×30"
+    }
+  ],
+  "candidates_along_30": [
+    "C_NW",
+    "C_N_MID",
+    "C_NE",
+    "C_W_MID",
+    "C_W_DORM",
+    "C_E_GEAM_S",
+    "C_CASA_SCARA",
+    "C_S_INTRARE_W"
+  ],
+  "keep_or_fe": [
+    "C_S_DORM_E",
+    "C_E_PAL",
+    "C_S_INTRARE_E"
+  ]
+}

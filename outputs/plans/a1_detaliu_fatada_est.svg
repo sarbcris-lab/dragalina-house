@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2616" height="600" viewBox="0 0 2616.4 600" data-paper="A3">
+<rect width="100%" height="100%" fill="#faf9f7"/>
+<text x="80" y="36" font-size="22" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">A1 · Detaliu fațadă EST · lungimi S→N</text>
+<text x="80" y="58" font-size="13" fill="#333" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Desfășurare pe Y (sud ← stânga · nord → dreapta) · finit 680×860 · total pe axă 973,5 cm</text>
+<text x="80" y="76" font-size="12" fill="#555" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Geam: L=220,4 · H=150 · prag=90 · Parapet scară E dx=10</text>
+<rect x="2344.4" y="90" width="72" height="220" fill="#c4b8a8" stroke="#222" stroke-width="1.2"/>
+<rect x="2164.88" y="90" width="179.51999999999998" height="220" fill="#d8cfc3" stroke="#222" stroke-width="1.2"/>
+<rect x="1635.9199999999998" y="90" width="528.9600000000003" height="220" fill="#8ecae6" stroke="#222" stroke-width="1.2"/>
+<rect x="1635.9199999999998" y="136.31578947368422" width="528.9600000000003" height="108.55263157894737" fill="#4a90c8" stroke="#0d47a1" stroke-width="1.5"/>
+<text x="1900.4" y="190.59210526315792" text-anchor="middle" dominant-baseline="middle" font-size="13" font-weight="700" fill="#fff" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">H 150</text>
+<text x="1900.4" y="277.4342105263158" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">prag 90</text>
+<rect x="1432.3999999999999" y="90" width="203.51999999999998" height="220" fill="#d8cfc3" stroke="#222" stroke-width="1.2"/>
+<rect x="1336.3999999999999" y="90" width="96" height="220" fill="#6e6e6e" stroke="#222" stroke-width="1.2"/>
+<rect x="931.5199999999999" y="90" width="404.88" height="220" fill="#c4b8a8" stroke="#222" stroke-width="1.2"/>
+<rect x="620.4800000000001" y="90" width="311.03999999999974" height="220" fill="#8ecae6" stroke="#222" stroke-width="1.2"/>
+<rect x="620.4800000000001" y="136.31578947368422" width="311.03999999999974" height="108.55263157894737" fill="#4a90c8" stroke="#0d47a1" stroke-width="1.5"/>
+<text x="776" y="190.59210526315792" text-anchor="middle" dominant-baseline="middle" font-size="13" font-weight="700" fill="#fff" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">H 150</text>
+<text x="776" y="277.4342105263158" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">prag 90</text>
+<rect x="524.48" y="90" width="96.00000000000011" height="220" fill="#6e6e6e" stroke="#222" stroke-width="1.2"/>
+<rect x="80" y="90" width="444.48" height="220" fill="#b0a090" stroke="#222" stroke-width="1.2"/>
+<rect x="2320.4" y="90" width="72" height="220" fill="none" stroke="#111" stroke-width="2.5"/>
+<line x1="80" y1="338" x2="2416.4" y2="338" stroke="#111" stroke-width="1.4"/>
+<line x1="2344.4" y1="330" x2="2344.4" y2="346" stroke="#111" stroke-width="1.6"/>
+<line x1="2416.4" y1="330" x2="2416.4" y2="346" stroke="#111" stroke-width="1.6"/>
+<text x="2380.4" y="326" text-anchor="middle" font-size="16" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">30</text>
+<text x="2380.4" y="364" text-anchor="middle" font-size="11" fill="#333" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">zid N</text>
+<text x="2344.4" y="386" text-anchor="middle" font-size="10" fill="#666" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Y30</text>
+<line x1="2164.88" y1="330" x2="2164.88" y2="346" stroke="#111" stroke-width="1.6"/>
+<line x1="2344.4" y1="330" x2="2344.4" y2="346" stroke="#111" stroke-width="1.6"/>
+<text x="2254.6400000000003" y="326" text-anchor="middle" font-size="16" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">74,8</text>
+<text x="2254.6400000000003" y="364" text-anchor="middle" font-size="11" fill="#333" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">plin</text>
+<text x="2164.88" y="386" text-anchor="middle" font-size="10" fill="#666" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Y104,8</text>
+<line x1="1635.9199999999998" y1="330" x2="1635.9199999999998" y2="346" stroke="#111" stroke-width="1.6"/>
+<line x1="2164.88" y1="330" x2="2164.88" y2="346" stroke="#111" stroke-width="1.6"/>
+<text x="1900.4" y="326" text-anchor="middle" font-size="16" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">220,4</text>
+<text x="1900.4" y="364" text-anchor="middle" font-size="11" fill="#333" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">GEAM LIVING</text>
+<text x="1635.9199999999998" y="386" text-anchor="middle" font-size="10" fill="#666" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Y325,2</text>
+<line x1="1432.3999999999999" y1="330" x2="1432.3999999999999" y2="346" stroke="#111" stroke-width="1.6"/>
+<line x1="1635.9199999999998" y1="330" x2="1635.9199999999998" y2="346" stroke="#111" stroke-width="1.6"/>
+<text x="1534.1599999999999" y="326" text-anchor="middle" font-size="16" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">84,8</text>
+<text x="1534.1599999999999" y="364" text-anchor="middle" font-size="11" fill="#333" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">plin</text>
+<text x="1432.3999999999999" y="386" text-anchor="middle" font-size="10" fill="#666" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Y410</text>
+<line x1="1336.3999999999999" y1="330" x2="1336.3999999999999" y2="346" stroke="#111" stroke-width="1.6"/>
+<line x1="1432.3999999999999" y1="330" x2="1432.3999999999999" y2="346" stroke="#111" stroke-width="1.6"/>
+<text x="1384.3999999999999" y="326" text-anchor="middle" font-size="16" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">40</text>
+<text x="1384.3999999999999" y="364" text-anchor="middle" font-size="11" fill="#333" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">C_E_PAL = mid</text>
+<text x="1336.3999999999999" y="386" text-anchor="middle" font-size="10" fill="#666" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Y450</text>
+<line x1="931.5199999999999" y1="330" x2="931.5199999999999" y2="346" stroke="#111" stroke-width="1.6"/>
+<line x1="1336.3999999999999" y1="330" x2="1336.3999999999999" y2="346" stroke="#111" stroke-width="1.6"/>
+<text x="1133.9599999999998" y="326" text-anchor="middle" font-size="16" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">168,7</text>
+<text x="1133.9599999999998" y="364" text-anchor="middle" font-size="11" fill="#333" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">zid plin palier</text>
+<text x="931.5199999999999" y="386" text-anchor="middle" font-size="10" fill="#666" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Y618,7</text>
+<line x1="620.4800000000001" y1="330" x2="620.4800000000001" y2="346" stroke="#111" stroke-width="1.6"/>
+<line x1="931.5199999999999" y1="330" x2="931.5199999999999" y2="346" stroke="#111" stroke-width="1.6"/>
+<text x="776" y="326" text-anchor="middle" font-size="16" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">129,6</text>
+<text x="776" y="364" text-anchor="middle" font-size="11" fill="#333" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">lamele L129.6 H210</text>
+<text x="620.4800000000001" y="386" text-anchor="middle" font-size="10" fill="#666" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Y748,3</text>
+<line x1="524.48" y1="330" x2="524.48" y2="346" stroke="#111" stroke-width="1.6"/>
+<line x1="620.4800000000001" y1="330" x2="620.4800000000001" y2="346" stroke="#111" stroke-width="1.6"/>
+<text x="572.48" y="326" text-anchor="middle" font-size="16" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">40</text>
+<text x="572.48" y="364" text-anchor="middle" font-size="11" fill="#333" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">C_E_LAMELE</text>
+<text x="524.48" y="386" text-anchor="middle" font-size="10" fill="#666" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Y788,3</text>
+<line x1="80" y1="330" x2="80" y2="346" stroke="#111" stroke-width="1.6"/>
+<line x1="524.48" y1="330" x2="524.48" y2="346" stroke="#111" stroke-width="1.6"/>
+<text x="302.24" y="326" text-anchor="middle" font-size="16" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">185,2</text>
+<text x="302.24" y="364" text-anchor="middle" font-size="11" fill="#333" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">parapet după pier+podest</text>
+<text x="80" y="386" text-anchor="middle" font-size="10" fill="#666" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Y973,5</text>
+<text x="2416.4" y="386" text-anchor="middle" font-size="10" fill="#666" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Y0</text>
+<text x="80" y="400" font-size="14" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Segmente (cm) — fațadă est</text>
+<text x="80" y="426" font-size="12" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif" fill="#222">S→N: 185,2 (parapet după pier+podest) · 40 (C_E_LAMELE) · 129,6 (lamele L129.6 H210) · 168,7 (zid plin palier) · 40 (C_E_PAL = mid) · 84,8 (plin) · 220,4 (GEAM LIVING) · 74,8 (plin) · 30 (zid N)</text>
+<text x="80" y="452" font-size="12" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">plin N→geam = Y104,8 − Y30 = 74,8</text>
+<text x="80" y="470" font-size="12" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">geam L = 220,4 · H = 150 · prag = 90</text>
+<text x="80" y="488" font-size="12" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">plin geam→C_E_PAL = 84,8 (C_E_GEAM_S scos)</text>
+<text x="80" y="506" font-size="12" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">C_E_PAL pe ax mid: Y410–450 · Y_PALIER_N=450</text>
+<text x="80" y="524" font-size="12" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">parapet E scară: Y788,3→Y973,5 = 185,2 · grosime 10</text>
+<text x="80" y="542" font-size="12" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">est_living dy = 390 (Y30→Y420) · est_recuperat_p dy = 100</text>
+<text x="2436.4" y="90" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Legendă</text>
+<rect x="2436.4" y="106" width="22" height="14" fill="#c4b8a8" stroke="#222"/>
+<text x="2464.4" y="117" font-size="11" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">zid</text>
+<rect x="2436.4" y="128" width="22" height="14" fill="#d8cfc3" stroke="#222"/>
+<text x="2464.4" y="139" font-size="11" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">plin</text>
+<rect x="2436.4" y="150" width="22" height="14" fill="#8ecae6" stroke="#222"/>
+<text x="2464.4" y="161" font-size="11" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">geam</text>
+<rect x="2436.4" y="172" width="22" height="14" fill="#6e6e6e" stroke="#222"/>
+<text x="2464.4" y="183" font-size="11" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">stâlp</text>
+<rect x="2436.4" y="194" width="22" height="14" fill="#b0a090" stroke="#222"/>
+<text x="2464.4" y="205" font-size="11" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">scară/parapet</text>
+</svg>

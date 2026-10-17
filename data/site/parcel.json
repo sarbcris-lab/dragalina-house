@@ -5,7 +5,9 @@
   },
   "confirmed": {
     "cf": "54602 Turda",
-    "area_from_acts_m2": 172,
+    "area_m2": 147,
+    "area_basis": "ridicare_topo_2011",
+    "area_note": "147 m² canonic. 172 m² din acte/CF vechi = eronat — nu se folosește.",
     "area_measured_m2": 147,
     "existing_built_ground_m2": 76,
     "perimeter_segments_m": [

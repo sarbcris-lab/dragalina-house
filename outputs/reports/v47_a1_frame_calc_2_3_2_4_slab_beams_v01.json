@@ -1,0 +1,146 @@
+{
+  "status": "preliminar_ordin — nu adoptare",
+  "slab": {
+    "L_crit_m": 6.2,
+    "h15": {
+      "L_m": 6.2,
+      "h_cm": 15,
+      "M_kNm_m": 56.6,
+      "L_over_d": 49.6,
+      "As_mm2_m": 1157.2,
+      "sls_signal": "SLS_semnal_fail_ordin"
+    },
+    "h20": {
+      "L_m": 6.2,
+      "h_cm": 20,
+      "M_kNm_m": 56.6,
+      "L_over_d": 35.4,
+      "As_mm2_m": 826.6,
+      "sls_signal": "SLS_semnal_fail_ordin"
+    }
+  },
+  "beams": [
+    {
+      "id": "B_N_span_NW_MID",
+      "L_m": 3.2,
+      "trib_m": 1.6,
+      "section": "30×35",
+      "M_kNm": 24.1,
+      "V_kN": 30.2,
+      "As_mm2": 205.5,
+      "mu": 0.054,
+      "flex_ok_ordin": true,
+      "V_vs_Vrdc_ordin": "30.2 / ~35.1",
+      "note": "flexiune ordin OK @35"
+    },
+    {
+      "id": "B_N_span_MID_NE",
+      "L_m": 3.3,
+      "trib_m": 1.6,
+      "section": "30×35",
+      "M_kNm": 25.7,
+      "V_kN": 31.1,
+      "As_mm2": 218.6,
+      "mu": 0.057,
+      "flex_ok_ordin": true,
+      "V_vs_Vrdc_ordin": "31.1 / ~35.8",
+      "note": "flexiune ordin OK @35"
+    },
+    {
+      "id": "B_W_span_NW_WMID",
+      "L_m": 4,
+      "trib_m": 1.5,
+      "section": "30×35",
+      "M_kNm": 35.3,
+      "V_kN": 35.3,
+      "As_mm2": 301,
+      "mu": 0.079,
+      "flex_ok_ordin": true,
+      "V_vs_Vrdc_ordin": "35.3 / ~39.8",
+      "note": "flexiune ordin OK @35"
+    },
+    {
+      "id": "B_W_span_WMID_WDORM",
+      "L_m": 2.45,
+      "trib_m": 1.5,
+      "section": "30×35",
+      "M_kNm": 13.3,
+      "V_kN": 21.6,
+      "As_mm2": 112.9,
+      "mu": 0.029,
+      "flex_ok_ordin": true,
+      "V_vs_Vrdc_ordin": "21.6 / ~33.5",
+      "note": "flexiune ordin OK @35"
+    },
+    {
+      "id": "B_E_span_NE_GEAM",
+      "L_m": 3.1,
+      "trib_m": 1.5,
+      "section": "30×35",
+      "M_kNm": 21.2,
+      "V_kN": 27.4,
+      "As_mm2": 180.8,
+      "mu": 0.047,
+      "flex_ok_ordin": true,
+      "V_vs_Vrdc_ordin": "27.4 / ~33.6",
+      "note": "flexiune ordin OK @35"
+    },
+    {
+      "id": "B_E_span_GEAM_PAL",
+      "L_m": 1.4,
+      "trib_m": 1.5,
+      "section": "30×35",
+      "M_kNm": 4.3,
+      "V_kN": 12.4,
+      "As_mm2": 36.9,
+      "mu": 0.01,
+      "flex_ok_ordin": true,
+      "V_vs_Vrdc_ordin": "12.4 / ~33.5",
+      "note": "flexiune ordin OK @35"
+    },
+    {
+      "id": "B_Y645",
+      "L_m": 3.6,
+      "trib_m": 1.5,
+      "section": "30×35",
+      "M_kNm": 28.6,
+      "V_kN": 31.8,
+      "As_mm2": 243.8,
+      "mu": 0.064,
+      "flex_ok_ordin": true,
+      "V_vs_Vrdc_ordin": "31.8 / ~37.1",
+      "note": "flexiune ordin OK @35"
+    },
+    {
+      "id": "B_Y830",
+      "L_m": 1.75,
+      "trib_m": 1.2,
+      "section": "30×35",
+      "M_kNm": 5.4,
+      "V_kN": 12.4,
+      "As_mm2": 46.1,
+      "mu": 0.012,
+      "flex_ok_ordin": true,
+      "V_vs_Vrdc_ordin": "12.4 / ~33.5",
+      "note": "flexiune ordin OK @35"
+    },
+    {
+      "id": "B_min_b20_test_Y645",
+      "L_m": 3.6,
+      "trib_m": 1.5,
+      "section": "20×35",
+      "M_kNm": 28.6,
+      "V_kN": 31.8,
+      "As_mm2": 243.8,
+      "mu": 0.095,
+      "flex_ok_ordin": true,
+      "V_vs_Vrdc_ordin": "31.8 / ~28.3",
+      "note": "flexiune ordin OK @35"
+    }
+  ],
+  "decisions": {
+    "slab_15": "păstrează țintă; SLS semnal → FE obligatoriu (nu îngroșa acum)",
+    "beams_b30_h35": "ordin flexiune OK pe deschideri perimetrale",
+    "beams_b20": "test Y645 — verifică mu; noduri pe stâlpi 30 cer b≥30 la față stâlp preferabil"
+  }
+}

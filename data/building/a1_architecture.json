@@ -1,0 +1,2024 @@
+{
+  "meta": {
+    "id": "a1_architecture",
+    "version": "0.96",
+    "columns_removed_a1": {
+      "C_SE": "adăugat aiurea",
+      "C_SHAFT_E_PIER": "pe palier/scară — blochează acces; în V47 doar nivel S; scos de pe P/E. C_E_PAL rămâne (est sub palier, living).",
+      "C_E_JALUZELE": "A1.45–48 anulat — încercare Belgian; revenire A1.44",
+      "C_E_GEAM_S": "A1.52: scos lângă geam living; stâlp pe R2 zona rece — ulterior"
+    },
+    "columns_added_a1": {
+      "C_E_LAMELE": "A1.58: pier 20×40 rece (lungime fațadă ≈¼–⅓ lamele), sud de gol; parapet continuă"
+    },
+    "status": "ARH_STUDIU",
+    "generated": "2026-10-17T20:19:20.738Z",
+    "brief": "decisions/brief_A0_v01.md",
+    "site": "data/building/a0_site.json",
+    "source_walls": "v47 remap 680×860 — grosimi catalog A1/A2/A7/A8",
+    "source_columns": "v47_a1_frame_study columns → A0 (exces interior, fără pilastru afară)",
+    "rooms_policy": "Dormitor+nișă aceeași culoare P/E. Etaj: living+dining până la perete despărțitor; bucătărie sud de perete.",
+    "note": "ARH + stâlpi PROVIZORII (vizibili, proem. int.). Grinzi/FE = S1.",
+    "dimensions_status": "STUDIO: cote pe fețe int. Îngheț după confirmare; util shoelace − proem. stâlpi = rundă următoare."
+  },
+  "envelope_cm": {
+    "ew": 680,
+    "ns": 860,
+    "wall_thickness_cm": {
+      "A1": 30,
+      "A2": 31.2,
+      "A7": 12.5,
+      "A8": 15
+    },
+    "brick_on_extreme_cm": 20,
+    "inset_to_brick_cm": {
+      "A1": 10,
+      "A2": 11.2
+    },
+    "column_protrusion_rule": "finit ≠ extremă stâlp: pereți pe finit; stâlp pe cărămidă (retras); 30−20=+10 în cameră",
+    "note": "Pereți pe finit 680×860 · stâlpi retrași pe extrema EB20 · +10 în cameră"
+  },
+  "heights_cm": {
+    "clear_min_cm": 255,
+    "riser_max_cm": 16,
+    "clear_to_false_ceiling_cm": 255,
+    "ff_to_ff_cm": 304,
+    "note": "Clear ≥255 · riser ≤16 — brief."
+  },
+  "areas": {
+    "footprint_m2": 58.48,
+    "pot_pct_147": 39.78,
+    "useful_target_m2": 37,
+    "useful_status": "OK_GEOMETRIC — camere net ≥37; NECONFIRMAT autorizare",
+    "useful_parter_m2": 38.1948,
+    "useful_etaj_m2": 37.0498,
+    "useful_parter_gross_m2": 38.4673,
+    "useful_etaj_gross_m2": 37.3223,
+    "shoelace_parter_m2": 40.2059,
+    "shoelace_etaj_m2": 38.7174,
+    "delta_P_vs_37_m2": 1.1948,
+    "delta_E_vs_37_m2": 0.0498,
+    "useful_rooms_m2": [
+      {
+        "id": "baie",
+        "label": "BAIE",
+        "level": 0,
+        "level_name": "parter",
+        "gross_m2": 4.5542,
+        "column_protrusion_m2": 0.07,
+        "int_walls_m2": 0.0225,
+        "net_m2": 4.4617,
+        "dims_cm": {
+          "x": 31.2,
+          "y": 30,
+          "dx": 308.7,
+          "dy": 114
+        }
+      },
+      {
+        "id": "baie",
+        "label": "BAIE",
+        "level": 1,
+        "level_name": "etaj",
+        "gross_m2": 4.5542,
+        "column_protrusion_m2": 0.07,
+        "int_walls_m2": 0.0225,
+        "net_m2": 4.4617,
+        "dims_cm": {
+          "x": 31.2,
+          "y": 30,
+          "dx": 308.7,
+          "dy": 114
+        }
+      },
+      {
+        "id": "dormitor",
+        "label": "DORMITOR",
+        "level": 0,
+        "level_name": "parter",
+        "gross_m2": 11.7045,
+        "column_protrusion_m2": 0.04,
+        "int_walls_m2": 0,
+        "net_m2": 11.6645,
+        "dims_cm": {
+          "x": 31.2,
+          "y": 294,
+          "dx": 308.7,
+          "dy": 350
+        }
+      },
+      {
+        "id": "dormitor",
+        "label": "DORMITOR",
+        "level": 1,
+        "level_name": "etaj",
+        "gross_m2": 11.7045,
+        "column_protrusion_m2": 0.04,
+        "int_walls_m2": 0,
+        "net_m2": 11.6645,
+        "dims_cm": {
+          "x": 31.2,
+          "y": 294,
+          "dx": 308.7,
+          "dy": 350
+        }
+      },
+      {
+        "id": "hol_vest",
+        "label": "HOL",
+        "level": 0,
+        "level_name": "parter",
+        "gross_m2": 1.7244,
+        "column_protrusion_m2": 0,
+        "int_walls_m2": 0,
+        "net_m2": 1.7244,
+        "dims_cm": {
+          "x": 226.2,
+          "y": 159,
+          "dx": 113.7,
+          "dy": 120
+        }
+      },
+      {
+        "id": "hol_vest",
+        "label": "HOL",
+        "level": 1,
+        "level_name": "etaj",
+        "gross_m2": 1.7244,
+        "column_protrusion_m2": 0,
+        "int_walls_m2": 0,
+        "net_m2": 1.7244,
+        "dims_cm": {
+          "x": 226.2,
+          "y": 159,
+          "dx": 113.7,
+          "dy": 120
+        }
+      },
+      {
+        "id": "bucatarie_p",
+        "label": "BUCĂTĂRIE",
+        "level": 0,
+        "level_name": "parter",
+        "gross_m2": 5.928,
+        "column_protrusion_m2": 0.03,
+        "int_walls_m2": 0,
+        "net_m2": 5.898,
+        "dims_cm": {
+          "x": 352.4,
+          "y": 30,
+          "dx": 296.4,
+          "dy": 200
+        }
+      },
+      {
+        "id": "living_p",
+        "label": "LIVING",
+        "level": 0,
+        "level_name": "parter",
+        "gross_m2": 9.4848,
+        "column_protrusion_m2": 0.04,
+        "int_walls_m2": 0,
+        "net_m2": 9.4448,
+        "dims_cm": {
+          "x": 352.4,
+          "y": 230,
+          "dx": 296.4,
+          "dy": 320
+        }
+      },
+      {
+        "id": "hol_p",
+        "label": "HOL",
+        "level": 0,
+        "level_name": "parter",
+        "gross_m2": 5.0714,
+        "column_protrusion_m2": 0.07,
+        "int_walls_m2": 0,
+        "net_m2": 5.0014,
+        "dims_cm": {
+          "x": 352.4,
+          "y": 550,
+          "dx": 181.9,
+          "dy": 278.8
+        }
+      },
+      {
+        "id": "living_e",
+        "label": "LIVING + DINING",
+        "level": 1,
+        "level_name": "etaj",
+        "gross_m2": 14.2678,
+        "column_protrusion_m2": 0.07,
+        "int_walls_m2": 0,
+        "net_m2": 14.1978,
+        "dims_cm": {
+          "x": 352.4,
+          "y": 30,
+          "dx": 296.4,
+          "dy": 420
+        }
+      },
+      {
+        "id": "bucatarie_e",
+        "label": "BUCĂTĂRIE",
+        "level": 1,
+        "level_name": "etaj",
+        "gross_m2": 5.0714,
+        "column_protrusion_m2": 0.07,
+        "int_walls_m2": 0,
+        "net_m2": 5.0014,
+        "dims_cm": {
+          "x": 352.4,
+          "y": 550,
+          "dx": 181.9,
+          "dy": 278.8
+        }
+      }
+    ],
+    "useful_baie_detail": {
+      "method": "Uniune: corp N (308,7×114) + duș sud de Y144 (120×75) + flanc prosoape (45×27,5) − proem. stâlpi − A8 în corp",
+      "corp_m2": 3.5192,
+      "dus_sud_de_Y144_m2": 0.9,
+      "flanc_prosoape_m2": 0.135,
+      "gross_m2": 4.5542,
+      "column_protrusion_m2": 0.07,
+      "int_walls_m2": 0.0225,
+      "net_m2": 4.4617
+    },
+    "useful_method": "Camere încălzite: uniune fețe int. (rect+parts utiles) − proem. stâlpi − A7/A8 din uniune. Fără dublă numărare. Fără terasă/scară/zid_nu_util. Shoelace = verificare contur.",
+    "useful_notes": [
+      "A1.106: util baie = L (corp+duș sud+flanc) − proem. − A8; vezi useful_baie_detail.",
+      "A1.100: uniune rect (baie+duș+flanc, dorm+L dressing, hol+MS) — fără sumă naivă.",
+      "Hol: fără banda zid A6 est (zid_nu_util).",
+      "Living E: L — N de mid până la XE; S de mid doar până la buc_est (fără palier rece).",
+      "Bucătărie E: est = față V buc_est; ≥5 m² verificat pe net.",
+      "Shoelace = contur încălzit brut (fără scădere pereți int./proem.) — referință, nu util final."
+    ],
+    "terrace_slab_setback_cm": 8,
+    "poly_parter_cm": [
+      [
+        31.2,
+        30
+      ],
+      [
+        648.8,
+        30
+      ],
+      [
+        648.8,
+        550
+      ],
+      [
+        534.3,
+        550
+      ],
+      [
+        534.3,
+        828.8
+      ],
+      [
+        352.4,
+        828.8
+      ],
+      [
+        352.4,
+        644
+      ],
+      [
+        31.2,
+        644
+      ],
+      [
+        31.2,
+        30
+      ]
+    ],
+    "poly_etaj_cm": [
+      [
+        31.2,
+        30
+      ],
+      [
+        648.8,
+        30
+      ],
+      [
+        648.8,
+        420
+      ],
+      [
+        534.3,
+        420
+      ],
+      [
+        534.3,
+        828.8
+      ],
+      [
+        352.4,
+        828.8
+      ],
+      [
+        352.4,
+        644
+      ],
+      [
+        31.2,
+        644
+      ],
+      [
+        31.2,
+        30
+      ]
+    ]
+  },
+  "walls_cm": [
+    {
+      "id": "nord",
+      "x": 0,
+      "y": 0,
+      "dx": 680,
+      "dy": 30,
+      "kind": "ext",
+      "thermal": "mixed",
+      "note": "X0–565 casă încălzită (EB20 200 + ISOVER FASSADE 80, total nom. 299 mm); X565–680 bandă scară — cold_stair (fără ETICS)",
+      "assembly": "A1+A4_split",
+      "catalog_id_heated": "A1",
+      "catalog_id_cold": "A4",
+      "catalog_id": "A1",
+      "thickness_cm": 30
+    },
+    {
+      "id": "vest",
+      "x": 0,
+      "y": 31.2,
+      "dx": 31.2,
+      "dy": 612.8,
+      "kind": "ext",
+      "thermal": "heated_thermosystem",
+      "assembly": "A2",
+      "note": "Y30–645; alcătuire P/E încălzită EB20+ISOVER FASSADE — de confirmat ETICS/proiectant",
+      "catalog_id": "A2",
+      "thickness_finished_mm": 312,
+      "thickness_cm": 31.2
+    },
+    {
+      "id": "est_living",
+      "x": 648.8,
+      "y": 30,
+      "dx": 31.2,
+      "dy": 390,
+      "kind": "ext",
+      "thermal": "heated_thermosystem",
+      "assembly": "A2",
+      "note": "P+E: X650 Y30–440; finit la X680; EB20 200 + ETICS ISOVER 80; structură beton — neconfirmat",
+      "catalog_id": "A2",
+      "thickness_finished_mm": 312,
+      "thickness_cm": 31.2
+    },
+    {
+      "id": "living_palier",
+      "x": 534.3,
+      "y": 439.3,
+      "dx": 144.4,
+      "dy": 30,
+      "kind": "ext",
+      "thermal": "heated_thermosystem",
+      "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+      "removed": true,
+      "status": "ELIMINAT",
+      "reason": "Forma vestibul pe palier — eroare; pe P livingul sub placă rămâne deschis fără zid etaj-only",
+      "note": "ELIMINAT: nu mai există zid nord de vestibul pe palier",
+      "levels": [
+        1
+      ],
+      "thickness_cm": 30
+    },
+    {
+      "id": "sud_bucatarie",
+      "x": 352.4,
+      "y": 828.8,
+      "dx": 181.9,
+      "dy": 31.2,
+      "kind": "ext",
+      "thermal": "heated_thermosystem",
+      "assembly": "A2",
+      "note": "fațadă SUD exterioară casă (P+E) — restaurat; nu = bucătărie pe P; EB20+ISOVER FASSADE",
+      "catalog_id": "A2",
+      "thickness_finished_mm": 312,
+      "thickness_cm": 31.2
+    },
+    {
+      "id": "dormitor_sud",
+      "x": 0,
+      "y": 644,
+      "dx": 352.4,
+      "dy": 31.2,
+      "kind": "ext",
+      "thermal": "heated_thermosystem",
+      "assembly": "A2",
+      "note": "Y645–675; terasă de la Y675; EB20+ISOVER FASSADE — de confirmat ETICS/proiectant",
+      "catalog_id": "A2",
+      "thickness_finished_mm": 312,
+      "thickness_cm": 31.2
+    },
+    {
+      "id": "perete_comun_est",
+      "x": 339.9,
+      "y": 30,
+      "dx": 12.5,
+      "dy": 614.1,
+      "kind": "int",
+      "note": "A1.65: separator XI=352.4 (față est A7); −7,6 vs 360",
+      "catalog_id": "A7",
+      "assembly": "A7",
+      "thickness_finished_mm": 125,
+      "thickness_cm": 12.5
+    },
+    {
+      "id": "nisa_dulap_spate",
+      "x": 31.2,
+      "y": 219,
+      "dx": 135,
+      "dy": 15,
+      "kind": "int",
+      "note": "A1.94: baie↔dorm Y219–234; X31.2→166.2",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "thickness_finished_mm": 150,
+      "thickness_cm": 15,
+      "levels": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nisa_dulap_est",
+      "x": 148.2,
+      "y": 187.2,
+      "dx": 14.9,
+      "dy": 94.9,
+      "kind": "int",
+      "note": "ELIMINAT A1.79: înlocuit cu nisa_est + hol_nisa",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "thickness_finished_mm": 150,
+      "thickness_cm": 15,
+      "removed": true,
+      "status": "ELIMINAT"
+    },
+    {
+      "id": "dorm_baie_nord",
+      "x": 226.2,
+      "y": 279,
+      "dx": 113.7,
+      "dy": 15,
+      "kind": "int",
+      "note": "A1.70: baie↔dorm est de nișă; sud = nord dorm",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "thickness_finished_mm": 150,
+      "thickness_cm": 15
+    },
+    {
+      "id": "buc_est",
+      "x": 534.3,
+      "y": 550,
+      "dx": 30,
+      "dy": 278.8,
+      "kind": "ext",
+      "thermal": "house_stair_separator",
+      "note": "separator termic casă încălzită ↔ scară rece; P: vest scară Y590+; Y470–590 deschis (sub palier etaj)",
+      "levels": [
+        0
+      ],
+      "catalog_id": "A6",
+      "assembly": "A6",
+      "thickness_finished_mm": 300,
+      "thickness_cm": 30
+    },
+    {
+      "id": "ecran_frigider",
+      "x": 474.5,
+      "y": 564.1,
+      "dx": 59.8,
+      "dy": 12.5,
+      "kind": "int",
+      "note": "ELIMINAT: fără ecran frigider pe etaj",
+      "levels": [
+        1
+      ],
+      "catalog_id": "A7",
+      "assembly": "A7",
+      "thickness_finished_mm": 125,
+      "thickness_cm": 12.5,
+      "removed": true,
+      "status": "ELIMINAT",
+      "reason": "Zid interior scurt — scos; intrare_etaj coborâtă lângă C_CASA_SCARA"
+    },
+    {
+      "id": "terasa_est",
+      "x": 322.5,
+      "y": 674,
+      "dx": 29.9,
+      "dy": 184.7,
+      "kind": "ext",
+      "note": "Y675–860; gol buc_terasa_etaj Y680–770 pe L1; pe P = intrare_parter",
+      "catalog_id": "A1",
+      "assembly": "A1",
+      "thickness_finished_mm": 299,
+      "thickness_cm": 29.9
+    },
+    {
+      "id": "est_recuperat_p",
+      "x": 648.8,
+      "y": 450,
+      "dx": 31.2,
+      "dy": 100,
+      "kind": "ext",
+      "levels": [
+        0
+      ],
+      "note": "ext limită est sub palier — păstrat; canapea pe el",
+      "catalog_id": "A2",
+      "assembly": "A2",
+      "thickness_finished_mm": 312,
+      "thickness_cm": 31.2
+    },
+    {
+      "id": "buc_est_etaj",
+      "x": 534.3,
+      "y": 450,
+      "dx": 30,
+      "dy": 378.8,
+      "kind": "ext",
+      "levels": [
+        1
+      ],
+      "note": "L A6 picior V: casă încălzită (vest) ↔ scară/palier rece (est); ușă intrare_etaj",
+      "catalog_id": "A6",
+      "assembly": "A6",
+      "thickness_finished_mm": 300,
+      "thermal": "house_stair_separator",
+      "outward_hint": "east",
+      "thickness_cm": 30
+    },
+    {
+      "id": "palier_A6_nord_etaj",
+      "x": 534.3,
+      "y": 420,
+      "dx": 145.7,
+      "dy": 30,
+      "kind": "ext",
+      "thermal": "house_stair_separator",
+      "catalog_id": "A6",
+      "assembly": "A6",
+      "thickness_finished_mm": 300,
+      "levels": [
+        1
+      ],
+      "outward_hint": "south",
+      "note": "L A6 picior N: casă încălzită (nord) ↔ palier scară rece (sud). Palierul e AFARĂ din apartament.",
+      "thickness_cm": 30
+    },
+    {
+      "id": "palier_inchidere_sud_p",
+      "x": 534.3,
+      "y": 550,
+      "dx": 145.7,
+      "dy": 30,
+      "kind": "ext",
+      "thermal": "house_stair_separator",
+      "catalog_id": "A6",
+      "assembly": "A6",
+      "thickness_cm": 30,
+      "levels": [
+        0
+      ],
+      "note": "P: A6 E–V, paralel sud; de la hol (X534) → limita Dragalina. Închide palierul înăuntru."
+    },
+    {
+      "id": "baie_sud_gol",
+      "x": 226.2,
+      "y": 144,
+      "dx": 113.7,
+      "dy": 15,
+      "kind": "int",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "thickness_cm": 15,
+      "thickness_finished_mm": 150,
+      "levels": [
+        0,
+        1
+      ],
+      "note": "A1.76: N de gol 120; paralel dorm_baie_nord; X226.2→separator"
+    },
+    {
+      "id": "nisa_est_N",
+      "x": 151.2,
+      "y": 129,
+      "dx": 15,
+      "dy": 90,
+      "kind": "int",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "thickness_cm": 15,
+      "thickness_finished_mm": 150,
+      "levels": [
+        0,
+        1
+      ],
+      "note": "A1.91: est duș 120×90 Y129–219"
+    },
+    {
+      "id": "baie_flanc_est",
+      "x": 211.2,
+      "y": 144,
+      "dx": 15,
+      "dy": 30,
+      "kind": "int",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "thickness_cm": 15,
+      "thickness_finished_mm": 150,
+      "levels": [
+        0,
+        1
+      ],
+      "note": "A1.108: prosoape — închide spre hol (dy până la zid N MS)"
+    },
+    {
+      "id": "hol_nisa_N",
+      "x": 166.2,
+      "y": 174,
+      "dx": 60,
+      "dy": 15,
+      "kind": "int",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "thickness_cm": 15,
+      "thickness_finished_mm": 150,
+      "levels": [
+        0,
+        1
+      ],
+      "note": "A1.108: nord MS A8 15"
+    },
+    {
+      "id": "hol_nisa_S",
+      "x": 151.2,
+      "y": 249,
+      "dx": 75,
+      "dy": 15,
+      "kind": "int",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "thickness_cm": 15,
+      "thickness_finished_mm": 150,
+      "levels": [
+        0,
+        1
+      ],
+      "note": "A1.108: sud MS + colț vest — separator dressing"
+    },
+    {
+      "id": "nisa_est_S",
+      "x": 151.2,
+      "y": 234,
+      "dx": 15,
+      "dy": 15,
+      "kind": "int",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "thickness_cm": 15,
+      "thickness_finished_mm": 150,
+      "levels": [
+        0,
+        1
+      ],
+      "note": "A1.99: ⊥ glisante → colț L (MS↔dressing); stop, nu taie L"
+    },
+    {
+      "id": "dorm_flanc_est",
+      "x": 211.2,
+      "y": 249,
+      "dx": 15,
+      "dy": 45,
+      "kind": "int",
+      "catalog_id": "A8",
+      "assembly": "A8",
+      "thickness_cm": 15,
+      "thickness_finished_mm": 150,
+      "levels": [
+        0,
+        1
+      ],
+      "note": "A1.94: flanc est 45 cm — colț L cu hol_nisa_S + dorm_baie_nord"
+    }
+  ],
+  "columns_cm": [
+    {
+      "id": "C_NW",
+      "x": 11.2,
+      "y": 10,
+      "dx": 30,
+      "dy": 30,
+      "section_cm": "30×30",
+      "protrusion_into_room_cm": 10,
+      "brick_on_extreme_cm": 20,
+      "inset_from_finished_cm": 10,
+      "faces": {
+        "onN": true,
+        "onW": true,
+        "onE": false,
+        "onSEnv": false,
+        "onSDorm": false,
+        "onBucEst": false
+      },
+      "status": "PROVIZORIU_A0_caramida_pe_extrema",
+      "note": "Finit 680×860; stâlp pe extrema cărămizii (retras de pe finit); +10 în cameră."
+    },
+    {
+      "id": "C_N_MID",
+      "x": 312.4,
+      "y": 10,
+      "dx": 40,
+      "dy": 30,
+      "section_cm": "40×30",
+      "protrusion_into_room_cm": 10,
+      "brick_on_extreme_cm": 20,
+      "inset_from_finished_cm": 10,
+      "faces": {
+        "onN": true,
+        "onW": false,
+        "onE": false,
+        "onSEnv": false,
+        "onSDorm": false,
+        "onBucEst": false
+      },
+      "status": "PROVIZORIU_A0_caramida_pe_extrema",
+      "note": "Finit 680×860; stâlp pe extrema cărămizii (retras de pe finit); +10 în cameră."
+    },
+    {
+      "id": "C_NE",
+      "x": 638.8,
+      "y": 10,
+      "dx": 30,
+      "dy": 30,
+      "section_cm": "30×30",
+      "protrusion_into_room_cm": 10,
+      "brick_on_extreme_cm": 20,
+      "inset_from_finished_cm": 10,
+      "faces": {
+        "onN": true,
+        "onW": false,
+        "onE": true,
+        "onSEnv": false,
+        "onSDorm": false,
+        "onBucEst": false
+      },
+      "status": "PROVIZORIU_A0_caramida_pe_extrema",
+      "note": "Finit 680×860; stâlp pe extrema cărămizii (retras de pe finit); +10 în cameră."
+    },
+    {
+      "id": "C_W_MID",
+      "x": 11.2,
+      "y": 410,
+      "dx": 30,
+      "dy": 40,
+      "section_cm": "30×40",
+      "protrusion_into_room_cm": 10,
+      "brick_on_extreme_cm": 20,
+      "inset_from_finished_cm": 11.2,
+      "faces": {
+        "onN": false,
+        "onW": true,
+        "onE": false,
+        "onSEnv": false,
+        "onSDorm": false,
+        "onBucEst": false
+      },
+      "status": "PROVIZORIU_A0_caramida_pe_extrema",
+      "note": "Finit 680×860; stâlp pe extrema cărămizii (retras de pe finit); +10 în cameră."
+    },
+    {
+      "id": "C_W_DORM",
+      "x": 11.2,
+      "y": 645.2,
+      "dx": 30,
+      "dy": 30,
+      "section_cm": "30×30",
+      "protrusion_into_room_cm": 10,
+      "brick_on_extreme_cm": 20,
+      "inset_from_finished_cm": 11.2,
+      "faces": {
+        "onN": false,
+        "onW": true,
+        "onE": false,
+        "onSEnv": false,
+        "onSDorm": true,
+        "onBucEst": false
+      },
+      "status": "PROVIZORIU_A0_caramida_pe_extrema",
+      "note": "Finit 680×860; stâlp pe extrema cărămizii (retras de pe finit); +10 în cameră."
+    },
+    {
+      "id": "C_S_DORM_E",
+      "x": 322.4,
+      "y": 645.2,
+      "dx": 30,
+      "dy": 30,
+      "section_cm": "30×30",
+      "protrusion_into_room_cm": 0,
+      "brick_on_extreme_cm": 20,
+      "inset_from_finished_cm": 11.2,
+      "faces": {
+        "onN": false,
+        "onW": false,
+        "onE": false,
+        "onSEnv": false,
+        "onSDorm": true,
+        "onBucEst": false
+      },
+      "status": "PROVIZORIU_A0_caramida_pe_extrema",
+      "note": "Finit 680×860; stâlp pe extrema cărămizii (retras de pe finit); +10 în cameră."
+    },
+    {
+      "id": "C_E_PAL",
+      "x": 638.8,
+      "y": 410,
+      "dx": 30,
+      "dy": 40,
+      "section_cm": "30×40",
+      "protrusion_into_room_cm": 10,
+      "brick_on_extreme_cm": 20,
+      "inset_from_finished_cm": 11.2,
+      "faces": {
+        "onN": false,
+        "onW": false,
+        "onE": true,
+        "onSEnv": false,
+        "onSDorm": false,
+        "onBucEst": false
+      },
+      "status": "PROVIZORIU_A0_caramida_pe_extrema",
+      "note": "Finit 680×860; stâlp pe extrema cărămizii (retras de pe finit); +10 în cameră."
+    },
+    {
+      "id": "C_CASA_SCARA",
+      "x": 524.3,
+      "y": 550,
+      "dx": 30,
+      "dy": 40,
+      "section_cm": "30×40",
+      "protrusion_into_room_cm": 10,
+      "brick_on_extreme_cm": 20,
+      "inset_from_finished_cm": 0,
+      "faces": {
+        "onN": false,
+        "onW": false,
+        "onE": false,
+        "onSEnv": false,
+        "onSDorm": false,
+        "onBucEst": true
+      },
+      "status": "PROVIZORIU_A0_caramida_pe_extrema",
+      "note": "Finit 680×860; stâlp pe extrema cărămizii (retras de pe finit); +10 în cameră."
+    },
+    {
+      "id": "C_S_INTRARE_W",
+      "x": 312.5,
+      "y": 818.8,
+      "dx": 40,
+      "dy": 30,
+      "section_cm": "40×30",
+      "protrusion_into_room_cm": 10,
+      "brick_on_extreme_cm": 20,
+      "inset_from_finished_cm": 11.2,
+      "faces": {
+        "onN": false,
+        "onW": false,
+        "onE": false,
+        "onSEnv": true,
+        "onSDorm": false,
+        "onBucEst": false
+      },
+      "status": "PROVIZORIU_A0_caramida_pe_extrema",
+      "note": "Finit 680×860; stâlp pe extrema cărămizii (retras de pe finit); +10 în cameră."
+    },
+    {
+      "id": "C_S_INTRARE_E",
+      "x": 524.3,
+      "y": 818.8,
+      "dx": 30,
+      "dy": 30,
+      "section_cm": "30×30",
+      "protrusion_into_room_cm": 10,
+      "brick_on_extreme_cm": 20,
+      "inset_from_finished_cm": 11.2,
+      "faces": {
+        "onN": false,
+        "onW": false,
+        "onE": false,
+        "onSEnv": true,
+        "onSDorm": false,
+        "onBucEst": true
+      },
+      "status": "PROVIZORIU_A0_caramida_pe_extrema",
+      "note": "Finit 680×860; stâlp pe extrema cărămizii (retras de pe finit); +10 în cameră."
+    },
+    {
+      "id": "C_E_LAMELE",
+      "x": 660,
+      "y": 748.3,
+      "dx": 20,
+      "dy": 40,
+      "section_cm": "20×40",
+      "protrusion_into_room_cm": 0,
+      "brick_on_extreme_cm": 0,
+      "inset_from_finished_cm": 0,
+      "faces": {
+        "onN": false,
+        "onW": false,
+        "onE": true,
+        "onSEnv": false,
+        "onSDorm": false,
+        "onBucEst": false
+      },
+      "thermal": "cold_stair",
+      "no_etics": true,
+      "status": "PROVIZORIU_A1_scară_rece",
+      "note": "Est scară rece, sud de lamele; fără ETICS. Continuu P/E (→fundație dacă FE); secțiune studiu 20×40 — FE poate cere ≥30.",
+      "continuous_through_floor": true,
+      "levels": [
+        0,
+        1
+      ]
+    }
+  ],
+  "rooms_cm": [
+    {
+      "id": "baie",
+      "label": "BAIE",
+      "levels": [
+        0,
+        1
+      ],
+      "x": 31.2,
+      "y": 30,
+      "dx": 308.7,
+      "dy": 114,
+      "floor": "#d4e6e9",
+      "note": "A1.91: duș 120×90 Y129–219; zid baie↔dorm sud; WC/lavoar nord",
+      "includes": [
+        "dus_zone",
+        "baie_flanc"
+      ],
+      "parts": [
+        {
+          "id": "dus_zone",
+          "role": "dus",
+          "x": 31.2,
+          "y": 129,
+          "dx": 120,
+          "dy": 90,
+          "util_dx": 120,
+          "util_dy": 90,
+          "floor": "#d4e6e9",
+          "note": "Duș; util 120×90"
+        },
+        {
+          "id": "baie_flanc",
+          "role": "dressing_baie",
+          "x": 166.2,
+          "y": 144,
+          "dx": 45,
+          "dy": 30,
+          "util_dx": 45,
+          "util_dy": 30,
+          "floor": "#d4e6e9",
+          "note": "Prosoape; util 45×30"
+        }
+      ]
+    },
+    {
+      "id": "dormitor",
+      "label": "DORMITOR",
+      "levels": [
+        0,
+        1
+      ],
+      "x": 31.2,
+      "y": 294,
+      "dx": 308.7,
+      "dy": 350,
+      "floor": "#e9e0d5",
+      "note": "A1.99: dressing L spate glisante 180; zid ⊥ stop la colț L",
+      "includes": [
+        "dressing_nisa",
+        "dorm_flanc"
+      ],
+      "parts": [
+        {
+          "id": "dressing_nisa",
+          "role": "dressing",
+          "x": 31.2,
+          "y": 234,
+          "dx": 120,
+          "dy": 60,
+          "util_dx": 180,
+          "util_dy": 60,
+          "floor": "#e9e0d5",
+          "note": "L braț lung; gură 180×60"
+        },
+        {
+          "id": "dorm_flanc",
+          "role": "dressing",
+          "x": 151.2,
+          "y": 264,
+          "dx": 60,
+          "dy": 30,
+          "util_dx": 60,
+          "util_dy": 30,
+          "floor": "#e9e0d5",
+          "note": "L braț scurt 60×30"
+        }
+      ]
+    },
+    {
+      "id": "hol_vest",
+      "label": "HOL",
+      "levels": [
+        0,
+        1
+      ],
+      "x": 226.2,
+      "y": 159,
+      "dx": 113.7,
+      "dy": 120,
+      "floor": "#e8d5c4",
+      "note": "A1.85: vestibul 120; MS 60×60 în nișa baie↔dorm (lângă duș, acces hol)",
+      "includes": [
+        "hol_nisa"
+      ],
+      "parts": [
+        {
+          "id": "hol_nisa",
+          "role": "floor_add",
+          "x": 166.2,
+          "y": 189,
+          "dx": 60,
+          "dy": 60,
+          "util_dx": 60,
+          "util_dy": 60,
+          "floor": "#e8d5c4",
+          "note": "MS nișă baie↔dorm; util 60×60; acces hol"
+        }
+      ]
+    },
+    {
+      "id": "bucatarie_p",
+      "label": "BUCĂTĂRIE",
+      "levels": [
+        0
+      ],
+      "x": 352.4,
+      "y": 30,
+      "dx": 296.4,
+      "dy": 200,
+      "floor": "#efe4d8",
+      "note": "Bucătărie + dining (masă/scaune) — ~2,9×2,0 m (nu fâșia veche 60 cm)."
+    },
+    {
+      "id": "living_p",
+      "label": "LIVING",
+      "levels": [
+        0
+      ],
+      "x": 352.4,
+      "y": 230,
+      "dx": 296.4,
+      "dy": 320,
+      "floor": "#e8efe4",
+      "note": "De la zidul A6 sud (închidere palier) până la bucătărie; inclusiv sub placă până la est."
+    },
+    {
+      "id": "hol_p",
+      "label": "HOL",
+      "levels": [
+        0
+      ],
+      "x": 352.4,
+      "y": 550,
+      "dx": 181.9,
+      "dy": 278.8,
+      "floor": "#d4c4a8",
+      "note": "Inclusiv zona zidului A6 până la colțul L (buc_est); sud = intrare terasă.",
+      "parts": [
+        {
+          "id": "hol_colt_zid",
+          "role": "zid_nu_util",
+          "x": 534.3,
+          "y": 550,
+          "dx": 145.7,
+          "dy": 30,
+          "floor": "#d4c4a8",
+          "note": "Bandă zid A6 (desen) — NU intră în util."
+        }
+      ]
+    },
+    {
+      "id": "terasa_p",
+      "label": "TERASĂ",
+      "levels": [
+        0
+      ],
+      "x": 8,
+      "y": 674,
+      "dx": 336.4,
+      "dy": 293,
+      "floor": "#dfe8d8",
+      "outdoor": true,
+      "note": "placă −8 cm V+E · −8 cm sud; parapet pe stâlpi"
+    },
+    {
+      "id": "living_e",
+      "label": "LIVING + DINING",
+      "levels": [
+        1
+      ],
+      "x": 352.4,
+      "y": 30,
+      "dx": 296.4,
+      "dy": 420,
+      "floor": "#e8efe4",
+      "note": "Nord→mid: până la est finit. Sud de mid → buc_est (fără palier rece).",
+      "parts": [
+        {
+          "id": "living_e_sud_pana_usa",
+          "role": "floor_add",
+          "x": 352.4,
+          "y": 450,
+          "dx": 181.9,
+          "dy": 100,
+          "floor": "#e8efe4",
+          "note": "Y mid→C_CASA_SCARA, vest de buc_est (zona ușă = living)"
+        }
+      ]
+    },
+    {
+      "id": "bucatarie_e",
+      "label": "BUCĂTĂRIE",
+      "levels": [
+        1
+      ],
+      "x": 352.4,
+      "y": 550,
+      "dx": 181.9,
+      "dy": 278.8,
+      "floor": "#efe4d8",
+      "note": "Sud de C_CASA_SCARA / colț L → fațadă sud; est = față V buc_est. Țintă ≥5 m²."
+    },
+    {
+      "id": "terasa_e",
+      "label": "TERASĂ",
+      "levels": [
+        1
+      ],
+      "x": 8,
+      "y": 674,
+      "dx": 313,
+      "dy": 177,
+      "floor": "#dfe8d8",
+      "outdoor": true,
+      "note": "placă −8 cm V+E · −8 cm sud; parapet pe stâlpi"
+    },
+    {
+      "id": "scara_p",
+      "label": "SCARĂ",
+      "levels": [
+        0
+      ],
+      "x": 564.3,
+      "y": 580,
+      "dx": 115.7,
+      "dy": 363.8,
+      "floor": "#dde6e9",
+      "note": "P: scară rece sud de hol/zid; sub palier = living."
+    },
+    {
+      "id": "scara_e",
+      "label": "SCARĂ",
+      "levels": [
+        1
+      ],
+      "x": 562.8,
+      "y": 450,
+      "dx": 114.6,
+      "dy": 493.8,
+      "floor": "#dde6e9"
+    }
+  ],
+  "openings_cm": [
+    {
+      "id": "baie_usa_dorm",
+      "x": 241.2,
+      "y": 279,
+      "dx": 80,
+      "dy": 15,
+      "construction_clear_cm": 80,
+      "passage_clear_cm": 70,
+      "system": "batanta",
+      "leaf": {
+        "width_cm": 78,
+        "thickness_cm": 4,
+        "type": "hinged",
+        "swing": "into_dorm_south_left_from_bath",
+        "hinge": "east",
+        "hinge_x": 321.2,
+        "hinge_y": 294,
+        "closed_along": "X241.2→321.2 Y294",
+        "open_leaf": {
+          "x0": 321.2,
+          "y0": 294,
+          "x1": 321.2,
+          "y1": 372,
+          "note": "90° în dormitor (sud); balama E (stânga din baie)"
+        },
+        "note": "din baie privind S: deschidere stânga; balama E; foaie → sud în dorm"
+      },
+      "feasibility": {
+        "status": "STUDIO",
+        "declared_buildable": false,
+        "note": "A1.72: fără casetă; batantă pe dorm_baie_nord"
+      },
+      "frame_cm": 5,
+      "access_check": {
+        "from": "baie",
+        "to": "dormitor",
+        "wall_host": "dorm_baie_nord",
+        "status": "batantă; zid plin living↔dorm"
+      },
+      "note": "A1.72b: baie→dorm batantă gol 80; balama E = stânga din baie"
+    },
+    {
+      "id": "dorm_terasa",
+      "x": 106.8,
+      "y": 644,
+      "dx": 150,
+      "dy": 31.2,
+      "construction_clear_cm": 150,
+      "passage_clear_cm": 140,
+      "note": "centrat între stâlpi (41.2–322.4); gol 150",
+      "probe": false,
+      "probe_x_range": [
+        106.8,
+        256.8
+      ],
+      "baseline_x_range": [
+        140,
+        290
+      ],
+      "width_cm": 150,
+      "joinery_options": [
+        {
+          "id": "culisanta_2_foi",
+          "type": "culisantă 2 foi",
+          "clear_passage_approx_cm": 70,
+          "frame_cm": 12,
+          "sill": "prag jos / continuu — REZERVĂ termică",
+          "note": "trecere liberă ~½ gol; verificare pat/perdea/mobilier terasă",
+          "status": "PROPUNERE"
+        },
+        {
+          "id": "batanta_plus_fix",
+          "type": "ușă batantă 90 + parte fixă 60",
+          "clear_passage_approx_cm": 85,
+          "swing": "into_bedroom_north_or_terrace_south — de ales",
+          "sill": "prag — REZERVĂ",
+          "note": "trecere mai bună; baleiere vs pat/perdea de verificat la alegere sens",
+          "status": "PROPUNERE"
+        }
+      ],
+      "preferred_study": "batanta_plus_fix",
+      "access_check": {
+        "vs_bed": "pat Y405–573; gol pe Y645 — circulație sud pat",
+        "vs_curtain": "bandă perdea Y640–652",
+        "vs_terrace_furniture": "vezi terrace_fitout",
+        "probe_vs_baseline": "PROBĂ −20 cm vest: X120–270 vs X140–290; lățime 150 păstrată — poziție NEDEFINITIVĂ"
+      }
+    },
+    {
+      "id": "intrare_parter",
+      "x": 322.5,
+      "y": 679,
+      "dx": 29.9,
+      "dy": 100,
+      "construction_clear_cm": 100,
+      "passage_clear_cm": 90,
+      "frame_cm": 5,
+      "leaf": {
+        "width_cm": 95,
+        "thickness_cm": 4,
+        "swing": "into_hol_from_terrace_right",
+        "hinge": "south",
+        "hinge_x": 352.4,
+        "hinge_y": 779,
+        "note": "de pe terasă: deschidere dreapta înăuntru; balama S; foaie → est în hol",
+        "closed_along": "X360 Y680–765",
+        "open_leaf": {
+          "x0": 352.4,
+          "y0": 779,
+          "x1": 447.4,
+          "y1": 779,
+          "note": "90° în hol (est), pe dreapta"
+        }
+      },
+      "access_check": {
+        "from": "terasă_parter",
+        "via": "primire → circulație vest → living",
+        "not_kitchen_workfront": true,
+        "status": "stabilit_intentie"
+      },
+      "levels": [
+        0
+      ],
+      "role": "entrance",
+      "handle_clear_cm": 8,
+      "note": "P10: terasă → PRIMIRE (nu bucătărie)",
+      "lands_in": "hol_p"
+    },
+    {
+      "id": "usa_rampa_palier",
+      "removed": true,
+      "status": "ELIMINAT",
+      "reason": "Eroare: palierul superior NU e vestibul închis; fără ușă rampă→vestibul",
+      "note": "Eliminat — palier = scară rece acoperită, nu cameră vestibul"
+    },
+    {
+      "id": "intrare_etaj",
+      "x": 534.3,
+      "y": 450,
+      "dx": 30,
+      "dy": 100,
+      "construction_clear_cm": 100,
+      "passage_clear_cm": 88,
+      "frame_cm": 6,
+      "handle_clear_cm": 8,
+      "leaf": {
+        "width_cm": 95,
+        "thickness_cm": 4,
+        "swing": "into_living_from_palier_left",
+        "hinge": "south",
+        "hinge_x": 534.3,
+        "hinge_y": 550,
+        "closed_along": "în gol X534.3 Y450→550",
+        "open_leaf": {
+          "x0": 534.3,
+          "y0": 550,
+          "x1": 439.3,
+          "y1": 550,
+          "note": "90° în living (vest), pe stânga"
+        },
+        "note": "de pe palier: deschidere stânga înăuntru; balama S; foaie → vest"
+      },
+      "access_check": {
+        "wall_host": "buc_est_etaj; gol Y450–550",
+        "frame_cm": 6,
+        "leaf_thickness_cm": 4,
+        "handle_clear_cm": 8,
+        "hinge": "sud (534.3,550)",
+        "open_leaf": "Y550 X534.3→439.29999999999995",
+        "sweep_vs_ecran": "arc în X450–535 Y475–560; ecran Y565 — clear ~30 cm la 45°; mâner OK",
+        "sweep_vs_fridge": "frigider Y580 — în afara baleierii",
+        "gap_ecran_fridge_cm": 2.5,
+        "gap_status": "ipoteză montaj — NECONFIRMATĂ pe model aparat",
+        "status": "gol 100; lângă stâlp; stânga înăuntru"
+      },
+      "frame": {
+        "thickness_cm": 6,
+        "sill_cm": 2,
+        "handle_projection_cm": 8,
+        "stop_cm": 2,
+        "note": "toc+prag+mâner+opritor — REZERVĂ montaj"
+      },
+      "hinge": "nord — PĂSTRAT (inversarea consumă bucătărie)",
+      "sweep_check": "baleiere vs ecran Y565 și frigider Y580 — OK pe geometria r2",
+      "rain_protection": {
+        "type": "copertină / streașină scară existentă — REZERVĂ detaliu",
+        "status": "neconfirmat"
+      },
+      "landing_drain": {
+        "type": "pantă spre exterior + scurgere palier — REZERVĂ",
+        "status": "neconfirmat"
+      },
+      "levels": [
+        1
+      ],
+      "note": "etaj: gol 100; N@mid Y450 · S@C_CASA_SCARA Y550; stânga înăuntru"
+    },
+    {
+      "id": "geam_est",
+      "x": 648.8,
+      "y": 104.8,
+      "dx": 29.9,
+      "dy": 220.4,
+      "note": "A1.55: centrat în jumătatea N (centru Y215); L=220.4; Y104.8→325.2"
+    },
+    {
+      "id": "buc_terasa_etaj",
+      "levels": [
+        1
+      ],
+      "x": 322.5,
+      "y": 679,
+      "dx": 29.9,
+      "dy": 90,
+      "construction_clear_cm": 90,
+      "passage_clear_cm": 78,
+      "frame_cm": 6,
+      "leaf": {
+        "width_cm": 85,
+        "thickness_cm": 4,
+        "swing": "into_terrace_west",
+        "hinge": "north",
+        "hinge_x": 322.5,
+        "hinge_y": 679,
+        "open_leaf": {
+          "x0": 322.5,
+          "y0": 679,
+          "x1": 237.5,
+          "y1": 679
+        },
+        "note": "ETAJ: ieșire buc→terasă; pe terasa_est (A1.67)"
+      },
+      "note": "A1.67: buc→terasă pe terasa_est X322.5; gol 90"
+    },
+    {
+      "id": "baie_living_gol",
+      "levels": [
+        0,
+        1
+      ],
+      "role": "wall_void",
+      "x": 339.9,
+      "y": 159,
+      "dx": 12.5,
+      "dy": 120,
+      "construction_clear_cm": 120,
+      "system": "gol_zid",
+      "note": "A1.74b: gol 120 cm living–baie; după colț dorm (Y279→159); colț plin"
+    },
+    {
+      "id": "baie_usa",
+      "levels": [
+        0,
+        1
+      ],
+      "role": "entrance",
+      "x": 249.9,
+      "y": 144,
+      "dx": 80,
+      "dy": 15,
+      "construction_clear_cm": 80,
+      "passage_clear_cm": 70,
+      "frame_cm": 5,
+      "system": "batanta",
+      "leaf": {
+        "width_cm": 78,
+        "thickness_cm": 4,
+        "type": "hinged",
+        "swing": "into_bath_north_right_from_hol",
+        "hinge": "east",
+        "hinge_x": 329.9,
+        "hinge_y": 144,
+        "closed_along": "X249.9→329.9 Y144",
+        "open_leaf": {
+          "x0": 329.9,
+          "y0": 144,
+          "x1": 329.9,
+          "y1": 66,
+          "note": "90° în baie (nord); balama E (dreapta din hol)"
+        },
+        "note": "din hol privind N: deschidere dreapta în baie; balama E; foaie → nord"
+      },
+      "access_check": {
+        "from": "hol_living_via_gol120",
+        "to": "baie",
+        "wall_host": "baie_sud_gol",
+        "status": "batantă"
+      },
+      "note": "A1.78: hol→baie batantă gol 80; dreapta în baie pe baie_sud_gol"
+    },
+    {
+      "id": "nisa_glisante_dorm",
+      "levels": [
+        0,
+        1
+      ],
+      "role": "dressing",
+      "x": 31.2,
+      "y": 289,
+      "dx": 180,
+      "dy": 5,
+      "construction_clear_cm": 180,
+      "passage_clear_cm": 180,
+      "system": "glisante",
+      "leaves": 3,
+      "leaf_width_cm": 60,
+      "leaf": {
+        "type": "sliding",
+        "count": 3,
+        "width_cm": 60,
+        "thickness_cm": 4,
+        "track_cm": 5,
+        "along": "E-W",
+        "face": "dorm_north",
+        "note": "3 foi × 60 pe 180; pe gura nișei"
+      },
+      "access_check": {
+        "from": "dormitor",
+        "to": "dressing_nisa",
+        "wall_host": null,
+        "status": "glisante pe gură; fără hol_nisa_S"
+      },
+      "note": "A1.89: glisante dressing 180 / 3×60; X31.2→211.2"
+    }
+  ],
+  "parapets_cm": [
+    {
+      "id": "terasa_parapet_sud_w",
+      "x": 9.3,
+      "y": 955.5,
+      "dx": 181.2,
+      "dy": 10,
+      "h": 105,
+      "levels": [
+        0
+      ],
+      "gap": false,
+      "note": "parapet sud terasă (gri)",
+      "catalog_id": "A5"
+    },
+    {
+      "id": "terasa_parapet_vest",
+      "x": 11.2,
+      "y": 674,
+      "dx": 10,
+      "dy": 291.5,
+      "h": 105,
+      "levels": [
+        0
+      ],
+      "gap": false,
+      "catalog_id": "A5",
+      "note": "parapet terasă pe stâlpi beton (nu pe termosistem)"
+    },
+    {
+      "id": "terasa_parapet_sud_etaj",
+      "x": 9.3,
+      "y": 840.7,
+      "dx": 312.7,
+      "dy": 10,
+      "h": 105,
+      "levels": [
+        1
+      ],
+      "note": "ETAJ ÎNGHEȚAT — sud amprentă veche",
+      "catalog_id": "A5"
+    },
+    {
+      "id": "terasa_parapet_vest_etaj",
+      "x": 11.2,
+      "y": 674,
+      "dx": 10,
+      "dy": 166.7,
+      "h": 105,
+      "levels": [
+        1
+      ],
+      "note": "ETAJ ÎNGHEȚAT — vest amprentă veche (NU dy300)",
+      "catalog_id": "A5"
+    },
+    {
+      "id": "terasa_parapet_est_neacoperit",
+      "x": 180.5,
+      "y": 828.7,
+      "dx": 12,
+      "dy": 126.8,
+      "h": 120,
+      "levels": [
+        0
+      ],
+      "gap": false,
+      "color": "#00ff22",
+      "note": "doar EST; nord=în drept cu cladirea Y830 (acces de pe parter); sud=parapet sudic; vest de el=mobilier",
+      "catalog_id": "A5"
+    }
+  ],
+  "furniture_cm": [
+    {
+      "id": "pat",
+      "levels": [
+        0,
+        1
+      ],
+      "zone": "dormitor",
+      "x": 41.2,
+      "y": 384,
+      "dx": 210,
+      "dy": 170,
+      "h": 45,
+      "headboard": "west",
+      "clear_south_cm": 90,
+      "clear_west_cm": 10,
+      "clear_north_cm": 90,
+      "color": "#c4a882",
+      "label": "PAT 210×170",
+      "note": "A1.73: 210×170; clear V10 / S90 / N90"
+    },
+    {
+      "id": "blat_baie",
+      "levels": [
+        0,
+        1
+      ],
+      "zone": "baie",
+      "x": 119.2,
+      "y": 30,
+      "dx": 169,
+      "dy": 30,
+      "h": 90,
+      "color": "#d4c4a8",
+      "label": "BLAT",
+      "note": "A1.95: blat N ~169×30; +15 E; 40 la lavoar"
+    },
+    {
+      "id": "blat_lavoar_wide",
+      "levels": [
+        0,
+        1
+      ],
+      "zone": "baie",
+      "x": 174.2,
+      "y": 30,
+      "dx": 60,
+      "dy": 40,
+      "h": 90,
+      "color": "#d4c4a8",
+      "label": "",
+      "note": "A1.95: lărgire blat 40 sub lavoar; +15 E"
+    },
+    {
+      "id": "wc_cadru",
+      "levels": [
+        0,
+        1
+      ],
+      "zone": "baie",
+      "x": 31.2,
+      "y": 48,
+      "dx": 15,
+      "dy": 60,
+      "h": 120,
+      "color": "#c8cdd0",
+      "label": "",
+      "note": "A1.95: Geberit pe vest; +10 S"
+    },
+    {
+      "id": "wc",
+      "levels": [
+        0,
+        1
+      ],
+      "zone": "baie",
+      "x": 46.2,
+      "y": 58,
+      "dx": 53,
+      "dy": 40,
+      "h": 40,
+      "color": "#e8eef0",
+      "facing": "east",
+      "label": "WC",
+      "front_clear_cm": 65,
+      "note": "A1.95: +10 S; facing E; clear frontal 65"
+    },
+    {
+      "id": "lavoar",
+      "levels": [
+        0,
+        1
+      ],
+      "zone": "baie",
+      "x": 174.2,
+      "y": 32,
+      "dx": 60,
+      "dy": 40,
+      "h": 85,
+      "color": "#d0d8dc",
+      "facing": "south",
+      "label": "LAVOAR",
+      "note": "A1.95: 60×40 pe blat; +15 E cu blat"
+    },
+    {
+      "id": "dus",
+      "levels": [
+        0,
+        1
+      ],
+      "zone": "baie",
+      "x": 31.2,
+      "y": 129,
+      "dx": 120,
+      "dy": 90,
+      "h": 2,
+      "color": "#b8d4d8",
+      "label": "DUȘ 120×90",
+      "glass_east": true,
+      "note": "A1.91: 120×90 Y129–219; sud = zid baie↔dorm"
+    },
+    {
+      "id": "masina_spalat",
+      "levels": [
+        0,
+        1
+      ],
+      "zone": "hol_vest",
+      "x": 166.2,
+      "y": 192,
+      "dx": 60,
+      "dy": 54,
+      "h": 85,
+      "color": "#9aa3a8",
+      "facing": "east",
+      "label": "MS",
+      "note": "A1.108: MS Y192; A8 15 N+S; clear 60; sud = separator dressing"
+    }
+  ],
+  "stair_cm": {
+    "riser_cm": 16,
+    "risers_total_from_ff": 19,
+    "risers_flight_180": 9,
+    "risers_flight_330": 10,
+    "tread_cm": 30,
+    "width_clear_cm": 105,
+    "parapet_thick_cm": 10,
+    "band_x": 562.8,
+    "band_dx": 114.6,
+    "podest_height_above_ff_cm": 144,
+    "palier_sup_height_above_ff_cm": 304,
+    "entry_connection": "PARTER: intrare din terasă (intrare_parter @ X330 Y680). ETAJ: intrare_etaj pe buc_est Y475–565 de pe palier_superior.",
+    "note": "A1.61: palier N până la mid (Y450) · clear 139 · R2 270 · 19×16=304 FF↔FF",
+    "flight_180": {
+      "covered": false,
+      "going_length_cm": 240,
+      "treads_between_landings": 8,
+      "risers": 9,
+      "x": 322.8,
+      "y": 858.7,
+      "dx": 240,
+      "dy": 114.8,
+      "note": "R1: +1 treaptă la bază (going 240); capăt E pe bandă/podest",
+      "terrace_deck_around": false,
+      "tread_cm": 30
+    },
+    "podest_se": {
+      "covered": false,
+      "x": 562.8,
+      "y": 858.7,
+      "dx": 114.6,
+      "dy": 114.8,
+      "z_above_ff_cm": 144,
+      "clear_dx": 105,
+      "parapet_east_dx": 10,
+      "note": "podest SE 115×115 (nemodificat vs A1.60)",
+      "why_was_wider": "înainte dy 130 pe zborul sud / podest vs rampă dx 115 — nealiniat; corectat la 115"
+    },
+    "ramp2": {
+      "covered": true,
+      "going_length_cm": 270,
+      "treads_between_landings": 9,
+      "risers": 10,
+      "x": 562.8,
+      "y": 588.7,
+      "dx": 114.6,
+      "dy": 270,
+      "tread_cm": 30,
+      "note": "R2 going 270 (9×30)"
+    },
+    "palier_superior": {
+      "x": 562.8,
+      "y": 450,
+      "dx": 104.6,
+      "dy": 138.7,
+      "z_above_ff_cm": 304,
+      "section_note": "105×139 clear · bandă ~115×139 · +304",
+      "note": "A1.61: clear N = față S mid (C_E_PAL/C_W_MID); sud = N R2"
+    },
+    "stair_east_seq": {
+      "note": "plin palier → lamele → pier40 → parapet pe podest",
+      "y_lamele_0": 618.7,
+      "y_lamele_1": 748.3,
+      "lamele_L_cm": 129.6,
+      "lamele_H_cm": 210,
+      "lamele_z0_above_ff_cm": 30,
+      "lamele_z1_above_ff_cm": 240,
+      "vs_geam": "top≈lintou geam (FF+240); bot FF+30 (sub prag 90)",
+      "pier": {
+        "dx": 20,
+        "dy": 40,
+        "y": 748.3,
+        "note": "după lamele"
+      },
+      "y_podest_n": 858.7,
+      "y_podest_s": 973.5
+    },
+    "stair_solid_e": {
+      "x": 667.4,
+      "y": 450,
+      "dx": 10,
+      "dy": 168.7,
+      "note": "zid plin pe palier + prima treaptă R2 — protecție"
+    },
+    "stair_jaluzele_e": {
+      "x": 667.4,
+      "y": 618.7,
+      "dx": 10,
+      "dy": 129.6,
+      "h_cm": 210,
+      "z0_above_ff_cm": 30,
+      "z1_above_ff_cm": 240,
+      "note": "gol lamele L=129.6 H=210 (z30→240) — a 2-a treaptă"
+    },
+    "stair_parapet_e": {
+      "x": 667.4,
+      "y": 788.3,
+      "dx": 10,
+      "dy": 185.2,
+      "h_cm": 90,
+      "note": "parapet de la sud pier pe est podest"
+    },
+    "stair_parapet_podest_s": {
+      "x": 562.8,
+      "y": 963.5,
+      "dx": 114.6,
+      "dy": 10,
+      "h_cm": 90,
+      "note": "parapet sud podest"
+    },
+    "entry_steps": {
+      "covered": false,
+      "steps": 2,
+      "riser_cm": 16,
+      "riser_status": "ipoteză",
+      "x": 189.2,
+      "y": 976.5,
+      "dx": 129.5,
+      "dy": 60,
+      "note": "2 trepte VIZIBILE sud de placă (Y978–1038); a 3-a ridicare = pe palier/terasă FF+48; gap 3 cm față de Y975",
+      "connects_to_landing": true,
+      "parapet_gap": [
+        189.2,
+        318.7
+      ],
+      "outside_terrace_slab": true,
+      "status": "locked_2_treads_ff48",
+      "alongside_uncovered": true,
+      "tread_cm": 30
+    },
+    "palier_parter": {
+      "covered": false,
+      "z": "ff_parter",
+      "x": 0,
+      "y": 858.7,
+      "dx": 318.7,
+      "dy": 114.8,
+      "pre_flight_extra_cm": 0,
+      "note": "deck terasă = X0–340; NU sub flight_180",
+      "is_terrace_deck": true
+    }
+  },
+  "axes_cm": {
+    "note": "Centre stâlpi A1. Ax 3 = mid vest+est aliniați. C_E_GEAM_S eliminat (R2 rece ulterior).",
+    "vertical_WE": [
+      {
+        "id": "A",
+        "x": 26.2,
+        "columns": [
+          "C_NW",
+          "C_W_MID",
+          "C_W_DORM"
+        ],
+        "role": "vest"
+      },
+      {
+        "id": "B",
+        "x": 334.1,
+        "columns": [
+          "C_N_MID",
+          "C_S_DORM_E",
+          "C_S_INTRARE_W"
+        ],
+        "note": "A1.107: față est @XI (N_MID 40 / S_DORM_E 30 / S_INTRARE_W 40)",
+        "role": "mijloc"
+      },
+      {
+        "id": "C",
+        "x": 539.3,
+        "columns": [
+          "C_CASA_SCARA",
+          "C_S_INTRARE_E"
+        ],
+        "role": "casa_scara"
+      },
+      {
+        "id": "D",
+        "x": 653.8,
+        "columns": [
+          "C_NE",
+          "C_E_PAL"
+        ],
+        "role": "est"
+      }
+    ],
+    "horizontal_NS": [
+      {
+        "id": "1",
+        "y": 25,
+        "columns": [
+          "C_NW",
+          "C_N_MID",
+          "C_NE"
+        ],
+        "role": "nord"
+      },
+      {
+        "id": "3",
+        "y": 430,
+        "columns": [
+          "C_W_MID",
+          "C_E_PAL"
+        ],
+        "role": "mid",
+        "note": "A1.54: centre pe Y=860/2 · palier N pe fața S"
+      },
+      {
+        "id": "4",
+        "y": 570,
+        "columns": [
+          "C_CASA_SCARA"
+        ],
+        "role": "casa_scara"
+      },
+      {
+        "id": "5",
+        "y": 660.2,
+        "columns": [
+          "C_W_DORM",
+          "C_S_DORM_E"
+        ],
+        "role": "dorm_sud"
+      },
+      {
+        "id": "6",
+        "y": 833.8,
+        "columns": [
+          "C_S_INTRARE_W",
+          "C_S_INTRARE_E"
+        ],
+        "role": "intrare_sud"
+      }
+    ],
+    "mid_misalign_cm": 0,
+    "building_mid": {
+      "x": 340,
+      "y": 430,
+      "note": "X = 680/2 · Y = 860/2 — axe clădire / simetrie gabarit"
+    }
+  },
+  "placement_ref": {
+    "NW": {
+      "x": 1.249,
+      "y": 17.9306
+    },
+    "NE": {
+      "x": 8.0428,
+      "y": 18.2213
+    },
+    "SE": {
+      "x": 8.4105,
+      "y": 9.6291
+    },
+    "SW": {
+      "x": 1.6167,
+      "y": 9.3385
+    }
+  },
+  "next": [
+    "Confirmare planuri P/E",
+    "Util shoelace",
+    "S1 structură pe A1 înghețat"
+  ]
+}

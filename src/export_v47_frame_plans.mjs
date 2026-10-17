@@ -9,6 +9,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { computeInteriorFreeSpaces } from "./interior_free_spaces_v01.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), "utf8"));
@@ -48,13 +49,40 @@ function esc(s) {
 }
 
 function planSvg(levelLabel, opts = {}) {
-  const pad = 40;
+  const pad = opts.showInteriorDims ? 72 : 40;
   const scale = 0.85;
-  const W = ew * scale + pad * 2;
-  const H = ns * scale + pad * 2 + 48;
+  const W = ew * scale + pad * 2 + (opts.showInteriorDims ? 36 : 0);
+  const H = ns * scale + pad * 2 + 48 + (opts.showInteriorDims ? 28 : 0);
   const sx = (x) => pad + x * scale;
   const sy = (y) => pad + 28 + y * scale;
   const parts = [];
+  /** Cotă lungime: linie + ticks + text cm. */
+  function dimH(x0, x1, y, label, offset = -14) {
+    const a = sx(x0);
+    const b = sx(x1);
+    const yy = sy(y) + offset;
+    const mid = (a + b) / 2;
+    const L = Math.round(Math.abs(x1 - x0));
+    parts.push(`<line x1="${a}" y1="${yy}" x2="${b}" y2="${yy}" stroke="#c44" stroke-width="0.9"/>`);
+    parts.push(`<line x1="${a}" y1="${yy - 4}" x2="${a}" y2="${yy + 4}" stroke="#c44" stroke-width="0.9"/>`);
+    parts.push(`<line x1="${b}" y1="${yy - 4}" x2="${b}" y2="${yy + 4}" stroke="#c44" stroke-width="0.9"/>`);
+    parts.push(
+      `<text x="${mid}" y="${yy - 3}" text-anchor="middle" font-size="9" font-weight="600" fill="#c44" font-family="IBM Plex Sans,Segoe UI,sans-serif">${label || L}</text>`
+    );
+  }
+  function dimV(y0, y1, x, label, offset = -14) {
+    const a = sy(y0);
+    const b = sy(y1);
+    const xx = sx(x) + offset;
+    const mid = (a + b) / 2;
+    const L = Math.round(Math.abs(y1 - y0));
+    parts.push(`<line x1="${xx}" y1="${a}" x2="${xx}" y2="${b}" stroke="#c44" stroke-width="0.9"/>`);
+    parts.push(`<line x1="${xx - 4}" y1="${a}" x2="${xx + 4}" y2="${a}" stroke="#c44" stroke-width="0.9"/>`);
+    parts.push(`<line x1="${xx - 4}" y1="${b}" x2="${xx + 4}" y2="${b}" stroke="#c44" stroke-width="0.9"/>`);
+    parts.push(
+      `<text x="${xx - 5}" y="${mid + 3}" text-anchor="end" font-size="9" font-weight="600" fill="#c44" font-family="IBM Plex Sans,Segoe UI,sans-serif">${label || L}</text>`
+    );
+  }
   parts.push(`<?xml version="1.0" encoding="UTF-8"?>`);
   parts.push(
     `<svg xmlns="http://www.w3.org/2000/svg" width="${W.toFixed(0)}" height="${H.toFixed(0)}" viewBox="0 0 ${W} ${H}">`
@@ -63,13 +91,26 @@ function planSvg(levelLabel, opts = {}) {
   parts.push(
     `<text x="${pad}" y="22" font-size="14" font-weight="600" font-family="IBM Plex Sans,Segoe UI,sans-serif">${esc(levelLabel)}</text>`
   );
+  const sfp = fr?.structural_footprint_cm;
+  parts.push(
+    `<text x="${pad}" y="40" font-size="11" font-weight="600" fill="#111" font-family="IBM Plex Sans,Segoe UI,sans-serif">finit ${ew}×${ns} cm${sfp ? ` · placă BA ${sfp.ew}×${sfp.ns} (N/V pe muchie · E/S −A2)` : ""}</text>`
+  );
   parts.push(
     `<text x="${pad}" y="${H - 12}" font-size="9" fill="#555" font-family="IBM Plex Sans,Segoe UI,sans-serif">sursa: v47_a1_frame_study.json · GEO_X0=${fr?.axes_cm?.GEO_X0 ?? "?"} · scară=${fr?.stair_structure_system?.system ?? "?"} · neconstruibil</text>`
   );
 
   parts.push(
-    `<rect x="${sx(0)}" y="${sy(0)}" width="${ew * scale}" height="${ns * scale}" fill="none" stroke="#888" stroke-width="1"/>`
+    `<rect x="${sx(0)}" y="${sy(0)}" width="${ew * scale}" height="${ns * scale}" fill="none" stroke="#111" stroke-width="1.4"/>`
   );
+  // placă structurală CONC (pilastru N/V = pe muchie finit; E/S retras)
+  if (sfp) {
+    parts.push(
+      `<rect x="${sx(sfp.x0 ?? 0)}" y="${sy(sfp.y0 ?? 0)}" width="${sfp.ew * scale}" height="${sfp.ns * scale}" fill="#8b8680" fill-opacity="0.1" stroke="#5a554e" stroke-width="1.1" stroke-dasharray="6 3"/>`
+    );
+  }
+  // cote gabarit finit
+  dimH(0, ew, -18, `${ew}`);
+  dimV(0, ns, ew, `${ns}`, 16);
 
   // Contur placă etaj (envelope minus goluri scară/palier) — pe E
   if (opts.showSlab) {
@@ -186,6 +227,58 @@ function planSvg(levelLabel, opts = {}) {
     );
   }
 
+  // Dimensiuni + m² din contururi libere (fețe pereți), nu rooms_cm brute
+  if (opts.showInteriorDims) {
+    const isEtaj = opts.level === 1 || opts.levelIdx === 1;
+    const free = computeInteriorFreeSpaces(study, isEtaj ? "E" : "P");
+    for (const L of free.spaces) {
+      const name = String(L.id).replace(/_/g, " ");
+      const cx = sx(L.cx);
+      const cy = sy(L.cy);
+      parts.push(
+        `<text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="9" font-weight="600" fill="#1a1a1a" font-family="IBM Plex Sans,Segoe UI,sans-serif">${esc(name)}</text>`
+      );
+      if (L.label_m2 != null) {
+        parts.push(
+          `<text x="${cx}" y="${cy + 8}" text-anchor="middle" font-size="8" fill="#222" font-family="IBM Plex Sans,Segoe UI,sans-serif">${L.label_m2.toFixed(2)} m² liber</text>`
+        );
+      }
+      if (L.dim_note) {
+        parts.push(
+          `<text x="${cx}" y="${cy + 18}" text-anchor="middle" font-size="6.5" fill="#666" font-family="IBM Plex Sans,Segoe UI,sans-serif">${esc(L.dim_note)}</text>`
+        );
+      }
+      if (L.note) {
+        parts.push(
+          `<text x="${cx}" y="${cy + (L.label_m2 != null ? 18 : 8)}" text-anchor="middle" font-size="6.5" fill="#888" font-family="IBM Plex Sans,Segoe UI,sans-serif">${esc(L.note)}</text>`
+        );
+      }
+      for (const d of L.dims || []) {
+        if (d.type === "H") dimH(d.x0, d.x1, d.y, `${+(Math.abs(d.x1 - d.x0)).toFixed(1)}`, d.offset ?? -12);
+        if (d.type === "V") dimV(d.y0, d.y1, d.x, `${+(Math.abs(d.y1 - d.y0)).toFixed(1)}`, d.offset ?? -12);
+      }
+    }
+    const polyKey = isEtaj ? "poly_etaj_cm" : "poly_parter_cm";
+    const poly = study.areas_cm?.useful_by_level?.[polyKey];
+    if (Array.isArray(poly) && poly.length >= 2) {
+      const xs = poly.map((p) => p[0]);
+      const ys = poly.map((p) => p[1]);
+      const xMin = Math.min(...xs);
+      const xMax = Math.max(...xs);
+      const yMin = Math.min(...ys);
+      const yMax = Math.max(...ys);
+      dimH(xMin, xMax, yMin, `${Math.round(xMax - xMin)}`, -28);
+      dimV(yMin, yMax, xMin, `${Math.round(yMax - yMin)}`, -28);
+    }
+    const u = free.totals.useful_etaj_studio_m2;
+    const note = isEtaj
+      ? `UTIL E = ${u ?? "—"} m² = suma etichetelor (baie ${free.totals.bath_free_m2} + nișă ${free.totals.nisa_free_m2} + dorm ${free.totals.dorm_free_m2} + living + buc + circulație) · palier rece exclus · scară ≠ util`
+      : `cote din fețe pereți · util P vezi frame_study_areas`;
+    parts.push(
+      `<text x="${pad}" y="${H - 28}" font-size="7.5" fill="#444" font-family="IBM Plex Sans,Segoe UI,sans-serif">${esc(note)}</text>`
+    );
+  }
+
   parts.push(`</svg>`);
   return parts.join("\n");
 }
@@ -258,7 +351,7 @@ function stairSectionsSvg() {
       `<rect x="${v0.x}" y="${pt(podX0, zPodConcTop).y}" width="${bear * sc}" height="${podSlab * sc}" fill="#4a5560" fill-opacity="0.7" stroke="#222"/>`
     );
     parts.push(
-      `<text x="${pt(0, 0).x}" y="${panelH - 8}" font-size="8" fill="#444" font-family="IBM Plex Sans,Segoe UI,sans-serif">X${x0}→${x0 + f180.dx + pod.dx} · FF podest +${zPod} · BA +${zPodConcBot}→+${zPodConcTop}</text>`
+      `<text x="${pt(0, 0).x}" y="${panelH - 8}" font-size="8" fill="#444" font-family="IBM Plex Sans,Segoe UI,sans-serif">rampă1 X${x0}–${x0 + f180.dx} + podest →X${x0 + f180.dx + pod.dx} · FF +${zPod} · BA +${zPodConcBot}→+${zPodConcTop}</text>`
     );
   });
 
@@ -360,23 +453,73 @@ function stairSectionsSvg() {
 
 const outP = write(
   "outputs/plans/38_v47_a1_frame_plan_parter.svg",
-  planSvg("FRAME · Parter — pereți, goluri, stâlpi, grinzi, scară, podest", {
+  planSvg("FRAME · Parter — pereți, goluri, stâlpi, grinzi, scară, podest · cote int.", {
     level: 0,
     levelIdx: 0,
     beamLevels: ["P", "S", "S_inverted"],
     colLevels: ["S", "P", "E"],
+    showInteriorDims: true,
   })
 );
 const outE = write(
   "outputs/plans/39_v47_a1_frame_plan_etaj.svg",
-  planSvg("FRAME · Etaj — pereți, goluri, planșeu, palier, rampă 2", {
+  planSvg("FRAME · Etaj — pereți, goluri, planșeu · cote interioare", {
     level: 1,
     levelIdx: 1,
-    beamLevels: ["P"],
+    beamLevels: ["E", "P"],
     colLevels: ["S", "P", "E"],
     showSlab: true,
+    showInteriorDims: true,
   })
 );
 const outS = write("outputs/plans/40_v47_a1_frame_stair_sections.svg", stairSectionsSvg());
 
-console.log(JSON.stringify({ ok: true, plans: [outP, outE, outS] }, null, 2));
+// Persist free-space audit + corectare bath_net (nu rooms_cm rect)
+const freeE = computeInteriorFreeSpaces(study, "E");
+study.interior_free_spaces_cm = { etaj: freeE, generated_by: "interior_free_spaces_v01.mjs" };
+if (study.areas_cm) {
+  study.areas_cm.bath_free_from_walls_m2 = freeE.totals.bath_free_m2;
+  study.areas_cm.nisa_free_from_walls_m2 = freeE.totals.nisa_free_m2;
+  study.areas_cm.dorm_free_from_walls_m2 = freeE.totals.dorm_free_m2;
+  study.areas_cm.dorm_plus_nisa_free_m2 = freeE.totals.dorm_plus_nisa_m2;
+  study.areas_cm.bath_net_m2 = freeE.totals.bath_free_m2;
+  study.areas_cm.bath_net_note =
+    "liber L din fețe walls_cm (nu rect rooms_cm 7.62); rooms_cm.baie rămâne AABB referință";
+  const labels = freeE.totals.useful_etaj_labels_sum_m2;
+  if (study.areas_cm.frame_study_areas) {
+    study.areas_cm.frame_study_areas.useful_etaj_labels_sum_m2 = labels;
+  }
+  if (study.areas_cm.useful_by_level) {
+    study.areas_cm.useful_by_level.etaj_labels_sum_m2 = labels;
+    study.areas_cm.useful_by_level.note =
+      "Canonice: parter_m2 / etaj_m2 = geometric. etaj_labels_sum_m2 = informativ.";
+  }
+}
+const baie = (study.rooms_cm || []).find((r) => r.id === "baie");
+if (baie) {
+  baie.free_m2 = freeE.totals.bath_free_m2;
+  baie.area_label_note =
+    "AABB 7.62 = înainte de decupaj nișă; util liber ≈ L din pereți (vezi interior_free_spaces)";
+}
+const nisa = (study.rooms_cm || []).find((r) => r.id === "nisa_dulap");
+if (nisa) {
+  nisa.free_m2 = freeE.totals.nisa_free_m2;
+  nisa.free_dx_cm = freeE.spaces.find((s) => s.id === "nisa_dulap")?.dx;
+  nisa.free_dy_cm = freeE.spaces.find((s) => s.id === "nisa_dulap")?.dy;
+}
+write(
+  "data/building/v47_a1_frame_study.json",
+  JSON.stringify(study, null, 2) + "\n"
+);
+
+console.log(
+  JSON.stringify(
+    {
+      ok: true,
+      plans: [outP, outE, outS],
+      free_etaj: freeE.totals,
+    },
+    null,
+    2
+  )
+);

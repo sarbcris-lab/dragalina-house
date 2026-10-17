@@ -1,0 +1,67 @@
+{
+  "status": "opțiuni studiu pe R — dorm LOCK",
+  "dorm_lock": "fără grindă transversală în dormitor — B_Y400 retras",
+  "cases": [
+    {
+      "id": "A_1way_full",
+      "L_m": 6.45,
+      "trib_m": 3.1,
+      "q_kNm": 36.5,
+      "M_kNm": 170.9,
+      "V_kN": 117.8,
+      "mu": 0.285,
+      "As_mm2": 1456,
+      "bars": "≈6φ18+ — reconsideră",
+      "flex_ok": false,
+      "note": "Un traveu N–S · trib 1-way complet — bound superior"
+    },
+    {
+      "id": "B_2way_red",
+      "L_m": 6.45,
+      "trib_m": 2,
+      "q_kNm": 23.6,
+      "M_kNm": 110.3,
+      "V_kN": 76,
+      "mu": 0.184,
+      "As_mm2": 939,
+      "bars": "≈6φ16 / 4φ18",
+      "flex_ok": true,
+      "note": "Un traveu · trib redus 2-way — ȚINTĂ (dorm LOCK: fără Y400)"
+    },
+    {
+      "id": "C_Y400_support",
+      "L_m": 4,
+      "trib_m": 3.1,
+      "q_kNm": 36.5,
+      "M_kNm": 65.7,
+      "V_kN": 73,
+      "mu": 0.11,
+      "As_mm2": 560,
+      "bars": "≈4φ14",
+      "flex_ok": true,
+      "note": "RESPINS amenajare: Y400 prin dorm — LOCK neatins"
+    },
+    {
+      "id": "D_Y400_plus_2way",
+      "L_m": 4,
+      "trib_m": 2,
+      "q_kNm": 23.6,
+      "M_kNm": 42.4,
+      "V_kN": 47.1,
+      "mu": 0.071,
+      "As_mm2": 361,
+      "bars": "≈4φ12",
+      "flex_ok": true,
+      "note": "RESPINS amenajare: Y400 prin dorm — LOCK neatins"
+    }
+  ],
+  "recommended_calc": "B_2way_red",
+  "recommended_geo": "B_BAND_X320 only (N_MID–S_DORM_E)",
+  "adopt": {
+    "keep_band": "B_BAND_X320",
+    "remove_beam": "B_Y400_BAND_TIE",
+    "expect_As": 939,
+    "expect_bars": "≈6φ16 / 4φ18",
+    "rejected_amenajare": "D_Y400_plus_2way"
+  }
+}

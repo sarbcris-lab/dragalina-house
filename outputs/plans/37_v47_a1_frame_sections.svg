@@ -11,14 +11,14 @@
 <text x="95" y="342" font-size="8" fill="#2a6f97">gol ușă h200 Y500–600 LIBER</text>
 <rect x="177.5" y="322.75" width="16.5" height="13.750000000000002" fill="#5a8f6a" stroke="#2d5a27"/>
 <text x="196.20000000000002" y="329.9" font-size="8" fill="#2d5a27">grindă întoarsă −30…−5 (studiu)</text>
-<text x="40" y="290" font-size="9" fill="#444">Clear acces: fără grindă sub −30 pe clar. Încadrare în sandwich −30…+32 = calcul (nerezolvat).</text>
+<text x="40" y="290" font-size="9" fill="#444">Clear acces: formă întoarsă închisă (Y575–600). Sandwich −30…+32 = detaliu armare (calcul).</text>
 <text x="520" y="50" font-size="11">B — cote planșeu etaj (absolut cm)</text>
-<text x="520" y="70" font-size="10" font-family="IBM Plex Sans,Segoe UI,sans-serif">FF etaj: <tspan font-weight="600">336 cm</tspan></text>
-<text x="520" y="88" font-size="10" font-family="IBM Plex Sans,Segoe UI,sans-serif">față sup. placă (FF−12): <tspan font-weight="600">324 cm</tspan></text>
-<text x="520" y="106" font-size="10" font-family="IBM Plex Sans,Segoe UI,sans-serif">intrados placă (15 ip.): <tspan font-weight="600">309 cm</tspan></text>
-<text x="520" y="124" font-size="10" font-family="IBM Plex Sans,Segoe UI,sans-serif">intrados grindă (35 ip.): <tspan font-weight="600">289 cm</tspan></text>
+<text x="520" y="70" font-size="10" font-family="IBM Plex Sans,Segoe UI,sans-serif">FF etaj: <tspan font-weight="600">354 cm</tspan></text>
+<text x="520" y="88" font-size="10" font-family="IBM Plex Sans,Segoe UI,sans-serif">față sup. placă (FF−12): <tspan font-weight="600">342 cm</tspan></text>
+<text x="520" y="106" font-size="10" font-family="IBM Plex Sans,Segoe UI,sans-serif">intrados placă (20 cm): <tspan font-weight="600">322 cm</tspan></text>
+<text x="520" y="124" font-size="10" font-family="IBM Plex Sans,Segoe UI,sans-serif">intrados grindă (35 cm tot): <tspan font-weight="600">307 cm</tspan></text>
 <text x="520" y="142" font-size="10" font-family="IBM Plex Sans,Segoe UI,sans-serif">FF parter: <tspan font-weight="600">48 cm</tspan></text>
-<text x="520" y="160" font-size="10" font-family="IBM Plex Sans,Segoe UI,sans-serif">clear P sub grindă: <tspan font-weight="600">241 cm</tspan></text>
+<text x="520" y="160" font-size="10" font-family="IBM Plex Sans,Segoe UI,sans-serif">clear P sub grindă: <tspan font-weight="600">259 cm</tspan></text>
 <text x="520" y="188" font-size="9" fill="#444" width="400">Nu suprapune placa structurală cu pachetul de pardoseală 12 cm.</text>
 <text x="40" y="340" font-size="11">C — rampe: plăci continue (reazeme = calcul)</text>
 <text x="40" y="360" font-size="9" fill="#444">Model: placă înclinată AABB pe amprenta rampelor 1/2 + scară beci; podest SE ca reazem intermediar. Clear acces beci de recalculat după reazeme reale.</text>
@@ -27,5 +27,5 @@
 <rect x="340" y="370" width="60" height="60" fill="#c4b496" stroke="#333"/>
 <text x="348" y="402" font-size="8">podest</text>
 <text x="40" y="680" font-size="9" fill="#333">Sistem: cadre BA · umplutură EB20 · ETICS 80 mm vată · declared_buildable=false</text>
-<text x="40" y="698" font-size="8" fill="#555">14 conflicte nerezolvate păstrate explicit — vezi raport MD</text>
+<text x="40" y="698" font-size="8" fill="#555">17 conflicte nerezolvate păstrate explicit — vezi raport MD</text>
 </svg>

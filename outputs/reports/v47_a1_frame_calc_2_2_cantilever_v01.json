@@ -1,0 +1,46 @@
+{
+  "status": "preliminar_ordin — nu adoptare",
+  "locks": {
+    "L_S_m": 1.01,
+    "L_W_m": 1.05,
+    "no_column_in_living": true
+  },
+  "q_Ed": 11.93,
+  "south_plate_strip": {
+    "L_m": 1.01,
+    "M_kNm_per_m": 6.1,
+    "V_kN_per_m": 12,
+    "As_req_mm2_m": 129.6,
+    "As_min_mm2_m": 1560,
+    "governs": "As_min"
+  },
+  "west_plate_strip": {
+    "L_m": 1.05,
+    "M_kNm_per_m": 6.6,
+    "V_kN_per_m": 12.5,
+    "As_req_mm2_m": 140.1,
+    "As_min_mm2_m": 1560,
+    "governs": "As_min"
+  },
+  "B_E_cantilever": {
+    "trib_m": 1.05,
+    "q_kN_m": 12.5,
+    "M_kNm": 6.4,
+    "V_kN": 12.7,
+    "As_req_mm2": 54.4,
+    "note": "ordin; torsiune din B_Y470 neinclusă în M"
+  },
+  "torsion_ord": {
+    "F_kN": 12.5,
+    "e_m": 0.53,
+    "T_kNm": 6.6,
+    "note": "ordin pe nod C_E_PAL — cere FE / detaliu etrieri+bare longitudinale"
+  },
+  "C_E_PAL_node": {
+    "M_node_ord_kNm": 9.7,
+    "T_ord_kNm": 6.6,
+    "Nrd_30x40_kN": 1600,
+    "Nrd_30x30_kN": 1200,
+    "verdict": "M+T pe nod = tipic dominante vs N; NU reduce C_E_PAL la 30×30 fără FE interacțiune"
+  }
+}

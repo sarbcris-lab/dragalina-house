@@ -15,6 +15,8 @@
 
 Vezi **`decisions/frame_calc_package_v01.md`**.
 
+**Plan închidere 100%:** **`decisions/structure_finalize_100_v01.md`** (faze 0→5, decizii D1–D3, poartă done).
+
 Ordine: stâlpi (min/optim) → consolă palier → placă living/255 → grinzi/pad → întoarsă → FG/retenție → acoperiș.
 
 **Nu** tăiem încă terasa/scara pentru util până minimul structural e stabilit pe calcule.

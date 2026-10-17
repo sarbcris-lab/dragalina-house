@@ -1,0 +1,85 @@
+{
+  "variant": "R",
+  "band": {
+    "id": "B_BAND_X320",
+    "L_m": 6.45,
+    "trib_m": 3.1,
+    "section": "40×35",
+    "q_kNm": 36.5,
+    "M_ss_kNm": 189.9,
+    "M_cont_kNm": 170.9,
+    "V_kN": 117.8,
+    "mu": 0.317,
+    "As_ss_mm2": 1618,
+    "As_cont_mm2": 1456,
+    "bars_hint": "≈6φ18+ — bandă grea ca grindă 1-way; FE 2-way sau al 3-lea reazem",
+    "clear_under_cm": 241,
+    "D1": "OK",
+    "flex_ok": false,
+    "supports": [
+      "C_N_MID",
+      "C_S_DORM_E"
+    ],
+    "load_assumption": "1-way trib 3,1 m pe L=6,45 — conservator; placă 2-way reduce M pe bandă",
+    "note": "As ordin mare dacă trib 1-way e real. FE: (a) placă 2-way cu bandă rigidă, (b) reazem intermediar pe Y≈400 dacă e necesar — fără stâlp nou în cameră dacă se poate pe zid."
+  },
+  "slabPanels": [
+    {
+      "id": "W_of_band",
+      "L": 3.1,
+      "label": "vest de bandă (baie/dorm side)",
+      "h_cm": 15,
+      "M_kNm_m": 14.2,
+      "L_over_d": 24.8,
+      "pass_span_depth": true,
+      "As_mm2_m": 289
+    },
+    {
+      "id": "E_of_band",
+      "L": 3.1,
+      "label": "est de bandă (living side)",
+      "h_cm": 15,
+      "M_kNm_m": 14.2,
+      "L_over_d": 24.8,
+      "pass_span_depth": true,
+      "As_mm2_m": 289
+    }
+  ],
+  "retaining": {
+    "hypothesis": "γ=18 · φ=25° · H=2,5 m · uscat — NU geo 131",
+    "Ka": 0.406,
+    "pa_base_kPa": 18.3,
+    "E_a_kN_m": 22.8,
+    "M_base_kNm_m": 19,
+    "wall_th_cm": 20,
+    "As_vert_mm2_m": 304,
+    "bars_hint": "φ12@15 ordin",
+    "verdict": "BA 20 plauzibil pe împingere uscată ordin; cu apă/hidro → crește E. Geo 131 obligatoriu înainte de armare finală."
+  },
+  "sensNmid": {
+    "with_N_MID": {
+      "band_north_support": "C_N_MID",
+      "B_N_spans": "NW–MID ~3,2 + MID–NE ~3,3",
+      "N_MID_kN": 323.3,
+      "ok_for_variant_R": true
+    },
+    "without_N_MID": {
+      "band_north_support": "LIPSĂ — bandă consolă/încastrare slabă în B_N",
+      "B_N_span": "NW–NE ~6,5 m pe un traveu",
+      "N_extra_on_NW": 162,
+      "N_extra_on_NE": 162,
+      "N_NW_then": 404,
+      "N_NE_then": 368,
+      "ok_for_variant_R": false,
+      "reason": "R cere reazem N pentru B_BAND_X320; fără MID bandă și B_N se degradează simultan"
+    },
+    "verdict": "Păstrează C_N_MID pe R. Eliminare = doar dacă abandonezi banda (și atunci placă 15 e riscantă)."
+  },
+  "fe_priority": [
+    "1. Placă 15 + B_BAND_X320 (P+E) — SLS/ULS",
+    "2. Nod C_E_PAL + consolă B_E / B_Y470",
+    "3. Cadre P100 stâlpi (along 40→30 candidați)",
+    "4. Retenție + hidro pe geo 131",
+    "5. D3a acoperiș pe același model"
+  ]
+}

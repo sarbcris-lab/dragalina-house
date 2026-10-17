@@ -1,0 +1,230 @@
+{
+  "status": "preliminar — nu FE semnat",
+  "site": {
+    "locality": "Turda",
+    "sk_kN_m2": 1.5,
+    "sk_sensitivity": 2,
+    "code": "CR 1-1-3/2012"
+  },
+  "areas": {
+    "plan_m2": 58.79,
+    "slope_m2": 67.84,
+    "pitch_deg": 29.9
+  },
+  "Gk_breakdown": {
+    "sarpanta_usoara": 0.55,
+    "solbanc_coama_share": 0.1,
+    "pv_panels_rails": 0.2,
+    "misc": 0.05
+  },
+  "Gk_tot": 0.9000000000000001,
+  "cases": {
+    "D3a_PV_sk15": {
+      "label": "D3a + PV · sk=1,5",
+      "Gk": 0.9000000000000001,
+      "Qk_snow": 1.2,
+      "q_Ed": 3.02,
+      "W_plan_kN": 178,
+      "W_slope_kN": 205
+    },
+    "D3a_PV_sk20": {
+      "label": "D3a + PV · sk=2,0 (sens.)",
+      "Gk": 0.9000000000000001,
+      "Qk_snow": 1.6,
+      "q_Ed": 3.62,
+      "W_plan_kN": 213,
+      "W_slope_kN": 246
+    },
+    "D3a_noPV_sk15": {
+      "label": "D3a fără PV · sk=1,5",
+      "Gk": 0.7,
+      "Qk_snow": 1.2,
+      "q_Ed": 2.74,
+      "W_plan_kN": 161,
+      "W_slope_kN": 186
+    }
+  },
+  "rafterCheck": {
+    "L_m": 4.97,
+    "spacing_m": 1.2,
+    "q_line_kN_m": 3.62,
+    "M_Ed_simply_kNm": 11.19,
+    "W_req_cm3": 1,
+    "section_assumed_cm": "12×25",
+    "W_prov_cm3": 1250,
+    "verdict": "ordin_OK_pe_simplu_rezemat — FE/înnădiri/ancorare lipsă"
+  },
+  "bearingAudit_pre_fix": [
+    {
+      "tag": "W",
+      "x0": 25,
+      "x1": 45,
+      "y0": 420,
+      "y1": 440,
+      "overlaps": [
+        {
+          "id": "B_W",
+          "area": 100
+        }
+      ],
+      "cover_frac": 0.25,
+      "verdict": "pe_muchie_sau_partial"
+    },
+    {
+      "tag": "E",
+      "x0": 637.6,
+      "x1": 657.6,
+      "y0": 420,
+      "y1": 440,
+      "overlaps": [
+        {
+          "id": "B_E",
+          "area": 310
+        }
+      ],
+      "cover_frac": 0.78,
+      "verdict": "pe_muchie_sau_partial"
+    }
+  ],
+  "ringSamples": [
+    {
+      "x": 15,
+      "y": 15,
+      "note": "NW",
+      "beams": [
+        "B_N",
+        "B_W"
+      ],
+      "status": "covered"
+    },
+    {
+      "x": 336,
+      "y": 15,
+      "note": "N mid",
+      "beams": [
+        "B_N"
+      ],
+      "status": "covered"
+    },
+    {
+      "x": 657,
+      "y": 15,
+      "note": "NE",
+      "beams": [
+        "B_N",
+        "B_E"
+      ],
+      "status": "covered"
+    },
+    {
+      "x": 15,
+      "y": 400,
+      "note": "W mid",
+      "beams": [
+        "B_W"
+      ],
+      "status": "covered"
+    },
+    {
+      "x": 657,
+      "y": 400,
+      "note": "E mid",
+      "beams": [
+        "B_E"
+      ],
+      "status": "covered"
+    },
+    {
+      "x": 657,
+      "y": 700,
+      "note": "E sud scară",
+      "beams": [],
+      "status": "GAP"
+    },
+    {
+      "x": 657,
+      "y": 835,
+      "note": "SE colț",
+      "beams": [],
+      "status": "GAP"
+    },
+    {
+      "x": 450,
+      "y": 835,
+      "note": "S intrare",
+      "beams": [
+        "B_Y830"
+      ],
+      "status": "covered"
+    },
+    {
+      "x": 180,
+      "y": 650,
+      "note": "S dorm",
+      "beams": [
+        "B_Y645"
+      ],
+      "status": "covered"
+    },
+    {
+      "x": 15,
+      "y": 650,
+      "note": "SW dorm",
+      "beams": [
+        "B_W",
+        "B_Y645"
+      ],
+      "status": "covered"
+    },
+    {
+      "x": 600,
+      "y": 485,
+      "note": "consolă palier B_Y470",
+      "beams": [
+        "B_Y470_PALIER_EDGE"
+      ],
+      "status": "covered"
+    }
+  ],
+  "cantileversInAir": [
+    {
+      "id": "B_E",
+      "cantilever_west_cm": null,
+      "cantilever_south_cm": 101,
+      "note": "centură E pe față beton (finit−A2) + consolă sud Y590. LOCK-1R. Nod C_E_PAL = calcul.",
+      "status": "intenție_LOCK-1R_consolă — nu e bug; legare = stâlp nou în living (retras)"
+    },
+    {
+      "id": "B_Y470_PALIER_EDGE",
+      "cantilever_west_cm": 105,
+      "cantilever_south_cm": null,
+      "note": "LOCK-1R: bordură N palier X565–670 (P+E). Fără stâlp V (living P). Consolă pe B_E. NU vestibul.",
+      "status": "intenție_LOCK-1R_consolă — nu e bug; legare = stâlp nou în living (retras)"
+    }
+  ],
+  "slabs": {
+    "etaj_structural_cm": 20,
+    "etaj_soffit_top": "322→342",
+    "parter_over_basement_cm": 20,
+    "basement_note": "subsol_intrados_placa 20 cm pe footprint CONC",
+    "centura_under_each": {
+      "subsol": "grinzi pe axe P+E / S (FG+grindă)",
+      "parter": "beams levels P (= centură sub placă etaj / peste P)",
+      "etaj": "beams levels E (= centură sub acoperiș / pe placă E)",
+      "complete_ring_E": false
+    }
+  },
+  "missingRing": {
+    "gap_E_south_of_Y590": true,
+    "gap_SE_corner": true,
+    "C_S_INTRARE_E_x": 536.3,
+    "note": "Pe EST sud de Y590 (după B_E) nu există grindă pe CONC_E; colțul SE structural (672/851) nu are stâlp — C_S_INTRARE_E e la X536. Inel E incomplet.",
+    "proposed_study": "C_SE @ CONC_E×CONC_S + B_E_S (Y590→S) + B_S_SE (de la C_S_INTRARE_E la C_SE) — debate înainte de mesh"
+  },
+  "verdict": {
+    "posts": "Stâlpișorii W/E stăteau pe muchie (W ~5 cm overlap) / parțial pe B_E — nu centrați pe grindă.",
+    "ring": "Da — centura E trebuie închisă pe EST-sud; cele 2 segmente în aer = console LOCK-1R (B_Y470 + B_E sud C_E_PAL), nu aceleași cu golul SE.",
+    "capacity": "D3a+PV+zăpadă sk1,5: ordin pe căprior OK; stâlpi/ancorare/inel = calcul_lipsă FE",
+    "holds_question": "Nu putem afirma „ține” fără FE pe stâlpi+centuri+ancorare seism. Ordin încărcări: da, în plaja D3a studiată (+PV)."
+  }
+}

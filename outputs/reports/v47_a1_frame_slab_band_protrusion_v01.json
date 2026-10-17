@@ -1,0 +1,1077 @@
+{
+  "status": "ordin_studiu — NU FE semnat · NU adoptare automată",
+  "dated": "2026-10-17",
+  "context": {
+    "ff_to_ff_cm": 306,
+    "clear_ref_h15": {
+      "clear_plafon_cm": 273,
+      "clear_sub_grinda_cm": 259,
+      "clear_sub_banda_cm": 259,
+      "pass_255_plafon": true,
+      "pass_255_grinda": true
+    },
+    "L_full_m": 6.2,
+    "L_with_band_m": 3.1,
+    "dorm_lock": "fără Y400",
+    "note_band": "Bandă downstand = aceeași logică clear ca grinzile h35. Bandă flush = ipoteză nervură în placă (FE)."
+  },
+  "matrix": [
+    {
+      "id": "h15_no_band",
+      "h_cm": 15,
+      "band": "none",
+      "keep_N_MID": false,
+      "L_crit_m": 6.2,
+      "clear": {
+        "clear_plafon_cm": 273,
+        "clear_sub_grinda_cm": 259,
+        "clear_sub_banda_cm": 259,
+        "pass_255_plafon": true,
+        "pass_255_grinda": true
+      },
+      "sd_K13": {
+        "L_m": 6.2,
+        "d_cm": 12.5,
+        "L_over_d": 49.6,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": false
+      },
+      "sd_K15": {
+        "L_m": 6.2,
+        "d_cm": 12.5,
+        "L_over_d": 49.6,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true
+      },
+      "defl": {
+        "delta_elastic_mm": 22.3,
+        "limit_L250_mm": 24.8,
+        "pass_elastic": true,
+        "note": "elastic nefisurat — fisurat ≈2–3×; doar semnal"
+      },
+      "flex": {
+        "q_Ed": 10.09,
+        "M_kNm_m": 48.5,
+        "As_mm2_m": 991
+      },
+      "band_beam": null,
+      "score": {
+        "protr_score": 0,
+        "risk_score": 3,
+        "total": 9,
+        "notes": [
+          "fără bandă",
+          "C_N_MID poate ieși ulterior (comparatie)"
+        ]
+      },
+      "verdict": "MARGINAL_doar_K1.5"
+    },
+    {
+      "id": "h15_band_downstand",
+      "h_cm": 15,
+      "band": "downstand",
+      "keep_N_MID": true,
+      "L_crit_m": 3.1,
+      "clear": {
+        "clear_plafon_cm": 273,
+        "clear_sub_grinda_cm": 259,
+        "clear_sub_banda_cm": 259,
+        "pass_255_plafon": true,
+        "pass_255_grinda": true
+      },
+      "sd_K13": {
+        "L_m": 3.1,
+        "d_cm": 12.5,
+        "L_over_d": 24.8,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true
+      },
+      "sd_K15": {
+        "L_m": 3.1,
+        "d_cm": 12.5,
+        "L_over_d": 24.8,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true
+      },
+      "defl": {
+        "delta_elastic_mm": 1.4,
+        "limit_L250_mm": 12.4,
+        "pass_elastic": true,
+        "note": "elastic nefisurat — fisurat ≈2–3×; doar semnal"
+      },
+      "flex": {
+        "q_Ed": 10.09,
+        "M_kNm_m": 12.1,
+        "As_mm2_m": 248
+      },
+      "band_beam": {
+        "one_way": {
+          "trib_m": 3.1,
+          "M_kNm": 146.4,
+          "As_mm2": 1247,
+          "mu": 0.244,
+          "flex_ok": true
+        },
+        "two_way": {
+          "trib_m": 2,
+          "M_kNm": 94.4,
+          "As_mm2": 804,
+          "mu": 0.157,
+          "flex_ok": true
+        }
+      },
+      "score": {
+        "protr_score": 3,
+        "risk_score": 0,
+        "total": 30,
+        "notes": [
+          "bandă tip grindă h35 prin casă (soffit local)",
+          "C_N_MID 40 pe N (pilastru/along)"
+        ]
+      },
+      "verdict": "OK_ordin_cu_banda"
+    },
+    {
+      "id": "h15_band_flush",
+      "h_cm": 15,
+      "band": "flush",
+      "keep_N_MID": true,
+      "L_crit_m": 3.1,
+      "clear": {
+        "clear_plafon_cm": 273,
+        "clear_sub_grinda_cm": 259,
+        "clear_sub_banda_cm": 273,
+        "pass_255_plafon": true,
+        "pass_255_grinda": true
+      },
+      "sd_K13": {
+        "L_m": 3.1,
+        "d_cm": 12.5,
+        "L_over_d": 24.8,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true
+      },
+      "sd_K15": {
+        "L_m": 3.1,
+        "d_cm": 12.5,
+        "L_over_d": 24.8,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true
+      },
+      "defl": {
+        "delta_elastic_mm": 1.4,
+        "limit_L250_mm": 12.4,
+        "pass_elastic": true,
+        "note": "elastic nefisurat — fisurat ≈2–3×; doar semnal"
+      },
+      "flex": {
+        "q_Ed": 10.09,
+        "M_kNm_m": 12.1,
+        "As_mm2_m": 248
+      },
+      "band_beam": {
+        "one_way": {
+          "trib_m": 3.1,
+          "M_kNm": 146.4,
+          "As_mm2": 1247,
+          "mu": 0.244,
+          "flex_ok": true
+        },
+        "two_way": {
+          "trib_m": 2,
+          "M_kNm": 94.4,
+          "As_mm2": 804,
+          "mu": 0.157,
+          "flex_ok": true
+        }
+      },
+      "score": {
+        "protr_score": 2,
+        "risk_score": 0,
+        "total": 20,
+        "notes": [
+          "bandă îngropată în placă (nervură)",
+          "C_N_MID 40 pe N (pilastru/along)"
+        ]
+      },
+      "verdict": "OK_ordin_cu_banda"
+    },
+    {
+      "id": "h18_no_band",
+      "h_cm": 18,
+      "band": "none",
+      "keep_N_MID": false,
+      "L_crit_m": 6.2,
+      "clear": {
+        "clear_plafon_cm": 270,
+        "clear_sub_grinda_cm": 259,
+        "clear_sub_banda_cm": 259,
+        "pass_255_plafon": true,
+        "pass_255_grinda": true
+      },
+      "sd_K13": {
+        "L_m": 6.2,
+        "d_cm": 15.5,
+        "L_over_d": 40,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true
+      },
+      "sd_K15": {
+        "L_m": 6.2,
+        "d_cm": 15.5,
+        "L_over_d": 40,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true
+      },
+      "defl": {
+        "delta_elastic_mm": 13.2,
+        "limit_L250_mm": 24.8,
+        "pass_elastic": true,
+        "note": "elastic nefisurat — fisurat ≈2–3×; doar semnal"
+      },
+      "flex": {
+        "q_Ed": 11.1,
+        "M_kNm_m": 53.3,
+        "As_mm2_m": 879
+      },
+      "band_beam": null,
+      "score": {
+        "protr_score": 0,
+        "risk_score": 0,
+        "total": 0.6,
+        "notes": [
+          "fără bandă",
+          "C_N_MID poate ieși ulterior (comparatie)"
+        ]
+      },
+      "verdict": "OK_ordin_fara_banda"
+    },
+    {
+      "id": "h18_band_downstand",
+      "h_cm": 18,
+      "band": "downstand",
+      "keep_N_MID": true,
+      "L_crit_m": 3.1,
+      "clear": {
+        "clear_plafon_cm": 270,
+        "clear_sub_grinda_cm": 259,
+        "clear_sub_banda_cm": 259,
+        "pass_255_plafon": true,
+        "pass_255_grinda": true
+      },
+      "sd_K13": {
+        "L_m": 3.1,
+        "d_cm": 15.5,
+        "L_over_d": 20,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true
+      },
+      "sd_K15": {
+        "L_m": 3.1,
+        "d_cm": 15.5,
+        "L_over_d": 20,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true
+      },
+      "defl": {
+        "delta_elastic_mm": 0.8,
+        "limit_L250_mm": 12.4,
+        "pass_elastic": true,
+        "note": "elastic nefisurat — fisurat ≈2–3×; doar semnal"
+      },
+      "flex": {
+        "q_Ed": 11.1,
+        "M_kNm_m": 13.3,
+        "As_mm2_m": 220
+      },
+      "band_beam": {
+        "one_way": {
+          "trib_m": 3.1,
+          "M_kNm": 161,
+          "As_mm2": 1372,
+          "mu": 0.268,
+          "flex_ok": false
+        },
+        "two_way": {
+          "trib_m": 2,
+          "M_kNm": 103.9,
+          "As_mm2": 885,
+          "mu": 0.173,
+          "flex_ok": true
+        }
+      },
+      "score": {
+        "protr_score": 3,
+        "risk_score": 0,
+        "total": 30.6,
+        "notes": [
+          "bandă tip grindă h35 prin casă (soffit local)",
+          "C_N_MID 40 pe N (pilastru/along)"
+        ]
+      },
+      "verdict": "OK_ordin_cu_banda"
+    },
+    {
+      "id": "h18_band_flush",
+      "h_cm": 18,
+      "band": "flush",
+      "keep_N_MID": true,
+      "L_crit_m": 3.1,
+      "clear": {
+        "clear_plafon_cm": 270,
+        "clear_sub_grinda_cm": 259,
+        "clear_sub_banda_cm": 270,
+        "pass_255_plafon": true,
+        "pass_255_grinda": true
+      },
+      "sd_K13": {
+        "L_m": 3.1,
+        "d_cm": 15.5,
+        "L_over_d": 20,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true
+      },
+      "sd_K15": {
+        "L_m": 3.1,
+        "d_cm": 15.5,
+        "L_over_d": 20,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true
+      },
+      "defl": {
+        "delta_elastic_mm": 0.8,
+        "limit_L250_mm": 12.4,
+        "pass_elastic": true,
+        "note": "elastic nefisurat — fisurat ≈2–3×; doar semnal"
+      },
+      "flex": {
+        "q_Ed": 11.1,
+        "M_kNm_m": 13.3,
+        "As_mm2_m": 220
+      },
+      "band_beam": {
+        "one_way": {
+          "trib_m": 3.1,
+          "M_kNm": 161,
+          "As_mm2": 1372,
+          "mu": 0.268,
+          "flex_ok": false
+        },
+        "two_way": {
+          "trib_m": 2,
+          "M_kNm": 103.9,
+          "As_mm2": 885,
+          "mu": 0.173,
+          "flex_ok": true
+        }
+      },
+      "score": {
+        "protr_score": 2,
+        "risk_score": 0,
+        "total": 20.6,
+        "notes": [
+          "bandă îngropată în placă (nervură)",
+          "C_N_MID 40 pe N (pilastru/along)"
+        ]
+      },
+      "verdict": "OK_ordin_cu_banda"
+    },
+    {
+      "id": "h20_no_band",
+      "h_cm": 20,
+      "band": "none",
+      "keep_N_MID": false,
+      "L_crit_m": 6.2,
+      "clear": {
+        "clear_plafon_cm": 268,
+        "clear_sub_grinda_cm": 259,
+        "clear_sub_banda_cm": 259,
+        "pass_255_plafon": true,
+        "pass_255_grinda": true
+      },
+      "sd_K13": {
+        "L_m": 6.2,
+        "d_cm": 17.5,
+        "L_over_d": 35.4,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true
+      },
+      "sd_K15": {
+        "L_m": 6.2,
+        "d_cm": 17.5,
+        "L_over_d": 35.4,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true
+      },
+      "defl": {
+        "delta_elastic_mm": 9.9,
+        "limit_L250_mm": 24.8,
+        "pass_elastic": true,
+        "note": "elastic nefisurat — fisurat ≈2–3×; doar semnal"
+      },
+      "flex": {
+        "q_Ed": 11.78,
+        "M_kNm_m": 56.6,
+        "As_mm2_m": 826
+      },
+      "band_beam": null,
+      "score": {
+        "protr_score": 0,
+        "risk_score": 0,
+        "total": 1,
+        "notes": [
+          "fără bandă",
+          "C_N_MID poate ieși ulterior (comparatie)"
+        ]
+      },
+      "verdict": "OK_ordin_fara_banda"
+    },
+    {
+      "id": "h20_band_downstand",
+      "h_cm": 20,
+      "band": "downstand",
+      "keep_N_MID": true,
+      "L_crit_m": 3.1,
+      "clear": {
+        "clear_plafon_cm": 268,
+        "clear_sub_grinda_cm": 259,
+        "clear_sub_banda_cm": 259,
+        "pass_255_plafon": true,
+        "pass_255_grinda": true
+      },
+      "sd_K13": {
+        "L_m": 3.1,
+        "d_cm": 17.5,
+        "L_over_d": 17.7,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true
+      },
+      "sd_K15": {
+        "L_m": 3.1,
+        "d_cm": 17.5,
+        "L_over_d": 17.7,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true
+      },
+      "defl": {
+        "delta_elastic_mm": 0.6,
+        "limit_L250_mm": 12.4,
+        "pass_elastic": true,
+        "note": "elastic nefisurat — fisurat ≈2–3×; doar semnal"
+      },
+      "flex": {
+        "q_Ed": 11.78,
+        "M_kNm_m": 14.1,
+        "As_mm2_m": 207
+      },
+      "band_beam": {
+        "one_way": {
+          "trib_m": 3.1,
+          "M_kNm": 170.8,
+          "As_mm2": 1455,
+          "mu": 0.285,
+          "flex_ok": false
+        },
+        "two_way": {
+          "trib_m": 2,
+          "M_kNm": 110.2,
+          "As_mm2": 939,
+          "mu": 0.184,
+          "flex_ok": true
+        }
+      },
+      "score": {
+        "protr_score": 3,
+        "risk_score": 0,
+        "total": 31,
+        "notes": [
+          "bandă tip grindă h35 prin casă (soffit local)",
+          "C_N_MID 40 pe N (pilastru/along)"
+        ]
+      },
+      "verdict": "OK_ordin_cu_banda"
+    },
+    {
+      "id": "h20_band_flush",
+      "h_cm": 20,
+      "band": "flush",
+      "keep_N_MID": true,
+      "L_crit_m": 3.1,
+      "clear": {
+        "clear_plafon_cm": 268,
+        "clear_sub_grinda_cm": 259,
+        "clear_sub_banda_cm": 268,
+        "pass_255_plafon": true,
+        "pass_255_grinda": true
+      },
+      "sd_K13": {
+        "L_m": 3.1,
+        "d_cm": 17.5,
+        "L_over_d": 17.7,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true
+      },
+      "sd_K15": {
+        "L_m": 3.1,
+        "d_cm": 17.5,
+        "L_over_d": 17.7,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true
+      },
+      "defl": {
+        "delta_elastic_mm": 0.6,
+        "limit_L250_mm": 12.4,
+        "pass_elastic": true,
+        "note": "elastic nefisurat — fisurat ≈2–3×; doar semnal"
+      },
+      "flex": {
+        "q_Ed": 11.78,
+        "M_kNm_m": 14.1,
+        "As_mm2_m": 207
+      },
+      "band_beam": {
+        "one_way": {
+          "trib_m": 3.1,
+          "M_kNm": 170.8,
+          "As_mm2": 1455,
+          "mu": 0.285,
+          "flex_ok": false
+        },
+        "two_way": {
+          "trib_m": 2,
+          "M_kNm": 110.2,
+          "As_mm2": 939,
+          "mu": 0.184,
+          "flex_ok": true
+        }
+      },
+      "score": {
+        "protr_score": 2,
+        "risk_score": 0,
+        "total": 21,
+        "notes": [
+          "bandă îngropată în placă (nervură)",
+          "C_N_MID 40 pe N (pilastru/along)"
+        ]
+      },
+      "verdict": "OK_ordin_cu_banda"
+    },
+    {
+      "id": "h22_no_band",
+      "h_cm": 22,
+      "band": "none",
+      "keep_N_MID": false,
+      "L_crit_m": 6.2,
+      "clear": {
+        "clear_plafon_cm": 266,
+        "clear_sub_grinda_cm": 259,
+        "clear_sub_banda_cm": 259,
+        "pass_255_plafon": true,
+        "pass_255_grinda": true
+      },
+      "sd_K13": {
+        "L_m": 6.2,
+        "d_cm": 19.5,
+        "L_over_d": 31.8,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true
+      },
+      "sd_K15": {
+        "L_m": 6.2,
+        "d_cm": 19.5,
+        "L_over_d": 31.8,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true
+      },
+      "defl": {
+        "delta_elastic_mm": 7.6,
+        "limit_L250_mm": 24.8,
+        "pass_elastic": true,
+        "note": "elastic nefisurat — fisurat ≈2–3×; doar semnal"
+      },
+      "flex": {
+        "q_Ed": 12.45,
+        "M_kNm_m": 59.8,
+        "As_mm2_m": 784
+      },
+      "band_beam": null,
+      "score": {
+        "protr_score": 0,
+        "risk_score": 0,
+        "total": 1.4,
+        "notes": [
+          "fără bandă",
+          "C_N_MID poate ieși ulterior (comparatie)"
+        ]
+      },
+      "verdict": "OK_ordin_fara_banda"
+    },
+    {
+      "id": "h22_band_downstand",
+      "h_cm": 22,
+      "band": "downstand",
+      "keep_N_MID": true,
+      "L_crit_m": 3.1,
+      "clear": {
+        "clear_plafon_cm": 266,
+        "clear_sub_grinda_cm": 259,
+        "clear_sub_banda_cm": 259,
+        "pass_255_plafon": true,
+        "pass_255_grinda": true
+      },
+      "sd_K13": {
+        "L_m": 3.1,
+        "d_cm": 19.5,
+        "L_over_d": 15.9,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true
+      },
+      "sd_K15": {
+        "L_m": 3.1,
+        "d_cm": 19.5,
+        "L_over_d": 15.9,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true
+      },
+      "defl": {
+        "delta_elastic_mm": 0.5,
+        "limit_L250_mm": 12.4,
+        "pass_elastic": true,
+        "note": "elastic nefisurat — fisurat ≈2–3×; doar semnal"
+      },
+      "flex": {
+        "q_Ed": 12.45,
+        "M_kNm_m": 15,
+        "As_mm2_m": 196
+      },
+      "band_beam": {
+        "one_way": {
+          "trib_m": 3.1,
+          "M_kNm": 180.6,
+          "As_mm2": 1539,
+          "mu": 0.301,
+          "flex_ok": false
+        },
+        "two_way": {
+          "trib_m": 2,
+          "M_kNm": 116.5,
+          "As_mm2": 993,
+          "mu": 0.194,
+          "flex_ok": true
+        }
+      },
+      "score": {
+        "protr_score": 3,
+        "risk_score": 0,
+        "total": 31.4,
+        "notes": [
+          "bandă tip grindă h35 prin casă (soffit local)",
+          "C_N_MID 40 pe N (pilastru/along)"
+        ]
+      },
+      "verdict": "OK_ordin_cu_banda"
+    },
+    {
+      "id": "h22_band_flush",
+      "h_cm": 22,
+      "band": "flush",
+      "keep_N_MID": true,
+      "L_crit_m": 3.1,
+      "clear": {
+        "clear_plafon_cm": 266,
+        "clear_sub_grinda_cm": 259,
+        "clear_sub_banda_cm": 266,
+        "pass_255_plafon": true,
+        "pass_255_grinda": true
+      },
+      "sd_K13": {
+        "L_m": 3.1,
+        "d_cm": 19.5,
+        "L_over_d": 15.9,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true
+      },
+      "sd_K15": {
+        "L_m": 3.1,
+        "d_cm": 19.5,
+        "L_over_d": 15.9,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true
+      },
+      "defl": {
+        "delta_elastic_mm": 0.5,
+        "limit_L250_mm": 12.4,
+        "pass_elastic": true,
+        "note": "elastic nefisurat — fisurat ≈2–3×; doar semnal"
+      },
+      "flex": {
+        "q_Ed": 12.45,
+        "M_kNm_m": 15,
+        "As_mm2_m": 196
+      },
+      "band_beam": {
+        "one_way": {
+          "trib_m": 3.1,
+          "M_kNm": 180.6,
+          "As_mm2": 1539,
+          "mu": 0.301,
+          "flex_ok": false
+        },
+        "two_way": {
+          "trib_m": 2,
+          "M_kNm": 116.5,
+          "As_mm2": 993,
+          "mu": 0.194,
+          "flex_ok": true
+        }
+      },
+      "score": {
+        "protr_score": 2,
+        "risk_score": 0,
+        "total": 21.4,
+        "notes": [
+          "bandă îngropată în placă (nervură)",
+          "C_N_MID 40 pe N (pilastru/along)"
+        ]
+      },
+      "verdict": "OK_ordin_cu_banda"
+    },
+    {
+      "id": "h25_no_band",
+      "h_cm": 25,
+      "band": "none",
+      "keep_N_MID": false,
+      "L_crit_m": 6.2,
+      "clear": {
+        "clear_plafon_cm": 263,
+        "clear_sub_grinda_cm": 259,
+        "clear_sub_banda_cm": 259,
+        "pass_255_plafon": true,
+        "pass_255_grinda": true
+      },
+      "sd_K13": {
+        "L_m": 6.2,
+        "d_cm": 22.5,
+        "L_over_d": 27.6,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true
+      },
+      "sd_K15": {
+        "L_m": 6.2,
+        "d_cm": 22.5,
+        "L_over_d": 27.6,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true
+      },
+      "defl": {
+        "delta_elastic_mm": 5.5,
+        "limit_L250_mm": 24.8,
+        "pass_elastic": true,
+        "note": "elastic nefisurat — fisurat ≈2–3×; doar semnal"
+      },
+      "flex": {
+        "q_Ed": 13.46,
+        "M_kNm_m": 64.7,
+        "As_mm2_m": 735
+      },
+      "band_beam": null,
+      "score": {
+        "protr_score": 0,
+        "risk_score": 1,
+        "total": 5,
+        "notes": [
+          "fără bandă",
+          "C_N_MID poate ieși ulterior (comparatie)"
+        ]
+      },
+      "verdict": "OK_ordin_fara_banda"
+    },
+    {
+      "id": "h25_band_downstand",
+      "h_cm": 25,
+      "band": "downstand",
+      "keep_N_MID": true,
+      "L_crit_m": 3.1,
+      "clear": {
+        "clear_plafon_cm": 263,
+        "clear_sub_grinda_cm": 259,
+        "clear_sub_banda_cm": 259,
+        "pass_255_plafon": true,
+        "pass_255_grinda": true
+      },
+      "sd_K13": {
+        "L_m": 3.1,
+        "d_cm": 22.5,
+        "L_over_d": 13.8,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true
+      },
+      "sd_K15": {
+        "L_m": 3.1,
+        "d_cm": 22.5,
+        "L_over_d": 13.8,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true
+      },
+      "defl": {
+        "delta_elastic_mm": 0.3,
+        "limit_L250_mm": 12.4,
+        "pass_elastic": true,
+        "note": "elastic nefisurat — fisurat ≈2–3×; doar semnal"
+      },
+      "flex": {
+        "q_Ed": 13.46,
+        "M_kNm_m": 16.2,
+        "As_mm2_m": 184
+      },
+      "band_beam": {
+        "one_way": {
+          "trib_m": 3.1,
+          "M_kNm": 195.3,
+          "As_mm2": 1664,
+          "mu": 0.326,
+          "flex_ok": false
+        },
+        "two_way": {
+          "trib_m": 2,
+          "M_kNm": 126,
+          "As_mm2": 1073,
+          "mu": 0.21,
+          "flex_ok": true
+        }
+      },
+      "score": {
+        "protr_score": 3,
+        "risk_score": 1,
+        "total": 35,
+        "notes": [
+          "bandă tip grindă h35 prin casă (soffit local)",
+          "C_N_MID 40 pe N (pilastru/along)"
+        ]
+      },
+      "verdict": "OK_ordin_cu_banda"
+    },
+    {
+      "id": "h25_band_flush",
+      "h_cm": 25,
+      "band": "flush",
+      "keep_N_MID": true,
+      "L_crit_m": 3.1,
+      "clear": {
+        "clear_plafon_cm": 263,
+        "clear_sub_grinda_cm": 259,
+        "clear_sub_banda_cm": 263,
+        "pass_255_plafon": true,
+        "pass_255_grinda": true
+      },
+      "sd_K13": {
+        "L_m": 3.1,
+        "d_cm": 22.5,
+        "L_over_d": 13.8,
+        "allow_L_over_d": 44.2,
+        "K": 1.3,
+        "pass": true
+      },
+      "sd_K15": {
+        "L_m": 3.1,
+        "d_cm": 22.5,
+        "L_over_d": 13.8,
+        "allow_L_over_d": 51,
+        "K": 1.5,
+        "pass": true
+      },
+      "defl": {
+        "delta_elastic_mm": 0.3,
+        "limit_L250_mm": 12.4,
+        "pass_elastic": true,
+        "note": "elastic nefisurat — fisurat ≈2–3×; doar semnal"
+      },
+      "flex": {
+        "q_Ed": 13.46,
+        "M_kNm_m": 16.2,
+        "As_mm2_m": 184
+      },
+      "band_beam": {
+        "one_way": {
+          "trib_m": 3.1,
+          "M_kNm": 195.3,
+          "As_mm2": 1664,
+          "mu": 0.326,
+          "flex_ok": false
+        },
+        "two_way": {
+          "trib_m": 2,
+          "M_kNm": 126,
+          "As_mm2": 1073,
+          "mu": 0.21,
+          "flex_ok": true
+        }
+      },
+      "score": {
+        "protr_score": 2,
+        "risk_score": 1,
+        "total": 25,
+        "notes": [
+          "bandă îngropată în placă (nervură)",
+          "C_N_MID 40 pe N (pilastru/along)"
+        ]
+      },
+      "verdict": "OK_ordin_cu_banda"
+    }
+  ],
+  "viable_ranked": [
+    {
+      "id": "h18_no_band",
+      "verdict": "OK_ordin_fara_banda",
+      "score": 0.6,
+      "protr": 0,
+      "clear_plafon": 270
+    },
+    {
+      "id": "h20_no_band",
+      "verdict": "OK_ordin_fara_banda",
+      "score": 1,
+      "protr": 0,
+      "clear_plafon": 268
+    },
+    {
+      "id": "h22_no_band",
+      "verdict": "OK_ordin_fara_banda",
+      "score": 1.4,
+      "protr": 0,
+      "clear_plafon": 266
+    },
+    {
+      "id": "h25_no_band",
+      "verdict": "OK_ordin_fara_banda",
+      "score": 5,
+      "protr": 0,
+      "clear_plafon": 263
+    },
+    {
+      "id": "h15_no_band",
+      "verdict": "MARGINAL_doar_K1.5",
+      "score": 9,
+      "protr": 0,
+      "clear_plafon": 273
+    },
+    {
+      "id": "h15_band_flush",
+      "verdict": "OK_ordin_cu_banda",
+      "score": 20,
+      "protr": 2,
+      "clear_plafon": 273
+    },
+    {
+      "id": "h18_band_flush",
+      "verdict": "OK_ordin_cu_banda",
+      "score": 20.6,
+      "protr": 2,
+      "clear_plafon": 270
+    },
+    {
+      "id": "h20_band_flush",
+      "verdict": "OK_ordin_cu_banda",
+      "score": 21,
+      "protr": 2,
+      "clear_plafon": 268
+    },
+    {
+      "id": "h22_band_flush",
+      "verdict": "OK_ordin_cu_banda",
+      "score": 21.4,
+      "protr": 2,
+      "clear_plafon": 266
+    },
+    {
+      "id": "h25_band_flush",
+      "verdict": "OK_ordin_cu_banda",
+      "score": 25,
+      "protr": 2,
+      "clear_plafon": 263
+    },
+    {
+      "id": "h15_band_downstand",
+      "verdict": "OK_ordin_cu_banda",
+      "score": 30,
+      "protr": 3,
+      "clear_plafon": 273
+    },
+    {
+      "id": "h18_band_downstand",
+      "verdict": "OK_ordin_cu_banda",
+      "score": 30.6,
+      "protr": 3,
+      "clear_plafon": 270
+    },
+    {
+      "id": "h20_band_downstand",
+      "verdict": "OK_ordin_cu_banda",
+      "score": 31,
+      "protr": 3,
+      "clear_plafon": 268
+    },
+    {
+      "id": "h22_band_downstand",
+      "verdict": "OK_ordin_cu_banda",
+      "score": 31.4,
+      "protr": 3,
+      "clear_plafon": 266
+    },
+    {
+      "id": "h25_band_downstand",
+      "verdict": "OK_ordin_cu_banda",
+      "score": 35,
+      "protr": 3,
+      "clear_plafon": 263
+    }
+  ],
+  "recommended_study": {
+    "id": "h18_no_band",
+    "why": "Cel mai mic scor proeminențe+risc dintre variantele care trec clear≥255 și L/d ordin (OK_ordin_fara_banda).",
+    "alt_min_protrusion_no_band": {
+      "id": "h18_no_band",
+      "h_cm": 18,
+      "clear_plafon": 270,
+      "L_over_d": 40,
+      "allow": 44.2,
+      "note": "Elimină banda (proem. soffit) și deschide drop ulterior C_N_MID — FE obligatoriu pe 6,2 m"
+    },
+    "keep_R_classic": {
+      "id": "h15_band_downstand",
+      "note": "15+bandă downstand — încă validă; mai multe proeminențe, placă ușoară"
+    }
+  },
+  "answers": {
+    "does_thicker_slab_still_need_band": "La ordin: h≥18–20 pe L=6,2 cu K=1,3 continuu → L/d trece FĂRĂ bandă. h=15 fără bandă → FAIL (sau doar K=1,5 optimist). Bandă rămâne utilă pe 15 sau ca rezervă FE.",
+    "optimal_protrusion": "Studiu: h18_no_band — zero bandă; C_N_MID candidat drop după FE. Alternativ: h15/h18 + bandă flush (dacă FE acceptă nervură)."
+  }
+}

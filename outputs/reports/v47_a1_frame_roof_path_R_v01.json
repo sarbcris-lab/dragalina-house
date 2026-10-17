@@ -1,0 +1,74 @@
+{
+  "prefer": "D3a",
+  "perimeter_beams_E": [
+    "B_N",
+    "B_W",
+    "B_E",
+    "B_CASA_SCARA",
+    "B_Y645",
+    "B_Y830"
+  ],
+  "beams_with_E": [
+    "B_N",
+    "B_W",
+    "B_E",
+    "B_CASA_SCARA",
+    "B_Y645",
+    "B_BAND_X320",
+    "B_X360_DORM_INTRARE",
+    "B_Y830",
+    "B_Y470_PALIER_EDGE"
+  ],
+  "columns_E": [
+    "C_NW",
+    "C_N_MID",
+    "C_NE",
+    "C_W_MID",
+    "C_W_DORM",
+    "C_S_DORM_E",
+    "C_E_GEAM_S",
+    "C_E_PAL",
+    "C_CASA_SCARA",
+    "C_S_INTRARE_W",
+    "C_S_INTRARE_E"
+  ],
+  "pathRows": [
+    {
+      "from": "învelitoare / căpriori (D3a)",
+      "to": "centuri perimetrale E (B_N, B_W, B_E, B_Y645…)",
+      "status": "geo_OK_ipoteză",
+      "note": "mesh acoperiș există; încărcare pe streșină → grinzi E"
+    },
+    {
+      "from": "stâlpișori fronton",
+      "to": "grinzi @ +581 (contact parțial)",
+      "status": "geo_partial",
+      "note": "audit: contact OK geometric; capacitate/excentricitate = FE"
+    },
+    {
+      "from": "centuri E",
+      "to": "stâlpi S–P–E",
+      "status": "geo_OK",
+      "note": "11 stâlpi cu nivel E"
+    },
+    {
+      "from": "B_BAND_X320",
+      "to": "stâlpi (N_MID, S_DORM_E)",
+      "status": "geo_OK_studiu",
+      "note": "planșeu E; fără Y400 (dorm LOCK); nu primar pentru acoperiș"
+    },
+    {
+      "from": "D3b placă BA acoperiș",
+      "to": "aceleași stâlpi (+ΔW ~172 kN)",
+      "status": "sensibilitate",
+      "note": "nu modelat ca mesh separat acum — FE sensibilitate"
+    }
+  ],
+  "gaps": [
+    "Capacitate stâlpișori + excentricitate pe streșină",
+    "Detaliu ancorare șarpantă la centură (seism)",
+    "Zapadă locală / combinații CR pe acoperiș",
+    "D3b doar ca sensibilitate — nu adoptat"
+  ],
+  "verdict": "Traseul D3a e închis geometric pe cadre (centuri→stâlpi). Rămâne FE pe stâlpișori/ancorare — nu blochează restul R."
+}
