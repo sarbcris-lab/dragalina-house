@@ -228,7 +228,7 @@ const DUS_N_SHIFT = 15; // A1.91: duș +15 N → loc pentru zid baie↔dorm
 const DULAP_D = 60;
 const HOL_NISA_W = 60;
 const HOL_NISA_H = 60; // MS clear N–S (schiță ~62)
-const BAIE_FLANC_UTIL_D = 30; // prosoape
+const BAIE_FLANC_UTIL_D = 35; // A1.109: prosoape 45×35 (+5 sud nișă MS)
 /** Est hol = după coloană 120 + A8 + nișă MS 60. */
 const X_DUPA_NISA = +(TH.A2 + NISA_UTIL_W + TH.A8 + HOL_NISA_W).toFixed(1); // 226,2
 /** Duș scos 15 N; sud = zid A8 baie↔dorm; dulap sub zid. */
@@ -239,7 +239,7 @@ const Y_DULAP_0 = +(Y_BAIE_DORM_SEP + TH.A8).toFixed(1); // 234
 const Y_DULAP_1 = DORM_N; // 294
 /** Prosoape / MS pe banda Y144 (nu urcă cu fața N a dușului). */
 const Y_STACK_0 = Y_BAIE_SUD_ZID; // 144
-const MS_N_SHIFT = 0; // A1.108: MS −2,5 sud (anulează A1.93 +2,5 N)
+const MS_N_SHIFT = 0; // A1.109: +5 sud via flanc 35 (nu shift separat)
 /**
  * MS nișă: A8 15 N + clear 60 + A8 15 S (separator dressing / glisante).
  * Gura dorm: glisante 180 = 3×60.
@@ -253,15 +253,22 @@ const Y_HOL_NISA_WALL_N = +(
   Y_STACK_0 +
   BAIE_FLANC_UTIL_D -
   MS_N_SHIFT
-).toFixed(1); // 174
-const BAIE_FLANC_DY = +(Y_HOL_NISA_WALL_N - Y_STACK_0).toFixed(1); // 30
-const HOL_NISA_Y0 = +(Y_HOL_NISA_WALL_N + TH.A8).toFixed(1); // 189 clear N
-const HOL_NISA_Y1 = +(HOL_NISA_Y0 + HOL_NISA_H).toFixed(1); // 249 clear S
+).toFixed(1); // 179
+/**
+ * A1.116: A8 est duș doar de la colțul N MS (aliniat) — fără stub 5 cm lângă sticlă.
+ * N de colț = util + sticlă.
+ */
+const Y_NISA_EST_KEEP_0 = Y_HOL_NISA_WALL_N; // 179 — colț cu hol_nisa_N
+const NISA_EST_REMOVE_DY = +(Y_NISA_EST_KEEP_0 - Y_DUS_0).toFixed(1); // 50
+const NISA_EST_KEEP_DY = +(Y_DUS_1 - Y_NISA_EST_KEEP_0).toFixed(1); // 40
+const BAIE_FLANC_DY = +(Y_HOL_NISA_WALL_N - Y_STACK_0).toFixed(1); // 35
+const HOL_NISA_Y0 = +(Y_HOL_NISA_WALL_N + TH.A8).toFixed(1); // 194 clear N
+const HOL_NISA_Y1 = +(HOL_NISA_Y0 + HOL_NISA_H).toFixed(1); // 254 clear S
 /** Zid S MS = separator față de dressing (în dulapul cu glisante). */
-const Y_HOL_NISA_WALL_S = HOL_NISA_Y1; // 249
+const Y_HOL_NISA_WALL_S = HOL_NISA_Y1; // 254
 /** Raft / dressing est: sud de zid S MS. */
-const Y_RAFT_0 = +(Y_HOL_NISA_WALL_S + TH.A8).toFixed(1); // 264
-const NISA_UTIL_D = +(DORM_N - Y_RAFT_0).toFixed(1); // 30
+const Y_RAFT_0 = +(Y_HOL_NISA_WALL_S + TH.A8).toFixed(1); // 269
+const NISA_UTIL_D = +(DORM_N - Y_RAFT_0).toFixed(1); // 25
 const Y_NISA_BACK = Y_DULAP_0;
 const Y_NISA_CLEAR_N = Y_DULAP_0;
 const Y_NISA_CLEAR_S = DORM_N;
@@ -342,6 +349,7 @@ walls = walls.map((w) => {
     };
   }
   // A1.91/94: zid baie↔dorm pe sud duș — până la vestul nișei MS (unește cu hol_nisa_S)
+  // A1.122: pe etaj spatele nișei living e 180 (vezi nisa_dulap_spate_e)
   if (w.id === "nisa_dulap_spate") {
     const { removed, status, reason, ...rest } = w;
     return {
@@ -355,8 +363,8 @@ walls = walls.map((w) => {
       assembly: "A8",
       thickness_cm: TH.A8,
       thickness_finished_mm: 150,
-      levels: [0, 1],
-      note: `A1.94: baie↔dorm Y${Y_BAIE_DORM_SEP}–${Y_DULAP_0}; X${TH.A2}→${HOL_NISA_X0}`,
+      levels: [0],
+      note: `A1.94: baie↔dorm Y${Y_BAIE_DORM_SEP}–${Y_DULAP_0}; X${TH.A2}→${HOL_NISA_X0} (parter)`,
     };
   }
   if (w.id === "nisa_dulap_est") {
@@ -374,11 +382,29 @@ walls = walls.map((w) => {
       y: +(DORM_N - TH.A8).toFixed(1),
       dx: +(XI - TH_SEP_A7 - X_DUPA_NISA).toFixed(1),
       dy: TH.A8,
+      levels: [0, 1],
       note: "A1.70: baie↔dorm est de nișă; sud = nord dorm",
     };
   }
   return w;
 });
+
+/** A1.122 etaj: spate nișă living 180×60 (baie↔nișă). */
+walls.push({
+  id: "nisa_dulap_spate_e",
+  x: TH.A2,
+  y: Y_BAIE_DORM_SEP,
+  dx: NISA_GLIS_W, // 180
+  dy: TH.A8,
+  kind: "int",
+  catalog_id: "A8",
+  assembly: "A8",
+  thickness_cm: TH.A8,
+  thickness_finished_mm: 150,
+  levels: [1],
+  note: `A1.122: spate nișă living 180×60 Y${Y_BAIE_DORM_SEP}–${Y_DULAP_0}`,
+});
+/** A1.123: fără nisa_living_sud_e — gura nișei = 3 glisante spre dorm. */
 
 /**
  * P: perete A6 paralel cu sudul — unește holul (buc_est) de limita de proprietate (est).
@@ -416,7 +442,7 @@ walls.push({
 });
 
 /** A1.85: duș|dulap vest; prosoape+MS+raft est (MS = nișa baie↔dorm, acces hol). */
-function pushA8(id, x, y, dx, dy, note) {
+function pushA8(id, x, y, dx, dy, note, levels = [0, 1]) {
   walls.push({
     id,
     x,
@@ -428,17 +454,19 @@ function pushA8(id, x, y, dx, dy, note) {
     assembly: "A8",
     thickness_cm: TH.A8,
     thickness_finished_mm: 150,
-    levels: [0, 1],
+    levels,
     note,
   });
 }
+/** Parter: nișa MS + L dressing. Etaj A1.122: fără MS în nișă — vezi ziduri _e. */
 pushA8(
   "nisa_est_N",
   X_HOL_NISA_BACK,
-  Y_DUS_0,
+  Y_NISA_EST_KEEP_0, // colț N MS — aliniat cu hol_nisa_N
   TH.A8,
-  DUS_D,
-  `A1.91: est duș 120×${DUS_D} Y${Y_DUS_0}–${Y_DUS_1}`
+  NISA_EST_KEEP_DY,
+  `A1.116: A8 Y${Y_NISA_EST_KEEP_0}–${Y_DUS_1} duș↔MS (colt); N 15×${NISA_EST_REMOVE_DY} = util+sticlă`,
+  [0]
 );
 pushA8(
   "baie_flanc_est",
@@ -446,16 +474,18 @@ pushA8(
   Y_STACK_0,
   TH.A8,
   BAIE_FLANC_DY,
-  "A1.108: prosoape — închide spre hol (dy până la zid N MS)"
+  "A1.109: prosoape 45×35 — închide spre hol (dy până la zid N MS)",
+  [0]
 );
 /** A8 15 N + S ale nișei MS — pe flancul nișei, NU sub aparat. */
 pushA8(
   "hol_nisa_N",
   HOL_NISA_X0,
-  Y_HOL_NISA_WALL_N, // 174
+  Y_HOL_NISA_WALL_N, // 179
   HOL_NISA_W,
   TH.A8, // →189
-  "A1.108: nord MS A8 15"
+  "A1.109: nord MS A8 15",
+  [0]
 );
 /**
  * A1.94: uneste nisa_dulap_spate + hol_nisa_S + dorm_flanc_est (colț închis).
@@ -464,10 +494,11 @@ pushA8(
 pushA8(
   "hol_nisa_S",
   X_HOL_NISA_BACK, // 151,2 — unește cu estul nisa_dulap_spate
-  Y_HOL_NISA_WALL_S, // 249
+  Y_HOL_NISA_WALL_S, // 254
   +(HOL_NISA_X1 - X_HOL_NISA_BACK).toFixed(1), // 75 →226,2
   TH.A8, // →264
-  "A1.108: sud MS + colț vest — separator dressing"
+  "A1.109: sud MS + colț vest — separator dressing",
+  [0]
 );
 /**
  * A1.99: zid ⊥ pe glisante — doar până la colțul L (sud MS).
@@ -479,7 +510,8 @@ pushA8(
   Y_DULAP_0, // 234
   TH.A8,
   +(Y_HOL_NISA_WALL_S - Y_DULAP_0).toFixed(1), // 12,5 →246,5 (colt L)
-  "A1.99: ⊥ glisante → colț L (MS↔dressing); stop, nu taie L"
+  "A1.99: ⊥ glisante → colț L (MS↔dressing); stop, nu taie L",
+  [0]
 );
 const Y_DORM_FLANC_0 = Y_HOL_NISA_WALL_S; // 246,5
 const DORM_FLANC_DY = +(DORM_N - Y_DORM_FLANC_0).toFixed(1); // 47,5
@@ -489,9 +521,36 @@ pushA8(
   Y_DORM_FLANC_0,
   TH.A8,
   DORM_FLANC_DY,
-  `A1.94: flanc est ${DORM_FLANC_DY} cm — colț L cu hol_nisa_S + dorm_baie_nord`
+  `A1.94: flanc est ${DORM_FLANC_DY} cm — colț L cu hol_nisa_S + dorm_baie_nord`,
+  [0]
 );
-// MS: gura EST deschisă spre hol; S = zid separator dressing
+/**
+ * A1.123 etaj: nișă living 180×60 — spate A8; est A8 plin (nu gol);
+ * gura sud = 3 glisante spre dorm. MS lipită de duș; A8 est după MS.
+ */
+pushA8(
+  "nisa_living_est_e",
+  +(NISA_GLIS_X0 + NISA_GLIS_W).toFixed(1), // 211,2
+  Y_DULAP_0,
+  TH.A8,
+  +(DORM_N - Y_DULAP_0).toFixed(1), // 60
+  "A1.123: flanc est nișă living 180×60 — zid plin A8 (etaj)",
+  [1]
+);
+/**
+ * A8 est după MS → hol: de la sudul băii (nu urcă în baia N — evita proeminența
+ * care tăia utilul), până la spatele nișei.
+ */
+pushA8(
+  "baie_dus_est_e",
+  +(X_HOL_NISA_BACK + 60).toFixed(1), // 211,2 = est MS
+  Y_BAIE_SUD_ZID, // 144 — aliniat cu baie_sud_gol, nu Y129
+  TH.A8,
+  +(Y_DULAP_0 - Y_BAIE_SUD_ZID).toFixed(1), // 144→234
+  "A1.129: A8 est MS→hol; fără stub N în baie",
+  [1]
+);
+// MS parter: gura EST deschisă spre hol; S = zid separator dressing
 
 /**
  * Stâlpi — regulă unică A0:
@@ -705,8 +764,8 @@ let openings = (src.openings_cm || [])
       note: `etaj: gol ${gol}; N@mid Y${y0} · S@C_CASA_SCARA Y${y1}; stânga înăuntru`,
     };
   }
-  // A1.38: intrare P — gol 100; de pe terasă deschizi spre DREAPTA înăuntru
-  // (privind E: dreapta=S → balama S; foaia se adună pe dreapta în hol)
+  // A1.115: intrare P — gol 100; deschidere ÎN AFARĂ spre DREAPTA pe terasă
+  // (ieșire din hol privind V: dreapta=N → balama S; foaie → vest pe terasă)
   if (o.id === "intrare_parter") {
     const te = walls.find((w) => w.id === "terasa_est");
     const wallX = te ? te.x : m.x;
@@ -714,8 +773,8 @@ let openings = (src.openings_cm || [])
     const gol = 100;
     const y0 = m.y;
     const leafW = 95;
-    const hingeX = +(wallX + wallDx).toFixed(1); // față int. (est) → hol
-    const hingeY = +(y0 + gol).toFixed(1); // balama SUD = dreapta de pe terasă
+    const hingeX = wallX; // față ext. (vest) → terasă
+    const hingeY = +(y0 + gol).toFixed(1); // balama SUD
     return {
       ...m,
       x: wallX,
@@ -729,28 +788,28 @@ let openings = (src.openings_cm || [])
         ...(m.leaf || {}),
         width_cm: leafW,
         thickness_cm: 4,
-        swing: "into_hol_from_terrace_right",
+        swing: "out_to_terrace_right",
         hinge: "south",
         hinge_x: hingeX,
         hinge_y: hingeY,
-        note: "de pe terasă: deschidere dreapta înăuntru; balama S; foaie → est în hol",
+        note: "A1.115: deschidere în afară dreapta pe terasă; balama S; foaie → vest",
         open_leaf: {
           x0: hingeX,
           y0: hingeY,
-          x1: +(hingeX + leafW).toFixed(1),
+          x1: +(hingeX - leafW).toFixed(1),
           y1: hingeY,
-          note: "90° în hol (est), pe dreapta",
+          note: "90° pe terasă (vest), pe dreapta la ieșire",
         },
       },
       lands_in: "hol_p",
-      note: stripNoise(m.note) || "terasă → hol; gol 100; deschidere dreapta înăuntru",
+      note: stripNoise(m.note) || "A1.115: terasă↔hol; gol 100; deschidere în afară dreapta",
     };
   }
-  // A1.72: baie→dorm batantă; deschidere în dormitor spre stânga (balama V)
+  // A1.72 / A1.111: baie→dorm batantă; deschidere în dormitor spre stânga (balama V)
   if (o.id === "baie_usa_dorm") {
     const host = walls.find((w) => w.id === "dorm_baie_nord");
-    const gol = 80;
-    const leafW = 78;
+    const gol = 90;
+    const leafW = 88;
     const wallY = host ? host.y : DORM_N - TH.A8;
     const wallDy = host ? host.dy : TH.A8;
     const wallX0 = host ? host.x : X_NISA_E_WALL + TH.A8;
@@ -772,14 +831,14 @@ let openings = (src.openings_cm || [])
       dx: gol,
       dy: wallDy,
       construction_clear_cm: gol,
-      passage_clear_cm: 70,
+      passage_clear_cm: gol,
       frame_cm: 5,
       system: "batanta",
       pocket: undefined,
       feasibility: {
         status: "STUDIO",
         declared_buildable: false,
-        note: "A1.72: fără casetă; batantă pe dorm_baie_nord",
+        note: "A1.111: fără casetă; batantă pe dorm_baie_nord; gol 90",
       },
       leaf: {
         width_cm: leafW,
@@ -805,10 +864,10 @@ let openings = (src.openings_cm || [])
         wall_host: "dorm_baie_nord",
         status: "batantă; zid plin living↔dorm",
       },
-      note: `A1.72b: baie→dorm batantă gol ${gol}; balama E = stânga din baie`,
+      note: `A1.111: baie→dorm batantă gol ${gol}; balama E = stânga din baie`,
     };
   }
-  // A1.67: buc→terasă etaj — pe terasa_est (mutat odată cu XI)
+  // A1.67 / A1.115: buc→terasă etaj — în afară dreapta pe terasă (balama S)
   if (o.id === "buc_terasa_etaj") {
     const te = walls.find((w) => w.id === "terasa_est");
     const wallX = te ? te.x : m.x;
@@ -816,9 +875,8 @@ let openings = (src.openings_cm || [])
     const gol = m.construction_clear_cm || m.dy || 90;
     const y0 = m.y;
     const leafW = m.leaf?.width_cm || 85;
-    // balama N pe fața vest (terasă): deschidere spre vest pe terasă
-    const hingeX = wallX;
-    const hingeY = y0;
+    const hingeX = wallX; // față vest (terasă)
+    const hingeY = +(y0 + gol).toFixed(1); // S = dreapta la ieșire (privind V)
     return {
       ...m,
       x: wallX,
@@ -830,8 +888,8 @@ let openings = (src.openings_cm || [])
         ...(m.leaf || {}),
         width_cm: leafW,
         thickness_cm: 4,
-        swing: "into_terrace_west",
-        hinge: "north",
+        swing: "out_to_terrace_right",
+        hinge: "south",
         hinge_x: hingeX,
         hinge_y: hingeY,
         open_leaf: {
@@ -840,9 +898,9 @@ let openings = (src.openings_cm || [])
           x1: +(hingeX - leafW).toFixed(1),
           y1: hingeY,
         },
-        note: "ETAJ: ieșire buc→terasă; pe terasa_est (A1.67)",
+        note: "A1.115: buc→terasă în afară dreapta; balama S; foaie → vest",
       },
-      note: `A1.67: buc→terasă pe terasa_est X${wallX}; gol ${gol}`,
+      note: `A1.115: buc→terasă pe terasa_est X${wallX}; gol ${gol}; afară dreapta`,
     };
   }
   return m;
@@ -866,11 +924,11 @@ let openings = (src.openings_cm || [])
   });
 }
 
-// A1.78: ușă batantă hol→baie pe baie_sud_gol; deschidere dreapta în baie
+// A1.78 / A1.111: ușă batantă hol→baie pe baie_sud_gol; deschidere dreapta în baie
 {
   const host = walls.find((w) => w.id === "baie_sud_gol");
-  const gol = 80;
-  const leafW = 78;
+  const gol = 90;
+  const leafW = 88;
   const wallX0 = host ? host.x : X_DUPA_NISA;
   const wallY = host ? host.y : Y_BAIE_SUD_ZID;
   const wallDy = host ? host.dy : TH.A8;
@@ -890,7 +948,7 @@ let openings = (src.openings_cm || [])
     dx: gol,
     dy: wallDy,
     construction_clear_cm: gol,
-    passage_clear_cm: 70,
+    passage_clear_cm: gol,
     frame_cm: 5,
     system: "batanta",
     leaf: {
@@ -917,11 +975,11 @@ let openings = (src.openings_cm || [])
       wall_host: "baie_sud_gol",
       status: "batantă",
     },
-    note: `A1.78: hol→baie batantă gol ${gol}; dreapta în baie pe baie_sud_gol`,
+    note: `A1.111: hol→baie batantă gol ${gol}; dreapta în baie pe baie_sud_gol`,
   });
 }
 
-// A1.89: 3 uși glisante pe gura nișei dressing (180) spre dorm — fără zid S MS
+// A1.89/123: 3 uși glisante pe gura nișei 180 — P+E (etaj: fără zid sud)
 {
   const y0 = +(DORM_N - NISA_GLIS_TRACK).toFixed(1);
   openings.push({
@@ -949,18 +1007,25 @@ let openings = (src.openings_cm || [])
     },
     access_check: {
       from: "dormitor",
-      to: "dressing_nisa",
+      to: "nisa_180",
       wall_host: null,
-      status: "glisante pe gură; fără hol_nisa_S",
+      status: "glisante pe gură",
     },
-    note: `A1.89: glisante dressing ${NISA_GLIS_W} / ${NISA_GLIS_LEAVES}×${NISA_GLIS_LEAF}; X${NISA_GLIS_X0}→${NISA_GLIS_X1}`,
+    note: `A1.123: glisante ${NISA_GLIS_W} / ${NISA_GLIS_LEAVES}×${NISA_GLIS_LEAF}; X${NISA_GLIS_X0}→${NISA_GLIS_X1}`,
   });
 }
+/** A1.123: fără ușă albastră pe est nișă — zid A8 plin. */
 
-/** A1.37: trepte + parapet est terasă −20 vest; parapet sud scurtat −20. */
+/** A1.37: trepte + parapet est terasă −20 vest. */
 const TERRACE_SHIFT_W_CM = 20;
+/** Grosime parapet pe plan (A5 desen). */
+const TERRACE_PARAPET_TH_CM = 10;
 
-/** Parapete terasă — miez beton/A5 pe stâlpi (nu pe ETICS). */
+/**
+ * Parapete terasă — miez A5 pe stâlpi.
+ * A1.117 colț SV: sud INCLUDE colțul (x=vest); vest se oprește pe fața N a sudului.
+ * Capăt E sud: până la fața V zid/parapet est (fără overlap).
+ */
 const parapets = (src.parapets_cm || [])
   .filter((p) => !p.gap && (p.h == null || p.h > 0) && (p.dx > 0 || p.dy > 0))
   .map((p) => {
@@ -969,25 +1034,31 @@ const parapets = (src.parapets_cm || [])
     let y = m.y;
     let dx = m.dx;
     let dy = m.dy;
+    const te = walls.find((w) => w.id === "terasa_est");
+    const xWest = INSET_TO_BRICK_A2; // 11,2 — față vest parapet
     if (p.id === "terasa_parapet_sud_w") {
-      // scurtează sud cu 20 (capăt est = început gol trepte, mutat vest)
-      // + retras 8 cm de pe finit V; sud retras 8 cm spre N
-      x = +(x + TERRACE_SLAB_SETBACK_CM).toFixed(1);
-      dx = +(dx - TERRACE_SHIFT_W_CM - TERRACE_SLAB_SETBACK_CM).toFixed(1);
+      const estSrc = (src.parapets_cm || []).find(
+        (q) => q.id === "terasa_parapet_est_neacoperit"
+      );
+      const xEst = estSrc
+        ? +(mx(estSrc.x) - TERRACE_SHIFT_W_CM).toFixed(1)
+        : +(x + dx).toFixed(1);
       y = +(y - TERRACE_SLAB_SETBACK_S_CM).toFixed(1);
+      x = xWest; // include colț SV
+      dx = +(xEst - x).toFixed(1);
     }
     if (p.id === "terasa_parapet_sud_etaj") {
-      x = +(x + TERRACE_SLAB_SETBACK_CM).toFixed(1);
-      dx = +(dx - 2 * TERRACE_SLAB_SETBACK_CM).toFixed(1);
+      const xEst = te ? te.x : +(x + dx - TERRACE_SLAB_SETBACK_CM).toFixed(1);
       y = +(y - TERRACE_SLAB_SETBACK_S_CM).toFixed(1);
+      x = xWest; // include colț SV
+      dx = +(xEst - x).toFixed(1);
     }
     if (p.id === "terasa_parapet_vest" || p.id === "terasa_parapet_vest_etaj") {
-      // pe fața vest a stâlpilor (nu pe banda ETICS de pe finit)
-      x = INSET_TO_BRICK_A2;
+      x = xWest;
+      // dy ajustat mai jos, după ce știm Y sud
       dy = +(dy - TERRACE_SLAB_SETBACK_S_CM).toFixed(1);
     }
     if (p.id === "terasa_parapet_est_neacoperit") {
-      // palier/parapet est terasă → −20 vest; pe aliniament placă retrasă
       x = +(x - TERRACE_SHIFT_W_CM).toFixed(1);
       dy = +(dy - TERRACE_SLAB_SETBACK_S_CM).toFixed(1);
     }
@@ -1006,6 +1077,20 @@ const parapets = (src.parapets_cm || [])
         "parapet terasă pe stâlpi beton (nu pe termosistem)",
     };
   });
+
+/** Vest se oprește pe fața N a parapetului sud — colț SV în L, fără overlap/gol. */
+for (const v of parapets) {
+  if (v.id !== "terasa_parapet_vest" && v.id !== "terasa_parapet_vest_etaj")
+    continue;
+  const sudId =
+    v.id === "terasa_parapet_vest_etaj"
+      ? "terasa_parapet_sud_etaj"
+      : "terasa_parapet_sud_w";
+  const sud = parapets.find((p) => p.id === sudId);
+  if (!sud) continue;
+  v.dy = +(sud.y - v.y).toFixed(1);
+  v.note = `A1.117: vest până la N sud (Y${sud.y}); colț SV pe sud`;
+}
 
 const stSrc = src.stair_cm || {};
 const stairBandX = mx(stSrc.band_x ?? 565);
@@ -1273,10 +1358,24 @@ const BAIE_FLANC = {
   util_dx: FLANC_UTIL_W,
   util_dy: BAIE_FLANC_DY,
 };
+/** A1.116: fost A8 N de colțul MS — pardoseală util; sticlă pe ax. */
+const BAIE_EST_LIBER = {
+  id: "baie_est_liber",
+  role: "floor_add",
+  x: X_HOL_NISA_BACK,
+  y: Y_DUS_0,
+  dx: TH.A8,
+  dy: NISA_EST_REMOVE_DY,
+  util_dx: TH.A8,
+  util_dy: NISA_EST_REMOVE_DY,
+  floor: BAIE_FLOOR,
+  note: `A1.116: 15×${NISA_EST_REMOVE_DY} fost zid → util; sticlă până la colț MS`,
+};
 /**
  * Dressing în L în spatele glisantelor 180 (fără zid între rafturi):
  * — braț lung: X31,2→211,2 pe adâncime (vest de MS / sub uși)
  * — braț scurt: sud MS (colț L = unde se oprește nisa_est_S)
+ * Parter. Etaj A1.122: nișă living 180×60 (NISA_LIVING_E).
  */
 const NISA_DORM_DY = +(DORM_N - Y_DULAP_0).toFixed(1); // 60
 /** Braț lung L — până la fața vest a zidului ⊥ (nu acoperă zidul). */
@@ -1300,7 +1399,7 @@ const NISA_FLANC_DORM = {
   util_dx: +(HOL_NISA_X1 - TH.A8 - X_NISA_E_WALL).toFixed(1),
   util_dy: NISA_UTIL_D,
 };
-/** MS 60×60 — est, acces din hol. */
+/** MS 60×60 — est, acces din hol (parter). */
 const HOL_NISA = {
   x: HOL_NISA_X0,
   y: HOL_NISA_Y0,
@@ -1308,6 +1407,31 @@ const HOL_NISA = {
   dy: HOL_NISA_H,
   util_dx: HOL_NISA_W,
   util_dy: HOL_NISA_H,
+};
+/** A1.122 etaj: nișă 180×60 în living (clear; ziduri A8 spate/est/sud). */
+const NISA_LIVING_E = {
+  x: NISA_GLIS_X0,
+  y: Y_DULAP_0,
+  dx: NISA_GLIS_W, // 180
+  dy: NISA_DORM_DY, // 60
+  util_dx: NISA_GLIS_W,
+  util_dy: NISA_DORM_DY,
+};
+/**
+ * A1.123: MS în baie etaj — lipită de duș (est); A8 după MS.
+ */
+const MS_BAIE_E = {
+  x: X_HOL_NISA_BACK, // 151,2 — fața E duș
+  y: +(Y_DUS_1 - 54).toFixed(1), // 165 — sud aliniat cu fața S duș
+  dx: 60,
+  dy: 54,
+};
+/** A1.124: bandă N de MS (est de duș) = util baie pe etaj. */
+const BAIE_EST_N_MS_E = {
+  x: X_HOL_NISA_BACK,
+  y: Y_DUS_0, // 129 — aliniat N duș
+  dx: 60,
+  dy: +(MS_BAIE_E.y - Y_DUS_0).toFixed(1), // →165
 };
 
 /**
@@ -1327,7 +1451,7 @@ const rooms = [
     dy: +(Y_BAIE_SUD_ZID - Y_N).toFixed(1),
     floor: BAIE_FLOOR,
     note: `A1.91: duș 120×${DUS_D} Y${Y_DUS_0}–${Y_DUS_1}; zid baie↔dorm sud; WC/lavoar nord`,
-    includes: ["dus_zone", "baie_flanc"],
+    includes: ["dus_zone", "baie_flanc", "baie_est_liber", "ms_baie_e"],
     parts: [
       {
         id: "dus_zone",
@@ -1339,9 +1463,27 @@ const rooms = [
       {
         id: "baie_flanc",
         role: "dressing_baie",
+        levels: [0],
         ...BAIE_FLANC,
         floor: BAIE_FLOOR,
         note: `Prosoape; util ${BAIE_FLANC.util_dx}×${BAIE_FLANC.util_dy}`,
+      },
+      { ...BAIE_EST_LIBER, levels: [0] },
+      {
+        id: "baie_est_n_ms_e",
+        role: "floor_add",
+        levels: [1],
+        ...BAIE_EST_N_MS_E,
+        floor: BAIE_FLOOR,
+        note: "A1.124: bandă N de MS = util baie (etaj)",
+      },
+      {
+        id: "ms_baie_e",
+        role: "floor_add",
+        levels: [1],
+        ...MS_BAIE_E,
+        floor: BAIE_FLOOR,
+        note: "A1.123: MS lângă duș pe sud (etaj)",
       },
     ],
   },
@@ -1354,12 +1496,13 @@ const rooms = [
     dx: +(XI - TH_W - 12.5).toFixed(1),
     dy: +(Y_DORM_S - DORM_N).toFixed(1),
     floor: DORM_FLOOR,
-    note: `A1.99: dressing L spate glisante ${NISA_GLIS_W}; zid ⊥ stop la colț L`,
-    includes: ["dressing_nisa", "dorm_flanc"],
+    note: `A1.99/127: dressing L pe parter; etaj nișă 180×60 culoare dorm`,
+    includes: ["dressing_nisa", "dorm_flanc", "nisa_dorm_e"],
     parts: [
       {
         id: "dressing_nisa",
         role: "dressing",
+        levels: [0],
         ...NISA,
         floor: DORM_FLOOR,
         note: `L braț lung; gură ${NISA.util_dx}×${NISA.util_dy}`,
@@ -1367,13 +1510,22 @@ const rooms = [
       {
         id: "dorm_flanc",
         role: "dressing",
+        levels: [0],
         ...NISA_FLANC_DORM,
         floor: DORM_FLOOR,
         note: `L braț scurt ${NISA_FLANC_DORM.util_dx}×${NISA_FLANC_DORM.util_dy}`,
       },
+      {
+        id: "nisa_dorm_e",
+        role: "floor_add",
+        levels: [1],
+        ...NISA_LIVING_E,
+        floor: DORM_FLOOR,
+        note: "A1.127: nișă 180×60 etaj — culoare dormitor",
+      },
     ],
   },
-  /** Hol vest (vestibul baie) + MS 60×60 */
+  /** Hol vest (vestibul baie) + MS 60×60 pe parter */
   {
     id: "hol_vest",
     label: "HOL",
@@ -1383,12 +1535,13 @@ const rooms = [
     dx: +(XI - TH_SEP_A7 - X_DUPA_NISA).toFixed(1),
     dy: BAIE_LIVING_GOL,
     floor: HOL_FLOOR,
-    note: "A1.85: vestibul 120; MS 60×60 în nișa baie↔dorm (lângă duș, acces hol)",
+    note: "A1.85/122: vestibul 120; MS nișă doar parter; etaj nișă = living",
     includes: ["hol_nisa"],
     parts: [
       {
         id: "hol_nisa",
         role: "floor_add",
+        levels: [0],
         ...HOL_NISA,
         floor: HOL_FLOOR,
         note: `MS nișă baie↔dorm; util ${HOL_NISA.util_dx}×${HOL_NISA.util_dy}; acces hol`,
@@ -1467,7 +1620,7 @@ const rooms = [
     dx: +(XE - XI).toFixed(1),
     dy: +(Y_PALIER_N - Y_N).toFixed(1),
     floor: LIVING_FLOOR,
-    note: "Nord→mid: până la est finit. Sud de mid → buc_est (fără palier rece).",
+    note: "Nord→mid: până la est finit. Sud de mid → buc_est.",
     parts: [
       {
         id: "living_e_sud_pana_usa",
@@ -1755,11 +1908,12 @@ const furniture = [
     color: "#b8d4d8",
     label: `DUȘ 120×${String(DUS_D).replace(".", ",")}`,
     glass_east: true,
-    note: `A1.91: 120×${DUS_D} Y${Y_DUS_0}–${Y_DUS_1}; sud = zid baie↔dorm`,
+    glass_east_dy: NISA_EST_REMOVE_DY, // sticlă pe zona fără A8
+    note: `A1.114: 120×${DUS_D}; est N 15×45 = util+sticlă; est S = A8 duș↔MS`,
   },
   {
     id: "masina_spalat",
-    levels: [0, 1],
+    levels: [0],
     zone: "hol_vest",
     x: MS_X,
     y: MS_Y,
@@ -1769,7 +1923,21 @@ const furniture = [
     color: "#9aa3a8",
     facing: "east",
     label: "MS",
-    note: `A1.108: MS Y${MS_Y}; A8 15 N+S; clear 60; sud = separator dressing`,
+    note: `A1.109: MS Y${MS_Y}; A8 15 N+S; clear 60; nișă hol (parter)`,
+  },
+  {
+    id: "masina_spalat_e",
+    levels: [1],
+    zone: "baie",
+    x: MS_BAIE_E.x,
+    y: MS_BAIE_E.y,
+    dx: MS_BAIE_E.dx,
+    dy: MS_BAIE_E.dy,
+    h: 85,
+    color: "#9aa3a8",
+    facing: "east",
+    label: "MS",
+    note: "A1.122: MS în baie etaj — lângă duș pe sud",
   },
 ];
 
@@ -1790,10 +1958,11 @@ function rectM2(r) {
 }
 
 /** Dreptunghiuri de util ale camerei (fără zid_nu_util / extensie desen). */
-function areaRectsOfRoom(r) {
+function areaRectsOfRoom(r, levelIdx = null) {
   const rects = [{ x: r.x, y: r.y, dx: r.dx, dy: r.dy }];
   for (const p of r.parts || []) {
     if (p.role === "extensie" || p.role === "zid_nu_util") continue;
+    if (p.levels && levelIdx != null && !p.levels.includes(levelIdx)) continue;
     if (!(p.dx > 0) || !(p.dy > 0)) continue;
     if (typeof p.x !== "number" || typeof p.y !== "number") continue;
     rects.push({ x: p.x, y: p.y, dx: p.dx, dy: p.dy });
@@ -1808,6 +1977,95 @@ function intersectRect(a, b) {
   const y1 = Math.min(a.y + a.dy, b.y + b.dy);
   if (x1 <= x0 || y1 <= y0) return null;
   return { x: x0, y: y0, dx: x1 - x0, dy: y1 - y0 };
+}
+
+/**
+ * Goluri încălzite prin zid interior (A7/A8) — pardoseala din toc = util.
+ * Nu: terasă, geam anvelopă, intrare scară/rece, șină glisante (deja în dressing).
+ */
+function openingOnLevel(o, levelIdx) {
+  if (o.levels && o.levels.length) return o.levels.includes(levelIdx);
+  return true; // nedefinit = P+E (ex. baie_usa_dorm)
+}
+
+function isHeatedInteriorPassage(o) {
+  if (!(o.dx > 0) || !(o.dy > 0)) return false;
+  if (typeof o.x !== "number" || typeof o.y !== "number") return false;
+  const id = o.id || "";
+  if (
+    /terasa|geam_|intrare_parter|intrare_etaj|rampa|lamele|nisa_glisante/i.test(
+      id
+    )
+  )
+    return false;
+  return (
+    id === "baie_usa" ||
+    id === "baie_usa_dorm" ||
+    id === "baie_living_gol"
+  );
+}
+
+/** Cameră care primește m²-ul golului (etichetă). */
+function passageRoomId(o, levelIdx) {
+  const id = o.id || "";
+  if (id === "baie_usa" || id === "baie_usa_dorm") return "hol_vest";
+  if (id === "baie_living_gol") return levelIdx === 0 ? "living_p" : "living_e";
+  return null;
+}
+
+function heatedPassagesForRoom(roomId, levelIdx) {
+  return openings
+    .filter(
+      (o) =>
+        isHeatedInteriorPassage(o) &&
+        openingOnLevel(o, levelIdx) &&
+        passageRoomId(o, levelIdx) === roomId
+    )
+    .map((o) => ({ x: o.x, y: o.y, dx: o.dx, dy: o.dy, id: o.id }));
+}
+
+/** Util rects = cameră + goluri atribuite (A1.121). */
+function areaRectsOfRoomUtil(r, levelIdx) {
+  return [
+    ...areaRectsOfRoom(r, levelIdx),
+    ...heatedPassagesForRoom(r.id, levelIdx),
+  ];
+}
+
+/** rect − cutter (AABB) → listă resturi. */
+function subtractRect(rect, cutter) {
+  const hit = intersectRect(rect, cutter);
+  if (!hit) return [rect];
+  const out = [];
+  const x0 = rect.x;
+  const y0 = rect.y;
+  const x1 = rect.x + rect.dx;
+  const y1 = rect.y + rect.dy;
+  const cx0 = hit.x;
+  const cy0 = hit.y;
+  const cx1 = hit.x + hit.dx;
+  const cy1 = hit.y + hit.dy;
+  if (cy0 > y0) out.push({ x: x0, y: y0, dx: rect.dx, dy: cy0 - y0 });
+  if (cy1 < y1) out.push({ x: x0, y: cy1, dx: rect.dx, dy: y1 - cy1 });
+  if (cx0 > x0)
+    out.push({ x: x0, y: cy0, dx: cx0 - x0, dy: hit.dy });
+  if (cx1 < x1)
+    out.push({ x: cx1, y: cy0, dx: x1 - cx1, dy: hit.dy });
+  return out.filter((r) => r.dx > 0.01 && r.dy > 0.01);
+}
+
+function subtractOpeningsFromWall(wall, levelIdx) {
+  let remnants = [
+    { x: wall.x, y: wall.y, dx: wall.dx, dy: wall.dy },
+  ];
+  for (const o of openings) {
+    if (!isHeatedInteriorPassage(o)) continue;
+    if (!openingOnLevel(o, levelIdx)) continue;
+    const next = [];
+    for (const r of remnants) next.push(...subtractRect(r, o));
+    remnants = next;
+  }
+  return remnants;
 }
 
 /** Aria uniunii (cm²) — inclusion-exclusion, n mic. */
@@ -1841,59 +2099,82 @@ function unionAreaCm2(rects) {
   return sum;
 }
 
-/** Brut util = uniune fețe int. (rect + parts), fără dublă numărare. */
-function roomGrossCm2(r) {
-  return unionAreaCm2(areaRectsOfRoom(r));
+/** Brut util = uniune fețe int. + goluri atribuite (fără dublă numărare). */
+function roomGrossCm2(r, levelIdx) {
+  return unionAreaCm2(areaRectsOfRoomUtil(r, levelIdx));
 }
 
-/** Proeminență stâlp în cameră (cm²) = protrusion × lungimea feței în cameră. */
-function columnProtrusionInRoomCm2(room, levelIdx) {
-  let cm2 = 0;
-  const rects = areaRectsOfRoom(room);
+/**
+ * A1.110/121: obstacole = stâlpi ∩ cameră ∪ (pereți A6/A7/A8/int ∖ goluri) ∩ cameră.
+ * Golurile din toc rămân util (nu mai sunt anulate de amprenta zidului).
+ */
+function obstaclesInRoomCm2(room, levelIdx) {
+  const rects = areaRectsOfRoomUtil(room, levelIdx);
+  const pieces = [];
+
   for (const c of columns) {
     const lv = c.levels;
     if (lv && !lv.includes(levelIdx)) continue;
-    const pin = c.protrusion_into_room_cm || 0;
-    if (pin < 0.5) continue;
-    const f = c.faces || {};
-    // lungimea feței pe care stâlpul intră în cameră
-    let faceLen = 0;
-    if (f.onW || f.onE || f.onBucEst) faceLen = c.dy;
-    else if (f.onN || f.onSEnv || f.onSDorm) faceLen = c.dx;
-    else faceLen = Math.max(c.dx, c.dy);
-    const approx = pin * faceLen;
     for (const rec of rects) {
-      const hit =
-        c.x < rec.x + rec.dx - 0.1 &&
-        c.x + c.dx > rec.x + 0.1 &&
-        c.y < rec.y + rec.dy - 0.1 &&
-        c.y + c.dy > rec.y + 0.1;
-      if (hit) {
-        cm2 += approx;
-        break;
+      const hit = intersectRect(c, rec);
+      if (hit) pieces.push(hit);
+    }
+  }
+
+  for (const w of walls) {
+    if (w.removed || w.status === "ELIMINAT") continue;
+    if (w.levels && !w.levels.includes(levelIdx)) continue;
+    const cat = w.catalog_id || w.assembly;
+    const count =
+      cat === "A6" ||
+      cat === "A7" ||
+      cat === "A8" ||
+      w.kind === "int";
+    if (!count) continue;
+    for (const wr of subtractOpeningsFromWall(w, levelIdx)) {
+      for (const rec of rects) {
+        const hit = intersectRect(wr, rec);
+        if (hit) pieces.push(hit);
       }
     }
   }
-  return cm2;
+
+  return unionAreaCm2(pieces);
 }
 
-/** Pereți A7/A8 din uniunea de util (fără dublă numărare pe overlaps). */
-function intWallsInRoomCm2(room, levelIdx) {
-  let cm2 = 0;
-  const rects = areaRectsOfRoom(room);
-  for (const w of walls) {
-    if (w.removed || w.status === "ELIMINAT") continue;
-    const cat = w.catalog_id || w.assembly;
-    if (cat !== "A7" && cat !== "A8" && w.kind !== "int") continue;
-    if (w.levels && !w.levels.includes(levelIdx)) continue;
-    const pieces = [];
+/** Doar proem. stâlpi (geo) — pentru detaliu / raport. */
+function columnProtrusionInRoomCm2(room, levelIdx) {
+  const rects = areaRectsOfRoomUtil(room, levelIdx);
+  const pieces = [];
+  for (const c of columns) {
+    const lv = c.levels;
+    if (lv && !lv.includes(levelIdx)) continue;
     for (const rec of rects) {
-      const hit = intersectRect(w, rec);
+      const hit = intersectRect(c, rec);
       if (hit) pieces.push(hit);
     }
-    cm2 += unionAreaCm2(pieces);
   }
-  return cm2;
+  return unionAreaCm2(pieces);
+}
+
+/** Pereți A6/A7/A8/int din util (uniune, fără goluri) — pentru detaliu / raport. */
+function intWallsInRoomCm2(room, levelIdx) {
+  const rects = areaRectsOfRoomUtil(room, levelIdx);
+  const pieces = [];
+  for (const w of walls) {
+    if (w.removed || w.status === "ELIMINAT") continue;
+    if (w.levels && !w.levels.includes(levelIdx)) continue;
+    const cat = w.catalog_id || w.assembly;
+    if (cat !== "A6" && cat !== "A7" && cat !== "A8" && w.kind !== "int")
+      continue;
+    for (const wr of subtractOpeningsFromWall(w, levelIdx)) {
+      for (const rec of rects) {
+        const hit = intersectRect(wr, rec);
+        if (hit) pieces.push(hit);
+      }
+    }
+  }
+  return unionAreaCm2(pieces);
 }
 
 const HEATED_ROOM_IDS = new Set([
@@ -1914,21 +2195,27 @@ function computeUsefulAreas() {
   for (const r of rooms) {
     if (!HEATED_ROOM_IDS.has(r.id)) continue;
     for (const lv of r.levels || []) {
-      const grossCm2 = roomGrossCm2(r);
+      const passages = heatedPassagesForRoom(r.id, lv);
+      const passageCm2 = passages.reduce((s, p) => s + p.dx * p.dy, 0);
+      const grossCm2 = roomGrossCm2(r, lv);
       const protrCm2 = columnProtrusionInRoomCm2(r, lv);
       const intCm2 = intWallsInRoomCm2(r, lv);
-      // nisa e în dormitor (aceeași culoare) — deja în rect dorm; pereții A8 se scad
-      const netCm2 = Math.max(0, grossCm2 - protrCm2 - intCm2);
+      const obstCm2 = obstaclesInRoomCm2(r, lv);
+      // A1.110/121: net = brut (cameră+goluri) − uniune obstacole (stâlpi∪pereți∖goluri)
+      const netCm2 = Math.max(0, grossCm2 - obstCm2);
       const row = {
         id: r.id,
         label: r.label,
         level: lv,
         level_name: lv === 0 ? "parter" : "etaj",
         gross_m2: +(grossCm2 / 10000).toFixed(4),
+        passage_openings_m2: +(passageCm2 / 10000).toFixed(4),
         column_protrusion_m2: +(protrCm2 / 10000).toFixed(4),
         int_walls_m2: +(intCm2 / 10000).toFixed(4),
+        obstacles_union_m2: +(obstCm2 / 10000).toFixed(4),
         net_m2: +(netCm2 / 10000).toFixed(4),
         dims_cm: { x: r.x, y: r.y, dx: r.dx, dy: r.dy },
+        passages: passages.map((p) => p.id),
       };
       roomRows.push(row);
       byLevel[lv].push(row);
@@ -1977,23 +2264,44 @@ function computeUsefulAreas() {
   const baieCorpCm2 = baieRoom ? baieRoom.dx * baieRoom.dy : 0;
   const baieDusExtraCm2 = DUS_ZONE.dx * Math.max(0, Y_DUS_1 - Y_BAIE_SUD_ZID); // sud de Y144
   const baieFlancCm2 = BAIE_FLANC.dx * BAIE_FLANC.dy;
+  const passageDetail = [0, 1].map((lv) => {
+    const list = openings.filter(
+      (o) => isHeatedInteriorPassage(o) && openingOnLevel(o, lv)
+    );
+    return {
+      level: lv,
+      level_name: lv === 0 ? "parter" : "etaj",
+      items: list.map((o) => ({
+        id: o.id,
+        room: passageRoomId(o, lv),
+        m2: +((o.dx * o.dy) / 10000).toFixed(4),
+        cm: { x: o.x, y: o.y, dx: o.dx, dy: o.dy },
+      })),
+      total_m2: +(
+        list.reduce((s, o) => s + o.dx * o.dy, 0) / 10000
+      ).toFixed(4),
+    };
+  });
+
   const baieDetail = baieRow
     ? {
         method:
-          "Uniune: corp N (308,7×114) + duș sud de Y144 (120×75) + flanc prosoape (45×27,5) − proem. stâlpi − A8 în corp",
+          `A1.116/121: corp + duș + flanc + liber 15×${NISA_EST_REMOVE_DY} − geo obstacole; goluri uși în hol_vest`,
         corp_m2: +(baieCorpCm2 / 10000).toFixed(4),
         dus_sud_de_Y144_m2: +(baieDusExtraCm2 / 10000).toFixed(4),
         flanc_prosoape_m2: +(baieFlancCm2 / 10000).toFixed(4),
+        est_liber_m2: +((TH.A8 * NISA_EST_REMOVE_DY) / 10000).toFixed(4),
         gross_m2: baieRow.gross_m2,
         column_protrusion_m2: baieRow.column_protrusion_m2,
         int_walls_m2: baieRow.int_walls_m2,
+        obstacles_union_m2: baieRow.obstacles_union_m2,
         net_m2: baieRow.net_m2,
       }
     : null;
 
   return {
     method:
-      "Camere încălzite: uniune fețe int. (rect+parts utiles) − proem. stâlpi − A7/A8 din uniune. Fără dublă numărare. Fără terasă/scară/zid_nu_util. Shoelace = verificare contur.",
+      "A1.121: camere încălzite = uniune fețe int. (rect+parts+goluri uși/toc) − uniune geo obstacole (stâlpi ∪ (A6/A7/A8/int ∖ goluri)). Etichete = același net. Fără terasă/scară/zid_nu_util.",
     useful_target_m2: 37,
     useful_parter_m2: usefulP,
     useful_etaj_m2: usefulE,
@@ -2006,17 +2314,22 @@ function computeUsefulAreas() {
     delta_P_vs_37_m2: +(usefulP - 37).toFixed(4),
     delta_E_vs_37_m2: +(usefulE - 37).toFixed(4),
     useful_baie_detail: baieDetail,
+    useful_passage_openings: passageDetail,
     rooms: roomRows,
     poly_parter_cm: polyP,
     poly_etaj_cm: polyE,
     terrace_slab_setback_cm: TERRACE_SLAB_SETBACK_CM,
     notes: [
-      "A1.106: util baie = L (corp+duș sud+flanc) − proem. − A8; vezi useful_baie_detail.",
+      "A1.121: goluri încălzite prin zid (baie_usa, baie_usa_dorm, baie_living_gol) = util; zid obstacol = amprentă ∖ gol.",
+      "A1.110: net = brut − uniune obstacole (geo stâlpi + A6/A7/A8); etichete din același net. Nu pin×faceLen.",
+      "A1.110: living E scade A6 palier (pardoseala desenată nu e util sub zid).",
+      "A1.106/109: baie L (corp+duș sud+flanc); vezi useful_baie_detail.",
       "A1.100: uniune rect (baie+duș+flanc, dorm+L dressing, hol+MS) — fără sumă naivă.",
-      "Hol: fără banda zid A6 est (zid_nu_util).",
+      "Hol: fără banda zid A6 est (zid_nu_util). MS în hol. Uși baie→hol/dorm în hol_vest.",
       "Living E: L — N de mid până la XE; S de mid doar până la buc_est (fără palier rece).",
-      "Bucătărie E: est = față V buc_est; ≥5 m² verificat pe net.",
-      "Shoelace = contur încălzit brut (fără scădere pereți int./proem.) — referință, nu util final.",
+      "Bucătărie E: est = față V buc_est.",
+      "Ținta 37 m²: nu bloca compartimentarea pe sute de cm² — util geometric ≠ finisaj executat.",
+      "Shoelace = contur încălzit brut (fără obstacole) — referință; util ≈ shoelace − ziduri∖goluri − stâlpi.",
     ],
   };
 }
@@ -2085,6 +2398,7 @@ const a1 = {
     delta_E_vs_37_m2: usefulCalc.delta_E_vs_37_m2,
     useful_rooms_m2: usefulCalc.rooms,
     useful_baie_detail: usefulCalc.useful_baie_detail,
+    useful_passage_openings: usefulCalc.useful_passage_openings,
     useful_method: usefulCalc.method,
     useful_notes: usefulCalc.notes,
     terrace_slab_setback_cm: TERRACE_SLAB_SETBACK_CM,
@@ -2180,12 +2494,14 @@ function planSvg(levelIdx, title) {
   for (const r of ordered) {
     fillRect(r);
     for (const p of r.parts || []) {
+      if (p.levels && !p.levels.includes(levelIdx)) continue;
       // flanc L: după ziduri (vezi jos)
       if (p.id === "dorm_flanc") continue;
       fillRect(p, p.floor || r.floor);
     }
   }
-  fillRect(NISA, DORM_FLOOR, 1);
+  if (levelIdx === 0) fillRect(NISA, DORM_FLOOR, 1);
+  else fillRect(NISA_LIVING_E, DORM_FLOOR, 1);
 
   parts.push(
     `<rect x="${sx(0)}" y="${sy(0)}" width="${EW * scale}" height="${NS * scale}" fill="none" stroke="#111" stroke-width="2.2"/>`
@@ -2238,49 +2554,28 @@ function planSvg(levelIdx, title) {
   }
 
   /**
-   * EB20 între stâlpi + până la capetele interioare ale peretelui.
+   * A1.126: EB20 = bandă continuă pe grosimea zidului (inclusiv sub stâlpi = umplutură).
+   * Stâlpii se desenează peste. NU mai decupăm EB20 pe stâlpi — altfel ISO de pe
+   * finit apare vizual „în mijlocul zidului” la C_W_DORM / C_S_DORM_E etc.
    * Exclude doar bang-urile de colț pe finit (0 / EW / NS).
    */
-  function spansBetweenColumns(w, outward) {
+  function spansBrickStrip(w, outward) {
     const alongX = outward === "N" || outward === "S";
     const a0 = alongX ? w.x : w.y;
     const a1 = alongX ? w.x + w.dx : w.y + w.dy;
-    const cuts = [];
-    for (const c of columns) {
-      const f = c.faces || {};
-      if (outward === "N" && !f.onN) continue;
-      if (outward === "S" && !(f.onSEnv || f.onSDorm)) continue;
-      if (outward === "W" && !f.onW) continue;
-      if (outward === "E" && !(f.onE || f.onBucEst)) continue;
-      if (alongX) {
-        if (c.y + c.dy < w.y - 1 || c.y > w.y + w.dy + 1) continue;
-        cuts.push([Math.max(a0, c.x), Math.min(a1, c.x + c.dx)]);
-      } else {
-        if (c.x + c.dx < w.x - 1 || c.x > w.x + w.dx + 1) continue;
-        cuts.push([Math.max(a0, c.y), Math.min(a1, c.y + c.dy)]);
-      }
+    // un singur span; clip colț finit ca înainte
+    let a = a0;
+    let b = a1;
+    if (outward === "N" || outward === "S") {
+      if (isFinishedEnvelopeEnd(outward, a0)) a = Math.max(a, INSET_TO_BRICK_A2);
+      if (isFinishedEnvelopeEnd(outward, a1)) b = Math.min(b, EW - INSET_TO_BRICK_A2);
+      a = Math.max(a, INSET_TO_BRICK_A2);
+      b = Math.min(b, EW - INSET_TO_BRICK_A2);
+    } else {
+      a = Math.max(a, INSET_TO_BRICK_A1);
+      b = Math.min(b, NS - INSET_TO_BRICK_A2);
     }
-    cuts.sort((p, q) => p[0] - q[0]);
-    const merged = [];
-    for (const c of cuts) {
-      if (c[1] <= c[0]) continue;
-      if (!merged.length || c[0] > merged[merged.length - 1][1] + 0.2) merged.push([...c]);
-      else merged[merged.length - 1][1] = Math.max(merged[merged.length - 1][1], c[1]);
-    }
-    if (!merged.length) return [[a0, a1]];
-    const spans = [];
-    const first0 = merged[0][0];
-    const last1 = merged[merged.length - 1][1];
-    // înainte de primul stâlp — doar dacă NU e colț pe finit
-    if (first0 > a0 + 0.3 && !isFinishedEnvelopeEnd(outward, a0)) spans.push([a0, first0]);
-    for (let i = 0; i < merged.length - 1; i++) {
-      const s0 = merged[i][1];
-      const s1 = merged[i + 1][0];
-      if (s1 > s0 + 0.3) spans.push([s0, s1]);
-    }
-    // după ultimul stâlp — ex. living est sub palier (nu e pe finit S)
-    if (a1 > last1 + 0.3 && !isFinishedEnvelopeEnd(outward, a1)) spans.push([last1, a1]);
-    return spans;
+    return b > a + 0.3 ? [[a, b]] : [];
   }
 
   function findHostExtWall(o) {
@@ -2303,24 +2598,46 @@ function planSvg(levelIdx, title) {
     return bestArea > 50 ? best : null;
   }
 
-  /** Gol pe falie EB20/beton — NU pe banda de izolație. */
+  /**
+   * A1.118: gol prin TOATĂ grosimea (izolația e tăiată pe gol — toc pe falie, nu pe ISO).
+   * Înainte: ușa doar pe EB20 → banda ISO rămânea vizibilă în toc (~8–10 cm).
+   */
   function openingOnStructure(o) {
     const host = findHostExtWall(o);
     if (!host) return o;
-    const cat = wallCatalog(host);
     const outward = wallOutward(host);
-    const ins = insetToBrickCm(cat);
-    const brick = Math.min(BRICK_ON_EXTREME_CM, (host.thickness_cm || 30) - ins);
-    if (outward === "N") {
-      return { ...o, y: host.y + ins, dy: brick, x: o.x, dx: o.dx };
+    if (outward === "N" || outward === "S") {
+      return { ...o, y: host.y, dy: host.dy, x: o.x, dx: o.dx };
     }
-    if (outward === "S") {
-      return { ...o, y: host.y + host.dy - ins - brick, dy: brick, x: o.x, dx: o.dx };
+    return { ...o, x: host.x, dx: host.dx, y: o.y, dy: o.dy };
+  }
+
+  /** Intervale Y/X ale golurilor pe un perete (pentru tăiere straturi). */
+  function openingGapsOnWall(w, outward) {
+    const gaps = [];
+    for (const o of openings) {
+      if (!showOpening(o, levelIdx)) continue;
+      const host = findHostExtWall(o);
+      if (!host || host.id !== w.id) continue;
+      if (outward === "N" || outward === "S") gaps.push([o.x, o.x + o.dx]);
+      else gaps.push([o.y, o.y + o.dy]);
     }
-    if (outward === "W") {
-      return { ...o, x: host.x + ins, dx: brick, y: o.y, dy: o.dy };
+    gaps.sort((p, q) => p[0] - q[0]);
+    return gaps;
+  }
+
+  function segsMinusGaps(a0, a1, gaps) {
+    let cur = a0;
+    const segs = [];
+    for (const [u, v] of gaps) {
+      const uu = Math.max(u, a0);
+      const vv = Math.min(v, a1);
+      if (vv <= uu) continue;
+      if (uu > cur + 0.3) segs.push([cur, uu]);
+      cur = Math.max(cur, vv);
     }
-    return { ...o, x: host.x + host.dx - ins - brick, dx: brick, y: o.y, dy: o.dy };
+    if (a1 > cur + 0.3) segs.push([cur, a1]);
+    return segs.length ? segs : a1 > a0 + 0.3 ? [[a0, a1]] : [];
   }
 
   function drawInteriorWallSimple(w) {
@@ -2367,42 +2684,16 @@ function planSvg(levelIdx, title) {
     const brick = Math.min(BRICK_ON_EXTREME_CM, thCm - ins);
     const along0 = outward === "N" || outward === "S" ? w.x : w.y;
     const along1 = outward === "N" || outward === "S" ? w.x + w.dx : w.y + w.dy;
+    const gapCuts = openingGapsOnWall(w, outward);
 
-    // 1) IZOLAȚIE CONTINUĂ pe toată lungimea (și peste stâlpi / goluri)
-    paintRect(stripRect(w, outward, 0, ins, along0, along1), "insulation");
+    // 1) IZOLAȚIE — tăiată pe goluri (A1.118: fără ISO în toc)
+    for (const [p, q] of segsMinusGaps(along0, along1, gapCuts)) {
+      paintRect(stripRect(w, outward, 0, ins, p, q), "insulation");
+    }
 
-    // 2) EB20 Akustik doar ÎNTRE stâlpi (clip colț finit)
-    for (const [s0, s1] of spansBetweenColumns(w, outward)) {
-      let a = s0;
-      let b1 = s1;
-      if (outward === "N" || outward === "S") {
-        a = Math.max(a, INSET_TO_BRICK_A2);
-        b1 = Math.min(b1, EW - INSET_TO_BRICK_A2);
-      } else {
-        a = Math.max(a, INSET_TO_BRICK_A1);
-        b1 = Math.min(b1, NS - INSET_TO_BRICK_A2);
-      }
-      // scoate intervalele de goluri din EB20 (ușa/geamul stă pe falie, nu pe izolație)
-      const gapCuts = [];
-      for (const o of openings) {
-        if (!showOpening(o, levelIdx)) continue;
-        const host = findHostExtWall(o);
-        if (!host || host.id !== w.id) continue;
-        if (outward === "N" || outward === "S") gapCuts.push([o.x, o.x + o.dx]);
-        else gapCuts.push([o.y, o.y + o.dy]);
-      }
-      gapCuts.sort((p, q) => p[0] - q[0]);
-      let cur = a;
-      const segs = [];
-      for (const [u, v] of gapCuts) {
-        const uu = Math.max(u, a);
-        const vv = Math.min(v, b1);
-        if (vv <= uu) continue;
-        if (uu > cur + 0.3) segs.push([cur, uu]);
-        cur = Math.max(cur, vv);
-      }
-      if (b1 > cur + 0.3) segs.push([cur, b1]);
-      for (const [p, q] of segs) {
+    // 2) EB20 Akustik CONTINUU pe grosime (sub stâlpi = umplutură) + tăiat pe goluri
+    for (const [s0, s1] of spansBrickStrip(w, outward)) {
+      for (const [p, q] of segsMinusGaps(s0, s1, gapCuts)) {
         if (q > p + 0.3) paintRect(stripRect(w, outward, ins, brick, p, q), "brick");
       }
     }
@@ -2434,15 +2725,9 @@ function planSvg(levelIdx, title) {
       if (f.onW) paintRect({ x: 0, y: c.y, dx: iE, dy: c.dy }, "insulation");
       if (f.onE) paintRect({ x: EW - iE, y: c.y, dx: iE, dy: c.dy }, "insulation");
       if (f.onSEnv) paintRect({ x: c.x, y: NS - iE, dx: c.dx, dy: iE }, "insulation");
-      if (f.onSDorm) {
-        const dormS = walls.find((w) => w.id === "dormitor_sud");
-        if (dormS) {
-          paintRect(
-            { x: c.x, y: dormS.y + dormS.dy - iE, dx: c.dx, dy: iE },
-            "insulation"
-          );
-        }
-      }
+      // A1.126: FĂRĂ petic ISO pe onSDorm (C_W_DORM / C_S_DORM_E) —
+      // ISO pe finit e deja din drawExteriorWallFrame; peticul apărea ca bandă
+      // care „taie” zidul unde EB20 era decupat pe stâlp.
       if (f.onN && f.onW) paintRect({ x: 0, y: 0, dx: iE, dy: iN }, "insulation");
       if (f.onN && f.onE) paintRect({ x: EW - iE, y: 0, dx: iE, dy: iN }, "insulation");
       if (f.onSEnv && f.onE) paintRect({ x: EW - iE, y: NS - iE, dx: iE, dy: iE }, "insulation");
@@ -2502,8 +2787,8 @@ function planSvg(levelIdx, title) {
     if (cat === "A7" || cat === "A8") drawInteriorWallSimple(w);
     else drawExteriorWallFrame(w);
   }
-  /** Braț scurt L — după ziduri; zidul ⊥ e deja stop la colț (nu e în L). */
-  fillRect(NISA_FLANC_DORM, DORM_FLOOR, 1);
+  /** Braț scurt L — după ziduri (parter); etaj = nișă living plină. */
+  if (levelIdx === 0) fillRect(NISA_FLANC_DORM, DORM_FLOOR, 1);
   // gol 120 hol↔living (bandă A7 tăiată) — culoare living, nu alb
   {
     const gol = openings.find(
@@ -2527,24 +2812,24 @@ function planSvg(levelIdx, title) {
     }
   }
 
-  // A1.63: placare 8 cm pe canturile stâlpilor spre terasă / rece (stâlpii nemișcați)
+  // A1.63 / A1.119: placare pe canturile stâlpilor spre terasă / rece
   {
     const t = TERRACE_COLUMN_INSUL_CM;
     for (const c of columns) {
       const id = c.id || "";
-      if (/C_W_DORM/.test(id)) {
-        paintRect({ x: c.x, y: c.y + c.dy, dx: c.dx, dy: t }, "insulation");
-      }
+      // A1.125: C_W_DORM — FĂRĂ ISO pe cant S (e în mijlocul zidului = umplutură EB20)
       // C_S_DORM_E (NE terasă): fără placare pe cant — nu despărți stâlpul de zid
       if (/C_S_INTRARE_W/.test(id)) {
         paintRect({ x: c.x - t, y: c.y, dx: t, dy: c.dy + t }, "insulation");
         paintRect({ x: c.x, y: c.y + c.dy, dx: c.dx, dy: t }, "insulation");
       }
       if (/C_S_INTRARE_E/.test(id)) {
-        // bucătărie SE: cant sud + est (spre scară rece)
+        // bucătărie SE: cant sud + est (spre scară rece) — doar în afara EB20
         paintRect({ x: c.x, y: c.y + c.dy, dx: c.dx + t, dy: t }, "insulation");
         paintRect({ x: c.x + c.dx, y: c.y, dx: t, dy: c.dy }, "insulation");
       }
+      // A1.128: FĂRĂ cant ISO pe C_E_PAL / C_W_MID —
+      // banda trecea prin EB20 (în mijlocul zidului). ISO pe finit = deja pe anvelopă.
     }
   }
 
@@ -2561,8 +2846,9 @@ function planSvg(levelIdx, title) {
       );
     }
     if (f.glass_east) {
+      const gDy = f.glass_east_dy != null ? f.glass_east_dy : f.dy;
       parts.push(
-        `<line x1="${sx(f.x + f.dx)}" y1="${sy(f.y)}" x2="${sx(f.x + f.dx)}" y2="${sy(f.y + f.dy)}" stroke="#5a8aaa" stroke-width="2.2"/>`
+        `<line x1="${sx(f.x + f.dx)}" y1="${sy(f.y)}" x2="${sx(f.x + f.dx)}" y2="${sy(f.y + gDy)}" stroke="#5a8aaa" stroke-width="2" stroke-dasharray="5 3"/>`
       );
     }
     const lab = f.label;
@@ -2585,22 +2871,23 @@ function planSvg(levelIdx, title) {
         `<rect x="${sx(p.x)}" y="${sy(p.y)}" width="${p.dx * scale}" height="${p.dy * scale}" fill="#b8d4f0" stroke="#2a5a8a" stroke-width="1.2"/>`
       );
     }
-    // Ușă intrare P: de pe terasă → dreapta înăuntru (balama S, foaie est în hol)
+    // Ușă intrare P: în afară dreapta pe terasă (balama S, foaie vest)
     if (o.id === "intrare_parter" && o.leaf?.hinge_x != null) {
       const hx = o.leaf.hinge_x;
       const hy = o.leaf.hinge_y;
       const lw = o.leaf.width_cm || o.dy;
       parts.push(
-        `<line x1="${sx(hx)}" y1="${sy(hy)}" x2="${sx(hx + lw)}" y2="${sy(hy)}" stroke="#1a1a1a" stroke-width="2"/>`
+        `<line x1="${sx(hx)}" y1="${sy(hy)}" x2="${sx(hx - lw)}" y2="${sy(hy)}" stroke="#1a1a1a" stroke-width="2"/>`
       );
       const r = lw * scale;
       const cx = sx(hx);
       const cy = sy(hy);
+      // arc: închis N (pe gol) → deschis V (terasă); sweep=0 pe ecran y↓
       parts.push(
-        `<path d="M ${cx} ${cy - r} A ${r} ${r} 0 0 1 ${cx + r} ${cy}" fill="none" stroke="#1a1a1a" stroke-width="1.1" stroke-dasharray="4 3"/>`
+        `<path d="M ${cx} ${cy - r} A ${r} ${r} 0 0 0 ${cx - r} ${cy}" fill="none" stroke="#1a1a1a" stroke-width="1.1" stroke-dasharray="4 3"/>`
       );
       parts.push(
-        `<text x="${sx(hx + lw / 2)}" y="${sy(hy) + 12}" text-anchor="middle" font-size="8" fill="#1a1a1a" font-family="${font}">100 · dreapta</text>`
+        `<text x="${sx(hx - lw / 2)}" y="${sy(hy) + 12}" text-anchor="middle" font-size="8" fill="#1a1a1a" font-family="${font}">100 · afară dreapta</text>`
       );
     }
     // Ușă intrare E: de pe palier → stânga înăuntru (balama S, foaie vest în living)
@@ -2626,7 +2913,8 @@ function planSvg(levelIdx, title) {
     if (o.id === "baie_usa" && o.leaf?.hinge_x != null) {
       const hx = o.leaf.hinge_x;
       const hy = o.leaf.hinge_y;
-      const lw = o.leaf.width_cm || 78;
+      const lw = o.leaf.width_cm || o.construction_clear_cm || 88;
+      const golLab = o.construction_clear_cm || o.dx || 90;
       // închis: foaie spre vest de balama
       parts.push(
         `<line x1="${sx(hx)}" y1="${sy(hy)}" x2="${sx(hx - lw)}" y2="${sy(hy)}" stroke="#1a1a1a" stroke-width="2"/>`
@@ -2639,14 +2927,15 @@ function planSvg(levelIdx, title) {
         `<path d="M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx} ${cy - r}" fill="none" stroke="#1a1a1a" stroke-width="1.1" stroke-dasharray="4 3"/>`
       );
       parts.push(
-        `<text x="${sx(hx - lw / 2)}" y="${sy(hy) - 10}" text-anchor="middle" font-size="8" fill="#1a1a1a" font-family="${font}">80 · dreapta baie</text>`
+        `<text x="${sx(hx - lw / 2)}" y="${sy(hy) - 10}" text-anchor="middle" font-size="8" fill="#1a1a1a" font-family="${font}">${golLab} · dreapta baie</text>`
       );
     }
     // Baie→dorm: batantă, balama E (stânga din baie), foaie sud în dorm
     if (o.id === "baie_usa_dorm" && o.leaf?.hinge_x != null) {
       const hx = o.leaf.hinge_x;
       const hy = o.leaf.hinge_y;
-      const lw = o.leaf.width_cm || 78;
+      const lw = o.leaf.width_cm || o.construction_clear_cm || 88;
+      const golLab = o.construction_clear_cm || o.dx || 90;
       // închis: foaie spre vest de balama
       parts.push(
         `<line x1="${sx(hx)}" y1="${sy(hy)}" x2="${sx(hx - lw)}" y2="${sy(hy)}" stroke="#1a1a1a" stroke-width="2"/>`
@@ -2659,7 +2948,7 @@ function planSvg(levelIdx, title) {
         `<path d="M ${cx - r} ${cy} A ${r} ${r} 0 0 0 ${cx} ${cy + r}" fill="none" stroke="#1a1a1a" stroke-width="1.1" stroke-dasharray="4 3"/>`
       );
       parts.push(
-        `<text x="${sx(hx - lw / 2)}" y="${sy(hy) + 14}" text-anchor="middle" font-size="8" fill="#1a1a1a" font-family="${font}">80 · stânga din baie</text>`
+        `<text x="${sx(hx - lw / 2)}" y="${sy(hy) + 14}" text-anchor="middle" font-size="8" fill="#1a1a1a" font-family="${font}">${golLab} · stânga din baie</text>`
       );
     }
     // Dressing nișă: 3 glisante pe 180 (foi pe șină)
@@ -2972,7 +3261,7 @@ function planSvg(levelIdx, title) {
   }
 
   function roomAreaM2(r) {
-    // pe plan: util net din areas (uniune − proem. − A7/A8)
+    // pe plan: același net ca areas (A1.110 uniune obstacole)
     const net = a1.areas?.useful_rooms_m2?.find(
       (x) => x.id === r.id && x.level === levelIdx
     );
@@ -3025,32 +3314,55 @@ function planSvg(levelIdx, title) {
       dimV(yBaie0, yBaie1, xChain, -28, baie.dy, " baie");
       if (band >= 20) {
         dimV(yBaie1, yDorm0, xChain, -28, band, " bandă");
-        noteAt(
-          HOL_NISA.x + HOL_NISA.dx / 2,
-          HOL_NISA.y + HOL_NISA.dy / 2,
-          `nișă hol ${fmtCm(HOL_NISA.util_dx)}×${fmtCm(HOL_NISA.util_dy)}`,
-          { fontSize: 10, bold: true, fill: "#bf360c", dir: "down" }
-        );
-        dimH(HOL_NISA.x, HOL_NISA.x + HOL_NISA.dx, HOL_NISA.y + HOL_NISA.dy / 2, 16, HOL_NISA.util_dx);
-        dimV(HOL_NISA.y, HOL_NISA.y + HOL_NISA.dy, HOL_NISA.x + HOL_NISA.dx / 2, -16, HOL_NISA.util_dy);
-        noteAt(
-          BAIE_FLANC.x + BAIE_FLANC.dx / 2,
-          BAIE_FLANC.y + BAIE_FLANC.dy / 2,
-          `${fmtCm(BAIE_FLANC.util_dx)}×${fmtCm(BAIE_FLANC.util_dy)}`,
-          { fontSize: 8, fill: "#00695c", dir: "up" }
-        );
-        noteAt(
-          NISA.x + NISA.dx / 2,
-          NISA.y + NISA.dy / 2,
-          `dulap ${fmtCm(NISA.util_dx)}×${fmtCm(NISA.util_dy)}`,
-          { fontSize: 8, fill: "#6a1b9a", dir: "down" }
-        );
-        noteAt(
-          NISA_FLANC_DORM.x + NISA_FLANC_DORM.dx / 2,
-          NISA_FLANC_DORM.y + NISA_FLANC_DORM.dy / 2,
-          `${fmtCm(NISA_FLANC_DORM.util_dx)}×${fmtCm(NISA_FLANC_DORM.util_dy)}`,
-          { fontSize: 8, fill: "#6a1b9a", dir: "down" }
-        );
+        if (levelIdx === 0) {
+          noteAt(
+            HOL_NISA.x + HOL_NISA.dx / 2,
+            HOL_NISA.y + HOL_NISA.dy / 2,
+            `nișă hol ${fmtCm(HOL_NISA.util_dx)}×${fmtCm(HOL_NISA.util_dy)}`,
+            { fontSize: 10, bold: true, fill: "#bf360c", dir: "down" }
+          );
+          dimH(HOL_NISA.x, HOL_NISA.x + HOL_NISA.dx, HOL_NISA.y + HOL_NISA.dy / 2, 16, HOL_NISA.util_dx);
+          dimV(HOL_NISA.y, HOL_NISA.y + HOL_NISA.dy, HOL_NISA.x + HOL_NISA.dx / 2, -16, HOL_NISA.util_dy);
+          noteAt(
+            BAIE_FLANC.x + BAIE_FLANC.dx / 2,
+            BAIE_FLANC.y + BAIE_FLANC.dy / 2,
+            `${fmtCm(BAIE_FLANC.util_dx)}×${fmtCm(BAIE_FLANC.util_dy)}`,
+            { fontSize: 8, fill: "#00695c", dir: "up" }
+          );
+          noteAt(
+            NISA.x + NISA.dx / 2,
+            NISA.y + NISA.dy / 2,
+            `dulap ${fmtCm(NISA.util_dx)}×${fmtCm(NISA.util_dy)}`,
+            { fontSize: 8, fill: "#6a1b9a", dir: "down" }
+          );
+          noteAt(
+            NISA_FLANC_DORM.x + NISA_FLANC_DORM.dx / 2,
+            NISA_FLANC_DORM.y + NISA_FLANC_DORM.dy / 2,
+            `${fmtCm(NISA_FLANC_DORM.util_dx)}×${fmtCm(NISA_FLANC_DORM.util_dy)}`,
+            { fontSize: 8, fill: "#6a1b9a", dir: "down" }
+          );
+        } else {
+          noteAt(
+            NISA_LIVING_E.x + NISA_LIVING_E.dx / 2,
+            NISA_LIVING_E.y + NISA_LIVING_E.dy / 2,
+            `nișă dorm ${fmtCm(NISA_LIVING_E.util_dx)}×${fmtCm(NISA_LIVING_E.util_dy)}`,
+            { fontSize: 10, bold: true, fill: "#6a1b9a", dir: "down" }
+          );
+          dimH(
+            NISA_LIVING_E.x,
+            NISA_LIVING_E.x + NISA_LIVING_E.dx,
+            NISA_LIVING_E.y + NISA_LIVING_E.dy / 2,
+            16,
+            NISA_LIVING_E.util_dx
+          );
+          dimV(
+            NISA_LIVING_E.y,
+            NISA_LIVING_E.y + NISA_LIVING_E.dy,
+            NISA_LIVING_E.x + NISA_LIVING_E.dx / 2,
+            -16,
+            NISA_LIVING_E.util_dy
+          );
+        }
       }
       dimV(yDorm0, yDorm1, xChain, -28, dorm.dy, " dorm");
     }

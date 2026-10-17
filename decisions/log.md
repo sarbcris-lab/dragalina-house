@@ -1,5 +1,114 @@
 # Jurnal decizii
 
+## 2026-10-18 — A1.129: A8 est MS fără stub N în baie
+
+- `baie_dus_est_e` începea la Y129 → proeminență care tăia baia.
+- Acum de la **Y144** (sud baie) → spate nișă; rol = separator baie↔hol.
+
+## 2026-10-18 — A1.128: fără cant ISO prin EB20 (C_W_MID / C_E_PAL)
+
+- Benzile galbene sub stâlpii mid vest/est **tăiau zidul** (ISO ∩ EB20).
+- Scos `paintRect` cant S pe `C_W_MID` și `C_E_PAL`. ISO rămâne doar pe finit exterior.
+
+## 2026-10-18 — A1.127: nișă etaj = culoare dormitor
+
+- Nișa 180×60 pe etaj: fill + util la **dormitor** (nu living).
+
+## 2026-10-18 — A1.126: EB20 continuu sub stâlpi · fără petic ISO onSDorm
+
+- Cauza benzii galbene care „tăia” zidul la C_W_DORM / C_S_DORM_E (P+E):
+  EB20 era decupat pe stâlp + petic ISO `onSDorm` → ISO vizibil în grosimea zidului.
+- Fix: **EB20 continuu** (umplutură sub stâlpi); stâlpii peste; **fără** petic `onSDorm`.
+
+## 2026-10-18 — A1.125: fără ISO pe cant S la C_W_DORM
+
+- Banda galbenă care tăia zidul vest lângă stâlpul dorm = greșit (mijloc zid = umplutură).
+- Scos `paintRect` ISO pe cantul sud `C_W_DORM`.
+
+## 2026-10-18 — A1.124: etaj — bandă N MS = baie · colț A8
+
+- Bandă albă **N de MS** (est duș): fill + util baie.
+- Colț alb X211–226 / Y219–234: A8 est prelungit până la spatele nișei.
+
+## 2026-10-18 — A1.123: etaj — A8 după MS · glisante nișă · est plin
+
+- A8 duș|MS mutat **est după MS** (duș lipit de MS).
+- Scoasă `nisa_living_sud_e` — gura nișei = **3 glisante** (P+E).
+- Scoasă ușa albastră pe est nișă — **zid A8 plin** (culoare perete).
+
+## 2026-10-18 — A1.122: etaj — MS în baie · nișă 180×60 living
+
+- **Doar etaj.** Parter neschimbat (MS în nișa hol).
+- MS: în **baie**, lângă duș pe **sud** (est de A8 duș, fața S aliniată cu dușul).
+- Nișă **180×60** revine la living (util living_e); acces din hol; fără glisante spre dorm.
+- Scoase pe etaj: hol_nisa N/S, L dressing dorm, flancuri MS.
+
+## 2026-10-18 — A1.121: util include goluri uși din toc
+
+- Lipseau din util pardoselile din **toc** (baie_usa, baie_usa_dorm, baie_living_gol) ≈ **0,42 m²**/nivel.
+- Obstacol zid = amprentă **∖ gol**; golurile atribuite hol_vest / living.
+- Metodă: cameră+goluri − (stâlpi ∪ ziduri∖goluri). Fără terasă/scară/anvelopă.
+
+## 2026-10-18 — A1.120: recalcul util precis (post A1.116–119)
+
+- Metodă A1.110: uniune fețe int. − uniune geo obstacole (stâlpi ∪ A6/A7/A8).
+- **P net 38,3347 m²** (+1,33 vs 37); **E net 36,8762 m²** (−0,12 vs 37).
+- Baie net **4,5917** (corp 3,5192 + duș 0,9000 + flanc 0,1575 + est liber 0,0750 − stâlp 0,0375).
+- Etichete plan = același net din `a1_architecture.json`.
+
+## 2026-10-18 — A1.119: ISO pe cant S la C_E_PAL (+ C_W_MID)
+
+- `C_E_PAL`: lipsea placarea pe **fața sud** (spre palier rece); est era OK.
+- Adăugat bandă ISO 8 cm pe cant S; simetric pe `C_W_MID`.
+
+## 2026-10-18 — A1.118: fără izolație în toc (gol prin toată grosimea)
+
+- Izolația pe anvelopă/A6 era continuă prin gol → ISO în toc (~8–10 cm); toc nu se prinde pe ISO.
+- Fix: **taie ISO (+EB20) pe goluri**; desen ușă/geam = **toată grosimea** peretelui.
+
+## 2026-10-18 — A1.117: colț SV parapet terasă în L
+
+- A1.115 lăsase **gol** la SV (sud începea după vest).
+- Sud: x = față vest (include colțul); vest: dy până la **fața N** a sudului.
+- Capăt E neschimbat (până la zid/parapet est).
+
+## 2026-10-18 — A1.116: A8 duș↔MS aliniat la colț (fără stub 5 cm)
+
+- Stub ~5 cm (Y174–179) lângă sticlă: scos — `nisa_est_N` începe la **Y179** (= `hol_nisa_N`).
+- Liber/sticlă **15×50** până la colț; A8 doar Y179–219.
+
+## 2026-10-18 — A1.115: ușă terasă afară dreapta · parapet sud scurtat
+
+- `intrare_parter` + `buc_terasa_etaj`: deschidere **în afară dreapta** pe terasă (balama S, foaie vest).
+- Parapet sud P/E: scurtat la capete — fără overlap cu **parapet vest** și **zid/parapet est**.
+
+## 2026-10-18 — A1.114: zid roșu 15×45 DISPARE → util
+
+- Segmentul marcat pe plan (est duș, lângă 45×35): **fără A8**; pardoseală `baie_est_liber` **15×45**.
+- `nisa_est_N` rămâne doar **Y174–219** (duș↔MS).
+- Pe axul scos: linie sticlă dashed (nu zid).
+- Util baie **+0,0675 m²**.
+
+## 2026-10-18 — A1.113: undo A1.112 — ANULAT de A1.114
+
+## 2026-10-17 — A1.111: goluri uși baie + dorm = 90
+
+- `baie_usa` (hol→baie): gol **90** (era 80); foaie 88.
+- `baie_usa_dorm` (baie→dorm): gol **90** (era 80); foaie 88.
+
+## 2026-10-17 — A1.110: util = uniune geometrică obstacole
+
+- Feedback SVG: etichete ≠ geometrie (living +0,14; baie proem. supraestimată).
+- Fix: `net = brut − uniune(stâlpi ∩ ∪ A6/A7/A8 ∩)` — fără pin×faceLen, fără dublă numărare.
+- Living E: scade A6 palier (fill sub zid ≠ util). Etichete din același net.
+- Nu bloca compartimentarea pe sute cm² față de 37.
+
+## 2026-10-17 — A1.109: nișă MS +5 cm sud
+
+- Nișă MS (A8 N+S + clear 60) mutată **+5 cm sud**.
+- Baie flanc prosoape: **45×35**; dorm bandă sub MS: **60×25**.
+- Clear MS Y194–254; zid N Y179; zid S Y254; raft est Y269–294.
+
 ## 2026-10-17 — A1.108: MS −2,5 cm sud
 
 - Nișă MS (A8 N+S + aparat): **+2,5 cm sud** (anulează A1.93).
