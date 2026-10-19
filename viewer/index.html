@@ -65,6 +65,7 @@
         <button type="button" id="btnCurte">Curte</button>
         <button type="button" id="btnStruct">1 · Structură</button>
         <button type="button" id="btnStructWalls">2 · + Pereți</button>
+        <button type="button" id="btnRoof">3 · Acoperiș</button>
         <button type="button" id="btnCut">Secțiune interior</button>
       </div>
       <div class="tabs" id="tabsPlans">
@@ -282,8 +283,10 @@
     document.getElementById("warning").textContent = volume.meta.warning || volume.meta.status;
     const bs = document.getElementById("btnStruct");
     const bw = document.getElementById("btnStructWalls");
-    if (bs) bs.textContent = "1 · Stâlpi A1";
+    const br = document.getElementById("btnRoof");
+    if (bs) bs.textContent = "1 · Structură";
     if (bw) bw.textContent = "2 · + Pereți";
+    if (br) br.textContent = "3 · Acoperiș";
     const env = volume.meta.envelope_m || {};
     document.getElementById("meta").innerHTML = `
       <div><strong>Model:</strong> ${volume.meta.id}</div>
@@ -579,14 +582,33 @@
         "btnCurte",
         "btnStruct",
         "btnStructWalls",
+        "btnRoof",
       ]) {
         document.getElementById(id)?.classList.toggle("active", false);
       }
     }
 
+    function isRoofTimber(n) {
+      return (
+        n.startsWith("acoperis_coama_") ||
+        n.startsWith("acoperis_solbanc_") ||
+        n.startsWith("acoperis_caprior_") ||
+        n.startsWith("acoperis_structura_")
+      );
+    }
+    function isRoofShell(n) {
+      return n.startsWith("acoperis_apa_") || n.startsWith("acoperis_fronton_") || n.startsWith("pv_");
+    }
+
     function setLevel(mode) {
       levelMode = mode;
-      if (mode === "imprejmuire" || mode === "curte" || mode === "structura" || mode === "structura_pereti") {
+      if (
+        mode === "imprejmuire" ||
+        mode === "curte" ||
+        mode === "structura" ||
+        mode === "structura_pereti" ||
+        mode === "acoperis"
+      ) {
         root.traverse((o) => {
           if (!o.isMesh) return;
           o.visible = false;
@@ -617,35 +639,34 @@
             }
           }
         } else if (mode === "structura") {
-          // 1 · doar schelet beton legat — fără învelitoare/PV ca să se vadă coama+căpriorii
+          // 1 · schelet BA + șarpantă — fără învelitoare/PV
           layer = structObjs;
           for (const o of structObjs) {
             const n = o.name || "";
-            if (
-              n.startsWith("acoperis_apa_") ||
-              n.startsWith("acoperis_fronton_") ||
-              n.startsWith("pv_")
-            ) {
-              o.visible = false;
-            } else {
-              o.visible = true;
-            }
+            o.visible = !isRoofShell(n);
           }
         } else if (mode === "structura_pereti") {
-          // 2 · structură + umplutură sono / pereți (tot fără învelitoare — vezi schelet acoperiș)
           layer = [...structObjs, ...umpluturaObjs];
           for (const o of structObjs) {
-            const n = o.name || "";
-            o.visible = !(
-              n.startsWith("acoperis_apa_") ||
-              n.startsWith("acoperis_fronton_") ||
-              n.startsWith("pv_")
-            );
+            o.visible = !isRoofShell(o.name || "");
           }
           for (const o of umpluturaObjs) o.visible = true;
+        } else if (mode === "acoperis") {
+          // 3 · doar șarpantă (coamă, solbanc, căpriori, stâlpișori) + centuri E ca reazem
+          layer = [];
+          for (const o of structObjs) {
+            const n = o.name || "";
+            const show =
+              isRoofTimber(n) ||
+              n.startsWith("etaj_centura_") ||
+              n === "etaj_placa_structura" ||
+              n.startsWith("stalp_a1_");
+            o.visible = show;
+            if (show) layer.push(o);
+          }
         }
-        // Poarta/gard NU în Structură — doar pe Împrejmuire / Curte / P+E
-        if (mode === "structura" || mode === "structura_pereti") {
+        // Poarta/gard NU în Structură / Acoperiș
+        if (mode === "structura" || mode === "structura_pereti" || mode === "acoperis") {
           for (const o of gateClosed) o.visible = false;
           for (const o of gateOpen) o.visible = false;
         } else {
@@ -657,6 +678,7 @@
         document.getElementById("btnCurte")?.classList.toggle("active", mode === "curte");
         document.getElementById("btnStruct")?.classList.toggle("active", mode === "structura");
         document.getElementById("btnStructWalls")?.classList.toggle("active", mode === "structura_pereti");
+        document.getElementById("btnRoof")?.classList.toggle("active", mode === "acoperis");
         if (cutaway) applyCutaway();
         frameObjects(layer);
         return;
@@ -741,15 +763,15 @@
       tip.className = "meta";
       tip.style.color = "#e8a87c";
       tip.innerHTML =
-        "<strong>A1:</strong> <em>1 · Structură</em> = stâlpi/grinzi/plăci BA + <em>șarpantă</em> (coamă, solbanc, căpriori) — fără învelitoare/PV/gard. · Clear≥255 · acoperiș 30° PV.";
+        "<strong>A1:</strong> <em>1 · Structură</em> = BA + șarpantă (fără țiglă/PV). · <em>3 · Acoperiș</em> = doar coamă/solbanc/căpriori + centuri E. · Clear≥255 · 30° PV.";
       document.getElementById("meta")?.after(tip);
     }
     document.getElementById("btnClosed").onclick = () => {
-      if (levelMode === "structura" || levelMode === "structura_pereti") return;
+      if (levelMode === "structura" || levelMode === "structura_pereti" || levelMode === "acoperis") return;
       setGate("closed");
     };
     document.getElementById("btnOpen").onclick = () => {
-      if (levelMode === "structura" || levelMode === "structura_pereti") return;
+      if (levelMode === "structura" || levelMode === "structura_pereti" || levelMode === "acoperis") return;
       setGate("open");
     };
     document.getElementById("btnBoth").onclick = () => setLevel("both");
@@ -760,6 +782,7 @@
     document.getElementById("btnCurte").onclick = () => setLevel("curte");
     document.getElementById("btnStruct").onclick = () => setLevel("structura");
     document.getElementById("btnStructWalls").onclick = () => setLevel("structura_pereti");
+    document.getElementById("btnRoof").onclick = () => setLevel("acoperis");
     document.getElementById("btnCut").onclick = () => {
       cutaway = !cutaway;
       setLevel(levelMode);
