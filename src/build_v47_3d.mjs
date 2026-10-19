@@ -241,6 +241,7 @@ function main() {
   let a1Columns = null;
   let a1Structure = null;
   let a1Stair = null;
+  let a1Amenajare = null;
   try {
     const a1p = path.join(ROOT, "data/building/a1_architecture.json");
     if (fs.existsSync(a1p)) {
@@ -251,9 +252,39 @@ function main() {
         a1Structure = a1.structure_a1_study_cm;
       }
       if (a1?.stair_cm?.risers_flight_180) a1Stair = a1.stair_cm;
+      if (a1?.walls_cm?.length) {
+        a1Amenajare = {
+          walls_cm: a1.walls_cm,
+          rooms_cm: a1.rooms_cm,
+          openings_cm: a1.openings_cm,
+          furniture_cm: a1.furniture_cm,
+          heights_cm: a1.heights_cm,
+          envelope_cm: a1.envelope_cm,
+        };
+      }
     }
   } catch (_) {
     /* A1 opțional */
+  }
+
+  // Amenajare A1 înainte de cote — study rămâne sursă pentru assemblies/roof/site
+  {
+    const inputIsFrame =
+      !!v47.structure_frame_study_cm &&
+      v47.structure_frame_study_cm.system === "cadre_beton_armat";
+    if (a1Amenajare && a1Basement && !inputIsFrame) {
+      if (a1Amenajare.walls_cm?.length) v47.walls_cm = a1Amenajare.walls_cm;
+      if (a1Amenajare.rooms_cm?.length) v47.rooms_cm = a1Amenajare.rooms_cm;
+      if (a1Amenajare.openings_cm?.length) v47.openings_cm = a1Amenajare.openings_cm;
+      if (a1Amenajare.furniture_cm?.length) v47.furniture_cm = a1Amenajare.furniture_cm;
+      if (a1Amenajare.heights_cm?.ff_to_ff_cm) {
+        v47.heights_cm = { ...v47.heights_cm, ...a1Amenajare.heights_cm };
+      }
+      if (a1Amenajare.envelope_cm?.ew) {
+        v47.envelope_cm = { ...v47.envelope_cm, ...a1Amenajare.envelope_cm };
+      }
+      v47.amenajare_source = "a1_architecture";
+    }
   }
 
   // FF = fața SUPERIOARĂ a pardoselii finite; grosimi sub FF.
@@ -538,6 +569,12 @@ function main() {
       const isFill = /caramida|eb20|miez_scara|miez_parapet|miez_gard/i.test(L.id);
       const isFono = /montanti_vata|vata_isover/i.test(L.id);
       const holes = openingHolesInWallLayer(w, outward, x, y, dx, dy);
+      // umplutura = miez; anvelopa = ETICS/klinker/tencuială — ambele vizibile în „2 · + Pereți”
+      const siteLayer = isFill
+        ? "umplutura"
+        : w.kind === "int" || /tencuiala_int|finisare_vopsea|faianata/i.test(L.id)
+          ? "finisaj"
+          : "anvelopa";
       meshes.push({
         id: `zid_${w.id}_${L.id}_${suffix}`,
         type: "extrude",
@@ -551,7 +588,8 @@ function main() {
         wall_layer: L.id,
         catalog_id: catalogId,
         assembly: catalogId,
-        site_layer: isFill ? "umplutura" : undefined,
+        site_layer: siteLayer,
+        group: w.kind === "ext" ? "fatada" : "compartimentare",
         opacity: isFono ? 0.85 : 0.97,
       });
     }
@@ -845,6 +883,8 @@ function main() {
         color: r.floor,
         label: `${label} ${suffix} (FF=sus)`,
         opacity: 0.92,
+        site_layer: "finisaj",
+        group: "pardoseli",
       });
     }
 
@@ -858,6 +898,7 @@ function main() {
         level === 0 &&
         w.id !== "est_recuperat_p" &&
         w.id !== "living_put_thermal_y590" &&
+        w.id !== "palier_inchidere_sud_p" &&
         w.x < 680 &&
         w.x + w.dx > 535 &&
         w.y < 590 &&
@@ -918,6 +959,8 @@ function main() {
         polygon: rectPoly(w.x, w.y, w.dx, w.dy),
         z0_m: zFf,
         z1_m: z1,
+        site_layer: isExt ? "anvelopa" : "finisaj",
+        group: isExt ? "fatada" : "compartimentare",
         color: isExt ? "#d8d2c6" : "#ebe6dc",
         label: w.id,
         kind: w.kind,
@@ -935,6 +978,8 @@ function main() {
           z1_m: zFf + 0.05,
           color: f.color || "#a8b898",
           opacity: 0.25,
+          site_layer: "mobilier",
+          group: "mobilier",
           label: `${f.id} (gabarit)`,
         });
         continue;
@@ -946,6 +991,8 @@ function main() {
         z0_m: zFf,
         z1_m: zFf + m(f.h || 40),
         color: f.color,
+        site_layer: "mobilier",
+        group: "mobilier",
         label: f.id,
       });
     }
@@ -962,6 +1009,8 @@ function main() {
           z0_m: zFf,
           z1_m: zFf + m(p.h || 105),
           color: p.color || "#8a939e",
+          site_layer: "anvelopa",
+          group: "fatada",
           label: p.id,
         });
       }
@@ -1878,8 +1927,27 @@ function main() {
   for (const o of v47.openings_cm) {
     if (o.removed) continue;
     const poly = rectPoly(o.x, o.y, Math.max(o.dx, 8), Math.max(o.dy, 8));
-    const sill = o.id.includes("geam") ? 0.9 : 0;
-    const oh = o.id.includes("geam") ? 1.5 : 2.1;
+    const isWin =
+      o.id.includes("geam") ||
+      o.kind === "window" ||
+      o.type === "window" ||
+      /glisant|ferestr/i.test(o.id || "");
+    const sill =
+      o.sill_cm != null
+        ? m(o.sill_cm)
+        : o.sill_m != null
+          ? o.sill_m
+          : isWin
+            ? 0.9
+            : 0;
+    const oh =
+      o.height_cm != null
+        ? m(o.height_cm)
+        : o.clear_height_cm != null
+          ? m(o.clear_height_cm)
+          : isWin
+            ? 1.5
+            : 2.1;
     const feas = o.feasibility?.status;
     const doorColor =
       feas === "NOT_FEASIBLE_AS_DRAWN"
@@ -1909,8 +1977,9 @@ function main() {
         z0_m: zBase + sill,
         z1_m: zBase + sill + oh,
         color: isEntry ? "#6aaf7a" : doorColor,
-        opacity: o.id.includes("geam") ? 0.55 : 0.5,
-        site_layer: o.id.includes("geam") ? "umplutura" : undefined,
+        opacity: isWin ? 0.55 : 0.5,
+        site_layer: "goluri",
+        group: "fatada_goluri",
         label: o.id,
       });
       if (o.pocket?.cassette) {
@@ -1923,6 +1992,8 @@ function main() {
           z1_m: zBase + 2.1,
           color: feas === "NOT_FEASIBLE_AS_DRAWN" || feas === "NOT_FEASIBLE_POCKET_WITH_WC_APPROVED" ? "#c07070" : "#c4a060",
           opacity: 0.35,
+          site_layer: "goluri",
+          group: "fatada_goluri",
           label: `casetă ${o.id} (${feas || "study"})`,
         });
       }
@@ -3644,6 +3715,89 @@ function main() {
         site_layer: "structura",
         label: `A1 S1 placă ${Math.round(slabThA1 * 100)} cm (gol puț; FE confirmă)`,
       });
+      // Fațadă pe stâlpi de perimetru — ETICS/klinker ca pe FRAME (continuitate anvelopă)
+      {
+        const box = a1Structure?.structure_box_cm || {
+          x0: 0,
+          y0: 0,
+          x1: ewCm,
+          y1: nsCm,
+        };
+        const tol = 40;
+        const outLayersA1 = layersFromOutside("A1").filter(
+          (L) => !/caramida|eb20|tencuiala_int|finisare_vopsea|faianata|adeziv/i.test(L.id || "")
+        );
+        const outLayersA2 = layersFromOutside("A2").filter(
+          (L) => !/caramida|eb20|tencuiala_int|finisare_vopsea|faianata|adeziv/i.test(L.id || "")
+        );
+        for (const c of a1Cols) {
+          const bands = [];
+          if (Math.abs(c.x - (box.x0 ?? 0)) < tol)
+            bands.push({ outward: "west", along0: c.y, along1: c.y + c.dy, face: c.x });
+          if (Math.abs(c.x + c.dx - (box.x1 ?? ewCm)) < tol)
+            bands.push({ outward: "east", along0: c.y, along1: c.y + c.dy, face: c.x + c.dx });
+          if (Math.abs(c.y - (box.y0 ?? 0)) < tol)
+            bands.push({ outward: "north", along0: c.x, along1: c.x + c.dx, face: c.y });
+          if (Math.abs(c.y + c.dy - (box.y1 ?? nsCm)) < tol)
+            bands.push({ outward: "south", along0: c.x, along1: c.x + c.dx, face: c.y + c.dy });
+          // scară E: C_E_PAL pe fațadă est
+          if (c.id === "C_E_PAL" && !bands.some((b) => b.outward === "east")) {
+            bands.push({ outward: "east", along0: c.y, along1: c.y + c.dy, face: c.x + c.dx });
+          }
+          for (const band of bands) {
+            const cat = band.outward === "north" ? "A1" : "A2";
+            const layers = cat === "A1" ? outLayersA1 : outLayersA2;
+            let accMm = 0;
+            for (const L of layers) {
+              const thMm = L.th_mm || 0;
+              if (thMm < 0.05) continue;
+              const aCm = accMm / 10;
+              const bCm = (accMm + thMm) / 10;
+              accMm += thMm;
+              let x;
+              let y;
+              let dx;
+              let dy;
+              const span = Math.max(0.05, band.along1 - band.along0);
+              if (band.outward === "east") {
+                x = band.face + aCm;
+                dx = Math.max(0.05, bCm - aCm);
+                y = band.along0;
+                dy = span;
+              } else if (band.outward === "west") {
+                x = band.face - bCm;
+                dx = Math.max(0.05, bCm - aCm);
+                y = band.along0;
+                dy = span;
+              } else if (band.outward === "south") {
+                y = band.face + aCm;
+                dy = Math.max(0.05, bCm - aCm);
+                x = band.along0;
+                dx = span;
+              } else {
+                y = band.face - bCm;
+                dy = Math.max(0.05, bCm - aCm);
+                x = band.along0;
+                dx = span;
+              }
+              meshes.push({
+                id: `col_facade_${c.id}_${band.outward}_${L.id}`,
+                type: "extrude",
+                polygon: rectPoly(x, y, dx, dy),
+                z0_m: zA1Bot,
+                z1_m: zTopE,
+                color: LAYER_COLORS[L.id] || "#d8d2c6",
+                opacity: /vata/i.test(L.id || "") ? 0.85 : 0.97,
+                site_layer: "anvelopa",
+                group: "fatada",
+                wall_layer: L.id,
+                catalog_id: cat,
+                label: `${c.id} [${cat} ${band.outward}]: ${L.name || L.id}`,
+              });
+            }
+          }
+        }
+      }
     } else if (isFrameStudy && frameColumns) {
       for (const c of frameColumns) {
         const lv = c.levels || [];
@@ -4089,6 +4243,9 @@ function main() {
             : "3D_EXACT_V47",
       source_plan: inputRel,
       a1_architecture: architectureOnly ? "data/building/a1_architecture.json" : undefined,
+      amenajare_source: architectureOnly
+        ? v47.amenajare_source || "a1_architecture"
+        : undefined,
       based_on: isStudyA1Frame
         ? "STALE — cadre V47; amenajare A1 separat în volume_a1"
         : architectureOnly

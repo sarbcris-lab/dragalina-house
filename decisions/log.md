@@ -1,5 +1,11 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.190: 3D complet — amenajare A1 + layere/fatade
+
+- `build_v47_3d`: amenajare din `a1_architecture` (nu study drift); `site_layer` anvelopa/finisaj/goluri/mobilier; `col_facade_*` pe stâlpi perimetru A1.
+- Viewer „2 · + Pereți”: include anvelopa + goluri + col_facade.
+- Audit: `npm run audit:a1:layers` → `s1_a1_volume_layers_audit_v01`.
+
 ## 2026-10-19 — A1.189: variante talpă (drenaj / pinten / B)
 
 - Meniu rezervă: `s1_a1_footing_alts_v01` — V1 B115 rămâne adopt; V2/V3 drenaj→B80; V4/V5 pinten.

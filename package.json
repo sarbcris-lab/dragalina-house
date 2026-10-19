@@ -45,6 +45,7 @@
     "fe:a1": "npm run structure:a1 && npm run calc:a1 && node src/export_a1_fe_pack.mjs && node src/export_a1_fe_handoff_v03.mjs",
     "fe:handoff": "node src/export_a1_fe_handoff_v03.mjs",
     "volume:a1": "npm run clear255:a1 && npm run structure:a1 && npm run calc:a1 && node src/build_v47_3d.mjs data/building/v47_a1_study.json viewer/data/volume_v47_a1.json",
+    "audit:a1:layers": "node src/audit_a1_volume_layers_v01.mjs",
     "docs:v47": "node src/export_v47_docs.mjs && node src/export_v47_deliverables.mjs",
     "build:v47": "npm run volume:v47:studies && npm run docs:v47",
     "build:frame": "npm run assemblies:apply && npm run volume:v47:studies",

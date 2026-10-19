@@ -428,7 +428,19 @@
       );
     }
     function isUmpluturaMesh(m) {
-      return m.site_layer === "umplutura" || /subsol_zid_/.test(m.id || "");
+      const sl = m.site_layer || "";
+      const id = m.id || "";
+      // miez + anvelopă + finisaj perete + goluri — vizibile în „2 · + Pereți”
+      return (
+        sl === "umplutura" ||
+        sl === "anvelopa" ||
+        sl === "finisaj" ||
+        sl === "goluri" ||
+        id.startsWith("zid_") ||
+        id.startsWith("col_facade_") ||
+        id.startsWith("gol_") ||
+        /subsol_zid_/.test(id)
+      );
     }
     /** pe fațadă EST/NORD împrejmuirea = zid casă — nu duplicăm gard în P+E */
     function isFacadeLimitOnly(m) {

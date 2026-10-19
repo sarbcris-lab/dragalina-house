@@ -1,0 +1,254 @@
+{
+  "meta": {
+    "id": "s1_a1_volume_layers_audit_v01",
+    "generated": "2026-10-19T11:27:55.428Z",
+    "volume_meta": {
+      "id": "volume_a1_curat",
+      "generated": "2026-10-19T11:27:55.360Z",
+      "status": "3D_A1_CURAT_AMENAJARE",
+      "source_plan": "data/building/v47_a1_study.json",
+      "a1_architecture": "data/building/a1_architecture.json",
+      "amenajare_source": "a1_architecture",
+      "based_on": "a1_architecture (amenajare P/E + subsol cutie) — fără cadre FRAME",
+      "study_variant": "A1_CURAT",
+      "architecture_only": true,
+      "declared_buildable": false,
+      "levels_note": "subsol (L-1) + parter + etaj",
+      "warning": "A1 S1: amenajare + subsol cutie + cadre pe axe A1 (grinzi/FG/placă). Secțiuni PROVIZORIU — FE confirmă. FRAME V47 = STALE.",
+      "structure_hypothesis": "A1 S1: cadre pe structure_a1_study_cm (stâlpi/grinzi/FG/placă) — geometric, FE confirmă",
+      "structure_a1_ref": "structure_a1_study_cm",
+      "finished_wall_vs_column_cm": {
+        "finished_envelope_cm": 30,
+        "finished_nominal_mm": 299,
+        "concrete_column_cm": 20,
+        "etics_outside_brick_cm": 9.2,
+        "assembly": "EB20_Akustik_200_ISOVER_FASSADE_80",
+        "note": "30 = finit max (nom. 299 mm); stâlpul ≠ 30; de confirmat ETICS/proiectant"
+      },
+      "exterior_wall_assembly": {
+        "ref": "construction_assemblies.exterior_wall_heated",
+        "products": {
+          "brick": "EB20 Akustik 200 mm",
+          "insulation": "ISOVER FASSADE 80 mm",
+          "etics": "sistem ETICS pe vată — de confirmat furnizor"
+        },
+        "sum_mm": 299,
+        "max_mm": 300,
+        "validation_status": "catalog_locked_furnizor_de_confirmat",
+        "envelope_kept_cm": {
+          "ew": 680,
+          "ns": 860
+        }
+      },
+      "gate_default_state": "closed",
+      "gate_clear_m": 7.1,
+      "units": "meters",
+      "ff_definition": "top_of_finished_floor",
+      "level_height_m": 2.8,
+      "floor_buildup_below_ff_m": 0.12,
+      "z_parter_ff_m": 0.48,
+      "z_etaj_ff_m": 3.55,
+      "z_parter_status": "ipoteză (2×riser), nu măsurătoare teren",
+      "stair": {
+        "risers_from_ff": 18,
+        "flight_180": 9,
+        "flight_330": 10,
+        "riser_cm": 16.16,
+        "entry": "2 trepte ⊥ pe palier, de pe aleea pietonală",
+        "palier_parter": "la cota elevației, pe lângă terasă",
+        "layout": "L: 8 sud (start vest) + podest SE → 10 est → palier/ușă (+60 sud)",
+        "covers": "buc+terasă+rampă2 acoperite; 2 trepte+palier elevație+180 descoperite"
+      },
+      "envelope_m": {
+        "ew": 6.8,
+        "ns": 8.6,
+        "area_m2": 58.48
+      },
+      "exterior_wall_section_svg": "outputs/plans/35_v47_a1_exterior_wall_section.svg",
+      "exterior_wall_klinker_section_svg": "outputs/plans/35b_v47_a2_klinker_wall_section.svg"
+    },
+    "mesh_count": 1148
+  },
+  "by_site_layer": {
+    "(none)": 637,
+    "finisaj": 133,
+    "anvelopa": 115,
+    "umplutura": 22,
+    "mobilier": 59,
+    "structura": 147,
+    "pv": 2,
+    "curte": 8,
+    "goluri": 15,
+    "imprejmuire": 10
+  },
+  "by_group": {
+    "(none)": 809,
+    "pardoseli": 13,
+    "fatada": 172,
+    "compartimentare": 80,
+    "mobilier": 59,
+    "fatada_goluri": 15
+  },
+  "walls_a1": 22,
+  "walls_missing_in_3d": [
+    "living_palier",
+    "nisa_dulap_est",
+    "ecran_frigider"
+  ],
+  "openings": [
+    {
+      "id": "baie_usa_dorm",
+      "meshes": 2
+    },
+    {
+      "id": "dorm_terasa",
+      "meshes": 2
+    },
+    {
+      "id": "intrare_parter",
+      "meshes": 1
+    },
+    {
+      "id": "usa_rampa_palier",
+      "meshes": 0
+    },
+    {
+      "id": "intrare_etaj",
+      "meshes": 1
+    },
+    {
+      "id": "geam_est",
+      "meshes": 2
+    },
+    {
+      "id": "buc_terasa_etaj",
+      "meshes": 1
+    },
+    {
+      "id": "baie_living_gol",
+      "meshes": 2
+    },
+    {
+      "id": "baie_usa",
+      "meshes": 4
+    },
+    {
+      "id": "nisa_glisante_dorm",
+      "meshes": 2
+    }
+  ],
+  "checks": {
+    "amenajare_source": "a1_architecture",
+    "has_anvelopa": true,
+    "has_umplutura": true,
+    "has_col_facade": true,
+    "has_roof_timber": true,
+    "has_structura": true,
+    "has_goluri": true,
+    "has_mobilier": true,
+    "untagged_pct": 55,
+    "walls_missing_active": 0
+  },
+  "top_prefixes": [
+    [
+      "mozaic_fatada",
+      356
+    ],
+    [
+      "mozaic_terasa",
+      212
+    ],
+    [
+      "zid_nord",
+      38
+    ],
+    [
+      "col_facade",
+      33
+    ],
+    [
+      "zid_vest",
+      30
+    ],
+    [
+      "zid_nisa",
+      28
+    ],
+    [
+      "zid_baie",
+      28
+    ],
+    [
+      "subsol_fg",
+      23
+    ],
+    [
+      "zid_est",
+      15
+    ],
+    [
+      "zid_sud",
+      14
+    ],
+    [
+      "zid_dormitor",
+      14
+    ],
+    [
+      "zid_dorm",
+      14
+    ],
+    [
+      "zid_palier",
+      14
+    ],
+    [
+      "acoperis_caprior",
+      14
+    ],
+    [
+      "mob_scaun",
+      12
+    ],
+    [
+      "subsol_racord",
+      12
+    ],
+    [
+      "parter_centura",
+      11
+    ],
+    [
+      "etaj_centura",
+      11
+    ],
+    [
+      "zid_perete",
+      10
+    ],
+    [
+      "treapta_r2",
+      10
+    ],
+    [
+      "stalp_a1",
+      10
+    ],
+    [
+      "structura_r2",
+      9
+    ],
+    [
+      "parapet_r2",
+      9
+    ],
+    [
+      "subsol_scara",
+      9
+    ],
+    [
+      "treapta_rampa180",
+      8
+    ]
+  ]
+}
