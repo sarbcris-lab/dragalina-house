@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1830" height="2049" viewBox="0 0 1830 2049" data-paper="A3">
+<defs>
+<pattern id="patBrick" patternUnits="userSpaceOnUse" width="10" height="6">
+<rect width="10" height="6" fill="#c49a6c"/>
+<path d="M0,3 H10 M0,0 H10 M0,6 H10 M5,3 V6" stroke="#6b4e32" stroke-width="0.7" fill="none"/>
+</pattern>
+<pattern id="patInsul" patternUnits="userSpaceOnUse" width="8" height="8">
+<rect width="8" height="8" fill="#e8d56a"/>
+<path d="M-2,2 L2,-2 M0,8 L8,0 M6,10 L10,6" stroke="#8a7a20" stroke-width="1"/>
+</pattern>
+<pattern id="patConcrete" patternUnits="userSpaceOnUse" width="7" height="7">
+<rect width="7" height="7" fill="#7a7a7a"/>
+<path d="M0,0 L7,7 M-2,5 L5,-2 M2,9 L9,2" stroke="#2a2a2a" stroke-width="1.1"/>
+</pattern>
+</defs>
+<rect width="100%" height="100%" fill="#faf9f7"/>
+<text x="100" y="36" font-size="22" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">A1 · Plan subsol</text>
+<text x="100" y="56" font-size="13" fill="#555" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Cutie încălzită + puț scară (același plan) · FF −250 · A11 · A7</text>
+<line x1="153.75" y1="19.800000000000004" x2="153.75" y2="1989.1999999999998" stroke="#c62828" stroke-width="0.7" stroke-dasharray="6 5" opacity="0.45"/>
+<text x="153.75" y="49.900000000000006" text-anchor="middle" font-size="11" font-weight="700" fill="#b71c1c" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">A</text>
+<line x1="818.315" y1="19.800000000000004" x2="818.315" y2="1989.1999999999998" stroke="#c62828" stroke-width="0.7" stroke-dasharray="6 5" opacity="0.45"/>
+<text x="818.315" y="49.900000000000006" text-anchor="middle" font-size="11" font-weight="700" fill="#b71c1c" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">B</text>
+<line x1="1259.495" y1="19.800000000000004" x2="1259.495" y2="1989.1999999999998" stroke="#c62828" stroke-width="0.7" stroke-dasharray="6 5" opacity="0.45"/>
+<text x="1259.495" y="49.900000000000006" text-anchor="middle" font-size="11" font-weight="700" fill="#b71c1c" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">C</text>
+<line x1="1505.6699999999998" y1="19.800000000000004" x2="1505.6699999999998" y2="1989.1999999999998" stroke="#c62828" stroke-width="0.7" stroke-dasharray="6 5" opacity="0.45"/>
+<text x="1505.6699999999998" y="49.900000000000006" text-anchor="middle" font-size="11" font-weight="700" fill="#b71c1c" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">D</text>
+<line x1="39.800000000000004" y1="133.75" x2="1622.2" y2="133.75" stroke="#c62828" stroke-width="0.7" stroke-dasharray="6 5" opacity="0.45"/>
+<text x="61.300000000000004" y="137.75" text-anchor="end" font-size="11" font-weight="700" fill="#b71c1c" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">1</text>
+<line x1="39.800000000000004" y1="1004.5" x2="1622.2" y2="1004.5" stroke="#c62828" stroke-width="0.7" stroke-dasharray="6 5" opacity="0.45"/>
+<text x="61.300000000000004" y="1008.5" text-anchor="end" font-size="11" font-weight="700" fill="#b71c1c" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">3</text>
+<line x1="39.800000000000004" y1="1305.5" x2="1622.2" y2="1305.5" stroke="#c62828" stroke-width="0.7" stroke-dasharray="6 5" opacity="0.45"/>
+<text x="61.300000000000004" y="1309.5" text-anchor="end" font-size="11" font-weight="700" fill="#b71c1c" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">4</text>
+<line x1="39.800000000000004" y1="1499.43" x2="1622.2" y2="1499.43" stroke="#c62828" stroke-width="0.7" stroke-dasharray="6 5" opacity="0.45"/>
+<text x="61.300000000000004" y="1503.43" text-anchor="end" font-size="11" font-weight="700" fill="#b71c1c" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">5</text>
+<line x1="39.800000000000004" y1="1872.6699999999998" x2="1622.2" y2="1872.6699999999998" stroke="#c62828" stroke-width="0.7" stroke-dasharray="6 5" opacity="0.45"/>
+<text x="61.300000000000004" y="1876.6699999999998" text-anchor="end" font-size="11" font-weight="700" fill="#b71c1c" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">6</text>
+<rect x="100" y="80" width="1462" height="1849" fill="none" stroke="#bbb" stroke-width="1.2" stroke-dasharray="6 4"/>
+<rect x="164.5" y="144.5" width="693.16" height="537.5" fill="#c5d5c8" fill-opacity="0.55" stroke="none"/>
+<rect x="164.5" y="682" width="693.16" height="1161" fill="#c5d5c8" fill-opacity="0.55" stroke="none"/>
+<rect x="857.66" y="144.5" width="391.085" height="1698.5" fill="#c5d5c8" fill-opacity="0.55" stroke="none"/>
+<rect x="94.41" y="74.41" width="1224.425" height="2.15" fill="url(#patInsul)" stroke="#8a7a20" stroke-width="0.45"/>
+<rect x="94.41" y="76.56" width="1224.425" height="1.2899999999999998" fill="#b0a090" stroke="#706050" stroke-width="0.45"/>
+<rect x="94.41" y="77.85" width="1224.425" height="64.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="94.41" y="142.35" width="1224.425" height="2.15" fill="#f2efe8" stroke="#aaa" stroke-width="0.45"/>
+<rect x="94.41" y="74.41" width="1224.425" height="70.09" fill="none" stroke="#333" stroke-width="0.9"/>
+<rect x="94.41" y="1910.94" width="1224.425" height="2.15" fill="url(#patInsul)" stroke="#8a7a20" stroke-width="0.45"/>
+<rect x="94.41" y="1909.6499999999999" width="1224.425" height="1.2899999999999998" fill="#b0a090" stroke="#706050" stroke-width="0.45"/>
+<rect x="94.41" y="1845.1499999999999" width="1224.425" height="64.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="94.41" y="1843" width="1224.425" height="2.15" fill="#f2efe8" stroke="#aaa" stroke-width="0.45"/>
+<rect x="94.41" y="1843" width="1224.425" height="70.09" fill="none" stroke="#333" stroke-width="0.9"/>
+<rect x="94.41" y="144.5" width="2.15" height="1698.5" fill="url(#patInsul)" stroke="#8a7a20" stroke-width="0.45"/>
+<rect x="96.56" y="144.5" width="1.2899999999999998" height="1698.5" fill="#b0a090" stroke="#706050" stroke-width="0.45"/>
+<rect x="97.85" y="144.5" width="64.5" height="1698.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="162.35" y="144.5" width="2.15" height="1698.5" fill="#f2efe8" stroke="#aaa" stroke-width="0.45"/>
+<rect x="94.41" y="144.5" width="70.09" height="1698.5" fill="none" stroke="#333" stroke-width="0.9"/>
+<rect x="1316.685" y="144.5" width="2.15" height="1001.2549999999999" fill="url(#patInsul)" stroke="#8a7a20" stroke-width="0.45"/>
+<rect x="1316.685" y="1360.755" width="2.15" height="482.2449999999999" fill="url(#patInsul)" stroke="#8a7a20" stroke-width="0.45"/>
+<rect x="1315.3949999999998" y="144.5" width="1.2899999999999998" height="1001.2549999999999" fill="#b0a090" stroke="#706050" stroke-width="0.45"/>
+<rect x="1315.3949999999998" y="1360.755" width="1.2899999999999998" height="482.2449999999999" fill="#b0a090" stroke="#706050" stroke-width="0.45"/>
+<rect x="1250.8949999999998" y="144.5" width="64.5" height="1001.2549999999999" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="1250.8949999999998" y="1360.755" width="64.5" height="482.2449999999999" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="1248.745" y="144.5" width="2.15" height="1001.2549999999999" fill="#f2efe8" stroke="#aaa" stroke-width="0.45"/>
+<rect x="1248.745" y="1360.755" width="2.15" height="482.2449999999999" fill="#f2efe8" stroke="#aaa" stroke-width="0.45"/>
+<rect x="1248.745" y="144.5" width="70.09" height="1698.5" fill="none" stroke="#333" stroke-width="0.9"/>
+<rect x="830.785" y="144.5" width="26.875" height="1698.5" fill="#ddd6c8" stroke="#888" stroke-width="0.8"/>
+<rect x="164.5" y="682" width="666.285" height="26.875" fill="#ddd6c8" stroke="#888" stroke-width="0.8"/>
+<rect x="1313.245" y="1064.915" width="294.76500000000004" height="2.15" fill="url(#patInsul)" stroke="#8a7a20" stroke-width="0.45"/>
+<rect x="1313.245" y="1067.065" width="294.76500000000004" height="1.2899999999999998" fill="#b0a090" stroke="#706050" stroke-width="0.45"/>
+<rect x="1313.245" y="1068.355" width="294.76500000000004" height="64.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="1313.245" y="1132.855" width="294.76500000000004" height="2.15" fill="#f2efe8" stroke="#aaa" stroke-width="0.45"/>
+<rect x="1313.245" y="1064.915" width="294.765" height="70.09" fill="none" stroke="#333" stroke-width="0.9"/>
+<rect x="1605.86" y="1135.0049999999999" width="2.15" height="791.2" fill="url(#patInsul)" stroke="#8a7a20" stroke-width="0.45"/>
+<rect x="1604.57" y="1135.0049999999999" width="1.2899999999999998" height="791.2" fill="#b0a090" stroke="#706050" stroke-width="0.45"/>
+<rect x="1540.07" y="1135.0049999999999" width="64.5" height="791.2" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="1537.9199999999998" y="1135.0049999999999" width="2.15" height="791.2" fill="#f2efe8" stroke="#aaa" stroke-width="0.45"/>
+<rect x="1537.9199999999998" y="1135.0049999999999" width="70.09" height="791.1999999999999" fill="none" stroke="#333" stroke-width="0.9"/>
+<line x1="1313.245" y1="1926.205" x2="1537.9199999999998" y2="1926.205" stroke="#1565c0" stroke-width="1.6" stroke-dasharray="8 4"/>
+<text x="1425.5824999999998" y="1943.405" text-anchor="middle" font-size="9" font-weight="600" fill="#1565c0" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">S deschis → curte</text>
+<rect x="1313.245" y="1345.7050000000002" width="224.67499999999998" height="580.5" fill="#b8d4f0" fill-opacity="0.35" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="6 3"/>
+<text x="1425.5824999999998" y="1375.805" text-anchor="middle" font-size="10" font-weight="600" fill="#0d47a1" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">PUȚ R2 (deschis)</text>
+<rect x="1313.245" y="1135.0049999999999" width="246.39" height="236.5" fill="#5a7388" fill-opacity="0.45" stroke="#1a1a1a" stroke-width="1.4"/>
+<text x="1436.4399999999998" y="1253.255" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">PALIER −250</text>
+<rect x="1313.245" y="1371.505" width="215" height="430" fill="#5a7388" fill-opacity="0.55" stroke="#1a1a1a" stroke-width="1.5"/>
+<line x1="1313.245" y1="1425.255" x2="1528.245" y2="1425.255" stroke="#fff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="1313.245" y1="1479.005" x2="1528.245" y2="1479.005" stroke="#fff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="1313.245" y1="1532.755" x2="1528.245" y2="1532.755" stroke="#fff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="1313.245" y1="1586.505" x2="1528.245" y2="1586.505" stroke="#fff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="1313.245" y1="1640.255" x2="1528.245" y2="1640.255" stroke="#fff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="1313.245" y1="1694.005" x2="1528.245" y2="1694.005" stroke="#fff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="1313.245" y1="1747.755" x2="1528.245" y2="1747.755" stroke="#fff" stroke-opacity="0.5" stroke-width="1"/>
+<text x="1420.745" y="1577.905" text-anchor="middle" font-size="10" font-weight="700" fill="#0d1b2a" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">SCARĂ BECI ↓N</text>
+<text x="1420.745" y="1608.005" text-anchor="middle" font-size="8" font-weight="600" fill="#0d1b2a" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">clear 100 · 9×17,2</text>
+<rect x="1313.245" y="1801.505" width="246.39" height="124.69999999999999" fill="#7a8a9a" fill-opacity="0.4" stroke="#1a1a1a" stroke-width="1.3"/>
+<text x="1436.4399999999998" y="1863.855" text-anchor="middle" font-size="9" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">PALIER −95</text>
+<rect x="1248.745" y="1145.7549999999999" width="70.09" height="215" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+<text x="1235.8449999999998" y="1253.255" text-anchor="end" font-size="9" font-weight="600" fill="#0d47a1" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">ușă→magazie</text>
+<rect x="121.5" y="101.5" width="64.5" height="64.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="121.5" y="101.5" width="64.5" height="64.5" fill="none" stroke="#111" stroke-width="1"/>
+<rect x="771.66" y="101.5" width="86" height="64.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="771.66" y="101.5" width="86" height="64.5" fill="none" stroke="#111" stroke-width="1"/>
+<rect x="1473.4199999999998" y="101.5" width="64.5" height="64.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="1473.4199999999998" y="101.5" width="64.5" height="64.5" fill="none" stroke="#111" stroke-width="1"/>
+<rect x="121.5" y="961.5" width="64.5" height="86" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="121.5" y="961.5" width="64.5" height="86" fill="none" stroke="#111" stroke-width="1"/>
+<rect x="121.5" y="1467.18" width="64.5" height="64.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="121.5" y="1467.18" width="64.5" height="64.5" fill="none" stroke="#111" stroke-width="1"/>
+<rect x="793.16" y="1467.18" width="64.5" height="64.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="793.16" y="1467.18" width="64.5" height="64.5" fill="none" stroke="#111" stroke-width="1"/>
+<rect x="1473.4199999999998" y="961.5" width="64.5" height="86" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="1473.4199999999998" y="961.5" width="64.5" height="86" fill="none" stroke="#111" stroke-width="1"/>
+<rect x="1227.245" y="1262.5" width="64.5" height="86" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="1227.245" y="1262.5" width="64.5" height="86" fill="none" stroke="#111" stroke-width="1"/>
+<rect x="771.875" y="1840.4199999999998" width="86" height="64.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="771.875" y="1840.4199999999998" width="86" height="64.5" fill="none" stroke="#111" stroke-width="1"/>
+<rect x="1227.245" y="1840.4199999999998" width="64.5" height="64.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="1227.245" y="1840.4199999999998" width="64.5" height="64.5" fill="none" stroke="#111" stroke-width="1"/>
+<rect x="1519" y="1688.8449999999998" width="43" height="86" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="1519" y="1688.8449999999998" width="43" height="86" fill="none" stroke="#111" stroke-width="1"/>
+<rect x="166.865" y="185.565" width="43" height="86" fill="#7b1fa2" fill-opacity="0.35" stroke="#4a148c" stroke-width="1.6" stroke-dasharray="5 3"/>
+<text x="188.365" y="228.56499999999997" text-anchor="middle" font-size="8" font-weight="700" fill="#4a148c" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">DROP</text>
+<rect x="787.785" y="146.865" width="43" height="86" fill="#7b1fa2" fill-opacity="0.35" stroke="#4a148c" stroke-width="1.6" stroke-dasharray="5 3"/>
+<text x="809.285" y="189.865" text-anchor="middle" font-size="8" font-weight="700" fill="#4a148c" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">DROP</text>
+<rect x="1184.245" y="1284" width="64.5" height="64.5" fill="#7b1fa2" fill-opacity="0.35" stroke="#4a148c" stroke-width="1.6" stroke-dasharray="5 3"/>
+<text x="1216.495" y="1316.25" text-anchor="middle" font-size="8" font-weight="700" fill="#4a148c" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">DROP</text>
+<text x="511.08" y="387.45" text-anchor="middle" font-size="13" font-weight="700" fill="#1b2e1f" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">CAMERĂ TEHNICĂ</text>
+<text x="511.08" y="417.55" text-anchor="middle" font-size="11" font-weight="700" fill="#0d47a1" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">322,4 × 250</text>
+<text x="511.08" y="447.65" text-anchor="middle" font-size="10" font-weight="600" fill="#444" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">8,06 m²</text>
+<line x1="164.5" y1="679" x2="164.5" y2="668" stroke="#111" stroke-width="1"/>
+<line x1="857.66" y1="679" x2="857.66" y2="668" stroke="#111" stroke-width="1"/>
+<line x1="164.5" y1="668" x2="857.66" y2="668" stroke="#111" stroke-width="1.15"/>
+<line x1="164.5" y1="665" x2="164.5" y2="671" stroke="#111" stroke-width="1.5"/>
+<line x1="857.66" y1="665" x2="857.66" y2="671" stroke="#111" stroke-width="1.5"/>
+<text x="511.08" y="664" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">322,4</text>
+<line x1="854.66" y1="144.5" x2="843.66" y2="144.5" stroke="#111" stroke-width="1"/>
+<line x1="854.66" y1="682" x2="843.66" y2="682" stroke="#111" stroke-width="1"/>
+<line x1="843.66" y1="144.5" x2="843.66" y2="682" stroke="#111" stroke-width="1.15"/>
+<line x1="840.66" y1="144.5" x2="846.66" y2="144.5" stroke="#111" stroke-width="1.5"/>
+<line x1="840.66" y1="682" x2="846.66" y2="682" stroke="#111" stroke-width="1.5"/>
+<text x="829.66" y="413.25" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif" transform="rotate(-90 829.66 413.25)">250</text>
+<text x="511.08" y="1236.7" text-anchor="middle" font-size="13" font-weight="700" fill="#1b2e1f" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">DEPOZIT / SCULE</text>
+<text x="511.08" y="1266.8" text-anchor="middle" font-size="11" font-weight="700" fill="#0d47a1" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">322,4 × 540</text>
+<text x="511.08" y="1296.8999999999999" text-anchor="middle" font-size="10" font-weight="600" fill="#444" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">17,41 m²</text>
+<line x1="164.5" y1="1840" x2="164.5" y2="1829" stroke="#111" stroke-width="1"/>
+<line x1="857.66" y1="1840" x2="857.66" y2="1829" stroke="#111" stroke-width="1"/>
+<line x1="164.5" y1="1829" x2="857.66" y2="1829" stroke="#111" stroke-width="1.15"/>
+<line x1="164.5" y1="1826" x2="164.5" y2="1832" stroke="#111" stroke-width="1.5"/>
+<line x1="857.66" y1="1826" x2="857.66" y2="1832" stroke="#111" stroke-width="1.5"/>
+<text x="511.08" y="1825" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">322,4</text>
+<line x1="854.66" y1="682" x2="843.66" y2="682" stroke="#111" stroke-width="1"/>
+<line x1="854.66" y1="1843" x2="843.66" y2="1843" stroke="#111" stroke-width="1"/>
+<line x1="843.66" y1="682" x2="843.66" y2="1843" stroke="#111" stroke-width="1.15"/>
+<line x1="840.66" y1="682" x2="846.66" y2="682" stroke="#111" stroke-width="1.5"/>
+<line x1="840.66" y1="1843" x2="846.66" y2="1843" stroke="#111" stroke-width="1.5"/>
+<text x="829.66" y="1262.5" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif" transform="rotate(-90 829.66 1262.5)">540</text>
+<text x="1053.2024999999999" y="967.9499999999999" text-anchor="middle" font-size="13" font-weight="700" fill="#1b2e1f" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">MAGAZIE</text>
+<text x="1053.2024999999999" y="998.05" text-anchor="middle" font-size="11" font-weight="700" fill="#0d47a1" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">181,9 × 790</text>
+<text x="1053.2024999999999" y="1028.15" text-anchor="middle" font-size="10" font-weight="600" fill="#444" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">14,37 m²</text>
+<line x1="857.66" y1="1840" x2="857.66" y2="1829" stroke="#111" stroke-width="1"/>
+<line x1="1248.745" y1="1840" x2="1248.745" y2="1829" stroke="#111" stroke-width="1"/>
+<line x1="857.66" y1="1829" x2="1248.745" y2="1829" stroke="#111" stroke-width="1.15"/>
+<line x1="857.66" y1="1826" x2="857.66" y2="1832" stroke="#111" stroke-width="1.5"/>
+<line x1="1248.745" y1="1826" x2="1248.745" y2="1832" stroke="#111" stroke-width="1.5"/>
+<text x="1053.2024999999999" y="1825" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">181,9</text>
+<line x1="1245.745" y1="144.5" x2="1234.745" y2="144.5" stroke="#111" stroke-width="1"/>
+<line x1="1245.745" y1="1843" x2="1234.745" y2="1843" stroke="#111" stroke-width="1"/>
+<line x1="1234.745" y1="144.5" x2="1234.745" y2="1843" stroke="#111" stroke-width="1.15"/>
+<line x1="1231.745" y1="144.5" x2="1237.745" y2="144.5" stroke="#111" stroke-width="1.5"/>
+<line x1="1231.745" y1="1843" x2="1237.745" y2="1843" stroke="#111" stroke-width="1.5"/>
+<text x="1220.745" y="993.75" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif" transform="rotate(-90 1220.745 993.75)">790</text>
+<line x1="164.5" y1="141.5" x2="164.5" y2="108.5" stroke="#111" stroke-width="1"/>
+<line x1="1248.745" y1="141.5" x2="1248.745" y2="108.5" stroke="#111" stroke-width="1"/>
+<line x1="164.5" y1="108.5" x2="1248.745" y2="108.5" stroke="#111" stroke-width="1.15"/>
+<line x1="164.5" y1="105.5" x2="164.5" y2="111.5" stroke="#111" stroke-width="1.5"/>
+<line x1="1248.745" y1="105.5" x2="1248.745" y2="111.5" stroke="#111" stroke-width="1.5"/>
+<text x="706.6225" y="104.5" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">504,3 cutie</text>
+<line x1="161.5" y1="144.5" x2="124.5" y2="144.5" stroke="#111" stroke-width="1"/>
+<line x1="161.5" y1="1843" x2="124.5" y2="1843" stroke="#111" stroke-width="1"/>
+<line x1="124.5" y1="144.5" x2="124.5" y2="1843" stroke="#111" stroke-width="1.15"/>
+<line x1="121.5" y1="144.5" x2="127.5" y2="144.5" stroke="#111" stroke-width="1.5"/>
+<line x1="121.5" y1="1843" x2="127.5" y2="1843" stroke="#111" stroke-width="1.5"/>
+<text x="110.5" y="993.75" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif" transform="rotate(-90 110.5 993.75)">790 cutie</text>
+<line x1="709.6225" y1="74.41" x2="728.6225" y2="74.41" stroke="#111" stroke-width="1"/>
+<line x1="709.6225" y1="144.5" x2="728.6225" y2="144.5" stroke="#111" stroke-width="1"/>
+<line x1="728.6225" y1="74.41" x2="728.6225" y2="144.5" stroke="#111" stroke-width="1.15"/>
+<line x1="725.6225" y1="74.41" x2="731.6225" y2="74.41" stroke="#111" stroke-width="1.5"/>
+<line x1="725.6225" y1="144.5" x2="731.6225" y2="144.5" stroke="#111" stroke-width="1.5"/>
+<text x="755.6225" y="109.455" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif" transform="rotate(-90 755.6225 109.455)">32,6 A11</text>
+<line x1="830.785" y1="227.5" x2="830.785" y2="210.5" stroke="#111" stroke-width="1"/>
+<line x1="857.66" y1="227.5" x2="857.66" y2="210.5" stroke="#111" stroke-width="1"/>
+<line x1="830.785" y1="210.5" x2="857.66" y2="210.5" stroke="#111" stroke-width="1.15"/>
+<line x1="830.785" y1="207.5" x2="830.785" y2="213.5" stroke="#111" stroke-width="1.5"/>
+<line x1="857.66" y1="207.5" x2="857.66" y2="213.5" stroke="#111" stroke-width="1.5"/>
+<text x="844.2225" y="206.5" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">12,5 A7</text>
+<line x1="1286.7899999999997" y1="1145.7549999999999" x2="1307.7899999999997" y2="1145.7549999999999" stroke="#111" stroke-width="1"/>
+<line x1="1286.7899999999997" y1="1360.755" x2="1307.7899999999997" y2="1360.755" stroke="#111" stroke-width="1"/>
+<line x1="1307.7899999999997" y1="1145.7549999999999" x2="1307.7899999999997" y2="1360.755" stroke="#111" stroke-width="1.15"/>
+<line x1="1304.7899999999997" y1="1145.7549999999999" x2="1310.7899999999997" y2="1145.7549999999999" stroke="#111" stroke-width="1.5"/>
+<line x1="1304.7899999999997" y1="1360.755" x2="1310.7899999999997" y2="1360.755" stroke="#111" stroke-width="1.5"/>
+<text x="1321.7899999999997" y="1253.255" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif" transform="rotate(-90 1321.7899999999997 1253.255)">100 gol</text>
+<line x1="1313.245" y1="1417.505" x2="1313.245" y2="1436.505" stroke="#111" stroke-width="1"/>
+<line x1="1528.245" y1="1417.505" x2="1528.245" y2="1436.505" stroke="#111" stroke-width="1"/>
+<line x1="1313.245" y1="1436.505" x2="1528.245" y2="1436.505" stroke="#111" stroke-width="1.15"/>
+<line x1="1313.245" y1="1433.505" x2="1313.245" y2="1439.505" stroke="#111" stroke-width="1.5"/>
+<line x1="1528.245" y1="1433.505" x2="1528.245" y2="1439.505" stroke="#111" stroke-width="1.5"/>
+<text x="1420.745" y="1450.505" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">100 clear</text>
+<line x1="100" y1="77" x2="100" y2="28" stroke="#111" stroke-width="1"/>
+<line x1="1562" y1="77" x2="1562" y2="28" stroke="#111" stroke-width="1"/>
+<line x1="100" y1="28" x2="1562" y2="28" stroke="#111" stroke-width="1.15"/>
+<line x1="100" y1="25" x2="100" y2="31" stroke="#111" stroke-width="1.5"/>
+<line x1="1562" y1="25" x2="1562" y2="31" stroke="#111" stroke-width="1.5"/>
+<text x="831" y="24" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">680</text>
+<line x1="1565" y1="80" x2="1602" y2="80" stroke="#111" stroke-width="1"/>
+<line x1="1565" y1="1929" x2="1602" y2="1929" stroke="#111" stroke-width="1"/>
+<line x1="1602" y1="80" x2="1602" y2="1929" stroke="#111" stroke-width="1.15"/>
+<line x1="1599" y1="80" x2="1605" y2="80" stroke="#111" stroke-width="1.5"/>
+<line x1="1599" y1="1929" x2="1605" y2="1929" stroke="#111" stroke-width="1.5"/>
+<text x="1616" y="1004.5" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif" transform="rotate(-90 1616 1004.5)">860</text>
+<rect x="1576" y="80" width="248" height="296" fill="#fff" stroke="#ccc" stroke-width="1"/>
+<text x="1588" y="100" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Legendă subsol</text>
+<rect x="1588" y="116" width="22" height="14" fill="url(#patConcrete)" stroke="#222" fill-opacity="1"/>
+<text x="1618" y="127" font-size="11" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">BA / stâlp</text>
+<rect x="1588" y="138" width="22" height="14" fill="url(#patInsul)" stroke="#222" fill-opacity="1"/>
+<text x="1618" y="149" font-size="11" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">drenaj / XPS</text>
+<rect x="1588" y="160" width="22" height="14" fill="#b0a090" stroke="#222" fill-opacity="1"/>
+<text x="1618" y="171" font-size="11" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">hidro</text>
+<rect x="1588" y="182" width="22" height="14" fill="#f2efe8" stroke="#222" fill-opacity="1"/>
+<text x="1618" y="193" font-size="11" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">tencuială beci</text>
+<rect x="1588" y="204" width="22" height="14" fill="#ddd6c8" stroke="#222" fill-opacity="1"/>
+<text x="1618" y="215" font-size="11" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">partiție A7</text>
+<rect x="1588" y="226" width="22" height="14" fill="#c5d5c8" stroke="#222" fill-opacity="0.55"/>
+<text x="1618" y="237" font-size="11" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">cameră beci</text>
+<rect x="1588" y="248" width="22" height="14" fill="#5a7388" stroke="#222" fill-opacity="0.55"/>
+<text x="1618" y="259" font-size="11" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">scară / palier</text>
+<rect x="1588" y="270" width="22" height="14" fill="#7b1fa2" stroke="#222" fill-opacity="0.55"/>
+<text x="1618" y="281" font-size="11" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">drop MEP</text>
+<rect x="1588" y="292" width="22" height="14" fill="#b8d4f0" stroke="#222" fill-opacity="1"/>
+<text x="1618" y="303" font-size="11" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">puț / S→curte</text>
+<text x="1588" y="322" font-size="9" fill="#444" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Fit scară:</text>
+<text x="1588" y="336" font-size="9" fill="#444" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">clear 104,5 OK · @pier 95,7</text>
+<text x="1588" y="350" font-size="9" fill="#444" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">riser DESCHIS — 17,22 > 16 (brief A0)</text>
+</svg>

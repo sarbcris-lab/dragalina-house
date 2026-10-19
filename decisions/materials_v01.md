@@ -9,7 +9,7 @@
 
 | Rol | Alegere | De ce |
 |---|---|---|
-| **Klinker E/S/V + gard** | **Ströher Riegel 50** · LF **490×40** · **silver-grau used look** | Format long ca ținta Belgian; klinker pe ETICS; deja ales |
+| **Klinker E/S + gard** | **Ströher Riegel 50** · LF **490×40** · **silver-grau used look** | A1.131: **nu** pe N/V (acolo A1 tencuială) |
 | **ETICS (vată + ceramic / tencuială)** | **Weber webertherm CERAMIC PREMIUM** (vată) pe zone klinker; același ecosistem Weber pe zone tencuite | ETA ceramic + disponibil RO; se potrivește cu **ISOVER FASSADE** (Saint-Gobain) deja în sandwich |
 | **Vată fațadă** | **ISOVER FASSADE 80** | Locked în A1–A3 / A6 |
 | **Umplutură necarrantă** | **EB20 Akustik 200** | Locked |
@@ -25,8 +25,8 @@
 | Produs | Ströher **Riegel 50** clinker brick slips |
 | Format | **LF 490 × 40 mm** (grosime placă tipică ~10–14 mm + adeziv → buget **15 mm** în A2) |
 | Culoare | **silver-grau used look** |
-| Unde | E Dragalina · S Cloșca · V curte · gard trotuar (A2 / A4 ext / A10) |
-| Nu | Nord încălzit (A1 tencuială) · nișe / parapete tencuite |
+| Unde | E Dragalina · S Cloșca · gard trotuar (A2 / A4 ext / A10) |
+| Nu | **Nord + Vest** încălzit (A1 tencuială) · baie N/V (A3_N) · nișe / parapete tencuite |
 
 **POT:** anvelopa finită cu A2 = **312 mm** pe E/S/V (Δ +13 mm vs A1 299). EST pe limită — Δ e în afara feței EB20, deja în modelul 682,6 × 861,3. Nu se adaugă încă un cm peste A2.
 

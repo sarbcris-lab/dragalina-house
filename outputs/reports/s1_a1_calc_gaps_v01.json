@@ -1,0 +1,200 @@
+{
+  "meta": {
+    "id": "s1_a1_calc_gaps_v01",
+    "generated": "2026-10-18T19:59:00.800Z",
+    "honest_title": "Maximul calculabil în repo pe schema A1 — NU proiect 100% semnat"
+  },
+  "coverage": [
+    {
+      "id": "2.1_stalp_N_M",
+      "done": true,
+      "where": "s1_a1_calc_100_v01",
+      "limit": "fără flambaj/P100 confinare detaliată"
+    },
+    {
+      "id": "2.2_consola_C_E_PAL",
+      "done": true,
+      "where": "acest fișier",
+      "limit": "ordin; FE nod rămâne"
+    },
+    {
+      "id": "2.3_placa",
+      "done": true,
+      "where": "s1_a1_calc_100_v01",
+      "limit": "L/d + δ fisurat ordin"
+    },
+    {
+      "id": "2.4_grinzi",
+      "done": true,
+      "where": "s1_a1_calc_100_v01",
+      "limit": "simplu rezemat; continuu ar reduce M"
+    },
+    {
+      "id": "2.5_intoarsa",
+      "done": true,
+      "where": "s1_a1_calc_100_v01",
+      "limit": "flex ordin; sandwich/ancorare FE"
+    },
+    {
+      "id": "2.6_fundatii_pad",
+      "done": true,
+      "where": "s1_a1_calc_100_v01",
+      "limit": "σ vs 200 kPa studiu"
+    },
+    {
+      "id": "2.6_retentie_impigere",
+      "done": true,
+      "where": "acest fișier",
+      "limit": "fără apă/seism pe zid"
+    },
+    {
+      "id": "2.7_acoperis_D3",
+      "done": true,
+      "where": "acest fișier",
+      "limit": "comparație greutate, nu FEM"
+    },
+    {
+      "id": "SE_LAMELE_decizie",
+      "done": true,
+      "where": "s1_a1_calc_100_v01",
+      "limit": "NO_LAMELE adoptat"
+    },
+    {
+      "id": "pier_clear",
+      "done": true,
+      "where": "acest fișier",
+      "limit": "audit geometric"
+    },
+    {
+      "id": "riser_beci",
+      "done": true,
+      "where": "acest fișier",
+      "limit": "vs brief — nu rezistență"
+    },
+    {
+      "id": "seism_Vb",
+      "done": true,
+      "where": "s1_a1_calc_100_v01",
+      "limit": "doar Vb global"
+    },
+    {
+      "id": "seism_pe_elemente",
+      "done": false,
+      "where": "—",
+      "limit": "cere model FEM / P100 complet"
+    },
+    {
+      "id": "P100_confinare_zone",
+      "done": false,
+      "where": "—",
+      "limit": "detaliu armare — proiectant"
+    },
+    {
+      "id": "geo_131_Rc",
+      "done": false,
+      "where": "—",
+      "limit": "lipsă studiu teren pe parcelă"
+    },
+    {
+      "id": "FEM_Robot_etc",
+      "done": false,
+      "where": "—",
+      "limit": "în afara acestui repo"
+    },
+    {
+      "id": "combinatii_CR0_oficial",
+      "done": false,
+      "where": "—",
+      "limit": "folosim q_Ed agregat 11.78"
+    }
+  ],
+  "tallies": {
+    "done": 12,
+    "not_in_repo": 5
+  },
+  "calc_2_2": {
+    "status": "done_ordin",
+    "L_S_m": 1.387,
+    "L_W_m": 1.045,
+    "plate_S": {
+      "L_m": 1.387,
+      "M_kNm_m": 11.5,
+      "V_kN_m": 16.5,
+      "As_mm2_m": 244,
+      "As_min": 1560,
+      "pass_flex": true
+    },
+    "plate_W": {
+      "L_m": 1.045,
+      "M_kNm_m": 6.5,
+      "V_kN_m": 12.5,
+      "As_mm2_m": 139,
+      "As_min": 1560,
+      "pass_flex": true
+    },
+    "beam_cantilever": {
+      "M_kNm": 12,
+      "V_kN": 17.3,
+      "q": 12.5
+    },
+    "torsion_T_kNm": 6.5,
+    "M_node_kNm": 15.3,
+    "Nrd_30x40_kN": 1600,
+    "keep_C_E_PAL_30x40": true,
+    "pass_ordin": true,
+    "note": "Eforturi modeste; riscul = detaliu torsiune/ancorare — FE nod obligatoriu (ca pe FRAME)"
+  },
+  "calc_2_6_retaining": {
+    "status": "done_ordin",
+    "H_m": 2.5,
+    "Ka": 0.33,
+    "Pa_kN_m": 22.7,
+    "M_kNm_m": 18.9,
+    "wall_th_cm": 32.6,
+    "mu": 0.015,
+    "As_mm2_m": 175,
+    "pass_flex_ordin": true,
+    "note": "împingere activă simplă; fără apă/hidrostatic, fără seism pe zid — geo_131 deschis"
+  },
+  "calc_2_6_fg": {
+    "status": "done_ordin",
+    "strip_N_m": 5.04,
+    "N_ser_approx_kN": 1259,
+    "note": "pad-uri deja sized în calc_100; Rc parcelă = calcul_lipsă"
+  },
+  "calc_2_7_roof": {
+    "status": "done_ordin",
+    "area_m2": 58.79,
+    "D3a_light": {
+      "q_Ed": 3.4,
+      "W_kN": 200
+    },
+    "D3b_BA": {
+      "q_Ed": 6.98,
+      "W_kN": 410
+    },
+    "delta_kN": 210,
+    "recommendation": "FE întâi D3a (ușoară); D3b sensibilitate — lock D3",
+    "pass": true
+  },
+  "pier_clear": {
+    "status": "done_audit",
+    "clear_at_pier_cm": 95.7,
+    "stair_clear_need_cm": 100,
+    "pier_warn": true,
+    "pass": false,
+    "note": "clear 95.7 < 100 — acceptat ca avertisment sau mută pier"
+  },
+  "riser": {
+    "status": "done_audit",
+    "riser_cm": 17.22,
+    "brief_max_cm": 16,
+    "pass": false,
+    "note": "DESCHIS — 17.22 > 16 brief; tradeoff: +1 treaptă / acceptare"
+  },
+  "prior_decision": {
+    "code": "NO_LAMELE",
+    "adopt": "Păstrează C_E_LAMELE în afara cadrului (doar ARH).",
+    "reason": "B_E_S / B_S_SE trec pe ordin ULS+SLS fără reazem intermediar."
+  }
+}

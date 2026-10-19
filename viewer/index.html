@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <title>Dragalina 131 — Viewer 3D · V47 A1 FRAME</title>
+  <title>Dragalina 131 — Viewer 3D · A1 curat</title>
   <style>
     :root {
       --bg: #1a1d22;
@@ -26,6 +26,7 @@
     .tabs { display: flex; gap: 0.4rem; margin: 1rem 0 0.6rem; flex-wrap: wrap; }
     .tabs a { color: var(--accent); font-size: 0.8rem; text-decoration: none; border: 1px solid #3d4a5c; padding: 0.35rem 0.55rem; border-radius: 4px; }
     .tabs a:hover { background: #323846; }
+    .tabs a.active { background: #3d5a80; border-color: var(--accent); color: var(--text); }
     ul { padding-left: 1.1rem; font-size: 0.78rem; color: var(--muted); max-height: 40vh; overflow: auto; }
     code { font-size: 0.78rem; color: #c7d2fe; }
     .row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin: 0.6rem 0; }
@@ -66,22 +67,24 @@
         <button type="button" id="btnStructWalls">2 · + Pereți</button>
         <button type="button" id="btnCut">Secțiune interior</button>
       </div>
-      <div class="tabs" id="tabsFrame">
-        <a href="/viewer/?v=v47_a1_frame"><strong>3D FRAME</strong></a>
-        <a href="../outputs/plans/a1_plan_parter.svg" target="_blank"><strong>A1 Parter</strong></a>
-        <a href="../outputs/plans/a1_plan_etaj.svg" target="_blank"><strong>A1 Etaj</strong></a>
-        <a href="../outputs/plans/a0_plan_situatie.svg" target="_blank">A0 Situație</a>
-        <a href="../outputs/plans/36_v47_a1_frame_structure_overlay.svg" target="_blank">Overlay structură</a>
-        <a href="../outputs/plans/37_v47_a1_frame_sections.svg" target="_blank">Secțiuni cadre</a>
-        <a href="../outputs/reports/v47_a1_frame_structure.md" target="_blank">Raport structură</a>
-        <a href="../outputs/plans/35_v47_a1_exterior_wall_section.svg" target="_blank">Perete A1 tencuială</a>
-        <a href="../outputs/plans/35b_v47_a2_klinker_wall_section.svg" target="_blank">Perete A2 klinker</a>
-        <a href="../outputs/reports/v47_useful_by_level.md" target="_blank">Util P/E</a>
-        <a href="../outputs/reports/v47_pot_util_assemblies.md" target="_blank">POT + util</a>
-        <a href="../decisions/assemblies_catalog_v01.md" target="_blank">Catalog straturi</a>
+      <div class="tabs" id="tabsPlans">
+        <a href="/outputs/plans/a1_plan_parter.svg" target="_blank"><strong>Plan parter</strong></a>
+        <a href="/outputs/plans/a1_plan_etaj.svg" target="_blank"><strong>Plan etaj</strong></a>
+        <a href="/outputs/plans/a1_plan_subsol.svg" target="_blank"><strong>Plan subsol</strong></a>
+        <a href="/outputs/reports/s1_a1_fe_handoff_v02.md" target="_blank"><strong>FE handoff</strong></a>
+        <a href="/outputs/reports/s1_a1_fe_checklist_v02.md" target="_blank">FE checklist</a>
+        <a href="/outputs/reports/s1_a1_max_inrepo_v01.md" target="_blank">Max in-repo</a>
+        <a href="/outputs/reports/s1_a1_wind_buckling_ec5_v01.md" target="_blank">Vânt / flambaj / EC5</a>
+        <a href="/outputs/reports/s1_a1_standards_benchmark_v01.md" target="_blank">Standarde / repere</a>
+        <a href="/outputs/reports/s1_a1_clear255_levels_v01.md" target="_blank">Clear 255 + cote</a>
+        <a href="/outputs/reports/s1_a1_calc_gaps_v01.md" target="_blank">Calc acoperire</a>
+        <a href="/outputs/reports/s1_a1_calc_100_v01.md" target="_blank">Calc grinzi/SE</a>
+        <a href="/outputs/reports/s1_a1_fe_input_pack_v01.md" target="_blank">Pachet FE</a>
+        <a href="/outputs/plans/" target="_blank">Toate planurile</a>
+        <a href="/outputs/plans/a0_plan_situatie.svg" target="_blank">Situație</a>
       </div>
       <p class="meta" style="margin-top:1rem">Orbit · zoom · pan dreapta</p>
-      <p class="meta">Model unic: <code>V47 A1 FRAME</code> · regen <code>npm run volume:v47:studies</code></p>
+      <p class="meta" id="modelHint">Model: <code>A1 curat</code> — amenajare + subsol (fără FRAME)</p>
       <ul id="meshes"></ul>
     </aside>
     <canvas id="c"></canvas>
@@ -265,21 +268,26 @@
       location.replace(`/viewer/${location.search}${location.hash}`);
       throw new Error("redirect /viewer/");
     }
-    // Model unic pe site: V47 A1 FRAME (cadre). V47 / A1 / V46 nu se mai încarcă.
-    const volFile = "/viewer/data/volume_v47_a1_frame.json";
+    // Site = doar modelul A1 curat (FRAME scos din UI)
+    const volFile = "/viewer/data/volume_a1.json";
     const volRes = await fetch(`${volFile}?t=${Date.now()}`, { cache: "no-store" });
     if (!volRes.ok) {
       document.getElementById("warning").textContent = `Nu pot încărca ${volFile} (${volRes.status}).`;
       throw new Error(`volume fetch ${volRes.status}`);
     }
     const volume = await volRes.json();
-    document.getElementById("viewTitle").textContent = "Dragalina 131 · V47 A1 FRAME (cadre)";
+    const title = "Dragalina 131 · A1 curat";
+    document.title = title;
+    document.getElementById("viewTitle").textContent = title;
     document.getElementById("warning").textContent = volume.meta.warning || volume.meta.status;
+    const bs = document.getElementById("btnStruct");
+    const bw = document.getElementById("btnStructWalls");
+    if (bs) bs.textContent = "1 · Stâlpi A1";
+    if (bw) bw.textContent = "2 · + Pereți";
     const env = volume.meta.envelope_m || {};
-    const srcLabel = "V47 A1 FRAME · cadre BA · assemblies_v01 · neconstruibil";
     document.getElementById("meta").innerHTML = `
       <div><strong>Model:</strong> ${volume.meta.id}</div>
-      <div><strong>Sursă:</strong> ${srcLabel}</div>
+      <div><strong>Sursă:</strong> A1 curat · amenajare + subsol cutie</div>
       <div><strong>Gabarit:</strong> ${(env.ew ?? 0).toFixed(2)} × ${(env.ns ?? 0).toFixed(2)} m = ${volume.building_summary.footprint_gross_m2} m²</div>
       <div><strong>Nivel:</strong> ${volume.meta.level_height_m} m · ${volume.building_summary.levels}</div>
       <div><strong>Pereți:</strong> ${volume.building_summary.walls}</div>
@@ -367,11 +375,14 @@
       }
       return (
         id.startsWith("stalp_continuu_") ||
+        id.startsWith("stalp_a1_") ||
         id.startsWith("stalp_SP_") ||
         id.startsWith("subsol_pier_") ||
         id.startsWith("subsol_stalp_") ||
         id.startsWith("subsol_grinda_") ||
         id.startsWith("subsol_fg_") ||
+        id.startsWith("subsol_reten_") ||
+        id.startsWith("put_reten_") ||
         id.startsWith("subsol_put_beton") ||
         id.startsWith("subsol_fantana_beton") ||
         id === "subsol_grinda_y590_inverted" ||
@@ -397,8 +408,11 @@
         id.startsWith("acoperis_structura_") ||
         (m.site_layer === "structura" &&
           (id.startsWith("stalp_") ||
+            id.startsWith("subsol_reten") ||
+            id.startsWith("put_reten") ||
             id.startsWith("subsol_grinda") ||
             id.startsWith("subsol_fg") ||
+            id.startsWith("subsol_intrados") ||
             id.startsWith("parter_centura") ||
             id.startsWith("etaj_centura") ||
             id.startsWith("acoperis_coama") ||
@@ -727,7 +741,7 @@
       tip.className = "meta";
       tip.style.color = "#e8a87c";
       tip.innerHTML =
-        "<strong>FRAME:</strong> <em>1 · Structură</em> = cadru BA + plăci portante (inclusiv palier) — fără gard/poartă/finisaje/țiglă. · Audit: <code>v47_a1_frame_structure_design_audit_v05.md</code> · Geo: <code>geotech_hypothesis_v01.md</code>.";
+        "<strong>A1:</strong> <em>1 · Structură</em> = stâlpi/grinzi/plăci BA + <em>șarpantă</em> (coamă, solbanc, căpriori) — fără învelitoare/PV/gard. · Clear≥255 · acoperiș 30° PV.";
       document.getElementById("meta")?.after(tip);
     }
     document.getElementById("btnClosed").onclick = () => {

@@ -21,7 +21,8 @@
 # A. VERTICAL
 
 ## A1 — Ext. încălzit · tencuială · **≈ 300**
-**Unde:** NORD · nișe · retrageri tencuite  
+**Unde:** **NORD + VEST** · nișe · retrageri tencuite  
+**(A1.131: fără klinker pe N și V — doar tencuială 30 cm)**
 
 | # | Strat int→ext | mm |
 |---|---|---:|
@@ -37,7 +38,7 @@
 ---
 
 ## A2 — Ext. încălzit · klinker · **≈ 312**
-**Unde:** E / S / V · vată **80** · iese în afară  
+**Unde:** **EST + SUD** (nu vest) · vată **80** · iese în afară  
 **Klinker:** Ströher **Riegel 50** LF 490×40 silver-grau · pe **Weber webertherm CERAMIC PREMIUM**
 
 | # | Strat int→ext | mm |
@@ -54,11 +55,12 @@
 ---
 
 ## A3 — Ext. · baie pe fațadă (mai gros)
-### A3-N (tencuială) — **311**
+### A3-N (tencuială) — **311** — **folosit pe N+V baie (A1.131)**
 faianță 8 + adeziv 5 + tencuială 6 + EB20 200 + ETICS A1 92 = **311**
 
 ### A3-K (klinker) — **324**
-faianță 8 + adeziv 5 + tencuială 6 + EB20 200 + (5+80+5+15) = **324**
+faianță 8 + adeziv 5 + tencuială 6 + EB20 200 + (5+80+5+15) = **324**  
+*(Nu e pe baia actuală — baia e pe N+V tencuială, nu pe S/E klinker.)*
 
 ---
 

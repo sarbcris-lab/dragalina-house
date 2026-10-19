@@ -1,0 +1,212 @@
+{
+  "status": "ordin — nu FE",
+  "wind": {
+    "VB0": 27,
+    "qb_kNm2": 0.456,
+    "ce": 2.1,
+    "qp": 0.958,
+    "cpe": {
+      "eaves_F": -1.7,
+      "ridge_G": -1.2,
+      "field_H": -0.4,
+      "windward_pitch": -0.7,
+      "leeward_pitch": -0.5
+    },
+    "we": {
+      "eaves_F": -1.629,
+      "ridge_G": -1.15,
+      "field_H": -0.383,
+      "windward_pitch": -0.671,
+      "leeward_pitch": -0.479
+    },
+    "F_uplift_panel_kN": 4.15,
+    "F_per_fix_kN": 1.04,
+    "pv_anchor_ok": true,
+    "n_screws_needed": 3
+  },
+  "combos": {
+    "snow_leading": {
+      "label": "Zăpadă dominantă (1,35G + 1,5·Qs + 0,6·1,5·Qw)",
+      "q_Ed": 3.36
+    },
+    "wind_leading": {
+      "label": "Vânt dominant pe suctiune streșină (1,35G + 1,5·|we_F| + 0,5·1,5·Qs)",
+      "q_net_uplift": 1.81,
+      "q_Ed_pressure_field": 2.69
+    },
+    "snow_only_legacy": {
+      "label": "Doar zăpadă (vechi agregat)",
+      "q_Ed": 3.02
+    }
+  },
+  "q_Ed_design": 3.36,
+  "rafter_ec5": {
+    "L_rafter": 4.972538411113583,
+    "spacing": 1.2,
+    "M_Ed": 12.46,
+    "N_axial": 10.02,
+    "sigma_m_MPa": 9.97,
+    "sigma_c": 0.33,
+    "util_ec5": 0.692,
+    "ec5_pass": true,
+    "kcrit": 1
+  },
+  "buckling": [
+    {
+      "id": "C_NW",
+      "section": "30×30",
+      "l0_m": 2.61,
+      "lambda": 30.1,
+      "Ncr_kN": 30328.5,
+      "N_Ed_kN": 354,
+      "Nrd0_kN": 1500,
+      "phi": 0.971,
+      "Nrd_buck_kN": 1456,
+      "util_buck": 0.243,
+      "slender": false,
+      "pass": true
+    },
+    {
+      "id": "C_N_MID",
+      "section": "40×30",
+      "l0_m": 2.61,
+      "lambda": 34.8,
+      "Ncr_kN": 30328.5,
+      "N_Ed_kN": 550.8,
+      "Nrd0_kN": 2000,
+      "phi": 0.958,
+      "Nrd_buck_kN": 1916.5,
+      "util_buck": 0.287,
+      "slender": false,
+      "pass": true
+    },
+    {
+      "id": "C_NE",
+      "section": "30×30",
+      "l0_m": 2.61,
+      "lambda": 30.1,
+      "Ncr_kN": 30328.5,
+      "N_Ed_kN": 369.3,
+      "Nrd0_kN": 1500,
+      "phi": 0.971,
+      "Nrd_buck_kN": 1456,
+      "util_buck": 0.254,
+      "slender": false,
+      "pass": true
+    },
+    {
+      "id": "C_W_MID",
+      "section": "30×40",
+      "l0_m": 2.61,
+      "lambda": 34.8,
+      "Ncr_kN": 30328.5,
+      "N_Ed_kN": 414.9,
+      "Nrd0_kN": 2000,
+      "phi": 0.958,
+      "Nrd_buck_kN": 1916.5,
+      "util_buck": 0.216,
+      "slender": false,
+      "pass": true
+    },
+    {
+      "id": "C_W_DORM",
+      "section": "30×30",
+      "l0_m": 2.61,
+      "lambda": 30.1,
+      "Ncr_kN": 30328.5,
+      "N_Ed_kN": 212.5,
+      "Nrd0_kN": 1500,
+      "phi": 0.971,
+      "Nrd_buck_kN": 1456,
+      "util_buck": 0.146,
+      "slender": false,
+      "pass": true
+    },
+    {
+      "id": "C_S_DORM_E",
+      "section": "30×30",
+      "l0_m": 2.61,
+      "lambda": 30.1,
+      "Ncr_kN": 30328.5,
+      "N_Ed_kN": 116.7,
+      "Nrd0_kN": 1500,
+      "phi": 0.971,
+      "Nrd_buck_kN": 1456,
+      "util_buck": 0.08,
+      "slender": false,
+      "pass": true
+    },
+    {
+      "id": "C_E_PAL",
+      "section": "30×40",
+      "l0_m": 2.61,
+      "lambda": 34.8,
+      "Ncr_kN": 30328.5,
+      "N_Ed_kN": 329.9,
+      "Nrd0_kN": 2000,
+      "phi": 0.958,
+      "Nrd_buck_kN": 1916.5,
+      "util_buck": 0.172,
+      "slender": false,
+      "pass": true
+    },
+    {
+      "id": "C_CASA_SCARA",
+      "section": "30×40",
+      "l0_m": 2.61,
+      "lambda": 34.8,
+      "Ncr_kN": 30328.5,
+      "N_Ed_kN": 153,
+      "Nrd0_kN": 2000,
+      "phi": 0.958,
+      "Nrd_buck_kN": 1916.5,
+      "util_buck": 0.08,
+      "slender": false,
+      "pass": true
+    },
+    {
+      "id": "C_S_INTRARE_W",
+      "section": "40×30",
+      "l0_m": 2.61,
+      "lambda": 34.8,
+      "Ncr_kN": 30328.5,
+      "N_Ed_kN": 125.4,
+      "Nrd0_kN": 2000,
+      "phi": 0.958,
+      "Nrd_buck_kN": 1916.5,
+      "util_buck": 0.065,
+      "slender": false,
+      "pass": true
+    },
+    {
+      "id": "C_S_INTRARE_E",
+      "section": "30×30",
+      "l0_m": 2.61,
+      "lambda": 30.1,
+      "Ncr_kN": 30328.5,
+      "N_Ed_kN": 165.8,
+      "Nrd0_kN": 1500,
+      "phi": 0.971,
+      "Nrd_buck_kN": 1456,
+      "util_buck": 0.114,
+      "slender": false,
+      "pass": true
+    }
+  ],
+  "notes_estimate": {
+    "vant": 5,
+    "ancorare_pv": 5,
+    "flambaj_stalpi": 5,
+    "ec5_capriori": 5,
+    "cr0_combo": 5,
+    "zapada": 6,
+    "geometrie": 8,
+    "clear255": 9,
+    "placa": 6,
+    "grinzi": 6,
+    "fem": 1,
+    "geo131": 1,
+    "confinare": 1,
+    "armare": 1
+  }
+}

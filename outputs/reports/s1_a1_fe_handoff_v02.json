@@ -1,0 +1,573 @@
+{
+  "meta": {
+    "id": "s1_a1_fe_handoff_v02",
+    "generated": "2026-10-18T20:35:04.277Z",
+    "project": "Dragalina 131",
+    "status": "input_for_FE_not_signed"
+  },
+  "locks": [
+    "A1.180_clear255",
+    "D3_30deg_PV_D3a",
+    "NO_LAMELE",
+    "P100_min30",
+    "ARH_frozen"
+  ],
+  "loads": {
+    "site": {
+      "locality": "Turda",
+      "parcel": "Dragalina 131"
+    },
+    "concrete": "C25/30",
+    "steel": "B500B",
+    "floor_q_Ed_kNm2": 11.78,
+    "landing_q_Ed_kNm2": 11.93,
+    "roof": {
+      "type": "D3a_light_timber_two_pitch",
+      "pitch_deg": 30,
+      "rise_cm": 248.6,
+      "Gk_kNm2": 0.9,
+      "sk_kNm2": 1.5,
+      "sk_note": "ipoteză Turda CR1-1-3 — confirmă hartă NA",
+      "Qk_snow_kNm2": 1.2,
+      "q_Ed_design_kNm2": 3.36,
+      "vb0_ms": 27,
+      "qp_kNm2": 0.958,
+      "we_eaves_kNm2": -1.629,
+      "pv": true,
+      "both_pitches": true
+    },
+    "seismic": {
+      "ag": 0.1,
+      "S": 1.2,
+      "q_duct": 3,
+      "Sd": 0.1,
+      "Vb_kN": 75.9,
+      "note": "IPOTEZĂ — nu zonare oficială pe 131; FE trebuie pe ag/S din P100 pe amplasament"
+    },
+    "foundation_sigma_study_kPa": 200,
+    "foundation_note": "studiu — NU Rc din geo_131"
+  },
+  "levels_cm": {
+    "clear_min_cm": 255,
+    "clear_under_beam_cm": 255,
+    "clear_under_slab_cm": 280,
+    "clear_to_false_ceiling_cm": 274,
+    "false_ceiling_cm": 6,
+    "slab_th_hypothesis": 15,
+    "beam_h_total_including_slab_zone": 40,
+    "beam_h_typical_cm": 35,
+    "beam_definition": "40 cm total pe grinzi critice (incl. placă 15); tipic 35; clear≥255 sub grindă",
+    "drop_below_soffit_cm": 25,
+    "floor_buildup_below_ff": 12,
+    "ff_parter": 48,
+    "ff_etaj": 355,
+    "ff_to_ff_cm": 307,
+    "beam_soffit_over_parter": 303,
+    "slab_soffit_etaj": 328,
+    "slab_top_etaj": 343,
+    "basement_ff_cm": -250,
+    "basement_soffit_cm": -30,
+    "basement_beam_h_cm": 40,
+    "note": "A1.180: clear≥255 HARD. FF→FF=307. Placă 15. Grindă crit. 40."
+  },
+  "columns": [
+    {
+      "id": "C_NW",
+      "x": 10,
+      "y": 10,
+      "dx": 30,
+      "dy": 30,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 140,
+      "role": null
+    },
+    {
+      "id": "C_N_MID",
+      "x": 312.4,
+      "y": 10,
+      "dx": 40,
+      "dy": 30,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 170,
+      "role": null
+    },
+    {
+      "id": "C_NE",
+      "x": 638.8,
+      "y": 10,
+      "dx": 30,
+      "dy": 30,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 140,
+      "role": null
+    },
+    {
+      "id": "C_W_MID",
+      "x": 10,
+      "y": 410,
+      "dx": 30,
+      "dy": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 150,
+      "role": null
+    },
+    {
+      "id": "C_W_DORM",
+      "x": 10,
+      "y": 645.2,
+      "dx": 30,
+      "dy": 30,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 110,
+      "role": null
+    },
+    {
+      "id": "C_S_DORM_E",
+      "x": 322.4,
+      "y": 645.2,
+      "dx": 30,
+      "dy": 30,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 80,
+      "role": null
+    },
+    {
+      "id": "C_E_PAL",
+      "x": 638.8,
+      "y": 410,
+      "dx": 30,
+      "dy": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 195,
+      "role": null
+    },
+    {
+      "id": "C_CASA_SCARA",
+      "x": 524.3,
+      "y": 550,
+      "dx": 30,
+      "dy": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 95,
+      "role": null
+    },
+    {
+      "id": "C_S_INTRARE_W",
+      "x": 312.5,
+      "y": 818.8,
+      "dx": 40,
+      "dy": 30,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 85,
+      "role": null
+    },
+    {
+      "id": "C_S_INTRARE_E",
+      "x": 524.3,
+      "y": 818.8,
+      "dx": 30,
+      "dy": 30,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 95,
+      "role": null
+    },
+    {
+      "id": "C_SHAFT_E_PIER",
+      "x": 638.8,
+      "y": 580.7,
+      "dx": 30,
+      "dy": 30,
+      "levels": [
+        "S"
+      ],
+      "pad_cm": 80,
+      "role": "pier_inverted_beam"
+    }
+  ],
+  "beams": [
+    {
+      "id": "B_N",
+      "x": 10,
+      "y": 10,
+      "dx": 342.4,
+      "dy": 30,
+      "h_cm": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_NW",
+        "C_N_MID"
+      ]
+    },
+    {
+      "id": "B_N_TO_NE",
+      "x": 312.4,
+      "y": 10,
+      "dx": 356.4,
+      "dy": 30,
+      "h_cm": 40,
+      "levels": [
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_N_MID",
+        "C_NE"
+      ]
+    },
+    {
+      "id": "B_W",
+      "x": 10,
+      "y": 10,
+      "dx": 30,
+      "dy": 665.2,
+      "h_cm": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_NW",
+        "C_W_MID",
+        "C_W_DORM"
+      ]
+    },
+    {
+      "id": "B_X_MID",
+      "x": 312.4,
+      "y": 10,
+      "dx": 40,
+      "dy": 838.8,
+      "h_cm": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_N_MID",
+        "C_S_DORM_E",
+        "C_S_INTRARE_W"
+      ]
+    },
+    {
+      "id": "B_CASA_SCARA",
+      "x": 524.3,
+      "y": 550,
+      "dx": 30,
+      "dy": 298.79999999999995,
+      "h_cm": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_CASA_SCARA",
+        "C_S_INTRARE_E"
+      ]
+    },
+    {
+      "id": "B_Y645",
+      "x": 10,
+      "y": 645.2,
+      "dx": 342.4,
+      "dy": 30,
+      "h_cm": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_W_DORM",
+        "C_S_DORM_E"
+      ]
+    },
+    {
+      "id": "B_Y820",
+      "x": 312.5,
+      "y": 818.8,
+      "dx": 241.79999999999995,
+      "dy": 30,
+      "h_cm": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_S_INTRARE_W",
+        "C_S_INTRARE_E"
+      ]
+    },
+    {
+      "id": "B_Y410",
+      "x": 10,
+      "y": 410,
+      "dx": 658.8,
+      "dy": 40,
+      "h_cm": 40,
+      "levels": [
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_W_MID",
+        "C_E_PAL"
+      ]
+    },
+    {
+      "id": "B_E",
+      "x": 638.8,
+      "y": 10,
+      "dx": 30,
+      "dy": 440,
+      "h_cm": 40,
+      "levels": [
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_NE",
+        "C_E_PAL"
+      ]
+    },
+    {
+      "id": "B_E_S",
+      "x": 638.8,
+      "y": 450,
+      "dx": 30,
+      "dy": 398.79999999999995,
+      "h_cm": 40,
+      "levels": [
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_E_PAL",
+        "C_S_INTRARE_E"
+      ]
+    },
+    {
+      "id": "B_S_SE",
+      "x": 554.3,
+      "y": 818.8,
+      "dx": 114.5,
+      "dy": 30,
+      "h_cm": 40,
+      "levels": [
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_S_INTRARE_E",
+        "C_E_PAL"
+      ]
+    },
+    {
+      "id": "B_Y_EDGE_INVERTED",
+      "x": 566.9,
+      "y": 580.7,
+      "dx": 101.9,
+      "dy": 25,
+      "h_cm": 40,
+      "levels": [
+        "S_inverted"
+      ],
+      "supports": [
+        "C_CASA_SCARA",
+        "C_SHAFT_E_PIER"
+      ]
+    }
+  ],
+  "pass_ledger": [
+    {
+      "id": "clear_255",
+      "status": "PASS_LOCK",
+      "detail": "clear sub grindă 255 · FF→FF 307"
+    },
+    {
+      "id": "NO_LAMELE",
+      "status": "CHECK",
+      "detail": "B_E_S / B_S_SE fără C_E_LAMELE"
+    },
+    {
+      "id": "slab_15_with_BX_MID",
+      "status": "FAIL",
+      "detail": "placă 15 cm doar cu B_X_MID"
+    },
+    {
+      "id": "beams_h40",
+      "status": "CHECK",
+      "detail": "{\"B_N\":40,\"B_N_TO_NE\":40,\"B_W\":40,\"B_X_MID\":40,\"B_CASA_SCARA\":40,\"B_Y645\":40,\"B_Y820\":40,\"B_Y410\":40,\"B_E\":40,\"B_E_S\":40,\"B_S_SE\":40}"
+    },
+    {
+      "id": "columns_P100_geom",
+      "status": "CHECK",
+      "detail": "≥30 + util N+M ordin"
+    },
+    {
+      "id": "buckling_EC2_ordin",
+      "status": "PASS_ORDIN",
+      "detail": "λ/φ pe P/E — vezi s1_a1_wind_buckling_ec5_v01"
+    },
+    {
+      "id": "roof_snow_pv_wind_ordin",
+      "status": "PASS_ORDIN",
+      "detail": "q_Ed=3.36 · we streșină=-1.629"
+    },
+    {
+      "id": "rafter_EC5_SLS",
+      "status": "PASS_ORDIN",
+      "detail": "12×25 @1,2 m + δ L/300"
+    },
+    {
+      "id": "seismic_columns_share",
+      "status": "PASS_ORDIN",
+      "detail": "Vb=75.9 kN repartizat ∝ I"
+    },
+    {
+      "id": "punching_ordin",
+      "status": "PASS_ORDIN",
+      "detail": "vEd ≤ vRdc ordin pe stâlpi P/E"
+    },
+    {
+      "id": "ring_E_closed",
+      "status": "PASS_GEO",
+      "detail": "B_E_S + B_S_SE — fără gap SE (spre deosebire de FRAME vechi)"
+    },
+    {
+      "id": "gable_posts_on_beams",
+      "status": "PASS_GEO",
+      "detail": "stâlpișori W/E pe B_W / B_E"
+    },
+    {
+      "id": "foundations_pads_vs_200",
+      "status": "CHECK",
+      "detail": "pads adoptate vs 200 kPa — înlocuiește cu Rc geo"
+    }
+  ],
+  "checklist": [
+    {
+      "pri": 1,
+      "item": "Confirmă ag, TC, S pe 131 (P100) — înlocuiește ipoteza ag=0,10g",
+      "done_in_repo": false
+    },
+    {
+      "pri": 1,
+      "item": "Confirmă sk și vb,0 pe hărți CR1-1-3 / CR1-1-4 NA",
+      "done_in_repo": false
+    },
+    {
+      "pri": 1,
+      "item": "Model 3D cadre pe structure_a1_study_cm (NU frame V47)",
+      "done_in_repo": false
+    },
+    {
+      "pri": 1,
+      "item": "Combinații CR0 complete (G, Q snow, Q wind, E seism) pe bare",
+      "done_in_repo": false
+    },
+    {
+      "pri": 2,
+      "item": "Stâlpi: N+M+V + flambaj + P100 confinare zone critice",
+      "done_in_repo": "parcial_ordin"
+    },
+    {
+      "pri": 2,
+      "item": "Nod C_E_PAL / consolă B_E + B_Y410 (torsiune, ancorare)",
+      "done_in_repo": "parcial_ordin"
+    },
+    {
+      "pri": 2,
+      "item": "Placă 15 + B_X_MID: FE 2D/3D L/d, fisurare, armare",
+      "done_in_repo": "parcial_ordin"
+    },
+    {
+      "pri": 2,
+      "item": "Grinzi perimetrale + B_E_S / B_S_SE (NO_LAMELE) — continuu",
+      "done_in_repo": "parcial_ordin"
+    },
+    {
+      "pri": 2,
+      "item": "Grindă întoarsă + pier C_SHAFT_E_PIER",
+      "done_in_repo": "parcial_ordin"
+    },
+    {
+      "pri": 2,
+      "item": "Retenție BA: împingere + apă + seism pe zid; armare",
+      "done_in_repo": "parcial_ordin"
+    },
+    {
+      "pri": 2,
+      "item": "Fundații pe Rc din geo_131 (înlocuiește 200 kPa)",
+      "done_in_repo": false
+    },
+    {
+      "pri": 3,
+      "item": "Șarpantă D3a 30°+PV: căpriori, coamă, solbanc, ancorare we streșină",
+      "done_in_repo": "parcial_ordin"
+    },
+    {
+      "pri": 3,
+      "item": "Diafragmă placă / transmitere forțe orizontale la centuri",
+      "done_in_repo": false
+    },
+    {
+      "pri": 3,
+      "item": "Planșe armare + detalii noduri + confinare — DT",
+      "done_in_repo": false
+    }
+  ],
+  "reports": [
+    "s1_a1_calc_100_v01",
+    "s1_a1_wind_buckling_ec5_v01",
+    "s1_a1_max_inrepo_v01",
+    "s1_a1_clear255_levels_v01"
+  ]
+}

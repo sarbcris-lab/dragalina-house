@@ -1,0 +1,330 @@
+{
+  "meta": {
+    "id": "s1_a1_calc_2_1_columns_v01",
+    "generated": "2026-10-18T19:19:45.640Z",
+    "status": "ordin_nu_proiect",
+    "source": "structure_a1_study_cm"
+  },
+  "hypotheses": {
+    "Q_ED_FLOOR": 11.78,
+    "Q_ED_ROOF_LIGHT": 4.5,
+    "concrete": "C25/30",
+    "alpha": 0.8
+  },
+  "columns": [
+    {
+      "id": "C_NW",
+      "section": "30×30",
+      "min_side": 30,
+      "p100_ok": true,
+      "trib_m2": 12.45,
+      "N_kN": 369.6,
+      "Nrd_kN": 1200,
+      "util_Nrd": 0.308,
+      "flag": "OK_light_axial"
+    },
+    {
+      "id": "C_N_MID",
+      "section": "40×30",
+      "min_side": 30,
+      "p100_ok": true,
+      "trib_m2": 19.53,
+      "N_kN": 575,
+      "Nrd_kN": 1600,
+      "util_Nrd": 0.359,
+      "flag": "OK_ordin_axial"
+    },
+    {
+      "id": "C_NE",
+      "section": "30×30",
+      "min_side": 30,
+      "p100_ok": true,
+      "trib_m2": 13.02,
+      "N_kN": 385.6,
+      "Nrd_kN": 1200,
+      "util_Nrd": 0.321,
+      "flag": "OK_light_axial"
+    },
+    {
+      "id": "C_W_MID",
+      "section": "30×40",
+      "min_side": 30,
+      "p100_ok": true,
+      "trib_m2": 14.47,
+      "N_kN": 433,
+      "Nrd_kN": 1600,
+      "util_Nrd": 0.271,
+      "flag": "OK_light_axial"
+    },
+    {
+      "id": "C_W_DORM",
+      "section": "30×30",
+      "min_side": 30,
+      "p100_ok": true,
+      "trib_m2": 7.19,
+      "N_kN": 222,
+      "Nrd_kN": 1200,
+      "util_Nrd": 0.185,
+      "flag": "OK_light_axial"
+    },
+    {
+      "id": "C_S_DORM_E",
+      "section": "30×30",
+      "min_side": 30,
+      "p100_ok": true,
+      "trib_m2": 5.42,
+      "N_kN": 172.3,
+      "Nrd_kN": 1200,
+      "util_Nrd": 0.144,
+      "flag": "OK_light_axial"
+    },
+    {
+      "id": "C_E_PAL",
+      "section": "30×40",
+      "min_side": 30,
+      "p100_ok": true,
+      "trib_m2": 10.42,
+      "N_kN": 319.4,
+      "Nrd_kN": 1600,
+      "util_Nrd": 0.2,
+      "flag": "OK_light_axial"
+    },
+    {
+      "id": "C_CASA_SCARA",
+      "section": "30×40",
+      "min_side": 30,
+      "p100_ok": true,
+      "trib_m2": 4.22,
+      "N_kN": 145.4,
+      "Nrd_kN": 1600,
+      "util_Nrd": 0.091,
+      "flag": "OK_light_axial"
+    },
+    {
+      "id": "C_S_INTRARE_W",
+      "section": "40×30",
+      "min_side": 30,
+      "p100_ok": true,
+      "trib_m2": 3.59,
+      "N_kN": 127.7,
+      "Nrd_kN": 1600,
+      "util_Nrd": 0.08,
+      "flag": "OK_light_axial"
+    },
+    {
+      "id": "C_S_INTRARE_E",
+      "section": "30×30",
+      "min_side": 30,
+      "p100_ok": true,
+      "trib_m2": 5.46,
+      "N_kN": 173.5,
+      "Nrd_kN": 1200,
+      "util_Nrd": 0.145,
+      "flag": "OK_light_axial"
+    }
+  ],
+  "beams": [
+    {
+      "id": "B_N",
+      "b_cm": 30,
+      "L_max_cm": 272.4,
+      "levels": "S+P+E",
+      "supports": "C_NW, C_N_MID",
+      "note": "centură N pe cutie (C_NW–C_N_MID)",
+      "spans": [
+        {
+          "from": "C_NW",
+          "to": "C_N_MID",
+          "clear_cm": 272.4
+        }
+      ]
+    },
+    {
+      "id": "B_N_TO_NE",
+      "b_cm": 30,
+      "L_max_cm": 286.4,
+      "levels": "P+E",
+      "supports": "C_N_MID, C_NE",
+      "note": "centură N est → C_NE (banda scară / fațadă E)",
+      "spans": [
+        {
+          "from": "C_N_MID",
+          "to": "C_NE",
+          "clear_cm": 286.4
+        }
+      ]
+    },
+    {
+      "id": "B_W",
+      "b_cm": 30,
+      "L_max_cm": 370,
+      "levels": "S+P+E",
+      "supports": "C_NW, C_W_MID, C_W_DORM",
+      "note": "centură V pe cutie",
+      "spans": [
+        {
+          "from": "C_NW",
+          "to": "C_W_MID",
+          "clear_cm": 370
+        },
+        {
+          "from": "C_W_MID",
+          "to": "C_W_DORM",
+          "clear_cm": 195.2
+        }
+      ]
+    },
+    {
+      "id": "B_X_MID",
+      "b_cm": 40,
+      "L_max_cm": 605.2,
+      "levels": "S+P+E",
+      "supports": "C_N_MID, C_S_DORM_E, C_S_INTRARE_W",
+      "note": "axă mid N–S (C_N_MID–C_S_DORM_E–C_S_INTRARE_W) · h=40 din calc SLS",
+      "spans": [
+        {
+          "from": "C_N_MID",
+          "to": "C_S_DORM_E",
+          "clear_cm": 605.2
+        },
+        {
+          "from": "C_S_DORM_E",
+          "to": "C_S_INTRARE_W",
+          "clear_cm": 143.6
+        }
+      ]
+    },
+    {
+      "id": "B_CASA_SCARA",
+      "b_cm": 30,
+      "L_max_cm": 228.8,
+      "levels": "S+P+E",
+      "supports": "C_CASA_SCARA, C_S_INTRARE_E",
+      "note": "separator est cutie (= A6) C_CASA_SCARA→intrare E",
+      "spans": [
+        {
+          "from": "C_CASA_SCARA",
+          "to": "C_S_INTRARE_E",
+          "clear_cm": 228.8
+        }
+      ]
+    },
+    {
+      "id": "B_Y645",
+      "b_cm": 30,
+      "L_max_cm": 282.4,
+      "levels": "S+P+E",
+      "supports": "C_W_DORM, C_S_DORM_E",
+      "note": "sud dorm pe cutie",
+      "spans": [
+        {
+          "from": "C_W_DORM",
+          "to": "C_S_DORM_E",
+          "clear_cm": 282.4
+        }
+      ]
+    },
+    {
+      "id": "B_Y820",
+      "b_cm": 30,
+      "L_max_cm": 171.8,
+      "levels": "S+P+E",
+      "supports": "C_S_INTRARE_W, C_S_INTRARE_E",
+      "note": "sud intrare pe cutie (Y≈820)",
+      "spans": [
+        {
+          "from": "C_S_INTRARE_W",
+          "to": "C_S_INTRARE_E",
+          "clear_cm": 171.8
+        }
+      ]
+    },
+    {
+      "id": "B_Y410",
+      "b_cm": 40,
+      "L_max_cm": 598.8,
+      "levels": "P+E",
+      "supports": "C_W_MID, C_E_PAL",
+      "note": "legătură mid W→E_PAL (peste cutie + scară) · h=40 din calc SLS",
+      "spans": [
+        {
+          "from": "C_W_MID",
+          "to": "C_E_PAL",
+          "clear_cm": 598.8
+        }
+      ]
+    },
+    {
+      "id": "B_E",
+      "b_cm": 30,
+      "L_max_cm": 370,
+      "levels": "P+E",
+      "supports": "C_NE, C_E_PAL",
+      "note": "centură E fațadă (C_NE–C_E_PAL)",
+      "spans": [
+        {
+          "from": "C_NE",
+          "to": "C_E_PAL",
+          "clear_cm": 370
+        }
+      ]
+    },
+    {
+      "id": "B_E_S",
+      "b_cm": 30,
+      "L_max_cm": 368.8,
+      "levels": "P+E",
+      "supports": "C_E_PAL, C_S_INTRARE_E",
+      "note": "centură E sud scară — reazeme C_E_PAL + nod SE cu B_S_SE (fără C_E_LAMELE)",
+      "spans": [
+        {
+          "from": "C_E_PAL",
+          "to": "C_S_INTRARE_E",
+          "clear_cm": 368.8
+        }
+      ]
+    },
+    {
+      "id": "B_S_SE",
+      "b_cm": 30,
+      "L_max_cm": 84.5,
+      "levels": "P+E",
+      "supports": "C_S_INTRARE_E, C_E_PAL",
+      "note": "închidere SE pe C_S_INTRARE_E↔C_E_PAL — C_E_LAMELE = doar ARH/fațadă",
+      "spans": [
+        {
+          "from": "C_S_INTRARE_E",
+          "to": "C_E_PAL",
+          "clear_cm": 84.5
+        }
+      ]
+    },
+    {
+      "id": "B_Y_EDGE_INVERTED",
+      "b_cm": 25,
+      "L_max_cm": 84.5,
+      "levels": "S_inverted",
+      "supports": "C_CASA_SCARA, C_SHAFT_E_PIER",
+      "note": "Grindă întoarsă pe puț (ușă→pier E); formă studiu — FE local + clear scară",
+      "spans": [
+        {
+          "from": "C_CASA_SCARA",
+          "to": "C_SHAFT_E_PIER",
+          "clear_cm": 84.5
+        }
+      ]
+    }
+  ],
+  "conflicts": [
+    {
+      "id": "riser_beci",
+      "type": "calcul_lipsă",
+      "detail": "DESCHIS — 17,22 > 16 (brief A0)"
+    },
+    {
+      "id": "pier_clear",
+      "type": "avertisment",
+      "detail": "clear@pier 95.7 < țintă 100"
+    }
+  ]
+}

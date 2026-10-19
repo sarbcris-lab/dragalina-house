@@ -14,8 +14,21 @@ const EW = 680;
 const NS = 860;
 const SRC_EW = 682.6;
 const SRC_NS = 861.3;
-/** Grosimi finite catalog (cm). */
-const TH = { A1: 30.0, A2: 31.2, A4: 30.0, A5: 30.0, A6: 30.0, A7: 12.5, A8: 15.0 };
+/** Grosimi finite catalog (cm). A1.131: N+V = A1 30; S+E = A2 31,2; baie pe N/V = A3_N 31,1. */
+const TH = {
+  A1: 30.0,
+  A2: 31.2,
+  A3_N: 31.1,
+  A3_K: 32.4,
+  A4: 30.0,
+  A5: 30.0,
+  A6: 30.0,
+  A7: 12.5,
+  A8: 15.0,
+};
+const assembliesCat = JSON.parse(
+  fs.readFileSync(path.join(root, "data/building/assemblies_v01.json"), "utf8")
+);
 /**
  * Corp = lungimi FINITE 680×860.
  * Pereți pe finit (grosime catalog A1/A2).
@@ -40,16 +53,18 @@ const GEAM_H_CM = 150;
 const GEAM_SILL_CM = 90;
 
 /**
- * Pe plan A3 doar 3 materiale vizibile:
- * — beton (stâlpi)
- * — EB20 Akustik (umplutură între stâlpi)
- * — izolație (bandă continuă pe exterior = inset până la extrema EB20)
- * Restul (tencuială, klinker, adeziv, GKB…) nu se desenează — nu se văd la scara planului.
+ * Straturi pe plan (A1.131): pe S+E (A2) — toate din catalog;
+ * pe N+V (A1/A3_N) — tencuială (fără klinker). Beton = stâlpi.
  */
 const LAYER_STYLE = {
   brick: { fill: "#c49a6c", stroke: "#6b4e32", pattern: "patBrick" },
   insulation: { fill: "#e8d56a", stroke: "#8a7a20", pattern: "patInsul" },
   concrete: { fill: "#6e6e6e", stroke: "#222", pattern: "patConcrete" },
+  finish_klinker: { fill: "#a65d3a", stroke: "#5c2e18" },
+  finish_plaster: { fill: "#e8e0d4", stroke: "#9a9080" },
+  adhesive: { fill: "#b0a090", stroke: "#706050" },
+  tile: { fill: "#d2e4ea", stroke: "#6a8a96" },
+  int_plaster: { fill: "#f2efe8", stroke: "#aaa" },
   /** Parapet A5 — doar miez, fără hașură cărămidă */
   parapet: { fill: "#7a7a7a", stroke: "#1a1a1a" },
   intWall: { fill: "#ddd6c8", stroke: "#888" },
@@ -57,9 +72,41 @@ const LAYER_STYLE = {
 };
 
 function insetToBrickCm(cat) {
-  if (cat === "A1") return INSET_TO_BRICK_A1;
-  if (cat === "A6") return +(TH.A6 - BRICK_ON_EXTREME_CM).toFixed(1);
-  return INSET_TO_BRICK_A2; // A2 + default
+  if (cat === "A1" || cat === "A3_N" || cat === "A6") return INSET_TO_BRICK_A1;
+  if (cat === "A2" || cat === "A3_K") return INSET_TO_BRICK_A2;
+  return INSET_TO_BRICK_A2;
+}
+
+/** Strat → stil plan (id din assemblies_v01). */
+function layerStyleId(layerId) {
+  const id = String(layerId || "");
+  if (/klinker|placaj/.test(id)) return "finish_klinker";
+  if (/faian/.test(id)) return "tile";
+  if (/vata|isover|fassade/.test(id)) return "insulation";
+  if (/caramida|eb20/.test(id)) return "brick";
+  if (/perete_ba|placa_ba|miez_gard|beton/.test(id)) return "concrete";
+  if (/hidro/.test(id)) return "adhesive";
+  if (/drenaj/.test(id)) return "insulation";
+  if (/tencuiala_beci/.test(id)) return "int_plaster";
+  if (/adeziv/.test(id)) return "adhesive";
+  if (/grund|decorativ|strat_armat/.test(id)) return "finish_plaster";
+  if (/tencuiala_int|finisare_vopsea/.test(id)) return "int_plaster";
+  if (/tencuiala/.test(id)) return "finish_plaster";
+  return "fallback";
+}
+
+/** Layere cm, de la fața exterioară spre interior. */
+function assemblyLayersExtToInt(cat) {
+  const a = assembliesCat.by_id?.[cat];
+  if (!a?.layers_interior_to_exterior_mm?.length) return null;
+  return [...a.layers_interior_to_exterior_mm]
+    .reverse()
+    .map((l) => ({
+      id: l.id,
+      name: l.name,
+      th_cm: +(l.th_mm / 10).toFixed(2),
+      style: layerStyleId(l.id),
+    }));
 }
 
 /**
@@ -78,8 +125,8 @@ function wallOutward(w) {
   if (id === "nisa_dulap_spate" || id === "dorm_baie_nord") return "S"; // baie la N
   if (id === "nisa_dulap_est") return "W"; // baie la E (baie_se)
 
-  if (id === "nord") return "N";
-  if (id === "vest") return "W";
+  if (id === "nord" || id === "nord_baie") return "N";
+  if (id === "vest" || id === "vest_baie") return "W";
   if (id === "est_living" || id === "est_recuperat_p" || id === "buc_est" || id === "buc_est_etaj")
     return "E";
   // terasa_est: încălzit (hol) la EST, terasă rece la VEST → izolație spre terasă
@@ -170,7 +217,22 @@ function snapExtWalls(walls) {
   });
 }
 
-let walls = snapExtWalls((src.walls_cm || []).map(cleanWall));
+/** A1.131: vest = A1 tencuială 30 (fără klinker); S+E rămân A2. */
+let walls = snapExtWalls(
+  (src.walls_cm || [])
+    .map(cleanWall)
+    .map((w) => {
+      if (w.id !== "vest") return w;
+      return {
+        ...w,
+        catalog_id: "A1",
+        assembly: "A1",
+        thickness_finished_mm: 299,
+        thickness_cm: TH.A1,
+        note: "A1.131: vest A1 tencuială 30 cm — fără klinker (doar N+V tencuială; S+E klinker)",
+      };
+    })
+);
 
 /**
  * Nord palier etaj (față N zid A6).
@@ -230,7 +292,7 @@ const HOL_NISA_W = 60;
 const HOL_NISA_H = 60; // MS clear N–S (schiță ~62)
 const BAIE_FLANC_UTIL_D = 35; // A1.109: prosoape 45×35 (+5 sud nișă MS)
 /** Est hol = după coloană 120 + A8 + nișă MS 60. */
-const X_DUPA_NISA = +(TH.A2 + NISA_UTIL_W + TH.A8 + HOL_NISA_W).toFixed(1); // 226,2
+const X_DUPA_NISA = +(TH.A1 + NISA_UTIL_W + TH.A8 + HOL_NISA_W).toFixed(1); // 225,0 (vest A1)
 /** Duș scos 15 N; sud = zid A8 baie↔dorm; dulap sub zid. */
 const Y_DUS_0 = +(Y_BAIE_SUD_ZID - DUS_N_SHIFT).toFixed(1); // 129
 const Y_DUS_1 = +(Y_DUS_0 + DUS_D).toFixed(1); // 219
@@ -275,7 +337,7 @@ const Y_NISA_CLEAR_S = DORM_N;
 const Y_SEP_DUS_DULAP = Y_BAIE_DORM_SEP;
 /** Glisante dressing pe gura nișei spre dorm — 180 / 3 foi. */
 const NISA_GLIS_W = 180; // 120 dulap + 60 bandă est
-const NISA_GLIS_X0 = TH.A2; // 31,2 (= TH_W)
+const NISA_GLIS_X0 = TH.A1; // 30 (= TH_W, vest A1)
 const NISA_GLIS_X1 = +(NISA_GLIS_X0 + NISA_GLIS_W).toFixed(1); // 211,2
 const NISA_GLIS_LEAVES = 3;
 const NISA_GLIS_LEAF = +(NISA_GLIS_W / NISA_GLIS_LEAVES).toFixed(1); // 60
@@ -353,7 +415,7 @@ walls = walls.map((w) => {
     const { removed, status, reason, ...rest } = w;
     return {
       ...rest,
-      x: TH.A2,
+      x: TH.A1,
       y: Y_BAIE_DORM_SEP,
       dx: NISA_GLIS_W, // 180
       dy: TH.A8,
@@ -509,7 +571,7 @@ function placeColumn(c) {
 
   // Extremă stâlp/cărămidă = retrasă de pe finit cu banda din afara EB20.
   // Pereții rămân pe x=0 / EW / NS; stâlpii NU se aliniază cu fața finită.
-  if (onW) x = INSET_TO_BRICK_A2;
+  if (onW) x = INSET_TO_BRICK_A1; // A1.131: vest = A1 (inset 10)
   if (onN && !onSEnv && !onSDorm) y = INSET_TO_BRICK_A1;
   if (onE) x = +(EW - INSET_TO_BRICK_A2 - dx).toFixed(1);
   if (onSEnv) y = +(NS - INSET_TO_BRICK_A2 - dy).toFixed(1);
@@ -569,7 +631,11 @@ function placeColumn(c) {
     section_cm: c.section_cm || `${dx}×${dy}`,
     protrusion_into_room_cm: protr_cm,
     brick_on_extreme_cm: BRICK_ON_EXTREME_CM,
-    inset_from_finished_cm: onN && !onSEnv && !onSDorm ? INSET_TO_BRICK_A1 : onW || onE || onSEnv || onSDorm ? INSET_TO_BRICK_A2 : 0,
+    inset_from_finished_cm: onW || (onN && !onSEnv && !onSDorm)
+      ? INSET_TO_BRICK_A1
+      : onE || onSEnv || onSDorm
+        ? INSET_TO_BRICK_A2
+        : 0,
     faces: { onN, onW, onE, onSEnv, onSDorm, onBucEst },
     status: "PROVIZORIU_A0_caramida_pe_extrema",
     note: "Finit 680×860; stâlp pe extrema cărămizii (retras de pe finit); +10 în cameră.",
@@ -678,8 +744,8 @@ let openings = (src.openings_cm || [])
       note: `etaj: gol ${gol}; N@mid Y${y0} · S@C_CASA_SCARA Y${y1}; stânga înăuntru`,
     };
   }
-  // A1.115: intrare P — gol 100; deschidere ÎN AFARĂ spre DREAPTA pe terasă
-  // (ieșire din hol privind V: dreapta=N → balama S; foaie → vest pe terasă)
+  // A1.136: intrare P — gol 100; deschidere ÎNĂUNTRU spre DREAPTA în hol
+  // (de pe terasă privind E: dreapta=S → balama S; foaie deschisă → est pe sud)
   if (o.id === "intrare_parter") {
     const te = walls.find((w) => w.id === "terasa_est");
     const wallX = te ? te.x : m.x;
@@ -687,8 +753,8 @@ let openings = (src.openings_cm || [])
     const gol = 100;
     const y0 = m.y;
     const leafW = 95;
-    const hingeX = wallX; // față ext. (vest) → terasă
-    const hingeY = +(y0 + gol).toFixed(1); // balama SUD
+    const hingeX = +(wallX + wallDx).toFixed(1); // față int. (est) → hol
+    const hingeY = +(y0 + gol).toFixed(1); // balama SUD = dreapta la intrare
     return {
       ...m,
       x: wallX,
@@ -702,21 +768,22 @@ let openings = (src.openings_cm || [])
         ...(m.leaf || {}),
         width_cm: leafW,
         thickness_cm: 4,
-        swing: "out_to_terrace_right",
+        swing: "into_hol_from_terrace_right",
         hinge: "south",
         hinge_x: hingeX,
         hinge_y: hingeY,
-        note: "A1.115: deschidere în afară dreapta pe terasă; balama S; foaie → vest",
+        closed_along: `în gol X${hingeX} Y${y0}→${hingeY}`,
+        note: "A1.136: deschidere înăuntru spre dreapta în hol; balama S; foaie → est",
         open_leaf: {
           x0: hingeX,
           y0: hingeY,
-          x1: +(hingeX - leafW).toFixed(1),
+          x1: +(hingeX + leafW).toFixed(1),
           y1: hingeY,
-          note: "90° pe terasă (vest), pe dreapta la ieșire",
+          note: "90° în hol (est); foaia pe dreapta (sud) la intrare",
         },
       },
       lands_in: "hol_p",
-      note: stripNoise(m.note) || "A1.115: terasă↔hol; gol 100; deschidere în afară dreapta",
+      note: stripNoise(m.note) || "A1.136: terasă↔hol; gol 100; deschidere înăuntru spre dreapta",
     };
   }
   // A1.72 / A1.111: baie→dorm batantă; deschidere în dormitor spre stânga (balama V)
@@ -781,7 +848,7 @@ let openings = (src.openings_cm || [])
       note: `A1.111: baie→dorm batantă gol ${gol}; balama E = stânga din baie`,
     };
   }
-  // A1.67 / A1.115: buc→terasă etaj — în afară dreapta pe terasă (balama S)
+  // A1.148: buc→terasă etaj — în afară spre stânga (balama S = stânga la ieșire privind V)
   if (o.id === "buc_terasa_etaj") {
     const te = walls.find((w) => w.id === "terasa_est");
     const wallX = te ? te.x : m.x;
@@ -790,7 +857,7 @@ let openings = (src.openings_cm || [])
     const y0 = m.y;
     const leafW = m.leaf?.width_cm || 85;
     const hingeX = wallX; // față vest (terasă)
-    const hingeY = +(y0 + gol).toFixed(1); // S = dreapta la ieșire (privind V)
+    const hingeY = +(y0 + gol).toFixed(1); // balama SUD = stânga la ieșire
     return {
       ...m,
       x: wallX,
@@ -802,7 +869,7 @@ let openings = (src.openings_cm || [])
         ...(m.leaf || {}),
         width_cm: leafW,
         thickness_cm: 4,
-        swing: "out_to_terrace_right",
+        swing: "out_to_terrace_left",
         hinge: "south",
         hinge_x: hingeX,
         hinge_y: hingeY,
@@ -812,9 +879,9 @@ let openings = (src.openings_cm || [])
           x1: +(hingeX - leafW).toFixed(1),
           y1: hingeY,
         },
-        note: "A1.115: buc→terasă în afară dreapta; balama S; foaie → vest",
+        note: "A1.148: afară stânga; balama S; foaie → vest pe terasă",
       },
-      note: `A1.115: buc→terasă pe terasa_est X${wallX}; gol ${gol}; afară dreapta`,
+      note: `A1.148: buc→terasă X${wallX}; gol ${gol}; afară stânga (balama S)`,
     };
   }
   return m;
@@ -949,7 +1016,7 @@ const parapets = (src.parapets_cm || [])
     let dx = m.dx;
     let dy = m.dy;
     const te = walls.find((w) => w.id === "terasa_est");
-    const xWest = INSET_TO_BRICK_A2; // 11,2 — față vest parapet
+    const xWest = INSET_TO_BRICK_A1; // 10 — față vest parapet (A1 tencuială)
     if (p.id === "terasa_parapet_sud_w") {
       const estSrc = (src.parapets_cm || []).find(
         (q) => q.id === "terasa_parapet_est_neacoperit"
@@ -1050,20 +1117,31 @@ const yPier1 = +(yPier0 + PIER_DY).toFixed(1);
 const podSrc0 = stSrc.podest_se ? mapRect(stSrc.podest_se) : null;
 const podSouthY = podSrc0 ? +(podSrc0.y + podSrc0.dy).toFixed(1) : +(yPier1 + 115).toFixed(1);
 
+/** A1.132: clear scară măsurat pe geometrie — nu declara 105 uniform. */
+const STAIR_A6_EAST_X = +(BUC_EST_X0 + TH.A6).toFixed(1); // ~564,3
+const STAIR_PIER_X = 660; // C_E_LAMELE față V (după push pier)
+const STAIR_CLEAR_AT_PIER_CM = +(STAIR_PIER_X - STAIR_A6_EAST_X).toFixed(1); // 95,7
+const STAIR_CLEAR_A6_TO_EST_CM = +(EW - INSET_TO_BRICK_A2 - STAIR_A6_EAST_X).toFixed(1); // ~103,1 pe finit EB20
+
 const stair = {
   riser_cm: STAIR_RISER_CM,
   risers_total_from_ff: STAIR_TOTAL_RISERS,
   risers_flight_180: STAIR_R1_RISERS,
   risers_flight_330: STAIR_R2_RISERS,
   tread_cm: STAIR_TREAD_CM,
-  width_clear_cm: stSrc.width_clear_cm ?? 105,
+  /** Nominal vechi — NU folosi ca clear peste tot. */
+  width_clear_declared_legacy_cm: stSrc.width_clear_cm ?? 105,
+  width_clear_cm: STAIR_CLEAR_A6_TO_EST_CM,
+  width_clear_at_pier_cm: STAIR_CLEAR_AT_PIER_CM,
+  width_clear_note:
+    "A1.132: clear A6→est finit ≈103,1; la C_E_LAMELE ≈95,7 — înainte de mână curentă/finisaje",
   parapet_thick_cm: stSrc.parapet_thick_cm ?? 10,
   band_x: stairBandX,
   band_dx: stairBandDx,
   podest_height_above_ff_cm: STAIR_PODEST_Z,
   palier_sup_height_above_ff_cm: STAIR_PALIER_Z,
   entry_connection: stSrc.entry_connection,
-  note: `A1.61: palier N până la mid (Y${palierY}) · clear ${Math.round(palierDy)} · R2 ${R2_GOING} · ${STAIR_TOTAL_RISERS}×${STAIR_RISER_CM}=${STAIR_PALIER_Z} FF↔FF`,
+  note: `A1.132: palier N@mid · clear scară ${STAIR_CLEAR_A6_TO_EST_CM}/${STAIR_CLEAR_AT_PIER_CM} (A6→est / la pier) · ${STAIR_TOTAL_RISERS}×${STAIR_RISER_CM}=${STAIR_PALIER_Z} FF↔FF`,
   flight_180: (() => {
     if (!stSrc.flight_180) return undefined;
     const raw = mapRect(stSrc.flight_180);
@@ -1193,6 +1271,11 @@ const stair = {
       parapet_gap: Array.isArray(gap)
         ? gap.map((v) => +(mx(v) - TERRACE_SHIFT_W_CM).toFixed(1))
         : gap,
+      /** A1.132: rost ~3 cm față de palier terasă — de tratat ca rost construit, nu gol lăsat. */
+      joint_to_terrace_landing_cm: 3,
+      joint_status: "ROST_DE_DEFINIT",
+      joint_note:
+        "A1.132: 3 cm între trepte acces și marginea palierului terasei = rost/racord de proiectat (nu leave unexplained)",
     };
   })(),
   palier_parter: stSrc.palier_parter
@@ -1235,9 +1318,12 @@ if (stair._pier_e_lamele) {
  */
 const X_STAIR = stair.band_x; // ~562.8
 const TH_N = TH.A1; // nord încălzit
-const TH_W = TH.A2; // vest klinker
+const TH_W = TH.A1; // vest tencuială A1.131
 const TH_E = TH.A2; // est klinker
 const TH_S = TH.A2; // sud klinker
+/** Baie pe fațadă N+V: A3_N (faianță) — +1,1 cm spre interior vs A1. */
+const TH_BAIE_N = TH.A3_N;
+const TH_BAIE_W = TH.A3_N;
 const XE = +(EW - TH_E).toFixed(1); // față int. est
 const Y_N = TH_N;
 const Y_DORM_S = 644; // față nord perete dormitor_sud
@@ -1252,9 +1338,77 @@ const DORM_FLOOR = "#e9e0d5";
 const BAIE_FLOOR = "#d4e6e9";
 const HOL_FLOOR = "#e8d5c4";
 const LIVING_FLOOR = "#e8efe4"; // living_p / living_e
-/** Duș 120×90 — vest; +15 N; sud = zid baie↔dorm (A1.91). */
+/**
+ * A1.131: baie pe N+V = A3_N (31,1). Segmente fațadă + cote interioare baie.
+ */
+{
+  const nord = walls.find((w) => w.id === "nord");
+  if (nord) {
+    walls = walls.filter((w) => w.id !== "nord");
+    walls.push({
+      id: "nord_baie",
+      x: 0,
+      y: 0,
+      dx: XI,
+      dy: TH.A3_N,
+      kind: "ext",
+      thermal: "heated_thermosystem",
+      catalog_id: "A3_N",
+      assembly: "A3_N",
+      thickness_cm: TH.A3_N,
+      thickness_finished_mm: 311,
+      levels: [0, 1],
+      note: "A1.131: baie pe nord — A3_N 31,1 cm (faianță; fără klinker)",
+    });
+    walls.push({
+      ...nord,
+      x: XI,
+      dx: +(EW - XI).toFixed(1),
+      dy: TH.A1,
+      thickness_cm: TH.A1,
+      thickness_finished_mm: nord.thickness_finished_mm || 299,
+      note: `${stripNoise(nord.note) || "nord"} · A1.131: X0–XI = nord_baie A3_N`,
+    });
+  }
+  const vest = walls.find((w) => w.id === "vest");
+  if (vest) {
+    walls = walls.filter((w) => w.id !== "vest");
+    const y0 = TH.A3_N;
+    const y1 = Y_BAIE_SUD_ZID;
+    walls.push({
+      id: "vest_baie",
+      x: 0,
+      y: y0,
+      dx: TH.A3_N,
+      dy: +(y1 - y0).toFixed(1),
+      kind: "ext",
+      thermal: "heated_thermosystem",
+      catalog_id: "A3_N",
+      assembly: "A3_N",
+      thickness_cm: TH.A3_N,
+      thickness_finished_mm: 311,
+      levels: [0, 1],
+      note: "A1.131: baie pe vest — A3_N 31,1 cm (faianță; fără klinker)",
+    });
+    walls.push({
+      ...vest,
+      id: "vest",
+      x: 0,
+      y: y1,
+      dx: TH.A1,
+      dy: +(vest.y + vest.dy - y1).toFixed(1),
+      catalog_id: "A1",
+      assembly: "A1",
+      thickness_cm: TH.A1,
+      thickness_finished_mm: 299,
+      note: "A1.131: vest A1 30 cm tencuială (dorm+) — fără klinker",
+    });
+  }
+}
+
+/** Duș 120×90 — după finisaj baie (față int. A3_N); +15 N; sud = zid baie↔dorm. */
 const DUS_ZONE = {
-  x: TH_W,
+  x: TH_BAIE_W,
   y: Y_DUS_0,
   dx: NISA_UTIL_W,
   dy: DUS_D,
@@ -1302,13 +1456,13 @@ const rooms = [
     id: "baie",
     label: "BAIE",
     levels: [0, 1],
-    x: TH_W,
-    y: Y_N,
-    dx: +(XI - TH_W - 12.5).toFixed(1),
+    x: TH_BAIE_W,
+    y: TH_BAIE_N,
+    dx: +(XI - TH_BAIE_W - 12.5).toFixed(1),
     // sud = față N zid baie_sud_gol (est) / gura nișei baie (vest)
-    dy: +(Y_BAIE_SUD_ZID - Y_N).toFixed(1),
+    dy: +(Y_BAIE_SUD_ZID - TH_BAIE_N).toFixed(1),
     floor: BAIE_FLOOR,
-    note: `A1.130: duș 120×${DUS_D}; MS lângă duș pe sud; WC/lavoar nord (P+E)`,
+    note: `A1.131: duș 120×${DUS_D} după A3_N; MS lângă duș; N+V fațadă A3_N 31,1`,
     includes: ["dus_zone", "baie_est_n_ms", "ms_baie"],
     parts: [
       {
@@ -1603,15 +1757,15 @@ const axes = {
  * WC NV (facing E, clear 65), blat N 30/40 + lavoar 60×40, duș 120×90 vest,
  * MS în baie lângă duș pe sud (P+E).
  */
-const BAIE_Y0 = Y_N;
-const BAIE_CLEAR_NS = +(Y_BAIE_SUD_ZID - BAIE_Y0).toFixed(1); // 114
+const BAIE_Y0 = TH_BAIE_N;
+const BAIE_CLEAR_NS = +(Y_BAIE_SUD_ZID - BAIE_Y0).toFixed(1);
 const WC_FRAME_D = 15;
 const WC_BOWL_D = 53; // proiectare de la cadru
 const WC_BOWL_W = 40;
 const WC_FRONT = 65;
 const WC_S_SHIFT = 10; // A1.95: WC +10 sud
 const BLAT_E_SHIFT = 15; // A1.95: blat+lavoar +15 est
-const WC_FRAME_X = TH_W;
+const WC_FRAME_X = TH_BAIE_W;
 const WC_FRAME_Y = +(BAIE_Y0 + 8 + WC_S_SHIFT).toFixed(1);
 const WC_FRAME_H = 60; // pe vest, lungime N–S a cadrului
 const WC_X = +(WC_FRAME_X + WC_FRAME_D).toFixed(1);
@@ -1622,7 +1776,7 @@ const BLAT_D40 = 40;
 const LAV_W = 60;
 const LAV_D = 40;
 /** Blat pe nord (~169), est de WC; +15 E (A1.95); lărgire 40 la lavoar. */
-const BLAT_X0 = +(TH_W + WC_FRAME_D + WC_BOWL_D + 5 + BLAT_E_SHIFT).toFixed(1); // ~119
+const BLAT_X0 = +(TH_BAIE_W + WC_FRAME_D + WC_BOWL_D + 5 + BLAT_E_SHIFT).toFixed(1);
 const BLAT_LEN = 169;
 const BLAT_X1 = +(BLAT_X0 + BLAT_LEN).toFixed(1);
 const LAV_X = +(BLAT_X0 + 55).toFixed(1); // pe banda lată
@@ -1725,8 +1879,9 @@ const furniture = [
     color: "#b8d4d8",
     label: `DUȘ 120×${String(DUS_D).replace(".", ",")}`,
     glass_east: true,
-    glass_east_dy: BAIE_EST_N_MS.dy, // sticlă pe banda N de MS
-    note: `A1.130: 120×${DUS_D}; est N = util+sticlă; est S = MS lipită`,
+    glass_east_dy: +(MS_BAIE.y - DUS_ZONE.y).toFixed(1), // sticlă N până la MS
+    glass_seal_to_ms: true,
+    note: `A1.132: 120×${DUS_D} după finisaj; sticlă est până la MS + etanșare dus|MS`,
   },
   {
     id: "masina_spalat",
@@ -1738,11 +1893,1023 @@ const furniture = [
     dy: MS_BAIE.dy,
     h: 85,
     color: "#9aa3a8",
-    facing: "east",
+    facing: "north",
     label: "MS",
-    note: "A1.130: MS în baie — lângă duș pe sud (P+E)",
+    note: "A1.132: MS în baie — față N (spre baie); lângă duș pe sud; etanș față de duș",
+  },
+  // ——— A1.134: mobilier din V47 (doar piese cu fit absolut pe rooms A1 înghețate) ———
+  // Dorm — noptiere (pat deja A1.73); tv_dorm / perdea / dulap → dezbatere
+  {
+    id: "noptiera_n",
+    levels: [0, 1],
+    zone: "dormitor",
+    x: 41.3,
+    y: 350,
+    dx: 40,
+    dy: 35,
+    h: 50,
+    color: "#b8a890",
+    label: "",
+    note: "A1.134: V47 noptieră N de pat",
+  },
+  {
+    id: "noptiera_s",
+    levels: [0, 1],
+    zone: "dormitor",
+    x: 41.3,
+    y: 553,
+    dx: 40,
+    dy: 35,
+    h: 50,
+    color: "#b8a890",
+    label: "",
+    note: "A1.134: V47 noptieră S de pat",
+  },
+  // Bucătărie P — front nord (fără blat_tail_p: OUT E2.5 → dezbatere)
+  // Bucătărie P — nord W→E: FR (lipit vest) + MSV + CHI + plită/cuptor + dulap/blat → est
+  // cameră X352.4–648.8; adâncime 60
+  {
+    id: "frigider_p",
+    levels: [0],
+    zone: "bucatarie_p",
+    x: 352.4,
+    y: 30,
+    dx: 60,
+    dy: 60,
+    h: 180,
+    color: "#a8b0b8",
+    label: "FR 60",
+    note: "A1.150: lipit perete vest",
+  },
+  {
+    id: "msv_p",
+    levels: [0],
+    zone: "bucatarie_p",
+    x: 412.4,
+    y: 30,
+    dx: 60,
+    dy: 60,
+    h: 85,
+    color: "#9aa3a8",
+    label: "MSV 60",
+    note: "A1.150: est de FR",
+  },
+  {
+    id: "chiuveta_p",
+    levels: [0],
+    zone: "bucatarie_p",
+    x: 472.4,
+    y: 30,
+    dx: 60,
+    dy: 60,
+    h: 90,
+    color: "#c8d0d4",
+    label: "CHI 60",
+    note: "A1.150: est de MSV",
+  },
+  {
+    id: "plita_p",
+    levels: [0],
+    zone: "bucatarie_p",
+    x: 532.4,
+    y: 30,
+    dx: 60,
+    dy: 60,
+    h: 90,
+    color: "#8a9098",
+    label: "PLITĂ+CUPTOR 60",
+    note: "A1.150: plită+cuptor pe același corp",
+  },
+  {
+    id: "dulap_blat_p",
+    levels: [0],
+    zone: "bucatarie_p",
+    x: 592.4,
+    y: 30,
+    dx: 56.4,
+    dy: 60,
+    h: 90,
+    color: "#d4c4a8",
+    label: "BLAT 56,4",
+    note: "A1.150: dulap/blat până la est (rest 56,4)",
+  },
+  // Living P — dining nord; canapea_p + tv_p OUT → dezbatere
+  // Dining P — tipar etaj; retras S față de front buc (Y90) → culoar lucru ~90 cm
+  {
+    id: "masa_dining_p",
+    levels: [0],
+    zone: "open_buc_living_p",
+    x: 450,
+    y: 215,
+    dx: 100,
+    dy: 100,
+    h: 75,
+    color: "#c4a882",
+    label: "MASĂ",
+    note: "A1.149: pe open buc↔living; clear ~90 față de front buc (nu pe zona de lucru)",
+  },
+  {
+    id: "scaun_dining_p_ne",
+    levels: [0],
+    zone: "open_buc_living_p",
+    x: 523.33,
+    y: 178.03,
+    dx: 63.64,
+    dy: 63.64,
+    h: 45,
+    color: "#a89070",
+    label: "",
+    note: "A1.149: NE",
+  },
+  {
+    id: "scaun_dining_p_se",
+    levels: [0],
+    zone: "open_buc_living_p",
+    x: 523.33,
+    y: 288.33,
+    dx: 63.64,
+    dy: 63.64,
+    h: 45,
+    color: "#a89070",
+    label: "",
+    note: "A1.149: SE",
+  },
+  {
+    id: "scaun_dining_p_sv",
+    levels: [0],
+    zone: "open_buc_living_p",
+    x: 413.03,
+    y: 288.33,
+    dx: 63.64,
+    dy: 63.64,
+    h: 45,
+    color: "#a89070",
+    label: "",
+    note: "A1.149: SV",
+  },
+  {
+    id: "scaun_dining_p_nv",
+    levels: [0],
+    zone: "open_buc_living_p",
+    x: 413.03,
+    y: 178.03,
+    dx: 63.64,
+    dy: 63.64,
+    h: 45,
+    color: "#a89070",
+    label: "",
+    note: "A1.149: NV",
+  },
+  // Living P — canapea est 90×170; TV lipit vest; desfășurare → vest +90
+  {
+    id: "canapea_p",
+    levels: [0],
+    zone: "living_p",
+    x: 548.8,
+    y: 370,
+    dx: 90,
+    dy: 170,
+    h: 80,
+    color: "#7a8a9a",
+    label: "CANAPEA 90×170",
+    unfold_west_cm: 90,
+    note: "A1.143: −10 V (C_E_PAL) · −10 N; deschis clear până X458.8",
+  },
+  {
+    id: "tv_p",
+    levels: [0],
+    zone: "living_p",
+    x: 352.4,
+    y: 405,
+    dx: 8,
+    dy: 100,
+    h: 50,
+    color: "#303840",
+    label: "TV",
+    note: "A1.143: lipit vest; axat pe canapea (−10 N)",
+  },
+  {
+    id: "masuta_cafea_p",
+    levels: [0],
+    zone: "living_p",
+    x: 498.8,
+    y: 435,
+    dx: 40,
+    dy: 40,
+    h: 40,
+    color: "#b8a070",
+    label: "MĂSUȚĂ",
+    note: "A1.143: −10 N cu canapeaua; în fața ei",
+  },
+  // Hol P — pe peretele SUD (scos din foaia intrare)
+  {
+    id: "cuier_agatori",
+    levels: [0],
+    zone: "hol_p",
+    x: 372.4,
+    y: 822.8,
+    dx: 70,
+    dy: 6,
+    h: 180,
+    color: "#8a8070",
+    label: "",
+    note: "A1.135: agățători pe sud hol — liber de foaia intrare",
+  },
+  {
+    id: "corp_primire_p",
+    levels: [0],
+    zone: "hol_p",
+    x: 449.3,
+    y: 798.8,
+    dx: 80,
+    dy: 30,
+    h: 90,
+    color: "#b0a090",
+    label: "PRIMIRE",
+    note: "A1.135: corp primire pe sud hol",
+  },
+  // Terasă P — A1.151: 2 zone (acoperit lounge + neacoperit bistro);
+  // circulație liberă X≥170 (gol dorm → intrare) + bandă est la ușă
+  {
+    id: "lounge_terasa_p",
+    levels: [0],
+    zone: "terasa_p",
+    x: 25,
+    y: 695,
+    dx: 70,
+    dy: 130,
+    h: 40,
+    color: "#8a9a7a",
+    label: "LOUNGE 70×130",
+    note: "A1.151: vest acoperit; lung pe parapet; E de el rămâne clear gol dorm",
+  },
+  {
+    id: "masuta_lounge_p",
+    levels: [0],
+    zone: "terasa_p",
+    x: 100,
+    y: 760,
+    dx: 50,
+    dy: 50,
+    h: 40,
+    color: "#9a8a6a",
+    label: "MĂSUȚĂ",
+    note: "A1.151: E de lounge; S de abordarea gol dorm (Y≥760)",
+  },
+  {
+    id: "masa_bistro_p",
+    levels: [0],
+    zone: "terasa_p",
+    x: 55,
+    y: 875,
+    dx: 70,
+    dy: 70,
+    h: 75,
+    color: "#9a8a6a",
+    label: "BISTRO 70",
+    note: "A1.151: neacoperit, vest de parapet verde (X180,5)",
+  },
+  {
+    id: "scaun_bistro_p_w",
+    levels: [0],
+    zone: "terasa_p",
+    x: 20,
+    y: 905,
+    dx: 35,
+    dy: 35,
+    h: 45,
+    color: "#7a8a6a",
+    label: "",
+    note: "A1.151: vest de masă (lipit)",
+  },
+  {
+    id: "scaun_bistro_p_e",
+    levels: [0],
+    zone: "terasa_p",
+    x: 125,
+    y: 905,
+    dx: 35,
+    dy: 35,
+    h: 45,
+    color: "#7a8a6a",
+    label: "",
+    note: "A1.151: est de masă; vest de parapet X180,5",
+  },
+  // Terasă E — A1.152: cafe NV + lounge pe sud (inclusiv spațiu după ușă, S de foaie Y769)
+  {
+    id: "masa_cafe_e",
+    levels: [1],
+    zone: "terasa_e",
+    x: 55,
+    y: 690,
+    dx: 70,
+    dy: 70,
+    h: 75,
+    color: "#9a8a6a",
+    label: "CAFE 70",
+    note: "A1.152: NV; N de lounge; vest de arc ușă",
+  },
+  {
+    id: "scaun_cafe_e_w",
+    levels: [1],
+    zone: "terasa_e",
+    x: 20,
+    y: 705,
+    dx: 35,
+    dy: 35,
+    h: 45,
+    color: "#7a8a6a",
+    label: "",
+    note: "A1.152: vest de masă",
+  },
+  {
+    id: "scaun_cafe_e_e",
+    levels: [1],
+    zone: "terasa_e",
+    x: 125,
+    y: 705,
+    dx: 35,
+    dy: 35,
+    h: 45,
+    color: "#7a8a6a",
+    label: "",
+    note: "A1.152: est de masă",
+  },
+  {
+    id: "lounge_terasa_e",
+    levels: [1],
+    zone: "terasa_e",
+    x: 40,
+    y: 775,
+    dx: 220,
+    dy: 65,
+    h: 40,
+    color: "#8a9a7a",
+    label: "LOUNGE 220×65",
+    note: "A1.152: pe sud parapet; ocupă și zona după ușă (S de foaie Y769, până X260)",
+  },
+  // Living E — canapea 90×170 pe est; TV lipit vest; clear desfășurare vest
+  {
+    id: "canapea_e",
+    levels: [1],
+    zone: "living_e",
+    x: 558.8,
+    y: 50,
+    dx: 90,
+    dy: 170,
+    h: 80,
+    color: "#7a8a9a",
+    label: "CANAPEA 90×170",
+    unfold_west_cm: 90,
+    note: "A1.135: pe est; închis 90×170; deschis 180×170 spre vest (clear până X468.8)",
+  },
+  {
+    id: "tv_e",
+    levels: [1],
+    zone: "living_e",
+    x: 352.4,
+    y: 69,
+    dx: 8,
+    dy: 90,
+    h: 50,
+    color: "#303840",
+    label: "TV",
+    note: "A1.146: lipit vest; sud @ Y159 = limita N gol baie_living (nu pe intrare)",
+  },
+  // Dining E — neschimbat față de A1.134 (corecția A1.137 era pentru parter)
+  {
+    id: "masa_e",
+    levels: [1],
+    zone: "living_e",
+    x: 466.3,
+    y: 275,
+    dx: 100,
+    dy: 100,
+    h: 75,
+    color: "#c4a882",
+    label: "MASĂ",
+    note: "A1.134: dining etaj (neschimbat A1.138)",
+  },
+  {
+    id: "scaun_e_ne",
+    levels: [1],
+    zone: "living_e",
+    x: 539.63,
+    y: 238.03,
+    dx: 63.64,
+    dy: 63.64,
+    h: 45,
+    color: "#a89070",
+    label: "",
+    note: "A1.134",
+  },
+  {
+    id: "scaun_e_se",
+    levels: [1],
+    zone: "living_e",
+    x: 539.63,
+    y: 348.33,
+    dx: 63.64,
+    dy: 63.64,
+    h: 45,
+    color: "#a89070",
+    label: "",
+    note: "A1.134",
+  },
+  {
+    id: "scaun_e_sv",
+    levels: [1],
+    zone: "living_e",
+    x: 429.33,
+    y: 348.33,
+    dx: 63.64,
+    dy: 63.64,
+    h: 45,
+    color: "#a89070",
+    label: "",
+    note: "A1.134",
+  },
+  {
+    id: "scaun_e_nv",
+    levels: [1],
+    zone: "living_e",
+    x: 429.33,
+    y: 238.03,
+    dx: 63.64,
+    dy: 63.64,
+    h: 45,
+    color: "#a89070",
+    label: "",
+    note: "A1.134",
+  },
+  {
+    id: "masuta_living_e",
+    levels: [1],
+    zone: "living_e",
+    x: 473.8,
+    y: 107.5,
+    dx: 55,
+    dy: 55,
+    h: 40,
+    color: "#b8a070",
+    label: "MĂSUȚĂ",
+    note: "A1.147: în fața canapelei, ~30 cm clear (nu lipită)",
+  },
+  // Bucătărie E — L (A1.144)
+  // SUD E→V: corp colț 60 + plită/cuptor 60 + blat/aparat (rest, clear vest→ușă)
+  // EST S→N (lângă colț → intrare N): MSV 60 + CHI 60 + FR 60 + corp înalt (rest până Y550)
+  // cameră X352.4–534.3 Y550–828.8; adâncime 60; colț SE @ X474.3 Y768.8
+  {
+    id: "corp_colt_se_e",
+    levels: [1],
+    zone: "bucatarie_e",
+    x: 474.3,
+    y: 768.8,
+    dx: 60,
+    dy: 60,
+    h: 90,
+    color: "#d4c4a8",
+    label: "COLȚ 60",
+    note: "A1.144: corp 60×60 exact pe colț SE",
+  },
+  {
+    id: "corp_plita_e",
+    levels: [1],
+    zone: "bucatarie_e",
+    x: 414.3,
+    y: 768.8,
+    dx: 60,
+    dy: 60,
+    h: 90,
+    color: "#8a9098",
+    label: "PLITĂ+CUPTOR 60",
+    note: "A1.144: sud, vest de colț",
+  },
+  {
+    id: "corp_langa_usa_terasa_e",
+    levels: [1],
+    zone: "bucatarie_e",
+    x: 352.4,
+    y: 768.8,
+    dx: 60,
+    dy: 60,
+    h: 90,
+    color: "#d0c8b0",
+    label: "CORP 60",
+    note: "A1.148: corp întreg 60×60 lângă ușa terasă (sud-vest)",
+  },
+  {
+    id: "msv_e",
+    levels: [1],
+    zone: "bucatarie_e",
+    x: 474.3,
+    y: 708.8,
+    dx: 60,
+    dy: 60,
+    h: 85,
+    color: "#9aa3a8",
+    label: "MSV 60",
+    note: "A1.144: est, lângă colț (nord de colț)",
+  },
+  {
+    id: "chiuveta_e",
+    levels: [1],
+    zone: "bucatarie_e",
+    x: 474.3,
+    y: 648.8,
+    dx: 60,
+    dy: 60,
+    h: 90,
+    color: "#c8d0d4",
+    label: "CHI 60",
+    note: "A1.144: est, nord de MSV",
+  },
+  {
+    id: "frigider_e",
+    levels: [1],
+    zone: "bucatarie_e",
+    x: 474.3,
+    y: 588.8,
+    dx: 60,
+    dy: 60,
+    h: 180,
+    color: "#a8b0b8",
+    label: "FR 60",
+    note: "A1.144: est, nord de CHI",
+  },
+  {
+    id: "corp_inalt_e",
+    levels: [1],
+    zone: "bucatarie_e",
+    x: 474.3,
+    y: 555,
+    dx: 60,
+    dy: 33.8,
+    h: 210,
+    color: "#b8a888",
+    label: "ÎNALT 33,8",
+    note: "A1.154: S de foaia intrare_etaj (Y550); rest până la FR",
   },
 ];
+
+/**
+ * A1.157: ghene — etaj util intact (doar pardoseală/drop); P = volume în baie + colț hol→scară.
+ * Canalizare = coloană; apă poate împărți caseta; curent = de preferat nișă/tub separat (nu obligatoriu a 3-a ghenă).
+ */
+const mepShafts = [
+  {
+    id: "ghena_baie_wc",
+    levels: [0],
+    role: "canalizare_wc_baie",
+    systems: ["canalizare", "vent"],
+    x: 31.1,
+    y: 49.1,
+    dx: 20,
+    dy: 40,
+    status: "REZERVĂ",
+    util_impact_m2: 0.08,
+    util_note: "în baie P; E = același drop prin placă, fără casetă în util E",
+    drops_to: "basement",
+    lands_in_basement: "camera_tehnica",
+    note: "A1.165: drop vertical în CT (beci sub baie); P/E fără casetă util",
+  },
+  {
+    id: "ghena_baie_mid_est",
+    levels: [0],
+    role: "apa_opțional_curent",
+    systems: ["apa", "curent_nișă"],
+    x: 319.9,
+    y: 31.1,
+    dx: 20,
+    dy: 40,
+    status: "REZERVĂ",
+    util_impact_m2: 0.08,
+    util_note: "NE baie, lângă C_N_MID; perete spre est",
+    drops_to: "basement",
+    lands_in_basement: "camera_tehnica",
+    note: "A1.165: drop vertical în CT (beci sub baie); P/E fără casetă util",
+  },
+  {
+    id: "ghena_buc_hol_scara",
+    levels: [0],
+    role: "canalizare_buc_colector",
+    systems: ["canalizare", "apa"],
+    x: 504.3,
+    y: 560,
+    dx: 30,
+    dy: 30,
+    status: "REZERVĂ",
+    util_impact_m2: 0.09,
+    util_note: "colț hol P spre scară (vest de C_CASA_SCARA); CHI/MSV P+E colectează în planșeu → aici",
+    drops_to: "basement",
+    lands_in_basement: "camera_tehnica",
+    note: "A1.165: drop buc → orizontal scurt în placă spre CT vest; etaj fără casetă",
+  },
+  {
+    id: "drop_etaj_baie",
+    levels: [1],
+    role: "drop_pardoseala",
+    systems: ["canalizare", "apa"],
+    x: 36.1,
+    y: 59.1,
+    dx: 10,
+    dy: 10,
+    status: "REZERVĂ",
+    util_impact_m2: 0,
+    draw: "drop_only",
+    drops_to: "ghena_baie_wc",
+    note: "A1.157: etaj — doar gol placă / traseu în șapă; util intact",
+  },
+  {
+    id: "drop_etaj_buc",
+    levels: [1],
+    role: "drop_pardoseala",
+    systems: ["canalizare", "apa"],
+    x: 514.3,
+    y: 668.8,
+    dx: 10,
+    dy: 10,
+    status: "REZERVĂ",
+    util_impact_m2: 0,
+    draw: "drop_only",
+    drops_to: "ghena_buc_hol_scara",
+    note: "A1.157: etaj buc — colectare în pardoseală → drop spre colț hol P",
+  },
+];
+
+/**
+ * A1.165: subsol optim pentru planurile P/E (faza asta).
+ * Cutie = amprentă încălzită V→A6, N maxim (sub baie) → S casă.
+ * Fără tăiere pe griă la Y410; fără beci sub terasă / bandă scară rece (doar puț).
+ * Partiții pe placă: CT NV (drop-uri + ferită) · magazie est (ușă umedă) · depozit vest-sud.
+ */
+const Y_SUBSOL_N = 30; // față int. N — stâlpi N pe cutie; drop baie vertical
+const Y_SUBSOL_S = 820; // sud amprentă încălzită / C_S_INTRARE
+const Y_CT_S = 280; // CT sub baie + living N; departe de ușă (~496)
+const X_SUBSOL_W = 30; // vest încălzit (nu sub terasă)
+const X_SUBSOL_E = BUC_EST_X0; // 534.3 — față V A6
+const basement = {
+  status: "freeze_plan_studiu_A1_168",
+  priority: "plan_over_basement",
+  z_ff_cm: -250,
+  clear_target_cm: 220,
+  note: "A1.165–168: cutie+puț pe plan; input S1. Partiții ușoare; P/E neatins",
+  s1_handoff: {
+    doc: "decisions/s1_from_a1_v01.md",
+    envelope_report: "outputs/reports/s1_basement_envelope_from_a1_v01.md",
+    frame_mesh:
+      "A1.170: build_v47_3d citește basement din a1_architecture (nu hol_subsol V47)",
+    first_task: "reten_mesh_vs_a1 — DONE overlay 3D; FE mesh JSON încă de sync",
+  },
+  structure_box: {
+    x0: X_SUBSOL_W,
+    x1: X_SUBSOL_E,
+    y0: Y_SUBSOL_N,
+    y1: Y_SUBSOL_S,
+    align: {
+      n: "față int. N Y30 (sub baie; C_NW/C_N_MID pe cutie)",
+      s: "C_S_INTRARE Y820",
+      w: "vest încălzit X30 (nu terasă)",
+      e: "A6 față V — nu banda scară rece",
+    },
+    retaining: "perimeter_BA_only",
+    interior_partitions: "light_on_slab",
+    excludes: ["terasă", "bandă scară rece (doar puț R2)"],
+  },
+  north_policy: {
+    no_excavate_into_neighbor_rost: true,
+    no_english_court_on_N: true,
+    basement_north_y_cm: Y_SUBSOL_N,
+    dist_from_north_facade_cm: Y_SUBSOL_N,
+    reason:
+      "A1.165: N@Y30 = maxim ajutor plan (drop baie, stâlpi N, placă living unică); execuție cu sprijin + hidro la rost ~20 cm (nu curte engleză)",
+    baie_drops: "vertical_direct în camera_tehnica",
+  },
+  water_policy: {
+    wet_entry: "magazie_subsol",
+    protected_plant: "camera_tehnica",
+    rationale: "ușă A6 → magazie; CT nord-vest, departe de scară/curte",
+  },
+  plan_advantages: [
+    "P/E înghețat neschimbat (conflict → beci)",
+    "drop baie vertical — fără țevi lungi în șapa livingului",
+    "stâlpi N–S pe același sistem sub casă încălzită",
+    "placă living fără salt de fundație la mijloc",
+    "scară R2 + A6 neschimbate",
+    "CT ferită de apă la intrare",
+    "fără excavare sub terasă / camere scară rece",
+  ],
+  plan_residual_costs: [
+    "excavare + sprijin la rost N (~20 cm) — geo/execuție, nu geometrie P/E",
+    "hidro pe peretele N al cutiei (oricum critic pe fațada N)",
+  ],
+  plan_compatibility: {
+    pe_freeze: "intact — camere, goluri, uși, mobilier neschimbate",
+    influences: [
+      "gol planșeu pe puț scară (deja pe bandă R2)",
+      "goluri mici drop MEP în placă (baie vertical)",
+      "încărcări / stâlpi continui → S1 structură",
+      "retenție BA pe conturul cutiei",
+    ],
+    does_not_change: [
+      "compartimentare P/E",
+      "util m² camere",
+      "handing uși",
+      "amprentă 680×860",
+    ],
+  },
+  rooms: [
+    {
+      id: "camera_tehnica",
+      label: "CAMERĂ TEHNICĂ",
+      x: X_SUBSOL_W,
+      y: Y_SUBSOL_N,
+      dx: +(XI - X_SUBSOL_W).toFixed(1),
+      dy: +(Y_CT_S - Y_SUBSOL_N).toFixed(1),
+      area_m2: +(
+        ((XI - X_SUBSOL_W) * (Y_CT_S - Y_SUBSOL_N)) /
+        10000
+      ).toFixed(2),
+      drops: ["ghena_baie_wc", "ghena_baie_mid_est", "ghena_buc_hol_scara"],
+      note: "A1.165: NV sub baie+living N — drop-uri + plantă ferită de ușă",
+    },
+    {
+      id: "depozit_subsol",
+      label: "DEPOZIT / SCULE",
+      x: X_SUBSOL_W,
+      y: Y_CT_S,
+      dx: +(XI - X_SUBSOL_W).toFixed(1),
+      dy: +(Y_SUBSOL_S - Y_CT_S).toFixed(1),
+      area_m2: +(
+        ((XI - X_SUBSOL_W) * (Y_SUBSOL_S - Y_CT_S)) /
+        10000
+      ).toFixed(2),
+      drops: [],
+      note: "vest sud — flexibil; nu dictează structură",
+    },
+    {
+      id: "magazie_subsol",
+      label: "MAGAZIE",
+      x: XI,
+      y: Y_SUBSOL_N,
+      dx: +(X_SUBSOL_E - XI).toFixed(1),
+      dy: +(Y_SUBSOL_S - Y_SUBSOL_N).toFixed(1),
+      area_m2: +(
+        ((X_SUBSOL_E - XI) * (Y_SUBSOL_S - Y_SUBSOL_N)) /
+        10000
+      ).toFixed(2),
+      drops: [],
+      note: "A1.165: bandă est — ușă A6 buffer umed; CT spre vest",
+    },
+  ],
+  /** Pereți beci — retenție A11 pe contur; partiții A7 pe placă (nu retenție).
+   * N/S span pe lățimea EXTERIOARĂ (inclusiv grosimea V/E) ca să închidă colțurile.
+   * V/E doar pe înălțimea INTERIOARĂ (colțurile aparțin N/S). */
+  walls: (() => {
+    const thA11 = +(
+      (assembliesCat.by_id?.A11?.thickness_finished_mm || 326) / 10
+    ).toFixed(1);
+    const thA7 = TH.A7;
+    const xOut0 = +(X_SUBSOL_W - thA11).toFixed(1);
+    const xOut1 = +(X_SUBSOL_E + thA11).toFixed(1);
+    const dxOut = +(xOut1 - xOut0).toFixed(1);
+    return [
+      {
+        id: "subsol_reten_n",
+        catalog_id: "A11",
+        role: "retaining",
+        outward_hint: "N",
+        x: xOut0,
+        y: +(Y_SUBSOL_N - thA11).toFixed(1),
+        dx: dxOut,
+        dy: thA11,
+        note: "A1.167: retenție N — span exterior (închide colțuri NW/NE)",
+      },
+      {
+        id: "subsol_reten_s",
+        catalog_id: "A11",
+        role: "retaining",
+        outward_hint: "S",
+        x: xOut0,
+        y: Y_SUBSOL_S,
+        dx: dxOut,
+        dy: thA11,
+        note: "A1.167: retenție S — span exterior (închide colțuri SW/SE)",
+      },
+      {
+        id: "subsol_reten_w",
+        catalog_id: "A11",
+        role: "retaining",
+        outward_hint: "W",
+        x: xOut0,
+        y: Y_SUBSOL_N,
+        dx: thA11,
+        dy: +(Y_SUBSOL_S - Y_SUBSOL_N).toFixed(1),
+        note: "A1.167: retenție V — între fețele int. N/S",
+      },
+      {
+        id: "subsol_reten_e",
+        catalog_id: "A11",
+        role: "retaining",
+        outward_hint: "E",
+        x: X_SUBSOL_E,
+        y: Y_SUBSOL_N,
+        dx: thA11,
+        dy: +(Y_SUBSOL_S - Y_SUBSOL_N).toFixed(1),
+        note: "A1.167: retenție E (= sub A6); ușă beci taie gol",
+      },
+      {
+        id: "subsol_part_xi",
+        catalog_id: "A7",
+        role: "partition",
+        outward_hint: "E",
+        x: +(XI - thA7).toFixed(1),
+        y: Y_SUBSOL_N,
+        dx: thA7,
+        dy: +(Y_SUBSOL_S - Y_SUBSOL_N).toFixed(1),
+        note: "A1.166: partiție CT/dep | magazie pe XI",
+      },
+      {
+        id: "subsol_part_ct_s",
+        catalog_id: "A7",
+        role: "partition",
+        outward_hint: "S",
+        x: X_SUBSOL_W,
+        y: Y_CT_S,
+        dx: +(XI - X_SUBSOL_W - thA7).toFixed(1),
+        dy: thA7,
+        note: "A1.166: partiție CT | depozit",
+      },
+    ];
+  })(),
+  drop_landings: mepShafts
+    .filter((s) => s.lands_in_basement)
+    .map((s) => ({
+      shaft_id: s.id,
+      x: s.x,
+      y: s.y,
+      dx: s.dx,
+      dy: s.dy,
+      room: s.lands_in_basement,
+      collect: s.id.startsWith("ghena_baie")
+        ? "vertical_direct"
+        : "orizontal_in_placa_spre_CT",
+    })),
+  /**
+   * A1.159/165: scară beci pe banda R2; ușă A6 → magazie (nu CT).
+   */
+  stair: (() => {
+    const r2 = stair.ramp2;
+    const xW = STAIR_A6_EAST_X; // 564.3 — față E A6 (casă|scară)
+    const clear = 100;
+    const bandDx = stair.band_dx ?? 114.6;
+    const xStair = xW; // clear lipit de A6
+    const yShaft0 = r2?.y ?? 588.7; // N puț = N R2
+    const yShaft1 = r2 ? +(r2.y + r2.dy).toFixed(1) : 858.7;
+    const shaftDy = +(yShaft1 - yShaft0).toFixed(1);
+    // coborâre: 8 trepte × 25 = 200 (ca V47); Y600–800 relativ la R2
+    const tread = 25;
+    const treads = 8;
+    const going = tread * treads; // 200
+    const yStair1 = +(yShaft0 + 12).toFixed(1); // ~601 — ușor S de N R2
+    const yStair0 = +(yStair1 + going).toFixed(1); // sud = top of flight
+    const deltaZ = 155; // −95 → −250
+    const risers = 9;
+    const riser = +(deltaZ / risers).toFixed(2); // 17.22 — vs brief 16: DESCHIS
+    const yUpper0 = yStair0; // palier −95 sud de scară
+    const yLower1 = yStair1; // nord scară = sud palier jos
+    const yLower0 = +(yLower1 - 110).toFixed(1); // palier 110 ca V47
+    const doorGol = 100;
+    const doorY0 = +(yLower0 + (110 - doorGol) / 2).toFixed(1);
+    const thDoor = +(
+      (assembliesCat.by_id?.A11?.thickness_finished_mm || 326) / 10
+    ).toFixed(1);
+    const fit = {
+      clear_a6_to_e: STAIR_CLEAR_A6_TO_EST_CM,
+      clear_at_pier: STAIR_CLEAR_AT_PIER_CM,
+      stair_clear_need: clear,
+      clear_ok: STAIR_CLEAR_A6_TO_EST_CM >= clear,
+      pier_warn: STAIR_CLEAR_AT_PIER_CM < clear,
+      door_into_magazie:
+        doorY0 >= Y_SUBSOL_N && doorY0 + doorGol <= Y_SUBSOL_S,
+      riser_vs_brief_16: riser <= 16 ? "ok" : "DESCHIS — 17,22 > 16 (brief A0)",
+      path: "curte→palier−95→scară↓N→palier−250→ușă A6→magazie→CT(vest)/dep",
+    };
+    return {
+      status: "studiu_A1_159_v47_pe_banda_inghetata",
+      source: "v47 basement_cm.stair — remap pe STAIR_A6_EAST_X + ramp2 A1",
+      levels_cm: {
+        courtyard: 0,
+        access_landing: -95,
+        basement_ff: -250,
+        slab_soffit_target: -30,
+        clear_under_slab_target: 220,
+      },
+      open_shaft: {
+        x: xW,
+        y: yShaft0,
+        dx: +(Math.min(bandDx, EW - xW - INSET_TO_BRICK_A2)).toFixed(1),
+        dy: shaftDy,
+        note: "puț deschis = amprenta R2 (rece); planșeu P gol aici",
+      },
+      flight: {
+        x: xStair,
+        y: yStair1,
+        dx: clear,
+        dy: going,
+        direction: "descend_north",
+        tread_cm: tread,
+        treads,
+        risers,
+        riser_cm: riser,
+        from_z_cm: -95,
+        to_z_cm: -250,
+        width_clear_cm: clear,
+        note: "coborâre N sub R2; clear 100 lipit A6",
+      },
+      upper_landing: {
+        x: xW,
+        y: yUpper0,
+        dx: +(Math.min(bandDx, 115)).toFixed(1),
+        dy: +(yShaft1 - yUpper0).toFixed(1),
+        z_ff_cm: -95,
+        note: "palier acces −95 (sud în puț / legătură curte)",
+      },
+      lower_landing: {
+        x: xW,
+        y: yLower0,
+        dx: +(Math.min(bandDx, 115)).toFixed(1),
+        dy: 110,
+        z_ff_cm: -250,
+        note: "palier jos sub planșeu (N de puț deschis) + franj în puț",
+      },
+      door_to_magazie: {
+        id: "usa_beci_magazie",
+        x: X_SUBSOL_E, // față int. E cutie (= E magazie / V retenție E)
+        y: doorY0,
+        dx: thDoor,
+        dy: doorGol,
+        swing: "into_magazie_west",
+        lands_in: "magazie_subsol",
+        note: "A1.166: gol în retenție E (A11) → magazie; CT NV ferită",
+      },
+      /**
+       * A1.168: incintă puț scară beci — pe ACELAȘI plan subsol (nu plan separat).
+       * V = retenție E a cutiei încălzite (cu ușă). S = deschis spre curte.
+       * N+E = A11 ca să nu mai „plutească” volumul.
+       */
+      pit: (() => {
+        const pitX0 = xW;
+        const pitDx = +(Math.min(bandDx, EW - xW - INSET_TO_BRICK_A2)).toFixed(1);
+        const pitX1 = +(pitX0 + pitDx).toFixed(1);
+        const pitY0 = yLower0;
+        const pitY1 = yShaft1;
+        return {
+          status: "studiu_A1_168_incinta_put",
+          on_plan: "a1_plan_subsol",
+          separate_plan: false,
+          x0: pitX0,
+          x1: pitX1,
+          y0: pitY0,
+          y1: pitY1,
+          z_ff_cm: -250,
+          open_to_court: "S",
+          west_wall: "subsol_reten_e",
+          note: "puț + palier jos + scară — ziduri N/E; V=ușă în A11 cutie; S→curte",
+          walls: [
+            {
+              id: "put_reten_n",
+              catalog_id: "A11",
+              role: "stair_pit",
+              outward_hint: "N",
+              x: pitX0,
+              y: +(pitY0 - thDoor).toFixed(1),
+              dx: +(pitX1 + thDoor - pitX0).toFixed(1),
+              dy: thDoor,
+              note: "închide puțul sub placă (N de palier −250); span +E colț",
+            },
+            {
+              id: "put_reten_e",
+              catalog_id: "A11",
+              role: "stair_pit",
+              outward_hint: "E",
+              x: pitX1,
+              y: pitY0,
+              dx: thDoor,
+              dy: +(pitY1 - pitY0).toFixed(1),
+              note: "retenție E puț (fațadă scară rece coborâtă)",
+            },
+          ],
+        };
+      })(),
+      court_steps_ref: {
+        note: "trepte curte 0→−95 — de realiniat pe sud amprentă A1 (V47 Y868+); nu mută P/E",
+        status: "de_ajustat_pe_sit",
+      },
+      fit,
+    };
+  })(),
+};
 
 /**
  * Util pe nivel — detaliat, pe fețe interioare.
@@ -1791,27 +2958,26 @@ function openingOnLevel(o, levelIdx) {
   return true; // nedefinit = P+E (ex. baie_usa_dorm)
 }
 
+/**
+ * A1.132: în util doar treceri deschise tip portal (≥120 / fără toc ≤1 m).
+ * Golurile de ușă ≤1 m (baie_usa, baie_usa_dorm) = NU util (pardoseală în grosimea zidului).
+ */
 function isHeatedInteriorPassage(o) {
   if (!(o.dx > 0) || !(o.dy > 0)) return false;
   if (typeof o.x !== "number" || typeof o.y !== "number") return false;
   const id = o.id || "";
   if (
-    /terasa|geam_|intrare_parter|intrare_etaj|rampa|lamele|nisa_glisante/i.test(
+    /terasa|geam_|intrare_parter|intrare_etaj|rampa|lamele|nisa_glisante|baie_usa/i.test(
       id
     )
   )
     return false;
-  return (
-    id === "baie_usa" ||
-    id === "baie_usa_dorm" ||
-    id === "baie_living_gol"
-  );
+  return id === "baie_living_gol";
 }
 
 /** Cameră care primește m²-ul golului (etichetă). */
 function passageRoomId(o, levelIdx) {
   const id = o.id || "";
-  if (id === "baie_usa" || id === "baie_usa_dorm") return "hol_vest";
   if (id === "baie_living_gol") return levelIdx === 0 ? "living_p" : "living_e";
   return null;
 }
@@ -2025,29 +3191,29 @@ function computeUsefulAreas() {
     }
   }
 
-  // Contur încălzit pe fețe int. (verificare shoelace)
+  // Contur încălzit pe fețe int. (verificare shoelace) — vest A1
   const polyP = [
-    [TH.A2, TH.A1],
+    [TH.A1, TH.A1],
     [XE, TH.A1],
     [XE, Y_PALIER_INCHIDERE_P],
     [BUC_EST_X0, Y_PALIER_INCHIDERE_P],
     [BUC_EST_X0, Y_S_HEAT],
     [XI, Y_S_HEAT],
     [XI, walls.find((w) => w.id === "dormitor_sud")?.y ?? 644],
-    [TH.A2, walls.find((w) => w.id === "dormitor_sud")?.y ?? 644],
-    [TH.A2, TH.A1],
+    [TH.A1, walls.find((w) => w.id === "dormitor_sud")?.y ?? 644],
+    [TH.A1, TH.A1],
   ];
   const yA6n = +(Y_PALIER_N - TH.A6).toFixed(1);
   const polyE = [
-    [TH.A2, TH.A1],
+    [TH.A1, TH.A1],
     [XE, TH.A1],
     [XE, yA6n],
     [BUC_EST_X0, yA6n],
     [BUC_EST_X0, Y_S_HEAT],
     [XI, Y_S_HEAT],
     [XI, walls.find((w) => w.id === "dormitor_sud")?.y ?? 644],
-    [TH.A2, walls.find((w) => w.id === "dormitor_sud")?.y ?? 644],
-    [TH.A2, TH.A1],
+    [TH.A1, walls.find((w) => w.id === "dormitor_sud")?.y ?? 644],
+    [TH.A1, TH.A1],
   ];
 
   const sumNet = (lv) =>
@@ -2089,7 +3255,7 @@ function computeUsefulAreas() {
   const baieDetail = baieRow
     ? {
         method:
-          "A1.130/121: corp + duș + bandă N MS + amprentă MS − geo obstacole; goluri uși în hol_vest",
+          "A1.132/121: corp + duș + bandă N MS + MS − obstacole; fără goluri uși ≤1 m în util",
         corp_m2: +(baieCorpCm2 / 10000).toFixed(4),
         dus_sud_de_Y144_m2: +(baieDusExtraCm2 / 10000).toFixed(4),
         ms_si_banda_n_m2: +(baieMsBandCm2 / 10000).toFixed(4),
@@ -2103,7 +3269,7 @@ function computeUsefulAreas() {
 
   return {
     method:
-      "A1.121: camere încălzite = uniune fețe int. (rect+parts+goluri uși/toc) − uniune geo obstacole (stâlpi ∪ (A6/A7/A8/int ∖ goluri)). Etichete = același net. Fără terasă/scară/zid_nu_util.",
+      "A1.132/121: camere încălzite = uniune fețe int. (rect+parts + gol portal 120) − obstacole. Goluri uși ≤1 m excluse din util. Fără terasă/scară/zid_nu_util.",
     useful_target_m2: 37,
     useful_parter_m2: usefulP,
     useful_etaj_m2: usefulE,
@@ -2122,12 +3288,11 @@ function computeUsefulAreas() {
     poly_etaj_cm: polyE,
     terrace_slab_setback_cm: TERRACE_SLAB_SETBACK_CM,
     notes: [
-      "A1.121: goluri încălzite prin zid (baie_usa, baie_usa_dorm, baie_living_gol) = util; zid obstacol = amprentă ∖ gol.",
-      "A1.110: net = brut − uniune obstacole (geo stâlpi + A6/A7/A8); etichete din același net. Nu pin×faceLen.",
+      "A1.132: baie_living_gol 120 = util; baie_usa / baie_usa_dorm (≤1 m) excluse din util.",
+      "A1.110: net = brut − uniune obstacole (geo stâlpi + A6/A7/A8); etichete din același net.",
       "A1.110: living E scade A6 palier (pardoseala desenată nu e util sub zid).",
-      "A1.130: baie = corp+duș+MS+bandă N; dorm = nișă 180×60 (P+E). Vezi useful_baie_detail.",
-      "A1.130: uniune rect (baie+duș+MS, dorm+nișă) — fără sumă naivă.",
-      "Hol: fără banda zid A6 est (zid_nu_util). MS în baie. Uși baie→hol/dorm în hol_vest.",
+      "A1.131/132: baie A3_N; MS față N + etanș dus; dorm nișă 180×60. Hol neschimbat ca politică.",
+      "A1.132: scară clear A6→E / @pier (nu 105 uniform); rost 3 cm trepte–palier = de definit.",
       "Living E: L — N de mid până la XE; S de mid doar până la buc_est (fără palier rece).",
       "Bucătărie E: est = față V buc_est.",
       "Ținta 37 m²: nu bloca compartimentarea pe sute de cm² — util geometric ≠ finisaj executat.",
@@ -2141,7 +3306,7 @@ const usefulCalc = computeUsefulAreas();
 const a1 = {
   meta: {
     id: "a1_architecture",
-    version: "0.96",
+    version: "0.97",
     columns_removed_a1: {
       C_SE: "adăugat aiurea",
       C_SHAFT_E_PIER:
@@ -2153,7 +3318,18 @@ const a1 = {
     columns_added_a1: {
       C_E_LAMELE: "A1.58: pier 20×40 rece (lungime fațadă ≈¼–⅓ lamele), sud de gol; parapet continuă",
     },
-    status: "ARH_STUDIU",
+    status: "ARH_FREEZE_AMENAJARE",
+    freeze: {
+      at: "A1.169",
+      scope:
+        "camere · pereți · goluri · uși (handing) · mobilier P/E · plan subsol studiu (cutie/puț/amenajare beci)",
+      out_of_scope:
+        "stâlpi/grinzi/FE · pier final · util autorizare · finisaje · detaliu riser/pier scară beci",
+      rule: "doar adăugare pe straturi noi; fără mutare geometrie înghețată fără decizie explicită",
+      basement_rule:
+        "Plan subsol A1.165–168 = input S1; conflict structură → remesh retenție/cadre, nu P/E.",
+      next_round: "S1 structură — decisions/s1_from_a1_v01.md",
+    },
     generated: new Date().toISOString(),
     brief: "decisions/brief_A0_v01.md",
     site: "data/building/a0_site.json",
@@ -2161,14 +3337,20 @@ const a1 = {
     source_columns: "v47_a1_frame_study columns → A0 (exces interior, fără pilastru afară)",
     rooms_policy:
       "Dormitor+nișă aceeași culoare P/E. Etaj: living+dining până la perete despărțitor; bucătărie sud de perete.",
-    note: "ARH + stâlpi PROVIZORII (vizibili, proem. int.). Grinzi/FE = S1.",
+    note: "A1.169: amenajare+subsol plan înghețate ca input. S1 activ. Stâlpi încă PROVIZORII.",
     dimensions_status:
-      "STUDIO: cote pe fețe int. Îngheț după confirmare; util shoelace − proem. stâlpi = rundă următoare.",
+      "FREEZE_AMENAJARE+SUBSOL_PLAN: P/E + beci studiu OK. S1 = rundă activă (retenție/cadre/FE).",
   },
   envelope_cm: {
     ew: EW,
     ns: NS,
-    wall_thickness_cm: { A1: TH.A1, A2: TH.A2, A7: TH.A7, A8: TH.A8 },
+    wall_thickness_cm: {
+      A1: TH.A1,
+      A2: TH.A2,
+      A3_N: TH.A3_N,
+      A7: TH.A7,
+      A8: TH.A8,
+    },
     brick_on_extreme_cm: BRICK_ON_EXTREME_CM,
     inset_to_brick_cm: { A1: INSET_TO_BRICK_A1, A2: INSET_TO_BRICK_A2 },
     column_protrusion_rule:
@@ -2213,10 +3395,22 @@ const a1 = {
   openings_cm: openings,
   parapets_cm: parapets,
   furniture_cm: furniture,
+  mep_cm: {
+    policy: "overlay pe A1 freeze; E util intact; P casete REZERVĂ",
+    basement_priority: "plan_over_basement",
+    doc: "decisions/ghene_mep_v01.md",
+    shafts: mepShafts,
+  },
+  basement_cm: basement,
   stair_cm: stair,
   axes_cm: axes,
   placement_ref: a0.footprint.corners_site_m,
-  next: ["Confirmare planuri P/E", "Util shoelace", "S1 structură pe A1 înghețat"],
+  next: [
+    "Scară beci: trepte curte 0→−95 + riser vs brief 16 + transport întoarcere",
+    "S1 structură / FE pe A1 înghețat (stâlpi+grinzi+pier)",
+    "Rost 3 cm trepte–palier (detaliu construit)",
+    "Util autorizare (NECONFIRMAT → arhitect)",
+  ],
 };
 
 fs.mkdirSync(path.join(root, "data/building"), { recursive: true });
@@ -2243,7 +3437,7 @@ function planSvg(levelIdx, title) {
   const scale = 2.15;
   const padL = 100;
   const padT = 80;
-  const padR = 200;
+  const padR = 268;
   const padB = 100;
   const planNS = NS + 140; // terasă + trepte
   const W = EW * scale + padL + padR;
@@ -2301,6 +3495,27 @@ function planSvg(levelIdx, title) {
     }
   }
   fillRect(NISA_DORM, DORM_FLOOR, 1);
+
+  // A1.132: axe — linii fine sub ziduri, etichete în afara corpului (lizibil, nu haos)
+  {
+    const ax = axes || {};
+    for (const a of ax.vertical_WE || []) {
+      parts.push(
+        `<line x1="${sx(a.x)}" y1="${sy(-28)}" x2="${sx(a.x)}" y2="${sy(NS + 28)}" stroke="#c62828" stroke-width="0.7" stroke-dasharray="6 5" opacity="0.45"/>`
+      );
+      parts.push(
+        `<text x="${sx(a.x)}" y="${sy(-14)}" text-anchor="middle" font-size="11" font-weight="700" fill="#b71c1c" font-family="${font}">${a.id}</text>`
+      );
+    }
+    for (const a of ax.horizontal_NS || []) {
+      parts.push(
+        `<line x1="${sx(-28)}" y1="${sy(a.y)}" x2="${sx(EW + 28)}" y2="${sy(a.y)}" stroke="#c62828" stroke-width="0.7" stroke-dasharray="6 5" opacity="0.45"/>`
+      );
+      parts.push(
+        `<text x="${sx(-18)}" y="${sy(a.y) + 4}" text-anchor="end" font-size="11" font-weight="700" fill="#b71c1c" font-family="${font}">${a.id}</text>`
+      );
+    }
+  }
 
   parts.push(
     `<rect x="${sx(0)}" y="${sy(0)}" width="${EW * scale}" height="${NS * scale}" fill="none" stroke="#111" stroke-width="2.2"/>`
@@ -2475,22 +3690,49 @@ function planSvg(levelIdx, title) {
     }
   }
 
+  /**
+   * A1.132 lizibilitate: pe anvelopă doar 3 benzi (finisaj / ISO / EB20).
+   * Detaliul mm complet = cartuș legendă, nu pe tot perimetrul.
+   */
+  function planBandsForCatalog(cat, thCm) {
+    const ins = insetToBrickCm(cat);
+    const brick = Math.min(BRICK_ON_EXTREME_CM, thCm - ins);
+    const finishTh = Math.min(1.5, Math.max(0.8, ins - 8));
+    const isoTh = +(ins - finishTh).toFixed(2);
+    const bands = [
+      {
+        fromExt: 0,
+        thick: finishTh,
+        style: cat === "A2" || cat === "A3_K" ? "finish_klinker" : "finish_plaster",
+      },
+      { fromExt: finishTh, thick: isoTh, style: "insulation" },
+      { fromExt: ins, thick: brick, style: "brick" },
+    ];
+    if (cat === "A3_N") {
+      const tileTh = Math.max(0.5, +(thCm - ins - brick).toFixed(2));
+      if (tileTh > 0.4)
+        bands.push({ fromExt: +(ins + brick).toFixed(2), thick: tileTh, style: "tile" });
+    }
+    return bands;
+  }
+
   function drawExteriorWallFrame(w) {
     const cat = wallCatalog(w);
     const thCm = w.thickness_cm || TH[cat] || 30;
     const outward = wallOutward(w);
-    const ins = insetToBrickCm(cat);
-    const brick = Math.min(BRICK_ON_EXTREME_CM, thCm - ins);
     const along0 = outward === "N" || outward === "S" ? w.x : w.y;
     const along1 = outward === "N" || outward === "S" ? w.x + w.dx : w.y + w.dy;
     const gapCuts = openingGapsOnWall(w, outward);
+    const bands = planBandsForCatalog(cat, thCm);
 
-    // 1) IZOLAȚIE — tăiată pe goluri (A1.118: fără ISO în toc)
-    for (const [p, q] of segsMinusGaps(along0, along1, gapCuts)) {
-      paintRect(stripRect(w, outward, 0, ins, p, q), "insulation");
+    for (const b of bands) {
+      for (const [p, q] of segsMinusGaps(along0, along1, gapCuts)) {
+        paintRect(stripRect(w, outward, b.fromExt, b.thick, p, q), b.style);
+      }
     }
-
-    // 2) EB20 Akustik CONTINUU pe grosime (sub stâlpi = umplutură) + tăiat pe goluri
+    // EB20 continuu sub stâlpi (spans)
+    const ins = insetToBrickCm(cat);
+    const brick = Math.min(BRICK_ON_EXTREME_CM, thCm - ins);
     for (const [s0, s1] of spansBrickStrip(w, outward)) {
       for (const [p, q] of segsMinusGaps(s0, s1, gapCuts)) {
         if (q > p + 0.3) paintRect(stripRect(w, outward, ins, brick, p, q), "brick");
@@ -2507,23 +3749,25 @@ function planSvg(levelIdx, title) {
    */
   function patchEnvelopeInsulationGaps() {
     const iN = INSET_TO_BRICK_A1;
+    const iW = INSET_TO_BRICK_A1; // A1.131 vest tencuială
     const iE = INSET_TO_BRICK_A2;
+    const iS = INSET_TO_BRICK_A2;
 
     // Colțuri finite N/W / N/E — pătrate inset×inset
-    paintRect({ x: 0, y: 0, dx: iE, dy: iN }, "insulation");
+    paintRect({ x: 0, y: 0, dx: iW, dy: iN }, "insulation");
     paintRect({ x: EW - iE, y: 0, dx: iE, dy: iN }, "insulation");
 
     // Continuitate vest/est sub banda peretelui nord (altfel gol lângă C_NW / C_NE)
-    paintRect({ x: 0, y: 0, dx: iE, dy: TH.A2 }, "insulation");
+    paintRect({ x: 0, y: 0, dx: iW, dy: TH.A3_N }, "insulation");
     paintRect({ x: EW - iE, y: 0, dx: iE, dy: TH.A1 }, "insulation");
 
     // În fața fiecărui stâlp perimetral — bandă pe finit
     for (const c of columns) {
       const f = c.faces || {};
       if (f.onN) paintRect({ x: c.x, y: 0, dx: c.dx, dy: iN }, "insulation");
-      if (f.onW) paintRect({ x: 0, y: c.y, dx: iE, dy: c.dy }, "insulation");
+      if (f.onW) paintRect({ x: 0, y: c.y, dx: iW, dy: c.dy }, "insulation");
       if (f.onE) paintRect({ x: EW - iE, y: c.y, dx: iE, dy: c.dy }, "insulation");
-      if (f.onSEnv) paintRect({ x: c.x, y: NS - iE, dx: c.dx, dy: iE }, "insulation");
+      if (f.onSEnv) paintRect({ x: c.x, y: NS - iS, dx: c.dx, dy: iS }, "insulation");
       // A1.126: FĂRĂ petic ISO pe onSDorm (C_W_DORM / C_S_DORM_E) —
       // ISO pe finit e deja din drawExteriorWallFrame; peticul apărea ca bandă
       // care „taie” zidul unde EB20 era decupat pe stâlp.
@@ -2630,10 +3874,20 @@ function planSvg(levelIdx, title) {
     }
   }
 
-  // mobilier studiu (pat, sanitare baie, MS)
+  // mobilier studiu (pat, sanitare baie, MS, living/buc)
   for (const f of furniture) {
     if (f.levels && !f.levels.includes(levelIdx)) continue;
     const fs = f.id === "pat" ? 11 : 9;
+    // gabarit desfășurare canapea (vest) — dashed, sub foaia închisă
+    if (f.unfold_west_cm > 0) {
+      const ux = f.x - f.unfold_west_cm;
+      parts.push(
+        `<rect x="${sx(ux)}" y="${sy(f.y)}" width="${(f.dx + f.unfold_west_cm) * scale}" height="${f.dy * scale}" fill="none" stroke="#5a6a7a" stroke-width="1.1" stroke-dasharray="5 4"/>`
+      );
+      parts.push(
+        `<text x="${sx(ux + 4)}" y="${sy(f.y + 12)}" font-size="7" fill="#5a6a7a" font-family="${font}">deschis ${f.dx + f.unfold_west_cm}×${f.dy}</text>`
+      );
+    }
     parts.push(
       `<rect x="${sx(f.x)}" y="${sy(f.y)}" width="${f.dx * scale}" height="${f.dy * scale}" fill="${f.color || "#c4a882"}" fill-opacity="0.85" stroke="#5a4030" stroke-width="1.4"/>`
     );
@@ -2645,7 +3899,29 @@ function planSvg(levelIdx, title) {
     if (f.glass_east) {
       const gDy = f.glass_east_dy != null ? f.glass_east_dy : f.dy;
       parts.push(
-        `<line x1="${sx(f.x + f.dx)}" y1="${sy(f.y)}" x2="${sx(f.x + f.dx)}" y2="${sy(f.y + gDy)}" stroke="#5a8aaa" stroke-width="2" stroke-dasharray="5 3"/>`
+        `<line x1="${sx(f.x + f.dx)}" y1="${sy(f.y)}" x2="${sx(f.x + f.dx)}" y2="${sy(f.y + gDy)}" stroke="#5a8aaa" stroke-width="2.2" stroke-dasharray="5 3"/>`
+      );
+      if (f.glass_seal_to_ms) {
+        const ms = furniture.find((m) => m.id === "masina_spalat");
+        if (ms && (!ms.levels || ms.levels.includes(levelIdx))) {
+          // etanșare dus|MS pe muchia comună (est duș = vest MS)
+          parts.push(
+            `<line x1="${sx(f.x + f.dx)}" y1="${sy(ms.y)}" x2="${sx(f.x + f.dx)}" y2="${sy(ms.y + ms.dy)}" stroke="#00695c" stroke-width="3"/>`
+          );
+          parts.push(
+            `<text x="${sx(f.x + f.dx + 6)}" y="${sy(ms.y + ms.dy / 2)}" font-size="8" fill="#00695c" font-family="${font}">etanș</text>`
+          );
+        }
+      }
+    }
+    if (f.id === "masina_spalat" && f.facing === "north") {
+      const cx = f.x + f.dx / 2;
+      const y0 = f.y;
+      parts.push(
+        `<line x1="${sx(cx)}" y1="${sy(y0)}" x2="${sx(cx)}" y2="${sy(y0 - 14)}" stroke="#333" stroke-width="1.6"/>`
+      );
+      parts.push(
+        `<polygon points="${sx(cx)},${sy(y0 - 18)} ${sx(cx - 4)},${sy(y0 - 10)} ${sx(cx + 4)},${sy(y0 - 10)}" fill="#333"/>`
       );
     }
     const lab = f.label;
@@ -2654,6 +3930,29 @@ function planSvg(levelIdx, title) {
         `<text x="${sx(f.x + f.dx / 2)}" y="${sy(f.y + f.dy / 2)}" text-anchor="middle" dominant-baseline="middle" font-size="${fs}" font-weight="700" fill="#3a2a1a" font-family="${font}">${lab}</text>`
       );
     }
+  }
+
+  // A1.157: ghene P (casete) · etaj = drop mic (util intact)
+  for (const s of mepShafts) {
+    if (s.levels && !s.levels.includes(levelIdx)) continue;
+    if (s.draw === "drop_only") {
+      const cx = sx(s.x + s.dx / 2);
+      const cy = sy(s.y + s.dy / 2);
+      const r = Math.max(4, 5 * scale);
+      parts.push(
+        `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#6a1b9a" stroke-width="1.6" stroke-dasharray="3 2"/>`
+      );
+      parts.push(
+        `<text x="${cx}" y="${cy + r + 9}" text-anchor="middle" font-size="7" fill="#4a148c" font-family="${font}">drop</text>`
+      );
+      continue;
+    }
+    parts.push(
+      `<rect x="${sx(s.x)}" y="${sy(s.y)}" width="${s.dx * scale}" height="${s.dy * scale}" fill="#7b1fa2" fill-opacity="0.18" stroke="#6a1b9a" stroke-width="1.6" stroke-dasharray="6 4"/>`
+    );
+    parts.push(
+      `<text x="${sx(s.x + s.dx / 2)}" y="${sy(s.y + s.dy / 2)}" text-anchor="middle" dominant-baseline="middle" font-size="8" font-weight="700" fill="#4a148c" font-family="${font}">GHENĂ</text>`
+    );
   }
 
   // goluri pe falie (EB20), nu pe izolație
@@ -2668,11 +3967,31 @@ function planSvg(levelIdx, title) {
         `<rect x="${sx(p.x)}" y="${sy(p.y)}" width="${p.dx * scale}" height="${p.dy * scale}" fill="#b8d4f0" stroke="#2a5a8a" stroke-width="1.2"/>`
       );
     }
-    // Ușă intrare P: în afară dreapta pe terasă (balama S, foaie vest)
+    // Ușă intrare P: înăuntru spre dreapta în hol (balama S, foaie est)
     if (o.id === "intrare_parter" && o.leaf?.hinge_x != null) {
       const hx = o.leaf.hinge_x;
       const hy = o.leaf.hinge_y;
       const lw = o.leaf.width_cm || o.dy;
+      parts.push(
+        `<line x1="${sx(hx)}" y1="${sy(hy)}" x2="${sx(hx + lw)}" y2="${sy(hy)}" stroke="#1a1a1a" stroke-width="2"/>`
+      );
+      const r = lw * scale;
+      const cx = sx(hx);
+      const cy = sy(hy);
+      // arc: închis N (pe gol) → deschis E (hol); sweep=1 pe ecran y↓
+      parts.push(
+        `<path d="M ${cx} ${cy - r} A ${r} ${r} 0 0 1 ${cx + r} ${cy}" fill="none" stroke="#1a1a1a" stroke-width="1.1" stroke-dasharray="4 3"/>`
+      );
+      parts.push(
+        `<text x="${sx(hx + lw / 2)}" y="${sy(hy) + 12}" text-anchor="middle" font-size="8" fill="#1a1a1a" font-family="${font}">100 · înăuntru dreapta</text>`
+      );
+    }
+    // Ușă buc→terasă E: în afară stânga (balama S, foaie vest)
+    if (o.id === "buc_terasa_etaj" && o.leaf?.hinge_x != null) {
+      const hx = o.leaf.hinge_x;
+      const hy = o.leaf.hinge_y;
+      const lw = o.leaf.width_cm || o.dy || 85;
+      const golLab = o.construction_clear_cm || o.dy || 90;
       parts.push(
         `<line x1="${sx(hx)}" y1="${sy(hy)}" x2="${sx(hx - lw)}" y2="${sy(hy)}" stroke="#1a1a1a" stroke-width="2"/>`
       );
@@ -2684,7 +4003,7 @@ function planSvg(levelIdx, title) {
         `<path d="M ${cx} ${cy - r} A ${r} ${r} 0 0 0 ${cx - r} ${cy}" fill="none" stroke="#1a1a1a" stroke-width="1.1" stroke-dasharray="4 3"/>`
       );
       parts.push(
-        `<text x="${sx(hx - lw / 2)}" y="${sy(hy) + 12}" text-anchor="middle" font-size="8" fill="#1a1a1a" font-family="${font}">100 · afară dreapta</text>`
+        `<text x="${sx(hx - lw / 2)}" y="${sy(hy) + 12}" text-anchor="middle" font-size="8" fill="#1a1a1a" font-family="${font}">${golLab} · afară stânga</text>`
       );
     }
     // Ușă intrare E: de pe palier → stânga înăuntru (balama S, foaie vest în living)
@@ -3182,43 +4501,124 @@ function planSvg(levelIdx, title) {
     }
   }
 
-  // Scară: clear bandă (o singură cotă)
-  if (stair.width_clear_cm && levelIdx === 1) {
-    const bandX = stair.band_x ?? 562.8;
-    const yRef = (stair.palier_superior?.y ?? 450) + 40;
-    dimH(bandX, bandX + stair.width_clear_cm, yRef, 18, stair.width_clear_cm, " clear");
+  // Scară: clear real A6→est + clear la pier (A1.132)
+  if (levelIdx === 0 || levelIdx === 1) {
+    const a6e = STAIR_A6_EAST_X;
+    const yRef = (stair.ramp2?.y ?? 590) + 40;
+    dimH(a6e, a6e + stair.width_clear_cm, yRef, 22, stair.width_clear_cm, " clear A6→E");
+    const pier = columns.find((c) => c.id === "C_E_LAMELE");
+    if (pier && stair.width_clear_at_pier_cm) {
+      dimH(
+        a6e,
+        pier.x,
+        pier.y + pier.dy / 2,
+        -26,
+        stair.width_clear_at_pier_cm,
+        " @pier"
+      );
+    }
+    if (stair.entry_steps?.joint_to_terrace_landing_cm && levelIdx === 0) {
+      const es = stair.entry_steps;
+      noteAt(
+        es.x + es.dx / 2,
+        es.y - 6,
+        `rost ${String(es.joint_to_terrace_landing_cm).replace(".", ",")} cm`,
+        { fontSize: 9, fill: "#bf360c", dir: "up" }
+      );
+    }
   }
 
   // corp finit
   dimH(0, EW, 0, -32, EW);
   dimV(0, NS, EW, 32, NS);
 
-  // Legendă scurtă
-  const legX = sx(EW) + 20;
-  let legY = padT + 4;
-  parts.push(
-    `<rect x="${legX - 6}" y="${legY - 4}" width="168" height="118" fill="#fff" stroke="#ccc" stroke-width="1"/>`
-  );
-  parts.push(
-    `<text x="${legX}" y="${legY + 12}" font-size="12" font-weight="700" fill="#111" font-family="${font}">Legendă</text>`
-  );
-  legY += 28;
-  for (const it of [
-    { kind: "concrete", text: "Beton" },
-    { kind: "brick", text: "EB20" },
-    { kind: "insulation", text: "Izolație" },
-    { kind: "parapet", text: "Parapet" },
-  ]) {
-    const st = LAYER_STYLE[it.kind];
-    const fill = st.pattern ? `url(#${st.pattern})` : st.fill;
-    parts.push(
-      `<rect x="${legX}" y="${legY}" width="22" height="12" fill="${fill}" stroke="${st.stroke}" stroke-width="0.7"/>`
+  // Legendă: mai întâi conținutul, apoi fondul pe înălțimea reală (fără overflow)
+  const legX = sx(EW) + 14;
+  const legW = 248;
+  const legTop = padT;
+  const legBuf = [];
+  let ly = 14;
+  function legText(xOff, text, size, weight, fill) {
+    const fcol = fill || "#222";
+    legBuf.push(
+      `<text x="${legX + xOff}" y="${legTop + ly}" font-size="${size}" font-weight="${weight || 400}" fill="${fcol}" font-family="${font}">${text}</text>`
     );
-    parts.push(
-      `<text x="${legX + 28}" y="${legY + 10}" font-size="11" fill="#222" font-family="${font}">${it.text}</text>`
-    );
-    legY += 20;
   }
+  function legSwatch(kind, label) {
+    const st = LAYER_STYLE[kind] || LAYER_STYLE.fallback;
+    const fill = st.pattern ? `url(#${st.pattern})` : st.fill;
+    legBuf.push(
+      `<rect x="${legX}" y="${legTop + ly - 9}" width="18" height="11" fill="${fill}" stroke="${st.stroke}" stroke-width="0.7"/>`
+    );
+    legText(24, label, 10, 400, "#222");
+    ly += 16;
+  }
+  /** Nume scurte pentru cartuș — litere pe o linie / ansamblu. */
+  function shortLayerName(id, name) {
+    const s = String(id || "");
+    if (/klinker|placaj/.test(s)) return "klinker";
+    if (/adeziv_faian/.test(s)) return "adeziv fai.";
+    if (/^faianata$|faianata/.test(s) && !/adeziv/.test(s)) return "faianță";
+    if (/adeziv_etics/.test(s)) return "adeziv ETICS";
+    if (/vata|isover/.test(s)) return "vată 80";
+    if (/caramida|eb20/.test(s)) return "EB20";
+    if (/strat_armat/.test(s)) return "strat armat";
+    if (/grund|decorativ/.test(s)) return "tenc. dec.";
+    if (/tencuiala_int/.test(s)) return "tenc. int.";
+    if (/finisare_vopsea/.test(s)) return "vopsea";
+    if (/adeziv/.test(s)) return "adeziv";
+    if (/faian/.test(s)) return "faianță";
+    const n = String(name || id || "");
+    return n.length > 18 ? `${n.slice(0, 16)}…` : n;
+  }
+
+  legText(0, "Legendă plan", 12, 700, "#111");
+  ly += 18;
+  for (const it of [
+    ["concrete", "Beton (stâlpi)"],
+    ["finish_klinker", "Klinker S+E"],
+    ["finish_plaster", "Tencuială N+V"],
+    ["insulation", "Izolație ~8 cm"],
+    ["brick", "EB20 ~20 cm"],
+    ["tile", "Faianță baie"],
+    ["parapet", "Parapet"],
+  ]) {
+    legSwatch(it[0], it[1]);
+  }
+  ly += 6;
+  legText(0, "Straturi mm (cartuș)", 10, 700, "#111");
+  ly += 13;
+  legText(0, "Pe plan = 3 benzi. Ext→int:", 8, 400, "#666");
+  ly += 12;
+  for (const cat of ["A2", "A1", "A3_N"]) {
+    const layers = assemblyLayersExtToInt(cat);
+    if (!layers) continue;
+    const thMm = Math.round(TH[cat] * 10);
+    legText(0, `${cat} · ${thMm} mm`, 9, 700, "#333");
+    ly += 11;
+    const bits = layers.map((lay) => {
+      const mm = Math.round(lay.th_cm * 10);
+      return `${mm} ${shortLayerName(lay.id, lay.name)}`;
+    });
+    // 2 rânduri max, litere mici
+    const line1 = bits.slice(0, Math.ceil(bits.length / 2)).join(" · ");
+    const line2 = bits.slice(Math.ceil(bits.length / 2)).join(" · ");
+    legText(2, line1, 7.5, 400, "#444");
+    ly += 10;
+    if (line2) {
+      legText(2, line2, 7.5, 400, "#444");
+      ly += 10;
+    }
+    ly += 4;
+  }
+  legText(0, "Axe = linie punctată roșie", 8, 400, "#888");
+  ly += 10;
+
+  const legH = ly + 8;
+  parts.push(
+    `<rect x="${legX - 8}" y="${legTop - 6}" width="${legW}" height="${legH}" fill="#fff" stroke="#bbb" stroke-width="1" rx="2"/>`
+  );
+  for (const el of legBuf) parts.push(el);
 
   parts.push(`</svg>`);
   return parts.join("\n");
@@ -3445,9 +4845,450 @@ function eastFacadeDetailSvg() {
   return { svg: parts.join("\n"), segs, totalLen };
 }
 
+/**
+ * Plan subsol complet (A1.166) — același limbaj ca P/E:
+ * axe · cotă · retenție A11 pe layere · partiții A7 · scară · drop · legendă.
+ */
+function basementSvg() {
+  const scale = 2.15;
+  const padL = 100;
+  const padT = 80;
+  const padR = 268;
+  const padB = 120;
+  const W = EW * scale + padL + padR;
+  const H = NS * scale + padT + padB;
+  const sx = (x) => padL + x * scale;
+  const sy = (y) => padT + y * scale;
+  const parts = [];
+  const dimStroke = "#111";
+  const tick = 6;
+  const fontDim = 12;
+  const textBoxes = [];
+
+  function fmtCm(v) {
+    if (typeof v !== "number" || !Number.isFinite(v)) return "";
+    const r = Math.round(v * 10) / 10;
+    return Number.isInteger(r) ? String(r) : r.toFixed(1).replace(".", ",");
+  }
+  function boxHits(a, b) {
+    return !(a.x + a.w < b.x || b.x + b.w < a.x || a.y + a.h < b.y || b.y + b.h < a.y);
+  }
+  function claimBox(x, y, w, h) {
+    textBoxes.push({ x, y, w, h });
+  }
+  function placeText(x, y, text, opts = {}) {
+    const fs = opts.fontSize || 11;
+    const rot = opts.rotate === -90;
+    const w = (String(text).length * fs * 0.56) | 0;
+    const h = fs + 2;
+    const dir = opts.dir || "down";
+    const step = opts.step || 12;
+    for (let i = 0; i < 12; i++) {
+      const bx = rot ? x - h / 2 : x - w / 2;
+      const by = rot ? y - w / 2 : y - h;
+      const bw = rot ? h : w;
+      const bh = rot ? w : h;
+      const cand = { x: bx, y: by, w: bw, h: bh };
+      if (!textBoxes.some((b) => boxHits(cand, b))) {
+        claimBox(bx, by, bw, bh);
+        return { x, y };
+      }
+      if (dir === "down") y += step;
+      else if (dir === "up") y -= step;
+      else if (dir === "left") x -= step;
+      else x += step;
+    }
+    claimBox(rot ? x - h / 2 : x - w / 2, rot ? y - w / 2 : y - h, rot ? h : w, rot ? w : h);
+    return { x, y };
+  }
+  function dimH(x0, x1, yCm, offsetPx, valCm, labelExtra) {
+    const span = Math.abs(x1 - x0);
+    if (span < 8) return;
+    const xA = sx(Math.min(x0, x1));
+    const xB = sx(Math.max(x0, x1));
+    const yEdge = sy(yCm);
+    const yLine = yEdge + offsetPx;
+    const yTick0 = offsetPx < 0 ? yEdge - 3 : yEdge + 3;
+    parts.push(
+      `<line x1="${xA}" y1="${yTick0}" x2="${xA}" y2="${yLine}" stroke="${dimStroke}" stroke-width="1"/>`,
+      `<line x1="${xB}" y1="${yTick0}" x2="${xB}" y2="${yLine}" stroke="${dimStroke}" stroke-width="1"/>`,
+      `<line x1="${xA}" y1="${yLine}" x2="${xB}" y2="${yLine}" stroke="${dimStroke}" stroke-width="1.15"/>`,
+      `<line x1="${xA}" y1="${yLine - tick / 2}" x2="${xA}" y2="${yLine + tick / 2}" stroke="${dimStroke}" stroke-width="1.5"/>`,
+      `<line x1="${xB}" y1="${yLine - tick / 2}" x2="${xB}" y2="${yLine + tick / 2}" stroke="${dimStroke}" stroke-width="1.5"/>`
+    );
+    const label = `${fmtCm(valCm)}${labelExtra || ""}`;
+    const midX = (xA + xB) / 2;
+    const prefY = offsetPx < 0 ? yLine - 4 : yLine + fontDim + 2;
+    const p = placeText(midX, prefY, label, {
+      fontSize: fontDim,
+      dir: offsetPx < 0 ? "up" : "down",
+      step: 13,
+    });
+    parts.push(
+      `<text x="${p.x}" y="${p.y}" text-anchor="middle" font-size="${fontDim}" font-weight="700" fill="#111" font-family="${font}">${label}</text>`
+    );
+  }
+  function dimV(y0, y1, xCm, offsetPx, valCm, labelExtra) {
+    const span = Math.abs(y1 - y0);
+    if (span < 8) return;
+    const yA = sy(Math.min(y0, y1));
+    const yB = sy(Math.max(y0, y1));
+    const xEdge = sx(xCm);
+    const xLine = xEdge + offsetPx;
+    const xTick0 = offsetPx < 0 ? xEdge - 3 : xEdge + 3;
+    parts.push(
+      `<line x1="${xTick0}" y1="${yA}" x2="${xLine}" y2="${yA}" stroke="${dimStroke}" stroke-width="1"/>`,
+      `<line x1="${xTick0}" y1="${yB}" x2="${xLine}" y2="${yB}" stroke="${dimStroke}" stroke-width="1"/>`,
+      `<line x1="${xLine}" y1="${yA}" x2="${xLine}" y2="${yB}" stroke="${dimStroke}" stroke-width="1.15"/>`,
+      `<line x1="${xLine - tick / 2}" y1="${yA}" x2="${xLine + tick / 2}" y2="${yA}" stroke="${dimStroke}" stroke-width="1.5"/>`,
+      `<line x1="${xLine - tick / 2}" y1="${yB}" x2="${xLine + tick / 2}" y2="${yB}" stroke="${dimStroke}" stroke-width="1.5"/>`
+    );
+    const label = `${fmtCm(valCm)}${labelExtra || ""}`;
+    const midY = (yA + yB) / 2;
+    const prefX = xLine + (offsetPx < 0 ? -14 : 14);
+    const p = placeText(prefX, midY, label, {
+      fontSize: fontDim,
+      rotate: -90,
+      dir: offsetPx < 0 ? "left" : "right",
+      step: 13,
+    });
+    parts.push(
+      `<text x="${p.x}" y="${p.y}" text-anchor="middle" font-size="${fontDim}" font-weight="700" fill="#111" font-family="${font}" transform="rotate(-90 ${p.x} ${p.y})">${label}</text>`
+    );
+  }
+  function noteAt(xCm, yCm, text, opts = {}) {
+    const fs = opts.fontSize || 11;
+    const p = placeText(sx(xCm), sy(yCm), text, {
+      fontSize: fs,
+      dir: opts.dir || "down",
+      step: 12,
+    });
+    parts.push(
+      `<text x="${p.x}" y="${p.y}" text-anchor="${opts.anchor || "middle"}" font-size="${fs}" font-weight="${opts.bold ? 700 : 600}" fill="${opts.fill || "#111"}" font-family="${font}">${text}</text>`
+    );
+  }
+
+  parts.push(`<?xml version="1.0" encoding="UTF-8"?>`);
+  parts.push(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${Math.round(W)}" height="${Math.round(H)}" viewBox="0 0 ${W} ${H}" data-paper="A3">`
+  );
+  parts.push(`<defs>`);
+  parts.push(`<pattern id="patBrick" patternUnits="userSpaceOnUse" width="10" height="6">`);
+  parts.push(`<rect width="10" height="6" fill="#c49a6c"/>`);
+  parts.push(`<path d="M0,3 H10 M0,0 H10 M0,6 H10 M5,3 V6" stroke="#6b4e32" stroke-width="0.7" fill="none"/>`);
+  parts.push(`</pattern>`);
+  parts.push(`<pattern id="patInsul" patternUnits="userSpaceOnUse" width="8" height="8">`);
+  parts.push(`<rect width="8" height="8" fill="#e8d56a"/>`);
+  parts.push(`<path d="M-2,2 L2,-2 M0,8 L8,0 M6,10 L10,6" stroke="#8a7a20" stroke-width="1"/>`);
+  parts.push(`</pattern>`);
+  parts.push(`<pattern id="patConcrete" patternUnits="userSpaceOnUse" width="7" height="7">`);
+  parts.push(`<rect width="7" height="7" fill="#7a7a7a"/>`);
+  parts.push(`<path d="M0,0 L7,7 M-2,5 L5,-2 M2,9 L9,2" stroke="#2a2a2a" stroke-width="1.1"/>`);
+  parts.push(`</pattern>`);
+  parts.push(`</defs>`);
+
+  parts.push(`<rect width="100%" height="100%" fill="#faf9f7"/>`);
+  parts.push(
+    `<text x="${padL}" y="36" font-size="22" font-weight="700" fill="#111" font-family="${font}">A1 · Plan subsol</text>`
+  );
+  parts.push(
+    `<text x="${padL}" y="56" font-size="13" fill="#555" font-family="${font}">Cutie încălzită + puț scară (același plan) · FF −250 · A11 · A7</text>`
+  );
+
+  // axe (aceleași ca P/E)
+  for (const a of axes.vertical_WE || []) {
+    parts.push(
+      `<line x1="${sx(a.x)}" y1="${sy(-28)}" x2="${sx(a.x)}" y2="${sy(NS + 28)}" stroke="#c62828" stroke-width="0.7" stroke-dasharray="6 5" opacity="0.45"/>`
+    );
+    parts.push(
+      `<text x="${sx(a.x)}" y="${sy(-14)}" text-anchor="middle" font-size="11" font-weight="700" fill="#b71c1c" font-family="${font}">${a.id}</text>`
+    );
+  }
+  for (const a of axes.horizontal_NS || []) {
+    parts.push(
+      `<line x1="${sx(-28)}" y1="${sy(a.y)}" x2="${sx(EW + 28)}" y2="${sy(a.y)}" stroke="#c62828" stroke-width="0.7" stroke-dasharray="6 5" opacity="0.45"/>`
+    );
+    parts.push(
+      `<text x="${sx(-18)}" y="${sy(a.y) + 4}" text-anchor="end" font-size="11" font-weight="700" fill="#b71c1c" font-family="${font}">${a.id}</text>`
+    );
+  }
+
+  // contur corp finit (context)
+  parts.push(
+    `<rect x="${sx(0)}" y="${sy(0)}" width="${EW * scale}" height="${NS * scale}" fill="none" stroke="#bbb" stroke-width="1.2" stroke-dasharray="6 4"/>`
+  );
+
+  // pardoseli camere
+  for (const r of basement.rooms) {
+    parts.push(
+      `<rect x="${sx(r.x)}" y="${sy(r.y)}" width="${r.dx * scale}" height="${r.dy * scale}" fill="#c5d5c8" fill-opacity="0.55" stroke="none"/>`
+    );
+  }
+
+  function stripAlong(w, outward, fromExt, thick, along0, along1) {
+    if (thick < 0.15 || along1 - along0 < 0.15) return null;
+    if (outward === "N") return { x: along0, y: w.y + fromExt, dx: along1 - along0, dy: thick };
+    if (outward === "S") return { x: along0, y: w.y + w.dy - fromExt - thick, dx: along1 - along0, dy: thick };
+    if (outward === "W") return { x: w.x + fromExt, y: along0, dx: thick, dy: along1 - along0 };
+    return { x: w.x + w.dx - fromExt - thick, y: along0, dx: thick, dy: along1 - along0 };
+  }
+  function paintLayerRect(r, styleKey) {
+    if (!r) return;
+    const st = LAYER_STYLE[styleKey] || LAYER_STYLE.fallback;
+    const fill = st.pattern ? `url(#${st.pattern})` : st.fill;
+    parts.push(
+      `<rect x="${sx(r.x)}" y="${sy(r.y)}" width="${Math.max(0.4, r.dx * scale)}" height="${Math.max(0.4, r.dy * scale)}" fill="${fill}" stroke="${st.stroke}" stroke-width="0.45"/>`
+    );
+  }
+  function paintWallLayers(w) {
+    const cat = w.catalog_id || "A11";
+    const outward = wallOutward(w);
+    const layers = assemblyLayersExtToInt(cat);
+    const alongX = outward === "N" || outward === "S";
+    const a0 = alongX ? w.x : w.y;
+    const a1 = alongX ? w.x + w.dx : w.y + w.dy;
+    // gol ușă pe retenție E
+    const door = basement.stair?.door_to_magazie;
+    const gaps = [];
+    if (door && w.id === "subsol_reten_e") {
+      gaps.push([door.y, door.y + door.dy]);
+    }
+    function spansMinusGaps(g0, g1, gapList) {
+      let segs = [[g0, g1]];
+      for (const [z0, z1] of gapList) {
+        const next = [];
+        for (const [s0, s1] of segs) {
+          if (z1 <= s0 || z0 >= s1) next.push([s0, s1]);
+          else {
+            if (z0 > s0) next.push([s0, z0]);
+            if (z1 < s1) next.push([z1, s1]);
+          }
+        }
+        segs = next;
+      }
+      return segs.filter(([s0, s1]) => s1 - s0 > 0.3);
+    }
+    const alongSpans = spansMinusGaps(a0, a1, gaps);
+    if (!layers?.length) {
+      for (const [s0, s1] of alongSpans) {
+        paintLayerRect(stripAlong(w, outward, 0, alongX ? w.dy : w.dx, s0, s1), "concrete");
+      }
+      return;
+    }
+    let fromExt = 0;
+    for (const lay of layers) {
+      for (const [s0, s1] of alongSpans) {
+        paintLayerRect(stripAlong(w, outward, fromExt, lay.th_cm, s0, s1), lay.style);
+      }
+      fromExt += lay.th_cm;
+    }
+    // contur zid
+    parts.push(
+      `<rect x="${sx(w.x)}" y="${sy(w.y)}" width="${w.dx * scale}" height="${w.dy * scale}" fill="none" stroke="#333" stroke-width="0.9"/>`
+    );
+  }
+
+  for (const w of basement.walls || []) {
+    if (w.role === "retaining") paintWallLayers(w);
+    else {
+      // partiții A7 — solid + contur
+      const st = LAYER_STYLE.intWall;
+      parts.push(
+        `<rect x="${sx(w.x)}" y="${sy(w.y)}" width="${w.dx * scale}" height="${w.dy * scale}" fill="${st.fill}" stroke="${st.stroke}" stroke-width="0.8"/>`
+      );
+    }
+  }
+
+  // scară / puț / uși
+  const bs = basement.stair;
+  // incintă puț (N+E) — același plan; V = retenție cutie
+  for (const w of bs?.pit?.walls || []) {
+    paintWallLayers(w);
+  }
+  if (bs?.pit) {
+    const p = bs.pit;
+    // S deschis spre curte — linie întreruptă
+    parts.push(
+      `<line x1="${sx(p.x0)}" y1="${sy(p.y1)}" x2="${sx(p.x1)}" y2="${sy(p.y1)}" stroke="#1565c0" stroke-width="1.6" stroke-dasharray="8 4"/>`
+    );
+    noteAt((p.x0 + p.x1) / 2, p.y1 + 8, "S deschis → curte", {
+      fontSize: 9,
+      fill: "#1565c0",
+    });
+  }
+  if (bs?.open_shaft) {
+    const s = bs.open_shaft;
+    parts.push(
+      `<rect x="${sx(s.x)}" y="${sy(s.y)}" width="${s.dx * scale}" height="${s.dy * scale}" fill="#b8d4f0" fill-opacity="0.35" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="6 3"/>`
+    );
+    noteAt(s.x + s.dx / 2, s.y + 14, "PUȚ R2 (deschis)", { fontSize: 10, fill: "#0d47a1" });
+  }
+  if (bs?.lower_landing) {
+    const L = bs.lower_landing;
+    parts.push(
+      `<rect x="${sx(L.x)}" y="${sy(L.y)}" width="${L.dx * scale}" height="${L.dy * scale}" fill="#5a7388" fill-opacity="0.45" stroke="#1a1a1a" stroke-width="1.4"/>`
+    );
+    noteAt(L.x + L.dx / 2, L.y + L.dy / 2, "PALIER −250", { fontSize: 9, bold: true, fill: "#fff" });
+  }
+  if (bs?.flight) {
+    const f = bs.flight;
+    parts.push(
+      `<rect x="${sx(f.x)}" y="${sy(f.y)}" width="${f.dx * scale}" height="${f.dy * scale}" fill="#5a7388" fill-opacity="0.55" stroke="#1a1a1a" stroke-width="1.5"/>`
+    );
+    const n = f.treads || 8;
+    for (let i = 1; i < n; i++) {
+      const yy = sy(f.y + (i * f.dy) / n);
+      parts.push(
+        `<line x1="${sx(f.x)}" y1="${yy}" x2="${sx(f.x + f.dx)}" y2="${yy}" stroke="#fff" stroke-opacity="0.5" stroke-width="1"/>`
+      );
+    }
+    noteAt(f.x + f.dx / 2, f.y + f.dy / 2 - 4, "SCARĂ BECI ↓N", { fontSize: 10, bold: true, fill: "#0d1b2a" });
+    noteAt(
+      f.x + f.dx / 2,
+      f.y + f.dy / 2 + 10,
+      `clear ${f.width_clear_cm} · ${f.risers}×${fmtCm(f.riser_cm)}`,
+      { fontSize: 8, fill: "#0d1b2a" }
+    );
+  }
+  if (bs?.upper_landing) {
+    const U = bs.upper_landing;
+    parts.push(
+      `<rect x="${sx(U.x)}" y="${sy(U.y)}" width="${U.dx * scale}" height="${U.dy * scale}" fill="#7a8a9a" fill-opacity="0.4" stroke="#1a1a1a" stroke-width="1.3"/>`
+    );
+    noteAt(U.x + U.dx / 2, U.y + U.dy / 2, "PALIER −95", { fontSize: 9, bold: true });
+  }
+  if (bs?.door_to_magazie) {
+    const d = bs.door_to_magazie;
+    parts.push(
+      `<rect x="${sx(d.x)}" y="${sy(d.y)}" width="${d.dx * scale}" height="${d.dy * scale}" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>`
+    );
+    noteAt(d.x - 6, d.y + d.dy / 2, "ușă→magazie", {
+      fontSize: 9,
+      fill: "#0d47a1",
+      anchor: "end",
+      dir: "left",
+    });
+  }
+
+  // stâlpi (beton)
+  for (const c of columns) {
+    paintLayerRect(c, "concrete");
+    parts.push(
+      `<rect x="${sx(c.x)}" y="${sy(c.y)}" width="${c.dx * scale}" height="${c.dy * scale}" fill="none" stroke="#111" stroke-width="1"/>`
+    );
+  }
+
+  // drop-uri MEP
+  for (const d of basement.drop_landings) {
+    parts.push(
+      `<rect x="${sx(d.x)}" y="${sy(d.y)}" width="${d.dx * scale}" height="${d.dy * scale}" fill="#7b1fa2" fill-opacity="0.35" stroke="#4a148c" stroke-width="1.6" stroke-dasharray="5 3"/>`
+    );
+    noteAt(d.x + d.dx / 2, d.y + d.dy / 2, "DROP", { fontSize: 8, bold: true, fill: "#4a148c" });
+  }
+
+  // etichete camere + cote
+  for (const r of basement.rooms) {
+    const cx = r.x + r.dx / 2;
+    const cy = r.y + r.dy / 2;
+    noteAt(cx, cy - 12, r.label, { fontSize: 13, bold: true, fill: "#1b2e1f" });
+    noteAt(cx, cy + 2, `${fmtCm(r.dx)} × ${fmtCm(r.dy)}`, {
+      fontSize: 11,
+      bold: true,
+      fill: "#0d47a1",
+    });
+    noteAt(cx, cy + 16, `${String(r.area_m2).replace(".", ",")} m²`, {
+      fontSize: 10,
+      fill: "#444",
+    });
+    if (r.dx >= 40) dimH(r.x, r.x + r.dx, r.y + r.dy, -14, r.dx);
+    if (r.dy >= 40) dimV(r.y, r.y + r.dy, r.x + r.dx, -14, r.dy);
+  }
+
+  // cotă cutie + grosimi A11 / A7
+  dimH(X_SUBSOL_W, X_SUBSOL_E, Y_SUBSOL_N, -36, X_SUBSOL_E - X_SUBSOL_W, " cutie");
+  dimV(Y_SUBSOL_N, Y_SUBSOL_S, X_SUBSOL_W, -40, Y_SUBSOL_S - Y_SUBSOL_N, " cutie");
+  {
+    const wn = (basement.walls || []).find((w) => w.id === "subsol_reten_n");
+    if (wn) dimV(wn.y, wn.y + wn.dy, wn.x + wn.dx / 2, 22, wn.dy, " A11");
+    const wxi = (basement.walls || []).find((w) => w.id === "subsol_part_xi");
+    if (wxi) dimH(wxi.x, wxi.x + wxi.dx, wxi.y + 40, -20, wxi.dx, " A7");
+  }
+  if (bs?.door_to_magazie) {
+    const d = bs.door_to_magazie;
+    dimV(d.y, d.y + d.dy, d.x + d.dx / 2, 24, d.dy, " gol");
+  }
+  if (bs?.flight) {
+    dimH(bs.flight.x, bs.flight.x + bs.flight.dx, bs.flight.y + 20, 22, bs.flight.dx, " clear");
+  }
+
+  // corp finit
+  dimH(0, EW, 0, -52, EW);
+  dimV(0, NS, EW, 40, NS);
+
+  // legendă
+  const legX = sx(EW) + 14;
+  const legW = 248;
+  let ly = padT + 8;
+  const legItems = [
+    ["concrete", "BA / stâlp"],
+    ["insulation", "drenaj / XPS"],
+    ["adhesive", "hidro"],
+    ["int_plaster", "tencuială beci"],
+    ["intWall", "partiție A7"],
+    ["room", "cameră beci"],
+    ["stair", "scară / palier"],
+    ["drop", "drop MEP"],
+    ["pit", "puț / S→curte"],
+  ];
+  const fillOf = {
+    concrete: "url(#patConcrete)",
+    insulation: "url(#patInsul)",
+    adhesive: LAYER_STYLE.adhesive.fill,
+    int_plaster: LAYER_STYLE.int_plaster.fill,
+    intWall: LAYER_STYLE.intWall.fill,
+    room: "#c5d5c8",
+    stair: "#5a7388",
+    drop: "#7b1fa2",
+    pit: "#b8d4f0",
+  };
+  const legH = 28 + legItems.length * 22 + 70;
+  parts.push(
+    `<rect x="${legX}" y="${padT}" width="${legW}" height="${legH}" fill="#fff" stroke="#ccc" stroke-width="1"/>`
+  );
+  parts.push(
+    `<text x="${legX + 12}" y="${ly + 12}" font-size="12" font-weight="700" fill="#111" font-family="${font}">Legendă subsol</text>`
+  );
+  ly += 28;
+  for (const [k, t] of legItems) {
+    parts.push(
+      `<rect x="${legX + 12}" y="${ly}" width="22" height="14" fill="${fillOf[k]}" stroke="#222" fill-opacity="${k === "room" || k === "stair" || k === "drop" ? 0.55 : 1}"/>`
+    );
+    parts.push(
+      `<text x="${legX + 42}" y="${ly + 11}" font-size="11" fill="#222" font-family="${font}">${t}</text>`
+    );
+    ly += 22;
+  }
+  if (bs?.fit) {
+    const f = bs.fit;
+    parts.push(
+      `<text x="${legX + 12}" y="${ly + 8}" font-size="9" fill="#444" font-family="${font}">Fit scară:</text>`
+    );
+    parts.push(
+      `<text x="${legX + 12}" y="${ly + 22}" font-size="9" fill="#444" font-family="${font}">clear ${fmtCm(f.clear_a6_to_e)} ${f.clear_ok ? "OK" : "NU"} · @pier ${fmtCm(f.clear_at_pier)}</text>`
+    );
+    parts.push(
+      `<text x="${legX + 12}" y="${ly + 36}" font-size="9" fill="#444" font-family="${font}">riser ${f.riser_vs_brief_16}</text>`
+    );
+  }
+
+  parts.push(`</svg>`);
+  return parts.join("\n");
+}
+
 fs.mkdirSync(path.join(root, "outputs/plans"), { recursive: true });
 fs.writeFileSync(path.join(root, "outputs/plans/a1_plan_parter.svg"), planSvg(0, "A1 · Plan parter"));
 fs.writeFileSync(path.join(root, "outputs/plans/a1_plan_etaj.svg"), planSvg(1, "A1 · Plan etaj"));
+fs.writeFileSync(path.join(root, "outputs/plans/a1_plan_subsol.svg"), basementSvg());
 const eastDetail = eastFacadeDetailSvg();
 fs.writeFileSync(path.join(root, "outputs/plans/a1_detaliu_fatada_est.svg"), eastDetail.svg);
 
@@ -3476,6 +5317,7 @@ console.log(
         "data/building/a1_architecture.json",
         "outputs/plans/a1_plan_parter.svg",
         "outputs/plans/a1_plan_etaj.svg",
+        "outputs/plans/a1_plan_subsol.svg",
         "outputs/plans/a1_detaliu_fatada_est.svg",
       ],
     },

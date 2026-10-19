@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "id": "s1_a1_clear255_levels_v01",
+    "generated": "2026-10-18T19:59:00.690Z",
+    "lock": "clear_min_cm = 255 HARD under slab AND under beams — D1(b)/241 REVOCAT"
+  },
+  "clear_lock_cm": 255,
+  "slab": {
+    "min_that_passes_mid_span": {
+      "L_m": 2.5214999999999996,
+      "h_cm": 15,
+      "mu": 0.036,
+      "L_over_d": 20.2,
+      "allow_Ld": 47.6,
+      "delta_mm": 1.5,
+      "lim_mm": 10.1,
+      "pass": true
+    },
+    "adopt_cm": 15,
+    "without_mid_axis_check": {
+      "L_m": 5.042999999999999,
+      "h_cm": 15,
+      "mu": 0.144,
+      "L_over_d": 40.3,
+      "allow_Ld": 47.6,
+      "delta_mm": 24.4,
+      "lim_mm": 20.2,
+      "pass": false
+    },
+    "verdict": "Placă 15 cm OK pe L≈2.5214999999999996m cu B_X_MID; fără axă mid L≈5.042999999999999m → SLS/ULS semnal — păstrează B_X_MID"
+  },
+  "beams": {
+    "typical_h_cm": 35,
+    "critical_h_cm": 40,
+    "adopt_map": {},
+    "rule": "h total inclusiv zona plăcii; coborâre sub soffit = h − slab; clear sub grindă ≥255"
+  },
+  "levels_adopted": {
+    "h_beam_cm": 40,
+    "slab_th_cm": 15,
+    "drop_below_soffit_cm": 25,
+    "clear_under_beam_cm": 255,
+    "clear_under_slab_cm": 280,
+    "clear_under_false_ceiling_cm": 274,
+    "false_ceiling_ok": true,
+    "ff_to_ff_cm": 307,
+    "ff_parter_cm": 48,
+    "ff_etaj_cm": 355,
+    "beam_soffit_cm": 303,
+    "slab_soffit_cm": 328,
+    "slab_top_structural_cm": 343,
+    "note": "clear ≥255 sub grindă, sub placă și sub FC"
+  },
+  "levels_if_beam_h35": {
+    "h_beam_cm": 35,
+    "slab_th_cm": 15,
+    "drop_below_soffit_cm": 20,
+    "clear_under_beam_cm": 255,
+    "clear_under_slab_cm": 275,
+    "clear_under_false_ceiling_cm": 269,
+    "false_ceiling_ok": true,
+    "ff_to_ff_cm": 302,
+    "ff_parter_cm": 48,
+    "ff_etaj_cm": 350,
+    "beam_soffit_cm": 303,
+    "slab_soffit_cm": 323,
+    "slab_top_structural_cm": 338,
+    "note": "clear ≥255 sub grindă, sub placă și sub FC"
+  },
+  "levels_flush_alternative": {
+    "h_beam_cm": 15,
+    "slab_th_cm": 15,
+    "drop_below_soffit_cm": 0,
+    "clear_under_beam_cm": 255,
+    "clear_under_slab_cm": 255,
+    "clear_under_false_ceiling_cm": 249,
+    "false_ceiling_ok": false,
+    "ff_to_ff_cm": 282,
+    "ff_parter_cm": 48,
+    "ff_etaj_cm": 330,
+    "beam_soffit_cm": 303,
+    "slab_soffit_cm": 303,
+    "slab_top_structural_cm": 318,
+    "note": "Alternativă: grinzi bandă/încastrate (intrados = placă) → FF→FF = 282"
+  },
+  "roof": {
+    "type": "two_pitch",
+    "pitch_deg": 30,
+    "run_cm": 430.7,
+    "rise_cm": 248.6,
+    "pv_both_pitches": true,
+    "status": "LOCK_30deg_PV"
+  },
+  "errors_corrected": [
+    "Anterior: clear 241 sub grindă — INTERZIS de beneficiar",
+    "FF→FF trebuie să includă drop grindă + placă + buildup peste clear 255"
+  ]
+}

@@ -46,7 +46,7 @@
     "A1": {
       "id": "A1",
       "name": "Ext. încălzit tencuială",
-      "applies": ["nord_heated", "nise", "retrageri_tencuite"],
+      "applies": ["nord_heated", "vest_curte", "nise", "retrageri_tencuite"],
       "thickness_finished_mm": 299,
       "layers_interior_to_exterior_mm": [
         { "id": "tencuiala_int", "name": "tencuială interioară", "th_mm": 6 },
@@ -61,7 +61,7 @@
     "A2": {
       "id": "A2",
       "name": "Ext. încălzit klinker",
-      "applies": ["est_dragalina", "sud_closca", "vest_curte"],
+      "applies": ["est_dragalina", "sud_closca"],
       "thickness_finished_mm": 312,
       "delta_vs_A1_mm": 13,
       "layers_interior_to_exterior_mm": [

@@ -1,0 +1,347 @@
+{
+  "avg_note": 4.8,
+  "ceiling": {
+    "in_repo_now": 4.8,
+    "in_repo_theoretical_max": 6.5,
+    "with_geo_only": 7.2,
+    "with_geo_and_FE": 8.5,
+    "autorizabil_signed": 9.5,
+    "note": "Peste ~6.5 medie din repo e iluzie — fără FE/geo/planuri semnate notele pe fem/geo/confinare rămân 1 și trag media."
+  },
+  "seismicCols": [
+    {
+      "id": "C_NW",
+      "section": "30×30",
+      "share": 0.1,
+      "V_kN": 7.59,
+      "M_seis_kNm": 11.7,
+      "Mrd_kNm": 157.5,
+      "N_kN": 369.6,
+      "util_N_Mseis": 0.382,
+      "pass": true
+    },
+    {
+      "id": "C_N_MID",
+      "section": "40×30",
+      "share": 0.1,
+      "V_kN": 7.59,
+      "M_seis_kNm": 11.7,
+      "Mrd_kNm": 280,
+      "N_kN": 574.9,
+      "util_N_Mseis": 0.401,
+      "pass": true
+    },
+    {
+      "id": "C_NE",
+      "section": "30×30",
+      "share": 0.1,
+      "V_kN": 7.59,
+      "M_seis_kNm": 11.7,
+      "Mrd_kNm": 157.5,
+      "N_kN": 385.5,
+      "util_N_Mseis": 0.395,
+      "pass": true
+    },
+    {
+      "id": "C_W_MID",
+      "section": "30×40",
+      "share": 0.1,
+      "V_kN": 7.59,
+      "M_seis_kNm": 11.7,
+      "Mrd_kNm": 280,
+      "N_kN": 433.2,
+      "util_N_Mseis": 0.312,
+      "pass": true
+    },
+    {
+      "id": "C_W_DORM",
+      "section": "30×30",
+      "share": 0.1,
+      "V_kN": 7.59,
+      "M_seis_kNm": 11.7,
+      "Mrd_kNm": 157.5,
+      "N_kN": 222,
+      "util_N_Mseis": 0.259,
+      "pass": true
+    },
+    {
+      "id": "C_S_DORM_E",
+      "section": "30×30",
+      "share": 0.1,
+      "V_kN": 7.59,
+      "M_seis_kNm": 11.7,
+      "Mrd_kNm": 157.5,
+      "N_kN": 122.2,
+      "util_N_Mseis": 0.176,
+      "pass": true
+    },
+    {
+      "id": "C_E_PAL",
+      "section": "30×40",
+      "share": 0.1,
+      "V_kN": 7.59,
+      "M_seis_kNm": 11.7,
+      "Mrd_kNm": 280,
+      "N_kN": 741.6,
+      "util_N_Mseis": 0.505,
+      "pass": true
+    },
+    {
+      "id": "C_CASA_SCARA",
+      "section": "30×40",
+      "share": 0.1,
+      "V_kN": 7.59,
+      "M_seis_kNm": 11.7,
+      "Mrd_kNm": 280,
+      "N_kN": 176.5,
+      "util_N_Mseis": 0.152,
+      "pass": true
+    },
+    {
+      "id": "C_S_INTRARE_W",
+      "section": "40×30",
+      "share": 0.1,
+      "V_kN": 7.59,
+      "M_seis_kNm": 11.7,
+      "Mrd_kNm": 280,
+      "N_kN": 131.5,
+      "util_N_Mseis": 0.124,
+      "pass": true
+    },
+    {
+      "id": "C_S_INTRARE_E",
+      "section": "30×30",
+      "share": 0.1,
+      "V_kN": 7.59,
+      "M_seis_kNm": 11.7,
+      "Mrd_kNm": 157.5,
+      "N_kN": 173.3,
+      "util_N_Mseis": 0.218,
+      "pass": true
+    }
+  ],
+  "punchResults": [
+    {
+      "id": "C_NW",
+      "V_Ed_kN": 80.7,
+      "u_m": 2.77,
+      "v_Ed_MPa": 0.233,
+      "v_Rdc_MPa": 0.557,
+      "pass": true
+    },
+    {
+      "id": "C_N_MID",
+      "V_Ed_kN": 126.5,
+      "u_m": 2.97,
+      "v_Ed_MPa": 0.341,
+      "v_Rdc_MPa": 0.557,
+      "pass": true
+    },
+    {
+      "id": "C_NE",
+      "V_Ed_kN": 84.4,
+      "u_m": 2.77,
+      "v_Ed_MPa": 0.244,
+      "v_Rdc_MPa": 0.557,
+      "pass": true
+    },
+    {
+      "id": "C_W_MID",
+      "V_Ed_kN": 93.8,
+      "u_m": 2.97,
+      "v_Ed_MPa": 0.252,
+      "v_Rdc_MPa": 0.557,
+      "pass": true
+    },
+    {
+      "id": "C_W_DORM",
+      "V_Ed_kN": 46.6,
+      "u_m": 2.77,
+      "v_Ed_MPa": 0.134,
+      "v_Rdc_MPa": 0.557,
+      "pass": true
+    },
+    {
+      "id": "C_S_DORM_E",
+      "V_Ed_kN": 23.5,
+      "u_m": 2.77,
+      "v_Ed_MPa": 0.068,
+      "v_Rdc_MPa": 0.557,
+      "pass": true
+    },
+    {
+      "id": "C_E_PAL",
+      "V_Ed_kN": 165,
+      "u_m": 2.97,
+      "v_Ed_MPa": 0.444,
+      "v_Rdc_MPa": 0.557,
+      "pass": true
+    },
+    {
+      "id": "C_CASA_SCARA",
+      "V_Ed_kN": 34.5,
+      "u_m": 2.97,
+      "v_Ed_MPa": 0.093,
+      "v_Rdc_MPa": 0.557,
+      "pass": true
+    },
+    {
+      "id": "C_S_INTRARE_W",
+      "V_Ed_kN": 24.1,
+      "u_m": 2.97,
+      "v_Ed_MPa": 0.065,
+      "v_Rdc_MPa": 0.557,
+      "pass": true
+    },
+    {
+      "id": "C_S_INTRARE_E",
+      "V_Ed_kN": 35.4,
+      "u_m": 2.77,
+      "v_Ed_MPa": 0.102,
+      "v_Rdc_MPa": 0.557,
+      "pass": true
+    }
+  ],
+  "sls_rafter": {
+    "L_m": 4.97,
+    "q_line_kNm": 2.88,
+    "delta_inst_mm": 13.3,
+    "lim_L300_mm": 16.6,
+    "lim_L200_mm": 24.9,
+    "pass_L300": true,
+    "pass_L200": true
+  },
+  "facade_wind": {
+    "qp": 0.958,
+    "we_facade": {
+      "windward": 0.766,
+      "leeward": -0.479,
+      "side": -0.671
+    },
+    "H_m": 5.57,
+    "F_ULS_NS_kN": 43.7,
+    "F_ULS_EW_kN": 55.1,
+    "vs_Vb": 0.73,
+    "note": "Vânt fațadă pe ansamblu; comparat cu Vb seism — care e mai mare guvernează orizontal global"
+  },
+  "retain": {
+    "H_m": 2.5,
+    "Pa_earth_kNm": 18.6,
+    "hw_m": 1,
+    "Phydro_kNm": 5,
+    "Pa_tot": 23.6,
+    "M_kNm_m": 17.1,
+    "As_mm2_m": 209,
+    "As_min": 2730,
+    "pass_flex": true,
+    "note": "fără seism pe zid (Mononobe-Okabe) — încă deschis"
+  },
+  "asMinCols": [
+    {
+      "id": "C_NW",
+      "section": "30×30",
+      "As_min_EC2_mm2": 180,
+      "As_hint_P100_mm2": 900,
+      "sugerat_EC2": "4φ14",
+      "sugerat_P100_zona": "8φ16 (hint — nu proiect)"
+    },
+    {
+      "id": "C_N_MID",
+      "section": "40×30",
+      "As_min_EC2_mm2": 240,
+      "As_hint_P100_mm2": 1200,
+      "sugerat_EC2": "4φ14",
+      "sugerat_P100_zona": "8φ16 (hint — nu proiect)"
+    },
+    {
+      "id": "C_NE",
+      "section": "30×30",
+      "As_min_EC2_mm2": 180,
+      "As_hint_P100_mm2": 900,
+      "sugerat_EC2": "4φ14",
+      "sugerat_P100_zona": "8φ16 (hint — nu proiect)"
+    },
+    {
+      "id": "C_W_MID",
+      "section": "30×40",
+      "As_min_EC2_mm2": 240,
+      "As_hint_P100_mm2": 1200,
+      "sugerat_EC2": "4φ14",
+      "sugerat_P100_zona": "8φ16 (hint — nu proiect)"
+    },
+    {
+      "id": "C_W_DORM",
+      "section": "30×30",
+      "As_min_EC2_mm2": 180,
+      "As_hint_P100_mm2": 900,
+      "sugerat_EC2": "4φ14",
+      "sugerat_P100_zona": "8φ16 (hint — nu proiect)"
+    },
+    {
+      "id": "C_S_DORM_E",
+      "section": "30×30",
+      "As_min_EC2_mm2": 180,
+      "As_hint_P100_mm2": 900,
+      "sugerat_EC2": "4φ14",
+      "sugerat_P100_zona": "8φ16 (hint — nu proiect)"
+    },
+    {
+      "id": "C_E_PAL",
+      "section": "30×40",
+      "As_min_EC2_mm2": 240,
+      "As_hint_P100_mm2": 1200,
+      "sugerat_EC2": "4φ14",
+      "sugerat_P100_zona": "8φ16 (hint — nu proiect)"
+    },
+    {
+      "id": "C_CASA_SCARA",
+      "section": "30×40",
+      "As_min_EC2_mm2": 240,
+      "As_hint_P100_mm2": 1200,
+      "sugerat_EC2": "4φ14",
+      "sugerat_P100_zona": "8φ16 (hint — nu proiect)"
+    },
+    {
+      "id": "C_S_INTRARE_W",
+      "section": "40×30",
+      "As_min_EC2_mm2": 240,
+      "As_hint_P100_mm2": 1200,
+      "sugerat_EC2": "4φ14",
+      "sugerat_P100_zona": "8φ16 (hint — nu proiect)"
+    },
+    {
+      "id": "C_S_INTRARE_E",
+      "section": "30×30",
+      "As_min_EC2_mm2": 180,
+      "As_hint_P100_mm2": 900,
+      "sugerat_EC2": "4φ14",
+      "sugerat_P100_zona": "8φ16 (hint — nu proiect)"
+    }
+  ],
+  "notes": {
+    "geometrie": 8,
+    "clear255": 9,
+    "placa": 6,
+    "grinzi": 6,
+    "stalpi_NM": 5,
+    "flambaj": 5,
+    "seism_Vb": 4,
+    "seism_bare": 5,
+    "punching": 5,
+    "zapada": 6,
+    "gk_pv": 6,
+    "capriori_ec5": 6,
+    "vant_acoperis": 5,
+    "vant_fatada": 5,
+    "ancorare_pv": 5,
+    "traseu_acoperis": 7,
+    "cr0": 5,
+    "fundatii": 4,
+    "geo131": 1,
+    "retentie": 5,
+    "noduri": 3,
+    "armare_hint": 3,
+    "confinare": 1,
+    "fem": 1
+  }
+}

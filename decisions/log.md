@@ -1,5 +1,256 @@
 # Jurnal decizii
 
+## 2026-10-18 — A1.183: pachet FE de predat (handoff v02)
+
+- \`export_a1_fe_handoff_v02.mjs\` → brief + JSON + checklist pentru structurist.
+- Lock-uri A1.180/D3/NO_LAMELE · încărcări blocate · PASS ledger · checklist P1–P3.
+- \`npm run fe:a1\` / \`npm run fe:handoff\`.
+
+## 2026-10-18 — A1.182: maxim in-repo (plafon ~6,5)
+
+- Pachet `calc_a1_max_inrepo_v01.mjs`: seism pe stâlpi, punching, SLS căpriori, vânt fațadă, retenție+apă, As min hint.
+- Verdict: **nu mai e maximul din chat** după A1.181 — dar **da, ăsta e plafonul onest in-repo** (~6,5 medie). Autorizabil ~9,5 cere geo+FE+dt.
+- `npm run calc:a1:max`
+
+## 2026-10-18 — A1.181: upgrade note — vânt + flambaj + EC5 + CR0
+
+- Pachet `calc_a1_wind_buckling_ec5_v01.mjs` → `s1_a1_wind_buckling_ec5_v01.md`.
+- Note ridicate: vânt/PV/flambaj/EC5 **1→5**; CR0 **3→5**. Medie ~4→~4,8.
+- Rămân la 1 (extern): FEM, geo 131, confinare P100, armare.
+- Hook: `npm run calc:a1:upgrade` (inclus în `calc:a1`).
+
+## 2026-10-18 — A1.180: clear ≥255 HARD + acoperiș 30° + cote corecte
+
+- **Revocat** D1(b) / clear 241 sub grindă — beneficiar: **minim 255 pretutindeni**.
+- Pachet cote: FF→FF = 255 + drop grindă + placă + buildup; placă min **15** (cu B_X_MID); grindă crit. **40**.
+- Acoperiș **2 ape · 30° · PV** pe ambele ape (rise = run·tan30°).
+- Raport: `outputs/reports/s1_a1_clear255_levels_v01.md`.
+
+## 2026-10-18 — A1.179: lock due-diligence cumpărare teren
+
+- **Riser beci 17,22:** ACCEPTAT — brief 16 = doar P↔E, nu L-1.
+- **C_E_LAMELE:** **nu e nevoie structural** (calc SE); poate lipsi din cadru sau = grosime perete ARH (fără rol BA).
+- Context: verificare fezabilitate **înainte de cumpărare** (nu DTAC).
+
+## 2026-10-18 — A1.178: onestitate acoperire calc + gaps
+
+- `s1_a1_calc_gaps_v01.md`: matrice ce e în repo vs ce nu (FEM, seism bare, Rc 131…).
+- Completat: 2.2 consolă A1, 2.6 retenție, 2.7 D3a/D3b, pier/riser audit.
+- „Calc 100%” redenumit mental = **maxim ordin în repo**, nu proiect semnat.
+
+## 2026-10-18 — A1.177: calc 100% — LAMELE nu e necesar
+
+- Raport: `outputs/reports/s1_a1_calc_100_v01.md`
+- **Verdict SE:** `NO_LAMELE` — B_E_S ~4 m trece flex/shear/SLS @30×35 fără reazem lamele.
+- Adoptat: h **40** pe `B_X_MID` + `B_Y410` (SLS); pad-uri pe N din calc vs 200 kPa.
+- Porți calc: toate TRUE (ordin — nu proiect semnat). `geo_131` Rc rămâne deschis.
+
+## 2026-10-18 — A1.176: C_E_LAMELE scos din cadru
+
+- Stâlpul de la lamele = **doar ARH/fațadă**, nu reazem.
+- B_E_S / B_S_SE închid SE pe **C_E_PAL ↔ C_S_INTRARE_E** (fără LAMELE).
+- Rămâne în `columns_cm` ca element amenajare; lipsește din `structure_a1_study_cm`.
+
+## 2026-10-18 — A1.175: pachet FE A1 + pier/întoarsă pe puț
+
+- `export_a1_fe_pack.mjs` → `s1_a1_fe_input_pack_v01.md` + calc 2.1 ordin.
+- Pier `C_SHAFT_E_PIER` + `B_Y_EDGE_INVERTED` pe puț (geometric).
+- Flag: `C_E_LAMELE` 20×40 &lt; P100≥30.
+
+## 2026-10-18 — A1.174: S1 remesh cadre pe A1
+
+- `src/build_a1_structure.mjs` → `structure_a1_study_cm` (stâlpi/grinzi/FG pe cutie+puț).
+- `build_v47_3d` (architectureOnly): emite grinzi S+P+E, talpi, FG, placă cu gol puț.
+- Viewer Structură = schemă A1, nu FRAME. FE încă deschis.
+
+## 2026-10-18 — A1.173: Structură include retenție + puț
+
+- Bug viewer: `subsol_reten_*` / `put_reten_*` aveau `site_layer=structura` dar `isStructuraMesh` le sărea.
+- Fix: incluse în view **1 · Stâlpi A1** (cutie + ziduri puț).
+
+## 2026-10-18 — A1.172: site doar A1 + plan subsol vizibil
+
+- `/` și Vercel → `viewer/?v=a1` (nu FRAME).
+- Viewer: linkuri Plan parter / etaj / **subsol**; FRAME scos din UI.
+- `outputs/plans/index.html` = doar planuri A1 (inclusiv subsol).
+
+## 2026-10-18 — A1.171: model A1 curat separat de FRAME
+
+- Viewer default: `volume_a1.json` (`?v=a1`) — amenajare + subsol cutie, fără cadre/grinzi/FG vechi.
+- FRAME rămâne pe `?v=frame` ca **STALE** (nu se amestecă).
+- Generator: `architectureOnly` sare scheletul V47/FRAME; emite doar stâlpi PROVIZORIU din `a1_architecture.columns_cm`.
+
+## 2026-10-18 — A1.170: generator 3D subsol pe A1 (nu V47)
+
+- `build_v47_3d.mjs`: dacă există `a1_architecture.basement_cm.structure_box` → retenție/camere/puț din A1.
+- Scos din path-ul activ: L reintrant, `hol_subsol`, diafragme puț legacy duplicate.
+- Legacy V47 rămâne doar ca fallback dacă lipsește A1.
+
+## 2026-10-18 — A1.169: start S1 din A1
+
+- Amenajare P/E + plan subsol = **input înghețat** pentru structură.
+- Kickoff: `decisions/s1_from_a1_v01.md` · envelope: `outputs/reports/s1_basement_envelope_from_a1_v01.md`.
+- Primul task S1: **remesh retenție** pe cutia A1 (FRAME vechi = STALE).
+
+## 2026-10-18 — A1.168: puț scară pe plan subsol (cu ziduri)
+
+- **Nu** plan separat: scară/puț pe `a1_plan_subsol`.
+- Incintă: **N+E A11**; **V** = retenție cutie + ușă; **S** deschis spre curte.
+- Înainte: doar volume „plutitoare” fără zid — bug de model.
+
+## 2026-10-18 — A1.167: colțuri retenție închise
+
+- Bug vizual: N/S se opreau pe fețele int. → pătrate goale 32,6×32,6 la NW/NE/SW/SE.
+- Fix: N/S pe span **exterior** (inclusiv grosimea V/E); V/E rămân pe Y int.
+
+## 2026-10-18 — A1.166: plan subsol complet (axe/cote/layere)
+
+- SVG subsol aliniat la P/E: axe A–D / 1–6, cotă camere+cutie, retenție **A11** pe layere, partiții **A7**, stâlpi beton, scară, drop, legendă.
+- Pereți în `basement_cm.walls` (4 retenție + 2 partiții).
+
+## 2026-10-18 — A1.165: subsol optim pentru planuri P/E
+
+- Cutie **X30–A6 × Y30–820** = amprentă încălzită (nu terasă, nu camere scară).
+- **N@Y30**: drop baie vertical, stâlpi N pe cutie, living fără salt fundație.
+- CT **NV** (ferită) · magazie est (ușă) · depozit vest-sud; partiții ușoare.
+- Cost rezidual: sprijin/hidro la rost N — nu geometrie P/E.
+
+## 2026-10-18 — A1.164: beci = cutie pe griă stâlpi
+
+- Contur retenție: **X30–A6 × Y410–820** (N pe C_W_MID, S pe C_S_INTRARE, E pe A6).
+- Fără tăiere living la Y350; nord cutie = linie trecere fundație.
+- Amenajare pe placă: CT vest N · depozit vest S (despărțire @Y645 dorm) · magazie est (ușă).
+
+## 2026-10-18 — A1.163: CT ferită de apă (vest)
+
+- **Ușă A6 → MAGAZIE** (antecameră umedă pe banda est).
+- **CAMERĂ TEHNICĂ** mutată **vest sub living** (Y350–620) — departe de scară/curte.
+- Depozit = vest sud; drop-uri MEP → CT prin colectare orizontală în placă.
+
+## 2026-10-18 — A1.162: sud CT = magazie (nu hol)
+
+- Zona Y620–820 est redenumită **MAGAZIE** — nu e hol de la intrarea în beci (intrarea e în CT).
+
+## 2026-10-18 — A1.161: beci mărit sub fundație (compatibil P/E)
+
+- N **Y350** (~3,5 m de fațadă N, nu calcan vecin) · S **Y820** (sub hol, în amprentă).
+- ~**23 m²** camere: depozit/scule · CT (ușă scară) · hol.
+- **P/E înghețat intact** ca geometrie; beciul influențează doar goluri placă/MEP + S1 structură.
+
+## 2026-10-18 — A1.160: beci fără nord — amprentă parțială sud/curte
+
+- **Fără excavare** N de **Y490** (rost vecin ~20 cm).
+- Camere: depozit vest · hol (ușă A6 + drop buc) · CT spre curte sub hol P (Y620–720).
+- Drop baie: **colectare orizontală în placă** → CT. P/E neatins.
+- Sud beci **Y720** (nu sub toată terasa).
+
+## 2026-10-18 — A1.159: scară beci V47 pe banda A1
+
+- Traseu: **curte → palier −95 → scară ↓N (clear 100 sub R2) → palier −250 → ușă A6 → hol_subsol**.
+- Remap: lipit `STAIR_A6_EAST_X` 564,3; puț = amprenta R2 A1.
+- **Fit:** clear A6→E **104,5 ≥100** OK; @pier **95,7** (avertisment pe zona pier); ușă pe Y hol OK.
+- **DESCHIS:** riser **17,22** vs brief max **16**; trepte curte pe sit; transport întoarcere (din V47 NECONFIRMAT).
+- Plan: `a1_plan_subsol.svg` actualizat. P/E neatins.
+
+## 2026-10-18 — A1.158: subsol subordonat — camere pe drop-uri A1
+
+- Camere beci realiniate pe **XI / A6**: CT · depozit · hol_subsol.
+- Drop-uri: baie→CT · buc hol-scară→hol_subsol.
+- Plan: `outputs/plans/a1_plan_subsol.svg` (studiu). P/E neatins.
+- Urmează: S1 structură (sau scară beci + echipamente pe același cadru).
+
+## 2026-10-18 — A1.157: ghene — E util intact · P baie+hol scară
+
+- **Etaj:** fără casetă în util — doar **drop** (pardoseală).
+- **P:** `ghena_baie_wc` (lângă WC) · `ghena_baie_mid_est` (NE baie / C_N_MID, perete est) · `ghena_buc_hol_scara` (colț hol→scară).
+- Canalizare = coloană; apă poate împărți caseta; curent = nișă/tub (nu a 3-a ghenă obligatorie).
+- Util dacă volume P: ~**−0,25** (sau −0,17 dacă fuzezi mid în WC); E **0**.
+
+## 2026-10-18 — A1.156: ghene overlay + subsol subordonat planului
+
+- **Prioritate:** P/E înghețat. Subsol necesar; conflict → se modifică beciul, nu pereții/stâlpii/mobilierul.
+- Ghene = strat `mep_cm.shafts` (REZERVĂ): baie vest · buc P · buc E · rece scară (înlocuit A1.157).
+- Doc: `decisions/ghene_mep_v01.md`.
+
+## 2026-10-18 — A1.155: ÎNGHEȚ amenajare P/E
+
+- Beneficiar: **înghețăm** planurile de amenajare.
+- `meta.status` → **ARH_FREEZE_AMENAJARE**.
+- **În:** camere, pereți, goluri, uși, mobilier, SVG P/E.
+- **Afară:** stâlpi/grinzi/FE, ghene MEP, pier final, util autorizare, finisaje.
+- Regulă: fără mutare geometrie înghețată fără decizie explicită; doar straturi noi.
+- Urmează: ghene → S1 structură → rost scară → util auth.
+
+## 2026-10-18 — A1.154: audit pre-îngheț planuri P/E
+
+- Audit mobilare/uși/camere: **OK amenajare** (util P **38,60** / E **37,14**; gol intrare E **100**).
+- Fix: `corp_inalt_e` mutat S de foaia `intrare_etaj` (Y555, dy 33,8).
+- **Îngheț condiționat** — așteaptă confirmare beneficiar. În afara înghețului: ghene, pier/FE, S1, util autorizare.
+- Canvas: `a1-audit-pre-freeze-v03`.
+
+## 2026-10-18 — A1.153: terasă E — fără măsuță lounge
+
+- Scos `masuta_lounge_e` (N de lounge).
+
+## 2026-10-18 — A1.152: terasă E — cafe + lounge (după ușă)
+
+- Cafe 70 + 2 scaune pe **NV**; lounge **220×65** pe sud (parapet), inclusiv zona **S de foaia** ușii (Y≥775, până X260).
+- Măsuță N de lounge, vest de vârful foii (X237).
+- Bandă est ~**62** cm liberă la ieșire (X260–322).
+
+## 2026-10-18 — A1.151: mobilier terasă pe zone + circulație
+
+- **P:** lounge 70×130 + măsuță pe **acoperit vest**; bistro 70 + 2 scaune pe **neacoperit** (vest de parapet verde). Culoar **X≥170** liber (gol dorm → intrare).
+- **E:** cafe 70 + 2 scaune pe vest; **est liber** pentru foaia `buc_terasa` (arc X237–322).
+- Scos blob-urile V47 „MOB TERASĂ” / lounge+scăune în arc.
+
+## 2026-10-18 — A1.150: bucătărie P front nord W→E
+
+- Secvență pe nord: **FR 60** lipit vest → **MSV 60** → **CHI 60** → **plită+cuptor 60** → **dulap/blat 56,4** până la est.
+- Fără amprente separate cuptor/hotă pe plan (un corp plită+cuptor).
+- Culoar față de masa dining ~**125** cm (neschimbat).
+
+## 2026-10-18 — A1.135: canapea/TV + buc E fără overlap + hol sud
+
+- Canapea **90×170** închis / **180×170** deschis (spre vest); TV **lipit vest**.
+- Parter: `canapea_p` pe est living; cuier+primire mutate pe **sud hol** (scoase din foaia intrare).
+- Etaj buc: L est+sud — câte **o amprentă/corp** (fără blat+modul+plită+cuptor suprapuse).
+
+## 2026-10-18 — A1.134: mobilare V47 pe plan A1 înghețat (doar adăugare)
+
+- **Freeze geometrie:** fără modificare pereți / goluri / uși / util / straturi / scară / baie+pat existente.
+- Adăugat mobilier V47 cu **fit absolut** pe `rooms_cm` A1 (buc P/E, living E, dining P, hol, terasă P, noptiere dorm).
+- **Dezbatere (nu adăugat):** `canapea_p` (S40 în hol), `tv_p` (S10), `blat_tail_p` (E2,5), `tv_dorm` (E8,9), `perdea_dorm_terasa` (S8), `dulap` nișă veche (nișa A1 ≠ V47).
+- Canvas: `a1-mobilare-freeze`.
+
+## 2026-10-18 — A1.133: deschideri uși intrare P + terasă E
+
+- `intrare_parter`: **înăuntru spre dreapta** în hol (balama N, foaie → est).
+- `buc_terasa_etaj`: **afară spre stânga** pe terasă (balama N, foaie → vest).
+- Corectează A1.115 (ambele erau afară dreapta, balama S).
+
+## 2026-10-18 — A1.132: util, MS, scară, straturi lizibile, axe
+
+- Util: scoase goluri uși ≤1 m (`baie_usa*`); rămâne portal 120.
+- MS: facing **nord** + etanș dus|MS pe plan.
+- Scară: clear real A6→E ≈103,1 / @pier ≈95,7 (nu 105); rost 3 cm trepte–palier marcat.
+- Plan: **3 benzi** pe anvelopă (finisaj/ISO/EB20); catalog mm în **cartuș**; axe punctate fine + etichete afară.
+- Hol: neschimbat (politică).
+
+## 2026-10-18 — A1.131: N+V tencuială 30 · S+E klinker · baie A3_N
+
+- **Nord + Vest:** A1 **30 cm** tencuială — **fără** klinker.
+- **Sud + Est:** A2 **31,2 cm** klinker — pe plan **toate straturile** din catalog.
+- **Baie pe N+V:** A3_N **31,1 cm** (faianță); duș/mobilier pe fețele int. A3_N.
+- Hol neschimbat (113,7×120). Catalog + materials actualizate.
+
+## 2026-10-18 — Predare editabilă arhitect (DXF/PDF)
+
+- Dosar: `outputs/arhitect_predare/` din `a1_architecture.json` (aceeași geometrie ca planurile A1 din viewer).
+- DXF 1:1 cm, layere A-STRUCTURA…A-COTE; planuri P/E, secțiuni A-A/B-B, fațade N/S/E/V + PDF.
+- Catalog straturi, registru ipoteze, propunere IFC (fără IFC încă). Verificare redeschidere: ezdxf + preview PNG.
+- Regenerare: `npm run export:architect`.
+
 ## 2026-10-18 — A1.130: parter = etaj (baie + dorm)
 
 - Parter aliniat la etaj: **MS în baie** lângă duș pe sud; **nișă 180×60** culoare dorm + 3 glisante.

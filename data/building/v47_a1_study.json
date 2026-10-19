@@ -44,7 +44,7 @@
   },
   "roof_cm": {
     "type": "two_pitch",
-    "status": "stabilit",
+    "status": "LOCK_30deg_PV",
     "ridge": {
       "on_side_m": 6.826,
       "along": "ew",
@@ -52,10 +52,10 @@
       "y_cm": 430,
       "note": "Coamă pe latura 6,8 m (X) — ape spre N și S; Y mid anvelopă"
     },
-    "rise_cm": 248,
+    "rise_cm": 248.6,
     "shell_cm": 18,
     "pitch_deg_approx": 30,
-    "pitch_note": "Ipoteză ~30° (rise 248 cm pe run 430 cm) — contemporary gable + bun PV; confirmare structurist",
+    "pitch_note": "LOCK 30° — rise=run·tan(30°) pe ape N/S; PV pe ambele ape",
     "covers_cm": {
       "x0": 0,
       "x1": 682.6,
@@ -73,34 +73,43 @@
       "both_pitches": true,
       "inset_cm": 40,
       "above_roof_cm": 6,
-      "note": "Panouri fotovoltaice pe ambele ape — decis"
+      "note": "Panouri FV pe ambele ape — decis"
+    },
+    "structure_cm": {
+      "ridge_beam": { "section_cm": [20, 35], "material": "lemn_studiu" },
+      "wall_plate": { "section_cm": [20, 25], "material": "lemn_studiu" },
+      "rafter": { "section_cm": [12, 25], "spacing_cm": 120, "material": "lemn_studiu" },
+      "gable_posts": { "section_cm": [20, 20], "on": ["B_W", "B_E"] },
+      "note": "Șarpantă 2 ape 30° — vizibilă în viewer 1 · Structură (fără învelitoare)"
     },
     "not": "copertină pe rampă 2 — acoperiș 2 ape continuu pe casă + scară",
-    "viewer_note": "Mesh triangles: acoperis_apa_N/S + frontoane + pv_apa_N/S"
+    "viewer_note": "Shell: acoperis_apa_N/S + frontoane + PV. Structură: coama + solbanc + căpriori + stâlpișori fronton."
   },
   "wall_ext_cm": 30,
   "wall_int_cm": 12.5,
   "levels": 2,
   "heights_cm": {
-    "note": "FF→FF 288 = 255+6+15+3+2+5+2. Neschimbat.",
-    "clear_to_false_ceiling_cm": 255,
+    "note": "A1.180 sync: clear≥255 sub grindă+placă. FF→FF 307 = 255+drop25+slab15+buildup12.",
+    "clear_to_false_ceiling_cm": 274,
     "false_ceiling_cm": 6,
     "structural_slab_cm": 15,
-    "structural_slab_status": "ipoteză structurist",
+    "structural_slab_status": "adopt_studiu_clear255",
     "insulation_under_screed_cm": 3,
     "heating_pipes_zone_cm": 2,
     "screed_above_pipes_cm": 5,
     "finish_complete_cm": 2,
     "floor_buildup_below_ff_cm": 12,
-    "ff_to_ff_cm": 288,
-    "ff_check_sum": "255+6+15+3+2+5+2=288",
+    "ff_to_ff_cm": 307,
+    "ff_check_sum": "255+25+15+12=307",
     "stair_risers_ff": 18,
     "riser_cm": 16,
-    "wall_to_soffit_cm": 261,
+    "wall_to_soffit_cm": 280,
     "entry_steps_to_terrace": 3,
     "entry_step_riser_cm": 16,
     "entry_steps_status": "locked_2_treads_3_risers",
-    "z_parter_ff_note": "zParter = 3 × 16 = +48: 2 trepte (+16,+32) + ridicare pe palier/terasă (+48)"
+    "z_parter_ff_note": "zParter = 3 × 16 = +48: 2 trepte (+16,+32) + ridicare pe palier/terasă (+48)",
+    "clear_under_beam_cm": 255,
+    "beam_h_total_cm": 40
   },
   "envelope_notes": {
     "palier_nord_wall_cm": 30,
