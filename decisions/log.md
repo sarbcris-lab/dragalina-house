@@ -1,5 +1,26 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.188: predare FE + due-diligence + talpă/P100
+
+- Index predare: `s1_a1_fe_INDEX.md` (+ handoff/checklist v03).
+- Due-diligence cumpărare: `s1_a1_due_diligence_buy_v01.md`.
+- Residual: alunecare/răsturnare — **B80 FAIL** la hw10+seism → adopt **B=115 cm**; confinare P100 φ8@12 cm zonă.
+
+## 2026-10-19 — A1.187: uplift streșină + retenție seism + CR0 bare
+
+- Uplift solbanc/PV: `s1_a1_eaves_uplift_v01` — F design + M12 spațiere + șuruburi căprior.
+- Retenție pământ+apă+seism (Seed): `s1_a1_retaining_seis_v01` — adopt hw=1 m.
+- CR0 pe grinzi/stâlpi critici: `s1_a1_cr0_members_v01` (scalare din calc_100).
+- Scripts: `calc:a1:uplift` · `calc:a1:retain` · `calc:a1:cr0` · handoff v03 actualizat.
+
+## 2026-10-19 — A1.186: sens fundații + nod C_E_PAL + BOM + handoff v03
+
+- Sensibilitate q_allow **180 / 221 / 250** — `s1_a1_foundations_sens_v01` (adopt rămâne 221).
+- Nod C_E_PAL + întoarsă: As/torsiune/lb ordin — `s1_a1_node_ce_pal_v01`.
+- BOM șarpantă D3a (piese + fixări tip) — `s1_a1_roof_bom_v01`.
+- Handoff FE **v03** cu geo120 + rebar + sens + nod + BOM.
+- Scripts: `calc:a1:sens` · `calc:a1:node` · `calc:a1:roof` · `fe:handoff` → v03.
+
 ## 2026-10-19 — A1.185: structurist-studiu — fundații pe ipoteză 120
 
 - Fără structurist extern: continuăm dimensionare ordin în repo.

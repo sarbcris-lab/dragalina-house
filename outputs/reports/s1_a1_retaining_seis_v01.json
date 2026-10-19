@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "id": "s1_a1_retaining_seis_v01",
+    "generated": "2026-10-19T08:25:56.030Z",
+    "status": "ordin_extins_nu_semnat",
+    "disclaimer": "Mononobe-Okabe simplificat (Seed). Geo 131 + FE retenție înlocuiesc."
+  },
+  "wall": {
+    "H_m": 2.5,
+    "t_cm": 30,
+    "Ka": 0.33,
+    "gamma_kNm3": 18
+  },
+  "seismic": {
+    "ag": 0.1,
+    "S": 1.2,
+    "kh": 0.06,
+    "method": "Seed-Whitman_dPae",
+    "dPae_kNm": 2.5
+  },
+  "cases": [
+    {
+      "id": "dry",
+      "label": "fără apă (ca geo120 citat)",
+      "hw_m": 0,
+      "Pa_earth": 18.6,
+      "Phydro": 0,
+      "dPae": 2.5,
+      "M_earth": 15.5,
+      "M_hydro": 0,
+      "M_seis": 3.8,
+      "M_tot_kNm_m": 19.3,
+      "As_mm2_m": 189,
+      "hint": "φ12 @ 15 cm vertical interior + φ10 @ 20 oriz.",
+      "pass_flex": true
+    },
+    {
+      "id": "hw05",
+      "label": "apă 0,5 m",
+      "hw_m": 0.5,
+      "Pa_earth": 18.6,
+      "Phydro": 1.25,
+      "dPae": 2.5,
+      "M_earth": 15.5,
+      "M_hydro": 0.21,
+      "M_seis": 3.8,
+      "M_tot_kNm_m": 19.5,
+      "As_mm2_m": 191,
+      "hint": "φ12 @ 15 cm vertical interior + φ10 @ 20 oriz.",
+      "pass_flex": true
+    },
+    {
+      "id": "hw10",
+      "label": "apă 1,0 m (conservator studiu)",
+      "hw_m": 1,
+      "Pa_earth": 18.6,
+      "Phydro": 5,
+      "dPae": 2.5,
+      "M_earth": 15.5,
+      "M_hydro": 1.67,
+      "M_seis": 3.8,
+      "M_tot_kNm_m": 20.9,
+      "As_mm2_m": 206,
+      "hint": "φ12 @ 15 cm vertical interior + φ10 @ 20 oriz.",
+      "pass_flex": true
+    }
+  ],
+  "adopt_case": "hw10",
+  "adopt": {
+    "id": "hw10",
+    "label": "apă 1,0 m (conservator studiu)",
+    "hw_m": 1,
+    "Pa_earth": 18.6,
+    "Phydro": 5,
+    "dPae": 2.5,
+    "M_earth": 15.5,
+    "M_hydro": 1.67,
+    "M_seis": 3.8,
+    "M_tot_kNm_m": 20.9,
+    "As_mm2_m": 206,
+    "hint": "φ12 @ 15 cm vertical interior + φ10 @ 20 oriz.",
+    "pass_flex": true
+  },
+  "vs_gaps_simple": {
+    "M_old": 18.9,
+    "M_new": 20.9,
+    "As_old": 175,
+    "As_new": 206
+  },
+  "strip_check": {
+    "note": "Reacție la talpă ≈ Pa_tot; talpa 80 deja PASS pe q221 pentru N gravitațional — FE verifică excentricitate + seism"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "s1_a1_clear255_levels_v01",
-    "generated": "2026-10-18T19:59:00.690Z",
+    "generated": "2026-10-19T08:25:53.427Z",
     "lock": "clear_min_cm = 255 HARD under slab AND under beams — D1(b)/241 REVOCAT"
   },
   "clear_lock_cm": 255,

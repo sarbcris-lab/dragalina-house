@@ -1,6 +1,6 @@
 # S1 — geometrie cadre pe A1 (v01)
 
-**Status:** studiu geometric · **neconstruibil** · 2026-10-18  
+**Status:** studiu geometric · **neconstruibil** · 2026-10-19  
 **Sursă:** `a1_architecture.columns_cm` + cutie/puț  
 **Fișier:** `structure_a1_study_cm` / `data/building/a1_structure_study.json`
 

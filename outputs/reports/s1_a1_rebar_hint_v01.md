@@ -1,7 +1,7 @@
 # S1 A1 — Hint armare (ordin EC2/P100)
 
 **Status:** sugestii cantitative · **NU** planuri dt · **NU** semnat  
-**Generat:** 2026-10-19T07:11
+**Generat:** 2026-10-19T08:25
 
 > Folosește ca temă pentru structurist / verificare; nu turna după aceste cifre fără proiect.
 

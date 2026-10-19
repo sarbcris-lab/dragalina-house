@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "id": "s1_a1_node_ce_pal_v01",
+    "generated": "2026-10-19T08:25:55.181Z",
+    "status": "ordin_detaliu_nu_dt",
+    "disclaimer": "Hint As/ancorare. Structurist confirmă la FE nod + P100 confinare."
+  },
+  "node": {
+    "id": "NODE_C_E_PAL",
+    "column": {
+      "id": "C_E_PAL",
+      "section_cm": "30×40",
+      "N_kN": 741.6,
+      "M_ordin_kNm": 58.2,
+      "util_NM": 0.671,
+      "long_hint": "8φ16",
+      "stirrups": "φ8 @ 11 cm zonă / @ 20 cm mijloc (ordin)"
+    },
+    "beams_framing": [
+      {
+        "id": "B_E",
+        "role": "centură E nord→PAL",
+        "M_kNm": 18.5,
+        "V_kN": 20,
+        "As_mm2": 135,
+        "bottom": "3φ16",
+        "top_into_node": "2φ16 continuitate + 2φ16 colț"
+      },
+      {
+        "id": "B_E_S",
+        "role": "centură E scară PAL→SE (NO_LAMELE)",
+        "M_kNm": 21.5,
+        "V_kN": 21.5,
+        "As_mm2": 157,
+        "bottom": "3φ16",
+        "top_into_node": "2φ16 + etrieri φ8@10 în zonă nod"
+      },
+      {
+        "id": "B_Y410",
+        "role": "grindă transversă / consolă ordin",
+        "M_kNm": 12,
+        "V_kN": 17.3,
+        "As_mm2": 85.2,
+        "bottom": "2φ16",
+        "top_into_node": "3φ16 (negativ consolă) · lb≥780 mm"
+      }
+    ],
+    "torsion_anchorage": {
+      "T_kNm": 6.5,
+      "M_node_kNm": 15.3,
+      "As_torsion_hint_mm2": 66.4,
+      "closed_stirrups": "φ10 @ 10 cm pe 2×h de la față stâlp (ordin torsiune)",
+      "note": "Torsiune din consolă placă/grindă pe C_E_PAL — FE nod obligatoriu"
+    },
+    "plate_cantilever": {
+      "L_S_m": 1.387,
+      "L_W_m": 1.045,
+      "As_top_S": "φ12 @ 12 cm pe L_S (As≥1560 mm²/m min)",
+      "As_top_W": "φ12 @ 12 cm pe L_W",
+      "pass_ordin": true
+    },
+    "development": {
+      "phi16_lb_mm": 780,
+      "phi14_lb_mm": 680,
+      "hook": "cioc 10Ø sau ancoraj pe 1,5×h grindă în nod (ordin)",
+      "column_through": "bare longitudinale stâlp continue prin nod + etrieri confinare P100"
+    }
+  },
+  "inverted": {
+    "id": "B_Y_EDGE_INVERTED",
+    "section": "25×25",
+    "L_m": 1.019,
+    "M_kNm": 1.2,
+    "V_kN": 4.9,
+    "As_mm2": 16,
+    "flex_ok": true,
+    "shear_ok": true,
+    "supports": [
+      "C_CASA_SCARA",
+      "C_SHAFT_E_PIER"
+    ],
+    "rebar": {
+      "bottom_at_mid": "2φ12 (flex ordin mic)",
+      "top_at_supports": "2φ14 în zone reazeme",
+      "stirrups": "φ8 @ 15 cm",
+      "into_pier": "ancorare ≥ 680 mm în C_SHAFT_E_PIER + în C_CASA",
+      "sandwich_note": "sandwich/placă: bare din întoarsă legate de plasa plăcii — FE local capăt"
+    },
+    "pass_ordin": true
+  },
+  "keep_C_E_PAL_30x40": true,
+  "fe_required": [
+    "Model nod 3D: stâlp + B_E + B_E_S + B_Y410 + placă consolă",
+    "Torsiune + transfer V în stâlp",
+    "Lungimi reale de ancorare / ciocuri",
+    "Întoarsă: FE capăt pe pier + legătură placă"
+  ]
+}

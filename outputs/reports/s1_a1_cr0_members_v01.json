@@ -1,0 +1,532 @@
+{
+  "meta": {
+    "id": "s1_a1_cr0_members_v01",
+    "generated": "2026-10-19T08:25:56.283Z",
+    "status": "ordin_CR0_nu_model_FE",
+    "disclaimer": "Scalează eforturi din calc_100; nu înlocuiește combinații pe bare din FEM. W pe grinzi = ordin.",
+    "Gk_floor": 6.5,
+    "Qk_floor": 2,
+    "q_ref": 11.78,
+    "Vb_kN": 75.9
+  },
+  "combos_floor": {
+    "STR_Q": {
+      "id": "STR_Q",
+      "label": "1,35G + 1,5Q (dominantă utilă)",
+      "factor_vs_ref": 0.9995755517826826,
+      "q_kNm2": 11.78
+    },
+    "STR_W": {
+      "id": "STR_W",
+      "label": "1,35G + 1,5W + 0,7·1,5Q (vânt dominant — peri)",
+      "factor_vs_ref": 1.0186757215619695,
+      "q_kNm2": 12
+    },
+    "SEIS": {
+      "id": "SEIS",
+      "label": "G + ψ2Q + E (ψ2=0,3) — eforturi gravitaționale reduse + M din Vb",
+      "factor_vs_ref": 0.6027164685908319,
+      "q_kNm2": 7.1
+    }
+  },
+  "beams": [
+    {
+      "id": "B_Y410",
+      "L_m": 5.988,
+      "section": "40×40",
+      "ref_M": 84.5,
+      "ref_pass": true,
+      "combos": [
+        {
+          "id": "B_Y410",
+          "combo": "STR_Q",
+          "M_kNm": 84.5,
+          "V_kN": 56.4,
+          "As_mm2": 617,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "legătură mid W→E_PAL (peste cutie + scară)"
+        },
+        {
+          "id": "B_Y410",
+          "combo": "STR_W",
+          "M_kNm": 86.1,
+          "V_kN": 57.5,
+          "As_mm2": 629,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "legătură mid W→E_PAL (peste cutie + scară)"
+        },
+        {
+          "id": "B_Y410",
+          "combo": "SEIS",
+          "M_kNm": 50.9,
+          "V_kN": 34,
+          "As_mm2": 372,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "legătură mid W→E_PAL (peste cutie + scară)",
+          "M_E_kNm": 12.7,
+          "M_tot_kNm": 63.6
+        }
+      ],
+      "governing": {
+        "id": "B_Y410",
+        "combo": "STR_W",
+        "M_kNm": 86.1,
+        "V_kN": 57.5,
+        "As_mm2": 629,
+        "flex_ok": true,
+        "shear_ok": true,
+        "sls_ok": true,
+        "pass": true,
+        "note": "legătură mid W→E_PAL (peste cutie + scară)"
+      }
+    },
+    {
+      "id": "B_E_S",
+      "L_m": 3.988,
+      "section": "30×40",
+      "ref_M": 21.5,
+      "ref_pass": true,
+      "combos": [
+        {
+          "id": "B_E_S",
+          "combo": "STR_Q",
+          "M_kNm": 21.5,
+          "V_kN": 21.5,
+          "As_mm2": 157,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "centură E sud scară — reazeme C_E_PAL + nod SE cu B_S_SE (fără C_E_LAMELE)"
+        },
+        {
+          "id": "B_E_S",
+          "combo": "STR_W",
+          "M_kNm": 21.9,
+          "V_kN": 21.9,
+          "As_mm2": 160,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "centură E sud scară — reazeme C_E_PAL + nod SE cu B_S_SE (fără C_E_LAMELE)"
+        },
+        {
+          "id": "B_E_S",
+          "combo": "SEIS",
+          "M_kNm": 13,
+          "V_kN": 13,
+          "As_mm2": 95,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "centură E sud scară — reazeme C_E_PAL + nod SE cu B_S_SE (fără C_E_LAMELE)",
+          "M_E_kNm": 3.2,
+          "M_tot_kNm": 16.2
+        }
+      ],
+      "governing": {
+        "id": "B_E_S",
+        "combo": "STR_W",
+        "M_kNm": 21.9,
+        "V_kN": 21.9,
+        "As_mm2": 160,
+        "flex_ok": true,
+        "shear_ok": true,
+        "sls_ok": true,
+        "pass": true,
+        "note": "centură E sud scară — reazeme C_E_PAL + nod SE cu B_S_SE (fără C_E_LAMELE)"
+      }
+    },
+    {
+      "id": "B_E",
+      "L_m": 3.7,
+      "section": "30×40",
+      "ref_M": 18.5,
+      "ref_pass": true,
+      "combos": [
+        {
+          "id": "B_E",
+          "combo": "STR_Q",
+          "M_kNm": 18.5,
+          "V_kN": 20,
+          "As_mm2": 135,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "centură E fațadă (C_NE–C_E_PAL)"
+        },
+        {
+          "id": "B_E",
+          "combo": "STR_W",
+          "M_kNm": 18.8,
+          "V_kN": 20.4,
+          "As_mm2": 138,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "centură E fațadă (C_NE–C_E_PAL)"
+        },
+        {
+          "id": "B_E",
+          "combo": "SEIS",
+          "M_kNm": 11.2,
+          "V_kN": 12.1,
+          "As_mm2": 81,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "centură E fațadă (C_NE–C_E_PAL)",
+          "M_E_kNm": 2.8,
+          "M_tot_kNm": 14
+        }
+      ],
+      "governing": {
+        "id": "B_E",
+        "combo": "STR_W",
+        "M_kNm": 18.8,
+        "V_kN": 20.4,
+        "As_mm2": 138,
+        "flex_ok": true,
+        "shear_ok": true,
+        "sls_ok": true,
+        "pass": true,
+        "note": "centură E fațadă (C_NE–C_E_PAL)"
+      }
+    },
+    {
+      "id": "B_X_MID",
+      "L_m": 6.052,
+      "section": "40×40",
+      "ref_M": 86.3,
+      "ref_pass": true,
+      "combos": [
+        {
+          "id": "B_X_MID",
+          "combo": "STR_Q",
+          "M_kNm": 86.3,
+          "V_kN": 57,
+          "As_mm2": 630,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "axă mid N–S (C_N_MID–C_S_DORM_E–C_S_INTRARE_W)"
+        },
+        {
+          "id": "B_X_MID",
+          "combo": "STR_W",
+          "M_kNm": 87.9,
+          "V_kN": 58.1,
+          "As_mm2": 642,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "axă mid N–S (C_N_MID–C_S_DORM_E–C_S_INTRARE_W)"
+        },
+        {
+          "id": "B_X_MID",
+          "combo": "SEIS",
+          "M_kNm": 52,
+          "V_kN": 34.4,
+          "As_mm2": 380,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "axă mid N–S (C_N_MID–C_S_DORM_E–C_S_INTRARE_W)",
+          "M_E_kNm": 12.9,
+          "M_tot_kNm": 64.9
+        }
+      ],
+      "governing": {
+        "id": "B_X_MID",
+        "combo": "STR_W",
+        "M_kNm": 87.9,
+        "V_kN": 58.1,
+        "As_mm2": 642,
+        "flex_ok": true,
+        "shear_ok": true,
+        "sls_ok": true,
+        "pass": true,
+        "note": "axă mid N–S (C_N_MID–C_S_DORM_E–C_S_INTRARE_W)"
+      }
+    },
+    {
+      "id": "B_N",
+      "L_m": 2.724,
+      "section": "30×40",
+      "ref_M": 17.5,
+      "ref_pass": true,
+      "combos": [
+        {
+          "id": "B_N",
+          "combo": "STR_Q",
+          "M_kNm": 17.5,
+          "V_kN": 25.7,
+          "As_mm2": 128,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "centură N pe cutie (C_NW–C_N_MID)"
+        },
+        {
+          "id": "B_N",
+          "combo": "STR_W",
+          "M_kNm": 17.8,
+          "V_kN": 26.2,
+          "As_mm2": 130,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "centură N pe cutie (C_NW–C_N_MID)"
+        },
+        {
+          "id": "B_N",
+          "combo": "SEIS",
+          "M_kNm": 10.5,
+          "V_kN": 15.5,
+          "As_mm2": 77,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "centură N pe cutie (C_NW–C_N_MID)",
+          "M_E_kNm": 2.6,
+          "M_tot_kNm": 13.1
+        }
+      ],
+      "governing": {
+        "id": "B_N",
+        "combo": "STR_W",
+        "M_kNm": 17.8,
+        "V_kN": 26.2,
+        "As_mm2": 130,
+        "flex_ok": true,
+        "shear_ok": true,
+        "sls_ok": true,
+        "pass": true,
+        "note": "centură N pe cutie (C_NW–C_N_MID)"
+      }
+    },
+    {
+      "id": "B_W",
+      "L_m": 3.7,
+      "section": "30×40",
+      "ref_M": 32.3,
+      "ref_pass": true,
+      "combos": [
+        {
+          "id": "B_W",
+          "combo": "STR_Q",
+          "M_kNm": 32.3,
+          "V_kN": 34.9,
+          "As_mm2": 236,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "centură V pe cutie"
+        },
+        {
+          "id": "B_W",
+          "combo": "STR_W",
+          "M_kNm": 32.9,
+          "V_kN": 35.6,
+          "As_mm2": 240,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "centură V pe cutie"
+        },
+        {
+          "id": "B_W",
+          "combo": "SEIS",
+          "M_kNm": 19.5,
+          "V_kN": 21,
+          "As_mm2": 142,
+          "flex_ok": true,
+          "shear_ok": true,
+          "sls_ok": true,
+          "pass": true,
+          "note": "centură V pe cutie",
+          "M_E_kNm": 4.8,
+          "M_tot_kNm": 24.3
+        }
+      ],
+      "governing": {
+        "id": "B_W",
+        "combo": "STR_W",
+        "M_kNm": 32.9,
+        "V_kN": 35.6,
+        "As_mm2": 240,
+        "flex_ok": true,
+        "shear_ok": true,
+        "sls_ok": true,
+        "pass": true,
+        "note": "centură V pe cutie"
+      }
+    }
+  ],
+  "columns": [
+    {
+      "id": "C_E_PAL",
+      "section": "30×40",
+      "Nrd": 1600,
+      "Vb_share_note": "din max_inrepo",
+      "combos": [
+        {
+          "combo": "STR_Q",
+          "N_kN": 741.6,
+          "M_kNm": 58.2,
+          "util": 0.671,
+          "pass": true
+        },
+        {
+          "combo": "SEIS",
+          "N_kN": 447,
+          "M_kNm": 49.6,
+          "util": 0.55,
+          "pass": true
+        }
+      ],
+      "governing": {
+        "combo": "STR_Q",
+        "N_kN": 741.6,
+        "M_kNm": 58.2,
+        "util": 0.671,
+        "pass": true
+      }
+    },
+    {
+      "id": "C_N_MID",
+      "section": "40×30",
+      "Nrd": 1600,
+      "Vb_share_note": "din max_inrepo",
+      "combos": [
+        {
+          "combo": "STR_Q",
+          "N_kN": 574.9,
+          "M_kNm": 59.4,
+          "util": 0.571,
+          "pass": true
+        },
+        {
+          "combo": "SEIS",
+          "N_kN": 346.5,
+          "M_kNm": 50.7,
+          "util": 0.49,
+          "pass": true
+        }
+      ],
+      "governing": {
+        "combo": "STR_Q",
+        "N_kN": 574.9,
+        "M_kNm": 59.4,
+        "util": 0.571,
+        "pass": true
+      }
+    },
+    {
+      "id": "C_W_MID",
+      "section": "30×40",
+      "Nrd": 1600,
+      "Vb_share_note": "din max_inrepo",
+      "combos": [
+        {
+          "combo": "STR_Q",
+          "N_kN": 433.2,
+          "M_kNm": 58.2,
+          "util": 0.479,
+          "pass": true
+        },
+        {
+          "combo": "SEIS",
+          "N_kN": 261.1,
+          "M_kNm": 49.6,
+          "util": 0.44,
+          "pass": true
+        }
+      ],
+      "governing": {
+        "combo": "STR_Q",
+        "N_kN": 433.2,
+        "M_kNm": 58.2,
+        "util": 0.479,
+        "pass": true
+      }
+    },
+    {
+      "id": "C_NE",
+      "section": "30×30",
+      "Nrd": 1200,
+      "Vb_share_note": "din max_inrepo",
+      "combos": [
+        {
+          "combo": "STR_Q",
+          "N_kN": 385.5,
+          "M_kNm": 24.2,
+          "util": 0.475,
+          "pass": true
+        },
+        {
+          "combo": "SEIS",
+          "N_kN": 232.3,
+          "M_kNm": 20.6,
+          "util": 0.44,
+          "pass": true
+        }
+      ],
+      "governing": {
+        "combo": "STR_Q",
+        "N_kN": 385.5,
+        "M_kNm": 24.2,
+        "util": 0.475,
+        "pass": true
+      }
+    }
+  ],
+  "roof_combos": [
+    {
+      "id": "SNOW",
+      "label": "Zăpadă dominantă (1,35G + 1,5·Qs + 0,6·1,5·Qw)",
+      "q": 3.36
+    },
+    {
+      "id": "WIND_FIELD",
+      "label": "Vânt câmp",
+      "q": 2.69
+    },
+    {
+      "id": "WIND_UPLIFT",
+      "label": "Suctiune streșină (net)",
+      "q": 1.81
+    }
+  ],
+  "summary": {
+    "beams_all_pass": true,
+    "columns_all_pass": true,
+    "governing_beam": {
+      "id": "B_X_MID",
+      "combo": "STR_W",
+      "M": 87.9
+    }
+  }
+}

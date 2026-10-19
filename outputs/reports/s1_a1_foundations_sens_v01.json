@@ -1,0 +1,309 @@
+{
+  "meta": {
+    "id": "s1_a1_foundations_sens_v01",
+    "generated": "2026-10-19T08:25:54.636Z",
+    "status": "sensibilitate_studiu_nu_semnat",
+    "adopt_lock": "q221 = 310/1,4",
+    "disclaimer": "Nu schimbă pad-urile din a1. Doar arată ce s-ar întâmpla dacă Rc e 180 sau 250."
+  },
+  "scenarios": [
+    {
+      "id": "q180",
+      "q_allow": 180,
+      "label": "pesimist (geo mai slab)",
+      "pads": [
+        {
+          "id": "C_NW",
+          "N_kN": 369.6,
+          "pad_cm": 145,
+          "sigma_kPa": 176,
+          "pass": true
+        },
+        {
+          "id": "C_N_MID",
+          "N_kN": 574.9,
+          "pad_cm": 180,
+          "sigma_kPa": 177,
+          "pass": true
+        },
+        {
+          "id": "C_NE",
+          "N_kN": 385.5,
+          "pad_cm": 150,
+          "sigma_kPa": 171,
+          "pass": true
+        },
+        {
+          "id": "C_W_MID",
+          "N_kN": 433.2,
+          "pad_cm": 160,
+          "sigma_kPa": 169,
+          "pass": true
+        },
+        {
+          "id": "C_W_DORM",
+          "N_kN": 222,
+          "pad_cm": 115,
+          "sigma_kPa": 168,
+          "pass": true
+        },
+        {
+          "id": "C_S_DORM_E",
+          "N_kN": 122.2,
+          "pad_cm": 85,
+          "sigma_kPa": 169,
+          "pass": true
+        },
+        {
+          "id": "C_E_PAL",
+          "N_kN": 741.6,
+          "pad_cm": 205,
+          "sigma_kPa": 176,
+          "pass": true
+        },
+        {
+          "id": "C_CASA_SCARA",
+          "N_kN": 176.5,
+          "pad_cm": 100,
+          "sigma_kPa": 177,
+          "pass": true
+        },
+        {
+          "id": "C_S_INTRARE_W",
+          "N_kN": 131.5,
+          "pad_cm": 90,
+          "sigma_kPa": 162,
+          "pass": true
+        },
+        {
+          "id": "C_S_INTRARE_E",
+          "N_kN": 173.3,
+          "pad_cm": 100,
+          "sigma_kPa": 173,
+          "pass": true
+        },
+        {
+          "id": "C_SHAFT_E_PIER",
+          "N_kN": 20.3,
+          "pad_cm": 80,
+          "sigma_kPa": 32,
+          "pass": true
+        }
+      ],
+      "pad_max_cm": 205,
+      "pad_sum_m2": 19.85,
+      "all_pads_pass": true,
+      "strip_80_sigma_kPa": 52,
+      "strip_80_pass": true,
+      "strip_need_cm": 60
+    },
+    {
+      "id": "q221",
+      "q_allow": 221,
+      "label": "lock studiu 310/1,4 (adoptat)",
+      "pads": [
+        {
+          "id": "C_NW",
+          "N_kN": 369.6,
+          "pad_cm": 130,
+          "sigma_kPa": 219,
+          "pass": true
+        },
+        {
+          "id": "C_N_MID",
+          "N_kN": 574.9,
+          "pad_cm": 165,
+          "sigma_kPa": 211,
+          "pass": true
+        },
+        {
+          "id": "C_NE",
+          "N_kN": 385.5,
+          "pad_cm": 135,
+          "sigma_kPa": 212,
+          "pass": true
+        },
+        {
+          "id": "C_W_MID",
+          "N_kN": 433.2,
+          "pad_cm": 145,
+          "sigma_kPa": 206,
+          "pass": true
+        },
+        {
+          "id": "C_W_DORM",
+          "N_kN": 222,
+          "pad_cm": 105,
+          "sigma_kPa": 201,
+          "pass": true
+        },
+        {
+          "id": "C_S_DORM_E",
+          "N_kN": 122.2,
+          "pad_cm": 80,
+          "sigma_kPa": 191,
+          "pass": true
+        },
+        {
+          "id": "C_E_PAL",
+          "N_kN": 741.6,
+          "pad_cm": 185,
+          "sigma_kPa": 217,
+          "pass": true
+        },
+        {
+          "id": "C_CASA_SCARA",
+          "N_kN": 176.5,
+          "pad_cm": 90,
+          "sigma_kPa": 218,
+          "pass": true
+        },
+        {
+          "id": "C_S_INTRARE_W",
+          "N_kN": 131.5,
+          "pad_cm": 80,
+          "sigma_kPa": 205,
+          "pass": true
+        },
+        {
+          "id": "C_S_INTRARE_E",
+          "N_kN": 173.3,
+          "pad_cm": 90,
+          "sigma_kPa": 214,
+          "pass": true
+        },
+        {
+          "id": "C_SHAFT_E_PIER",
+          "N_kN": 20.3,
+          "pad_cm": 80,
+          "sigma_kPa": 32,
+          "pass": true
+        }
+      ],
+      "pad_max_cm": 185,
+      "pad_sum_m2": 16.4,
+      "all_pads_pass": true,
+      "strip_80_sigma_kPa": 52,
+      "strip_80_pass": true,
+      "strip_need_cm": 60
+    },
+    {
+      "id": "q250",
+      "q_allow": 250,
+      "label": "optimist (aproape Pconv/1,24)",
+      "pads": [
+        {
+          "id": "C_NW",
+          "N_kN": 369.6,
+          "pad_cm": 125,
+          "sigma_kPa": 237,
+          "pass": true
+        },
+        {
+          "id": "C_N_MID",
+          "N_kN": 574.9,
+          "pad_cm": 155,
+          "sigma_kPa": 239,
+          "pass": true
+        },
+        {
+          "id": "C_NE",
+          "N_kN": 385.5,
+          "pad_cm": 125,
+          "sigma_kPa": 247,
+          "pass": true
+        },
+        {
+          "id": "C_W_MID",
+          "N_kN": 433.2,
+          "pad_cm": 135,
+          "sigma_kPa": 238,
+          "pass": true
+        },
+        {
+          "id": "C_W_DORM",
+          "N_kN": 222,
+          "pad_cm": 95,
+          "sigma_kPa": 246,
+          "pass": true
+        },
+        {
+          "id": "C_S_DORM_E",
+          "N_kN": 122.2,
+          "pad_cm": 80,
+          "sigma_kPa": 191,
+          "pass": true
+        },
+        {
+          "id": "C_E_PAL",
+          "N_kN": 741.6,
+          "pad_cm": 175,
+          "sigma_kPa": 242,
+          "pass": true
+        },
+        {
+          "id": "C_CASA_SCARA",
+          "N_kN": 176.5,
+          "pad_cm": 85,
+          "sigma_kPa": 244,
+          "pass": true
+        },
+        {
+          "id": "C_S_INTRARE_W",
+          "N_kN": 131.5,
+          "pad_cm": 80,
+          "sigma_kPa": 205,
+          "pass": true
+        },
+        {
+          "id": "C_S_INTRARE_E",
+          "N_kN": 173.3,
+          "pad_cm": 85,
+          "sigma_kPa": 240,
+          "pass": true
+        },
+        {
+          "id": "C_SHAFT_E_PIER",
+          "N_kN": 20.3,
+          "pad_cm": 80,
+          "sigma_kPa": 32,
+          "pass": true
+        }
+      ],
+      "pad_max_cm": 175,
+      "pad_sum_m2": 14.68,
+      "all_pads_pass": true,
+      "strip_80_sigma_kPa": 52,
+      "strip_80_pass": true,
+      "strip_need_cm": 60
+    }
+  ],
+  "vs_adopt": [
+    {
+      "id": "q180",
+      "q_allow": 180,
+      "delta_pad_max_cm": 20,
+      "delta_pad_sum_m2": 3.45,
+      "strip_ok_at_80": true
+    },
+    {
+      "id": "q221",
+      "q_allow": 221,
+      "delta_pad_max_cm": 0,
+      "delta_pad_sum_m2": 0,
+      "strip_ok_at_80": true
+    },
+    {
+      "id": "q250",
+      "q_allow": 250,
+      "delta_pad_max_cm": -10,
+      "delta_pad_sum_m2": -1.72,
+      "strip_ok_at_80": true
+    }
+  ],
+  "recommendation": {
+    "keep_lock_q221": true,
+    "if_geo_180": "Mărește pad-uri (max → 205 cm) și verifică talpa 80; posibil ≥60 cm pe retenție.",
+    "if_geo_250": "Pad-urile actuale rămân confortabile; poți micșora ușor la FE dacă Rc confirmat."
+  }
+}

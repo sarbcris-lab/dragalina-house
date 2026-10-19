@@ -3141,7 +3141,7 @@
     "status": "S1_STUDIU_GEOMETRIC",
     "system": "cadre_beton_armat",
     "declared_buildable": false,
-    "generated": "2026-10-18T19:59:00.159Z",
+    "generated": "2026-10-19T08:25:52.912Z",
     "source": {
       "architecture": "data/building/a1_architecture.json",
       "columns": "columns_cm (fără non-structurale)",
@@ -3204,9 +3204,10 @@
         "C_S_INTRARE_E": 90,
         "C_SHAFT_E_PIER": 80
       },
-      "perimeter_strip_width_cm": 80,
+      "perimeter_strip_width_cm": 115,
       "q_allow_kPa": 221,
-      "Pconv_ref_120_kPa": 310
+      "Pconv_ref_120_kPa": 310,
+      "perimeter_strip_note": "mărit din 80 pentru FS alunecare/răsturnare caz hw10"
     },
     "levels_cm": {
       "clear_min_cm": 255,
@@ -3661,7 +3662,7 @@
       "adopt": "Păstrează C_E_LAMELE în afara cadrului (doar ARH).",
       "reason": "B_E_S / B_S_SE trec pe ordin ULS+SLS fără reazem intermediar.",
       "calc_ref": "outputs/reports/s1_a1_calc_100_v01.md",
-      "decided_at": "2026-10-18T19:59:00.752Z"
+      "decided_at": "2026-10-19T08:25:53.487Z"
     },
     "beam_height_adopt_cm": {
       "B_N": 40,

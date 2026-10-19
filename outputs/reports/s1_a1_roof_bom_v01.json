@@ -1,0 +1,132 @@
+{
+  "meta": {
+    "id": "s1_a1_roof_bom_v01",
+    "generated": "2026-10-19T08:25:55.473Z",
+    "status": "BOM_studiu_nu_lista_cumparaturi",
+    "roof": "D3a_2ape_30_PV",
+    "pitch_deg": 30,
+    "disclaimer": "Cantități tip din geometrie 3D. Structurist / dulgher confirmă la detaliere."
+  },
+  "geometry": {
+    "clearW_cm": 670.6,
+    "nBay": 6,
+    "step_cm": 111.8,
+    "n_rafters_per_pitch": 7,
+    "L_rafter_ec5_m": 4.97,
+    "we_eaves": -1.629,
+    "q_Ed_design": 3.36
+  },
+  "pieces": [
+    {
+      "id": "RIDGE",
+      "name": "Coamă",
+      "section_cm": "20×35",
+      "qty": 1,
+      "length_m": 6.83,
+      "material": "lemn C24 studiu",
+      "note": "pe lungimea CONC E–W"
+    },
+    {
+      "id": "PLATE_N",
+      "name": "Solbanc N",
+      "section_cm": "20×25",
+      "qty": 1,
+      "length_m": 6.83,
+      "material": "lemn C24 studiu",
+      "note": "pe centură/CONC nord"
+    },
+    {
+      "id": "PLATE_S",
+      "name": "Solbanc S",
+      "section_cm": "20×25",
+      "qty": 1,
+      "length_m": 6.83,
+      "material": "lemn C24 studiu",
+      "note": "pe centură/CONC sud"
+    },
+    {
+      "id": "RAFTER_N",
+      "name": "Căpriori ape N",
+      "section_cm": "12×25",
+      "qty": 7,
+      "length_m": 4.97,
+      "material": "lemn C24 studiu",
+      "note": "pas egal 111.8 cm (≤120); nBay=6"
+    },
+    {
+      "id": "RAFTER_S",
+      "name": "Căpriori ape S",
+      "section_cm": "12×25",
+      "qty": 7,
+      "length_m": 4.98,
+      "material": "lemn C24 studiu",
+      "note": "pas egal 111.8 cm; EC5 util=0.692"
+    },
+    {
+      "id": "GABLE_W",
+      "name": "Stâlpișor fronton W",
+      "section_cm": "20×20",
+      "qty": 1,
+      "length_m": 2.49,
+      "material": "lemn C24 studiu",
+      "note": "pe B_W"
+    },
+    {
+      "id": "GABLE_E",
+      "name": "Stâlpișor fronton E",
+      "section_cm": "20×20",
+      "qty": 1,
+      "length_m": 2.49,
+      "material": "lemn C24 studiu",
+      "note": "pe B_E"
+    }
+  ],
+  "volume_timber_m3": 3.45,
+  "fasteners": [
+    {
+      "id": "RAFTER_PLATE",
+      "joint": "Căprior ↔ solbanc",
+      "type": "șuruburi lemn Ø8×120 sau cuie 4,0×100",
+      "qty_per_joint": 3,
+      "joints": 14,
+      "note": "min 2+1; we streșină → preferă șurub + colțar",
+      "qty_total": 42
+    },
+    {
+      "id": "RAFTER_RIDGE",
+      "joint": "Căprior ↔ coamă",
+      "type": "șuruburi Ø8×140 sau cuie 4,0×120 + placă metalică",
+      "qty_per_joint": 2,
+      "joints": 14,
+      "note": "sau asamblare cuțit/coamă tip studiu",
+      "qty_total": 28
+    },
+    {
+      "id": "PLATE_CONC",
+      "joint": "Solbanc ↔ centură BA",
+      "type": "ancoră chimică M12 / bolt M12 @ ≤80 cm",
+      "qty_per_joint": 1,
+      "joints": 18,
+      "note": "ancorare uplift we streșină — FE confirmă",
+      "qty_total": 18
+    },
+    {
+      "id": "GABLE_BEAM",
+      "joint": "Stâlpișor ↔ grindă B_W/B_E",
+      "type": "șuruburi Ø10×160 + saboți metal",
+      "qty_per_joint": 4,
+      "joints": 2,
+      "note": "pe ax grindă",
+      "qty_total": 8
+    },
+    {
+      "id": "BRACE_OPT",
+      "joint": "Contravântuire ape (opțional studiu)",
+      "type": "scândură 2,5×15 sau bandă metalică",
+      "qty_per_joint": 1,
+      "joints": 4,
+      "note": "dacă FE cere diafragmă suplimentară pe învelitoare",
+      "qty_total": 4
+    }
+  ]
+}

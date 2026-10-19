@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_a1_curat",
-    "generated": "2026-10-19T07:09:37.609Z",
+    "generated": "2026-10-19T08:25:56.876Z",
     "status": "3D_A1_CURAT_AMENAJARE",
     "source_plan": "data/building/v47_a1_study.json",
     "a1_architecture": "data/building/a1_architecture.json",
@@ -42063,24 +42063,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.1858,
-          "y": 18.1912
+          "x": 1.1784,
+          "y": 18.366
         },
         {
-          "x": 6.8756,
-          "y": 18.4346
+          "x": 6.8682,
+          "y": 18.6094
         },
         {
-          "x": 6.9098,
-          "y": 17.6353
+          "x": 6.9173,
+          "y": 17.4605
         },
         {
-          "x": 1.22,
-          "y": 17.3919
+          "x": 1.2275,
+          "y": 17.2171
         },
         {
-          "x": 1.1858,
-          "y": 18.1912
+          "x": 1.1784,
+          "y": 18.366
         }
       ],
       "z0_m": -3.1,
@@ -42088,7 +42088,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă perimetru 80 cm sub subsol_reten_n (geo120 studiu)"
+      "label": "talpă perimetru 115 cm sub subsol_reten_n (geo120 studiu)"
     },
     {
       "id": "subsol_reten_n",
@@ -42127,24 +42127,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.5375,
-          "y": 9.9727
+          "x": 1.5301,
+          "y": 10.1475
         },
         {
-          "x": 7.2273,
-          "y": 10.2161
+          "x": 7.2199,
+          "y": 10.3909
         },
         {
-          "x": 7.2615,
-          "y": 9.4168
+          "x": 7.2689,
+          "y": 9.242
         },
         {
-          "x": 1.5717,
-          "y": 9.1734
+          "x": 1.5791,
+          "y": 8.9986
         },
         {
-          "x": 1.5375,
-          "y": 9.9727
+          "x": 1.5301,
+          "y": 10.1475
         }
       ],
       "z0_m": -3.1,
@@ -42152,7 +42152,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă perimetru 80 cm sub subsol_reten_s (geo120 studiu)"
+      "label": "talpă perimetru 115 cm sub subsol_reten_s (geo120 studiu)"
     },
     {
       "id": "subsol_reten_s",
@@ -42191,24 +42191,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 0.9731,
-          "y": 17.6186
+          "x": 0.7983,
+          "y": 17.6111
         },
         {
-          "x": 1.7724,
-          "y": 17.6528
+          "x": 1.9472,
+          "y": 17.6602
         },
         {
-          "x": 2.1101,
-          "y": 9.76
+          "x": 2.285,
+          "y": 9.7675
         },
         {
-          "x": 1.3109,
-          "y": 9.7258
+          "x": 1.136,
+          "y": 9.7183
         },
         {
-          "x": 0.9731,
-          "y": 17.6186
+          "x": 0.7983,
+          "y": 17.6111
         }
       ],
       "z0_m": -3.1,
@@ -42216,7 +42216,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă perimetru 80 cm sub subsol_reten_w (geo120 studiu)"
+      "label": "talpă perimetru 115 cm sub subsol_reten_w (geo120 studiu)"
     },
     {
       "id": "subsol_reten_w",
@@ -42255,24 +42255,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.3372,
-          "y": 17.848
+          "x": 6.1624,
+          "y": 17.8406
         },
         {
-          "x": 7.1365,
-          "y": 17.8822
+          "x": 7.3113,
+          "y": 17.8897
         },
         {
-          "x": 7.4742,
-          "y": 9.9894
+          "x": 7.6491,
+          "y": 9.9969
         },
         {
-          "x": 6.675,
-          "y": 9.9553
+          "x": 6.5001,
+          "y": 9.9478
         },
         {
-          "x": 6.3372,
-          "y": 17.848
+          "x": 6.1624,
+          "y": 17.8406
         }
       ],
       "z0_m": -3.1,
@@ -42280,7 +42280,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă perimetru 80 cm sub subsol_reten_e (geo120 studiu)"
+      "label": "talpă perimetru 115 cm sub subsol_reten_e (geo120 studiu)"
     },
     {
       "id": "subsol_reten_e",
@@ -42383,24 +42383,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.0466,
-          "y": 13.8307
+          "x": 7.0391,
+          "y": 14.0055
         },
         {
-          "x": 8.4163,
-          "y": 13.8893
+          "x": 8.4088,
+          "y": 14.0641
         },
         {
-          "x": 8.4505,
-          "y": 13.09
+          "x": 8.458,
+          "y": 12.9152
         },
         {
-          "x": 7.0808,
-          "y": 13.0314
+          "x": 7.0882,
+          "y": 12.8566
         },
         {
-          "x": 7.0466,
-          "y": 13.8307
+          "x": 7.0391,
+          "y": 14.0055
         }
       ],
       "z0_m": -3.1,
@@ -42408,7 +42408,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă perimetru 80 cm sub put_reten_n (geo120 studiu)"
+      "label": "talpă perimetru 115 cm sub put_reten_n (geo120 studiu)"
     },
     {
       "id": "put_reten_n",
@@ -42447,24 +42447,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.8779,
-          "y": 13.3027
+          "x": 7.7031,
+          "y": 13.2953
         },
         {
-          "x": 8.6772,
-          "y": 13.3369
+          "x": 8.852,
+          "y": 13.3444
         },
         {
-          "x": 8.8345,
-          "y": 9.6603
+          "x": 9.0094,
+          "y": 9.6678
         },
         {
-          "x": 8.0352,
-          "y": 9.6261
+          "x": 7.8604,
+          "y": 9.6186
         },
         {
-          "x": 7.8779,
-          "y": 13.3027
+          "x": 7.7031,
+          "y": 13.2953
         }
       ],
       "z0_m": -3.1,
@@ -42472,7 +42472,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă perimetru 80 cm sub put_reten_e (geo120 studiu)"
+      "label": "talpă perimetru 115 cm sub put_reten_e (geo120 studiu)"
     },
     {
       "id": "put_reten_e",

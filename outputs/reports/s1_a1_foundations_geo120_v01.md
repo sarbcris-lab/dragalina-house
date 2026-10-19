@@ -2,7 +2,7 @@
 
 **Status:** studiu de rezistență în repo · **NU** semnat · **NU** geo 131  
 **Rol agent:** continuă dimensionarea ordin până la structurist / geo oficial  
-**Generat:** 2026-10-19T07:09
+**Generat:** 2026-10-19T08:25
 
 ## Lock geo-studiu
 

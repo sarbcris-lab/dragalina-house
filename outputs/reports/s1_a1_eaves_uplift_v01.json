@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "id": "s1_a1_eaves_uplift_v01",
+    "generated": "2026-10-19T08:25:55.776Z",
+    "status": "ordin_nu_dt",
+    "disclaimer": "Ipoteze we/vb0 din wind pack. Ancore — valori tip; FE + fișă producător."
+  },
+  "inputs": {
+    "we_F_kNm2": 1.629,
+    "Gk_kNm2": 0.9,
+    "zone_F_m": 1,
+    "step_m": 1.118,
+    "L_plate_m": 6.83,
+    "n_rafters_per_pitch": 7
+  },
+  "uplift": {
+    "q_net_uls_kNm2": 1.54,
+    "w_plate_kNm": 1.54,
+    "F_rafter_eave_kN": 1.73,
+    "F_plate_wind_kN": 10.54,
+    "F_pv_eaves_share_kN": 4.15,
+    "F_plate_design_kN": 14.69
+  },
+  "anchors_plate": {
+    "type": "M12 chimică / bolt în centură C25",
+    "Nrd_kN_tip": 18,
+    "n_min_calc": 2,
+    "s_adopt_m": 0.8,
+    "n_adopt": 10,
+    "util": 0.12,
+    "pass": true,
+    "note": "solbanc N și S: câte 10 ancore @ ≤80 cm"
+  },
+  "rafter_plate_screws": {
+    "type": "Ø8×120 lemn + colțar metalic recomandat",
+    "F_kN": 1.73,
+    "n_adopt": 3,
+    "util": 0.3,
+    "pass": true,
+    "joints": 14
+  }
+}

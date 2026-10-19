@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "id": "s1_a1_footing_stability_v01",
+    "generated": "2026-10-19T08:26:53.078Z",
+    "status": "ordin_nu_semnat",
+    "case": "hw10",
+    "disclaimer": "Schema 2D pe ml, umplutură pe heel. Geo 131 + FE confirmă μ / apă / pinten."
+  },
+  "loads": {
+    "Pa_kNm": 26.1,
+    "mu": 0.55,
+    "gamma_slip": 1.1,
+    "FS_over_req": 1.5,
+    "q_allow_kPa": 221
+  },
+  "at_B80": {
+    "B_m": 0.8,
+    "B_cm": 80,
+    "heel_m": 0.45,
+    "W_kNm": 47,
+    "Pa_kNm": 26.1,
+    "FS_slip": 0.99,
+    "FS_over": 0.85,
+    "sigma_max_kPa": -467,
+    "pass_slip": false,
+    "pass_over": false,
+    "pass_sigma": true,
+    "pass": false
+  },
+  "sized_min": {
+    "B_m": 1.1000000000000003,
+    "B_cm": 110,
+    "heel_m": 0.75,
+    "W_kNm": 63.5,
+    "Pa_kNm": 26.1,
+    "FS_slip": 1.34,
+    "FS_over": 1.58,
+    "sigma_max_kPa": 215,
+    "pass_slip": true,
+    "pass_over": true,
+    "pass_sigma": true,
+    "pass": true
+  },
+  "adopt": {
+    "B_cm": 115,
+    "B_m": 1.15,
+    "heel_m": 0.8,
+    "W_kNm": 66.3,
+    "Pa_kNm": 26.1,
+    "FS_slip": 1.4,
+    "FS_over": 1.72,
+    "sigma_max_kPa": 187,
+    "pass_slip": true,
+    "pass_over": true,
+    "pass_sigma": true,
+    "pass": true,
+    "note": "Talpa 80 pică alunecare/răsturnare la hw10; adopt studiu **115 cm** (sau pinten + drenaj)."
+  },
+  "pass_all": true
+}

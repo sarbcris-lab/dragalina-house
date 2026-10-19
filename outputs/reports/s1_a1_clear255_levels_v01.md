@@ -1,6 +1,6 @@
 # S1 A1 — Clear ≥255 HARD + placă/grindă + acoperiș 30°
 
-**Status:** LOCK beneficiar A1.180 · 2026-10-18  
+**Status:** LOCK beneficiar A1.180 · 2026-10-19  
 **Revocat:** acceptarea clear 241 sub grindă (D1b).
 
 ## Clear

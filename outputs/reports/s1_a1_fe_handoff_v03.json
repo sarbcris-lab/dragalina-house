@@ -1,0 +1,589 @@
+{
+  "meta": {
+    "id": "s1_a1_fe_handoff_v03",
+    "generated": "2026-10-19T08:26:53.129Z",
+    "project": "Dragalina 131",
+    "status": "input_for_FE_not_signed",
+    "supersedes": "s1_a1_fe_handoff_v02"
+  },
+  "locks": [
+    "A1.180_clear255",
+    "D3_30deg_PV_D3a",
+    "NO_LAMELE",
+    "A1.185_geo120_q221",
+    "P100_min30",
+    "ARH_frozen"
+  ],
+  "loads": {
+    "site": {
+      "locality": "Turda",
+      "parcel": "Dragalina 131"
+    },
+    "concrete": "C25/30",
+    "steel": "B500B",
+    "floor_q_Ed_kNm2": 11.78,
+    "landing_q_Ed_kNm2": 11.93,
+    "roof": {
+      "type": "D3a_light_timber_two_pitch",
+      "pitch_deg": 30,
+      "rise_cm": 248.6,
+      "Gk_kNm2": 0.9,
+      "sk_kNm2": 1.5,
+      "sk_note": "ipoteză Turda CR1-1-3 — confirmă hartă NA",
+      "Qk_snow_kNm2": 1.2,
+      "q_Ed_design_kNm2": 3.36,
+      "vb0_ms": 27,
+      "qp_kNm2": 0.958,
+      "we_eaves_kNm2": -1.629,
+      "pv": true,
+      "both_pitches": true
+    },
+    "seismic": {
+      "ag": 0.1,
+      "S": 1.2,
+      "q_duct": 3,
+      "Sd": 0.1,
+      "Vb_kN": 75.9,
+      "note": "IPOTEZĂ — nu zonare oficială pe 131; FE trebuie pe ag/S din P100 pe amplasament"
+    },
+    "foundation": {
+      "hypothesis": "similar_Dragalina_120",
+      "Pconv_120_kPa": 310,
+      "q_allow_kPa": 221,
+      "perimeter_strip_cm": 115,
+      "note": "LOCK studiu A1.185 — NU Rc din geo_131"
+    }
+  },
+  "levels_cm": {
+    "clear_min_cm": 255,
+    "clear_under_beam_cm": 255,
+    "clear_under_slab_cm": 280,
+    "clear_to_false_ceiling_cm": 274,
+    "false_ceiling_cm": 6,
+    "slab_th_hypothesis": 15,
+    "beam_h_total_including_slab_zone": 40,
+    "beam_h_typical_cm": 35,
+    "beam_definition": "40 cm total pe grinzi critice (incl. placă 15); tipic 35; clear≥255 sub grindă",
+    "drop_below_soffit_cm": 25,
+    "floor_buildup_below_ff": 12,
+    "ff_parter": 48,
+    "ff_etaj": 355,
+    "ff_to_ff_cm": 307,
+    "beam_soffit_over_parter": 303,
+    "slab_soffit_etaj": 328,
+    "slab_top_etaj": 343,
+    "basement_ff_cm": -250,
+    "basement_soffit_cm": -30,
+    "basement_beam_h_cm": 40,
+    "note": "A1.180: clear≥255 HARD. FF→FF=307. Placă 15. Grindă crit. 40."
+  },
+  "columns": [
+    {
+      "id": "C_NW",
+      "x": 10,
+      "y": 10,
+      "dx": 30,
+      "dy": 30,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 130,
+      "role": null
+    },
+    {
+      "id": "C_N_MID",
+      "x": 312.4,
+      "y": 10,
+      "dx": 40,
+      "dy": 30,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 165,
+      "role": null
+    },
+    {
+      "id": "C_NE",
+      "x": 638.8,
+      "y": 10,
+      "dx": 30,
+      "dy": 30,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 135,
+      "role": null
+    },
+    {
+      "id": "C_W_MID",
+      "x": 10,
+      "y": 410,
+      "dx": 30,
+      "dy": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 145,
+      "role": null
+    },
+    {
+      "id": "C_W_DORM",
+      "x": 10,
+      "y": 645.2,
+      "dx": 30,
+      "dy": 30,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 105,
+      "role": null
+    },
+    {
+      "id": "C_S_DORM_E",
+      "x": 322.4,
+      "y": 645.2,
+      "dx": 30,
+      "dy": 30,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 80,
+      "role": null
+    },
+    {
+      "id": "C_E_PAL",
+      "x": 638.8,
+      "y": 410,
+      "dx": 30,
+      "dy": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 185,
+      "role": null
+    },
+    {
+      "id": "C_CASA_SCARA",
+      "x": 524.3,
+      "y": 550,
+      "dx": 30,
+      "dy": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 90,
+      "role": null
+    },
+    {
+      "id": "C_S_INTRARE_W",
+      "x": 312.5,
+      "y": 818.8,
+      "dx": 40,
+      "dy": 30,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 80,
+      "role": null
+    },
+    {
+      "id": "C_S_INTRARE_E",
+      "x": 524.3,
+      "y": 818.8,
+      "dx": 30,
+      "dy": 30,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "pad_cm": 90,
+      "role": null
+    },
+    {
+      "id": "C_SHAFT_E_PIER",
+      "x": 638.8,
+      "y": 580.7,
+      "dx": 30,
+      "dy": 30,
+      "levels": [
+        "S"
+      ],
+      "pad_cm": 80,
+      "role": "pier_inverted_beam"
+    }
+  ],
+  "beams": [
+    {
+      "id": "B_N",
+      "h_cm": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_NW",
+        "C_N_MID"
+      ]
+    },
+    {
+      "id": "B_N_TO_NE",
+      "h_cm": 40,
+      "levels": [
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_N_MID",
+        "C_NE"
+      ]
+    },
+    {
+      "id": "B_W",
+      "h_cm": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_NW",
+        "C_W_MID",
+        "C_W_DORM"
+      ]
+    },
+    {
+      "id": "B_X_MID",
+      "h_cm": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_N_MID",
+        "C_S_DORM_E",
+        "C_S_INTRARE_W"
+      ]
+    },
+    {
+      "id": "B_CASA_SCARA",
+      "h_cm": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_CASA_SCARA",
+        "C_S_INTRARE_E"
+      ]
+    },
+    {
+      "id": "B_Y645",
+      "h_cm": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_W_DORM",
+        "C_S_DORM_E"
+      ]
+    },
+    {
+      "id": "B_Y820",
+      "h_cm": 40,
+      "levels": [
+        "S",
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_S_INTRARE_W",
+        "C_S_INTRARE_E"
+      ]
+    },
+    {
+      "id": "B_Y410",
+      "h_cm": 40,
+      "levels": [
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_W_MID",
+        "C_E_PAL"
+      ]
+    },
+    {
+      "id": "B_E",
+      "h_cm": 40,
+      "levels": [
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_NE",
+        "C_E_PAL"
+      ]
+    },
+    {
+      "id": "B_E_S",
+      "h_cm": 40,
+      "levels": [
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_E_PAL",
+        "C_S_INTRARE_E"
+      ]
+    },
+    {
+      "id": "B_S_SE",
+      "h_cm": 40,
+      "levels": [
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_S_INTRARE_E",
+        "C_E_PAL"
+      ]
+    },
+    {
+      "id": "B_Y_EDGE_INVERTED",
+      "h_cm": 40,
+      "levels": [
+        "S_inverted"
+      ],
+      "supports": [
+        "C_CASA_SCARA",
+        "C_SHAFT_E_PIER"
+      ]
+    }
+  ],
+  "pass_ledger": [
+    {
+      "id": "clear_255",
+      "status": "PASS_LOCK",
+      "detail": "clear sub grindă 255 · FF→FF 307"
+    },
+    {
+      "id": "NO_LAMELE",
+      "status": "PASS_ORDIN",
+      "detail": "B_E_S / B_S_SE fără C_E_LAMELE"
+    },
+    {
+      "id": "slab_15_with_BX_MID",
+      "status": "PASS_ORDIN",
+      "detail": "placă 15 cm doar cu B_X_MID"
+    },
+    {
+      "id": "beams_h40",
+      "status": "PASS_ORDIN",
+      "detail": "h adopt 40 pe grinzi critice"
+    },
+    {
+      "id": "columns_P100_geom",
+      "status": "PASS_ORDIN",
+      "detail": "≥30 + util N+M ordin"
+    },
+    {
+      "id": "buckling_EC2_ordin",
+      "status": "PASS_ORDIN",
+      "detail": "λ/φ pe P/E — s1_a1_wind_buckling_ec5_v01"
+    },
+    {
+      "id": "roof_snow_pv_wind_ordin",
+      "status": "PASS_ORDIN",
+      "detail": "q_Ed=3.36 · we=-1.629"
+    },
+    {
+      "id": "rafter_EC5_SLS",
+      "status": "PASS_ORDIN",
+      "detail": "12×25 pas egal · EC5"
+    },
+    {
+      "id": "roof_bom_studiu",
+      "status": "PASS_GEO",
+      "detail": "vol~3.45 m³ · 7×2 căpriori"
+    },
+    {
+      "id": "seismic_columns_share",
+      "status": "PASS_ORDIN",
+      "detail": "Vb=75.9 kN"
+    },
+    {
+      "id": "punching_ordin",
+      "status": "PASS_ORDIN",
+      "detail": "vEd ≤ vRdc ordin"
+    },
+    {
+      "id": "ring_E_closed",
+      "status": "PASS_GEO",
+      "detail": "B_E_S + B_S_SE închis"
+    },
+    {
+      "id": "foundations_geo120_q221",
+      "status": "PASS_ORDIN_IPOTEZA",
+      "detail": "q_allow=221 kPa · talpă perimetru 115 cm"
+    },
+    {
+      "id": "foundations_sens_180_221_250",
+      "status": "PASS_ORDIN",
+      "detail": "pad max 180/221/250 = 205/185/175"
+    },
+    {
+      "id": "rebar_hint",
+      "status": "PASS_HINT",
+      "detail": "s1_a1_rebar_hint_v01 — nu DT"
+    },
+    {
+      "id": "node_C_E_PAL_ordin",
+      "status": "PASS_ORDIN",
+      "detail": "T=6.5 kNm · lbφ16=780 mm"
+    },
+    {
+      "id": "eaves_uplift_anchors",
+      "status": "PASS_ORDIN",
+      "detail": "F=14.69 kN · M12 @ 80 cm"
+    },
+    {
+      "id": "retaining_hydro_seis",
+      "status": "PASS_ORDIN",
+      "detail": "M=20.9 kNm/m · φ12 @ 15 cm vertical interior + φ10 @ 20 oriz."
+    },
+    {
+      "id": "CR0_critical_members",
+      "status": "PASS_ORDIN",
+      "detail": "gov B_X_MID@STR_W"
+    },
+    {
+      "id": "footing_stability",
+      "status": "PASS_ORDIN",
+      "detail": "B80 FAIL → adopt 115 cm · FS_s=1.4 · FS_o=1.72"
+    },
+    {
+      "id": "p100_confinement_hint",
+      "status": "PASS_HINT",
+      "detail": "s_crit=12 cm · φ8 zonă"
+    }
+  ],
+  "checklist": [
+    {
+      "pri": 1,
+      "item": "Confirmă ag, TC, S pe 131 (P100) — înlocuiește ipoteza ag=0,10g",
+      "done_in_repo": false
+    },
+    {
+      "pri": 1,
+      "item": "Confirmă sk și vb,0 pe hărți CR1-1-3 / CR1-1-4 NA",
+      "done_in_repo": false
+    },
+    {
+      "pri": 1,
+      "item": "Model 3D cadre pe structure_a1_study_cm (NU frame V47)",
+      "done_in_repo": false
+    },
+    {
+      "pri": 1,
+      "item": "Combinații CR0 complete pe bare",
+      "done_in_repo": false
+    },
+    {
+      "pri": 1,
+      "item": "Geo 131 Rc — înlocuiește lock q_allow=221 (sens 180/250 deja în repo)",
+      "done_in_repo": "sens_tabel"
+    },
+    {
+      "pri": 2,
+      "item": "Stâlpi: N+M+V + flambaj + P100 confinare",
+      "done_in_repo": "parcial_ordin"
+    },
+    {
+      "pri": 2,
+      "item": "Nod C_E_PAL + consolă + torsiune (vezi s1_a1_node_ce_pal_v01)",
+      "done_in_repo": "parcial_ordin"
+    },
+    {
+      "pri": 2,
+      "item": "Placă 15 + B_X_MID FE",
+      "done_in_repo": "parcial_ordin"
+    },
+    {
+      "pri": 2,
+      "item": "B_E_S / B_S_SE NO_LAMELE continuu",
+      "done_in_repo": "parcial_ordin"
+    },
+    {
+      "pri": 2,
+      "item": "Întoarsă + pier (As/ancorare în node pack)",
+      "done_in_repo": "parcial_ordin"
+    },
+    {
+      "pri": 2,
+      "item": "Retenție + apă + seism pe zid",
+      "done_in_repo": "parcial_ordin"
+    },
+    {
+      "pri": 2,
+      "item": "Fundații pe Rc geo_131 (pad-uri + talpă 80 pe q221)",
+      "done_in_repo": "ipoteza_120"
+    },
+    {
+      "pri": 3,
+      "item": "Șarpantă + ancorare we (BOM studiu în repo)",
+      "done_in_repo": "parcial_ordin"
+    },
+    {
+      "pri": 3,
+      "item": "Diafragmă placă",
+      "done_in_repo": false
+    },
+    {
+      "pri": 3,
+      "item": "Planșe armare DT (hint rebar ≠ DT)",
+      "done_in_repo": "hint_only"
+    }
+  ],
+  "reports": [
+    "s1_a1_calc_100_v01",
+    "s1_a1_wind_buckling_ec5_v01",
+    "s1_a1_max_inrepo_v01",
+    "s1_a1_clear255_levels_v01",
+    "s1_a1_foundations_geo120_v01",
+    "s1_a1_foundations_sens_v01",
+    "s1_a1_rebar_hint_v01",
+    "s1_a1_node_ce_pal_v01",
+    "s1_a1_roof_bom_v01",
+    "s1_a1_eaves_uplift_v01",
+    "s1_a1_retaining_seis_v01",
+    "s1_a1_cr0_members_v01",
+    "s1_a1_footing_stability_v01",
+    "s1_a1_p100_confinement_v01",
+    "s1_a1_due_diligence_buy_v01",
+    "s1_a1_fe_INDEX"
+  ]
+}

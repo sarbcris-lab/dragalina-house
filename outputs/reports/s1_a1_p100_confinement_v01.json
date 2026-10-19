@@ -1,0 +1,182 @@
+{
+  "meta": {
+    "id": "s1_a1_p100_confinement_v01",
+    "generated": "2026-10-19T08:25:56.804Z",
+    "status": "hint_P100_nu_dt",
+    "disclaimer": "Spațieri tip ductilitate medie. Structurist confirmă clasa de ductilitate + α pe amplasament.",
+    "clear_cm": 255,
+    "h_storey_m": 3.07
+  },
+  "columns": [
+    {
+      "id": "C_NW",
+      "section": "30×30",
+      "util_NM": 0.461,
+      "long_hint": "8φ16",
+      "stirrup": "φ8",
+      "s_crit_cm": 12,
+      "s_mid_cm": 20,
+      "l_crit_cm": 45,
+      "s_limits": {
+        "b0_2": 15,
+        "d8": 12.8,
+        "cap175": 17.5
+      },
+      "adopt": "φ8 @ 12 cm pe 45 cm de la nod (sus+jos) / @ 20 cm mijloc",
+      "note": "ordin"
+    },
+    {
+      "id": "C_N_MID",
+      "section": "40×30",
+      "util_NM": 0.571,
+      "long_hint": "8φ16",
+      "stirrup": "φ8",
+      "s_crit_cm": 12,
+      "s_mid_cm": 20,
+      "l_crit_cm": 45,
+      "s_limits": {
+        "b0_2": 15,
+        "d8": 12.8,
+        "cap175": 17.5
+      },
+      "adopt": "φ8 @ 12 cm pe 45 cm de la nod (sus+jos) / @ 20 cm mijloc",
+      "note": "util ridicat — FE confinare prioritar"
+    },
+    {
+      "id": "C_NE",
+      "section": "30×30",
+      "util_NM": 0.475,
+      "long_hint": "8φ16",
+      "stirrup": "φ8",
+      "s_crit_cm": 12,
+      "s_mid_cm": 20,
+      "l_crit_cm": 45,
+      "s_limits": {
+        "b0_2": 15,
+        "d8": 12.8,
+        "cap175": 17.5
+      },
+      "adopt": "φ8 @ 12 cm pe 45 cm de la nod (sus+jos) / @ 20 cm mijloc",
+      "note": "ordin"
+    },
+    {
+      "id": "C_W_MID",
+      "section": "30×40",
+      "util_NM": 0.479,
+      "long_hint": "8φ16",
+      "stirrup": "φ8",
+      "s_crit_cm": 12,
+      "s_mid_cm": 20,
+      "l_crit_cm": 45,
+      "s_limits": {
+        "b0_2": 15,
+        "d8": 12.8,
+        "cap175": 17.5
+      },
+      "adopt": "φ8 @ 12 cm pe 45 cm de la nod (sus+jos) / @ 20 cm mijloc",
+      "note": "ordin"
+    },
+    {
+      "id": "C_W_DORM",
+      "section": "30×30",
+      "util_NM": 0.276,
+      "long_hint": "8φ16",
+      "stirrup": "φ8",
+      "s_crit_cm": 12,
+      "s_mid_cm": 20,
+      "l_crit_cm": 45,
+      "s_limits": {
+        "b0_2": 15,
+        "d8": 12.8,
+        "cap175": 17.5
+      },
+      "adopt": "φ8 @ 12 cm pe 45 cm de la nod (sus+jos) / @ 20 cm mijloc",
+      "note": "ordin"
+    },
+    {
+      "id": "C_S_DORM_E",
+      "section": "30×30",
+      "util_NM": 0.14,
+      "long_hint": "8φ16",
+      "stirrup": "φ8",
+      "s_crit_cm": 12,
+      "s_mid_cm": 20,
+      "l_crit_cm": 45,
+      "s_limits": {
+        "b0_2": 15,
+        "d8": 12.8,
+        "cap175": 17.5
+      },
+      "adopt": "φ8 @ 12 cm pe 45 cm de la nod (sus+jos) / @ 20 cm mijloc",
+      "note": "ordin"
+    },
+    {
+      "id": "C_E_PAL",
+      "section": "30×40",
+      "util_NM": 0.671,
+      "long_hint": "8φ16",
+      "stirrup": "φ8",
+      "s_crit_cm": 12,
+      "s_mid_cm": 20,
+      "l_crit_cm": 45,
+      "s_limits": {
+        "b0_2": 15,
+        "d8": 12.8,
+        "cap175": 17.5
+      },
+      "adopt": "φ8 @ 12 cm pe 45 cm de la nod (sus+jos) / @ 20 cm mijloc",
+      "note": "util ridicat — FE confinare prioritar"
+    },
+    {
+      "id": "C_CASA_SCARA",
+      "section": "30×40",
+      "util_NM": 0.147,
+      "long_hint": "8φ16",
+      "stirrup": "φ8",
+      "s_crit_cm": 12,
+      "s_mid_cm": 20,
+      "l_crit_cm": 45,
+      "s_limits": {
+        "b0_2": 15,
+        "d8": 12.8,
+        "cap175": 17.5
+      },
+      "adopt": "φ8 @ 12 cm pe 45 cm de la nod (sus+jos) / @ 20 cm mijloc",
+      "note": "ordin"
+    },
+    {
+      "id": "C_S_INTRARE_W",
+      "section": "40×30",
+      "util_NM": 0.105,
+      "long_hint": "8φ16",
+      "stirrup": "φ8",
+      "s_crit_cm": 12,
+      "s_mid_cm": 20,
+      "l_crit_cm": 45,
+      "s_limits": {
+        "b0_2": 15,
+        "d8": 12.8,
+        "cap175": 17.5
+      },
+      "adopt": "φ8 @ 12 cm pe 45 cm de la nod (sus+jos) / @ 20 cm mijloc",
+      "note": "ordin"
+    },
+    {
+      "id": "C_S_INTRARE_E",
+      "section": "30×30",
+      "util_NM": 0.21,
+      "long_hint": "8φ16",
+      "stirrup": "φ8",
+      "s_crit_cm": 12,
+      "s_mid_cm": 20,
+      "l_crit_cm": 45,
+      "s_limits": {
+        "b0_2": 15,
+        "d8": 12.8,
+        "cap175": 17.5
+      },
+      "adopt": "φ8 @ 12 cm pe 45 cm de la nod (sus+jos) / @ 20 cm mijloc",
+      "note": "ordin"
+    }
+  ]
+}
