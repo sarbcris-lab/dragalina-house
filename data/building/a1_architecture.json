@@ -20,7 +20,7 @@
       "basement_rule": "Plan subsol A1.165–168 = input S1; conflict structură → remesh retenție/cadre, nu P/E.",
       "next_round": "S1 structură — decisions/s1_from_a1_v01.md"
     },
-    "generated": "2026-10-19T17:50:48.101Z",
+    "generated": "2026-10-19T19:48:29.071Z",
     "brief": "decisions/brief_A0_v01.md",
     "site": "data/building/a0_site.json",
     "source_walls": "v47 remap 680×860 — grosimi catalog A1/A2/A7/A8",
@@ -52,7 +52,7 @@
     "riser_max_cm": 16,
     "clear_to_false_ceiling_cm": 274,
     "ff_to_ff_cm": 307,
-    "note": "A1.180/194: FF→FF 307 păstrat la regen ARH (nu 304 din scară 19×16)",
+    "note": "A1.199: FF→FF 307 · scară 19×16.16 · clear≥255",
     "false_ceiling_cm": 6,
     "structural_slab_cm": 15,
     "floor_buildup_below_ff_cm": 12,
@@ -2555,9 +2555,8 @@
     "s1_handoff": {
       "doc": "decisions/s1_from_a1_v01.md",
       "envelope_report": "outputs/reports/s1_basement_envelope_from_a1_v01.md",
-      "frame_mesh": "A1.174: cadre pe axe A1 (build_a1_structure) — FRAME STALE",
-      "first_task": "remesh BA pe envelope A1 — DONE geometric; FE urmează",
-      "structure_study": "structure_a1_study_cm"
+      "frame_mesh": "A1.170: build_v47_3d citește basement din a1_architecture (nu hol_subsol V47)",
+      "first_task": "reten_mesh_vs_a1 — DONE overlay 3D; FE mesh JSON încă de sync"
     },
     "structure_box": {
       "x0": 30,
@@ -2912,7 +2911,7 @@
     ]
   },
   "stair_cm": {
-    "riser_cm": 16,
+    "riser_cm": 16.16,
     "risers_total_from_ff": 19,
     "risers_flight_180": 9,
     "risers_flight_330": 10,
@@ -2924,10 +2923,10 @@
     "parapet_thick_cm": 10,
     "band_x": 562.8,
     "band_dx": 114.6,
-    "podest_height_above_ff_cm": 144,
-    "palier_sup_height_above_ff_cm": 304,
+    "podest_height_above_ff_cm": 145.44,
+    "palier_sup_height_above_ff_cm": 307,
     "entry_connection": "PARTER: intrare din terasă (intrare_parter @ X330 Y680). ETAJ: intrare_etaj pe buc_est Y475–565 de pe palier_superior.",
-    "note": "A1.132: palier N@mid · clear scară 104.5/95.7 (A6→est / la pier) · 19×16=304 FF↔FF",
+    "note": "A1.199: palier N@mid · clear scară 104.5/95.7 (A6→est / la pier) · 19×16.16=307 FF↔FF",
     "flight_180": {
       "covered": false,
       "going_length_cm": 240,
@@ -2947,7 +2946,7 @@
       "y": 858.7,
       "dx": 114.6,
       "dy": 114.8,
-      "z_above_ff_cm": 144,
+      "z_above_ff_cm": 145.44,
       "clear_dx": 105,
       "parapet_east_dx": 10,
       "note": "podest SE 115×115 (nemodificat vs A1.60)",
@@ -2970,8 +2969,8 @@
       "y": 450,
       "dx": 104.6,
       "dy": 138.7,
-      "z_above_ff_cm": 304,
-      "section_note": "105×139 clear · bandă ~115×139 · +304",
+      "z_above_ff_cm": 307,
+      "section_note": "105×139 clear · bandă ~115×139 · +307",
       "note": "A1.61: clear N = față S mid (C_E_PAL/C_W_MID); sud = N R2"
     },
     "stair_east_seq": {

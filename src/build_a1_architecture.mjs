@@ -1079,16 +1079,18 @@ const stairBandDx = mdx(stSrc.band_dx ?? 115);
 const stairClearDx = mdx(stSrc.width_clear_cm ?? 105);
 const stairParapetDx = mdx(stSrc.parapet_thick_cm ?? 10);
 /**
- * A1.36: +1 treaptă la baza R1; **19×16** ridicări (= 304 FF↔FF).
- * R1: 9↑ / 8×30 going; R2: 10↑ / 9×30; podest +144; palier +304.
+ * A1.36/199: +1 treaptă la baza R1; **19 ridicări** pe FF→FF **307** (clear255).
+ * R1: 9↑ / 8×30 going; R2: 10↑ / 9×30; podest ≈+145.4; palier +307.
+ * (Nu mai 19×16=304 — etichetele urmează FF real.)
  */
-const STAIR_RISER_CM = 16;
+const STAIR_FF_TO_FF_CM = 307;
 const STAIR_TREAD_CM = stSrc.tread_cm ?? 30;
 const STAIR_R1_RISERS = 9; // era 8; +1 treaptă la bază
 const STAIR_R2_RISERS = 10;
 const STAIR_TOTAL_RISERS = STAIR_R1_RISERS + STAIR_R2_RISERS; // 19
-const STAIR_PODEST_Z = STAIR_R1_RISERS * STAIR_RISER_CM; // 144
-const STAIR_PALIER_Z = STAIR_TOTAL_RISERS * STAIR_RISER_CM; // 304
+const STAIR_RISER_CM = +(STAIR_FF_TO_FF_CM / STAIR_TOTAL_RISERS).toFixed(2); // 16.16
+const STAIR_PODEST_Z = +(STAIR_R1_RISERS * STAIR_RISER_CM).toFixed(2);
+const STAIR_PALIER_Z = STAIR_FF_TO_FF_CM;
 
 /**
  * A1.61: palier superior mărit N până la stâlpii mid (fața S = Y_PALIER_N).
@@ -1141,7 +1143,7 @@ const stair = {
   podest_height_above_ff_cm: STAIR_PODEST_Z,
   palier_sup_height_above_ff_cm: STAIR_PALIER_Z,
   entry_connection: stSrc.entry_connection,
-  note: `A1.132: palier N@mid · clear scară ${STAIR_CLEAR_A6_TO_EST_CM}/${STAIR_CLEAR_AT_PIER_CM} (A6→est / la pier) · ${STAIR_TOTAL_RISERS}×${STAIR_RISER_CM}=${STAIR_PALIER_Z} FF↔FF`,
+  note: `A1.199: palier N@mid · clear scară ${STAIR_CLEAR_A6_TO_EST_CM}/${STAIR_CLEAR_AT_PIER_CM} (A6→est / la pier) · ${STAIR_TOTAL_RISERS}×${STAIR_RISER_CM}=${STAIR_PALIER_Z} FF↔FF`,
   flight_180: (() => {
     if (!stSrc.flight_180) return undefined;
     const raw = mapRect(stSrc.flight_180);
@@ -3416,8 +3418,8 @@ const a1 = {
     clear_min_cm: 255,
     riser_max_cm: 16,
     clear_to_false_ceiling_cm: src.heights_cm?.clear_to_false_ceiling_cm ?? 255,
-    ff_to_ff_cm: STAIR_PALIER_Z,
-    note: "Clear ≥255 · riser ≤16 — brief.",
+    ff_to_ff_cm: STAIR_FF_TO_FF_CM,
+    note: `A1.199: FF→FF ${STAIR_FF_TO_FF_CM} · scară ${STAIR_TOTAL_RISERS}×${STAIR_RISER_CM} · clear≥255`,
   },
   areas: {
     footprint_m2: a0.footprint.area_m2,
@@ -3477,11 +3479,12 @@ fs.mkdirSync(path.join(root, "data/building"), { recursive: true });
     if (prev.structure_a1_study_cm) {
       a1.structure_a1_study_cm = prev.structure_a1_study_cm;
     }
-    if (prev.heights_cm?.ff_to_ff_cm === 307) {
+    if (prev.heights_cm?.ff_to_ff_cm === 307 || prev.heights_cm?.clear_under_beam_cm) {
       a1.heights_cm = {
-        ...a1.heights_cm,
         ...prev.heights_cm,
-        note: "A1.180/194: FF→FF 307 păstrat la regen ARH (nu 304 din scară 19×16)",
+        ...a1.heights_cm,
+        ff_to_ff_cm: STAIR_FF_TO_FF_CM,
+        note: a1.heights_cm.note,
       };
     }
   }

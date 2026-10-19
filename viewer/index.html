@@ -620,6 +620,7 @@
       return (
         id.startsWith("stalp_continuu_") ||
         id.startsWith("stalp_a1_") ||
+        id.startsWith("stalp_arh_") ||
         id.startsWith("stalp_SP_") ||
         id.startsWith("etics_wrap_") ||
         id.startsWith("col_facade_") ||
@@ -796,8 +797,13 @@
         obj.visible = false;
         continue;
       }
-      if (id.startsWith("curte_engleza_")) {
+      if (id.startsWith("curte_engleza_") || id.startsWith("subsol_curte_engleza")) {
         alwaysObjs.push(obj);
+        // și în bucket curte (deja via isCurteMesh)
+        continue;
+      }
+      if (id.startsWith("fatada_scara_")) {
+        etajObjs.push(obj);
         continue;
       }
       if (id.startsWith("gard_")) {

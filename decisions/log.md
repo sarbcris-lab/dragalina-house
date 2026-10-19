@@ -1,5 +1,13 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.199: lamele + fațadă est scară în 3D (= plan etaj)
+
+- Plan etaj: plin → **lamele L129,6 H210** → `C_E_LAMELE` → parapet — acum și în 3D (`fatada_scara_*`, lamele metal antracit).
+- Pier `C_E_LAMELE` = **ARH/fațadă** (`stalp_arh_…`), nu în cadru FE.
+- Scară etichete: **19×16,16 = FF→FF 307** (nu mai 19×16=304 pe JSON).
+- Curte engleză: ziduri fântână E/W (−95→0) + trepte lipite sud casă Y860; vizibilă în Curte/Subsol.
+- Detaliu: `outputs/plans/a1_detaliu_fatada_est.svg`.
+
 ## 2026-10-19 — A1.198: viewer V4 — împrejmuire / curte / situație
 
 - View Împrejmuire: `limit_*` (hotar pe casă) ≠ `gard_`/`poarta_` (construit); casă estompată; auto/alee.

@@ -99,8 +99,21 @@ function basementFromA1(a1Bm, v47Bm) {
     shaft_enclosure_cm: pit.x0 != null
       ? { y0: pit.y0, y1: pit.y1, x0: pit.x0, x1: pit.x1 }
       : undefined,
-    // trepte curte: încă din V47/FRAME până le modelăm în A1
-    court_to_access_steps: v47Bm?.court_to_access_steps || null,
+    // Trepte curte 0→−95: V47 geometrie, realiniată pe sud amprentă A1
+    court_to_access_steps: (() => {
+      const raw = v47Bm?.court_to_access_steps;
+      if (!raw) return null;
+      const envNs = 860; // A1 envelope — sud casă
+      const upS = st.upper_landing ? st.upper_landing.y + (st.upper_landing.dy || 0) : envNs;
+      // start trepte la sud casă (lipit de amprentă), nu cu gol față de V47 Y868
+      const y0 = Math.max(envNs, upS);
+      return {
+        ...raw,
+        y: y0,
+        note: `A1.199: trepte curte engleză Y${y0}+ (0→−95) · lipit sud casă`,
+        status: "studiu_A1_199",
+      };
+    })(),
     s1_note: a1Bm.s1_handoff?.frame_mesh || "A1 envelope",
   };
 }
@@ -1608,15 +1621,29 @@ function main() {
         opacity: 0.9,
         site_layer: "structura",
       });
-      meshes.push({
-        id: `parapet_r2_${i}`,
-        type: "extrude",
-        polygon: rectPoly(r2.x + r2.dx - parapetT, ySouth, parapetT, tread),
-        z0_m: zTopStep,
-        z1_m: zTopStep + parapetH,
-        color: "#8a939e",
-        label: "Parapet rampa 2",
-      });
+      // Parapet pe E doar unde NU e secvența plan: plin / lamele / pier
+      // (fațada est scară = stair_solid_e + stair_jaluzele_e + C_E_LAMELE — ca a1_plan_etaj)
+      const jalSkip = st.stair_jaluzele_e;
+      const solidSkip = st.stair_solid_e;
+      const pierSkip = a1Columns?.find((c) => c.id === "C_E_LAMELE");
+      const yMidT = ySouth + tread / 2;
+      const inSolid =
+        solidSkip && yMidT >= solidSkip.y && yMidT <= solidSkip.y + solidSkip.dy;
+      const inJal =
+        jalSkip && yMidT >= jalSkip.y && yMidT <= jalSkip.y + jalSkip.dy;
+      const inPier =
+        pierSkip && yMidT >= pierSkip.y && yMidT <= pierSkip.y + pierSkip.dy;
+      if (!inSolid && !inJal && !inPier) {
+        meshes.push({
+          id: `parapet_r2_${i}`,
+          type: "extrude",
+          polygon: rectPoly(r2.x + r2.dx - parapetT, ySouth, parapetT, tread),
+          z0_m: zTopStep,
+          z1_m: zTopStep + parapetH,
+          color: "#8a939e",
+          label: "Parapet rampa 2",
+        });
+      }
       if (storageUnderRamp2) {
         const zFill = Math.max(zParter, zTopStep - treadTh - rampStruct);
         if (zFill > zParter + 0.05) {
@@ -1721,6 +1748,97 @@ function main() {
       void zTopFirst;
       void zTopN;
       void zBotN;
+    }
+  }
+
+  // —— Fațadă est scară (ca plan etaj A1): plin → lamele → pier → parapet ——
+  // Plan: stair_solid_e / stair_jaluzele_e (gol albastru) / C_E_LAMELE / stair_parapet_*
+  // 3D: lamele = lamele metal antracit (style_target); pier ARH ≠ cadru FE.
+  {
+    const solidE = st.stair_solid_e;
+    const jal = st.stair_jaluzele_e;
+    const parapE = st.stair_parapet_e;
+    const parapS = st.stair_parapet_podest_s;
+    const pierArh = a1Columns?.find((c) => c.id === "C_E_LAMELE");
+    if (solidE?.dx > 0 && solidE?.dy > 0) {
+      meshes.push({
+        id: "fatada_scara_solid_e",
+        type: "extrude",
+        polygon: rectPoly(solidE.x, solidE.y, solidE.dx, solidE.dy),
+        z0_m: zEtaj,
+        z1_m: zEtaj + m(jal?.z1_above_ff_cm ?? 240),
+        color: "#8a939e",
+        site_layer: "anvelopa",
+        label: "Zid plin est scară (palier + 1ª treaptă) — ca plan etaj",
+      });
+    }
+    if (jal?.dx > 0 && jal?.dy > 0) {
+      const z0 = zEtaj + m(jal.z0_above_ff_cm ?? 30);
+      const z1 = zEtaj + m(jal.z1_above_ff_cm ?? jal.h_cm ?? 240);
+      const nBlades = Math.max(8, Math.round(jal.dy / 12));
+      const gap = jal.dy / nBlades;
+      const bladeT = Math.min(2.5, gap * 0.35);
+      for (let i = 0; i < nBlades; i++) {
+        const yB = jal.y + i * gap + (gap - bladeT) / 2;
+        meshes.push({
+          id: `fatada_scara_lamele_${i}`,
+          type: "extrude",
+          polygon: rectPoly(jal.x, yB, jal.dx, bladeT),
+          z0_m: z0,
+          z1_m: z1,
+          color: "#2a2a2a",
+          site_layer: "finisaj",
+          label: `Lamele est scară (${i + 1}/${nBlades}) L${jal.dy} H${jal.h_cm || 210} — plan etaj`,
+        });
+      }
+      // cadru gol (vizibil pe plan ca stroke dashed)
+      meshes.push({
+        id: "fatada_scara_lamele_cadru",
+        type: "extrude",
+        polygon: rectPoly(jal.x, jal.y, Math.min(3, jal.dx), jal.dy),
+        z0_m: z0,
+        z1_m: z1,
+        color: "#1a1a1a",
+        opacity: 0.35,
+        site_layer: "finisaj",
+        label: `Gol lamele L${jal.dy} — reper plan etaj`,
+      });
+    }
+    if (pierArh) {
+      meshes.push({
+        id: "stalp_arh_C_E_LAMELE",
+        type: "extrude",
+        polygon: rectPoly(pierArh.x, pierArh.y, pierArh.dx, pierArh.dy),
+        z0_m: zParter - floorTh,
+        z1_m: zEtaj + m(jal?.z1_above_ff_cm ?? 240),
+        color: "#6e6e6e",
+        site_layer: "anvelopa",
+        label: "C_E_LAMELE 20×40 — pier ARH/fațadă (nu reazem FE)",
+      });
+    }
+    if (parapE?.dx > 0 && parapE?.dy > 0) {
+      meshes.push({
+        id: "fatada_scara_parapet_e",
+        type: "extrude",
+        polygon: rectPoly(parapE.x, parapE.y, parapE.dx, parapE.dy),
+        z0_m: zPod,
+        z1_m: zPod + m(parapE.h_cm || 90),
+        color: "#8a939e",
+        site_layer: "anvelopa",
+        label: "Parapet est podest (după pier) — ca plan",
+      });
+    }
+    if (parapS?.dx > 0 && parapS?.dy > 0) {
+      meshes.push({
+        id: "fatada_scara_parapet_s",
+        type: "extrude",
+        polygon: rectPoly(parapS.x, parapS.y, parapS.dx, parapS.dy),
+        z0_m: zPod,
+        z1_m: zPod + m(parapS.h_cm || 90),
+        color: "#8a939e",
+        site_layer: "anvelopa",
+        label: "Parapet sud podest — ca plan",
+      });
     }
   }
 
@@ -3418,6 +3536,17 @@ function main() {
           { id: "e", x: thinEX0, y: wellY, dx: thinEDx, dy: Math.max(wellDy, stepsSouth - wellY) },
           { id: "w", x: thickX0, y: wellY, dx: thickDx, dy: Math.max(wellDy, stepsSouth - wellY) },
         ]) {
+          // pereți verticali fântână (−95 → 0) — vizibili în view Curte
+          meshes.push({
+            id: `curte_engleza_zid_${w.id}`,
+            type: "extrude",
+            polygon: rectPoly(w.x, w.y, w.dx, w.dy),
+            z0_m: zAccess,
+            z1_m: zGrade,
+            color: "#a8a090",
+            site_layer: "curte",
+            label: `zid fântână curte engleză ${w.id}`,
+          });
           meshes.push({
             id: `curte_engleza_coping_${w.id}`,
             type: "extrude",
@@ -3428,6 +3557,12 @@ function main() {
             site_layer: "curte",
             label: `coronament fântână ${w.id}`,
           });
+        }
+        // fund mai vizibil (contrast)
+        const fundMesh = meshes.find((mm) => mm.id === "subsol_curte_engleza_fund");
+        if (fundMesh) {
+          fundMesh.color = "#b8a878";
+          fundMesh.label = "pardoseală curte engleză −95 (fântână S casă)";
         }
         for (let i = 0; i < nRisers; i++) {
           // i=0 cea mai de sus (sud), z = fromZ - riser
