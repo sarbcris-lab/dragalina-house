@@ -167,9 +167,16 @@
         <button type="button" id="btnStruct">1 · Structură</button>
         <button type="button" id="btnStructWalls">2 · + Pereți</button>
         <button type="button" id="btnRoof">3 · Acoperiș</button>
-        <button type="button" id="btnCut">Secțiune interior</button>
         <button type="button" id="btnFoundations">Fundații</button>
+        <button type="button" id="btnPlanOrtho">Plan orto</button>
       </div>
+      <div class="row" id="rowSections">
+        <button type="button" id="btnSecOff" class="active">Secțiune off</button>
+        <button type="button" id="btnSecBeci">S1 · Acces beci</button>
+        <button type="button" id="btnSecScara">S2 · Casa scării</button>
+        <button type="button" id="btnSecCamere">S3 · Camere+acoperiș</button>
+      </div>
+      <div class="meta" id="sectionDims" style="margin:0.4rem 0 0;color:#c4b49a;font-size:0.78rem;line-height:1.4"></div>
       <div class="tabs" id="tabsPlans">
         <a href="/outputs/plans/a1_plan_parter.svg" target="_blank" rel="noopener"><strong>Plan parter</strong></a>
         <a href="/outputs/plans/a1_plan_etaj.svg" target="_blank" rel="noopener"><strong>Plan etaj</strong></a>
@@ -242,8 +249,12 @@
     const pmrem = new THREE.PMREMGenerator(renderer);
     scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 
-    const camera = new THREE.PerspectiveCamera(42, 2, 0.1, 200);
-    camera.position.set(18, 14, 10);
+    const perspCam = new THREE.PerspectiveCamera(42, 2, 0.1, 200);
+    perspCam.position.set(18, 14, 10);
+    const orthoCam = new THREE.OrthographicCamera(-20, 20, 15, -15, 0.1, 200);
+    orthoCam.position.set(5, 40, -10);
+    let camera = perspCam;
+    let planOrtho = false;
 
     const controls = new OrbitControls(camera, canvas);
     controls.target.set(4, 2.5, -8);
@@ -274,9 +285,90 @@
       const h = canvas.clientHeight;
       if (canvas.width !== w || canvas.height !== h) {
         renderer.setSize(w, h, false);
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
+        const aspect = w / Math.max(1, h);
+        perspCam.aspect = aspect;
+        perspCam.updateProjectionMatrix();
+        const frustum = planOrtho ? 12 : 18;
+        orthoCam.left = -frustum * aspect;
+        orthoCam.right = frustum * aspect;
+        orthoCam.top = frustum;
+        orthoCam.bottom = -frustum;
+        orthoCam.updateProjectionMatrix();
       }
+    }
+    function useCamera(cam) {
+      camera = cam;
+      controls.object = cam;
+      resize();
+      controls.update();
+    }
+    function setPlanOrtho(on) {
+      planOrtho = on;
+      document.getElementById("btnPlanOrtho")?.classList.toggle("active", on);
+      if (on) {
+        if (sectionId) {
+          sectionId = null;
+          syncSectionButtons();
+          removeSectionHelper();
+          setSectionDims("");
+        }
+        useCamera(orthoCam);
+        if (
+          levelMode === "both" ||
+          levelMode === "structura" ||
+          levelMode === "structura_pereti" ||
+          levelMode === "acoperis" ||
+          levelMode === "imprejmuire" ||
+          levelMode === "curte"
+        ) {
+          setLevel("parter");
+        } else {
+          setLevel(levelMode);
+        }
+        framePlanTop();
+        setViewHint(
+          "Plan ortografic — vedere de sus. Nivel: " +
+            (levelMode === "subsol" ? "subsol" : levelMode === "etaj" ? "etaj" : "parter") +
+            "."
+        );
+      } else {
+        useCamera(perspCam);
+        setViewHint("");
+      }
+    }
+    function framePlanTop() {
+      const objs =
+        levelMode === "subsol"
+          ? subsolObjs
+          : levelMode === "etaj"
+            ? etajObjs
+            : parterObjs;
+      const box = new THREE.Box3();
+      for (const o of objs) {
+        if (o.visible) box.expandByObject(o);
+      }
+      for (const o of columnObjs) {
+        if (o.visible) box.expandByObject(o);
+      }
+      if (box.isEmpty()) {
+        orthoCam.position.set(5, 50, -10);
+        controls.target.set(5, 0, -10);
+      } else {
+        const c = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
+        const span = Math.max(size.x, size.z) * 0.55 + 2;
+        const aspect = canvas.clientWidth / Math.max(1, canvas.clientHeight);
+        orthoCam.left = -span * aspect;
+        orthoCam.right = span * aspect;
+        orthoCam.top = span;
+        orthoCam.bottom = -span;
+        orthoCam.position.set(c.x, c.y + 40, c.z);
+        orthoCam.up.set(0, 0, -1);
+        orthoCam.lookAt(c.x, c.y, c.z);
+        orthoCam.updateProjectionMatrix();
+        controls.target.set(c.x, c.y, c.z);
+      }
+      controls.update();
     }
 
     function ring2d(poly) {
@@ -462,7 +554,7 @@
       roofBot: 6.0,
     };
     let showFoundations = true;
-    const clipPlanes = { active: [] };
+    const clipPlanes = { active: [], zOnly: [] };
 
     function isImprejmuireMesh(m) {
       const id = m.id || "";
@@ -727,7 +819,6 @@
       document.getElementById("btnClosed").classList.toggle("active", state === "closed");
       document.getElementById("btnOpen").classList.toggle("active", state === "open");
     }
-    let cutaway = false;
     let levelMode = "both";
 
     function isRoofOrCeiling(n) {
@@ -741,25 +832,128 @@
       );
     }
 
-    function applyCutaway() {
-      if (!cutaway) {
-        document.getElementById("btnCut").classList.toggle("active", false);
-        return;
+    let sectionId = null; // null | beci | scara | camere
+    let sectionHelper = null;
+    const sectionPresets = {
+      // Plane in Three.js: after Rx(-90), X=site.x, Y=z_up, Z=-site.y
+      // S1: vertical cut through stair shaft (constant site Y ≈ mid puț) → plane on Z
+      beci: {
+        label: "S1 Acces beci",
+        // keep -Z side (looking toward decreasing site-Y / north of cut)
+        plane: () => {
+          const midY = 12.9; // site y ~ palier/scară
+          return new THREE.Plane(new THREE.Vector3(0, 0, 1), midY);
+        },
+        view: () => {
+          controls.target.set(7.2, 0.2, -12.5);
+          camera.position.set(14, 3.5, -12.5);
+        },
+        dims: "Clear beci: FF −250 → soffit −30 = 220 cm (grinzi S flush A1.194). Traseu: curte → −95 → scară → −250 → ușă A6.",
+      },
+      // S2: cut through A6 / casa scării (constant site X)
+      scara: {
+        label: "S2 Casa scării",
+        plane: () => {
+          const xCut = 5.85; // între A6 și puț
+          return new THREE.Plane(new THREE.Vector3(-1, 0, 0), xCut);
+        },
+        view: () => {
+          controls.target.set(6.2, 2.0, -11.5);
+          camera.position.set(6.2, 4.5, -3.5);
+        },
+        dims: "Secțiune pe scară P↔E + podeste. Clear sub grindă P ≥255 · FF→FF 307.",
+      },
+      // S3: through heated rooms mid N–S
+      camere: {
+        label: "S3 Camere + acoperiș",
+        plane: () => {
+          const yCut = 11.2; // ~ living mid
+          return new THREE.Plane(new THREE.Vector3(0, 0, 1), yCut);
+        },
+        view: () => {
+          controls.target.set(5.0, 2.5, -11.0);
+          camera.position.set(16, 5, -11.0);
+        },
+        dims: "Înălțimi: clear sub grindă 255 · sub placă 280 · sub fals 274 · FF→FF 307. Acoperiș 30°.",
+      },
+    };
+
+    function removeSectionHelper() {
+      if (sectionHelper) {
+        scene.remove(sectionHelper);
+        sectionHelper.geometry?.dispose?.();
+        sectionHelper.material?.dispose?.();
+        sectionHelper = null;
       }
+    }
+    function addSectionHelper(plane) {
+      removeSectionHelper();
+      const helper = new THREE.PlaneHelper(plane, 18, 0xb55238);
+      helper.name = "section_helper";
+      scene.add(helper);
+      sectionHelper = helper;
+    }
+    function setSectionDims(text) {
+      const el = document.getElementById("sectionDims");
+      if (el) el.textContent = text || "";
+    }
+    function applySectionPlanes(extraZPlanes = []) {
+      const planes = [...extraZPlanes];
+      if (sectionId && sectionPresets[sectionId]) {
+        const pl = sectionPresets[sectionId].plane();
+        planes.push(pl);
+        addSectionHelper(pl);
+        setSectionDims(sectionPresets[sectionId].dims);
+      } else {
+        removeSectionHelper();
+        setSectionDims("");
+      }
+      clipPlanes.active = planes;
+      renderer.clippingPlanes = planes;
       root.traverse((o) => {
-        if (!o.isMesh || !o.name) return;
-        const n = o.name;
-        // Ascunde acoperiș + fațade ca să vezi compartimentarea
-        if (
-          isRoofOrCeiling(n) ||
-          n.includes("zid_nord") ||
-          n.includes("zid_est_living") ||
-          n.includes("zid_vest")
-        ) {
-          o.visible = false;
+        if (!o.isMesh || !o.material) return;
+        const mats = Array.isArray(o.material) ? o.material : [o.material];
+        for (const mat of mats) {
+          mat.clippingPlanes = planes.length ? planes : null;
+          mat.clipShadows = planes.length > 0;
+          mat.needsUpdate = true;
         }
       });
-      document.getElementById("btnCut").classList.toggle("active", true);
+    }
+    function syncSectionButtons() {
+      for (const bid of ["btnSecOff", "btnSecBeci", "btnSecScara", "btnSecCamere"]) {
+        document.getElementById(bid)?.classList.toggle(
+          "active",
+          (bid === "btnSecOff" && !sectionId) ||
+            (bid === "btnSecBeci" && sectionId === "beci") ||
+            (bid === "btnSecScara" && sectionId === "scara") ||
+            (bid === "btnSecCamere" && sectionId === "camere")
+        );
+      }
+    }
+    function setSection(id) {
+      sectionId = id;
+      syncSectionButtons();
+      // iesire din plan orto fără recursie
+      if (planOrtho && id) {
+        planOrtho = false;
+        document.getElementById("btnPlanOrtho")?.classList.toggle("active", false);
+        useCamera(perspCam);
+      }
+      if (id === "beci") setLevel("subsol");
+      else if (id === "scara" || id === "camere") setLevel("both");
+      else {
+        applySectionPlanes(clipPlanes.zOnly || []);
+      }
+      if (id && sectionPresets[id]) {
+        sectionPresets[id].view();
+        controls.update();
+        setViewHint("Secțiune geometrică: " + sectionPresets[id].label + " (ClipPlane pe toate straturile).");
+      }
+    }
+
+    function applyCutaway() {
+      /* legacy no-op — replaced by setSection */
     }
 
     function frameObjects(objs) {
@@ -805,23 +999,30 @@
     }
 
     function setClip(zMin, zMax) {
-      const planes = [];
-      if (zMax != null) planes.push(new THREE.Plane(new THREE.Vector3(0, -1, 0), zMax));
-      if (zMin != null) planes.push(new THREE.Plane(new THREE.Vector3(0, 1, 0), -zMin));
-      clipPlanes.active = planes;
-      renderer.clippingPlanes = planes;
-      root.traverse((o) => {
-        if (!o.isMesh || !o.material) return;
-        const mats = Array.isArray(o.material) ? o.material : [o.material];
-        for (const mat of mats) {
-          mat.clippingPlanes = planes.length ? planes : null;
-          mat.clipShadows = planes.length > 0;
-          mat.needsUpdate = true;
-        }
-      });
+      const zPlanes = [];
+      if (zMax != null) zPlanes.push(new THREE.Plane(new THREE.Vector3(0, -1, 0), zMax));
+      if (zMin != null) zPlanes.push(new THREE.Plane(new THREE.Vector3(0, 1, 0), -zMin));
+      clipPlanes.zOnly = zPlanes;
+      applySectionPlanes(zPlanes);
     }
     function clearClip() {
-      setClip(null, null);
+      clipPlanes.zOnly = [];
+      if (!sectionId) {
+        removeSectionHelper();
+        setSectionDims("");
+        renderer.clippingPlanes = [];
+        clipPlanes.active = [];
+        root.traverse((o) => {
+          if (!o.isMesh || !o.material) return;
+          const mats = Array.isArray(o.material) ? o.material : [o.material];
+          for (const mat of mats) {
+            mat.clippingPlanes = null;
+            mat.needsUpdate = true;
+          }
+        });
+      } else {
+        applySectionPlanes([]);
+      }
     }
     function setViewHint(text) {
       const el = document.getElementById("viewHint");
@@ -955,8 +1156,9 @@
         document.getElementById("btnStructWalls")?.classList.toggle("active", mode === "structura_pereti");
         document.getElementById("btnRoof")?.classList.toggle("active", mode === "acoperis");
         applyFoundationVisibility();
-        if (cutaway) applyCutaway();
-        frameObjects(layer);
+        applySectionPlanes(clipPlanes.zOnly || []);
+        if (planOrtho) framePlanTop();
+        else frameObjects(layer);
         return;
       }
 
@@ -1054,7 +1256,8 @@
       document.getElementById("btnEtaj").classList.toggle("active", mode === "etaj");
       document.getElementById("btnSubsol").classList.toggle("active", mode === "subsol");
       applyFoundationVisibility();
-      if (cutaway) applyCutaway();
+      applySectionPlanes(clipPlanes.zOnly || []);
+      if (planOrtho) framePlanTop();
     }
 
     setGate(volume.meta.gate_default_state || "closed");
@@ -1064,7 +1267,7 @@
       tip.className = "meta";
       tip.style.color = "#e8a87c";
       tip.innerHTML =
-        "<strong>A1.195:</strong> default <em>Ansamblu P+E</em>. Filtre: subsol fără șarpantă · curte cu puț · acoperiș fără stâlpi full.";
+        "<strong>A1.196:</strong> V2 — secțiuni S1–S3 (ClipPlane) · Plan orto · default Ansamblu P+E.";
       document.getElementById("meta")?.after(tip);
     }
     document.getElementById("btnClosed").onclick = () => {
@@ -1088,11 +1291,11 @@
       showFoundations = !showFoundations;
       setLevel(levelMode);
     };
-    document.getElementById("btnCut").onclick = () => {
-      cutaway = !cutaway;
-      setLevel(levelMode);
-    };
-    // Camera: setLevel("structura") deja face frameObjects(structObjs) — nu recadra pe tot situl (teren/gard ascunse)
+    document.getElementById("btnPlanOrtho").onclick = () => setPlanOrtho(!planOrtho);
+    document.getElementById("btnSecOff").onclick = () => setSection(null);
+    document.getElementById("btnSecBeci").onclick = () => setSection("beci");
+    document.getElementById("btnSecScara").onclick = () => setSection("scara");
+    document.getElementById("btnSecCamere").onclick = () => setSection("camere");
 
     // Drawer controale pe mobil
     const panel = document.getElementById("panel");

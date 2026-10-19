@@ -1,5 +1,11 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.196: viewer V2 — secțiuni ClipPlane + plan orto
+
+- S1 Acces beci · S2 Casa scării · S3 Camere+acoperiș — ClipPlane pe toate straturile + PlaneHelper.
+- Plan ortografic de sus pe nivel (P/E/S); cote clear în panou.
+- Înlocuiește „Secțiune interior” pe hide-by-name.
+
 ## 2026-10-19 — A1.195: viewer V1 — filtre / clasificare
 
 - Default **Ansamblu P+E** (nu Structură).
