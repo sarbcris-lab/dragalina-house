@@ -2551,12 +2551,13 @@
     "priority": "plan_over_basement",
     "z_ff_cm": -250,
     "clear_target_cm": 220,
-    "note": "A1.194: puț în parcelă · uși CT/dep · clear 100 fără pier · P/E neatins",
+    "note": "A1.194: puț în parcelă · uși CT/dep · clear scară 100 fără pier · grinzi S flush pe ținta 220",
     "s1_handoff": {
       "doc": "decisions/s1_from_a1_v01.md",
       "envelope_report": "outputs/reports/s1_basement_envelope_from_a1_v01.md",
-      "frame_mesh": "A1.170: build_v47_3d citește basement din a1_architecture (nu hol_subsol V47)",
-      "first_task": "reten_mesh_vs_a1 — DONE overlay 3D; FE mesh JSON încă de sync"
+      "frame_mesh": "A1.174: cadre pe axe A1 (build_a1_structure) — FRAME STALE",
+      "first_task": "remesh BA pe envelope A1 — DONE geometric; FE urmează",
+      "structure_study": "structure_a1_study_cm"
     },
     "structure_box": {
       "x0": 30,
@@ -2768,7 +2769,7 @@
         "y": 588.7,
         "dx": 100,
         "dy": 270,
-        "note": "A1.194: puț deschis = clear scară 100; planșeu P gol aici"
+        "note": "puț deschis = clear scară 100 (A1.194); planșeu P gol aici"
       },
       "flight": {
         "x": 564.3,
@@ -2822,7 +2823,7 @@
         "z_ff_cm": -250,
         "open_to_court": "S",
         "west_wall": "subsol_reten_e",
-        "note": "A1.194: puț clipat finit E; put_reten_e subțire; V=ușă; S→curte",
+        "note": "A1.194: puț clipat la finit E 680; put_reten_e subțire pe hotar; V=ușă A11; S→curte",
         "walls": [
           {
             "id": "put_reten_n",
@@ -2844,7 +2845,7 @@
             "y": 490.7,
             "dx": 15.7,
             "dy": 368,
-            "note": "A1.194: retenție E puț 15.7 cm — outer@680"
+            "note": "A1.194: retenție E puț 15.7 cm — outer@680 (fără overflow Dragalina)"
           }
         ]
       },
@@ -2862,7 +2863,7 @@
         "door_into_magazie": true,
         "riser_vs_brief_16": "DESCHIS — 17,22 > 16 (brief A0)",
         "path": "curte→palier−95→scară↓N→palier−250→ușă A6→magazie→uși CT/dep",
-        "note": "A1.194: fără pier în clear; put_reten_e subțire pe hotar"
+        "note": "A1.194: fără C_SHAFT_E_PIER în clear; grindă întoarsă pe put_reten_e"
       }
     },
     "doors": [
@@ -3185,7 +3186,7 @@
     "status": "S1_STUDIU_GEOMETRIC",
     "system": "cadre_beton_armat",
     "declared_buildable": false,
-    "generated": "2026-10-19T17:50:48.160Z",
+    "generated": "2026-10-19T20:01:29.833Z",
     "source": {
       "architecture": "data/building/a1_architecture.json",
       "columns": "columns_cm (fără non-structurale)",
@@ -3233,8 +3234,8 @@
       "pad_side_cm": 185,
       "strip_width_cm": 60,
       "east_eccentric_inward": true,
-      "status": "ipoteză_studiu_A1_194",
-      "note": "A1.194: tălpi N/E/S spre interior (parcelă). 115 inward ≠ calc heel — rundă 3.",
+      "status": "ipoteză_studiu_A1_200",
+      "note": "A1.194: tălpi N/E/S excentrice spre interior (încadrare parcelă). Talpă 115 inward ≠ calc heel+umplutură — recalcul rundă 3.",
       "pad_by_column_cm": {
         "C_NW": 130,
         "C_N_MID": 165,
@@ -3247,14 +3248,16 @@
         "C_S_INTRARE_W": 80,
         "C_S_INTRARE_E": 90
       },
-      "perimeter_strip_width_cm": 115,
+      "perimeter_strip_width_cm": 200,
       "q_allow_kPa": 221,
       "Pconv_ref_120_kPa": 310,
       "perimeter_strip_note": "mărit din 80 pentru FS alunecare/răsturnare caz hw10",
       "north_eccentric_inward": true,
       "south_eccentric_inward": true,
       "perimeter_strip_drawn": "inward_no_heel_backfill",
-      "perimeter_strip_calc_status": "NOT_VALIDATED_FOR_DRAWN_GEOMETRY"
+      "perimeter_strip_calc_status": "NOT_VALIDATED_FOR_DRAWN_GEOMETRY",
+      "perimeter_strip_key_cm": 0,
+      "perimeter_strip_calc_ref": "outputs/reports/s1_a1_footing_drawn_v01"
     },
     "levels_cm": {
       "clear_min_cm": 255,
@@ -3277,9 +3280,9 @@
       "basement_ff_cm": -250,
       "basement_soffit_cm": -30,
       "basement_beam_h_cm": 15,
-      "note": "A1.180: clear≥255 HARD. FF→FF=307. Placă 15. Grindă crit. 40.",
+      "note": "A1.180: clear≥255 HARD. FF→FF=307. Placă 15. Grindă crit. 40. · A1.194 beci: beam_h S=15 flush, clear 220",
       "basement_clear_under_beam_cm": 220,
-      "basement_beam_note": "A1.194: S flush în placă (h=15); clear sub grindă = clear sub placă 220"
+      "basement_beam_note": "A1.194: grinzi S în grosimea plăcii (fără drop) → clear sub grindă = clear sub placă 220"
     },
     "clear_lock": {
       "min_cm": 255,
@@ -3669,7 +3672,7 @@
           "C_CASA_SCARA",
           "put_reten_e"
         ],
-        "note": "A1.194: grindă întoarsă ușă→put_reten_e (fără C_SHAFT_E_PIER — clear scară 100)"
+        "note": "A1.194: grindă întoarsă ușă→put_reten_e (fără pier în clear scară)"
       }
     ],
     "foundation_pad_adopt_cm": {
@@ -3688,6 +3691,8 @@
       "FE numeric pe schema fără C_E_LAMELE (span B_E_S / B_S_SE)",
       "geo_131 Rc parcelă",
       "riser_beci_17_22 vs brief 16",
+      "shaft_east_wall_15_7_FE_ok",
+      "footing_B200_FE_confirm_mu_water",
       "footing_115_recalc_on_drawn_inward_geometry",
       "shaft_east_wall_15_7_FE_ok"
     ]

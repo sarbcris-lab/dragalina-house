@@ -56,9 +56,9 @@ const warnings = [
     text: `Beci: clear sub placă/grindă S ${lv.basement_clear_under_beam_cm ?? 220} cm (A1.194 flush).`,
   },
   {
-    id: "footing_calc_mismatch",
-    sev: "INFO",
-    text: "Talpă 115 inward desen ≠ calc heel+umplutură — rundă fundații deschisă.",
+    id: "footing_drawn_B200",
+    sev: "MED",
+    text: "Talpă perimetru pe desen inward: B115 FAIL → adopt ordin B200 cm (footing_drawn_v01). Calc heel+fill B115 = înșelător pe desen.",
   },
   {
     id: "site_hotar_vs_gard",

@@ -1,7 +1,7 @@
 # S1 A1 — Select pack (viewer V3 / V4)
 
 **Fișier:** `viewer/data/a1_select_v01.json`  
-**Generat:** 2026-10-19T19:30:28.338Z
+**Generat:** 2026-10-19T20:01:29.877Z
 
 ## Util
 - Parter **38.5951** m² · Etaj **37.1366** m² (țintă 37)
@@ -23,6 +23,6 @@
 - [MED] intrare_etaj: gol construcție 100 cm · trecere liberă 88 cm (toc+mâner) — nu declara ușă 100.
 - [LOW] Util etaj 37.1366 m² — rezervă peste 37 ≈ 0.137 m² (ghene sensibile).
 - [INFO] Beci: clear sub placă/grindă S 220 cm (A1.194 flush).
-- [INFO] Talpă 115 inward desen ≠ calc heel+umplutură — rundă fundații deschisă.
+- [MED] Talpă perimetru pe desen inward: B115 FAIL → adopt ordin B200 cm (footing_drawn_v01). Calc heel+fill B115 = înșelător pe desen.
 - [INFO] Hotar CF ≠ gard construit (limit_* pe E/N = zid casă; gard V+Cloșca+Dragalina S).
 - [INFO] Acces: auto Cloșca · pietonal Dragalina→alee→scări→beci. Apă curte/put_reten = REZERVĂ (nu hidraulic).

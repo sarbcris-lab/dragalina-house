@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_a1_curat",
-    "generated": "2026-10-19T19:48:39.451Z",
+    "generated": "2026-10-19T20:01:29.944Z",
     "status": "3D_A1_CURAT_AMENAJARE",
     "source_plan": "data/building/v47_a1_study.json",
     "a1_architecture": "data/building/a1_architecture.json",
@@ -42630,12 +42630,12 @@
           "y": 18.1978
         },
         {
-          "x": 6.9349,
-          "y": 17.0488
+          "x": 6.9713,
+          "y": 16.1996
         },
         {
-          "x": 1.2451,
-          "y": 16.8054
+          "x": 1.2815,
+          "y": 15.9562
         },
         {
           "x": 1.196,
@@ -42647,7 +42647,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă 115 cm sub subsol_reten_n (excentrică north→interior; finit pe front)"
+      "label": "talpă 200 cm sub subsol_reten_n (excentrică north→interior; finit pe front)"
     },
     {
       "id": "subsol_reten_n",
@@ -42686,12 +42686,12 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.5123,
-          "y": 10.5592
+          "x": 1.476,
+          "y": 11.4084
         },
         {
-          "x": 7.2021,
-          "y": 10.8026
+          "x": 7.1658,
+          "y": 11.6518
         },
         {
           "x": 7.2514,
@@ -42702,8 +42702,8 @@
           "y": 9.4102
         },
         {
-          "x": 1.5123,
-          "y": 10.5592
+          "x": 1.476,
+          "y": 11.4084
         }
       ],
       "z0_m": -3.1,
@@ -42711,7 +42711,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă 115 cm sub subsol_reten_s (excentrică south→interior; finit pe front)"
+      "label": "talpă 200 cm sub subsol_reten_s (excentrică south→interior; finit pe front)"
     },
     {
       "id": "subsol_reten_s",
@@ -42754,12 +42754,12 @@
           "y": 17.6287
         },
         {
-          "x": 2.3589,
-          "y": 17.6778
+          "x": 3.2081,
+          "y": 17.7142
         },
         {
-          "x": 2.6966,
-          "y": 9.7851
+          "x": 3.5458,
+          "y": 9.8214
         },
         {
           "x": 1.5476,
@@ -42775,7 +42775,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă 115 cm sub subsol_reten_w (excentrică west→interior; finit pe front)"
+      "label": "talpă 200 cm sub subsol_reten_w (excentrică west→interior; finit pe front)"
     },
     {
       "id": "subsol_reten_w",
@@ -42814,8 +42814,8 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 5.7508,
-          "y": 17.8229
+          "x": 4.9015,
+          "y": 17.7866
         },
         {
           "x": 6.8997,
@@ -42826,12 +42826,12 @@
           "y": 9.9793
         },
         {
-          "x": 6.0885,
-          "y": 9.9302
+          "x": 5.2393,
+          "y": 9.8938
         },
         {
-          "x": 5.7508,
-          "y": 17.8229
+          "x": 4.9015,
+          "y": 17.7866
         }
       ],
       "z0_m": -3.1,
@@ -42839,7 +42839,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă 115 cm sub subsol_reten_e (excentrică east→interior; finit pe front)"
+      "label": "talpă 200 cm sub subsol_reten_e (excentrică east→interior; finit pe front)"
     },
     {
       "id": "subsol_reten_e",
@@ -43139,12 +43139,12 @@
           "y": 13.6433
         },
         {
-          "x": 8.2618,
-          "y": 12.4944
+          "x": 8.2981,
+          "y": 11.6452
         },
         {
-          "x": 7.1059,
-          "y": 12.4449
+          "x": 7.1422,
+          "y": 11.5957
         },
         {
           "x": 7.0567,
@@ -43156,7 +43156,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă 115 cm sub put_reten_n (excentrică north→interior; finit pe front)"
+      "label": "talpă 200 cm sub put_reten_n (excentrică north→interior; finit pe front)"
     },
     {
       "id": "put_reten_n",
@@ -43195,8 +43195,8 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.0776,
-          "y": 13.2685
+          "x": 6.2284,
+          "y": 13.2322
         },
         {
           "x": 8.2266,
@@ -43207,12 +43207,12 @@
           "y": 9.641
         },
         {
-          "x": 7.235,
-          "y": 9.5919
+          "x": 6.3858,
+          "y": 9.5555
         },
         {
-          "x": 7.0776,
-          "y": 13.2685
+          "x": 6.2284,
+          "y": 13.2322
         }
       ],
       "z0_m": -3.1,
@@ -43220,7 +43220,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă 115 cm sub put_reten_e (excentrică east→interior; finit pe front)"
+      "label": "talpă 200 cm sub put_reten_e (excentrică east→interior; finit pe front)"
     },
     {
       "id": "put_reten_e",

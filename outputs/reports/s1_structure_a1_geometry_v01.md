@@ -41,8 +41,8 @@ X **30–534.3** × Y **30–820**
 - FE numeric pe schema fără C_E_LAMELE (span B_E_S / B_S_SE)
 - geo_131 Rc parcelă
 - riser_beci_17_22 vs brief 16
-- footing_115_recalc_on_drawn_inward_geometry
 - shaft_east_wall_15_7_FE_ok
+- footing_B200_FE_confirm_mu_water
 
 ## Următor
 FE pe această schemă (nu pe FRAME V47). Viewer: `npm run volume:a1` → Structură.

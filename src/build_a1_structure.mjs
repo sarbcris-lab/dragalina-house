@@ -234,20 +234,30 @@ const structure = {
     status: "PROVIZORIU_P100_min30",
     note: "P100≥30; along 40 = ipoteză până FE",
   },
-  foundations_study_cm: {
-    ...(a1.structure_a1_study_cm?.foundations_study_cm || {}),
-    pad_side_cm: a1.structure_a1_study_cm?.foundations_study_cm?.pad_side_cm ?? 80,
-    strip_width_cm: a1.structure_a1_study_cm?.foundations_study_cm?.strip_width_cm ?? 60,
-    east_eccentric_inward: true,
-    north_eccentric_inward: true,
-    south_eccentric_inward: true,
-    perimeter_strip_width_cm:
-      a1.structure_a1_study_cm?.foundations_study_cm?.perimeter_strip_width_cm ?? 115,
-    perimeter_strip_drawn: "inward_no_heel_backfill",
-    perimeter_strip_calc_status: "NOT_VALIDATED_FOR_DRAWN_GEOMETRY",
-    status: "ipoteză_studiu_A1_194",
-    note: "A1.194: tălpi N/E/S spre interior (parcelă). 115 inward ≠ calc heel — rundă 3.",
-  },
+  foundations_study_cm: (() => {
+    const prev = a1.structure_a1_study_cm?.foundations_study_cm || {};
+    const B =
+      prev.perimeter_strip_width_cm ??
+      200; /* A1.200: minim pe geometrie inward desenată */
+    return {
+      ...prev,
+      pad_side_cm: prev.pad_side_cm ?? 80,
+      strip_width_cm: prev.strip_width_cm ?? 60,
+      east_eccentric_inward: true,
+      north_eccentric_inward: true,
+      south_eccentric_inward: true,
+      perimeter_strip_width_cm: B,
+      perimeter_strip_drawn: prev.perimeter_strip_drawn || "inward_toe0_heel_under_slab",
+      perimeter_strip_calc_status:
+        prev.perimeter_strip_calc_status || "VALIDATED_ON_DRAWN_GEOMETRY_ORDIN",
+      perimeter_strip_calc_ref:
+        prev.perimeter_strip_calc_ref || "outputs/reports/s1_a1_footing_drawn_v01",
+      status: prev.status || "ipoteză_studiu_A1_200",
+      note:
+        prev.note ||
+        `A1.200: talpă perimetru B=${B} cm inward (toe0, heel sub placă) — vezi footing_drawn_v01`,
+    };
+  })(),
   levels_cm: (() => {
     const lv = a1.structure_a1_study_cm?.levels_cm?.clear_under_beam_cm
       ? { ...a1.structure_a1_study_cm.levels_cm }
@@ -293,8 +303,8 @@ const structure = {
     "FE numeric pe schema fără C_E_LAMELE (span B_E_S / B_S_SE)",
     "geo_131 Rc parcelă",
     "riser_beci_17_22 vs brief 16",
-    "footing_115_recalc_on_drawn_inward_geometry",
     "shaft_east_wall_15_7_FE_ok",
+    "footing_B200_FE_confirm_mu_water",
   ],
 };
 

@@ -2,7 +2,7 @@
   "status": "S1_STUDIU_GEOMETRIC",
   "system": "cadre_beton_armat",
   "declared_buildable": false,
-  "generated": "2026-10-19T17:50:48.160Z",
+  "generated": "2026-10-19T20:01:29.833Z",
   "source": {
     "architecture": "data/building/a1_architecture.json",
     "columns": "columns_cm (fără non-structurale)",
@@ -50,8 +50,8 @@
     "pad_side_cm": 185,
     "strip_width_cm": 60,
     "east_eccentric_inward": true,
-    "status": "ipoteză_studiu_A1_194",
-    "note": "A1.194: tălpi N/E/S spre interior (parcelă). 115 inward ≠ calc heel — rundă 3.",
+    "status": "ipoteză_studiu_A1_200",
+    "note": "A1.200: B=200 cm pe geometrie inward (FS_s=1.13 FS_o=1.84). B minim pe geometrie inward + placă pe heel (fără pinten)",
     "pad_by_column_cm": {
       "C_NW": 130,
       "C_N_MID": 165,
@@ -64,14 +64,16 @@
       "C_S_INTRARE_W": 80,
       "C_S_INTRARE_E": 90
     },
-    "perimeter_strip_width_cm": 115,
+    "perimeter_strip_width_cm": 200,
     "q_allow_kPa": 221,
     "Pconv_ref_120_kPa": 310,
     "perimeter_strip_note": "mărit din 80 pentru FS alunecare/răsturnare caz hw10",
     "north_eccentric_inward": true,
     "south_eccentric_inward": true,
-    "perimeter_strip_drawn": "inward_no_heel_backfill",
-    "perimeter_strip_calc_status": "NOT_VALIDATED_FOR_DRAWN_GEOMETRY"
+    "perimeter_strip_drawn": "inward_toe0_heel_under_slab",
+    "perimeter_strip_calc_status": "VALIDATED_ON_DRAWN_GEOMETRY_ORDIN",
+    "perimeter_strip_key_cm": 0,
+    "perimeter_strip_calc_ref": "outputs/reports/s1_a1_footing_drawn_v01"
   },
   "levels_cm": {
     "clear_min_cm": 255,
@@ -505,7 +507,7 @@
     "FE numeric pe schema fără C_E_LAMELE (span B_E_S / B_S_SE)",
     "geo_131 Rc parcelă",
     "riser_beci_17_22 vs brief 16",
-    "footing_115_recalc_on_drawn_inward_geometry",
-    "shaft_east_wall_15_7_FE_ok"
+    "shaft_east_wall_15_7_FE_ok",
+    "footing_B200_FE_confirm_mu_water"
   ]
 }

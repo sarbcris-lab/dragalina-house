@@ -120,10 +120,10 @@ S.foundations_study_cm = {
   north_eccentric_inward: true,
   south_eccentric_inward: true,
   perimeter_strip_width_cm: S.foundations_study_cm?.perimeter_strip_width_cm ?? 115,
-  perimeter_strip_drawn: "inward_no_heel_backfill",
-  perimeter_strip_calc_status: "NOT_VALIDATED_FOR_DRAWN_GEOMETRY",
+  perimeter_strip_drawn: "inward_toe0_heel_under_slab",
+  perimeter_strip_calc_status: "VALIDATED_ON_DRAWN_GEOMETRY_ORDIN",
   note:
-    "A1.194: tălpi N/E/S excentrice spre interior (încadrare parcelă). Talpă 115 inward ≠ calc heel+umplutură — recalcul rundă 3.",
+    "A1.200: tălpi N/E/S inward; B pe footing_drawn_v01 (nu calc heel+fill).",
 };
 if (S.levels_cm) {
   S.levels_cm.basement_beam_h_cm = 15;
@@ -154,7 +154,12 @@ if (Array.isArray(S.beams)) {
 }
 if (Array.isArray(S.open_items)) {
   S.open_items = S.open_items.filter((x) => !/pier_clear/i.test(x));
-  S.open_items.push("footing_115_recalc_on_drawn_inward_geometry");
+  S.open_items = (S.open_items || []).filter(
+    (x) => x !== "footing_115_recalc_on_drawn_inward_geometry"
+  );
+  if (!S.open_items.includes("footing_B200_FE_confirm_mu_water")) {
+    S.open_items.push("footing_B200_FE_confirm_mu_water");
+  }
   S.open_items.push("shaft_east_wall_15_7_FE_ok");
 }
 

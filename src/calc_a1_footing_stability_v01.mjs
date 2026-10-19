@@ -105,21 +105,25 @@ const out = {
   pass_all: adopted.pass,
 };
 
-// Scrie adopt în structure dacă e mai mare
+// A1.200: nu suprascrie B din footing_drawn (geometrie inward reală).
+// Acest script rămâne referință „heel+umplutură” — NU e desenul 3D.
 const st = a1.structure_a1_study_cm;
-if (st.foundations_study_cm) {
+const drawnOk =
+  st?.foundations_study_cm?.perimeter_strip_calc_status ===
+  "VALIDATED_ON_DRAWN_GEOMETRY_ORDIN";
+if (st.foundations_study_cm && !drawnOk) {
   st.foundations_study_cm.perimeter_strip_width_cm = B_adopt_cm;
   st.foundations_study_cm.perimeter_strip_note =
     B_adopt_cm > 80
-      ? `mărit din 80 pentru FS alunecare/răsturnare caz ${adopt?.id}`
+      ? `mărit din 80 pentru FS alunecare/răsturnare caz ${adopt?.id} (heel+fill — nu desen)`
       : st.foundations_study_cm.note;
+  a1.structure_a1_study_cm = st;
+  fs.writeFileSync(a1p, JSON.stringify(a1, null, 2));
+  fs.writeFileSync(
+    path.join(root, "data/building/a1_structure_study.json"),
+    JSON.stringify(st, null, 2)
+  );
 }
-a1.structure_a1_study_cm = st;
-fs.writeFileSync(a1p, JSON.stringify(a1, null, 2));
-fs.writeFileSync(
-  path.join(root, "data/building/a1_structure_study.json"),
-  JSON.stringify(st, null, 2)
-);
 
 const md = `# S1 A1 — Stabilitate talpă perimetru (alunecare / răsturnare)
 
@@ -148,6 +152,8 @@ const md = `# S1 A1 — Stabilitate talpă perimetru (alunecare / răsturnare)
 | PASS | **${adopted.pass}** |
 
 ${out.adopt.note}
+
+> **A1.200:** desenul 3D e **inward fără umplutură pe heel** — folosește \`s1_a1_footing_drawn_v01\` (B pe desen, nu acest adopt heel+fill).
 
 Alternative: pinten sub talpă · drenaj (↓ hw) · μ mai bun din geo.
 

@@ -1,5 +1,13 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.200: talpă pe geometria DESENATĂ (inward)
+
+- Problema: calc B115 (heel+umplutură γ·H) **≠** desen (toe0 inward, heel sub placă beci).
+- Pe desen @115: FS_s **0,79** / FS_o **0,68** — **FAIL**.
+- Adopt ordin: **B = 200 cm** inward (FS_s 1,13 / FS_o 1,84 / σ 106) — `s1_a1_footing_drawn_v01`.
+- Alt: B185 + pinten 40 cm. Calc vechi heel+fill rămâne referință, nu suprascrie B.
+- Status: `VALIDATED_ON_DRAWN_GEOMETRY_ORDIN` (nu semnat FE/geo).
+
 ## 2026-10-19 — A1.199: lamele + fațadă est scară în 3D (= plan etaj)
 
 - Plan etaj: plin → **lamele L129,6 H210** → `C_E_LAMELE` → parapet — acum și în 3D (`fatada_scara_*`, lamele metal antracit).

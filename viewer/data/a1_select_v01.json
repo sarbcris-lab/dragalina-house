@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "a1_select_v01",
-    "generated": "2026-10-19T19:30:28.338Z",
+    "generated": "2026-10-19T20:01:29.877Z",
     "source": "data/building/a1_architecture.json"
   },
   "levels_cm": {
@@ -515,9 +515,9 @@
       "text": "Beci: clear sub placă/grindă S 220 cm (A1.194 flush)."
     },
     {
-      "id": "footing_calc_mismatch",
-      "sev": "INFO",
-      "text": "Talpă 115 inward desen ≠ calc heel+umplutură — rundă fundații deschisă."
+      "id": "footing_drawn_B200",
+      "sev": "MED",
+      "text": "Talpă perimetru pe desen inward: B115 FAIL → adopt ordin B200 cm (footing_drawn_v01). Calc heel+fill B115 = înșelător pe desen."
     },
     {
       "id": "site_hotar_vs_gard",
