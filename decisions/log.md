@@ -1,5 +1,11 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.184: scară P→E fără gol la palier sus
+
+- Cauză: clear255 → FF→FF **307**, scara V47 rămăsese **18×16=288** → gol ~**19 cm** sub FF etaj.
+- Fix: **19 ridicări** (R1=9, R2=10), riser **307/19≈16,16**; 3D A1 citește `a1.stair_cm`.
+- Viewer: ultima treaptă ajunge la FF etaj.
+
 ## 2026-10-18 — A1.183: pachet FE de predat (handoff v02)
 
 - \`export_a1_fe_handoff_v02.mjs\` → brief + JSON + checklist pentru structurist.

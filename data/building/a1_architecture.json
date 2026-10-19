@@ -2866,10 +2866,11 @@
     }
   },
   "stair_cm": {
-    "riser_cm": 16,
+    "riser_cm": 16.16,
     "risers_total_from_ff": 19,
     "risers_flight_180": 9,
     "risers_flight_330": 10,
+    "riser_note": "307/19 — egal FF→FF clear255",
     "tread_cm": 30,
     "width_clear_declared_legacy_cm": 105,
     "width_clear_cm": 104.5,
@@ -2878,10 +2879,10 @@
     "parapet_thick_cm": 10,
     "band_x": 562.8,
     "band_dx": 114.6,
-    "podest_height_above_ff_cm": 144,
-    "palier_sup_height_above_ff_cm": 304,
+    "podest_height_above_ff_cm": 145.4,
+    "palier_sup_height_above_ff_cm": 307,
     "entry_connection": "PARTER: intrare din terasă (intrare_parter @ X330 Y680). ETAJ: intrare_etaj pe buc_est Y475–565 de pe palier_superior.",
-    "note": "A1.132: palier N@mid · clear scară 104.5/95.7 (A6→est / la pier) · 19×16=304 FF↔FF",
+    "note": "A1.184: palier N@mid · clear 104.5/95.7 · 19×16,16=307 FF↔FF (fără gol palier sus)",
     "flight_180": {
       "covered": false,
       "going_length_cm": 240,
@@ -2901,10 +2902,10 @@
       "y": 858.7,
       "dx": 114.6,
       "dy": 114.8,
-      "z_above_ff_cm": 144,
+      "z_above_ff_cm": 145.4,
       "clear_dx": 105,
       "parapet_east_dx": 10,
-      "note": "podest SE 115×115 (nemodificat vs A1.60)",
+      "note": "podest SE 115×115 · +9×16,16",
       "why_was_wider": "înainte dy 130 pe zborul sud / podest vs rampă dx 115 — nealiniat; corectat la 115"
     },
     "ramp2": {
@@ -2924,9 +2925,9 @@
       "y": 450,
       "dx": 104.6,
       "dy": 138.7,
-      "z_above_ff_cm": 304,
-      "section_note": "105×139 clear · bandă ~115×139 · +304",
-      "note": "A1.61: clear N = față S mid (C_E_PAL/C_W_MID); sud = N R2"
+      "z_above_ff_cm": 307,
+      "section_note": "105×139 clear · bandă ~115×139 · +307",
+      "note": "A1.61/184: clear N = față S mid; sud = N R2; cotă = FF etaj"
     },
     "stair_east_seq": {
       "note": "plin palier → lamele → pier40 → parapet pe podest",

@@ -234,11 +234,43 @@ function main() {
     return rectPoly(x, y, dx, dy).slice().reverse();
   }
 
-  // FF = fața SUPERIOARĂ a pardoselii finite; grosimi sub FF. FRAME: 306 = 18×17 (entry 16).
+  // Curte engleză = groapă ÎNCHISĂ pe E (Dragalina=beton) și pe verticală spre curte
+  // (deasupra terenului). Gol în teren DOAR pe fântâna exterioară (Y≥ns), NU pe puțul sub casă.
+  const ecOpen = v47.courtyard_cm?.english_court;
+  let a1Basement = null;
+  let a1Columns = null;
+  let a1Structure = null;
+  let a1Stair = null;
+  try {
+    const a1p = path.join(ROOT, "data/building/a1_architecture.json");
+    if (fs.existsSync(a1p)) {
+      const a1 = JSON.parse(fs.readFileSync(a1p, "utf8"));
+      if (a1?.basement_cm?.structure_box) a1Basement = a1.basement_cm;
+      if (Array.isArray(a1?.columns_cm) && a1.columns_cm.length) a1Columns = a1.columns_cm;
+      if (a1?.structure_a1_study_cm?.system === "cadre_beton_armat") {
+        a1Structure = a1.structure_a1_study_cm;
+      }
+      if (a1?.stair_cm?.risers_flight_180) a1Stair = a1.stair_cm;
+    }
+  } catch (_) {
+    /* A1 opțional */
+  }
+
+  // FF = fața SUPERIOARĂ a pardoselii finite; grosimi sub FF.
+  // A1 curat: stair_cm din a1_architecture (19 ridicări) — V47 avea 18×16=288 vs FF→FF 307.
   const ht = v47.heights_cm;
-  const st = v47.stair_cm;
-  const riser = m(ht.riser_cm);
+  const frameStudyEarly = v47.structure_frame_study_cm;
+  const isFrameEarly =
+    !!frameStudyEarly && frameStudyEarly.system === "cadre_beton_armat";
+  const useA1Stair = !!a1Basement && !isFrameEarly && !!a1Stair;
+  const st = useA1Stair ? { ...v47.stair_cm, ...a1Stair } : v47.stair_cm;
   const ffToFf = m(ht.ff_to_ff_cm);
+  // Ridicare scară P→E = exact FF→FF (clear255 → 307 cm)
+  const nRisersPE =
+    (st.risers_flight_180 || 0) + (st.risers_flight_330 || 0) ||
+    ht.stair_risers_ff ||
+    18;
+  const riser = ffToFf / nRisersPE;
   const wallH = m(
     ht.wall_to_soffit_cm ??
       ((ht.clear_to_false_ceiling_cm || 0) + (ht.false_ceiling_cm || 0) ||
@@ -251,26 +283,6 @@ function main() {
   const zEtaj = zParter + ffToFf;
   const H = wallH;
   const meshes = [];
-
-  // Curte engleză = groapă ÎNCHISĂ pe E (Dragalina=beton) și pe verticală spre curte
-  // (deasupra terenului). Gol în teren DOAR pe fântâna exterioară (Y≥ns), NU pe puțul sub casă.
-  const ecOpen = v47.courtyard_cm?.english_court;
-  let a1Basement = null;
-  let a1Columns = null;
-  let a1Structure = null;
-  try {
-    const a1p = path.join(ROOT, "data/building/a1_architecture.json");
-    if (fs.existsSync(a1p)) {
-      const a1 = JSON.parse(fs.readFileSync(a1p, "utf8"));
-      if (a1?.basement_cm?.structure_box) a1Basement = a1.basement_cm;
-      if (Array.isArray(a1?.columns_cm) && a1.columns_cm.length) a1Columns = a1.columns_cm;
-      if (a1?.structure_a1_study_cm?.system === "cadre_beton_armat") {
-        a1Structure = a1.structure_a1_study_cm;
-      }
-    }
-  } catch (_) {
-    /* A1 opțional */
-  }
   const bmEarly = a1Basement
     ? basementFromA1(a1Basement, v47.basement_cm)
     : v47.basement_cm;
@@ -1793,8 +1805,18 @@ function main() {
       site_layer: "structura",
       label: "Palier scară acoperit (fără vestibul)",
     });
-    if (isFrameStudy && st.palier_ramp2_nosing) {
-      const nos = st.palier_ramp2_nosing;
+    // A1 + studiu: prag + ultima ridicare vizibilă (altfel gol ~1 riser între ultima treaptă și FF etaj)
+    const nos =
+      st.palier_ramp2_nosing ||
+      (r2 && palSup
+        ? {
+            x: r2.x,
+            y: Math.max(palSup.y, r2.y - Math.min(20, tread)),
+            dx: st.width_clear_cm || r2.dx,
+            dy: Math.min(20, Math.max(10, r2.y - palSup.y)),
+          }
+        : null);
+    if (nos && nos.dy > 0) {
       meshes.push({
         id: "palier_ramp2_prag",
         type: "extrude",
@@ -1803,7 +1825,21 @@ function main() {
         z1_m: zEtaj,
         color: "#c8c2b6",
         site_layer: "finisaj",
-        label: "Prag palier→rampă2 (legătură Y590)",
+        label: "Prag palier→rampă2 (închide gol)",
+      });
+    }
+    // Contrapasă finală (față verticală): ultima călcăre R2 → FF palier (= a n-a ridicare)
+    if (r2 && n330 > 1) {
+      const zLast = zPod + riser * (n330 - 1);
+      const riserFaceDy = 4; // cm — față vizibilă la muchia N a ultimei trepte
+      meshes.push({
+        id: "treapta_r2_contrapasa_final",
+        type: "extrude",
+        polygon: rectPoly(r2.x, r2.y - riserFaceDy, st.width_clear_cm || r2.dx, riserFaceDy),
+        z0_m: zLast,
+        z1_m: zEtaj,
+        color: "#6a7580",
+        label: `Contrapasă finală R2 → palier (h=${Math.round(riser * 100)} cm)`,
       });
     }
   }
