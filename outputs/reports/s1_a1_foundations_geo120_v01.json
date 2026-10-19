@@ -1,0 +1,132 @@
+{
+  "status": "IPOTEZA_STUDIO_120_NU_GEO_131",
+  "source": "Memoriu structură Dragalina 120 + EMDI Turda 2012 (citat)",
+  "Pconv_120_kPa": 310,
+  "D_fund_recom_m": 1.15,
+  "frost_m": 0.9,
+  "water_2012": "neîntâlnită — nu elimina hidro pe 131",
+  "gamma_Rc": 1.4,
+  "q_allow_kPa": 221,
+  "q_allow_note": "310/1,4 — studiu; FE/geo 131 poate micșora",
+  "strip_under_retaining_cm": 80,
+  "strip_under_beam_cm": 60,
+  "stem_note": "elevație = retenție coborâtă pe talpă (zFg1→soffit); fără gol orizontal",
+  "disclaimer": "Studiu AI / ordin — nu semnatură OIS/structurist. De înlocuit cu geo 131 + PT semnat.",
+  "generated": "2026-10-19T07:09:37.531Z",
+  "pads": [
+    {
+      "id": "C_NW",
+      "N_kN": 369.6,
+      "pad_cm": 130,
+      "sigma_kPa": 219,
+      "pass": true,
+      "vs_old_200": 130
+    },
+    {
+      "id": "C_N_MID",
+      "N_kN": 574.9,
+      "pad_cm": 165,
+      "sigma_kPa": 211,
+      "pass": true,
+      "vs_old_200": 165
+    },
+    {
+      "id": "C_NE",
+      "N_kN": 385.5,
+      "pad_cm": 135,
+      "sigma_kPa": 212,
+      "pass": true,
+      "vs_old_200": 135
+    },
+    {
+      "id": "C_W_MID",
+      "N_kN": 433.2,
+      "pad_cm": 145,
+      "sigma_kPa": 206,
+      "pass": true,
+      "vs_old_200": 145
+    },
+    {
+      "id": "C_W_DORM",
+      "N_kN": 222,
+      "pad_cm": 105,
+      "sigma_kPa": 201,
+      "pass": true,
+      "vs_old_200": 105
+    },
+    {
+      "id": "C_S_DORM_E",
+      "N_kN": 122.2,
+      "pad_cm": 80,
+      "sigma_kPa": 191,
+      "pass": true,
+      "vs_old_200": 80
+    },
+    {
+      "id": "C_E_PAL",
+      "N_kN": 741.6,
+      "pad_cm": 185,
+      "sigma_kPa": 217,
+      "pass": true,
+      "vs_old_200": 185
+    },
+    {
+      "id": "C_CASA_SCARA",
+      "N_kN": 176.5,
+      "pad_cm": 90,
+      "sigma_kPa": 218,
+      "pass": true,
+      "vs_old_200": 90
+    },
+    {
+      "id": "C_S_INTRARE_W",
+      "N_kN": 131.5,
+      "pad_cm": 80,
+      "sigma_kPa": 205,
+      "pass": true,
+      "vs_old_200": 80
+    },
+    {
+      "id": "C_S_INTRARE_E",
+      "N_kN": 173.3,
+      "pad_cm": 90,
+      "sigma_kPa": 214,
+      "pass": true,
+      "vs_old_200": 90
+    },
+    {
+      "id": "C_SHAFT_E_PIER",
+      "N_kN": 20.3,
+      "pad_cm": 80,
+      "sigma_kPa": 32,
+      "pass": true,
+      "vs_old_200": 80
+    }
+  ],
+  "pad_adopt_cm": {
+    "C_NW": 130,
+    "C_N_MID": 165,
+    "C_NE": 135,
+    "C_W_MID": 145,
+    "C_W_DORM": 105,
+    "C_S_DORM_E": 80,
+    "C_E_PAL": 185,
+    "C_CASA_SCARA": 90,
+    "C_S_INTRARE_W": 80,
+    "C_S_INTRARE_E": 90,
+    "C_SHAFT_E_PIER": 80
+  },
+  "perimeter_strip": {
+    "width_cm": 80,
+    "N_ordin_kN_m": 41.5,
+    "sigma_kPa": 52,
+    "pass": true,
+    "walls": [
+      "subsol_reten_n",
+      "subsol_reten_s",
+      "subsol_reten_w",
+      "subsol_reten_e"
+    ]
+  },
+  "beam_strip_cm": 60
+}

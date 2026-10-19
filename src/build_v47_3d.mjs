@@ -2568,11 +2568,20 @@ function main() {
           site_layer: "umplutura",
         });
       }
-      /** Retenție BA subsol (FRAME) — layer Structură; înlocuiește EB20 pe contur. */
-      function pushRetainingBA(id, x, y, dx, dy, label) {
-        pushWallFull(id, x, y, dx, dy, label, {
+      /** Retenție BA — layer Structură. A1: coboară pe talpă (fără gol orizontal). */
+      function pushRetainingBA(id, x, y, dx, dy, label, z0Override) {
+        const z0w = z0Override != null ? z0Override : zB;
+        if (dx < 1 || dy < 1) return;
+        meshes.push({
+          id,
+          type: "extrude",
+          polygon: rectPoly(x, y, dx, dy),
+          z0_m: z0w,
+          z1_m: wallTopR,
           color: "#6e6a64",
+          opacity: 0.98,
           site_layer: "structura",
+          label: label || id,
         });
       }
       const pushPerim = retainBa ? pushRetainingBA : pushUmpluturaWall;
@@ -2888,10 +2897,38 @@ function main() {
 
       // Contur subsol
       if (a1Clean && bm.walls?.length) {
-        // A1.170: retenție + partiții + puț din a1_architecture (fără L/reintrant V47)
+        // A1.185: talpă perimetru sub retenție + elevație = zid pe talpă (ipoteză geo120)
+        const perimStrip =
+          a1Structure?.foundations_study_cm?.perimeter_strip_width_cm ?? 80;
         for (const w of bm.walls) {
           if (w.role === "retaining" || w.role === "stair_pit") {
-            pushRetainingBA(w.id, w.x, w.y, w.dx, w.dy, w.note || w.id);
+            const alongX = w.dx >= w.dy;
+            let fx = w.x;
+            let fy = w.y;
+            let fdx = w.dx;
+            let fdy = w.dy;
+            if (alongX) {
+              const midY = w.y + w.dy / 2;
+              fy = midY - perimStrip / 2;
+              fdy = perimStrip;
+            } else {
+              const midX = w.x + w.dx / 2;
+              fx = midX - perimStrip / 2;
+              fdx = perimStrip;
+            }
+            pushBeton(
+              `subsol_fg_perim_${w.id}`,
+              fx,
+              fy,
+              fdx,
+              fdy,
+              zFg0,
+              zFg1,
+              `talpă perimetru ${perimStrip} cm sub ${w.id} (geo120 studiu)`,
+              "#5c5852"
+            );
+            // elevație: retenție pe fața superioară a tălpii (−265), nu pe FF (−250)
+            pushRetainingBA(w.id, w.x, w.y, w.dx, w.dy, w.note || w.id, zFg1);
           } else {
             pushUmpluturaWall(w.id, w.x, w.y, w.dx, w.dy, w.note || w.id);
           }

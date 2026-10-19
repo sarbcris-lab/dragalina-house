@@ -2,7 +2,7 @@
 
 **Pentru:** structurist / model FEM  
 **Proiect:** Dragalina 131 · Turda · amenajare A1 înghețată  
-**Status:** input + ordine de mărime din repo · **NU** proiect semnat · 2026-10-18  
+**Status:** input + ordine de mărime din repo · **NU** proiect semnat · 2026-10-19  
 **Medie note in-repo:** ~4.8/10 · plafon fără FE/geo ~6,5
 
 ---
@@ -97,16 +97,16 @@ Puț: X 564.3–668.8 × Y 490.7–858.7
 
 | ID | x | y | dx×dy | Levels | Pad adopt cm | Rol |
 |----|--:|--:|-------|--------|-------------:|-----|
-| C_NW | 10 | 10 | 30×30 | S+P+E | 140 |  |
-| C_N_MID | 312.4 | 10 | 40×30 | S+P+E | 170 |  |
-| C_NE | 638.8 | 10 | 30×30 | S+P+E | 140 |  |
-| C_W_MID | 10 | 410 | 30×40 | S+P+E | 150 |  |
-| C_W_DORM | 10 | 645.2 | 30×30 | S+P+E | 110 |  |
+| C_NW | 10 | 10 | 30×30 | S+P+E | 130 |  |
+| C_N_MID | 312.4 | 10 | 40×30 | S+P+E | 165 |  |
+| C_NE | 638.8 | 10 | 30×30 | S+P+E | 135 |  |
+| C_W_MID | 10 | 410 | 30×40 | S+P+E | 145 |  |
+| C_W_DORM | 10 | 645.2 | 30×30 | S+P+E | 105 |  |
 | C_S_DORM_E | 322.4 | 645.2 | 30×30 | S+P+E | 80 |  |
-| C_E_PAL | 638.8 | 410 | 30×40 | S+P+E | 195 |  |
-| C_CASA_SCARA | 524.3 | 550 | 30×40 | S+P+E | 95 |  |
-| C_S_INTRARE_W | 312.5 | 818.8 | 40×30 | S+P+E | 85 |  |
-| C_S_INTRARE_E | 524.3 | 818.8 | 30×30 | S+P+E | 95 |  |
+| C_E_PAL | 638.8 | 410 | 30×40 | S+P+E | 185 |  |
+| C_CASA_SCARA | 524.3 | 550 | 30×40 | S+P+E | 90 |  |
+| C_S_INTRARE_W | 312.5 | 818.8 | 40×30 | S+P+E | 80 |  |
+| C_S_INTRARE_E | 524.3 | 818.8 | 30×30 | S+P+E | 90 |  |
 | C_SHAFT_E_PIER | 638.8 | 580.7 | 30×30 | S | 80 | pier_inverted_beam |
 
 ## 5. Grinzi (input model)

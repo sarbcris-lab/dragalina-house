@@ -26,9 +26,9 @@
 1. ~~**Retenție / fundații**~~ — overlay + FG pe axe A1 (**A1.174**)  
 2. ~~**Cadre geometric**~~ — `structure_a1_study_cm` + mesh 3D (**A1.174**)  
 3. ~~**Pachet FE**~~ — `s1_a1_fe_input_pack_v01.md` + 2.1 ordin (**A1.175**)  
-4. **FE numeric** — proiectant pe pachet (N/M/V/P100)  
-5. **Scară beci** — riser 17,22; clear@pier; întoarsă+pier propuse  
-6. **Trepte curte** — pe sit  
+4. ~~**Fundații geo120 studiu**~~ — pad + talpă perimetru + elevație (**A1.185**)  
+5. **FE numeric** — când există proiectant; până atunci deepen ordin în repo  
+6. **Scară beci** — riser 17,22 ACCEPTAT; clear@pier avertisment  
 7. Util autorizare — **după** adoptare secțiuni (nu acum)
 
 Lock-uri: **clear ≥255 HARD** (A1.180 — D1b/241 revocat) · D2=(a) pilastrii · D3=acoperiș **30° PV** · `structure_finalize_100_v01.md`.
@@ -45,7 +45,8 @@ Lock-uri: **clear ≥255 HARD** (A1.180 — D1b/241 revocat) · D2=(a) pilastrii
 | `riser_beci_17_22` | ~~ACCEPTAT~~ A1.179 | brief 16 = P/E; beci OK @17,22 |
 | `pier_clear_95_7` | avertisment | țintă 100 — confort scară, nu „structura pică” |
 | `C_E_LAMELE` | ~~nu necesar~~ A1.179 | lipsește din cadru; opțional = grosime zid ARH |
-| `geo_131` | calcul_lipsă | Rc parcelă |
+| `geo_131` | calcul_lipsă | Rc oficial; **lock studiu 221 kPa din 120** A1.185 |
+| `fundatii_perim_elevatie` | ~~mesh_studiu~~ A1.185 | talpă 80 + retenție pe talpă |
 | `stâlpi_PROVIZORIU` | calcul_lipsă | **FE numeric pe pachet** |
 | `C_E_LAMELE_P100` | ~~rezolvat~~ A1.177 | **nu e necesar** — calc SE trece fără el |
 | `calc_100_a1` | ~~livrat~~ A1.177 | `s1_a1_calc_100_v01.md` — porți ordin OK |

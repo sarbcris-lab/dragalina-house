@@ -1,5 +1,12 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.185: structurist-studiu — fundații pe ipoteză 120
+
+- Fără structurist extern: continuăm dimensionare ordin în repo.
+- Lock: q_allow = **310/1,4 ≈ 221 kPa** (Pconv 120); pad-uri recalculate; **talpă perimetru 80** sub retenție; elevație = zid pe talpă (fără gol).
+- `calc_a1_foundations_geo120_v01.mjs` · raport `s1_a1_foundations_geo120_v01.md`.
+- **Nu** înlocuiește geo 131 / PT semnat.
+
 ## 2026-10-19 — A1.184: scară P→E fără gol la palier sus
 
 - Cauză: clear255 → FF→FF **307**, scara V47 rămăsese **18×16=288** → gol ~**19 cm** sub FF etaj.

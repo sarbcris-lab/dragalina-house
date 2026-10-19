@@ -45,10 +45,11 @@ Memoriu 120: `…/CASA SARB FAZA PTH…/PARTE SCRISA FAZA PTH CASA SARB_TURDA.pd
 
 1. **Păstrăm subsolul** în studiu.  
 2. Presupunem **provizoriu** teren natural cu caracteristici **similare vecinătății** — **fără** a demonstra continuitatea stratului până la −3,10 m.  
-3. **310 kPa** = **doar reper de vecinătate** pentru comparații preliminare — **nu** Rc de calcul pe 131. Nu declara fundațiile conforme prin comparație cu această valoare.  
+3. **310 kPa** = Pconv 120 (reper). **Lock studiu A1.185:** q_allow calc = **310/1,4 ≈ 221 kPa** pentru pad-uri + talpă perimetru — tot **nu** e Rc oficial 131.  
 4. **Nu** presupune reutilizare fundații/pereți beci existent.  
 5. Apă, agresivitate, parametrii de deformare/coeziune/φ = **necunoscute**. Nu elimina hidroizolația, presiunea hidrostatică, flotabilitatea.  
-6. După demolare: posibil **teren deranjat / umpluturi** — pregătire teren + sprijin vecini = deschise.
+6. După demolare: posibil **teren deranjat / umpluturi** — pregătire teren + sprijin vecini = deschise.  
+7. Raport: `outputs/reports/s1_a1_foundations_geo120_v01.md` · mesh: talpă perimetru + retenție pe talpă.
 
 ---
 

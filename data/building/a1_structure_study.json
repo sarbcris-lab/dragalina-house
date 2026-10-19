@@ -47,24 +47,27 @@
     "note": "P100≥30; along 40 = ipoteză până FE"
   },
   "foundations_study_cm": {
-    "pad_side_cm": 195,
+    "pad_side_cm": 185,
     "strip_width_cm": 60,
     "east_eccentric_inward": true,
-    "status": "ipoteză_studiu",
-    "note": "Pad-uri pe stâlp din calc 100 vs 200 kPa studiu; geo_131 Rc încă deschis",
+    "status": "ipoteza_geo120_studiu",
+    "note": "Pad-uri vs q_allow=310/1,4; talpă perimetru 80 sub retenție; geo_131 încă deschis",
     "pad_by_column_cm": {
-      "C_NW": 140,
-      "C_N_MID": 170,
-      "C_NE": 140,
-      "C_W_MID": 150,
-      "C_W_DORM": 110,
+      "C_NW": 130,
+      "C_N_MID": 165,
+      "C_NE": 135,
+      "C_W_MID": 145,
+      "C_W_DORM": 105,
       "C_S_DORM_E": 80,
-      "C_E_PAL": 195,
-      "C_CASA_SCARA": 95,
-      "C_S_INTRARE_W": 85,
-      "C_S_INTRARE_E": 95,
+      "C_E_PAL": 185,
+      "C_CASA_SCARA": 90,
+      "C_S_INTRARE_W": 80,
+      "C_S_INTRARE_E": 90,
       "C_SHAFT_E_PIER": 80
-    }
+    },
+    "perimeter_strip_width_cm": 80,
+    "q_allow_kPa": 221,
+    "Pconv_ref_120_kPa": 310
   },
   "levels_cm": {
     "clear_min_cm": 255,
@@ -535,17 +538,23 @@
     "B_S_SE": 40
   },
   "foundation_pad_adopt_cm": {
-    "C_NW": 140,
-    "C_N_MID": 170,
-    "C_NE": 140,
-    "C_W_MID": 150,
-    "C_W_DORM": 110,
+    "C_NW": 130,
+    "C_N_MID": 165,
+    "C_NE": 135,
+    "C_W_MID": 145,
+    "C_W_DORM": 105,
     "C_S_DORM_E": 80,
-    "C_E_PAL": 195,
-    "C_CASA_SCARA": 95,
-    "C_S_INTRARE_W": 85,
-    "C_S_INTRARE_E": 95,
+    "C_E_PAL": 185,
+    "C_CASA_SCARA": 90,
+    "C_S_INTRARE_W": 80,
+    "C_S_INTRARE_E": 90,
     "C_SHAFT_E_PIER": 80
   },
-  "calc_100_ref": "outputs/reports/s1_a1_calc_100_v01.md"
+  "calc_100_ref": "outputs/reports/s1_a1_calc_100_v01.md",
+  "geo_lock_v01": {
+    "hypothesis": "similar_Dragalina_120",
+    "q_allow_kPa": 221,
+    "Pconv_120_kPa": 310,
+    "not_official_geo_131": true
+  }
 }
