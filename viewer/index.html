@@ -2,40 +2,136 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta name="theme-color" content="#121816" />
   <title>Dragalina 131 — Viewer 3D · A1 curat</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #1a1d22;
-      --panel: #242830;
-      --text: #e8eaed;
-      --muted: #9aa3ad;
-      --warn: #e8c547;
-      --accent: #7eb6d9;
+      --bg: #121816;
+      --panel: #1a2320;
+      --panel-edge: rgba(228, 235, 230, 0.12);
+      --text: #e8eee9;
+      --muted: #9aaba0;
+      --warn: #e2b14a;
+      --accent: #b55238;
+      --accent-soft: rgba(181, 82, 56, 0.22);
+      --btn: #24302b;
+      --btn-border: #3a4a42;
+      --font: "Figtree", "Segoe UI", sans-serif;
+      --display: "Syne", "Segoe UI", sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --safe-b: env(safe-area-inset-bottom, 0px);
     }
     * { box-sizing: border-box; }
-    html, body { margin: 0; height: 100%; font-family: "IBM Plex Sans", "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
-    #app { display: grid; grid-template-columns: 340px 1fr; height: 100%; }
-    aside { background: var(--panel); padding: 1rem 1.1rem; overflow: auto; border-right: 1px solid #3a4150; }
-    h1 { font-size: 1.05rem; margin: 0 0 0.35rem; font-weight: 600; }
-    .warn { background: #3a3418; color: var(--warn); padding: 0.65rem 0.75rem; border-radius: 6px; font-size: 0.82rem; line-height: 1.35; margin: 0.75rem 0; }
+    html, body { margin: 0; height: 100%; font-family: var(--font); background: var(--bg); color: var(--text); }
+    #app { display: grid; grid-template-columns: min(360px, 38vw) 1fr; height: 100%; height: 100dvh; }
+    .stage { position: relative; min-height: 0; min-width: 0; }
+    #c { width: 100%; height: 100%; display: block; touch-action: none; }
+    aside {
+      background: var(--panel);
+      padding: 1rem 1.1rem calc(1rem + var(--safe-b));
+      overflow: auto;
+      border-right: 1px solid var(--panel-edge);
+      -webkit-overflow-scrolling: touch;
+    }
+    .brand-row {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;
+      margin-bottom: 0.35rem;
+    }
+    .brand-row a.home {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; white-space: nowrap;
+      border-bottom: 1px solid transparent; padding-top: 0.2rem;
+    }
+    .brand-row a.home:hover { color: var(--text); border-color: var(--accent); }
+    h1 {
+      font-family: var(--display); font-size: 1.15rem; margin: 0;
+      font-weight: 700; letter-spacing: -0.02em; line-height: 1.2;
+    }
+    .warn {
+      background: rgba(226, 177, 74, 0.12); color: var(--warn);
+      border: 1px solid rgba(226, 177, 74, 0.28);
+      padding: 0.65rem 0.75rem; border-radius: 10px;
+      font-size: 0.82rem; line-height: 1.35; margin: 0.75rem 0;
+    }
     .meta { font-size: 0.8rem; color: var(--muted); line-height: 1.45; }
-    .meta strong { color: var(--text); font-weight: 560; }
-    #c { width: 100%; height: 100%; display: block; }
+    .meta strong { color: var(--text); font-weight: 600; }
     .tabs { display: flex; gap: 0.4rem; margin: 1rem 0 0.6rem; flex-wrap: wrap; }
-    .tabs a { color: var(--accent); font-size: 0.8rem; text-decoration: none; border: 1px solid #3d4a5c; padding: 0.35rem 0.55rem; border-radius: 4px; }
-    .tabs a:hover { background: #323846; }
-    .tabs a.active { background: #3d5a80; border-color: var(--accent); color: var(--text); }
+    .tabs a {
+      color: var(--text); font-size: 0.78rem; text-decoration: none;
+      border: 1px solid var(--btn-border); padding: 0.4rem 0.6rem; border-radius: 999px;
+      background: var(--btn);
+    }
+    .tabs a:hover { border-color: var(--accent); background: var(--accent-soft); }
+    .tabs a strong { font-weight: 600; }
     ul { padding-left: 1.1rem; font-size: 0.78rem; color: var(--muted); max-height: 40vh; overflow: auto; }
-    code { font-size: 0.78rem; color: #c7d2fe; }
+    code { font-size: 0.78rem; color: #d4b8a8; }
     .row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin: 0.6rem 0; }
     button {
-      background: #323846; color: var(--text); border: 1px solid #4a5568;
-      padding: 0.4rem 0.65rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem;
+      background: var(--btn); color: var(--text); border: 1px solid var(--btn-border);
+      padding: 0.48rem 0.7rem; border-radius: 999px; cursor: pointer; font-size: 0.8rem;
+      font-family: inherit; min-height: 2.2rem;
+      transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
     }
-    button.active { background: #3d5a80; border-color: var(--accent); }
-    button:hover { background: #3a4250; }
+    button.active { background: var(--accent-soft); border-color: var(--accent); color: #fff; }
+    button:hover { border-color: rgba(228, 235, 230, 0.35); }
+    .mobile-bar {
+      display: none; position: absolute; z-index: 5; left: 0; right: 0; top: 0;
+      padding: 0.65rem 0.75rem; padding-top: max(0.65rem, env(safe-area-inset-top));
+      pointer-events: none;
+    }
+    .mobile-bar-inner {
+      pointer-events: auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 0.6rem;
+      padding: 0.55rem 0.7rem; border-radius: 14px;
+      background: rgba(18, 24, 22, 0.72); border: 1px solid var(--panel-edge);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .mobile-bar strong {
+      font-family: var(--display); font-size: 0.95rem; font-weight: 700;
+    }
+    .mobile-bar .actions { display: flex; gap: 0.4rem; }
+    .mobile-bar button, .mobile-bar a {
+      pointer-events: auto; font-size: 0.78rem; text-decoration: none; color: var(--text);
+      background: var(--btn); border: 1px solid var(--btn-border);
+      padding: 0.4rem 0.7rem; border-radius: 999px; font-family: inherit; cursor: pointer;
+    }
+    .drawer-scrim {
+      display: none; position: fixed; inset: 0; z-index: 15;
+      background: rgba(8, 12, 10, 0.45); opacity: 0; pointer-events: none;
+      transition: opacity 0.3s var(--ease);
+    }
+    .drawer-scrim.open { opacity: 1; pointer-events: auto; }
+    .drawer-handle { display: none; }
+
+    @media (max-width: 860px) {
+      #app { grid-template-columns: 1fr; }
+      .mobile-bar { display: block; }
+      .drawer-scrim { display: block; }
+      aside {
+        position: fixed; z-index: 20; left: 0; right: 0; bottom: 0;
+        max-height: min(78dvh, 640px);
+        border-right: 0; border-top: 1px solid var(--panel-edge);
+        border-radius: 18px 18px 0 0;
+        transform: translateY(calc(100% - 0px));
+        transition: transform 0.35s var(--ease);
+        padding-top: 0.35rem;
+        box-shadow: 0 -16px 40px rgba(0, 0, 0, 0.35);
+      }
+      aside.open { transform: translateY(0); }
+      .drawer-handle {
+        display: flex; justify-content: center; padding: 0.55rem 0 0.35rem; cursor: pointer;
+      }
+      .drawer-handle span {
+        width: 42px; height: 4px; border-radius: 99px; background: rgba(228, 235, 230, 0.28);
+      }
+      ul { max-height: 22vh; }
+    }
   </style>
   <script type="importmap">
   {
@@ -48,8 +144,13 @@
 </head>
 <body>
   <div id="app">
-    <aside>
-      <h1 id="viewTitle">Dragalina 131 · Viewer</h1>
+    <div class="drawer-scrim" id="drawerScrim" hidden></div>
+    <aside id="panel">
+      <div class="drawer-handle" id="drawerHandle" aria-hidden="true"><span></span></div>
+      <div class="brand-row">
+        <h1 id="viewTitle">Dragalina 131 · Viewer</h1>
+        <a class="home" href="/">← Site</a>
+      </div>
       <div class="warn" id="warning">Încărcare…</div>
       <div class="meta" id="meta"></div>
       <div class="row">
@@ -69,29 +170,35 @@
         <button type="button" id="btnCut">Secțiune interior</button>
       </div>
       <div class="tabs" id="tabsPlans">
-        <a href="/outputs/plans/a1_plan_parter.svg" target="_blank"><strong>Plan parter</strong></a>
-        <a href="/outputs/plans/a1_plan_etaj.svg" target="_blank"><strong>Plan etaj</strong></a>
-        <a href="/outputs/plans/a1_plan_subsol.svg" target="_blank"><strong>Plan subsol</strong></a>
-        <a href="/outputs/reports/s1_a1_fe_handoff_v02.md" target="_blank"><strong>FE handoff</strong></a>
-        <a href="/outputs/reports/s1_a1_foundations_geo120_v01.md" target="_blank"><strong>Fundații geo120</strong></a>
-        <a href="/outputs/reports/s1_a1_rebar_hint_v01.md" target="_blank">Armare hint</a>
-        <a href="/outputs/reports/s1_a1_se_continue_v01.md" target="_blank">SE continue</a>
-        <a href="/outputs/reports/s1_a1_fe_checklist_v02.md" target="_blank">FE checklist</a>
-        <a href="/outputs/reports/s1_a1_max_inrepo_v01.md" target="_blank">Max in-repo</a>
-        <a href="/outputs/reports/s1_a1_wind_buckling_ec5_v01.md" target="_blank">Vânt / flambaj / EC5</a>
-        <a href="/outputs/reports/s1_a1_standards_benchmark_v01.md" target="_blank">Standarde / repere</a>
-        <a href="/outputs/reports/s1_a1_clear255_levels_v01.md" target="_blank">Clear 255 + cote</a>
-        <a href="/outputs/reports/s1_a1_calc_gaps_v01.md" target="_blank">Calc acoperire</a>
-        <a href="/outputs/reports/s1_a1_calc_100_v01.md" target="_blank">Calc grinzi/SE</a>
-        <a href="/outputs/reports/s1_a1_fe_input_pack_v01.md" target="_blank">Pachet FE</a>
-        <a href="/outputs/plans/" target="_blank">Toate planurile</a>
-        <a href="/outputs/plans/a0_plan_situatie.svg" target="_blank">Situație</a>
+        <a href="/outputs/plans/a1_plan_parter.svg" target="_blank" rel="noopener"><strong>Plan parter</strong></a>
+        <a href="/outputs/plans/a1_plan_etaj.svg" target="_blank" rel="noopener"><strong>Plan etaj</strong></a>
+        <a href="/outputs/plans/a1_plan_subsol.svg" target="_blank" rel="noopener"><strong>Plan subsol</strong></a>
+        <a href="/outputs/reports/s1_a1_fe_INDEX.md" target="_blank" rel="noopener"><strong>FE index</strong></a>
+        <a href="/outputs/reports/s1_a1_fe_handoff_v03.md" target="_blank" rel="noopener"><strong>FE handoff</strong></a>
+        <a href="/outputs/reports/s1_a1_foundations_geo120_v01.md" target="_blank" rel="noopener"><strong>Fundații</strong></a>
+        <a href="/outputs/reports/s1_a1_due_diligence_buy_v01.md" target="_blank" rel="noopener">Due-diligence</a>
+        <a href="/outputs/reports/s1_a1_rebar_hint_v01.md" target="_blank" rel="noopener">Armare hint</a>
+        <a href="/outputs/reports/s1_a1_fe_checklist_v03.md" target="_blank" rel="noopener">FE checklist</a>
+        <a href="/outputs/reports/s1_a1_clear255_levels_v01.md" target="_blank" rel="noopener">Clear 255</a>
+        <a href="/outputs/plans/" target="_blank" rel="noopener">Toate planurile</a>
+        <a href="/outputs/plans/a0_plan_situatie.svg" target="_blank" rel="noopener">Situație</a>
       </div>
-      <p class="meta" style="margin-top:1rem">Orbit · zoom · pan dreapta</p>
+      <p class="meta" style="margin-top:1rem">Orbit · pinch zoom · pan cu două degete / dreapta</p>
       <p class="meta" id="modelHint">Model: <code>A1 curat</code> — amenajare + subsol (fără FRAME)</p>
       <ul id="meshes"></ul>
     </aside>
-    <canvas id="c"></canvas>
+    <div class="stage">
+      <div class="mobile-bar">
+        <div class="mobile-bar-inner">
+          <strong>Dragalina 3D</strong>
+          <div class="actions">
+            <a href="/">Site</a>
+            <button type="button" id="btnPanel" aria-expanded="false" aria-controls="panel">Controale</button>
+          </div>
+        </div>
+      </div>
+      <canvas id="c"></canvas>
+    </div>
   </div>
   <script type="module">
     import * as THREE from "three";
@@ -811,6 +918,26 @@
       setLevel(levelMode);
     };
     // Camera: setLevel("structura") deja face frameObjects(structObjs) — nu recadra pe tot situl (teren/gard ascunse)
+
+    // Drawer controale pe mobil
+    const panel = document.getElementById("panel");
+    const scrim = document.getElementById("drawerScrim");
+    const btnPanel = document.getElementById("btnPanel");
+    function setPanelOpen(open) {
+      panel?.classList.toggle("open", open);
+      scrim?.classList.toggle("open", open);
+      if (scrim) scrim.hidden = !open;
+      if (btnPanel) btnPanel.setAttribute("aria-expanded", open ? "true" : "false");
+      if (btnPanel) btnPanel.textContent = open ? "Închide" : "Controale";
+    }
+    btnPanel?.addEventListener("click", () => setPanelOpen(!panel.classList.contains("open")));
+    scrim?.addEventListener("click", () => setPanelOpen(false));
+    document.getElementById("drawerHandle")?.addEventListener("click", () => setPanelOpen(false));
+    panel?.querySelectorAll("button, .tabs a").forEach((el) => {
+      el.addEventListener("click", () => {
+        if (window.matchMedia("(max-width: 860px)").matches && el.tagName === "A") setPanelOpen(false);
+      });
+    });
 
     function frame() {
       resize();

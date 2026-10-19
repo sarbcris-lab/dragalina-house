@@ -4,7 +4,10 @@
   "buildCommand": "npm run volume:a1",
   "installCommand": "npm install --ignore-scripts",
   "outputDirectory": ".",
-  "rewrites": [
-    { "source": "/", "destination": "/viewer/?v=a1" }
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
+    }
   ]
 }

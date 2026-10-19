@@ -1,5 +1,11 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.193: site landing + mobile viewer/planuri
+
+- Landing `/` prezentabil (brand Dragalina, hero vizual, CTA 3D/planuri); Vercel nu mai redirectează forțat la viewer.
+- Viewer: drawer controale pe mobil, bare touch, linkuri FE v03, tipografie Syne/Figtree.
+- Planuri index: tab-uri P/E/subsol + scroll orizontal pe SVG.
+
 ## 2026-10-19 — A1.192: comparație pachete placă/drop (nu schimbă adopt)
 
 - `s1_a1_slab_beam_pack_v01`: 15/25 vs 16/20 vs 18/18 vs 18/20 vs 20/15 vs 20/20.

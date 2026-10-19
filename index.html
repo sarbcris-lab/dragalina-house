@@ -2,17 +2,423 @@
 <html lang="ro">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0; url=/viewer/?v=a1" />
-    <title>Dragalina House · A1 curat</title>
-    <link rel="canonical" href="/viewer/?v=a1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Dragalina 131 — studiu casă P+E+beci pe parcelă Turda. Viewer 3D, planuri A1, pachet structural."
+    />
+    <title>Dragalina House · 131 Turda</title>
+    <link rel="canonical" href="/" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/site.css" />
+    <style>
+      body {
+        background: var(--ink);
+        color: var(--stone);
+        overflow-x: hidden;
+      }
+
+      .top {
+        position: absolute;
+        z-index: 3;
+        inset: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.1rem clamp(1rem, 4vw, 2.5rem);
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(228, 235, 230, 0.72);
+      }
+
+      .top a {
+        text-decoration: none;
+        color: inherit;
+        border-bottom: 1px solid transparent;
+        transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+      }
+
+      .top a:hover {
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.45);
+      }
+
+      .top-links {
+        display: flex;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 100svh;
+        display: grid;
+        align-items: end;
+        isolation: isolate;
+      }
+
+      .hero-media {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .hero-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 72% 42%;
+        transform: scale(1.06);
+        animation: drift 22s var(--ease) infinite alternate;
+        filter: saturate(0.92) contrast(1.05);
+      }
+
+      .hero-media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(18, 24, 22, 0.35) 0%, rgba(18, 24, 22, 0.15) 35%, rgba(18, 24, 22, 0.78) 72%, rgba(18, 24, 22, 0.96) 100%),
+          radial-gradient(ellipse 80% 50% at 20% 80%, rgba(181, 82, 56, 0.22), transparent 60%);
+      }
+
+      .hero-grain {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        opacity: 0.08;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 2;
+        width: min(100%, var(--max));
+        margin: 0 auto;
+        padding: 0 clamp(1rem, 4vw, 2.5rem) clamp(2.5rem, 7vh, 4.5rem);
+        animation: rise 0.9s var(--ease) both;
+      }
+
+      .brand {
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(3.4rem, 14vw, 7.5rem);
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        margin: 0 0 0.85rem;
+        color: #fff;
+        text-wrap: balance;
+      }
+
+      .headline {
+        margin: 0 0 0.55rem;
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: clamp(1.15rem, 3.2vw, 1.65rem);
+        letter-spacing: -0.02em;
+        color: var(--stone);
+      }
+
+      .lede {
+        margin: 0 0 1.6rem;
+        max-width: 34rem;
+        font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+        color: rgba(228, 235, 230, 0.78);
+      }
+
+      .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.85rem;
+        padding: 0.7rem 1.25rem;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: transform 0.25s var(--ease), background 0.25s var(--ease), box-shadow 0.25s var(--ease);
+      }
+
+      .btn:active {
+        transform: scale(0.98);
+      }
+
+      .btn-primary {
+        background: var(--brick);
+        color: #fff;
+        box-shadow: 0 10px 30px var(--glow);
+      }
+
+      .btn-primary:hover {
+        background: var(--brick-deep);
+        transform: translateY(-1px);
+      }
+
+      .btn-ghost {
+        background: rgba(243, 246, 244, 0.08);
+        color: #fff;
+        border: 1px solid rgba(243, 246, 244, 0.28);
+        backdrop-filter: blur(8px);
+      }
+
+      .btn-ghost:hover {
+        background: rgba(243, 246, 244, 0.16);
+      }
+
+      .explore {
+        background:
+          radial-gradient(ellipse 60% 40% at 100% 0%, rgba(61, 92, 74, 0.35), transparent 55%),
+          linear-gradient(180deg, var(--ink) 0%, var(--ink-soft) 100%);
+        padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1rem, 4vw, 2.5rem) clamp(3rem, 8vw, 5rem);
+      }
+
+      .explore-inner {
+        width: min(100%, var(--max));
+        margin: 0 auto;
+      }
+
+      .explore h2 {
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, 4vw, 2.1rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        margin: 0 0 0.4rem;
+        color: #fff;
+      }
+
+      .explore > .explore-inner > p {
+        margin: 0 0 1.75rem;
+        color: rgba(228, 235, 230, 0.65);
+        max-width: 36rem;
+      }
+
+      .link-row {
+        display: grid;
+        gap: 0;
+        border-top: 1px solid rgba(228, 235, 230, 0.14);
+      }
+
+      .link-row a {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 0.85rem 1.1rem;
+        align-items: baseline;
+        padding: 1.15rem 0;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(228, 235, 230, 0.14);
+        transition: padding-left 0.3s var(--ease), background 0.3s var(--ease);
+      }
+
+      .link-row a:hover {
+        padding-left: 0.4rem;
+      }
+
+      .link-row .n {
+        font-family: var(--font-display);
+        font-size: 0.8rem;
+        color: var(--brick);
+        letter-spacing: 0.08em;
+      }
+
+      .link-row strong {
+        font-family: var(--font-display);
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .link-row span {
+        grid-column: 2;
+        font-size: 0.92rem;
+        color: rgba(228, 235, 230, 0.58);
+      }
+
+      .link-row .arrow {
+        grid-column: 3;
+        grid-row: 1 / span 2;
+        align-self: center;
+        color: rgba(228, 235, 230, 0.45);
+        font-size: 1.25rem;
+        transition: transform 0.3s var(--ease), color 0.3s var(--ease);
+      }
+
+      .link-row a:hover .arrow {
+        transform: translateX(4px);
+        color: var(--brick);
+      }
+
+      .note {
+        margin-top: 2rem;
+        font-size: 0.82rem;
+        color: rgba(228, 235, 230, 0.45);
+        max-width: 40rem;
+      }
+
+      footer {
+        padding: 1.25rem clamp(1rem, 4vw, 2.5rem) 2rem;
+        background: var(--ink-soft);
+        color: rgba(228, 235, 230, 0.4);
+        font-size: 0.75rem;
+        letter-spacing: 0.04em;
+      }
+
+      footer .inner {
+        width: min(100%, var(--max));
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+        justify-content: space-between;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes drift {
+        from {
+          transform: scale(1.06) translate3d(0, 0, 0);
+        }
+        to {
+          transform: scale(1.1) translate3d(-1.5%, -1%, 0);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .top {
+          padding-top: 0.85rem;
+        }
+
+        .top-links {
+          gap: 0.85rem;
+        }
+
+        .link-row a {
+          grid-template-columns: auto 1fr;
+        }
+
+        .link-row .arrow {
+          display: none;
+        }
+
+        .cta {
+          width: 100%;
+        }
+
+        .btn {
+          flex: 1 1 100%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero-media img,
+        .hero-copy {
+          animation: none;
+        }
+      }
+    </style>
   </head>
   <body>
-    <p><a href="/viewer/?v=a1">Deschide viewer A1 curat</a></p>
-    <p>
-      Planuri:
-      <a href="/outputs/plans/a1_plan_parter.svg">Parter</a> ·
-      <a href="/outputs/plans/a1_plan_etaj.svg">Etaj</a> ·
-      <a href="/outputs/plans/a1_plan_subsol.svg">Subsol</a>
-    </p>
+    <header class="top">
+      <span>Turda · str. Dragalina 131</span>
+      <nav class="top-links" aria-label="Navigare principală">
+        <a href="/viewer/?v=a1">3D</a>
+        <a href="/outputs/plans/">Planuri</a>
+        <a href="/outputs/reports/s1_a1_fe_INDEX.md">Structură</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="Introducere">
+        <div class="hero-media" aria-hidden="true">
+          <img
+            src="/assets/hero-dragalina.png"
+            alt=""
+            width="1920"
+            height="1080"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="hero-grain" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="brand">Dragalina</p>
+          <h1 class="headline">Casă P+E+beci pe lot îngust</h1>
+          <p class="lede">
+            Studiu parametric A1 — amenajare înghețată, volum 3D și planuri. Nu este proiect autorizabil.
+          </p>
+          <div class="cta">
+            <a class="btn btn-primary" href="/viewer/?v=a1">Deschide viewer 3D</a>
+            <a class="btn btn-ghost" href="/outputs/plans/">Vezi planurile</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="explore" aria-labelledby="explore-title">
+        <div class="explore-inner">
+          <h2 id="explore-title">Explorează modelul</h2>
+          <p>Aceleași date din repo: geometrie A1, clear ≥255, acoperiș 30° + PV.</p>
+          <div class="link-row">
+            <a href="/viewer/?v=a1">
+              <span class="n">01</span>
+              <strong>Viewer 3D</strong>
+              <span>Structură, pereți, acoperiș, subsol — orbit pe telefon sau desktop</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="/outputs/plans/">
+              <span class="n">02</span>
+              <strong>Planuri A1</strong>
+              <span>Parter, etaj, subsol — SVG din a1_architecture</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="/outputs/reports/s1_a1_fe_INDEX.md">
+              <span class="n">03</span>
+              <strong>Pachet structurist</strong>
+              <span>Handoff FE v03, fundații, checklist — studiu ordin</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <a href="/outputs/reports/s1_a1_due_diligence_buy_v01.md">
+              <span class="n">04</span>
+              <strong>Due-diligence</strong>
+              <span>Ce e PASS pe ordin și ce mai cere geo / semnătură</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <p class="note">
+            Geo pe 131 și proiect semnat rămân în afara acestui site. Media in-repo ≈ studiu de fezabilitate, nu DTAC.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="inner">
+        <span>Dragalina House · model parametric</span>
+        <span>CF 54602 · studiu conceptual</span>
+      </div>
+    </footer>
   </body>
 </html>

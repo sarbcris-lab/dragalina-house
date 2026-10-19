@@ -1,0 +1,56 @@
+/* Dragalina House — shared site chrome */
+:root {
+  --ink: #121816;
+  --ink-soft: #1e2a24;
+  --stone: #e4ebe6;
+  --stone-dim: #c5d0c9;
+  --paper: #f3f6f4;
+  --brick: #b55238;
+  --brick-deep: #8f3f2a;
+  --moss: #3d5c4a;
+  --line: rgba(18, 24, 22, 0.12);
+  --glow: rgba(181, 82, 56, 0.35);
+  --font-display: "Syne", "Segoe UI", sans-serif;
+  --font-body: "Figtree", "Segoe UI", sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --max: 1120px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

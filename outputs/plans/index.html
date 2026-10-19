@@ -3,42 +3,256 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#121816" />
   <title>Dragalina 131 — Planuri A1</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
   <style>
-    body { margin: 0; font-family: "IBM Plex Sans", Segoe UI, sans-serif; background: #eceae4; color: #1a1a1a; }
-    header { padding: 1rem 1.25rem; background: #e8f0e4; border-bottom: 1px solid #7a9e6a; }
-    header h1 { margin: 0 0 0.35rem; font-size: 1.15rem; }
-    header p { margin: 0; font-size: 0.9rem; color: #444; }
-    nav { display: flex; gap: 0.75rem; padding: 0.75rem 1.25rem; background: #fff; border-bottom: 1px solid #ddd; flex-wrap: wrap; }
-    nav a { color: #1d4f91; }
-    section { padding: 1rem; }
-    section h2 { font-size: 1rem; margin: 0 0 0.5rem; }
-    object { width: 100%; height: 720px; background: #fff; border: 1px solid #ccc; }
+    body {
+      background:
+        radial-gradient(ellipse 70% 45% at 0% 0%, rgba(61, 92, 74, 0.12), transparent 55%),
+        var(--paper);
+      color: var(--ink);
+    }
+
+    .wrap {
+      width: min(100%, 1100px);
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 1.75rem) 3rem;
+    }
+
+    header {
+      padding: 1.25rem 0 1.5rem;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 1.5rem;
+      animation: rise 0.7s var(--ease) both;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.45rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--moss);
+    }
+
+    header h1 {
+      margin: 0 0 0.4rem;
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 5vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    header p {
+      margin: 0;
+      max-width: 36rem;
+      color: rgba(18, 24, 22, 0.62);
+      font-size: 0.98rem;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.1rem 0 0;
+    }
+
+    .nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.4rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.55);
+      transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+    }
+
+    .nav a:hover {
+      border-color: var(--brick);
+      background: rgba(181, 82, 56, 0.08);
+    }
+
+    .nav a.primary {
+      background: var(--ink);
+      color: var(--stone);
+      border-color: var(--ink);
+    }
+
+    .nav a.primary:hover {
+      background: var(--brick);
+      border-color: var(--brick);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0.4rem;
+      overflow-x: auto;
+      padding: 0.15rem 0 1rem;
+      margin: 0 -0.15rem 0.5rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+
+    .tabs button {
+      flex: 0 0 auto;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      min-height: 2.5rem;
+    }
+
+    .tabs button[aria-selected="true"] {
+      background: var(--ink);
+      color: var(--stone);
+      border-color: var(--ink);
+    }
+
+    .panel {
+      display: none;
+      animation: rise 0.45s var(--ease) both;
+    }
+
+    .panel.active { display: block; }
+
+    .panel h2 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      margin: 0 0 0.65rem;
+      font-weight: 700;
+    }
+
+    .frame {
+      position: relative;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      max-height: min(78vh, 820px);
+      box-shadow: 0 18px 40px rgba(18, 24, 22, 0.06);
+    }
+
+    .frame object,
+    .frame img {
+      width: 100%;
+      min-width: 640px;
+      height: auto;
+      min-height: 420px;
+      display: block;
+      background: #0d1110;
+    }
+
+    .hint {
+      margin: 0.65rem 0 0;
+      font-size: 0.8rem;
+      color: rgba(18, 24, 22, 0.5);
+    }
+
+    .open-full {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--brick-deep);
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      header, .panel { animation: none; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Planuri A1 curat</h1>
-    <p>Amenajare înghețată · subsol cutie · fără FRAME vechi</p>
-  </header>
-  <nav>
-    <a href="/viewer/?v=a1"><strong>Viewer 3D</strong></a>
-    <a href="a1_plan_parter.svg"><strong>Parter</strong></a>
-    <a href="a1_plan_etaj.svg"><strong>Etaj</strong></a>
-    <a href="a1_plan_subsol.svg"><strong>Subsol</strong></a>
-    <a href="a0_plan_situatie.svg">Situație</a>
-  </nav>
-  <section>
-    <h2>Parter</h2>
-    <object data="a1_plan_parter.svg" type="image/svg+xml"></object>
-  </section>
-  <section>
-    <h2>Etaj</h2>
-    <object data="a1_plan_etaj.svg" type="image/svg+xml"></object>
-  </section>
-  <section>
-    <h2>Subsol</h2>
-    <object data="a1_plan_subsol.svg" type="image/svg+xml"></object>
-  </section>
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">Dragalina House · studiu</p>
+      <h1>Planuri A1</h1>
+      <p>Amenajare înghețată · subsol cutie · fără FRAME vechi. Pe telefon: derulează orizontal în cadru pentru zoom pe cote.</p>
+      <nav class="nav" aria-label="Navigare">
+        <a class="primary" href="/viewer/?v=a1">Viewer 3D</a>
+        <a href="/">Site</a>
+        <a href="/outputs/reports/s1_a1_fe_INDEX.md">Structură FE</a>
+        <a href="a0_plan_situatie.svg">Situație</a>
+      </nav>
+    </header>
+
+    <div class="tabs" role="tablist" aria-label="Nivel plan">
+      <button type="button" role="tab" id="tab-p" aria-controls="panel-p" aria-selected="true">Parter</button>
+      <button type="button" role="tab" id="tab-e" aria-controls="panel-e" aria-selected="false">Etaj</button>
+      <button type="button" role="tab" id="tab-s" aria-controls="panel-s" aria-selected="false">Subsol</button>
+    </div>
+
+    <section class="panel active" id="panel-p" role="tabpanel" aria-labelledby="tab-p">
+      <h2>Parter</h2>
+      <div class="frame">
+        <object data="a1_plan_parter.svg" type="image/svg+xml" title="Plan parter A1">
+          <img src="a1_plan_parter.svg" alt="Plan parter A1" />
+        </object>
+      </div>
+      <a class="open-full" href="a1_plan_parter.svg">Deschide SVG full →</a>
+      <p class="hint">Unități cm · ARH_STUDIU · nu autorizabil</p>
+    </section>
+
+    <section class="panel" id="panel-e" role="tabpanel" aria-labelledby="tab-e" hidden>
+      <h2>Etaj</h2>
+      <div class="frame">
+        <object data="a1_plan_etaj.svg" type="image/svg+xml" title="Plan etaj A1">
+          <img src="a1_plan_etaj.svg" alt="Plan etaj A1" />
+        </object>
+      </div>
+      <a class="open-full" href="a1_plan_etaj.svg">Deschide SVG full →</a>
+      <p class="hint">Unități cm · ARH_STUDIU · nu autorizabil</p>
+    </section>
+
+    <section class="panel" id="panel-s" role="tabpanel" aria-labelledby="tab-s" hidden>
+      <h2>Subsol</h2>
+      <div class="frame">
+        <object data="a1_plan_subsol.svg" type="image/svg+xml" title="Plan subsol A1">
+          <img src="a1_plan_subsol.svg" alt="Plan subsol A1" />
+        </object>
+      </div>
+      <a class="open-full" href="a1_plan_subsol.svg">Deschide SVG full →</a>
+      <p class="hint">Cutie beci · retenție · scară acces</p>
+    </section>
+  </div>
+
+  <script>
+    const tabs = [...document.querySelectorAll('[role="tab"]')];
+    const panels = {
+      "tab-p": document.getElementById("panel-p"),
+      "tab-e": document.getElementById("panel-e"),
+      "tab-s": document.getElementById("panel-s"),
+    };
+    function select(id) {
+      for (const t of tabs) {
+        const on = t.id === id;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        const p = panels[t.id];
+        if (!p) continue;
+        p.classList.toggle("active", on);
+        p.hidden = !on;
+      }
+    }
+    for (const t of tabs) t.addEventListener("click", () => select(t.id));
+  </script>
 </body>
 </html>
