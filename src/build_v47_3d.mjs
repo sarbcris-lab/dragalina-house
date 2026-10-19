@@ -1261,20 +1261,19 @@ function main() {
         label: `solbanc S ${plateSec[0]}×${plateSec[1]} cm pe CONC`,
       });
     }
-    // Căpriori pe ape N și S
+    // Căpriori pe ape N și S — pas egal pe lățimea CONC (nu rest inegal la est)
     {
       const w = rafSec[0];
       const hz = rafSec[1];
       const rx0 = roofFp?.x0 ?? x0r;
       const rx1 = roofFp?.x1 ?? x1r;
+      const clearW = Math.max(w, rx1 - rx0 - w); // zonă utilă între fețe
+      // n intervale ca pas ≤ spacing nominal; n+1 căpriori, inset w/2 de la fețe
+      const nBay = Math.max(1, Math.ceil(clearW / spacing));
+      const step = clearW / nBay;
       const rafXs = [];
-      for (let x = rx0 + spacing / 2; x <= rx1 - spacing / 2 + 0.1; x += spacing) {
-        rafXs.push(x);
-      }
-      const last = rafXs[rafXs.length - 1];
-      const eastTarget = rx1 - Math.max(spacing / 2, w);
-      if (last == null || rx1 - last > spacing * 0.45) {
-        rafXs.push(Math.max(rx0 + w, eastTarget));
+      for (let i = 0; i <= nBay; i++) {
+        rafXs.push(rx0 + w / 2 + i * step);
       }
       let idx = 0;
       for (const x of rafXs) {

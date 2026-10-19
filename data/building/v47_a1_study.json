@@ -78,9 +78,14 @@
     "structure_cm": {
       "ridge_beam": { "section_cm": [20, 35], "material": "lemn_studiu" },
       "wall_plate": { "section_cm": [20, 25], "material": "lemn_studiu" },
-      "rafter": { "section_cm": [12, 25], "spacing_cm": 120, "material": "lemn_studiu" },
+      "rafter": {
+        "section_cm": [12, 25],
+        "spacing_cm": 120,
+        "spacing_note": "pas maxim 120; pe lățime CONC se împarte egal (ceil) → ~108 cm tipic A1",
+        "material": "lemn_studiu"
+      },
       "gable_posts": { "section_cm": [20, 20], "on": ["B_W", "B_E"] },
-      "note": "Șarpantă 2 ape 30° — vizibilă în viewer 1 · Structură (fără învelitoare)"
+      "note": "Șarpantă 2 ape 30° — căpriori pas egal; view 3 · Acoperiș"
     },
     "not": "copertină pe rampă 2 — acoperiș 2 ape continuu pe casă + scară",
     "viewer_note": "Shell: acoperis_apa_N/S + frontoane + PV. Structură: coama + solbanc + căpriori + stâlpișori fronton."
