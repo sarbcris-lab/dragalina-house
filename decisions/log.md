@@ -1,5 +1,13 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.204: planuri page §6 + situație §7
+
+Debate prezentare rundă 3 (fără amenajare/amprentă):
+1. `/outputs/plans/` — antet compact, note extensibile, pan/zoom/Încadrează/fullscreen.
+2. Situație arh. + **Situație fundații** (două planșe); nord clar; cotă colț→hotar; cartuș + scară 5 m.
+3. Planuri A1: scaune rotite; terasă ≠ util; gol ușă ≠ clear scară / trecere.
+Deschis: capturi §5 · rest views acoperiș/structură categorii · layere SVG reale pe moduri.
+
 ## 2026-10-19 — A1.203: viewer — caps + site_layer + Casă/Proprietate + Subsol Camere|Acces
 
 Debate prezentare rundă 2 (fără amenajare/amprentă):

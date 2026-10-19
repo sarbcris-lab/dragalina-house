@@ -3963,9 +3963,29 @@ function planSvg(levelIdx, title) {
         `<text x="${sx(ux + 4)}" y="${sy(f.y + 12)}" font-size="7" fill="#5a6a7a" font-family="${font}">deschis ${f.dx + f.unfold_west_cm}×${f.dy}</text>`
       );
     }
-    parts.push(
-      `<rect x="${sx(f.x)}" y="${sy(f.y)}" width="${f.dx * scale}" height="${f.dy * scale}" fill="${f.color || "#c4a882"}" fill-opacity="0.85" stroke="#5a4030" stroke-width="1.4"/>`
-    );
+    // A1.204: scaune — forma rotită (nu AABB pătrat ~63), seat ≈ dx/√2
+    if (/^scaun_/.test(f.id || "")) {
+      const cx = f.x + f.dx / 2;
+      const cy = f.y + f.dy / 2;
+      const seat = f.seat_cm || +(f.dx / Math.SQRT2).toFixed(1);
+      const rot = f.rotation_deg != null ? f.rotation_deg : 45;
+      const px = sx(cx);
+      const py = sy(cy);
+      const ww = seat * scale;
+      const hh = (f.seat_depth_cm || seat) * scale;
+      parts.push(`<g transform="translate(${px.toFixed(1)},${py.toFixed(1)}) rotate(${rot})">`);
+      parts.push(
+        `<rect x="${(-ww / 2).toFixed(1)}" y="${(-hh / 2).toFixed(1)}" width="${ww.toFixed(1)}" height="${hh.toFixed(1)}" fill="${f.color || "#a89070"}" fill-opacity="0.9" stroke="#5a4030" stroke-width="1.2" rx="2"/>`
+      );
+      parts.push(
+        `<rect x="${(-ww / 2).toFixed(1)}" y="${(-hh / 2 - 4).toFixed(1)}" width="${ww.toFixed(1)}" height="3.5" fill="#6a5240" stroke="#5a4030" stroke-width="0.6"/>`
+      );
+      parts.push(`</g>`);
+    } else {
+      parts.push(
+        `<rect x="${sx(f.x)}" y="${sy(f.y)}" width="${f.dx * scale}" height="${f.dy * scale}" fill="${f.color || "#c4a882"}" fill-opacity="0.85" stroke="#5a4030" stroke-width="1.4"/>`
+      );
+    }
     if (f.headboard === "west") {
       parts.push(
         `<rect x="${sx(f.x)}" y="${sy(f.y)}" width="${8 * scale}" height="${f.dy * scale}" fill="#8a6a4a" stroke="#5a4030" stroke-width="0.8"/>`
@@ -4476,13 +4496,15 @@ function planSvg(levelIdx, title) {
       bold: true,
       fill: "#0d47a1",
     });
-    const utilLabel =
-      r.id === "baie"
+    const isTerrace = /^terasa_/.test(r.id || "");
+    const utilLabel = isTerrace
+      ? `${roomAreaM2(r)} m² terasă (nu util)`
+      : r.id === "baie"
         ? `${roomAreaM2(r)} m² util (L)`
         : `${roomAreaM2(r)} m² util`;
     noteAt(cx, cy + 16, utilLabel, {
       fontSize: 10,
-      fill: "#444",
+      fill: isTerrace ? "#5a6b4a" : "#444",
     });
     // cote pe contur (clear = dx/dy cameră)
     if (r.dx >= 40) dimH(r.x, r.x + r.dx, r.y + r.dy, -16, r.dx);
@@ -4556,11 +4578,21 @@ function planSvg(levelIdx, title) {
       id === "buc_terasa_etaj" ||
       id === "baie_usa"
     ) {
-      if (o.dy >= o.dx) dimV(o.y, o.y + o.dy, o.x + o.dx / 2, 20, clear);
-      else dimH(o.x, o.x + o.dx, o.y + o.dy / 2, 18, clear);
+      const pass = o.passage_clear_cm;
+      const extra = pass != null ? ` gol` : "";
+      if (o.dy >= o.dx) dimV(o.y, o.y + o.dy, o.x + o.dx / 2, 20, clear, extra);
+      else dimH(o.x, o.x + o.dx, o.y + o.dy / 2, 18, clear, extra);
+      if (pass != null && pass !== clear) {
+        noteAt(
+          o.x + o.dx / 2 + (o.dy >= o.dx ? 28 : 0),
+          o.y + o.dy / 2 + (o.dy >= o.dx ? 0 : 14),
+          `trecere ${fmtCm(pass)}`,
+          { fontSize: 8, fill: "#1565c0" }
+        );
+      }
     } else if (id === "dorm_terasa" || id === "baie_usa_dorm") {
-      if (o.dx >= 40) dimH(o.x, o.x + o.dx, o.y + o.dy / 2, -18, clear);
-      else if (o.dy >= 40) dimV(o.y, o.y + o.dy, o.x + o.dx / 2, 18, clear);
+      if (o.dx >= 40) dimH(o.x, o.x + o.dx, o.y + o.dy / 2, -18, clear, " gol");
+      else if (o.dy >= 40) dimV(o.y, o.y + o.dy, o.x + o.dx / 2, 18, clear, " gol");
     }
   }
 
@@ -5300,10 +5332,14 @@ function basementSvg() {
   }
   if (bs?.door_to_magazie) {
     const d = bs.door_to_magazie;
-    dimV(d.y, d.y + d.dy, d.x + d.dx / 2, 24, d.dy, " gol");
+    dimV(d.y, d.y + d.dy, d.x + d.dx / 2, 24, d.dy, " gol ușă");
+    noteAt(d.x + d.dx / 2 + 36, d.y + d.dy / 2, "≠ clear scară", {
+      fontSize: 8,
+      fill: "#1565c0",
+    });
   }
   if (bs?.flight) {
-    dimH(bs.flight.x, bs.flight.x + bs.flight.dx, bs.flight.y + 20, 22, bs.flight.dx, " clear");
+    dimH(bs.flight.x, bs.flight.x + bs.flight.dx, bs.flight.y + 20, 22, bs.flight.dx, " clear scară");
   }
 
   // corp finit

@@ -20,7 +20,7 @@
       "basement_rule": "Plan subsol A1.165–168 = input S1; conflict structură → remesh retenție/cadre, nu P/E.",
       "next_round": "S1 structură — decisions/s1_from_a1_v01.md"
     },
-    "generated": "2026-10-19T19:48:29.071Z",
+    "generated": "2026-10-19T20:36:23.477Z",
     "brief": "decisions/brief_A0_v01.md",
     "site": "data/building/a0_site.json",
     "source_walls": "v47 remap 680×860 — grosimi catalog A1/A2/A7/A8",
@@ -2551,13 +2551,12 @@
     "priority": "plan_over_basement",
     "z_ff_cm": -250,
     "clear_target_cm": 220,
-    "note": "A1.194: puț în parcelă · uși CT/dep · clear scară 100 fără pier · grinzi S flush pe ținta 220",
+    "note": "A1.194: puț în parcelă · uși CT/dep · clear 100 fără pier · P/E neatins",
     "s1_handoff": {
       "doc": "decisions/s1_from_a1_v01.md",
       "envelope_report": "outputs/reports/s1_basement_envelope_from_a1_v01.md",
-      "frame_mesh": "A1.174: cadre pe axe A1 (build_a1_structure) — FRAME STALE",
-      "first_task": "remesh BA pe envelope A1 — DONE geometric; FE urmează",
-      "structure_study": "structure_a1_study_cm"
+      "frame_mesh": "A1.170: build_v47_3d citește basement din a1_architecture (nu hol_subsol V47)",
+      "first_task": "reten_mesh_vs_a1 — DONE overlay 3D; FE mesh JSON încă de sync"
     },
     "structure_box": {
       "x0": 30,
@@ -2769,7 +2768,7 @@
         "y": 588.7,
         "dx": 100,
         "dy": 270,
-        "note": "puț deschis = clear scară 100 (A1.194); planșeu P gol aici"
+        "note": "A1.194: puț deschis = clear scară 100; planșeu P gol aici"
       },
       "flight": {
         "x": 564.3,
@@ -2823,7 +2822,7 @@
         "z_ff_cm": -250,
         "open_to_court": "S",
         "west_wall": "subsol_reten_e",
-        "note": "A1.194: puț clipat la finit E 680; put_reten_e subțire pe hotar; V=ușă A11; S→curte",
+        "note": "A1.194: puț clipat finit E; put_reten_e subțire; V=ușă; S→curte",
         "walls": [
           {
             "id": "put_reten_n",
@@ -2845,7 +2844,7 @@
             "y": 490.7,
             "dx": 15.7,
             "dy": 368,
-            "note": "A1.194: retenție E puț 15.7 cm — outer@680 (fără overflow Dragalina)"
+            "note": "A1.194: retenție E puț 15.7 cm — outer@680"
           }
         ]
       },
@@ -2863,7 +2862,7 @@
         "door_into_magazie": true,
         "riser_vs_brief_16": "DESCHIS — 17,22 > 16 (brief A0)",
         "path": "curte→palier−95→scară↓N→palier−250→ușă A6→magazie→uși CT/dep",
-        "note": "A1.194: fără C_SHAFT_E_PIER în clear; grindă întoarsă pe put_reten_e"
+        "note": "A1.194: fără pier în clear; put_reten_e subțire pe hotar"
       }
     },
     "doors": [

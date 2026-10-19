@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#121816" />
   <title>Dragalina 131 — Planuri A1</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
@@ -11,266 +11,438 @@
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/site.css" />
   <style>
-    body {
-      background:
-        radial-gradient(ellipse 70% 45% at 0% 0%, rgba(61, 92, 74, 0.12), transparent 55%),
-        var(--paper);
-      color: var(--ink);
+    :root {
+      --plans-bar: #161c19;
+      --plans-bar-ink: #e8efe9;
+      --plans-accent: #c45c3e;
+      --plans-frame: #0d1110;
     }
-
-    .wrap {
-      width: min(100%, 1100px);
-      margin: 0 auto;
-      padding: 0 clamp(1rem, 4vw, 1.75rem) 3rem;
-    }
-
-    header {
-      padding: 1.25rem 0 1.5rem;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 1.5rem;
-      animation: rise 0.7s var(--ease) both;
-    }
-
-    .eyebrow {
-      margin: 0 0 0.45rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--moss);
-    }
-
-    header h1 {
-      margin: 0 0 0.4rem;
-      font-family: var(--font-display);
-      font-size: clamp(1.75rem, 5vw, 2.4rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-    }
-
-    header p {
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
       margin: 0;
-      max-width: 36rem;
-      color: rgba(18, 24, 22, 0.62);
-      font-size: 0.98rem;
+      background: var(--plans-frame);
+      color: var(--plans-bar-ink);
+      font-family: Figtree, system-ui, sans-serif;
+      overflow: hidden;
     }
-
-    .nav {
+    .app {
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr);
+      height: 100dvh;
+      height: 100vh;
+    }
+    .top {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 1.1rem 0 0;
-    }
-
-    .nav a {
-      display: inline-flex;
       align-items: center;
-      min-height: 2.4rem;
-      padding: 0.45rem 0.9rem;
-      border-radius: 999px;
-      text-decoration: none;
-      font-size: 0.88rem;
+      gap: 0.45rem 0.75rem;
+      padding: 0.45rem 0.75rem;
+      background: var(--plans-bar);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .brand {
+      font-family: Syne, Figtree, sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+      margin-right: 0.35rem;
+      white-space: nowrap;
+    }
+    .brand span { color: rgba(232,239,233,0.45); font-weight: 500; font-size: 0.78rem; }
+    .top a, .top button {
+      font: inherit;
+      font-size: 0.8rem;
       font-weight: 600;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.55);
-      transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+      min-height: 2rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+      color: var(--plans-bar-ink);
+      text-decoration: none;
+      cursor: pointer;
     }
-
-    .nav a:hover {
-      border-color: var(--brick);
-      background: rgba(181, 82, 56, 0.08);
+    .top a:hover, .top button:hover { border-color: var(--plans-accent); }
+    .top a.primary, .top button.primary {
+      background: var(--plans-accent);
+      border-color: var(--plans-accent);
+      color: #fff;
     }
-
-    .nav a.primary {
-      background: var(--ink);
-      color: var(--stone);
-      border-color: var(--ink);
-    }
-
-    .nav a.primary:hover {
-      background: var(--brick);
-      border-color: var(--brick);
-    }
-
     .tabs {
       display: flex;
-      gap: 0.4rem;
+      gap: 0.3rem;
       overflow-x: auto;
-      padding: 0.15rem 0 1rem;
-      margin: 0 -0.15rem 0.5rem;
+      padding: 0.35rem 0.75rem;
+      background: #101612;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
     }
-
     .tabs button {
       flex: 0 0 auto;
-      font-family: inherit;
-      font-size: 0.88rem;
+      font: inherit;
+      font-size: 0.82rem;
       font-weight: 600;
-      padding: 0.55rem 0.95rem;
+      min-height: 2.15rem;
+      padding: 0.35rem 0.8rem;
       border-radius: 999px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255,255,255,0.12);
       background: transparent;
-      color: var(--ink);
+      color: var(--plans-bar-ink);
       cursor: pointer;
-      min-height: 2.5rem;
     }
-
     .tabs button[aria-selected="true"] {
-      background: var(--ink);
-      color: var(--stone);
-      border-color: var(--ink);
-    }
-
-    .panel {
-      display: none;
-      animation: rise 0.45s var(--ease) both;
-    }
-
-    .panel.active { display: block; }
-
-    .panel h2 {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      margin: 0 0 0.65rem;
-      font-weight: 700;
-    }
-
-    .frame {
-      position: relative;
       background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      overflow: auto;
-      -webkit-overflow-scrolling: touch;
-      max-height: min(78vh, 820px);
-      box-shadow: 0 18px 40px rgba(18, 24, 22, 0.06);
+      color: #121816;
+      border-color: #fff;
     }
-
-    .frame object,
-    .frame img {
-      width: 100%;
-      min-width: 640px;
-      height: auto;
-      min-height: 420px;
-      display: block;
-      background: #0d1110;
+    .stage-wrap {
+      position: relative;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
     }
-
-    .hint {
-      margin: 0.65rem 0 0;
-      font-size: 0.8rem;
-      color: rgba(18, 24, 22, 0.5);
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.75rem;
+      background: rgba(16,22,18,0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-
-    .open-full {
-      display: inline-block;
-      margin-top: 0.75rem;
-      font-size: 0.9rem;
+    .toolbar button, .toolbar a {
+      font: inherit;
+      font-size: 0.75rem;
       font-weight: 600;
-      color: var(--brick-deep);
+      min-height: 1.85rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: var(--plans-bar-ink);
+      text-decoration: none;
+      cursor: pointer;
     }
-
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
+    .toolbar button.active {
+      background: rgba(196,92,62,0.25);
+      border-color: var(--plans-accent);
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      header, .panel { animation: none; }
+    .toolbar .sep {
+      width: 1px;
+      height: 1.1rem;
+      background: rgba(255,255,255,0.12);
+      margin: 0 0.15rem;
+    }
+    .toolbar .hint {
+      margin-left: auto;
+      font-size: 0.72rem;
+      color: rgba(232,239,233,0.45);
+      white-space: nowrap;
+    }
+    .stage {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 0%, rgba(61,92,74,0.18), transparent 55%),
+        #0d1110;
+      cursor: grab;
+      touch-action: none;
+    }
+    .stage.panning { cursor: grabbing; }
+    .stage.fullscreen {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+    }
+    .viewport {
+      position: absolute;
+      inset: 0;
+      transform-origin: 0 0;
+      will-change: transform;
+    }
+    .viewport object,
+    .viewport img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: none;
+      background: #faf9f7;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+      pointer-events: none;
+      user-select: none;
+    }
+    details.notes {
+      position: absolute;
+      left: 0.65rem;
+      bottom: 0.65rem;
+      z-index: 5;
+      max-width: min(26rem, calc(100% - 1.3rem));
+      background: rgba(18,24,22,0.92);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      color: var(--plans-bar-ink);
+      font-size: 0.78rem;
+      line-height: 1.4;
+      backdrop-filter: blur(8px);
+    }
+    details.notes summary {
+      cursor: pointer;
+      padding: 0.45rem 0.7rem;
+      font-weight: 600;
+      list-style: none;
+    }
+    details.notes summary::-webkit-details-marker { display: none; }
+    details.notes[open] summary { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    details.notes .body { padding: 0.55rem 0.7rem 0.7rem; color: rgba(232,239,233,0.78); }
+    details.notes code { font-size: 0.72rem; }
+    .legend {
+      position: absolute;
+      right: 0.65rem;
+      bottom: 0.65rem;
+      z-index: 5;
+      max-width: 11rem;
+      padding: 0.5rem 0.65rem;
+      background: rgba(255,255,255,0.94);
+      color: #1a221e;
+      border-radius: 10px;
+      font-size: 0.72rem;
+      line-height: 1.35;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+    .legend strong { display: block; margin-bottom: 0.25rem; font-size: 0.75rem; }
+    .legend li { margin: 0.15rem 0; }
+    .legend ul { margin: 0; padding-left: 1rem; }
+    @media (max-width: 640px) {
+      .toolbar .hint { display: none; }
+      .legend { display: none; }
+      .brand span { display: none; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <p class="eyebrow">Dragalina House · studiu</p>
-      <h1>Planuri A1</h1>
-      <p>Amenajare înghețată · subsol cutie · fără FRAME vechi. Pe telefon: derulează orizontal în cadru pentru zoom pe cote.</p>
-      <nav class="nav" aria-label="Navigare">
-        <a class="primary" href="/viewer/?v=a1">Viewer 3D</a>
-        <a href="/">Site</a>
-        <a href="/outputs/reports/s1_a1_fe_INDEX.md">Structură FE</a>
-        <a href="a1_plan_situatie.svg">Situație A1</a>
-      </nav>
-      <div class="facts" style="margin-top:1.1rem;font-size:0.88rem;color:rgba(18,24,22,0.7);line-height:1.45">
-        <p style="margin:0 0 0.35rem"><strong>Util geometric</strong> (interior, fără terase): parter <strong>38,60 m²</strong> · etaj <strong>37,14 m²</strong> · țintă 37 — NECONFIRMAT autorizare.</p>
-        <p style="margin:0 0 0.35rem"><strong>Gol ≠ trecere:</strong> ex. <code>intrare_etaj</code> gol montaj 100 cm · trecere liberă 88 cm. Scară: clear ~104,5 cm; pier <code>C_E_LAMELE</code> ARH (nu FE) · lamele pe fațada E (plan etaj = 3D).</p>
-        <p style="margin:0"><strong>Sit:</strong> POT anvelopă ~39,8% pe 147 m² · auto Cloșca · pietonal Dragalina · apă curte = REZERVĂ.</p>
-      </div>
+  <div class="app">
+    <header class="top">
+      <div class="brand">Planuri A1 <span>· Dragalina 131</span></div>
+      <a class="primary" href="/viewer/?v=a1">Viewer 3D</a>
+      <a href="/">Site</a>
+      <a id="openSvg" href="a1_plan_parter.svg" target="_blank" rel="noopener">SVG full</a>
     </header>
 
-    <div class="tabs" role="tablist" aria-label="Nivel plan">
-      <button type="button" role="tab" id="tab-p" aria-controls="panel-p" aria-selected="true">Parter</button>
-      <button type="button" role="tab" id="tab-e" aria-controls="panel-e" aria-selected="false">Etaj</button>
-      <button type="button" role="tab" id="tab-s" aria-controls="panel-s" aria-selected="false">Subsol</button>
-      <button type="button" role="tab" id="tab-sit" aria-controls="panel-sit" aria-selected="false">Situație</button>
+    <div class="tabs" role="tablist" aria-label="Plan">
+      <button type="button" role="tab" id="tab-p" data-src="a1_plan_parter.svg" data-legend="parter" aria-selected="true">Parter</button>
+      <button type="button" role="tab" id="tab-e" data-src="a1_plan_etaj.svg" data-legend="etaj" aria-selected="false">Etaj</button>
+      <button type="button" role="tab" id="tab-s" data-src="a1_plan_subsol.svg" data-legend="subsol" aria-selected="false">Subsol</button>
+      <button type="button" role="tab" id="tab-sit" data-src="a1_plan_situatie.svg" data-legend="situatie" aria-selected="false">Situație</button>
+      <button type="button" role="tab" id="tab-fund" data-src="a1_plan_situatie_fundatii.svg" data-legend="fundatii" aria-selected="false">Situație · Fundații</button>
     </div>
 
-    <section class="panel active" id="panel-p" role="tabpanel" aria-labelledby="tab-p">
-      <h2>Parter</h2>
-      <div class="frame">
-        <object data="a1_plan_parter.svg" type="image/svg+xml" title="Plan parter A1">
-          <img src="a1_plan_parter.svg" alt="Plan parter A1" />
-        </object>
+    <div class="stage-wrap">
+      <div class="toolbar" aria-label="Instrumente plan">
+        <button type="button" id="btnFit">Încadrează</button>
+        <button type="button" id="btnZoomIn">+</button>
+        <button type="button" id="btnZoomOut">−</button>
+        <button type="button" id="btnFull">Ecran complet</button>
+        <span class="sep" aria-hidden="true"></span>
+        <button type="button" class="mode active" data-mode="amenajare" title="Desen complet">Amenajare</button>
+        <button type="button" class="mode" data-mode="cote" title="Accent pe cote (studiu)">Cote</button>
+        <button type="button" class="mode" data-mode="structura" title="Accent pe structură (studiu)">Structură</button>
+        <span class="hint" id="zoomLabel">100%</span>
       </div>
-      <a class="open-full" href="a1_plan_parter.svg">Deschide SVG full →</a>
-      <p class="hint">Unități cm · ARH_STUDIU · nu autorizabil</p>
-    </section>
-
-    <section class="panel" id="panel-e" role="tabpanel" aria-labelledby="tab-e" hidden>
-      <h2>Etaj</h2>
-      <div class="frame">
-        <object data="a1_plan_etaj.svg" type="image/svg+xml" title="Plan etaj A1">
-          <img src="a1_plan_etaj.svg" alt="Plan etaj A1" />
-        </object>
+      <div class="stage" id="stage" tabindex="0" aria-label="Plan — trage pentru deplasare, rotiță pentru zoom">
+        <div class="viewport" id="viewport">
+          <object id="planObj" data="a1_plan_parter.svg" type="image/svg+xml" title="Plan A1">
+            <img id="planImg" src="a1_plan_parter.svg" alt="Plan A1" />
+          </object>
+        </div>
+        <details class="notes">
+          <summary>Note studiu (extinde)</summary>
+          <div class="body">
+            <p style="margin:0 0 0.4rem"><strong>Util geometric</strong> (interior, fără terase): parter <strong>38,60 m²</strong> · etaj <strong>37,14 m²</strong> · țintă 37 — NECONFIRMAT.</p>
+            <p style="margin:0 0 0.4rem"><strong>Gol ≠ trecere:</strong> ex. <code>intrare_etaj</code> gol 100 · trecere 88. Scară clear ~104,5; pier <code>C_E_LAMELE</code> ARH.</p>
+            <p style="margin:0"><strong>Sit:</strong> POT anvelopă ~39,8% / 147 m² · auto Cloșca · pietonal Dragalina · apă = REZERVĂ. Nu autorizabil.</p>
+          </div>
+        </details>
+        <aside class="legend" id="legend">
+          <strong>Legendă</strong>
+          <ul id="legendList"></ul>
+        </aside>
       </div>
-      <a class="open-full" href="a1_plan_etaj.svg">Deschide SVG full →</a>
-      <p class="hint">Unități cm · ARH_STUDIU · nu autorizabil</p>
-    </section>
-
-    <section class="panel" id="panel-s" role="tabpanel" aria-labelledby="tab-s" hidden>
-      <h2>Subsol</h2>
-      <div class="frame">
-        <object data="a1_plan_subsol.svg" type="image/svg+xml" title="Plan subsol A1">
-          <img src="a1_plan_subsol.svg" alt="Plan subsol A1" />
-        </object>
-      </div>
-      <a class="open-full" href="a1_plan_subsol.svg">Deschide SVG full →</a>
-      <p class="hint">Cutie beci · retenție · scară acces</p>
-    </section>
-
-    <section class="panel" id="panel-sit" role="tabpanel" aria-labelledby="tab-sit" hidden>
-      <h2>Situație</h2>
-      <div class="frame">
-        <object data="a1_plan_situatie.svg" type="image/svg+xml" title="Plan situație A1">
-          <img src="a1_plan_situatie.svg" alt="Plan situație A1" />
-        </object>
-      </div>
-      <a class="open-full" href="a1_plan_situatie.svg">Deschide SVG full →</a>
-      <p class="hint">Hotar CF ≠ gard · porți · puț · terasă · POT anvelopă — <a href="../reports/s1_a1_site_plan_v01.md">note</a></p>
-    </section>
+    </div>
   </div>
 
   <script>
-    const tabs = [...document.querySelectorAll('[role="tab"]')];
-    const panels = {
-      "tab-p": document.getElementById("panel-p"),
-      "tab-e": document.getElementById("panel-e"),
-      "tab-s": document.getElementById("panel-s"),
-      "tab-sit": document.getElementById("panel-sit"),
+    const legends = {
+      parter: ["Pereți + mobilier", "Cote clear cameră", "Scară / palier", "Terasă ≠ util"],
+      etaj: ["Compartimentare etaj", "Gol scară", "Lamele fațadă E", "Terasă ≠ util"],
+      subsol: ["Cutie + retenții", "Puț / scară beci", "Gol ușă ≠ clear scară", "Camere + m²"],
+      situatie: ["Hotar CF ≠ gard", "Amprentă + puț", "Porți / alee / auto", "Retrageri cotate"],
+      fundatii: ["Tălpi / pad-uri", "Retenții beci", "Hotar CF", "Retrageri → hotar"],
     };
-    function select(id) {
-      for (const t of tabs) {
-        const on = t.id === id;
-        t.setAttribute("aria-selected", on ? "true" : "false");
-        const p = panels[t.id];
-        if (!p) continue;
-        p.classList.toggle("active", on);
-        p.hidden = !on;
+
+    const stage = document.getElementById("stage");
+    const viewport = document.getElementById("viewport");
+    const planObj = document.getElementById("planObj");
+    const planImg = document.getElementById("planImg");
+    const openSvg = document.getElementById("openSvg");
+    const zoomLabel = document.getElementById("zoomLabel");
+    const legendList = document.getElementById("legendList");
+    const tabs = [...document.querySelectorAll('[role="tab"]')];
+
+    let src = "a1_plan_parter.svg";
+    let scale = 1;
+    let tx = 0;
+    let ty = 0;
+    let natural = { w: 1200, h: 900 };
+    let dragging = false;
+    let last = { x: 0, y: 0 };
+    let mode = "amenajare";
+
+    function setLegend(key) {
+      legendList.innerHTML = (legends[key] || []).map((t) => `<li>${t}</li>`).join("");
+    }
+    setLegend("parter");
+
+    function applyTransform() {
+      viewport.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+      zoomLabel.textContent = `${Math.round(scale * 100)}%`;
+      applyModeFilter();
+    }
+
+    function applyModeFilter() {
+      // Studiu: filtre CSS pe SVG rasterizat în object — opacitate pe viewport
+      if (mode === "cote") {
+        viewport.style.filter = "contrast(1.15) saturate(0.55) brightness(1.05)";
+      } else if (mode === "structura") {
+        viewport.style.filter = "grayscale(0.35) contrast(1.2)";
+      } else {
+        viewport.style.filter = "none";
       }
     }
-    for (const t of tabs) t.addEventListener("click", () => select(t.id));
+
+    function fit() {
+      const sw = stage.clientWidth;
+      const sh = stage.clientHeight;
+      const pad = 24;
+      const sx = (sw - pad * 2) / natural.w;
+      const sy = (sh - pad * 2) / natural.h;
+      scale = Math.max(0.15, Math.min(sx, sy, 2.5));
+      tx = (sw - natural.w * scale) / 2;
+      ty = (sh - natural.h * scale) / 2;
+      applyTransform();
+    }
+
+    function measureNatural() {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          natural = { w: img.naturalWidth || 1200, h: img.naturalHeight || 900 };
+          resolve();
+        };
+        img.onerror = () => resolve();
+        img.src = src + (src.includes("?") ? "&" : "?") + "t=" + Date.now();
+      });
+    }
+
+    async function loadPlan(nextSrc, legendKey) {
+      src = nextSrc;
+      openSvg.href = src;
+      planObj.data = src;
+      planImg.src = src;
+      await measureNatural();
+      fit();
+      setLegend(legendKey || "parter");
+    }
+
+    function selectTab(btn) {
+      for (const t of tabs) t.setAttribute("aria-selected", t === btn ? "true" : "false");
+      loadPlan(btn.dataset.src, btn.dataset.legend);
+    }
+
+    for (const t of tabs) t.addEventListener("click", () => selectTab(t));
+
+    document.getElementById("btnFit").onclick = () => fit();
+    document.getElementById("btnZoomIn").onclick = () => {
+      scale = Math.min(4, scale * 1.2);
+      applyTransform();
+    };
+    document.getElementById("btnZoomOut").onclick = () => {
+      scale = Math.max(0.15, scale / 1.2);
+      applyTransform();
+    };
+    document.getElementById("btnFull").onclick = () => {
+      stage.classList.toggle("fullscreen");
+      requestAnimationFrame(() => fit());
+    };
+
+    for (const b of document.querySelectorAll(".mode")) {
+      b.addEventListener("click", () => {
+        for (const x of document.querySelectorAll(".mode")) x.classList.remove("active");
+        b.classList.add("active");
+        mode = b.dataset.mode;
+        applyModeFilter();
+      });
+    }
+
+    stage.addEventListener("pointerdown", (e) => {
+      if (e.target.closest("details") || e.target.closest(".legend")) return;
+      dragging = true;
+      stage.classList.add("panning");
+      last = { x: e.clientX, y: e.clientY };
+      stage.setPointerCapture(e.pointerId);
+    });
+    stage.addEventListener("pointermove", (e) => {
+      if (!dragging) return;
+      tx += e.clientX - last.x;
+      ty += e.clientY - last.y;
+      last = { x: e.clientX, y: e.clientY };
+      applyTransform();
+    });
+    stage.addEventListener("pointerup", () => {
+      dragging = false;
+      stage.classList.remove("panning");
+    });
+    stage.addEventListener("pointercancel", () => {
+      dragging = false;
+      stage.classList.remove("panning");
+    });
+    stage.addEventListener(
+      "wheel",
+      (e) => {
+        e.preventDefault();
+        const rect = stage.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+        const before = scale;
+        const factor = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+        scale = Math.min(4, Math.max(0.15, scale * factor));
+        tx = mx - ((mx - tx) * scale) / before;
+        ty = my - ((my - ty) * scale) / before;
+        applyTransform();
+      },
+      { passive: false }
+    );
+
+    window.addEventListener("resize", () => fit());
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && stage.classList.contains("fullscreen")) {
+        stage.classList.remove("fullscreen");
+        fit();
+      }
+      if (e.key === "0") fit();
+      if (e.key === "+" || e.key === "=") {
+        scale = Math.min(4, scale * 1.15);
+        applyTransform();
+      }
+      if (e.key === "-" || e.key === "_") {
+        scale = Math.max(0.15, scale / 1.15);
+        applyTransform();
+      }
+    });
+
+    loadPlan(src, "parter");
   </script>
 </body>
 </html>

@@ -203,13 +203,14 @@
 <line x1="1307.7899999999997" y1="1145.7549999999999" x2="1307.7899999999997" y2="1360.755" stroke="#111" stroke-width="1.15"/>
 <line x1="1304.7899999999997" y1="1145.7549999999999" x2="1310.7899999999997" y2="1145.7549999999999" stroke="#111" stroke-width="1.5"/>
 <line x1="1304.7899999999997" y1="1360.755" x2="1310.7899999999997" y2="1360.755" stroke="#111" stroke-width="1.5"/>
-<text x="1321.7899999999997" y="1253.255" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif" transform="rotate(-90 1321.7899999999997 1253.255)">100 gol</text>
+<text x="1321.7899999999997" y="1253.255" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif" transform="rotate(-90 1321.7899999999997 1253.255)">100 gol ușă</text>
+<text x="1361.1899999999998" y="1253.255" text-anchor="middle" font-size="8" font-weight="600" fill="#1565c0" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">≠ clear scară</text>
 <line x1="1313.245" y1="1417.505" x2="1313.245" y2="1436.505" stroke="#111" stroke-width="1"/>
 <line x1="1528.245" y1="1417.505" x2="1528.245" y2="1436.505" stroke="#111" stroke-width="1"/>
 <line x1="1313.245" y1="1436.505" x2="1528.245" y2="1436.505" stroke="#111" stroke-width="1.15"/>
 <line x1="1313.245" y1="1433.505" x2="1313.245" y2="1439.505" stroke="#111" stroke-width="1.5"/>
 <line x1="1528.245" y1="1433.505" x2="1528.245" y2="1439.505" stroke="#111" stroke-width="1.5"/>
-<text x="1420.745" y="1450.505" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">100 clear</text>
+<text x="1420.745" y="1450.505" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">100 clear scară</text>
 <line x1="100" y1="77" x2="100" y2="28" stroke="#111" stroke-width="1"/>
 <line x1="1562" y1="77" x2="1562" y2="28" stroke="#111" stroke-width="1"/>
 <line x1="100" y1="28" x2="1562" y2="28" stroke="#111" stroke-width="1.15"/>
