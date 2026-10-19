@@ -1,5 +1,11 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.197: viewer V3 — selecție cote + coordonare
+
+- Click 3D → panou util / gol≠trecere / stâlp / grindă.
+- Toggle Coordonare (goluri/stâlpi/grinzi evidențiate).
+- Pack `a1_select_v01.json` + avertismente; planuri index cu util + notă uși.
+
 ## 2026-10-19 — A1.196: viewer V2 — secțiuni ClipPlane + plan orto
 
 - S1 Acces beci · S2 Casa scării · S3 Camere+acoperiș — ClipPlane pe toate straturile + PlaneHelper.

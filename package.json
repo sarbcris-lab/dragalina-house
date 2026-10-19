@@ -55,7 +55,8 @@
     "export:architect": "node src/build_a1_architecture.mjs && python src/export_architect_package.py",
     "restore:r7g": "node tmp_restore_r7g.mjs && npm run build:v46",
     "viewer": "npx --yes serve . -p 5173",
-    "audit:a1:r1": "node src/audit_a1_r1_parcel_basement_v01.mjs"
+    "audit:a1:r1": "node src/audit_a1_r1_parcel_basement_v01.mjs",
+    "export:a1:select": "node src/export_a1_select_pack_v01.mjs"
   },
   "engines": {
     "node": ">=18"

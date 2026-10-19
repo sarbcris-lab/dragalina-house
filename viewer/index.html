@@ -177,6 +177,15 @@
         <button type="button" id="btnSecCamere">S3 · Camere+acoperiș</button>
       </div>
       <div class="meta" id="sectionDims" style="margin:0.4rem 0 0;color:#c4b49a;font-size:0.78rem;line-height:1.4"></div>
+      <div class="row">
+        <button type="button" id="btnCoord">Coordonare</button>
+        <button type="button" id="btnWarn">Avertismente</button>
+      </div>
+      <div class="meta" id="warnPanel" hidden style="margin:0.5rem 0;padding:0.55rem 0.65rem;border:1px solid rgba(226,177,74,0.35);border-radius:10px;background:rgba(226,177,74,0.08);color:#e2b14a;font-size:0.78rem;line-height:1.4"></div>
+      <div class="meta" id="selectPanel" style="margin:0.55rem 0 0;padding:0.65rem 0.75rem;border:1px solid rgba(228,235,230,0.14);border-radius:10px;background:rgba(255,255,255,0.03);font-size:0.8rem;line-height:1.45;min-height:3rem">
+        <strong style="color:#fff">Selecție</strong>
+        <div id="selectBody" style="margin-top:0.35rem;color:#9aaba0">Click pe un element în 3D (cameră / gol / stâlp / grindă).</div>
+      </div>
       <div class="tabs" id="tabsPlans">
         <a href="/outputs/plans/a1_plan_parter.svg" target="_blank" rel="noopener"><strong>Plan parter</strong></a>
         <a href="/outputs/plans/a1_plan_etaj.svg" target="_blank" rel="noopener"><strong>Plan etaj</strong></a>
@@ -1267,7 +1276,7 @@
       tip.className = "meta";
       tip.style.color = "#e8a87c";
       tip.innerHTML =
-        "<strong>A1.196:</strong> V2 — secțiuni S1–S3 (ClipPlane) · Plan orto · default Ansamblu P+E.";
+        "<strong>A1.197:</strong> V3 — click cote · gol≠trecere · coordonare · avertismente.";
       document.getElementById("meta")?.after(tip);
     }
     document.getElementById("btnClosed").onclick = () => {
@@ -1296,6 +1305,287 @@
     document.getElementById("btnSecBeci").onclick = () => setSection("beci");
     document.getElementById("btnSecScara").onclick = () => setSection("scara");
     document.getElementById("btnSecCamere").onclick = () => setSection("camere");
+
+
+    // —— V3: select pack + raycast + coordonare
+    let selectPack = null;
+    let coordMode = false;
+    let warnOpen = false;
+    let selectedObj = null;
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    const selectEmissive = new Map();
+
+    try {
+      const selRes = await fetch("/viewer/data/a1_select_v01.json?t=" + Date.now(), { cache: "no-store" });
+      if (selRes.ok) selectPack = await selRes.json();
+    } catch (_) {
+      selectPack = null;
+    }
+
+    function setSelectHtml(html) {
+      const body = document.getElementById("selectBody");
+      if (body) body.innerHTML = html;
+    }
+    function clearSelectionHighlight() {
+      for (const [obj, prev] of selectEmissive) {
+        if (obj.material && prev != null) {
+          obj.material.emissive?.setHex?.(prev);
+          if (obj.material.emissiveIntensity != null) obj.material.emissiveIntensity = 0;
+        }
+      }
+      selectEmissive.clear();
+      selectedObj = null;
+    }
+    function highlightObj(obj) {
+      clearSelectionHighlight();
+      if (!obj?.material) return;
+      selectedObj = obj;
+      const mat = obj.material;
+      if (mat.emissive) {
+        selectEmissive.set(obj, mat.emissive.getHex());
+        mat.emissive.setHex(0xb55238);
+        mat.emissiveIntensity = 0.45;
+      }
+    }
+    function findRoomAtLocal(lxCm, lyCm, level) {
+      if (!selectPack) return null;
+      const list =
+        level < 0
+          ? selectPack.basement_rooms || []
+          : (selectPack.rooms || []).filter((r) => r.level === level);
+      for (const r of list) {
+        const d = r.dims_cm;
+        if (!d) continue;
+        if (lxCm >= d.x && lxCm <= d.x + d.dx && lyCm >= d.y && lyCm <= d.y + d.dy) return r;
+      }
+      return null;
+    }
+    function siteToApproxLocalCm(siteX, siteYNegZ) {
+      // Rough inverse: building ~ site origin from NW corner of volume meta
+      const env = volume.meta?.envelope_m || {};
+      const corners = volume.meta?.corners_site_m || volume.placement?.corners;
+      // Prefer footprint from mesh teren/amprenta — fallback linear
+      const ew = (env.ew || 6.8) * 100;
+      const ns = (env.ns || 8.6) * 100;
+      // Use column C_NW if present in pack
+      const cnw = selectPack?.columns?.find((c) => c.id === "C_NW");
+      // Without exact toSite inverse, match by opening/column ids primarily; room hit uses mesh name heuristics
+      return { ew, ns, cnw };
+    }
+    function describeMesh(name) {
+      const lv = selectPack?.levels_cm || {};
+      if (!name) return null;
+      if (name.startsWith("gol_") || name.startsWith("usa_")) {
+        const oid = name.replace(/^gol_/, "").replace(/^usa_/, "");
+        const o =
+          (selectPack?.openings || []).find((x) => x.id === oid || name.includes(x.id)) ||
+          (selectPack?.openings || []).find((x) => name.includes(x.id));
+        if (o) {
+          return (
+            "<div><strong>Gol / ușă</strong> <code>" +
+            o.id +
+            "</code></div>" +
+            "<div>Gol montaj: <strong>" +
+            (o.gol_cm ?? "—") +
+            " cm</strong>" +
+            (o.passage_cm != null
+              ? " · Trecere liberă: <strong>" + o.passage_cm + " cm</strong>"
+              : "") +
+            (o.frame_cm != null ? " · toc ~" + o.frame_cm + " cm" : "") +
+            "</div>" +
+            (o.mismatch
+              ? "<div style='color:#e2b14a'>⚠ gol ≠ trecere — nu eticheta o singură valoare</div>"
+              : "") +
+            (o.note ? "<div style='opacity:.8'>" + o.note + "</div>" : "")
+          );
+        }
+      }
+      if (name.startsWith("stalp_") || name.includes("C_")) {
+        const cid = (selectPack?.columns || []).find((c) => name.includes(c.id));
+        if (cid) {
+          return (
+            "<div><strong>Stâlp</strong> <code>" +
+            cid.id +
+            "</code></div>" +
+            "<div>Secțiune: <strong>" +
+            cid.section_cm +
+            "</strong>" +
+            (cid.protrusion_cm != null ? " · proem. în cameră " + cid.protrusion_cm + " cm" : "") +
+            "</div>" +
+            (cid.thermal ? "<div>Thermal: " + cid.thermal + "</div>" : "") +
+            (cid.note ? "<div style='opacity:.8'>" + cid.note + "</div>" : "") +
+            "<div style='opacity:.75;margin-top:.25rem'>Contact geometric ≠ verificare rezistență.</div>"
+          );
+        }
+      }
+      if (name.includes("grinda") || name.includes("centura") || name.includes("B_")) {
+        return (
+          "<div><strong>Grindă / centură</strong> <code>" +
+          name +
+          "</code></div>" +
+          "<div>Clear sub grindă P: <strong>" +
+          (lv.clear_under_beam ?? 255) +
+          " cm</strong> · drop tipic " +
+          (lv.beam_drop ?? 25) +
+          " cm</div>" +
+          "<div>Beci clear: <strong>" +
+          (lv.basement_clear ?? 220) +
+          " cm</strong> (S flush)</div>"
+        );
+      }
+      // Floor / room finishes — try match by id fragment
+      const roomId = (selectPack?.rooms || [])
+        .concat(selectPack?.basement_rooms || [])
+        .find((r) => name.includes(r.id));
+      if (roomId) {
+        return (
+          "<div><strong>" +
+          (roomId.label || roomId.id) +
+          "</strong> · " +
+          (roomId.level_name || "") +
+          "</div>" +
+          "<div>Util net: <strong>" +
+          roomId.net_m2 +
+          " m²</strong>" +
+          (roomId.column_protrusion_m2
+            ? " (proem. stâlpi −" + roomId.column_protrusion_m2 + " m²)"
+            : "") +
+          "</div>" +
+          (roomId.dims_cm
+            ? "<div>Gabarit: " +
+              roomId.dims_cm.dx +
+              " × " +
+              roomId.dims_cm.dy +
+              " cm</div>"
+            : "") +
+          "<div>Clear: sub grindă " +
+          (lv.clear_under_beam ?? 255) +
+          " · sub placă " +
+          (lv.clear_under_slab ?? 280) +
+          " · fals " +
+          (lv.clear_to_false_ceiling ?? 274) +
+          " cm</div>"
+        );
+      }
+      return (
+        "<div><code>" +
+        name +
+        "</code></div>" +
+        "<div>FF→FF " +
+        (lv.ff_to_ff ?? 307) +
+        " · clear grindă " +
+        (lv.clear_under_beam ?? 255) +
+        " cm</div>"
+      );
+    }
+    function onCanvasClick(ev) {
+      const rect = canvas.getBoundingClientRect();
+      pointer.x = ((ev.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((ev.clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(root.children, true);
+      const hit = hits.find((h) => h.object?.visible && h.object.name && h.object.name !== "section_helper");
+      if (!hit) {
+        clearSelectionHighlight();
+        setSelectHtml("Click pe un element în 3D (cameră / gol / stâlp / grindă).");
+        return;
+      }
+      let obj = hit.object;
+      while (obj && !obj.name && obj.parent) obj = obj.parent;
+      highlightObj(obj);
+      const html = describeMesh(obj.name);
+      setSelectHtml(html || "<code>" + obj.name + "</code>");
+    }
+    canvas.addEventListener("click", onCanvasClick);
+
+    function applyCoordMode(on) {
+      coordMode = on;
+      document.getElementById("btnCoord")?.classList.toggle("active", on);
+      root.traverse((o) => {
+        if (!o.isMesh || !o.material) return;
+        const n = o.name || "";
+        const isGol = n.startsWith("gol_") || n.startsWith("usa_");
+        const isCol = n.startsWith("stalp_") || n.startsWith("col_facade_");
+        const isBeam = n.includes("grinda") || n.includes("centura");
+        if (!on) {
+          if (o.userData._coordOp != null) {
+            o.material.opacity = o.userData._coordOp;
+            o.material.transparent = o.userData._coordTr;
+            delete o.userData._coordOp;
+            delete o.userData._coordTr;
+          }
+          if (o.userData._coordEmi != null && o.material.emissive) {
+            o.material.emissive.setHex(o.userData._coordEmi);
+            o.material.emissiveIntensity = 0;
+            delete o.userData._coordEmi;
+          }
+          return;
+        }
+        if (isGol) {
+          o.userData._coordEmi = o.material.emissive?.getHex?.() ?? 0;
+          if (o.material.emissive) {
+            o.material.emissive.setHex(0x3d9eff);
+            o.material.emissiveIntensity = 0.55;
+          }
+        } else if (isCol) {
+          o.userData._coordEmi = o.material.emissive?.getHex?.() ?? 0;
+          if (o.material.emissive) {
+            o.material.emissive.setHex(0xb55238);
+            o.material.emissiveIntensity = 0.35;
+          }
+        } else if (isBeam) {
+          o.userData._coordEmi = o.material.emissive?.getHex?.() ?? 0;
+          if (o.material.emissive) {
+            o.material.emissive.setHex(0xe2b14a);
+            o.material.emissiveIntensity = 0.3;
+          }
+        } else if (o.userData.layer_umplutura) {
+          o.userData._coordOp = o.material.opacity ?? 1;
+          o.userData._coordTr = o.material.transparent;
+          o.material.transparent = true;
+          o.material.opacity = 0.28;
+        }
+      });
+      setViewHint(
+        on
+          ? "Coordonare: goluri albastru · stâlpi cărămidă · grinzi galben · zidărie atenuată. Click = cote."
+          : ""
+      );
+    }
+
+    function renderWarnings() {
+      const el = document.getElementById("warnPanel");
+      if (!el || !selectPack) return;
+      el.hidden = !warnOpen;
+      if (!warnOpen) return;
+      const areas = selectPack.areas || {};
+      el.innerHTML =
+        "<strong>Avertismente cote</strong><br/>" +
+        "Util P <strong>" +
+        areas.useful_parter_m2 +
+        "</strong> · E <strong>" +
+        areas.useful_etaj_m2 +
+        "</strong> m²<br/>" +
+        (selectPack.warnings || []).map((w) => "• [" + w.sev + "] " + w.text).join("<br/>");
+    }
+
+    document.getElementById("btnCoord").onclick = () => applyCoordMode(!coordMode);
+    document.getElementById("btnWarn").onclick = () => {
+      warnOpen = !warnOpen;
+      document.getElementById("btnWarn")?.classList.toggle("active", warnOpen);
+      renderWarnings();
+    };
+    if (selectPack) {
+      setSelectHtml(
+        "Util P <strong>" +
+          selectPack.areas.useful_parter_m2 +
+          "</strong> / E <strong>" +
+          selectPack.areas.useful_etaj_m2 +
+          "</strong> m² · click element pentru cote. Gol≠trecere evidențiat la uși."
+      );
+    }
+
 
     // Drawer controale pe mobil
     const panel = document.getElementById("panel");
