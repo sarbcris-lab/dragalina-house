@@ -1,0 +1,215 @@
+{
+  "status": "hint_nu_dt",
+  "disclaimer": "Nu e plan de armare. Structurist confirmă / înlocuiește.",
+  "columns": [
+    {
+      "id": "C_NW",
+      "section": "30×30",
+      "As_min_mm2": 180,
+      "As_p100_hint_mm2": 900,
+      "long_EC2": "4φ14",
+      "long_P100_zona": "8φ16",
+      "stirrups_hint": "φ8 @ 11 cm zonă / @ 20 cm mijloc (ordin)"
+    },
+    {
+      "id": "C_N_MID",
+      "section": "40×30",
+      "As_min_mm2": 240,
+      "As_p100_hint_mm2": 1200,
+      "long_EC2": "4φ14",
+      "long_P100_zona": "8φ16",
+      "stirrups_hint": "φ8 @ 11 cm zonă / @ 20 cm mijloc (ordin)"
+    },
+    {
+      "id": "C_NE",
+      "section": "30×30",
+      "As_min_mm2": 180,
+      "As_p100_hint_mm2": 900,
+      "long_EC2": "4φ14",
+      "long_P100_zona": "8φ16",
+      "stirrups_hint": "φ8 @ 11 cm zonă / @ 20 cm mijloc (ordin)"
+    },
+    {
+      "id": "C_W_MID",
+      "section": "30×40",
+      "As_min_mm2": 240,
+      "As_p100_hint_mm2": 1200,
+      "long_EC2": "4φ14",
+      "long_P100_zona": "8φ16",
+      "stirrups_hint": "φ8 @ 11 cm zonă / @ 20 cm mijloc (ordin)"
+    },
+    {
+      "id": "C_W_DORM",
+      "section": "30×30",
+      "As_min_mm2": 180,
+      "As_p100_hint_mm2": 900,
+      "long_EC2": "4φ14",
+      "long_P100_zona": "8φ16",
+      "stirrups_hint": "φ8 @ 11 cm zonă / @ 20 cm mijloc (ordin)"
+    },
+    {
+      "id": "C_S_DORM_E",
+      "section": "30×30",
+      "As_min_mm2": 180,
+      "As_p100_hint_mm2": 900,
+      "long_EC2": "4φ14",
+      "long_P100_zona": "8φ16",
+      "stirrups_hint": "φ8 @ 11 cm zonă / @ 20 cm mijloc (ordin)"
+    },
+    {
+      "id": "C_E_PAL",
+      "section": "30×40",
+      "As_min_mm2": 240,
+      "As_p100_hint_mm2": 1200,
+      "long_EC2": "4φ14",
+      "long_P100_zona": "8φ16",
+      "stirrups_hint": "φ8 @ 11 cm zonă / @ 20 cm mijloc (ordin)"
+    },
+    {
+      "id": "C_CASA_SCARA",
+      "section": "30×40",
+      "As_min_mm2": 240,
+      "As_p100_hint_mm2": 1200,
+      "long_EC2": "4φ14",
+      "long_P100_zona": "8φ16",
+      "stirrups_hint": "φ8 @ 11 cm zonă / @ 20 cm mijloc (ordin)"
+    },
+    {
+      "id": "C_S_INTRARE_W",
+      "section": "40×30",
+      "As_min_mm2": 240,
+      "As_p100_hint_mm2": 1200,
+      "long_EC2": "4φ14",
+      "long_P100_zona": "8φ16",
+      "stirrups_hint": "φ8 @ 11 cm zonă / @ 20 cm mijloc (ordin)"
+    },
+    {
+      "id": "C_S_INTRARE_E",
+      "section": "30×30",
+      "As_min_mm2": 180,
+      "As_p100_hint_mm2": 900,
+      "long_EC2": "4φ14",
+      "long_P100_zona": "8φ16",
+      "stirrups_hint": "φ8 @ 11 cm zonă / @ 20 cm mijloc (ordin)"
+    }
+  ],
+  "beams": [
+    {
+      "id": "B_N",
+      "section": "30×40",
+      "M_kNm": 17.5,
+      "As_mm2": 124,
+      "bottom_hint": "4φ16",
+      "top_hint": "2φ16 (continuitate ordin)",
+      "stirrups": "φ8 @ 15/25 cm (ordin)"
+    },
+    {
+      "id": "B_N_TO_NE",
+      "section": "30×40",
+      "M_kNm": 19.3,
+      "As_mm2": 137,
+      "bottom_hint": "4φ16",
+      "top_hint": "2φ16 (continuitate ordin)",
+      "stirrups": "φ8 @ 15/25 cm (ordin)"
+    },
+    {
+      "id": "B_W",
+      "section": "30×40",
+      "M_kNm": 32.3,
+      "As_mm2": 229,
+      "bottom_hint": "4φ16",
+      "top_hint": "2φ16 (continuitate ordin)",
+      "stirrups": "φ8 @ 15/25 cm (ordin)"
+    },
+    {
+      "id": "B_X_MID",
+      "section": "30×40",
+      "M_kNm": 86.3,
+      "As_mm2": 613,
+      "bottom_hint": "4φ16",
+      "top_hint": "2φ16 (continuitate ordin)",
+      "stirrups": "φ8 @ 15/25 cm (ordin)"
+    },
+    {
+      "id": "B_CASA_SCARA",
+      "section": "30×40",
+      "M_kNm": 10.4,
+      "As_mm2": 74,
+      "bottom_hint": "4φ16",
+      "top_hint": "2φ16 (continuitate ordin)",
+      "stirrups": "φ8 @ 15/25 cm (ordin)"
+    },
+    {
+      "id": "B_Y645",
+      "section": "30×40",
+      "M_kNm": 18.8,
+      "As_mm2": 133,
+      "bottom_hint": "4φ16",
+      "top_hint": "2φ16 (continuitate ordin)",
+      "stirrups": "φ8 @ 15/25 cm (ordin)"
+    },
+    {
+      "id": "B_Y820",
+      "section": "30×40",
+      "M_kNm": 7,
+      "As_mm2": 50,
+      "bottom_hint": "4φ16",
+      "top_hint": "2φ16 (continuitate ordin)",
+      "stirrups": "φ8 @ 15/25 cm (ordin)"
+    },
+    {
+      "id": "B_Y410",
+      "section": "30×40",
+      "M_kNm": 84.5,
+      "As_mm2": 600,
+      "bottom_hint": "4φ16",
+      "top_hint": "2φ16 (continuitate ordin)",
+      "stirrups": "φ8 @ 15/25 cm (ordin)"
+    },
+    {
+      "id": "B_E",
+      "section": "30×40",
+      "M_kNm": 18.5,
+      "As_mm2": 131,
+      "bottom_hint": "4φ16",
+      "top_hint": "2φ16 (continuitate ordin)",
+      "stirrups": "φ8 @ 15/25 cm (ordin)"
+    },
+    {
+      "id": "B_E_S",
+      "section": "30×40",
+      "M_kNm": 21.5,
+      "As_mm2": 153,
+      "bottom_hint": "4φ16",
+      "top_hint": "2φ16 (continuitate ordin)",
+      "stirrups": "φ8 @ 15/25 cm (ordin)"
+    },
+    {
+      "id": "B_S_SE",
+      "section": "30×40",
+      "M_kNm": 1.8,
+      "As_mm2": 14,
+      "bottom_hint": "4φ16",
+      "top_hint": "2φ16 (continuitate ordin)",
+      "stirrups": "φ8 @ 15/25 cm (ordin)"
+    }
+  ],
+  "slab": {
+    "h_cm": 15,
+    "As_min_mm2_m": 156,
+    "mesh_hint": "φ10 @ 15 cm ambele direcții (sau plasa echivalent) — ordin",
+    "top_over_supports": "φ10 @ 15 cm pe reazeme / centuri"
+  },
+  "retaining": {
+    "t_cm": 30,
+    "H_m": 2.5,
+    "M_kNm_m": 18.9,
+    "As_vert_mm2_m": 186,
+    "hint": "φ12 @ 15 cm vertical interior + φ10 @ 20 orizontal — ordin"
+  },
+  "footing": {
+    "strip_cm": 80,
+    "As_bottom_hint": "φ12 @ 15 cm transversal + φ10 @ 20 longitudinal — ordin",
+    "pad_hint": "φ12 plasă inferioară ambele direcții @ 15 cm — ordin"
+  }
+}

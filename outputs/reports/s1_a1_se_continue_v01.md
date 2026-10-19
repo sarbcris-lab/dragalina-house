@@ -20,7 +20,7 @@
 
 | # | Acțiune | Livrabil |
 |---|---------|----------|
-| 1 | Armare min hint stâlpi/grinzi/retenție/talpă (As, etrieri tip) | `s1_a1_rebar_hint_v01` |
+| 1 | ~~Armare min hint~~ | `s1_a1_rebar_hint_v01` **DONE** |
 | 2 | Sensibilitate fundații q=180/221/250 | tabel |
 | 3 | Detaliu nod C_E_PAL + întoarsă (As/ancorare ordin) | notă |
 | 4 | Șarpantă: listă piese + cuie/șuruburi tip | BOM studiu |
