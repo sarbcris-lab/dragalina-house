@@ -191,11 +191,12 @@
         <a class="primary" href="/viewer/?v=a1">Viewer 3D</a>
         <a href="/">Site</a>
         <a href="/outputs/reports/s1_a1_fe_INDEX.md">Structură FE</a>
-        <a href="a0_plan_situatie.svg">Situație</a>
+        <a href="a1_plan_situatie.svg">Situație A1</a>
       </nav>
       <div class="facts" style="margin-top:1.1rem;font-size:0.88rem;color:rgba(18,24,22,0.7);line-height:1.45">
         <p style="margin:0 0 0.35rem"><strong>Util geometric</strong> (interior, fără terase): parter <strong>38,60 m²</strong> · etaj <strong>37,14 m²</strong> · țintă 37 — NECONFIRMAT autorizare.</p>
-        <p style="margin:0"><strong>Gol ≠ trecere:</strong> ex. <code>intrare_etaj</code> gol montaj 100 cm · trecere liberă 88 cm. Scară: clear ~104,5 cm; la pier lamele ~95,7 cm.</p>
+        <p style="margin:0 0 0.35rem"><strong>Gol ≠ trecere:</strong> ex. <code>intrare_etaj</code> gol montaj 100 cm · trecere liberă 88 cm. Scară: clear ~104,5 cm; la pier lamele ~95,7 cm.</p>
+        <p style="margin:0"><strong>Sit:</strong> POT anvelopă ~39,8% pe 147 m² · auto Cloșca · pietonal Dragalina · apă curte = REZERVĂ.</p>
       </div>
     </header>
 
@@ -203,6 +204,7 @@
       <button type="button" role="tab" id="tab-p" aria-controls="panel-p" aria-selected="true">Parter</button>
       <button type="button" role="tab" id="tab-e" aria-controls="panel-e" aria-selected="false">Etaj</button>
       <button type="button" role="tab" id="tab-s" aria-controls="panel-s" aria-selected="false">Subsol</button>
+      <button type="button" role="tab" id="tab-sit" aria-controls="panel-sit" aria-selected="false">Situație</button>
     </div>
 
     <section class="panel active" id="panel-p" role="tabpanel" aria-labelledby="tab-p">
@@ -237,6 +239,17 @@
       <a class="open-full" href="a1_plan_subsol.svg">Deschide SVG full →</a>
       <p class="hint">Cutie beci · retenție · scară acces</p>
     </section>
+
+    <section class="panel" id="panel-sit" role="tabpanel" aria-labelledby="tab-sit" hidden>
+      <h2>Situație</h2>
+      <div class="frame">
+        <object data="a1_plan_situatie.svg" type="image/svg+xml" title="Plan situație A1">
+          <img src="a1_plan_situatie.svg" alt="Plan situație A1" />
+        </object>
+      </div>
+      <a class="open-full" href="a1_plan_situatie.svg">Deschide SVG full →</a>
+      <p class="hint">Hotar CF ≠ gard · porți · puț · terasă · POT anvelopă — <a href="../reports/s1_a1_site_plan_v01.md">note</a></p>
+    </section>
   </div>
 
   <script>
@@ -245,6 +258,7 @@
       "tab-p": document.getElementById("panel-p"),
       "tab-e": document.getElementById("panel-e"),
       "tab-s": document.getElementById("panel-s"),
+      "tab-sit": document.getElementById("panel-sit"),
     };
     function select(id) {
       for (const t of tabs) {

@@ -1,5 +1,13 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.198: viewer V4 — împrejmuire / curte / situație
+
+- View Împrejmuire: `limit_*` (hotar pe casă) ≠ `gard_`/`poarta_` (construit); casă estompată; auto/alee.
+- View Curte: gard+porți+teren+puț retenție+acces; fără `limit_*` și fără pardoseli camere beci.
+- Plan situație A1: `outputs/plans/a1_plan_situatie.svg` (hotar CF, amprentă, cutie/puț, terasă, porți, auto, retrageri, POT).
+- Annotări acces+apă în viewer (`sitePanel`) + select pack + tab Situație pe planuri.
+- Generator: `src/export_a1_site_plan_v01.mjs`.
+
 ## 2026-10-19 — A1.197: viewer V3 — selecție cote + coordonare
 
 - Click 3D → panou util / gol≠trecere / stâlp / grindă.

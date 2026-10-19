@@ -198,7 +198,12 @@
         <a href="/outputs/reports/s1_a1_fe_checklist_v03.md" target="_blank" rel="noopener">FE checklist</a>
         <a href="/outputs/reports/s1_a1_clear255_levels_v01.md" target="_blank" rel="noopener">Clear 255</a>
         <a href="/outputs/plans/" target="_blank" rel="noopener">Toate planurile</a>
-        <a href="/outputs/plans/a0_plan_situatie.svg" target="_blank" rel="noopener">Situație</a>
+        <a href="/outputs/plans/a1_plan_situatie.svg" target="_blank" rel="noopener"><strong>Situație A1</strong></a>
+        <a href="/outputs/reports/s1_a1_site_plan_v01.md" target="_blank" rel="noopener">Sit note</a>
+      </div>
+      <div class="meta" id="sitePanel" style="margin:0.55rem 0 0;padding:0.65rem 0.75rem;border:1px solid rgba(126,182,217,0.28);border-radius:10px;background:rgba(126,182,217,0.07);font-size:0.78rem;line-height:1.45;color:#9eb8c8">
+        <strong style="color:#cfe6f2">Sit · acces · apă</strong>
+        <div style="margin-top:0.3rem">Hotar CF ≠ gard. Auto Cloșca · pietonal Dragalina → alee → scări → beci. Apă: pantă + put_reten — <em>REZERVĂ</em>.</div>
       </div>
       <p class="meta" style="margin-top:1rem">Orbit · pinch zoom · pan cu două degete / dreapta</p>
       <p class="meta" id="modelHint">Model: <code>A1 curat</code> — amenajare + subsol (fără FRAME)</p>
@@ -1050,9 +1055,24 @@
       document.getElementById("btnFoundations")?.classList.toggle("active", showFoundations);
     }
 
+    function restoreFadeOpacity() {
+      root.traverse((o) => {
+        if (!o.isMesh || !o.material) return;
+        if (o.userData._op != null) {
+          o.material.opacity = o.userData._op;
+          delete o.userData._op;
+        }
+        if (o.userData._fenceOp != null) {
+          o.material.opacity = o.userData._fenceOp;
+          delete o.userData._fenceOp;
+        }
+      });
+    }
+
     function setLevel(mode) {
       levelMode = mode;
       clearClip();
+      restoreFadeOpacity();
 
       if (
         mode === "imprejmuire" ||
@@ -1067,31 +1087,45 @@
           layer = fenceObjs;
           for (const o of fenceObjs) {
             const n = o.name || "";
-            // hotar limit_* = linie/context; gard/poarta = construit
             o.visible = true;
+            if (!o.material || !("opacity" in o.material)) continue;
+            if (o.userData._fenceOp == null) o.userData._fenceOp = o.material.opacity;
             if (n.startsWith("limit_")) {
-              if (o.material && o.material.opacity == null) {
-                /* keep */
-              }
+              // hotar pe fațadă = zid casă (context), mai transparent
+              o.material.transparent = true;
+              o.material.opacity = 0.45;
+              o.material.color?.set?.("#c4b8a4");
+            } else if (n.startsWith("gard_") || n.startsWith("poarta_")) {
+              // gard / poartă = construit
+              o.material.transparent = true;
+              o.material.opacity = Math.max(o.userData._fenceOp ?? 0.9, 0.88);
+            } else if (n === "teren_cf" || n.startsWith("amprenta_")) {
+              o.material.transparent = true;
+              o.material.opacity = 0.35;
             }
           }
-          // casă estompată context
-          for (const o of [...parterObjs, ...etajObjs, ...columnObjs]) {
+          // casă estompată context — amprentă pe sit, nu detaliu interior
+          for (const o of [...parterObjs, ...etajObjs, ...columnObjs, ...umpluturaObjs]) {
             o.visible = true;
             if (o.material && "opacity" in o.material) {
               o.userData._op = o.material.opacity;
               o.material.transparent = true;
-              o.material.opacity = 0.22;
+              o.material.opacity = 0.18;
             }
           }
-          setViewHint("Împrejmuire: hotar (limit_*) + gard/porți. Casa estompată.");
+          for (const o of alwaysObjs) {
+            const n = o.name || "";
+            if (n.startsWith("auto") || n.startsWith("alee_")) o.visible = true;
+          }
+          setViewHint("Împrejmuire: hotar (limit_*) ≠ gard/porți. Casa estompată · auto/alee vizibile.");
         } else if (mode === "curte") {
           for (const o of curteObjs) o.visible = true;
           for (const o of fenceObjs) {
             const n = o.name || "";
+            // fără limit_* (hotar pe casă) — doar gard/porți + teren
             o.visible = n.startsWith("gard_") || n.startsWith("poarta_") || n === "teren_cf";
           }
-          // acces beci complet: puț retenție + scară + paliere — FĂRĂ pardoseli camere
+          // acces beci: puț retenție + scară + paliere — FĂRĂ pardoseli camere
           for (const o of subsolObjs) {
             const n = o.name || "";
             const show =
@@ -1108,10 +1142,20 @@
           }
           for (const o of alwaysObjs) {
             const n = o.name || "";
-            if (n.startsWith("curte_engleza_") || n.startsWith("alee_") || n.startsWith("auto")) o.visible = true;
+            if (n.startsWith("curte_engleza_") || n.startsWith("alee_") || n.startsWith("auto") || n.startsWith("amprenta_"))
+              o.visible = true;
           }
-          layer = [...curteObjs, ...subsolObjs.filter((o) => o.visible)];
-          setViewHint("Curte: accese + puț retenție. Fără pardoseli camere beci.");
+          // casă foarte ușor — context amprentă, focus pe curte/acces/apă
+          for (const o of [...parterObjs, ...columnObjs]) {
+            o.visible = true;
+            if (o.material && "opacity" in o.material) {
+              o.userData._op = o.material.opacity;
+              o.material.transparent = true;
+              o.material.opacity = 0.12;
+            }
+          }
+          layer = [...curteObjs, ...fenceObjs.filter((o) => o.visible), ...subsolObjs.filter((o) => o.visible)];
+          setViewHint("Curte: accese + puț retenție + alee/auto. Fără pardoseli camere beci · apă = REZERVĂ.");
         } else if (mode === "structura") {
           layer = structObjs;
           for (const o of structObjs) {
@@ -1170,14 +1214,6 @@
         else frameObjects(layer);
         return;
       }
-
-      // restore opacity after imprejmuire fade
-      root.traverse((o) => {
-        if (o.isMesh && o.material && o.userData._op != null) {
-          o.material.opacity = o.userData._op;
-          delete o.userData._op;
-        }
-      });
 
       hideAllMeshes();
 

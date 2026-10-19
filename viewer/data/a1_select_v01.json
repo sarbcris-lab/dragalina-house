@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "a1_select_v01",
-    "generated": "2026-10-19T19:12:18.242Z",
+    "generated": "2026-10-19T19:30:28.338Z",
     "source": "data/building/a1_architecture.json"
   },
   "levels_cm": {
@@ -518,6 +518,23 @@
       "id": "footing_calc_mismatch",
       "sev": "INFO",
       "text": "Talpă 115 inward desen ≠ calc heel+umplutură — rundă fundații deschisă."
+    },
+    {
+      "id": "site_hotar_vs_gard",
+      "sev": "INFO",
+      "text": "Hotar CF ≠ gard construit (limit_* pe E/N = zid casă; gard V+Cloșca+Dragalina S)."
+    },
+    {
+      "id": "site_access_water",
+      "sev": "INFO",
+      "text": "Acces: auto Cloșca · pietonal Dragalina→alee→scări→beci. Apă curte/put_reten = REZERVĂ (nu hidraulic)."
     }
-  ]
+  ],
+  "site": {
+    "plan_svg": "outputs/plans/a1_plan_situatie.svg",
+    "plan_note": "outputs/reports/s1_a1_site_plan_v01.md",
+    "access": "auto Cloșca · pietonal Dragalina → alee → scări → beci",
+    "water": "pantă curte + put_reten — REZERVĂ",
+    "fence_vs_boundary": "hotar CF ≠ gard; limit_* = zid casă E/N"
+  }
 }

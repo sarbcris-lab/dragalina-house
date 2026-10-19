@@ -60,6 +60,16 @@ const warnings = [
     sev: "INFO",
     text: "Talpă 115 inward desen ≠ calc heel+umplutură — rundă fundații deschisă.",
   },
+  {
+    id: "site_hotar_vs_gard",
+    sev: "INFO",
+    text: "Hotar CF ≠ gard construit (limit_* pe E/N = zid casă; gard V+Cloșca+Dragalina S).",
+  },
+  {
+    id: "site_access_water",
+    sev: "INFO",
+    text: "Acces: auto Cloșca · pietonal Dragalina→alee→scări→beci. Apă curte/put_reten = REZERVĂ (nu hidraulic).",
+  },
 ];
 
 const pack = {
@@ -115,13 +125,20 @@ const pack = {
     note: c.note || null,
   })),
   warnings,
+  site: {
+    plan_svg: "outputs/plans/a1_plan_situatie.svg",
+    plan_note: "outputs/reports/s1_a1_site_plan_v01.md",
+    access: "auto Cloșca · pietonal Dragalina → alee → scări → beci",
+    water: "pantă curte + put_reten — REZERVĂ",
+    fence_vs_boundary: "hotar CF ≠ gard; limit_* = zid casă E/N",
+  },
 };
 
 const outJson = path.join(root, "viewer/data/a1_select_v01.json");
 fs.writeFileSync(outJson, JSON.stringify(pack, null, 2));
 fs.writeFileSync(
   path.join(root, "outputs/reports/s1_a1_select_pack_v01.md"),
-  `# S1 A1 — Select pack (viewer V3)
+  `# S1 A1 — Select pack (viewer V3 / V4)
 
 **Fișier:** \`viewer/data/a1_select_v01.json\`  
 **Generat:** ${pack.meta.generated}
@@ -134,6 +151,12 @@ ${openings
   .filter((o) => o.mismatch)
   .map((o) => `- **${o.id}**: gol ${o.gol_cm} · trecere ${o.passage_cm}`)
   .join("\n") || "_niciun mismatch ≥2 cm_"}
+
+## Sit (A1.198)
+- ${pack.site.access}
+- Apă: ${pack.site.water}
+- ${pack.site.fence_vs_boundary}
+- Plan: \`${pack.site.plan_svg}\`
 
 ## Avertismente
 ${warnings.map((w) => `- [${w.sev}] ${w.text}`).join("\n")}
