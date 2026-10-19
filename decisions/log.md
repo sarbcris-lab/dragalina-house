@@ -1,5 +1,14 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.203: viewer — caps + site_layer + Casă/Proprietate + Subsol Camere|Acces
+
+Debate prezentare rundă 2 (fără amenajare/amprentă):
+1. Fețe de secțiune umplute pe S1–S3 (`section_cap`).
+2. Backfill `site_layer` / `category` / `level` pe volume (`enrich_volume_layers_v01` + hook build).
+3. Views: **Casă** vs **Proprietate**; **Subsol · Camere** vs **Subsol · Acces**.
+4. Fundații default off.
+Deschis: planuri §6–7 · capturi · rest views dacă mai apar.
+
 ## 2026-10-19 — A1.202: viewer — clasificare / selecție / cote / secțiuni ⊥
 
 Debate acceptat (runda prezentare): **fără** schimbare amenajare/amprentă.

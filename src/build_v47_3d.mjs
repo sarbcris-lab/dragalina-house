@@ -6,6 +6,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { enrichVolume } from "./enrich_volume_layers_v01.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -4761,6 +4762,8 @@ function main() {
     );
   }
 
+  // A1.203: site_layer / category / level pe toate mesh-urile
+  const layerStats = enrichVolume(volume);
   if (outVolRel === "viewer/data/volume_v47.json") {
     write("outputs/plans/04_volume_concept_v47.json", volume);
   } else if (isStudyA1Frame || outVolRel.includes("a1_frame")) {
@@ -4773,6 +4776,9 @@ function main() {
   if (architectureOnly && (outVolRel.includes("volume_v47_a1.json") || outVolRel.includes("volume_a1"))) {
     write("viewer/data/volume_a1.json", volume);
     write("outputs/plans/04_volume_a1_curat.json", volume);
+  }
+  if (layerStats?.filled != null) {
+    console.log(`[build_v47_3d] layers enriched: ${layerStats.filled}/${layerStats.total}`);
   }
   if (outVolRel !== "viewer/data/volume_v47.json") {
     console.log(
