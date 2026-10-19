@@ -1,5 +1,12 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.191: scări vizibile + talpă inward + retenție la teren
+
+- Viewer Structură: include scări beci/acces/rampe (nu le mai exclude).
+- Talpă perimetru **excentrică spre interior** — finit pe front, nu în stradă.
+- Retenție A1: z1 = teren 0 (închide gol −30…0 sub soclu).
+- Cote: `s1_a1_levels_clear_v01.md` (placă 15, grindă 40, clear 255).
+
 ## 2026-10-19 — A1.190: 3D complet — amenajare A1 + layere/fatade
 
 - `build_v47_3d`: amenajare din `a1_architecture` (nu study drift); `site_layer` anvelopa/finisaj/goluri/mobilier; `col_facade_*` pe stâlpi perimetru A1.

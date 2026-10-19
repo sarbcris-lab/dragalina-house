@@ -345,8 +345,8 @@
         id.startsWith("poarta_")
       );
     }
-    /** View „1 · Structură” = DOAR schelet BA casă (stâlpi/grinzi/fg/placă/acoperiș BA).
-     *  Fără: teren, amprentă, gard/porți, trepte, țiglă/PV, paleți finisaj. */
+    /** View „1 · Structură” = schelet BA + scări/circulație BA (beci, acces, rampe).
+     *  Fără: teren, amprentă, gard/porți, țiglă/PV, paleți finisaj. */
     function isStructuraMesh(m) {
       if (m.site_layer === "umplutura") return false;
       const id = m.id || "";
@@ -357,9 +357,6 @@
         id.startsWith("fundatie_gard") ||
         id.startsWith("fundatie_poarta") ||
         id.startsWith("stalp_poarta_") ||
-        id.startsWith("subsol_scara") ||
-        id.startsWith("subsol_racord_") ||
-        id.startsWith("subsol_palier") ||
         id.startsWith("subsol_pardoseala") ||
         id === "podest_se" ||
         id === "palier_superior_pardoseala" ||
@@ -370,7 +367,6 @@
         id === "palier_ramp2_prag_izolatie" ||
         id === "palier_ramp2_prag_membrana" ||
         id === "palier_ramp2_prag_sapa" ||
-        id.startsWith("treapta_") ||
         id.startsWith("acoperis_apa_") ||
         id.startsWith("acoperis_fronton_") ||
         id.startsWith("pv_") ||
@@ -412,6 +408,12 @@
         id.startsWith("acoperis_solbanc_") ||
         id.startsWith("acoperis_caprior_") ||
         id.startsWith("acoperis_structura_") ||
+        id.startsWith("subsol_scara") ||
+        id.startsWith("subsol_racord_") ||
+        id.startsWith("subsol_palier") ||
+        id.startsWith("treapta_") ||
+        id.startsWith("acces_treapta_") ||
+        id === "put_scara_beci_sub_r2" ||
         (m.site_layer === "structura" &&
           (id.startsWith("stalp_") ||
             id.startsWith("subsol_reten") ||
@@ -419,6 +421,11 @@
             id.startsWith("subsol_grinda") ||
             id.startsWith("subsol_fg") ||
             id.startsWith("subsol_intrados") ||
+            id.startsWith("subsol_scara") ||
+            id.startsWith("subsol_racord") ||
+            id.startsWith("subsol_palier") ||
+            id.startsWith("treapta_") ||
+            id.startsWith("acces_treapta") ||
             id.startsWith("parter_centura") ||
             id.startsWith("etaj_centura") ||
             id.startsWith("acoperis_coama") ||
@@ -506,6 +513,7 @@
         alwaysObjs.push(obj);
       } else if (
         id.startsWith("stalp_continuu_") ||
+        id.startsWith("stalp_a1_") ||
         id.startsWith("etics_wrap_") ||
         id.startsWith("col_facade_") ||
         id.startsWith("separator_vata_") ||

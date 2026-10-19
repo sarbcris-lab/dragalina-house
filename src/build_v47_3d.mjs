@@ -687,6 +687,8 @@ function main() {
         z0_m: z0s,
         z1_m: z1s + 0.02,
         color: i % 2 === 0 ? "#e8a020" : "#d4890a",
+        site_layer: "structura",
+        group: "scara_acces",
         label: `treaptă acces ${i + 1}/${n} (sus +${Math.round(z1s * 100)}; FF palier +${Math.round(zParter * 100)} = ridicare ${nRise})`,
       });
     }
@@ -701,6 +703,8 @@ function main() {
       z0_m: zParter - floorTh,
       z1_m: zParter,
       color: "#c4b496",
+      site_layer: "finisaj",
+      group: "scara_acces",
       label: "Palier FF (față sus = FF parter)",
     });
   }
@@ -788,6 +792,8 @@ function main() {
         z1_m: zSocle,
         color: mosaicColors[0],
         finish: "mozaic",
+        site_layer: "anvelopa",
+        group: "fatada",
         label: `soclu mozaic ${w.id}`,
       });
     }
@@ -2611,7 +2617,8 @@ function main() {
       const wallPerim = th.perimeter_structure_cm ?? (isFrameStudy ? 20 : 30);
       const retainBa = isFrameStudy && (th.retaining_ba_cm ?? wallPerim);
       const wallT = th.partition_cm ?? 12.5;
-      const wallTopR = zSoffit; // full clear to soffit
+      // A1: retenție până la cota teren (0) — fără gol orizontal −30…0 sub soclu
+      const wallTopR = a1Clean ? Math.max(zSoffit, zCourt) : zSoffit;
       const doorY0i = bm.door_to_rooms?.y ?? 600;
       const doorY1i = doorY0i + (bm.door_to_rooms?.dy ?? 80);
       const intDoors = bm.internal_doors || [];
@@ -2971,34 +2978,44 @@ function main() {
         // A1.185: talpă perimetru sub retenție + elevație = zid pe talpă (ipoteză geo120)
         const perimStrip =
           a1Structure?.foundations_study_cm?.perimeter_strip_width_cm ?? 80;
+        /** Talpă excentrică spre INTERIOR — fața exterioară = fața zidului (finit pe front, nu în stradă). */
+        function perimFootingInward(w, strip) {
+          const id = w.id || "";
+          let outward;
+          if (/reten_n|_n$|put_reten_n/i.test(id)) outward = "north";
+          else if (/reten_s|_s$|put_reten_s/i.test(id)) outward = "south";
+          else if (/reten_e|_e$|put_reten_e/i.test(id)) outward = "east";
+          else if (/reten_w|_w$|put_reten_w/i.test(id)) outward = "west";
+          else if (w.dx >= w.dy) outward = w.y < 400 ? "north" : "south";
+          else outward = w.x > 400 ? "east" : "west";
+          if (outward === "east") {
+            const outer = w.x + w.dx;
+            return { fx: outer - strip, fy: w.y, fdx: strip, fdy: w.dy, outward };
+          }
+          if (outward === "west") {
+            return { fx: w.x, fy: w.y, fdx: strip, fdy: w.dy, outward };
+          }
+          if (outward === "north") {
+            return { fx: w.x, fy: w.y, fdx: w.dx, fdy: strip, outward };
+          }
+          const outer = w.y + w.dy;
+          return { fx: w.x, fy: outer - strip, fdx: w.dx, fdy: strip, outward };
+        }
         for (const w of bm.walls) {
           if (w.role === "retaining" || w.role === "stair_pit") {
-            const alongX = w.dx >= w.dy;
-            let fx = w.x;
-            let fy = w.y;
-            let fdx = w.dx;
-            let fdy = w.dy;
-            if (alongX) {
-              const midY = w.y + w.dy / 2;
-              fy = midY - perimStrip / 2;
-              fdy = perimStrip;
-            } else {
-              const midX = w.x + w.dx / 2;
-              fx = midX - perimStrip / 2;
-              fdx = perimStrip;
-            }
+            const ft = perimFootingInward(w, perimStrip);
             pushBeton(
               `subsol_fg_perim_${w.id}`,
-              fx,
-              fy,
-              fdx,
-              fdy,
+              ft.fx,
+              ft.fy,
+              ft.fdx,
+              ft.fdy,
               zFg0,
               zFg1,
-              `talpă perimetru ${perimStrip} cm sub ${w.id} (geo120 studiu)`,
+              `talpă ${perimStrip} cm sub ${w.id} (excentrică ${ft.outward}→interior; finit pe front)`,
               "#5c5852"
             );
-            // elevație: retenție pe fața superioară a tălpii (−265), nu pe FF (−250)
+            // elevație: pe fața tălpii (−265) → teren (0) pe A1 — fără gol sub soclu
             pushRetainingBA(w.id, w.x, w.y, w.dx, w.dy, w.note || w.id, zFg1);
           } else {
             pushUmpluturaWall(w.id, w.x, w.y, w.dx, w.dy, w.note || w.id);

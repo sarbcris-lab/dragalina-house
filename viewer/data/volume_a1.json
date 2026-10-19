@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_a1_curat",
-    "generated": "2026-10-19T11:27:55.360Z",
+    "generated": "2026-10-19T11:34:40.633Z",
     "status": "3D_A1_CURAT_AMENAJARE",
     "source_plan": "data/building/v47_a1_study.json",
     "a1_architecture": "data/building/a1_architecture.json",
@@ -676,6 +676,8 @@
       "z0_m": 0.36,
       "z1_m": 0.48,
       "color": "#c4b496",
+      "site_layer": "finisaj",
+      "group": "scara_acces",
       "label": "Palier FF (față sus = FF parter)"
     },
     {
@@ -7310,6 +7312,8 @@
       "z1_m": 0.6,
       "color": "#a89878",
       "finish": "mozaic",
+      "site_layer": "anvelopa",
+      "group": "fatada",
       "label": "soclu mozaic est_living"
     },
     {
@@ -7341,6 +7345,8 @@
       "z1_m": 0.6,
       "color": "#a89878",
       "finish": "mozaic",
+      "site_layer": "anvelopa",
+      "group": "fatada",
       "label": "soclu mozaic sud_bucatarie"
     },
     {
@@ -7372,6 +7378,8 @@
       "z1_m": 0.6,
       "color": "#a89878",
       "finish": "mozaic",
+      "site_layer": "anvelopa",
+      "group": "fatada",
       "label": "soclu mozaic dormitor_sud"
     },
     {
@@ -7403,6 +7411,8 @@
       "z1_m": 0.6,
       "color": "#a89878",
       "finish": "mozaic",
+      "site_layer": "anvelopa",
+      "group": "fatada",
       "label": "soclu mozaic buc_est"
     },
     {
@@ -7434,6 +7444,8 @@
       "z1_m": 0.6,
       "color": "#a89878",
       "finish": "mozaic",
+      "site_layer": "anvelopa",
+      "group": "fatada",
       "label": "soclu mozaic terasa_est"
     },
     {
@@ -7465,6 +7477,8 @@
       "z1_m": 0.6,
       "color": "#a89878",
       "finish": "mozaic",
+      "site_layer": "anvelopa",
+      "group": "fatada",
       "label": "soclu mozaic est_recuperat_p"
     },
     {
@@ -7496,6 +7510,8 @@
       "z1_m": 0.6,
       "color": "#a89878",
       "finish": "mozaic",
+      "site_layer": "anvelopa",
+      "group": "fatada",
       "label": "soclu mozaic palier_inchidere_sud_p"
     },
     {
@@ -7527,6 +7543,8 @@
       "z1_m": 0.6,
       "color": "#a89878",
       "finish": "mozaic",
+      "site_layer": "anvelopa",
+      "group": "fatada",
       "label": "soclu mozaic nord_baie"
     },
     {
@@ -7558,6 +7576,8 @@
       "z1_m": 0.6,
       "color": "#a89878",
       "finish": "mozaic",
+      "site_layer": "anvelopa",
+      "group": "fatada",
       "label": "soclu mozaic nord"
     },
     {
@@ -7589,6 +7609,8 @@
       "z1_m": 0.6,
       "color": "#a89878",
       "finish": "mozaic",
+      "site_layer": "anvelopa",
+      "group": "fatada",
       "label": "soclu mozaic vest_baie"
     },
     {
@@ -7620,6 +7642,8 @@
       "z1_m": 0.6,
       "color": "#a89878",
       "finish": "mozaic",
+      "site_layer": "anvelopa",
+      "group": "fatada",
       "label": "soclu mozaic vest"
     },
     {
@@ -42343,24 +42367,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.1784,
-          "y": 18.366
+          "x": 1.196,
+          "y": 17.9544
         },
         {
-          "x": 6.8682,
-          "y": 18.6094
+          "x": 6.8858,
+          "y": 18.1978
         },
         {
-          "x": 6.9173,
-          "y": 17.4605
+          "x": 6.9349,
+          "y": 17.0488
         },
         {
-          "x": 1.2275,
-          "y": 17.2171
+          "x": 1.2451,
+          "y": 16.8054
         },
         {
-          "x": 1.1784,
-          "y": 18.366
+          "x": 1.196,
+          "y": 17.9544
         }
       ],
       "z0_m": -3.1,
@@ -42368,7 +42392,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă perimetru 115 cm sub subsol_reten_n (geo120 studiu)"
+      "label": "talpă 115 cm sub subsol_reten_n (excentrică north→interior; finit pe front)"
     },
     {
       "id": "subsol_reten_n",
@@ -42396,7 +42420,7 @@
         }
       ],
       "z0_m": -2.65,
-      "z1_m": -0.3,
+      "z1_m": 0,
       "color": "#6e6a64",
       "opacity": 0.98,
       "site_layer": "structura",
@@ -42407,24 +42431,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.5301,
-          "y": 10.1475
+          "x": 1.5123,
+          "y": 10.5592
         },
         {
-          "x": 7.2199,
-          "y": 10.3909
+          "x": 7.2021,
+          "y": 10.8026
         },
         {
-          "x": 7.2689,
-          "y": 9.242
+          "x": 7.2514,
+          "y": 9.6536
         },
         {
-          "x": 1.5791,
-          "y": 8.9986
+          "x": 1.5616,
+          "y": 9.4102
         },
         {
-          "x": 1.5301,
-          "y": 10.1475
+          "x": 1.5123,
+          "y": 10.5592
         }
       ],
       "z0_m": -3.1,
@@ -42432,7 +42456,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă perimetru 115 cm sub subsol_reten_s (geo120 studiu)"
+      "label": "talpă 115 cm sub subsol_reten_s (excentrică south→interior; finit pe front)"
     },
     {
       "id": "subsol_reten_s",
@@ -42460,7 +42484,7 @@
         }
       ],
       "z0_m": -2.65,
-      "z1_m": -0.3,
+      "z1_m": 0,
       "color": "#6e6a64",
       "opacity": 0.98,
       "site_layer": "structura",
@@ -42471,24 +42495,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 0.7983,
-          "y": 17.6111
+          "x": 1.2099,
+          "y": 17.6287
         },
         {
-          "x": 1.9472,
-          "y": 17.6602
+          "x": 2.3589,
+          "y": 17.6778
         },
         {
-          "x": 2.285,
-          "y": 9.7675
+          "x": 2.6966,
+          "y": 9.7851
         },
         {
-          "x": 1.136,
-          "y": 9.7183
+          "x": 1.5476,
+          "y": 9.7359
         },
         {
-          "x": 0.7983,
-          "y": 17.6111
+          "x": 1.2099,
+          "y": 17.6287
         }
       ],
       "z0_m": -3.1,
@@ -42496,7 +42520,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă perimetru 115 cm sub subsol_reten_w (geo120 studiu)"
+      "label": "talpă 115 cm sub subsol_reten_w (excentrică west→interior; finit pe front)"
     },
     {
       "id": "subsol_reten_w",
@@ -42524,7 +42548,7 @@
         }
       ],
       "z0_m": -2.65,
-      "z1_m": -0.3,
+      "z1_m": 0,
       "color": "#6e6a64",
       "opacity": 0.98,
       "site_layer": "structura",
@@ -42535,24 +42559,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 6.1624,
-          "y": 17.8406
+          "x": 5.7508,
+          "y": 17.8229
         },
         {
-          "x": 7.3113,
-          "y": 17.8897
+          "x": 6.8997,
+          "y": 17.8721
         },
         {
-          "x": 7.6491,
-          "y": 9.9969
+          "x": 7.2374,
+          "y": 9.9793
         },
         {
-          "x": 6.5001,
-          "y": 9.9478
+          "x": 6.0885,
+          "y": 9.9302
         },
         {
-          "x": 6.1624,
-          "y": 17.8406
+          "x": 5.7508,
+          "y": 17.8229
         }
       ],
       "z0_m": -3.1,
@@ -42560,7 +42584,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă perimetru 115 cm sub subsol_reten_e (geo120 studiu)"
+      "label": "talpă 115 cm sub subsol_reten_e (excentrică east→interior; finit pe front)"
     },
     {
       "id": "subsol_reten_e",
@@ -42588,7 +42612,7 @@
         }
       ],
       "z0_m": -2.65,
-      "z1_m": -0.3,
+      "z1_m": 0,
       "color": "#6e6a64",
       "opacity": 0.98,
       "site_layer": "structura",
@@ -42620,7 +42644,7 @@
         }
       ],
       "z0_m": -2.5,
-      "z1_m": -0.3,
+      "z1_m": 0,
       "color": "#d8d0c0",
       "opacity": 0.98,
       "label": "A1.166: partiție CT/dep | magazie pe XI",
@@ -42652,7 +42676,7 @@
         }
       ],
       "z0_m": -2.5,
-      "z1_m": -0.3,
+      "z1_m": 0,
       "color": "#d8d0c0",
       "opacity": 0.98,
       "label": "A1.166: partiție CT | depozit",
@@ -42663,24 +42687,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.0391,
-          "y": 14.0055
+          "x": 7.0567,
+          "y": 13.5939
         },
         {
-          "x": 8.4088,
-          "y": 14.0641
+          "x": 8.4264,
+          "y": 13.6525
         },
         {
-          "x": 8.458,
-          "y": 12.9152
+          "x": 8.4756,
+          "y": 12.5035
         },
         {
-          "x": 7.0882,
-          "y": 12.8566
+          "x": 7.1059,
+          "y": 12.4449
         },
         {
-          "x": 7.0391,
-          "y": 14.0055
+          "x": 7.0567,
+          "y": 13.5939
         }
       ],
       "z0_m": -3.1,
@@ -42688,7 +42712,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă perimetru 115 cm sub put_reten_n (geo120 studiu)"
+      "label": "talpă 115 cm sub put_reten_n (excentrică north→interior; finit pe front)"
     },
     {
       "id": "put_reten_n",
@@ -42716,7 +42740,7 @@
         }
       ],
       "z0_m": -2.65,
-      "z1_m": -0.3,
+      "z1_m": 0,
       "color": "#6e6a64",
       "opacity": 0.98,
       "site_layer": "structura",
@@ -42727,24 +42751,24 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.7031,
-          "y": 13.2953
+          "x": 7.2914,
+          "y": 13.2776
         },
         {
-          "x": 8.852,
-          "y": 13.3444
+          "x": 8.4404,
+          "y": 13.3268
         },
         {
-          "x": 9.0094,
-          "y": 9.6678
+          "x": 8.5977,
+          "y": 9.6502
         },
         {
-          "x": 7.8604,
-          "y": 9.6186
+          "x": 7.4488,
+          "y": 9.601
         },
         {
-          "x": 7.7031,
-          "y": 13.2953
+          "x": 7.2914,
+          "y": 13.2776
         }
       ],
       "z0_m": -3.1,
@@ -42752,7 +42776,7 @@
       "color": "#5c5852",
       "opacity": 0.97,
       "site_layer": "structura",
-      "label": "talpă perimetru 115 cm sub put_reten_e (geo120 studiu)"
+      "label": "talpă 115 cm sub put_reten_e (excentrică east→interior; finit pe front)"
     },
     {
       "id": "put_reten_e",
@@ -42780,7 +42804,7 @@
         }
       ],
       "z0_m": -2.65,
-      "z1_m": -0.3,
+      "z1_m": 0,
       "color": "#6e6a64",
       "opacity": 0.98,
       "site_layer": "structura",
@@ -46287,6 +46311,8 @@
       "z0_m": 0,
       "z1_m": 0.18,
       "color": "#e8a020",
+      "site_layer": "structura",
+      "group": "scara_acces",
       "label": "treaptă acces 1/2 (sus +16; FF palier +48 = ridicare 3)"
     },
     {
@@ -46317,6 +46343,8 @@
       "z0_m": 0.16,
       "z1_m": 0.34,
       "color": "#d4890a",
+      "site_layer": "structura",
+      "group": "scara_acces",
       "label": "treaptă acces 2/2 (sus +32; FF palier +48 = ridicare 3)"
     }
   ]
