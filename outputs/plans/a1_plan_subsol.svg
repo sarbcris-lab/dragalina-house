@@ -65,20 +65,20 @@
 <rect x="1248.745" y="144.5" width="70.09" height="1698.5" fill="none" stroke="#333" stroke-width="0.9"/>
 <rect x="830.785" y="144.5" width="26.875" height="1698.5" fill="#ddd6c8" stroke="#888" stroke-width="0.8"/>
 <rect x="164.5" y="682" width="666.285" height="26.875" fill="#ddd6c8" stroke="#888" stroke-width="0.8"/>
-<rect x="1313.245" y="1064.915" width="294.76500000000004" height="2.15" fill="url(#patInsul)" stroke="#8a7a20" stroke-width="0.45"/>
-<rect x="1313.245" y="1067.065" width="294.76500000000004" height="1.2899999999999998" fill="#b0a090" stroke="#706050" stroke-width="0.45"/>
-<rect x="1313.245" y="1068.355" width="294.76500000000004" height="64.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
-<rect x="1313.245" y="1132.855" width="294.76500000000004" height="2.15" fill="#f2efe8" stroke="#aaa" stroke-width="0.45"/>
-<rect x="1313.245" y="1064.915" width="294.765" height="70.09" fill="none" stroke="#333" stroke-width="0.9"/>
-<rect x="1605.86" y="1135.0049999999999" width="2.15" height="791.2" fill="url(#patInsul)" stroke="#8a7a20" stroke-width="0.45"/>
-<rect x="1604.57" y="1135.0049999999999" width="1.2899999999999998" height="791.2" fill="#b0a090" stroke="#706050" stroke-width="0.45"/>
-<rect x="1540.07" y="1135.0049999999999" width="64.5" height="791.2" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
-<rect x="1537.9199999999998" y="1135.0049999999999" width="2.15" height="791.2" fill="#f2efe8" stroke="#aaa" stroke-width="0.45"/>
-<rect x="1537.9199999999998" y="1135.0049999999999" width="70.09" height="791.1999999999999" fill="none" stroke="#333" stroke-width="0.9"/>
-<line x1="1313.245" y1="1926.205" x2="1537.9199999999998" y2="1926.205" stroke="#1565c0" stroke-width="1.6" stroke-dasharray="8 4"/>
-<text x="1425.5824999999998" y="1943.405" text-anchor="middle" font-size="9" font-weight="600" fill="#1565c0" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">S deschis → curte</text>
-<rect x="1313.245" y="1345.7050000000002" width="224.67499999999998" height="580.5" fill="#b8d4f0" fill-opacity="0.35" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="6 3"/>
-<text x="1425.5824999999998" y="1375.805" text-anchor="middle" font-size="10" font-weight="600" fill="#0d47a1" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">PUȚ R2 (deschis)</text>
+<rect x="1313.245" y="1064.915" width="248.75500000000008" height="2.15" fill="url(#patInsul)" stroke="#8a7a20" stroke-width="0.45"/>
+<rect x="1313.245" y="1067.065" width="248.75500000000008" height="1.2899999999999998" fill="#b0a090" stroke="#706050" stroke-width="0.45"/>
+<rect x="1313.245" y="1068.355" width="248.75500000000008" height="64.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="1313.245" y="1132.855" width="248.75500000000008" height="2.15" fill="#f2efe8" stroke="#aaa" stroke-width="0.45"/>
+<rect x="1313.245" y="1064.915" width="248.755" height="70.09" fill="none" stroke="#333" stroke-width="0.9"/>
+<rect x="1559.85" y="1135.0049999999999" width="2.15" height="791.2" fill="url(#patInsul)" stroke="#8a7a20" stroke-width="0.45"/>
+<rect x="1558.56" y="1135.0049999999999" width="1.2899999999999998" height="791.2" fill="#b0a090" stroke="#706050" stroke-width="0.45"/>
+<rect x="1494.06" y="1135.0049999999999" width="64.5" height="791.2" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
+<rect x="1491.9099999999999" y="1135.0049999999999" width="2.15" height="791.2" fill="#f2efe8" stroke="#aaa" stroke-width="0.45"/>
+<rect x="1528.245" y="1135.0049999999999" width="33.754999999999995" height="791.1999999999999" fill="none" stroke="#333" stroke-width="0.9"/>
+<line x1="1313.245" y1="1926.205" x2="1528.245" y2="1926.205" stroke="#1565c0" stroke-width="1.6" stroke-dasharray="8 4"/>
+<text x="1420.745" y="1943.405" text-anchor="middle" font-size="9" font-weight="600" fill="#1565c0" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">S deschis → curte</text>
+<rect x="1313.245" y="1345.7050000000002" width="215" height="580.5" fill="#b8d4f0" fill-opacity="0.35" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="6 3"/>
+<text x="1420.745" y="1375.805" text-anchor="middle" font-size="10" font-weight="600" fill="#0d47a1" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">PUȚ R2 (deschis)</text>
 <rect x="1313.245" y="1135.0049999999999" width="246.39" height="236.5" fill="#5a7388" fill-opacity="0.45" stroke="#1a1a1a" stroke-width="1.4"/>
 <text x="1436.4399999999998" y="1253.255" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">PALIER −250</text>
 <rect x="1313.245" y="1371.505" width="215" height="430" fill="#5a7388" fill-opacity="0.55" stroke="#1a1a1a" stroke-width="1.5"/>
@@ -95,6 +95,12 @@
 <text x="1436.4399999999998" y="1863.855" text-anchor="middle" font-size="9" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">PALIER −95</text>
 <rect x="1248.745" y="1145.7549999999999" width="70.09" height="215" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
 <text x="1235.8449999999998" y="1253.255" text-anchor="end" font-size="9" font-weight="600" fill="#0d47a1" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">ușă→magazie</text>
+<rect x="830.785" y="338" width="26.875" height="193.5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.4"/>
+<text x="844.2225" y="434.75" text-anchor="middle" font-size="8" font-weight="700" fill="#1b5e20" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">magazie_ct</text>
+<rect x="830.785" y="983" width="26.875" height="193.5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.4"/>
+<text x="844.2225" y="1079.75" text-anchor="middle" font-size="8" font-weight="700" fill="#1b5e20" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">magazie_depozit</text>
+<rect x="401" y="682" width="193.5" height="26.875" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.4"/>
+<text x="497.75" y="695.4375" text-anchor="middle" font-size="8" font-weight="700" fill="#1b5e20" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">ct_depozit</text>
 <rect x="121.5" y="101.5" width="64.5" height="64.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
 <rect x="121.5" y="101.5" width="64.5" height="64.5" fill="none" stroke="#111" stroke-width="1"/>
 <rect x="771.66" y="101.5" width="86" height="64.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
@@ -237,6 +243,6 @@
 <rect x="1588" y="292" width="22" height="14" fill="#b8d4f0" stroke="#222" fill-opacity="1"/>
 <text x="1618" y="303" font-size="11" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">puț / S→curte</text>
 <text x="1588" y="322" font-size="9" fill="#444" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Fit scară:</text>
-<text x="1588" y="336" font-size="9" fill="#444" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">clear 104,5 OK · @pier 95,7</text>
+<text x="1588" y="336" font-size="9" fill="#444" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">clear 100 OK · @pier 100</text>
 <text x="1588" y="350" font-size="9" fill="#444" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">riser DESCHIS — 17,22 > 16 (brief A0)</text>
 </svg>

@@ -2,7 +2,7 @@
   "status": "S1_STUDIU_GEOMETRIC",
   "system": "cadre_beton_armat",
   "declared_buildable": false,
-  "generated": "2026-10-19T08:25:52.912Z",
+  "generated": "2026-10-19T17:50:48.160Z",
   "source": {
     "architecture": "data/building/a1_architecture.json",
     "columns": "columns_cm (fără non-structurale)",
@@ -36,7 +36,7 @@
   },
   "pit_cm": {
     "x0": 564.3,
-    "x1": 668.8,
+    "x1": 664.3,
     "y0": 490.7,
     "y1": 858.7,
     "walls": "N+E retenție A11; V=ușă pe retenție E cutie; S deschis"
@@ -50,8 +50,8 @@
     "pad_side_cm": 185,
     "strip_width_cm": 60,
     "east_eccentric_inward": true,
-    "status": "ipoteza_geo120_studiu",
-    "note": "Pad-uri vs q_allow=310/1,4; talpă perimetru 80 sub retenție; geo_131 încă deschis",
+    "status": "ipoteză_studiu_A1_194",
+    "note": "A1.194: tălpi N/E/S spre interior (parcelă). 115 inward ≠ calc heel — rundă 3.",
     "pad_by_column_cm": {
       "C_NW": 130,
       "C_N_MID": 165,
@@ -62,13 +62,16 @@
       "C_E_PAL": 185,
       "C_CASA_SCARA": 90,
       "C_S_INTRARE_W": 80,
-      "C_S_INTRARE_E": 90,
-      "C_SHAFT_E_PIER": 80
+      "C_S_INTRARE_E": 90
     },
     "perimeter_strip_width_cm": 115,
     "q_allow_kPa": 221,
     "Pconv_ref_120_kPa": 310,
-    "perimeter_strip_note": "mărit din 80 pentru FS alunecare/răsturnare caz hw10"
+    "perimeter_strip_note": "mărit din 80 pentru FS alunecare/răsturnare caz hw10",
+    "north_eccentric_inward": true,
+    "south_eccentric_inward": true,
+    "perimeter_strip_drawn": "inward_no_heel_backfill",
+    "perimeter_strip_calc_status": "NOT_VALIDATED_FOR_DRAWN_GEOMETRY"
   },
   "levels_cm": {
     "clear_min_cm": 255,
@@ -90,14 +93,16 @@
     "slab_top_etaj": 343,
     "basement_ff_cm": -250,
     "basement_soffit_cm": -30,
-    "basement_beam_h_cm": 40,
-    "note": "A1.180: clear≥255 HARD. FF→FF=307. Placă 15. Grindă crit. 40."
+    "basement_beam_h_cm": 15,
+    "note": "A1.180: clear≥255 HARD. FF→FF=307. Placă 15. Grindă crit. 40.",
+    "basement_clear_under_beam_cm": 220,
+    "basement_beam_note": "A1.194: S flush în placă (h=15); clear sub grindă = clear sub placă 220"
   },
   "clear_lock": {
     "min_cm": 255,
     "under_beam": true,
     "under_slab": true,
-    "revoked": "D1 option (b) 241 under beams — A1.180"
+    "revoked_241": true
   },
   "columns": [
     {
@@ -279,23 +284,6 @@
       "on_heated_box": true,
       "thermal": null,
       "note": "Finit 680×860; stâlp pe extrema cărămizii (retras de pe finit); +10 în cameră."
-    },
-    {
-      "id": "C_SHAFT_E_PIER",
-      "x": 638.8,
-      "y": 580.7,
-      "dx": 30,
-      "dy": 30,
-      "section_cm": "30×30",
-      "levels": [
-        "S"
-      ],
-      "continuous_through_floor": false,
-      "role": "pier_inverted_beam",
-      "status": "PROVIZORIU_S1_put",
-      "on_heated_box": false,
-      "thermal": "cold_stair",
-      "note": "Pier S pe E puț — reazem grindă întoarsă; clear scară = fit.pier_warn"
     }
   ],
   "beams": [
@@ -314,8 +302,7 @@
         "C_NW",
         "C_N_MID"
       ],
-      "note": "centură N pe cutie (C_NW–C_N_MID)",
-      "h_cm": 40
+      "note": "centură N pe cutie (C_NW–C_N_MID)"
     },
     {
       "id": "B_N_TO_NE",
@@ -331,8 +318,7 @@
         "C_N_MID",
         "C_NE"
       ],
-      "note": "centură N est → C_NE (banda scară / fațadă E)",
-      "h_cm": 40
+      "note": "centură N est → C_NE (banda scară / fațadă E)"
     },
     {
       "id": "B_W",
@@ -350,8 +336,7 @@
         "C_W_MID",
         "C_W_DORM"
       ],
-      "note": "centură V pe cutie",
-      "h_cm": 40
+      "note": "centură V pe cutie"
     },
     {
       "id": "B_X_MID",
@@ -369,8 +354,7 @@
         "C_S_DORM_E",
         "C_S_INTRARE_W"
       ],
-      "note": "axă mid N–S (C_N_MID–C_S_DORM_E–C_S_INTRARE_W)",
-      "h_cm": 40
+      "note": "axă mid N–S (C_N_MID–C_S_DORM_E–C_S_INTRARE_W)"
     },
     {
       "id": "B_CASA_SCARA",
@@ -387,8 +371,7 @@
         "C_CASA_SCARA",
         "C_S_INTRARE_E"
       ],
-      "note": "separator est cutie (= A6) C_CASA_SCARA→intrare E",
-      "h_cm": 40
+      "note": "separator est cutie (= A6) C_CASA_SCARA→intrare E"
     },
     {
       "id": "B_Y645",
@@ -405,8 +388,7 @@
         "C_W_DORM",
         "C_S_DORM_E"
       ],
-      "note": "sud dorm pe cutie",
-      "h_cm": 40
+      "note": "sud dorm pe cutie"
     },
     {
       "id": "B_Y820",
@@ -423,8 +405,7 @@
         "C_S_INTRARE_W",
         "C_S_INTRARE_E"
       ],
-      "note": "sud intrare pe cutie (Y≈820)",
-      "h_cm": 40
+      "note": "sud intrare pe cutie (Y≈820)"
     },
     {
       "id": "B_Y410",
@@ -440,8 +421,7 @@
         "C_W_MID",
         "C_E_PAL"
       ],
-      "note": "legătură mid W→E_PAL (peste cutie + scară)",
-      "h_cm": 40
+      "note": "legătură mid W→E_PAL (peste cutie + scară)"
     },
     {
       "id": "B_E",
@@ -457,8 +437,7 @@
         "C_NE",
         "C_E_PAL"
       ],
-      "note": "centură E fațadă (C_NE–C_E_PAL)",
-      "h_cm": 40
+      "note": "centură E fațadă (C_NE–C_E_PAL)"
     },
     {
       "id": "B_E_S",
@@ -474,8 +453,7 @@
         "C_E_PAL",
         "C_S_INTRARE_E"
       ],
-      "note": "centură E sud scară — reazeme C_E_PAL + nod SE cu B_S_SE (fără C_E_LAMELE)",
-      "h_cm": 40
+      "note": "centură E sud scară — reazeme C_E_PAL + nod SE cu B_S_SE (fără C_E_LAMELE)"
     },
     {
       "id": "B_S_SE",
@@ -491,14 +469,13 @@
         "C_S_INTRARE_E",
         "C_E_PAL"
       ],
-      "note": "închidere SE pe C_S_INTRARE_E↔C_E_PAL — C_E_LAMELE = doar ARH/fațadă",
-      "h_cm": 40
+      "note": "închidere SE pe C_S_INTRARE_E↔C_E_PAL — C_E_LAMELE = doar ARH/fațadă"
     },
     {
       "id": "B_Y_EDGE_INVERTED",
       "x": 566.9,
-      "y": 580.7,
-      "dx": 101.9,
+      "y": 495.7,
+      "dx": 97.4,
       "dy": 25,
       "z0_cm": -30,
       "z1_cm": -5,
@@ -507,37 +484,11 @@
       ],
       "supports": [
         "C_CASA_SCARA",
-        "C_SHAFT_E_PIER"
+        "put_reten_e"
       ],
-      "note": "Grindă întoarsă pe puț (ușă→pier E); formă studiu — FE local + clear scară"
+      "note": "A1.194: grindă întoarsă ușă→put_reten_e (fără C_SHAFT_E_PIER — clear scară 100)"
     }
   ],
-  "open_items": [
-    "FE numeric pe schema fără C_E_LAMELE (span B_E_S / B_S_SE)",
-    "geo_131 Rc parcelă",
-    "riser_beci_17_22 vs brief 16",
-    "pier_clear_95_7"
-  ],
-  "se_support_decision": {
-    "code": "NO_LAMELE",
-    "adopt": "Păstrează C_E_LAMELE în afara cadrului (doar ARH).",
-    "reason": "B_E_S / B_S_SE trec pe ordin ULS+SLS fără reazem intermediar.",
-    "calc_ref": "outputs/reports/s1_a1_calc_100_v01.md",
-    "decided_at": "2026-10-19T08:25:53.487Z"
-  },
-  "beam_height_adopt_cm": {
-    "B_N": 40,
-    "B_N_TO_NE": 40,
-    "B_W": 40,
-    "B_X_MID": 40,
-    "B_CASA_SCARA": 40,
-    "B_Y645": 40,
-    "B_Y820": 40,
-    "B_Y410": 40,
-    "B_E": 40,
-    "B_E_S": 40,
-    "B_S_SE": 40
-  },
   "foundation_pad_adopt_cm": {
     "C_NW": 130,
     "C_N_MID": 165,
@@ -548,14 +499,13 @@
     "C_E_PAL": 185,
     "C_CASA_SCARA": 90,
     "C_S_INTRARE_W": 80,
-    "C_S_INTRARE_E": 90,
-    "C_SHAFT_E_PIER": 80
+    "C_S_INTRARE_E": 90
   },
-  "calc_100_ref": "outputs/reports/s1_a1_calc_100_v01.md",
-  "geo_lock_v01": {
-    "hypothesis": "similar_Dragalina_120",
-    "q_allow_kPa": 221,
-    "Pconv_120_kPa": 310,
-    "not_official_geo_131": true
-  }
+  "open_items": [
+    "FE numeric pe schema fără C_E_LAMELE (span B_E_S / B_S_SE)",
+    "geo_131 Rc parcelă",
+    "riser_beci_17_22 vs brief 16",
+    "footing_115_recalc_on_drawn_inward_geometry",
+    "shaft_east_wall_15_7_FE_ok"
+  ]
 }

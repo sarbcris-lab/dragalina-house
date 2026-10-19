@@ -1,5 +1,15 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.194: rundă 1 — parcelă + acces beci
+
+- Overflow fundații/puț: **0** (era max 40,4 cm N + 21,4 cm puț E).
+- Puț E clipat @ finit 680 · `put_reten_e` 15,7 cm · clear scară **100**.
+- `C_SHAFT_E_PIER` scos; grindă întoarsă pe `put_reten_e`.
+- Uși beci: magazie↔CT, magazie↔depozit, CT↔depozit.
+- Grinzi S flush (h=15) → clear beci **220**; FF→FF **307** păstrat.
+- Talpă 115 inward: calc heel **nevalidat** pe desen — rundă 3.
+- Raport: `s1_a1_r1_round1_done_v01` · audit `s1_a1_r1_parcel_basement_v01`.
+
 ## 2026-10-19 — A1.193: site landing + mobile viewer/planuri
 
 - Landing `/` prezentabil (brand Dragalina, hero vizual, CTA 3D/planuri); Vercel nu mai redirectează forțat la viewer.

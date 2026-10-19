@@ -1,0 +1,269 @@
+{
+  "meta": {
+    "id": "s1_a1_r1_parcel_basement_v01",
+    "generated": "2026-10-19T17:50:48.280Z",
+    "along0_m": 0.3,
+    "north_eccentric_inward": true,
+    "east_eccentric_inward": true,
+    "perimeter_strip_cm": 115
+  },
+  "pads": [
+    {
+      "id": "pad_C_NW",
+      "x": -40,
+      "y": 10,
+      "dx": 130,
+      "dy": 130,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    },
+    {
+      "id": "pad_C_N_MID",
+      "x": 249.9,
+      "y": 10,
+      "dx": 165,
+      "dy": 165,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    },
+    {
+      "id": "pad_C_NE",
+      "x": 533.8,
+      "y": 10,
+      "dx": 135,
+      "dy": 135,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    },
+    {
+      "id": "pad_C_W_MID",
+      "x": -47.5,
+      "y": 357.5,
+      "dx": 145,
+      "dy": 145,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    },
+    {
+      "id": "pad_C_W_DORM",
+      "x": -27.5,
+      "y": 607.7,
+      "dx": 105,
+      "dy": 105,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    },
+    {
+      "id": "pad_C_S_DORM_E",
+      "x": 297.4,
+      "y": 595.2,
+      "dx": 80,
+      "dy": 80,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    },
+    {
+      "id": "pad_C_E_PAL",
+      "x": 483.8,
+      "y": 337.5,
+      "dx": 185,
+      "dy": 185,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    },
+    {
+      "id": "pad_C_CASA_SCARA",
+      "x": 464.3,
+      "y": 525,
+      "dx": 90,
+      "dy": 90,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    },
+    {
+      "id": "pad_C_S_INTRARE_W",
+      "x": 292.5,
+      "y": 768.8,
+      "dx": 80,
+      "dy": 80,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    },
+    {
+      "id": "pad_C_S_INTRARE_E",
+      "x": 464.3,
+      "y": 758.8,
+      "dx": 90,
+      "dy": 90,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    }
+  ],
+  "walls": [
+    {
+      "id": "wall_subsol_reten_n",
+      "x": -2.6,
+      "y": -2.6,
+      "dx": 569.5,
+      "dy": 32.6,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    },
+    {
+      "id": "wall_subsol_reten_s",
+      "x": -2.6,
+      "y": 820,
+      "dx": 569.5,
+      "dy": 32.6,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    },
+    {
+      "id": "wall_subsol_reten_w",
+      "x": -2.6,
+      "y": 30,
+      "dx": 32.6,
+      "dy": 790,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    },
+    {
+      "id": "wall_subsol_reten_e",
+      "x": 534.3,
+      "y": 30,
+      "dx": 32.6,
+      "dy": 790,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    },
+    {
+      "id": "wall_put_reten_n",
+      "x": 564.3,
+      "y": 458.1,
+      "dx": 115.7,
+      "dy": 32.6,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    },
+    {
+      "id": "wall_put_reten_e",
+      "x": 664.3,
+      "y": 490.7,
+      "dx": 15.7,
+      "dy": 368,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true
+    }
+  ],
+  "footings": [
+    {
+      "id": "foot_subsol_reten_n",
+      "x": -2.6,
+      "y": -2.6,
+      "dx": 569.5,
+      "dy": 115,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true,
+      "outward": "north"
+    },
+    {
+      "id": "foot_subsol_reten_s",
+      "x": -2.6,
+      "y": 737.6,
+      "dx": 569.5,
+      "dy": 115,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true,
+      "outward": "south"
+    },
+    {
+      "id": "foot_subsol_reten_w",
+      "x": -2.6,
+      "y": 30,
+      "dx": 115,
+      "dy": 790,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true,
+      "outward": "west"
+    },
+    {
+      "id": "foot_subsol_reten_e",
+      "x": 451.9,
+      "y": 30,
+      "dx": 115,
+      "dy": 790,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true,
+      "outward": "east"
+    },
+    {
+      "id": "foot_put_reten_n",
+      "x": 564.3,
+      "y": 458.1,
+      "dx": 115.7,
+      "dy": 115,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true,
+      "outward": "north"
+    },
+    {
+      "id": "foot_put_reten_e",
+      "x": 565,
+      "y": 490.7,
+      "dx": 115,
+      "dy": 368,
+      "max_overflow_cm": 0,
+      "overflow_corners": [],
+      "pass": true,
+      "outward": "east"
+    }
+  ],
+  "access": {
+    "pier_id": null,
+    "pier_xy": null,
+    "shaft_west_x": 564.3,
+    "clear_west_of_pier_cm": null,
+    "clear_need_cm": 100,
+    "pier_strangle": false
+  },
+  "clear_basement": {
+    "target_under_slab_cm": 220,
+    "clear_under_slab_cm": 220,
+    "beam_h_cm": 15,
+    "beam_soffit_cm": -30,
+    "clear_under_beam_cm": 220,
+    "beam_clear_fail": false
+  },
+  "doors": {
+    "usa_beci_magazie": true,
+    "usa_magazie_ct": true,
+    "usa_magazie_depozit": true,
+    "usa_ct_depozit": true
+  },
+  "summary": {
+    "overflow_fail_count": 0,
+    "worst_overflow_cm": 0,
+    "worst_ids": []
+  }
+}

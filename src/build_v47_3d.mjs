@@ -56,7 +56,7 @@ function basementFromA1(a1Bm, v47Bm) {
       perimeter_structure_cm: thA11,
       partition_cm: 12.5,
       shaft_west_cm: thA11,
-      shaft_east_cm: thA11,
+      shaft_east_cm: (pit.walls || []).find((w) => w.id === "put_reten_e")?.dx ?? thA11,
       shaft_north_cm: thA11,
     },
     door_to_rooms: door
@@ -70,7 +70,17 @@ function basementFromA1(a1Bm, v47Bm) {
           lintel_reserve_cm: 15,
         }
       : null,
-    internal_doors: [],
+    internal_doors: (a1Bm.doors || []).map((d) => ({
+      id: d.id,
+      wall_id: d.wall_id,
+      x: d.x,
+      y: d.y,
+      dx: d.dx,
+      dy: d.dy,
+      opening_h_cm: d.opening_h_cm ?? 200,
+      lintel_reserve_cm: d.lintel_reserve_cm ?? 15,
+      note: d.note,
+    })),
     lower_landing: st.lower_landing || null,
     upper_landing: st.upper_landing || null,
     local_court_drop: st.upper_landing || null,
@@ -2950,13 +2960,20 @@ function main() {
           const cx = c.x + c.dx / 2;
           const cy = c.y + c.dy / 2;
           const eastish = /C_E_|C_NE|C_S_INTRARE_E|C_CASA_SCARA|C_E_LAMELE/.test(c.id);
+          const northish = /^C_N|_NW$|_N_MID$|^C_NE$/.test(c.id) || c.id === "C_NW" || c.id === "C_N_MID" || c.id === "C_NE";
+          const southish = /C_S_INTRARE|C_S_DORM/.test(c.id);
           let px;
           let py;
           if (fg.east_eccentric_inward !== false && eastish) {
             px = c.x + c.dx - padSide;
-            py = cy - padSide / 2;
           } else {
             px = cx - padSide / 2;
+          }
+          if (fg.north_eccentric_inward && northish) {
+            py = c.y; // flush față N (exterioară) → talpă spre sud (interior)
+          } else if (fg.south_eccentric_inward && southish) {
+            py = c.y + c.dy - padSide; // flush față S → talpă spre nord
+          } else {
             py = cy - padSide / 2;
           }
           pushBeton(
@@ -3001,6 +3018,54 @@ function main() {
           const outer = w.y + w.dy;
           return { fx: w.x, fy: outer - strip, fdx: w.dx, fdy: strip, outward };
         }
+        const intDoors = bm.internal_doors || [];
+        function doorsOnWall(wallId) {
+          return intDoors.filter((d) => d.wall_id === wallId);
+        }
+        /** Partiție cu goluri: segmente solide + buiandrug. */
+        function pushPartitionWithDoors(w) {
+          const ds = doorsOnWall(w.id);
+          if (!ds.length) {
+            pushUmpluturaWall(w.id, w.x, w.y, w.dx, w.dy, w.note || w.id);
+            return;
+          }
+          const alongX = w.dx >= w.dy;
+          if (alongX) {
+            // perete E–V: goluri pe X
+            const sorted = [...ds].sort((a, b) => a.x - b.x);
+            let cursor = w.x;
+            let i = 0;
+            for (const d of sorted) {
+              const gap = Math.max(0, d.x - cursor);
+              if (gap > 1) {
+                pushUmpluturaWall(`${w.id}_seg${i++}`, cursor, w.y, gap, w.dy, w.note || w.id);
+              }
+              pushDoorOpening(d);
+              cursor = d.x + d.dx;
+            }
+            const tail = w.x + w.dx - cursor;
+            if (tail > 1) {
+              pushUmpluturaWall(`${w.id}_seg${i}`, cursor, w.y, tail, w.dy, w.note || w.id);
+            }
+          } else {
+            // perete N–S: goluri pe Y
+            const sorted = [...ds].sort((a, b) => a.y - b.y);
+            let cursor = w.y;
+            let i = 0;
+            for (const d of sorted) {
+              const gap = Math.max(0, d.y - cursor);
+              if (gap > 1) {
+                pushUmpluturaWall(`${w.id}_seg${i++}`, w.x, cursor, w.dx, gap, w.note || w.id);
+              }
+              pushDoorOpening(d);
+              cursor = d.y + d.dy;
+            }
+            const tail = w.y + w.dy - cursor;
+            if (tail > 1) {
+              pushUmpluturaWall(`${w.id}_seg${i}`, w.x, cursor, w.dx, tail, w.note || w.id);
+            }
+          }
+        }
         for (const w of bm.walls) {
           if (w.role === "retaining" || w.role === "stair_pit") {
             const ft = perimFootingInward(w, perimStrip);
@@ -3018,7 +3083,7 @@ function main() {
             // elevație: pe fața tălpii (−265) → teren (0) pe A1 — fără gol sub soclu
             pushRetainingBA(w.id, w.x, w.y, w.dx, w.dy, w.note || w.id, zFg1);
           } else {
-            pushUmpluturaWall(w.id, w.x, w.y, w.dx, w.dy, w.note || w.id);
+            pushPartitionWithDoors(w);
           }
         }
         if (bm.door_to_rooms) {

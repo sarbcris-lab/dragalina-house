@@ -178,42 +178,23 @@ const beams = [
   });
 }
 
-// —— Pier + grindă întoarsă pe puț (S-only)
+// —— Grindă întoarsă pe puț (S-only): reazem E = put_reten_e, FĂRĂ pier în clear scară (A1.194)
 const door = a1.basement_cm?.stair?.door_to_magazie;
 if (pit && door) {
-  const pierDx = 30;
-  const pierDy = 30;
-  const pierX = pit.x1 - pierDx;
-  const pierY = (door.y ?? 500) + (door.dy ?? 100) - 15;
-  const pier = {
-    id: "C_SHAFT_E_PIER",
-    x: +pierX.toFixed(1),
-    y: +pierY.toFixed(1),
-    dx: pierDx,
-    dy: pierDy,
-    section_cm: "30×30",
-    levels: ["S"],
-    continuous_through_floor: false,
-    role: "pier_inverted_beam",
-    status: "PROVIZORIU_S1_put",
-    on_heated_box: false,
-    thermal: "cold_stair",
-    note: "Pier S pe E puț — reazem grindă întoarsă; clear scară = fit.pier_warn",
-  };
-  columns.push(pier);
-  byId.C_SHAFT_E_PIER = pier;
   const invX0 = (door.x ?? box.x1) + (door.dx ?? 32.6);
+  const invX1 = pit.x1; // față V a put_reten_e
+  const invY = +(door.y ?? 495.7).toFixed(1);
   beams.push({
     id: "B_Y_EDGE_INVERTED",
     x: +invX0.toFixed(1),
-    y: +pierY.toFixed(1),
-    dx: +(pierX + pierDx - invX0).toFixed(1),
+    y: invY,
+    dx: +(invX1 - invX0).toFixed(1),
     dy: 25,
     z0_cm: -30,
     z1_cm: -5,
     levels: ["S_inverted"],
-    supports: ["C_CASA_SCARA", "C_SHAFT_E_PIER"],
-    note: "Grindă întoarsă pe puț (ușă→pier E); formă studiu — FE local + clear scară",
+    supports: ["C_CASA_SCARA", "put_reten_e"],
+    note: "A1.194: grindă întoarsă ușă→put_reten_e (fără C_SHAFT_E_PIER — clear scară 100)",
   });
 }
 
@@ -254,33 +235,47 @@ const structure = {
     note: "P100≥30; along 40 = ipoteză până FE",
   },
   foundations_study_cm: {
-    pad_side_cm: 80,
-    strip_width_cm: 60,
+    ...(a1.structure_a1_study_cm?.foundations_study_cm || {}),
+    pad_side_cm: a1.structure_a1_study_cm?.foundations_study_cm?.pad_side_cm ?? 80,
+    strip_width_cm: a1.structure_a1_study_cm?.foundations_study_cm?.strip_width_cm ?? 60,
     east_eccentric_inward: true,
-    status: "ipoteză_studiu",
-    note: "Talpi pe stâlpi + FG pe grinzi S; EST spre interior. Nu Rc parcelă 131.",
+    north_eccentric_inward: true,
+    south_eccentric_inward: true,
+    perimeter_strip_width_cm:
+      a1.structure_a1_study_cm?.foundations_study_cm?.perimeter_strip_width_cm ?? 115,
+    perimeter_strip_drawn: "inward_no_heel_backfill",
+    perimeter_strip_calc_status: "NOT_VALIDATED_FOR_DRAWN_GEOMETRY",
+    status: "ipoteză_studiu_A1_194",
+    note: "A1.194: tălpi N/E/S spre interior (parcelă). 115 inward ≠ calc heel — rundă 3.",
   },
-  levels_cm: a1.structure_a1_study_cm?.levels_cm?.clear_under_beam_cm
-    ? a1.structure_a1_study_cm.levels_cm
-    : {
-        // fallback — rulează calc_a1_clear255_levels_v01.mjs
-        clear_min_cm: 255,
-        clear_under_beam_cm: 255,
-        slab_th_hypothesis: 15,
-        beam_h_total_including_slab_zone: 40,
-        drop_below_soffit_cm: 25,
-        floor_buildup_below_ff: 12,
-        ff_parter: 48,
-        ff_to_ff_cm: 255 + 25 + 15 + 12,
-        ff_etaj: 48 + 255 + 25 + 15 + 12,
-        beam_soffit_over_parter: 48 + 255,
-        slab_soffit_etaj: 48 + 255 + 25,
-        slab_top_etaj: 48 + 255 + 25 + 15,
-        basement_ff_cm: -250,
-        basement_soffit_cm: -30,
-        basement_beam_h_cm: 40,
-        note: "A1.180 clear≥255 HARD — rulează clear255 dacă cotele lipsesc",
-      },
+  levels_cm: (() => {
+    const lv = a1.structure_a1_study_cm?.levels_cm?.clear_under_beam_cm
+      ? { ...a1.structure_a1_study_cm.levels_cm }
+      : {
+          clear_min_cm: 255,
+          clear_under_beam_cm: 255,
+          slab_th_hypothesis: 15,
+          beam_h_total_including_slab_zone: 40,
+          drop_below_soffit_cm: 25,
+          floor_buildup_below_ff: 12,
+          ff_parter: 48,
+          ff_to_ff_cm: 255 + 25 + 15 + 12,
+          ff_etaj: 48 + 255 + 25 + 15 + 12,
+          beam_soffit_over_parter: 48 + 255,
+          slab_soffit_etaj: 48 + 255 + 25,
+          slab_top_etaj: 48 + 255 + 25 + 15,
+          basement_ff_cm: -250,
+          basement_soffit_cm: -30,
+          basement_beam_h_cm: 40,
+          note: "A1.180 clear≥255 HARD — rulează clear255 dacă cotele lipsesc",
+        };
+    // A1.194: grinzi S flush în placă → clear beci 220 sub grindă
+    lv.basement_beam_h_cm = 15;
+    lv.basement_clear_under_beam_cm = 220;
+    lv.basement_beam_note =
+      "A1.194: S flush în placă (h=15); clear sub grindă = clear sub placă 220";
+    return lv;
+  })(),
   clear_lock: {
     min_cm: 255,
     under_beam: true,
@@ -289,14 +284,23 @@ const structure = {
   },
   columns,
   beams,
+  foundation_pad_adopt_cm: (() => {
+    const prev = { ...(a1.structure_a1_study_cm?.foundation_pad_adopt_cm || {}) };
+    delete prev.C_SHAFT_E_PIER;
+    return Object.keys(prev).length ? prev : undefined;
+  })(),
   open_items: [
     "FE numeric pe schema fără C_E_LAMELE (span B_E_S / B_S_SE)",
     "geo_131 Rc parcelă",
     "riser_beci_17_22 vs brief 16",
-    "pier_clear_95_7",
+    "footing_115_recalc_on_drawn_inward_geometry",
+    "shaft_east_wall_15_7_FE_ok",
   ],
 };
 
+if (structure.foundation_pad_adopt_cm) {
+  structure.foundations_study_cm.pad_by_column_cm = { ...structure.foundation_pad_adopt_cm };
+}
 a1.structure_a1_study_cm = structure;
 a1.basement_cm = a1.basement_cm || {};
 a1.basement_cm.s1_handoff = {

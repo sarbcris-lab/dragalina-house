@@ -54,7 +54,8 @@
     "plans:frame": "node src/export_v47_frame_plans.mjs",
     "export:architect": "node src/build_a1_architecture.mjs && python src/export_architect_package.py",
     "restore:r7g": "node tmp_restore_r7g.mjs && npm run build:v46",
-    "viewer": "npx --yes serve . -p 5173"
+    "viewer": "npx --yes serve . -p 5173",
+    "audit:a1:r1": "node src/audit_a1_r1_parcel_basement_v01.mjs"
   },
   "engines": {
     "node": ">=18"

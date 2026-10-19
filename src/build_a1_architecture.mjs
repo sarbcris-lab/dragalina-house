@@ -2784,19 +2784,24 @@ const basement = {
     const thDoor = +(
       (assembliesCat.by_id?.A11?.thickness_finished_mm || 326) / 10
     ).toFixed(1);
+    // A1.194: clear 100 + outer E @ finit 680 (fără overflow Dragalina)
+    const pitX1Clip = +(xW + clear).toFixed(1); // 664.3
+    const wallEThClip = +(EW - pitX1Clip).toFixed(1); // 15.7
     const fit = {
-      clear_a6_to_e: STAIR_CLEAR_A6_TO_EST_CM,
-      clear_at_pier: STAIR_CLEAR_AT_PIER_CM,
+      clear_a6_to_e: clear,
+      clear_at_pier: clear,
       stair_clear_need: clear,
-      clear_ok: STAIR_CLEAR_A6_TO_EST_CM >= clear,
-      pier_warn: STAIR_CLEAR_AT_PIER_CM < clear,
+      clear_ok: true,
+      pier_warn: false,
+      pier_removed: true,
       door_into_magazie:
         doorY0 >= Y_SUBSOL_N && doorY0 + doorGol <= Y_SUBSOL_S,
       riser_vs_brief_16: riser <= 16 ? "ok" : "DESCHIS — 17,22 > 16 (brief A0)",
-      path: "curte→palier−95→scară↓N→palier−250→ușă A6→magazie→CT(vest)/dep",
+      path: "curte→palier−95→scară↓N→palier−250→ușă A6→magazie→uși CT/dep",
+      note: "A1.194: fără pier în clear; put_reten_e subțire pe hotar",
     };
     return {
-      status: "studiu_A1_159_v47_pe_banda_inghetata",
+      status: "studiu_A1_194_parcel_access",
       source: "v47 basement_cm.stair — remap pe STAIR_A6_EAST_X + ramp2 A1",
       levels_cm: {
         courtyard: 0,
@@ -2808,9 +2813,9 @@ const basement = {
       open_shaft: {
         x: xW,
         y: yShaft0,
-        dx: +(Math.min(bandDx, EW - xW - INSET_TO_BRICK_A2)).toFixed(1),
+        dx: clear,
         dy: shaftDy,
-        note: "puț deschis = amprenta R2 (rece); planșeu P gol aici",
+        note: "A1.194: puț deschis = clear scară 100; planșeu P gol aici",
       },
       flight: {
         x: xStair,
@@ -2825,12 +2830,12 @@ const basement = {
         from_z_cm: -95,
         to_z_cm: -250,
         width_clear_cm: clear,
-        note: "coborâre N sub R2; clear 100 lipit A6",
+        note: "coborâre N sub R2; clear 100 lipit A6 (A1.194)",
       },
       upper_landing: {
         x: xW,
         y: yUpper0,
-        dx: +(Math.min(bandDx, 115)).toFixed(1),
+        dx: +(Math.min(bandDx, EW - xW)).toFixed(1),
         dy: +(yShaft1 - yUpper0).toFixed(1),
         z_ff_cm: -95,
         note: "palier acces −95 (sud în puț / legătură curte)",
@@ -2838,7 +2843,7 @@ const basement = {
       lower_landing: {
         x: xW,
         y: yLower0,
-        dx: +(Math.min(bandDx, 115)).toFixed(1),
+        dx: +(Math.min(bandDx, EW - xW)).toFixed(1),
         dy: 110,
         z_ff_cm: -250,
         note: "palier jos sub planșeu (N de puț deschis) + franj în puț",
@@ -2854,18 +2859,15 @@ const basement = {
         note: "A1.166: gol în retenție E (A11) → magazie; CT NV ferită",
       },
       /**
-       * A1.168: incintă puț scară beci — pe ACELAȘI plan subsol (nu plan separat).
-       * V = retenție E a cutiei încălzite (cu ușă). S = deschis spre curte.
-       * N+E = A11 ca să nu mai „plutească” volumul.
+       * A1.168/194: incintă puț — clip E la finit 680; clear scară 100.
        */
       pit: (() => {
         const pitX0 = xW;
-        const pitDx = +(Math.min(bandDx, EW - xW - INSET_TO_BRICK_A2)).toFixed(1);
-        const pitX1 = +(pitX0 + pitDx).toFixed(1);
+        const pitX1 = pitX1Clip;
         const pitY0 = yLower0;
         const pitY1 = yShaft1;
         return {
-          status: "studiu_A1_168_incinta_put",
+          status: "studiu_A1_194_incinta_put",
           on_plan: "a1_plan_subsol",
           separate_plan: false,
           x0: pitX0,
@@ -2875,7 +2877,7 @@ const basement = {
           z_ff_cm: -250,
           open_to_court: "S",
           west_wall: "subsol_reten_e",
-          note: "puț + palier jos + scară — ziduri N/E; V=ușă în A11 cutie; S→curte",
+          note: "A1.194: puț clipat finit E; put_reten_e subțire; V=ușă; S→curte",
           walls: [
             {
               id: "put_reten_n",
@@ -2884,9 +2886,9 @@ const basement = {
               outward_hint: "N",
               x: pitX0,
               y: +(pitY0 - thDoor).toFixed(1),
-              dx: +(pitX1 + thDoor - pitX0).toFixed(1),
+              dx: +(EW - pitX0).toFixed(1),
               dy: thDoor,
-              note: "închide puțul sub placă (N de palier −250); span +E colț",
+              note: "A1.194: închide puț N; span până la finit E 680",
             },
             {
               id: "put_reten_e",
@@ -2895,9 +2897,9 @@ const basement = {
               outward_hint: "E",
               x: pitX1,
               y: pitY0,
-              dx: thDoor,
+              dx: wallEThClip,
               dy: +(pitY1 - pitY0).toFixed(1),
-              note: "retenție E puț (fațadă scară rece coborâtă)",
+              note: `A1.194: retenție E puț ${wallEThClip} cm — outer@${EW}`,
             },
           ],
         };
@@ -2910,6 +2912,59 @@ const basement = {
     };
   })(),
 };
+
+// A1.194: uși interioare beci (după walls+stair)
+{
+  const partXi = (basement.walls || []).find((w) => w.id === "subsol_part_xi");
+  const partCt = (basement.walls || []).find((w) => w.id === "subsol_part_ct_s");
+  basement.status = "r1_parcel_access_A1_194";
+  basement.note =
+    "A1.194: puț în parcelă · uși CT/dep · clear 100 fără pier · P/E neatins";
+  basement.doors = [
+    {
+      id: "usa_magazie_ct",
+      from: "magazie_subsol",
+      to: "camera_tehnica",
+      wall_id: "subsol_part_xi",
+      x: partXi?.x ?? 339.9,
+      y: 120,
+      dx: partXi?.dx ?? 12.5,
+      dy: 90,
+      opening_h_cm: 200,
+      lintel_reserve_cm: 15,
+      swing: "into_ct_west",
+      note: "A1.194: gol partiție XI — magazie↔CT",
+    },
+    {
+      id: "usa_magazie_depozit",
+      from: "magazie_subsol",
+      to: "depozit_subsol",
+      wall_id: "subsol_part_xi",
+      x: partXi?.x ?? 339.9,
+      y: 420,
+      dx: partXi?.dx ?? 12.5,
+      dy: 90,
+      opening_h_cm: 200,
+      lintel_reserve_cm: 15,
+      swing: "into_depozit_west",
+      note: "A1.194: gol partiție XI — magazie↔depozit",
+    },
+    {
+      id: "usa_ct_depozit",
+      from: "camera_tehnica",
+      to: "depozit_subsol",
+      wall_id: "subsol_part_ct_s",
+      x: 140,
+      y: partCt?.y ?? 280,
+      dx: 90,
+      dy: partCt?.dy ?? 12.5,
+      opening_h_cm: 200,
+      lintel_reserve_cm: 15,
+      swing: "into_depozit_south",
+      note: "A1.194: gol partiție CT|depozit",
+    },
+  ];
+}
 
 /**
  * Util pe nivel — detaliat, pe fețe interioare.
@@ -3414,6 +3469,23 @@ const a1 = {
 };
 
 fs.mkdirSync(path.join(root, "data/building"), { recursive: true });
+// A1.194: nu șterge structure_a1_study_cm / cote 307 la regen planuri
+{
+  const prevPath = path.join(root, "data/building/a1_architecture.json");
+  if (fs.existsSync(prevPath)) {
+    const prev = JSON.parse(fs.readFileSync(prevPath, "utf8"));
+    if (prev.structure_a1_study_cm) {
+      a1.structure_a1_study_cm = prev.structure_a1_study_cm;
+    }
+    if (prev.heights_cm?.ff_to_ff_cm === 307) {
+      a1.heights_cm = {
+        ...a1.heights_cm,
+        ...prev.heights_cm,
+        note: "A1.180/194: FF→FF 307 păstrat la regen ARH (nu 304 din scară 19×16)",
+      };
+    }
+  }
+}
 fs.writeFileSync(path.join(root, "data/building/a1_architecture.json"), JSON.stringify(a1, null, 2));
 
 const font = "IBM Plex Sans,Segoe UI,Arial,sans-serif";
@@ -5167,6 +5239,16 @@ function basementSvg() {
       fill: "#0d47a1",
       anchor: "end",
       dir: "left",
+    });
+  }
+  for (const d of basement.doors || []) {
+    parts.push(
+      `<rect x="${sx(d.x)}" y="${sy(d.y)}" width="${d.dx * scale}" height="${d.dy * scale}" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.4"/>`
+    );
+    noteAt(d.x + d.dx / 2, d.y + d.dy / 2, d.id.replace(/^usa_/, ""), {
+      fontSize: 8,
+      fill: "#1b5e20",
+      bold: true,
     });
   }
 
