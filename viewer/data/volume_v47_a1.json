@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_a1_curat",
-    "generated": "2026-10-19T20:01:29.944Z",
+    "generated": "2026-10-19T20:12:52.617Z",
     "status": "3D_A1_CURAT_AMENAJARE",
     "source_plan": "data/building/v47_a1_study.json",
     "a1_architecture": "data/building/a1_architecture.json",
@@ -40286,6 +40286,68 @@
       "label": "Parapet sud podest — ca plan"
     },
     {
+      "id": "fatada_scara_est_inchidere_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.0833,
+          "y": 13.7189
+        },
+        {
+          "x": 8.1832,
+          "y": 13.7232
+        },
+        {
+          "x": 8.3585,
+          "y": 9.6269
+        },
+        {
+          "x": 8.2586,
+          "y": 9.6226
+        },
+        {
+          "x": 8.0833,
+          "y": 13.7189
+        }
+      ],
+      "z0_m": 0,
+      "z1_m": 3.55,
+      "color": "#7a838c",
+      "site_layer": "anvelopa",
+      "label": "Zid E scară parter — închidere spre Dragalina (A1.201)"
+    },
+    {
+      "id": "soclu_fatada_scara_est_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.0833,
+          "y": 13.7189
+        },
+        {
+          "x": 8.1832,
+          "y": 13.7232
+        },
+        {
+          "x": 8.3585,
+          "y": 9.6269
+        },
+        {
+          "x": 8.2586,
+          "y": 9.6226
+        },
+        {
+          "x": 8.0833,
+          "y": 13.7189
+        }
+      ],
+      "z0_m": 0,
+      "z1_m": 0.48,
+      "color": "#5c564e",
+      "site_layer": "anvelopa",
+      "label": "Soclu E scară P"
+    },
+    {
       "id": "palier_superior",
       "type": "extrude",
       "polygon": [
@@ -40437,10 +40499,43 @@
       "z0_m": 0.48,
       "z1_m": 2.58,
       "color": "#c9e4ef",
-      "opacity": 0.5,
+      "opacity": 0.45,
       "site_layer": "goluri",
       "group": "fatada_goluri",
       "label": "baie_usa_dorm"
+    },
+    {
+      "id": "usa_panou_baie_usa_dorm_L0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 3.7714,
+          "y": 15.216
+        },
+        {
+          "x": 4.6106,
+          "y": 15.2519
+        },
+        {
+          "x": 4.6144,
+          "y": 15.1619
+        },
+        {
+          "x": 3.7752,
+          "y": 15.126
+        },
+        {
+          "x": 3.7714,
+          "y": 15.216
+        }
+      ],
+      "z0_m": 0.48,
+      "z1_m": 2.58,
+      "color": "#2a2a2a",
+      "opacity": 0.92,
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "ușă baie_usa_dorm"
     },
     {
       "id": "gol_baie_usa_dorm_L1",
@@ -40470,10 +40565,43 @@
       "z0_m": 3.55,
       "z1_m": 5.65,
       "color": "#c9e4ef",
-      "opacity": 0.5,
+      "opacity": 0.45,
       "site_layer": "goluri",
       "group": "fatada_goluri",
       "label": "baie_usa_dorm"
+    },
+    {
+      "id": "usa_panou_baie_usa_dorm_L1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 3.7714,
+          "y": 15.216
+        },
+        {
+          "x": 4.6106,
+          "y": 15.2519
+        },
+        {
+          "x": 4.6144,
+          "y": 15.1619
+        },
+        {
+          "x": 3.7752,
+          "y": 15.126
+        },
+        {
+          "x": 3.7714,
+          "y": 15.216
+        }
+      ],
+      "z0_m": 3.55,
+      "z1_m": 5.65,
+      "color": "#2a2a2a",
+      "opacity": 0.92,
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "ușă baie_usa_dorm"
     },
     {
       "id": "gol_dorm_terasa_L0",
@@ -40503,10 +40631,171 @@
       "z0_m": 0.48,
       "z1_m": 2.58,
       "color": "#c9e4ef",
-      "opacity": 0.5,
+      "opacity": 0.15,
       "site_layer": "goluri",
       "group": "fatada_goluri",
       "label": "dorm_terasa"
+    },
+    {
+      "id": "sticla_dorm_terasa_L0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.61,
+          "y": 11.5255
+        },
+        {
+          "x": 4.0088,
+          "y": 11.5853
+        },
+        {
+          "x": 4.0206,
+          "y": 11.3085
+        },
+        {
+          "x": 2.6219,
+          "y": 11.2487
+        },
+        {
+          "x": 2.61,
+          "y": 11.5255
+        }
+      ],
+      "z0_m": 0.5,
+      "z1_m": 2.56,
+      "color": "#6eb0d4",
+      "opacity": 0.45,
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "sticlă dorm_terasa"
+    },
+    {
+      "id": "toc_dorm_terasa_L0_0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.5593,
+          "y": 11.5408
+        },
+        {
+          "x": 2.6093,
+          "y": 11.5429
+        },
+        {
+          "x": 2.6226,
+          "y": 11.2312
+        },
+        {
+          "x": 2.5727,
+          "y": 11.2291
+        },
+        {
+          "x": 2.5593,
+          "y": 11.5408
+        }
+      ],
+      "z0_m": 0.48,
+      "z1_m": 2.58,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit dorm_terasa"
+    },
+    {
+      "id": "toc_dorm_terasa_L0_1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.008,
+          "y": 11.6028
+        },
+        {
+          "x": 4.058,
+          "y": 11.6049
+        },
+        {
+          "x": 4.0713,
+          "y": 11.2932
+        },
+        {
+          "x": 4.0214,
+          "y": 11.2911
+        },
+        {
+          "x": 4.008,
+          "y": 11.6028
+        }
+      ],
+      "z0_m": 0.48,
+      "z1_m": 2.58,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit dorm_terasa"
+    },
+    {
+      "id": "toc_dorm_terasa_L0_2",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.6093,
+          "y": 11.5429
+        },
+        {
+          "x": 4.008,
+          "y": 11.6028
+        },
+        {
+          "x": 4.0102,
+          "y": 11.5528
+        },
+        {
+          "x": 2.6114,
+          "y": 11.493
+        },
+        {
+          "x": 2.6093,
+          "y": 11.5429
+        }
+      ],
+      "z0_m": 0.48,
+      "z1_m": 2.58,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit dorm_terasa"
+    },
+    {
+      "id": "toc_dorm_terasa_L0_3",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.6205,
+          "y": 11.2812
+        },
+        {
+          "x": 4.0192,
+          "y": 11.341
+        },
+        {
+          "x": 4.0214,
+          "y": 11.2911
+        },
+        {
+          "x": 2.6226,
+          "y": 11.2312
+        },
+        {
+          "x": 2.6205,
+          "y": 11.2812
+        }
+      ],
+      "z0_m": 0.48,
+      "z1_m": 2.58,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit dorm_terasa"
     },
     {
       "id": "gol_dorm_terasa_L1",
@@ -40536,10 +40825,171 @@
       "z0_m": 3.55,
       "z1_m": 5.65,
       "color": "#c9e4ef",
-      "opacity": 0.5,
+      "opacity": 0.15,
       "site_layer": "goluri",
       "group": "fatada_goluri",
       "label": "dorm_terasa"
+    },
+    {
+      "id": "sticla_dorm_terasa_L1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.61,
+          "y": 11.5255
+        },
+        {
+          "x": 4.0088,
+          "y": 11.5853
+        },
+        {
+          "x": 4.0206,
+          "y": 11.3085
+        },
+        {
+          "x": 2.6219,
+          "y": 11.2487
+        },
+        {
+          "x": 2.61,
+          "y": 11.5255
+        }
+      ],
+      "z0_m": 3.57,
+      "z1_m": 5.630000000000001,
+      "color": "#6eb0d4",
+      "opacity": 0.45,
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "sticlă dorm_terasa"
+    },
+    {
+      "id": "toc_dorm_terasa_L1_0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.5593,
+          "y": 11.5408
+        },
+        {
+          "x": 2.6093,
+          "y": 11.5429
+        },
+        {
+          "x": 2.6226,
+          "y": 11.2312
+        },
+        {
+          "x": 2.5727,
+          "y": 11.2291
+        },
+        {
+          "x": 2.5593,
+          "y": 11.5408
+        }
+      ],
+      "z0_m": 3.55,
+      "z1_m": 5.65,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit dorm_terasa"
+    },
+    {
+      "id": "toc_dorm_terasa_L1_1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.008,
+          "y": 11.6028
+        },
+        {
+          "x": 4.058,
+          "y": 11.6049
+        },
+        {
+          "x": 4.0713,
+          "y": 11.2932
+        },
+        {
+          "x": 4.0214,
+          "y": 11.2911
+        },
+        {
+          "x": 4.008,
+          "y": 11.6028
+        }
+      ],
+      "z0_m": 3.55,
+      "z1_m": 5.65,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit dorm_terasa"
+    },
+    {
+      "id": "toc_dorm_terasa_L1_2",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.6093,
+          "y": 11.5429
+        },
+        {
+          "x": 4.008,
+          "y": 11.6028
+        },
+        {
+          "x": 4.0102,
+          "y": 11.5528
+        },
+        {
+          "x": 2.6114,
+          "y": 11.493
+        },
+        {
+          "x": 2.6093,
+          "y": 11.5429
+        }
+      ],
+      "z0_m": 3.55,
+      "z1_m": 5.65,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit dorm_terasa"
+    },
+    {
+      "id": "toc_dorm_terasa_L1_3",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 2.6205,
+          "y": 11.2812
+        },
+        {
+          "x": 4.0192,
+          "y": 11.341
+        },
+        {
+          "x": 4.0214,
+          "y": 11.2911
+        },
+        {
+          "x": 2.6226,
+          "y": 11.2312
+        },
+        {
+          "x": 2.6205,
+          "y": 11.2812
+        }
+      ],
+      "z0_m": 3.55,
+      "z1_m": 5.65,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit dorm_terasa"
     },
     {
       "id": "gol_intrare_parter_L0",
@@ -40569,10 +41019,43 @@
       "z0_m": 0.48,
       "z1_m": 2.58,
       "color": "#6aaf7a",
-      "opacity": 0.5,
+      "opacity": 0.45,
       "site_layer": "goluri",
       "group": "fatada_goluri",
       "label": "intrare_parter"
+    },
+    {
+      "id": "usa_panou_intrare_parter_L0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.7666,
+          "y": 11.2549
+        },
+        {
+          "x": 5.0054,
+          "y": 11.2651
+        },
+        {
+          "x": 5.0456,
+          "y": 10.326
+        },
+        {
+          "x": 4.8069,
+          "y": 10.3157
+        },
+        {
+          "x": 4.7666,
+          "y": 11.2549
+        }
+      ],
+      "z0_m": 0.48,
+      "z1_m": 2.58,
+      "color": "#2a2a2a",
+      "opacity": 0.92,
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "ușă intrare_parter"
     },
     {
       "id": "gol_intrare_etaj_L1",
@@ -40602,10 +41085,43 @@
       "z0_m": 3.55,
       "z1_m": 5.65,
       "color": "#6aaf7a",
-      "opacity": 0.5,
+      "opacity": 0.45,
       "site_layer": "goluri",
       "group": "fatada_goluri",
       "label": "intrare_etaj"
+    },
+    {
+      "id": "usa_panou_intrare_etaj_L1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 6.7848,
+          "y": 13.6333
+        },
+        {
+          "x": 7.0245,
+          "y": 13.6436
+        },
+        {
+          "x": 7.0647,
+          "y": 12.7044
+        },
+        {
+          "x": 6.8249,
+          "y": 12.6942
+        },
+        {
+          "x": 6.7848,
+          "y": 13.6333
+        }
+      ],
+      "z0_m": 3.55,
+      "z1_m": 5.65,
+      "color": "#2a2a2a",
+      "opacity": 0.92,
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "ușă intrare_etaj"
     },
     {
       "id": "gol_geam_est_L0",
@@ -40635,10 +41151,171 @@
       "z0_m": 1.38,
       "z1_m": 2.88,
       "color": "#8ecae6",
-      "opacity": 0.55,
+      "opacity": 0.15,
       "site_layer": "goluri",
       "group": "fatada_goluri",
       "label": "geam_est"
+    },
+    {
+      "id": "sticla_geam_est_L0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7695,
+          "y": 17.1106
+        },
+        {
+          "x": 8.0333,
+          "y": 17.1219
+        },
+        {
+          "x": 8.1232,
+          "y": 15.0198
+        },
+        {
+          "x": 7.8595,
+          "y": 15.0085
+        },
+        {
+          "x": 7.7695,
+          "y": 17.1106
+        }
+      ],
+      "z0_m": 1.4,
+      "z1_m": 2.86,
+      "color": "#6eb0d4",
+      "opacity": 0.45,
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "sticlă geam_est"
+    },
+    {
+      "id": "toc_geam_est_L0_0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7499,
+          "y": 17.1598
+        },
+        {
+          "x": 8.0487,
+          "y": 17.1726
+        },
+        {
+          "x": 8.0508,
+          "y": 17.1226
+        },
+        {
+          "x": 7.7521,
+          "y": 17.1098
+        },
+        {
+          "x": 7.7499,
+          "y": 17.1598
+        }
+      ],
+      "z0_m": 1.38,
+      "z1_m": 2.88,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit geam_est"
+    },
+    {
+      "id": "toc_geam_est_L0_1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.842,
+          "y": 15.0078
+        },
+        {
+          "x": 8.1407,
+          "y": 15.0205
+        },
+        {
+          "x": 8.1429,
+          "y": 14.9706
+        },
+        {
+          "x": 7.8441,
+          "y": 14.9578
+        },
+        {
+          "x": 7.842,
+          "y": 15.0078
+        }
+      ],
+      "z0_m": 1.38,
+      "z1_m": 2.88,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit geam_est"
+    },
+    {
+      "id": "toc_geam_est_L0_2",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7521,
+          "y": 17.1098
+        },
+        {
+          "x": 7.802,
+          "y": 17.112
+        },
+        {
+          "x": 7.8919,
+          "y": 15.0099
+        },
+        {
+          "x": 7.842,
+          "y": 15.0078
+        },
+        {
+          "x": 7.7521,
+          "y": 17.1098
+        }
+      ],
+      "z0_m": 1.38,
+      "z1_m": 2.88,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit geam_est"
+    },
+    {
+      "id": "toc_geam_est_L0_3",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.0008,
+          "y": 17.1205
+        },
+        {
+          "x": 8.0508,
+          "y": 17.1226
+        },
+        {
+          "x": 8.1407,
+          "y": 15.0205
+        },
+        {
+          "x": 8.0908,
+          "y": 15.0184
+        },
+        {
+          "x": 8.0008,
+          "y": 17.1205
+        }
+      ],
+      "z0_m": 1.38,
+      "z1_m": 2.88,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit geam_est"
     },
     {
       "id": "gol_geam_est_L1",
@@ -40668,10 +41345,171 @@
       "z0_m": 4.45,
       "z1_m": 5.95,
       "color": "#8ecae6",
-      "opacity": 0.55,
+      "opacity": 0.15,
       "site_layer": "goluri",
       "group": "fatada_goluri",
       "label": "geam_est"
+    },
+    {
+      "id": "sticla_geam_est_L1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7695,
+          "y": 17.1106
+        },
+        {
+          "x": 8.0333,
+          "y": 17.1219
+        },
+        {
+          "x": 8.1232,
+          "y": 15.0198
+        },
+        {
+          "x": 7.8595,
+          "y": 15.0085
+        },
+        {
+          "x": 7.7695,
+          "y": 17.1106
+        }
+      ],
+      "z0_m": 4.47,
+      "z1_m": 5.930000000000001,
+      "color": "#6eb0d4",
+      "opacity": 0.45,
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "sticlă geam_est"
+    },
+    {
+      "id": "toc_geam_est_L1_0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7499,
+          "y": 17.1598
+        },
+        {
+          "x": 8.0487,
+          "y": 17.1726
+        },
+        {
+          "x": 8.0508,
+          "y": 17.1226
+        },
+        {
+          "x": 7.7521,
+          "y": 17.1098
+        },
+        {
+          "x": 7.7499,
+          "y": 17.1598
+        }
+      ],
+      "z0_m": 4.45,
+      "z1_m": 5.95,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit geam_est"
+    },
+    {
+      "id": "toc_geam_est_L1_1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.842,
+          "y": 15.0078
+        },
+        {
+          "x": 8.1407,
+          "y": 15.0205
+        },
+        {
+          "x": 8.1429,
+          "y": 14.9706
+        },
+        {
+          "x": 7.8441,
+          "y": 14.9578
+        },
+        {
+          "x": 7.842,
+          "y": 15.0078
+        }
+      ],
+      "z0_m": 4.45,
+      "z1_m": 5.95,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit geam_est"
+    },
+    {
+      "id": "toc_geam_est_L1_2",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 7.7521,
+          "y": 17.1098
+        },
+        {
+          "x": 7.802,
+          "y": 17.112
+        },
+        {
+          "x": 7.8919,
+          "y": 15.0099
+        },
+        {
+          "x": 7.842,
+          "y": 15.0078
+        },
+        {
+          "x": 7.7521,
+          "y": 17.1098
+        }
+      ],
+      "z0_m": 4.45,
+      "z1_m": 5.95,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit geam_est"
+    },
+    {
+      "id": "toc_geam_est_L1_3",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 8.0008,
+          "y": 17.1205
+        },
+        {
+          "x": 8.0508,
+          "y": 17.1226
+        },
+        {
+          "x": 8.1407,
+          "y": 15.0205
+        },
+        {
+          "x": 8.0908,
+          "y": 15.0184
+        },
+        {
+          "x": 8.0008,
+          "y": 17.1205
+        }
+      ],
+      "z0_m": 4.45,
+      "z1_m": 5.95,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit geam_est"
     },
     {
       "id": "gol_buc_terasa_etaj_L1",
@@ -40701,10 +41539,171 @@
       "z0_m": 3.55,
       "z1_m": 5.65,
       "color": "#c9e4ef",
-      "opacity": 0.5,
+      "opacity": 0.15,
       "site_layer": "goluri",
       "group": "fatada_goluri",
       "label": "buc_terasa_etaj"
+    },
+    {
+      "id": "sticla_buc_terasa_etaj_L1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.7549,
+          "y": 11.2344
+        },
+        {
+          "x": 5.0187,
+          "y": 11.2456
+        },
+        {
+          "x": 5.053,
+          "y": 10.4464
+        },
+        {
+          "x": 4.7892,
+          "y": 10.4351
+        },
+        {
+          "x": 4.7549,
+          "y": 11.2344
+        }
+      ],
+      "z0_m": 3.57,
+      "z1_m": 5.630000000000001,
+      "color": "#6eb0d4",
+      "opacity": 0.45,
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "sticlă buc_terasa_etaj"
+    },
+    {
+      "id": "toc_buc_terasa_etaj_L1_0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.7353,
+          "y": 11.2836
+        },
+        {
+          "x": 5.0341,
+          "y": 11.2963
+        },
+        {
+          "x": 5.0362,
+          "y": 11.2464
+        },
+        {
+          "x": 4.7375,
+          "y": 11.2336
+        },
+        {
+          "x": 4.7353,
+          "y": 11.2836
+        }
+      ],
+      "z0_m": 3.55,
+      "z1_m": 5.65,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit buc_terasa_etaj"
+    },
+    {
+      "id": "toc_buc_terasa_etaj_L1_1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.7717,
+          "y": 10.4343
+        },
+        {
+          "x": 5.0704,
+          "y": 10.4471
+        },
+        {
+          "x": 5.0726,
+          "y": 10.3972
+        },
+        {
+          "x": 4.7739,
+          "y": 10.3844
+        },
+        {
+          "x": 4.7717,
+          "y": 10.4343
+        }
+      ],
+      "z0_m": 3.55,
+      "z1_m": 5.65,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit buc_terasa_etaj"
+    },
+    {
+      "id": "toc_buc_terasa_etaj_L1_2",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.7375,
+          "y": 11.2336
+        },
+        {
+          "x": 4.7874,
+          "y": 11.2358
+        },
+        {
+          "x": 4.8217,
+          "y": 10.4365
+        },
+        {
+          "x": 4.7717,
+          "y": 10.4343
+        },
+        {
+          "x": 4.7375,
+          "y": 11.2336
+        }
+      ],
+      "z0_m": 3.55,
+      "z1_m": 5.65,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit buc_terasa_etaj"
+    },
+    {
+      "id": "toc_buc_terasa_etaj_L1_3",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 4.9862,
+          "y": 11.2443
+        },
+        {
+          "x": 5.0362,
+          "y": 11.2464
+        },
+        {
+          "x": 5.0704,
+          "y": 10.4471
+        },
+        {
+          "x": 5.0205,
+          "y": 10.445
+        },
+        {
+          "x": 4.9862,
+          "y": 11.2443
+        }
+      ],
+      "z0_m": 3.55,
+      "z1_m": 5.65,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit buc_terasa_etaj"
     },
     {
       "id": "gol_baie_living_gol_L0",
@@ -40734,7 +41733,7 @@
       "z0_m": 0.48,
       "z1_m": 2.58,
       "color": "#c9e4ef",
-      "opacity": 0.5,
+      "opacity": 0.45,
       "site_layer": "goluri",
       "group": "fatada_goluri",
       "label": "baie_living_gol"
@@ -40767,7 +41766,7 @@
       "z0_m": 3.55,
       "z1_m": 5.65,
       "color": "#c9e4ef",
-      "opacity": 0.5,
+      "opacity": 0.45,
       "site_layer": "goluri",
       "group": "fatada_goluri",
       "label": "baie_living_gol"
@@ -40800,10 +41799,43 @@
       "z0_m": 0.48,
       "z1_m": 2.58,
       "color": "#6aaf7a",
-      "opacity": 0.5,
+      "opacity": 0.45,
       "site_layer": "goluri",
       "group": "fatada_goluri",
       "label": "baie_usa"
+    },
+    {
+      "id": "usa_panou_baie_usa_L0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 3.7127,
+          "y": 16.5647
+        },
+        {
+          "x": 4.5519,
+          "y": 16.6006
+        },
+        {
+          "x": 4.5557,
+          "y": 16.5107
+        },
+        {
+          "x": 3.7165,
+          "y": 16.4748
+        },
+        {
+          "x": 3.7127,
+          "y": 16.5647
+        }
+      ],
+      "z0_m": 0.48,
+      "z1_m": 2.58,
+      "color": "#2a2a2a",
+      "opacity": 0.92,
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "ușă baie_usa"
     },
     {
       "id": "gol_baie_usa_L1",
@@ -40833,10 +41865,43 @@
       "z0_m": 3.55,
       "z1_m": 5.65,
       "color": "#6aaf7a",
-      "opacity": 0.5,
+      "opacity": 0.45,
       "site_layer": "goluri",
       "group": "fatada_goluri",
       "label": "baie_usa"
+    },
+    {
+      "id": "usa_panou_baie_usa_L1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 3.7127,
+          "y": 16.5647
+        },
+        {
+          "x": 4.5519,
+          "y": 16.6006
+        },
+        {
+          "x": 4.5557,
+          "y": 16.5107
+        },
+        {
+          "x": 3.7165,
+          "y": 16.4748
+        },
+        {
+          "x": 3.7127,
+          "y": 16.5647
+        }
+      ],
+      "z0_m": 3.55,
+      "z1_m": 5.65,
+      "color": "#2a2a2a",
+      "opacity": 0.92,
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "ușă baie_usa"
     },
     {
       "id": "gol_nisa_glisante_dorm_L0",
@@ -40866,10 +41931,171 @@
       "z0_m": 1.38,
       "z1_m": 2.88,
       "color": "#c9e4ef",
-      "opacity": 0.55,
+      "opacity": 0.15,
       "site_layer": "goluri",
       "group": "fatada_goluri",
       "label": "nisa_glisante_dorm"
+    },
+    {
+      "id": "sticla_nisa_glisante_dorm_L0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.697,
+          "y": 15.0396
+        },
+        {
+          "x": 3.3955,
+          "y": 15.1123
+        },
+        {
+          "x": 3.3974,
+          "y": 15.0673
+        },
+        {
+          "x": 1.6989,
+          "y": 14.9947
+        },
+        {
+          "x": 1.697,
+          "y": 15.0396
+        }
+      ],
+      "z0_m": 1.4,
+      "z1_m": 2.86,
+      "color": "#6eb0d4",
+      "opacity": 0.45,
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "sticlă nisa_glisante_dorm"
+    },
+    {
+      "id": "toc_nisa_glisante_dorm_L0_0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6463,
+          "y": 15.055
+        },
+        {
+          "x": 1.6963,
+          "y": 15.0571
+        },
+        {
+          "x": 1.6997,
+          "y": 14.9772
+        },
+        {
+          "x": 1.6497,
+          "y": 14.9751
+        },
+        {
+          "x": 1.6463,
+          "y": 15.055
+        }
+      ],
+      "z0_m": 1.38,
+      "z1_m": 2.88,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit nisa_glisante_dorm"
+    },
+    {
+      "id": "toc_nisa_glisante_dorm_L0_1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 3.3947,
+          "y": 15.1298
+        },
+        {
+          "x": 3.4447,
+          "y": 15.1319
+        },
+        {
+          "x": 3.4481,
+          "y": 15.052
+        },
+        {
+          "x": 3.3981,
+          "y": 15.0499
+        },
+        {
+          "x": 3.3947,
+          "y": 15.1298
+        }
+      ],
+      "z0_m": 1.38,
+      "z1_m": 2.88,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit nisa_glisante_dorm"
+    },
+    {
+      "id": "toc_nisa_glisante_dorm_L0_2",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6963,
+          "y": 15.0571
+        },
+        {
+          "x": 3.3947,
+          "y": 15.1298
+        },
+        {
+          "x": 3.3968,
+          "y": 15.0798
+        },
+        {
+          "x": 1.6984,
+          "y": 15.0072
+        },
+        {
+          "x": 1.6963,
+          "y": 15.0571
+        }
+      ],
+      "z0_m": 1.38,
+      "z1_m": 2.88,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit nisa_glisante_dorm"
+    },
+    {
+      "id": "toc_nisa_glisante_dorm_L0_3",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6975,
+          "y": 15.0272
+        },
+        {
+          "x": 3.396,
+          "y": 15.0998
+        },
+        {
+          "x": 3.3981,
+          "y": 15.0499
+        },
+        {
+          "x": 1.6997,
+          "y": 14.9772
+        },
+        {
+          "x": 1.6975,
+          "y": 15.0272
+        }
+      ],
+      "z0_m": 1.38,
+      "z1_m": 2.88,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit nisa_glisante_dorm"
     },
     {
       "id": "gol_nisa_glisante_dorm_L1",
@@ -40899,10 +42125,171 @@
       "z0_m": 4.45,
       "z1_m": 5.95,
       "color": "#c9e4ef",
-      "opacity": 0.55,
+      "opacity": 0.15,
       "site_layer": "goluri",
       "group": "fatada_goluri",
       "label": "nisa_glisante_dorm"
+    },
+    {
+      "id": "sticla_nisa_glisante_dorm_L1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.697,
+          "y": 15.0396
+        },
+        {
+          "x": 3.3955,
+          "y": 15.1123
+        },
+        {
+          "x": 3.3974,
+          "y": 15.0673
+        },
+        {
+          "x": 1.6989,
+          "y": 14.9947
+        },
+        {
+          "x": 1.697,
+          "y": 15.0396
+        }
+      ],
+      "z0_m": 4.47,
+      "z1_m": 5.930000000000001,
+      "color": "#6eb0d4",
+      "opacity": 0.45,
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "sticlă nisa_glisante_dorm"
+    },
+    {
+      "id": "toc_nisa_glisante_dorm_L1_0",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6463,
+          "y": 15.055
+        },
+        {
+          "x": 1.6963,
+          "y": 15.0571
+        },
+        {
+          "x": 1.6997,
+          "y": 14.9772
+        },
+        {
+          "x": 1.6497,
+          "y": 14.9751
+        },
+        {
+          "x": 1.6463,
+          "y": 15.055
+        }
+      ],
+      "z0_m": 4.45,
+      "z1_m": 5.95,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit nisa_glisante_dorm"
+    },
+    {
+      "id": "toc_nisa_glisante_dorm_L1_1",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 3.3947,
+          "y": 15.1298
+        },
+        {
+          "x": 3.4447,
+          "y": 15.1319
+        },
+        {
+          "x": 3.4481,
+          "y": 15.052
+        },
+        {
+          "x": 3.3981,
+          "y": 15.0499
+        },
+        {
+          "x": 3.3947,
+          "y": 15.1298
+        }
+      ],
+      "z0_m": 4.45,
+      "z1_m": 5.95,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit nisa_glisante_dorm"
+    },
+    {
+      "id": "toc_nisa_glisante_dorm_L1_2",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6963,
+          "y": 15.0571
+        },
+        {
+          "x": 3.3947,
+          "y": 15.1298
+        },
+        {
+          "x": 3.3968,
+          "y": 15.0798
+        },
+        {
+          "x": 1.6984,
+          "y": 15.0072
+        },
+        {
+          "x": 1.6963,
+          "y": 15.0571
+        }
+      ],
+      "z0_m": 4.45,
+      "z1_m": 5.95,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit nisa_glisante_dorm"
+    },
+    {
+      "id": "toc_nisa_glisante_dorm_L1_3",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6975,
+          "y": 15.0272
+        },
+        {
+          "x": 3.396,
+          "y": 15.0998
+        },
+        {
+          "x": 3.3981,
+          "y": 15.0499
+        },
+        {
+          "x": 1.6997,
+          "y": 14.9772
+        },
+        {
+          "x": 1.6975,
+          "y": 15.0272
+        }
+      ],
+      "z0_m": 4.45,
+      "z1_m": 5.95,
+      "color": "#2a2a2a",
+      "site_layer": "finisaj",
+      "group": "tamplarie",
+      "label": "toc antracit nisa_glisante_dorm"
     },
     {
       "id": "extract_baie",
@@ -43252,7 +44639,7 @@
       "color": "#6e6a64",
       "opacity": 0.98,
       "site_layer": "structura",
-      "label": "A1.194: retenție E puț 15.7 cm — outer@680"
+      "label": "A1.194: retenție E puț 15.7 cm — outer@680 (fără overflow Dragalina)"
     },
     {
       "id": "usa_beci_magazie",
@@ -45324,7 +46711,7 @@
       "color": "#5a8f6a",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "A1.194: grindă întoarsă ușă→put_reten_e (fără C_SHAFT_E_PIER — clear scară 100)"
+      "label": "A1.194: grindă întoarsă ușă→put_reten_e (fără pier în clear scară)"
     },
     {
       "id": "etaj_placa_structura",

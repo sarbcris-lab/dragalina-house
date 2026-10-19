@@ -803,8 +803,15 @@
         // și în bucket curte (deja via isCurteMesh)
         continue;
       }
-      if (id.startsWith("fatada_scara_")) {
-        etajObjs.push(obj);
+      if (id.startsWith("fatada_scara_") || id.startsWith("soclu_fatada_scara_")) {
+        // P + E: bucket după cotă (închidere P vs solid/lamele E)
+        if (zMid >= (volume.meta.z_etaj_ff_m || H) - 0.2) etajObjs.push(obj);
+        else parterObjs.push(obj);
+        continue;
+      }
+      if (id.startsWith("sticla_") || id.startsWith("toc_") || id.startsWith("usa_panou_")) {
+        if (zMid >= (volume.meta.z_etaj_ff_m || H) - 0.2) etajObjs.push(obj);
+        else parterObjs.push(obj);
         continue;
       }
       if (id.startsWith("gard_")) {

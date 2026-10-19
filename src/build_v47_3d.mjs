@@ -1840,6 +1840,35 @@ function main() {
         label: "Parapet sud podest — ca plan",
       });
     }
+    // A1.201: închidere E scară pe PARTER spre Dragalina (era gol sub solid/lamele etaj)
+    // Y450 (mid/palier) → Y860 (sud casă); X = același ca solid_e. Soclu→FF etaj.
+    {
+      const xE = solidE?.x ?? (st.band_x ?? 562.8) + (st.width_clear_cm ?? 105);
+      const dxE = solidE?.dx ?? st.parapet_thick_cm ?? 10;
+      const y0 = solidE?.y ?? 450;
+      const y1 = nsCm; // sud amprentă
+      const dyP = Math.max(10, y1 - y0);
+      meshes.push({
+        id: "fatada_scara_est_inchidere_p",
+        type: "extrude",
+        polygon: rectPoly(xE, y0, dxE, dyP),
+        z0_m: 0,
+        z1_m: zEtaj,
+        color: "#7a838c",
+        site_layer: "anvelopa",
+        label: "Zid E scară parter — închidere spre Dragalina (A1.201)",
+      });
+      meshes.push({
+        id: "soclu_fatada_scara_est_p",
+        type: "extrude",
+        polygon: rectPoly(xE, y0, dxE, dyP),
+        z0_m: 0,
+        z1_m: Math.min(zParter, 0.6),
+        color: "#5c564e",
+        site_layer: "anvelopa",
+        label: "Soclu E scară P",
+      });
+    }
   }
 
   // Palier superior = placă pe SCARA RECE sub acoperiș 2 ape.
@@ -2057,15 +2086,22 @@ function main() {
     });
   }
 
-  // Opening markers (față jos pe FF) + casete pocket (studiu)
+  // Opening markers + tâmplărie (A1.201: geam = toc antracit + sticlă, nu doar gol cyan)
+  const FRAME_ANTRACIT = "#2a2a2a";
+  const GLASS_TINT = "#6eb0d4";
   for (const o of v47.openings_cm) {
     if (o.removed) continue;
-    const poly = rectPoly(o.x, o.y, Math.max(o.dx, 8), Math.max(o.dy, 8));
+    const ox = o.x;
+    const oy = o.y;
+    const odx = Math.max(o.dx, 8);
+    const ody = Math.max(o.dy, 8);
+    const poly = rectPoly(ox, oy, odx, ody);
     const isWin =
       o.id.includes("geam") ||
       o.kind === "window" ||
       o.type === "window" ||
       /glisant|ferestr/i.test(o.id || "");
+    const isTerraceDoor = /terasa|glisant/i.test(o.id || "");
     const sill =
       o.sill_cm != null
         ? m(o.sill_cm)
@@ -2104,18 +2140,86 @@ function main() {
       }
       const zBase = level === 0 ? zParter : zEtaj;
       const isEntry = o.role === "entrance" || o.id.includes("intrare");
+      const z0 = zBase + sill;
+      const z1 = zBase + sill + oh;
+      // marker gol (debug / coordonare)
       meshes.push({
         id: `gol_${o.id}_L${level}`,
         type: "extrude",
         polygon: poly,
-        z0_m: zBase + sill,
-        z1_m: zBase + sill + oh,
+        z0_m: z0,
+        z1_m: z1,
         color: isEntry ? "#6aaf7a" : doorColor,
-        opacity: isWin ? 0.55 : 0.5,
+        opacity: isWin || isTerraceDoor ? 0.15 : 0.45,
         site_layer: "goluri",
         group: "fatada_goluri",
         label: o.id,
       });
+      // Tâmplărie vizibilă: toc + sticlă (geam / terasă glisantă)
+      if (isWin || isTerraceDoor) {
+        const ft = 5; // cm toc
+        const alongY = ody >= odx; // geam_est: dy lung pe fațadă E
+        // sticlă inset
+        const gx = alongY ? ox + ft * 0.35 : ox + ft;
+        const gy = alongY ? oy + ft : oy + ft * 0.35;
+        const gdx = alongY ? Math.max(4, odx - ft * 0.7) : Math.max(4, odx - 2 * ft);
+        const gdy = alongY ? Math.max(4, ody - 2 * ft) : Math.max(4, ody - ft * 0.7);
+        meshes.push({
+          id: `sticla_${o.id}_L${level}`,
+          type: "extrude",
+          polygon: rectPoly(gx, gy, gdx, gdy),
+          z0_m: z0 + 0.02,
+          z1_m: z1 - 0.02,
+          color: GLASS_TINT,
+          opacity: 0.45,
+          site_layer: "finisaj",
+          group: "tamplarie",
+          label: `sticlă ${o.id}`,
+        });
+        // toc: 4 benzi pe contur gol
+        const strips = alongY
+          ? [
+              { x: ox, y: oy, dx: odx, dy: ft },
+              { x: ox, y: oy + ody - ft, dx: odx, dy: ft },
+              { x: ox, y: oy + ft, dx: ft, dy: ody - 2 * ft },
+              { x: ox + odx - ft, y: oy + ft, dx: ft, dy: ody - 2 * ft },
+            ]
+          : [
+              { x: ox, y: oy, dx: ft, dy: ody },
+              { x: ox + odx - ft, y: oy, dx: ft, dy: ody },
+              { x: ox + ft, y: oy, dx: odx - 2 * ft, dy: ft },
+              { x: ox + ft, y: oy + ody - ft, dx: odx - 2 * ft, dy: ft },
+            ];
+        strips.forEach((s, i) => {
+          if (s.dx < 1 || s.dy < 1) return;
+          meshes.push({
+            id: `toc_${o.id}_L${level}_${i}`,
+            type: "extrude",
+            polygon: rectPoly(s.x, s.y, s.dx, s.dy),
+            z0_m: z0,
+            z1_m: z1,
+            color: FRAME_ANTRACIT,
+            site_layer: "finisaj",
+            group: "tamplarie",
+            label: `toc antracit ${o.id}`,
+          });
+        });
+      } else if (isEntry || /usa_|intrare|baie_usa/i.test(o.id || "")) {
+        // ușă: panou antracit simplu în gol
+        const inset = 3;
+        meshes.push({
+          id: `usa_panou_${o.id}_L${level}`,
+          type: "extrude",
+          polygon: rectPoly(ox + inset, oy + inset, Math.max(4, odx - 2 * inset), Math.max(4, ody - 2 * inset)),
+          z0_m: z0,
+          z1_m: z1,
+          color: FRAME_ANTRACIT,
+          opacity: 0.92,
+          site_layer: "finisaj",
+          group: "tamplarie",
+          label: `ușă ${o.id}`,
+        });
+      }
       if (o.pocket?.cassette) {
         const c = o.pocket.cassette;
         meshes.push({

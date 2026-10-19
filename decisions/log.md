@@ -1,5 +1,12 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.201: fațadă E — geam real + închidere scară P
+
+- **Geamuri:** toc antracit + sticlă (`toc_*` / `sticla_*`) pentru geam/terasă/glisante — nu doar gol cyan.
+- **Uși:** panou antracit simplu în gol.
+- **Casa scării → Dragalina:** `fatada_scara_est_inchidere_p` Y450→860, soclu→FF etaj (închide gaura de pe P).
+- Lamele/solid etaj neschimbate. Reper: `a1_detaliu_fatada_est.svg`.
+
 ## 2026-10-19 — A1.200: talpă pe geometria DESENATĂ (inward)
 
 - Problema: calc B115 (heel+umplutură γ·H) **≠** desen (toe0 inward, heel sub placă beci).
