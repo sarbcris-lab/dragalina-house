@@ -1,5 +1,12 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.192: comparație pachete placă/drop (nu schimbă adopt)
+
+- `s1_a1_slab_beam_pack_v01`: 15/25 vs 16/20 vs 18/18 vs 18/20 vs 20/15 vs 20/20.
+- Verdict ordin: **20+drop15 FAIL** (grindă h=35 insuficientă pe B_X_MID/Y410).
+- Alternativă mai scundă care trece: **18+drop20** → FF→FF **305** (−2 cm).
+- Adopt rămâne **15+drop25 / 307** până la decizie explicită.
+
 ## 2026-10-19 — A1.191: scări vizibile + talpă inward + retenție la teren
 
 - Viewer Structură: include scări beci/acces/rampe (nu le mai exclude).
