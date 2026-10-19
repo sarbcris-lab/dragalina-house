@@ -39,8 +39,10 @@
 | Uplift streșină | `s1_a1_eaves_uplift_v01` |
 | Retenție+apă+seism | `s1_a1_retaining_seis_v01` |
 | CR0 bare | `s1_a1_cr0_members_v01` |
-| Talpă alunecare/răsturnare | `s1_a1_footing_stability_v01` (dacă există) |
-| Confinare P100 | `s1_a1_p100_confinement_v01` (dacă există) |
+| Talpă alunecare/răsturnare | `s1_a1_footing_stability_v01` |
+| Variante talpă (drenaj/pinten/B) | `s1_a1_footing_alts_v01` |
+| Confinare P100 | `s1_a1_p100_confinement_v01` |
+| Due-diligence cumpărare | `s1_a1_due_diligence_buy_v01` |
 
 ## Lock-uri de respectat
 

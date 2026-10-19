@@ -1,5 +1,10 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.189: variante talpă (drenaj / pinten / B)
+
+- Meniu rezervă: `s1_a1_footing_alts_v01` — V1 B115 rămâne adopt; V2/V3 drenaj→B80; V4/V5 pinten.
+- Nu schimbă geometria față de A1.188; documentează fallback dacă 115 e respins la FE/geo.
+
 ## 2026-10-19 — A1.188: predare FE + due-diligence + talpă/P100
 
 - Index predare: `s1_a1_fe_INDEX.md` (+ handoff/checklist v03).

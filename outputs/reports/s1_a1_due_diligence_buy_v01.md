@@ -36,7 +36,7 @@ Detalii: `s1_a1_fe_INDEX.md` → handoff v03.
 | Risc | Impact | Ce deblochează |
 |------|--------|----------------|
 | **Geo 131 mai slab** (ex. q≈180) | Pad-uri +~20 cm / +~3,5 m² | Studiu geo pe parcelă |
-| **Apă + seism pe retenție** | Talpa 80 insuficientă → adopt studiu **B=115 cm** (sau pinten/drenaj) | Geo + footing_stability |
+| **Apă + seism pe retenție** | Talpa 80 insuficientă → adopt **B=115**; rezerve: drenaj→B80 sau pinten — vezi `footing_alts` | Geo + footing_alts |
 | Apă freatică | Hidro + drenaj + As retenție | Geo + hidro |
 | Seism / ag oficial ≠ 0,10g | Stâlpi, retenție, fundații | P100 pe amplasament |
 | Nod C_E_PAL / consolă | Detaliu armare / torsiune | FE structurist |
