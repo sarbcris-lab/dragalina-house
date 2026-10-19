@@ -1,5 +1,13 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.195: viewer V1 — filtre / clasificare
+
+- Default **Ansamblu P+E** (nu Structură).
+- `put_reten_*` în bucket subsol; Doar subsol fără șarpantă; stâlpi clip Z L-1.
+- Curte: puț retenție + acces; fără pardoseli camere beci.
+- Acoperiș: șarpantă+shell, fără stâlpi full-height.
+- Toggle Fundații; mesh dump în `<details>`; fallback WebGL → link planuri.
+
 ## 2026-10-19 — A1.194: rundă 1 — parcelă + acces beci
 
 - Overflow fundații/puț: **0** (era max 40,4 cm N + 21,4 cm puț E).

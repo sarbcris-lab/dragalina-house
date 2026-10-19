@@ -158,7 +158,7 @@
         <button type="button" id="btnOpen">Poartă deschisă</button>
       </div>
       <div class="row">
-        <button type="button" id="btnBoth" class="active">P+E</button>
+        <button type="button" id="btnBoth" class="active">Ansamblu P+E</button>
         <button type="button" id="btnParter">Doar parter</button>
         <button type="button" id="btnEtaj">Doar etaj</button>
         <button type="button" id="btnSubsol">Doar subsol</button>
@@ -168,6 +168,7 @@
         <button type="button" id="btnStructWalls">2 · + Pereți</button>
         <button type="button" id="btnRoof">3 · Acoperiș</button>
         <button type="button" id="btnCut">Secțiune interior</button>
+        <button type="button" id="btnFoundations">Fundații</button>
       </div>
       <div class="tabs" id="tabsPlans">
         <a href="/outputs/plans/a1_plan_parter.svg" target="_blank" rel="noopener"><strong>Plan parter</strong></a>
@@ -185,7 +186,11 @@
       </div>
       <p class="meta" style="margin-top:1rem">Orbit · pinch zoom · pan cu două degete / dreapta</p>
       <p class="meta" id="modelHint">Model: <code>A1 curat</code> — amenajare + subsol (fără FRAME)</p>
-      <ul id="meshes"></ul>
+      <p class="meta" id="viewHint"></p>
+      <details class="meta" id="meshDebug" style="margin-top:0.75rem">
+        <summary>Debug mesh-uri (<span id="meshCount">0</span>)</summary>
+        <ul id="meshes"></ul>
+      </details>
     </aside>
     <div class="stage">
       <div class="mobile-bar">
@@ -206,13 +211,32 @@
     import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 
     const canvas = document.getElementById("c");
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+      if (!renderer.getContext()) throw new Error("WebGL context null");
+    } catch (err) {
+      const w = document.getElementById("warning");
+      if (w) {
+        w.innerHTML =
+          "<strong>WebGL indisponibil</strong> în acest browser — viewerul 3D nu poate porni.<br/>" +
+          "Deschide planurile: " +
+          '<a href="/outputs/plans/" style="color:#fff">Planuri A1</a> · ' +
+          '<a href="/outputs/plans/a1_plan_parter.svg" style="color:#fff">Parter</a> · ' +
+          '<a href="/outputs/plans/a1_plan_etaj.svg" style="color:#fff">Etaj</a> · ' +
+          '<a href="/outputs/plans/a1_plan_subsol.svg" style="color:#fff">Subsol</a> · ' +
+          '<a href="/" style="color:#fff">Site</a>';
+      }
+      document.getElementById("viewTitle").textContent = "Dragalina 131 · fără WebGL";
+      throw err;
+    }
     renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    renderer.setClearColor(0x1a1d22);
+    renderer.setClearColor(0x121816);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.05;
+    renderer.localClippingEnabled = true;
 
     const scene = new THREE.Scene();
     const pmrem = new THREE.PMREMGenerator(renderer);
@@ -417,13 +441,28 @@
     const curteObjs = [];
     const structObjs = [];
     const umpluturaObjs = [];
-    const continuousObjs = [];
+    const columnObjs = [];
+    const roofTimberObjs = [];
+    const roofShellObjs = [];
+    const foundationObjs = [];
     const sharedFloorObjs = [];
     const list = document.getElementById("meshes");
     const root = new THREE.Group();
     scene.add(root);
 
     const H = volume.meta.level_height_m || 3.04;
+    // Cote A1.194 (m) — clip pe nivel
+    const Z = {
+      found: -3.1,
+      basSoffit: -0.3,
+      grade: 0,
+      ffP: 0.48,
+      beamSoffitP: 3.03,
+      ffE: 3.55,
+      roofBot: 6.0,
+    };
+    let showFoundations = true;
+    const clipPlanes = { active: [] };
 
     function isImprejmuireMesh(m) {
       const id = m.id || "";
@@ -451,6 +490,46 @@
         id.startsWith("gard_") ||
         id.startsWith("poarta_")
       );
+    }
+    /** Camere / pereți / puț / scară beci — inclusiv put_reten_* (fără prefix subsol_). */
+    function isBasementSpaceMesh(m) {
+      const id = m.id || "";
+      if (id.startsWith("subsol_pardoseala")) return false;
+      if (id.startsWith("subsol_fg_")) return false;
+      return (
+        id.startsWith("subsol_") ||
+        id.startsWith("put_reten_") ||
+        id.startsWith("usa_magazie") ||
+        id.startsWith("usa_ct_") ||
+        id.startsWith("usa_beci") ||
+        id === "put_scara_beci_sub_r2"
+      );
+    }
+    function isFoundationMesh(m) {
+      const id = m.id || "";
+      return id.startsWith("subsol_fg_") || id.startsWith("fundatie_");
+    }
+    function isColumnMesh(m) {
+      const id = m.id || "";
+      return (
+        id.startsWith("stalp_continuu_") ||
+        id.startsWith("stalp_a1_") ||
+        id.startsWith("stalp_SP_") ||
+        id.startsWith("etics_wrap_") ||
+        id.startsWith("col_facade_") ||
+        id.startsWith("separator_vata_")
+      );
+    }
+    function isRoofTimberId(id) {
+      return (
+        id.startsWith("acoperis_structura_") ||
+        id.startsWith("acoperis_caprior_") ||
+        id.startsWith("acoperis_coama_") ||
+        id.startsWith("acoperis_solbanc_")
+      );
+    }
+    function isRoofShellId(id) {
+      return id.startsWith("acoperis_apa_") || id.startsWith("acoperis_fronton_") || id.startsWith("pv_");
     }
     /** View „1 · Structură” = schelet BA + scări/circulație BA (beci, acces, rampe).
      *  Fără: teren, amprentă, gard/porți, țiglă/PV, paleți finisaj. */
@@ -568,7 +647,7 @@
 
     for (const m of volume.meshes) {
       const li = document.createElement("li");
-      li.textContent = m.label ? `${m.id}` : m.id;
+      li.textContent = m.id;
       list.appendChild(li);
 
       let obj;
@@ -581,6 +660,8 @@
       obj.userData.imprejmuire_only = isFacadeLimitOnly(m);
       obj.userData.curte_only = isCurteOnly(m);
       obj.userData.site_layer = m.site_layer || null;
+      obj.userData.z0 = m.z0_m ?? 0;
+      obj.userData.z1 = m.z1_m ?? 0;
       root.add(obj);
 
       if (m.state === "closed" || m.id === "poarta_inchisa") gateClosed.push(obj);
@@ -588,64 +669,57 @@
 
       const zMid =
         m.type === "triangles" && m.vertices?.length
-          ? m.vertices.reduce((s, v) => s + (v.z || 0), 0) / m.vertices.length
+          ? m.vertices.reduce((sum, v) => sum + (v.z || 0), 0) / m.vertices.length
           : ((m.z0_m ?? 0) + (m.z1_m ?? 0)) / 2;
       const id = m.id || "";
       if (isImprejmuireMesh(m)) fenceObjs.push(obj);
       if (isCurteMesh(m)) curteObjs.push(obj);
       if (isStructuraMesh(m)) structObjs.push(obj);
       if (isUmpluturaMesh(m)) umpluturaObjs.push(obj);
-      obj.userData.layer_structura = isStructuraMesh(m);
+      if (isFoundationMesh(m)) foundationObjs.push(obj);
+      if (isColumnMesh(m)) columnObjs.push(obj);
+      if (isRoofTimberId(id)) roofTimberObjs.push(obj);
+      if (isRoofShellId(id)) roofShellObjs.push(obj);
+      obj.userData.layer_structure = isStructuraMesh(m);
       obj.userData.layer_umplutura = isUmpluturaMesh(m);
+      obj.userData.is_foundation = isFoundationMesh(m);
+      obj.userData.is_basement_space = isBasementSpaceMesh(m);
+      obj.userData.is_basement_floor = id.startsWith("subsol_pardoseala");
 
-      // limit_* / imprejmuire_only: NU în P+E (apar doar în view Împrejmuire)
-      if (isFacadeLimitOnly(m)) {
+      if (isFacadeLimitOnly(m) || isCurteOnly(m)) {
         obj.visible = false;
         continue;
       }
-      // zone dale/verde studiu: DOAR view Curte (nu sub sol în P+E)
-      if (isCurteOnly(m)) {
-        obj.visible = false;
-        continue;
-      }
-      // parapet curte engleză: context sit
       if (id.startsWith("curte_engleza_")) {
         alwaysObjs.push(obj);
         continue;
       }
       if (id.startsWith("gard_")) {
-        // gard real (vest/Closca/Dragalina S): context sit în always
-        alwaysObjs.push(obj);
-      } else if (id === "teren_cf" || id.startsWith("auto") || id.startsWith("poarta") || id.startsWith("amprenta_") || id.startsWith("alee_")) {
         alwaysObjs.push(obj);
       } else if (
-        id.startsWith("stalp_continuu_") ||
-        id.startsWith("stalp_a1_") ||
-        id.startsWith("etics_wrap_") ||
-        id.startsWith("col_facade_") ||
-        id.startsWith("separator_vata_") ||
-        id.startsWith("acoperis_structura_") ||
-        id.startsWith("acoperis_caprior_") ||
-        id.startsWith("acoperis_coama_") ||
-        id.startsWith("acoperis_solbanc_") ||
-        id.startsWith("stalp_SP_")
+        id === "teren_cf" ||
+        id.startsWith("auto") ||
+        id.startsWith("poarta") ||
+        id.startsWith("amprenta_") ||
+        id.startsWith("alee_")
       ) {
-        // O singură listă — nu în parter+etaj (altfel setLevel se calcă pe vizibilitate)
-        continuousObjs.push(obj);
-        subsolObjs.push(obj);
+        alwaysObjs.push(obj);
+      } else if (isColumnMesh(m) || isRoofTimberId(id) || isRoofShellId(id)) {
+        // bucket separat
       } else if (
         id.startsWith("parter_centura_") ||
         id === "etaj_placa_structura" ||
         id === "palier_superior_placa" ||
         id === "podest_se_placa"
       ) {
-        // O singură listă — altfel „Doar parter” le afișează apoi bucla etaj le ascunde
         sharedFloorObjs.push(obj);
-      } else if (id.startsWith("subsol_")) {
+      } else if (isBasementSpaceMesh(m) || isFoundationMesh(m)) {
         subsolObjs.push(obj);
       } else if (zMid >= H - 0.05) etajObjs.push(obj);
       else parterObjs.push(obj);
     }
+    const meshCountEl = document.getElementById("meshCount");
+    if (meshCountEl) meshCountEl.textContent = String(volume.meshes.length);
 
     function setGate(state) {
       for (const o of gateClosed) o.visible = state === "closed";
@@ -730,8 +804,46 @@
       return n.startsWith("acoperis_apa_") || n.startsWith("acoperis_fronton_") || n.startsWith("pv_");
     }
 
+    function setClip(zMin, zMax) {
+      const planes = [];
+      if (zMax != null) planes.push(new THREE.Plane(new THREE.Vector3(0, -1, 0), zMax));
+      if (zMin != null) planes.push(new THREE.Plane(new THREE.Vector3(0, 1, 0), -zMin));
+      clipPlanes.active = planes;
+      renderer.clippingPlanes = planes;
+      root.traverse((o) => {
+        if (!o.isMesh || !o.material) return;
+        const mats = Array.isArray(o.material) ? o.material : [o.material];
+        for (const mat of mats) {
+          mat.clippingPlanes = planes.length ? planes : null;
+          mat.clipShadows = planes.length > 0;
+          mat.needsUpdate = true;
+        }
+      });
+    }
+    function clearClip() {
+      setClip(null, null);
+    }
+    function setViewHint(text) {
+      const el = document.getElementById("viewHint");
+      if (el) el.textContent = text || "";
+    }
+    function hideAllMeshes() {
+      root.traverse((o) => {
+        if (o.isMesh) o.visible = false;
+      });
+    }
+    function applyFoundationVisibility() {
+      for (const o of foundationObjs) {
+        if (!o.visible) continue;
+        if (!showFoundations) o.visible = false;
+      }
+      document.getElementById("btnFoundations")?.classList.toggle("active", showFoundations);
+    }
+
     function setLevel(mode) {
       levelMode = mode;
+      clearClip();
+
       if (
         mode === "imprejmuire" ||
         mode === "curte" ||
@@ -739,67 +851,100 @@
         mode === "structura_pereti" ||
         mode === "acoperis"
       ) {
-        root.traverse((o) => {
-          if (!o.isMesh) return;
-          o.visible = false;
-        });
+        hideAllMeshes();
         let layer = [];
         if (mode === "imprejmuire") {
           layer = fenceObjs;
-          for (const o of layer) o.visible = true;
-        } else if (mode === "curte") {
-          layer = curteObjs;
-          for (const o of layer) o.visible = true;
           for (const o of fenceObjs) {
-            if ((o.name || "").startsWith("limit_")) o.visible = false;
-            else if ((o.name || "").startsWith("gard_") || (o.name || "").startsWith("poarta_")) o.visible = true;
-          }
-          for (const o of subsolObjs) {
             const n = o.name || "";
-            if (
-              n.startsWith("subsol_scara") ||
-              n === "subsol_palier_jos" ||
-              n === "subsol_palier_acces" ||
-              n.startsWith("subsol_pardoseala") ||
-              n.startsWith("subsol_zid_") ||
-              n === "subsol_prag_usa_hol" ||
-              n === "subsol_usa_camere"
-            ) {
-              o.visible = true;
+            // hotar limit_* = linie/context; gard/poarta = construit
+            o.visible = true;
+            if (n.startsWith("limit_")) {
+              if (o.material && o.material.opacity == null) {
+                /* keep */
+              }
             }
           }
+          // casă estompată context
+          for (const o of [...parterObjs, ...etajObjs, ...columnObjs]) {
+            o.visible = true;
+            if (o.material && "opacity" in o.material) {
+              o.userData._op = o.material.opacity;
+              o.material.transparent = true;
+              o.material.opacity = 0.22;
+            }
+          }
+          setViewHint("Împrejmuire: hotar (limit_*) + gard/porți. Casa estompată.");
+        } else if (mode === "curte") {
+          for (const o of curteObjs) o.visible = true;
+          for (const o of fenceObjs) {
+            const n = o.name || "";
+            o.visible = n.startsWith("gard_") || n.startsWith("poarta_") || n === "teren_cf";
+          }
+          // acces beci complet: puț retenție + scară + paliere — FĂRĂ pardoseli camere
+          for (const o of subsolObjs) {
+            const n = o.name || "";
+            const show =
+              n.startsWith("put_reten_") ||
+              n.startsWith("subsol_reten_") ||
+              n.startsWith("subsol_scara") ||
+              n.startsWith("subsol_racord_") ||
+              n.startsWith("subsol_palier") ||
+              n.startsWith("subsol_curte_engleza") ||
+              n.startsWith("usa_beci") ||
+              n === "subsol_prag_usa_magazie" ||
+              n === "put_scara_beci_sub_r2";
+            o.visible = show;
+          }
+          for (const o of alwaysObjs) {
+            const n = o.name || "";
+            if (n.startsWith("curte_engleza_") || n.startsWith("alee_") || n.startsWith("auto")) o.visible = true;
+          }
+          layer = [...curteObjs, ...subsolObjs.filter((o) => o.visible)];
+          setViewHint("Curte: accese + puț retenție. Fără pardoseli camere beci.");
         } else if (mode === "structura") {
-          // 1 · schelet BA + șarpantă — fără învelitoare/PV
           layer = structObjs;
           for (const o of structObjs) {
             const n = o.name || "";
             o.visible = !isRoofShell(n);
           }
+          for (const o of foundationObjs) o.visible = showFoundations;
+          setViewHint("Structură BA + șarpantă (fără învelitoare). Fundații = toggle.");
         } else if (mode === "structura_pereti") {
           layer = [...structObjs, ...umpluturaObjs];
-          for (const o of structObjs) {
-            o.visible = !isRoofShell(o.name || "");
+          for (const o of structObjs) o.visible = !isRoofShell(o.name || "");
+          for (const o of umpluturaObjs) {
+            o.visible = true;
+            if (o.material && "opacity" in o.material) {
+              o.material.transparent = true;
+              o.material.opacity = Math.min(o.material.opacity ?? 1, 0.55);
+            }
           }
-          for (const o of umpluturaObjs) o.visible = true;
+          for (const o of foundationObjs) o.visible = showFoundations;
+          setViewHint("Coordonare: beton opac, zidărie/finisaj semi-transparente.");
         } else if (mode === "acoperis") {
-          // 3 · doar șarpantă (coamă, solbanc, căpriori, stâlpișori) + centuri E ca reazem
-          layer = [];
+          // doar șarpantă + învelitoare — FĂRĂ stâlpi pe toată înălțimea
+          for (const o of roofTimberObjs) {
+            o.visible = true;
+            layer.push(o);
+          }
+          for (const o of roofShellObjs) {
+            o.visible = true;
+            layer.push(o);
+          }
           for (const o of structObjs) {
             const n = o.name || "";
-            const show =
-              isRoofTimber(n) ||
-              n.startsWith("etaj_centura_") ||
-              n === "etaj_placa_structura" ||
-              n.startsWith("stalp_a1_");
-            o.visible = show;
-            if (show) layer.push(o);
+            if (n.startsWith("etaj_centura_")) {
+              o.visible = true;
+              layer.push(o);
+            }
           }
+          setViewHint("Acoperiș: șarpantă + învelitoare/PV. Fără stâlpi full-height.");
         }
-        // Poarta/gard NU în Structură / Acoperiș
         if (mode === "structura" || mode === "structura_pereti" || mode === "acoperis") {
           for (const o of gateClosed) o.visible = false;
           for (const o of gateOpen) o.visible = false;
-        } else {
+        } else if (mode !== "imprejmuire") {
           for (const o of gateClosed) o.visible = document.getElementById("btnClosed").classList.contains("active");
           for (const o of gateOpen) o.visible = document.getElementById("btnOpen").classList.contains("active");
         }
@@ -809,91 +954,117 @@
         document.getElementById("btnStruct")?.classList.toggle("active", mode === "structura");
         document.getElementById("btnStructWalls")?.classList.toggle("active", mode === "structura_pereti");
         document.getElementById("btnRoof")?.classList.toggle("active", mode === "acoperis");
+        applyFoundationVisibility();
         if (cutaway) applyCutaway();
         frameObjects(layer);
         return;
       }
-      for (const o of alwaysObjs) o.visible = true;
-      for (const o of parterObjs) {
-        o.visible = mode === "both" || mode === "parter";
-      }
-      for (const o of etajObjs) {
-        o.visible = mode === "both" || mode === "etaj";
-      }
-      for (const o of subsolObjs) {
-        // both: show L-1; parter/etaj: hide; subsol: only these
-        // continuousObjs sunt și în subsolObjs — le setăm separat imediat
-        if (continuousObjs.includes(o)) continue;
-        o.visible = mode === "both" || mode === "subsol";
-      }
-      // Stâlpi continui / schelet acoperiș: o singură decizie (vizibili pe P, E, both, subsol)
-      for (const o of continuousObjs) {
-        o.visible = mode === "both" || mode === "parter" || mode === "etaj" || mode === "subsol";
-      }
-      // Grinzi planșeu + plăci: vizibile pe P și E (plafon P / pardoseală E)
-      for (const o of sharedFloorObjs) {
-        o.visible = mode === "both" || mode === "parter" || mode === "etaj";
-      }
-      // niciodată pe fațadă EST/NORD ca „gard”; zone studiu curte doar în view Curte
+
+      // restore opacity after imprejmuire fade
       root.traverse((o) => {
-        if (!o.isMesh) return;
-        if (o.userData?.imprejmuire_only) o.visible = false;
-        if (o.userData?.curte_only) o.visible = false;
-      });
-      if (mode === "etaj" || mode === "parter") {
-        root.traverse((o) => {
-          if (!o.isMesh) return;
-          const n = o.name || "";
-          if (n.startsWith("subsol_")) o.visible = false;
-          // Pe parter: fără acoperiș (vezi placa). Pe etaj: schelet acoperiș DA, învelitoare/PV opțional ascunse ca să vezi coama.
-          if (mode === "parter" && isRoofOrCeiling(n)) o.visible = false;
-          if (mode === "etaj") {
-            if (n.startsWith("acoperis_apa_") || n.startsWith("acoperis_fronton_") || n.startsWith("pv_")) {
-              o.visible = false;
-            }
-            // umplutură: lasă semi-transparent deja; stâlpi continui rămân
-          }
-        });
-      }
-      if (mode === "subsol") {
-        for (const o of parterObjs) o.visible = false;
-        for (const o of etajObjs) o.visible = false;
-        for (const o of subsolObjs) o.visible = true;
-        // fără teren/amprentă peste plan — altfel camerele dispar sub capac verde
-        for (const o of alwaysObjs) {
-          const n = o.name || "";
-          o.visible = !(n === "teren_cf" || n.startsWith("amprenta_") || n.startsWith("alee_"));
+        if (o.isMesh && o.material && o.userData._op != null) {
+          o.material.opacity = o.userData._op;
+          delete o.userData._op;
         }
+      });
+
+      hideAllMeshes();
+
+      if (mode === "both") {
+        for (const o of alwaysObjs) o.visible = true;
+        for (const o of parterObjs) o.visible = true;
+        for (const o of etajObjs) o.visible = true;
+        for (const o of subsolObjs) o.visible = true;
+        for (const o of columnObjs) o.visible = true;
+        for (const o of roofTimberObjs) o.visible = true;
+        for (const o of roofShellObjs) o.visible = true;
+        for (const o of sharedFloorObjs) o.visible = true;
+        for (const o of foundationObjs) o.visible = showFoundations;
         root.traverse((o) => {
           if (!o.isMesh) return;
           if (o.userData?.imprejmuire_only) o.visible = false;
+          if (o.userData?.curte_only) o.visible = false;
+        });
+        clearClip();
+        setViewHint("Ansamblu P+E — vedere principală (casă + sit).");
+        frameObjects([...parterObjs, ...etajObjs, ...columnObjs, ...roofShellObjs]);
+      } else if (mode === "parter") {
+        for (const o of parterObjs) o.visible = true;
+        for (const o of sharedFloorObjs) o.visible = true;
+        for (const o of columnObjs) o.visible = true;
+        for (const o of umpluturaObjs) {
+          const z0 = o.userData.z0 ?? 0;
+          const z1 = o.userData.z1 ?? 0;
+          if (z1 > Z.ffP - 0.05 && z0 < Z.beamSoffitP + 0.2) o.visible = true;
+        }
+        setClip(Z.grade - 0.05, Z.beamSoffitP + 0.05);
+        for (const o of roofTimberObjs) o.visible = false;
+        for (const o of roofShellObjs) o.visible = false;
+        for (const o of subsolObjs) o.visible = false;
+        setViewHint("Doar parter — clip Z sub grindă. Șarpantă ascunsă.");
+        frameObjects([...parterObjs, ...columnObjs]);
+      } else if (mode === "etaj") {
+        for (const o of etajObjs) o.visible = true;
+        for (const o of sharedFloorObjs) o.visible = true;
+        for (const o of columnObjs) o.visible = true;
+        for (const o of umpluturaObjs) {
+          const z1 = o.userData.z1 ?? 0;
+          if (z1 > Z.ffE - 0.2) o.visible = true;
+        }
+        setClip(Z.ffE - 0.15, Z.roofBot);
+        for (const o of roofTimberObjs) o.visible = false;
+        for (const o of roofShellObjs) o.visible = false;
+        for (const o of subsolObjs) o.visible = false;
+        setViewHint("Doar etaj — clip Z. Acoperiș = buton separat „3 · Acoperiș”.");
+        frameObjects([...etajObjs, ...columnObjs]);
+      } else if (mode === "subsol") {
+        for (const o of subsolObjs) {
           const n = o.name || "";
-          if (n === "subsol_intrados_placa") o.visible = false;
-          if (n === "teren_cf" || n.startsWith("amprenta_")) o.visible = false;
-          // trepte + ziduri fântână (site_layer curte) rămân vizibile în Doar subsol
-          if (n.startsWith("subsol_racord_") || n.startsWith("subsol_curte_engleza") || n.startsWith("curte_engleza_")) {
+          if (o.userData.is_basement_floor) {
+            o.visible = true; // pardoseli camere — OK în subsol
+          } else if (o.userData.is_foundation) {
+            o.visible = showFoundations;
+          } else {
             o.visible = true;
           }
-        });
+        }
+        // put_reten + retenții + uși deja în subsolObjs via isBasementSpaceMesh
+        for (const o of columnObjs) o.visible = true;
+        setClip(Z.found, Z.basSoffit + 0.02);
+        for (const o of roofTimberObjs) o.visible = false;
+        for (const o of roofShellObjs) o.visible = false;
+        for (const o of parterObjs) o.visible = false;
+        for (const o of etajObjs) o.visible = false;
+        for (const o of alwaysObjs) {
+          const n = o.name || "";
+          o.visible =
+            n.startsWith("subsol_racord_") ||
+            n.startsWith("curte_engleza_") ||
+            n.startsWith("subsol_curte_engleza");
+        }
+        setViewHint(
+          "Doar subsol — retenții+puț+uși+scară; stâlpi clipați la L-1; fără șarpantă. Fundații = toggle."
+        );
+        frameObjects(subsolObjs.filter((o) => o.visible).concat(columnObjs));
       }
+
       clearLevelButtons();
       document.getElementById("btnBoth").classList.toggle("active", mode === "both");
       document.getElementById("btnParter").classList.toggle("active", mode === "parter");
       document.getElementById("btnEtaj").classList.toggle("active", mode === "etaj");
       document.getElementById("btnSubsol").classList.toggle("active", mode === "subsol");
+      applyFoundationVisibility();
       if (cutaway) applyCutaway();
-
-      if (mode === "etaj") frameObjects(etajObjs);
-      if (mode === "subsol") frameObjects(subsolObjs);
     }
+
     setGate(volume.meta.gate_default_state || "closed");
-    setLevel("structura");
+    setLevel("both");
     {
       const tip = document.createElement("p");
       tip.className = "meta";
       tip.style.color = "#e8a87c";
       tip.innerHTML =
-        "<strong>A1:</strong> <em>1 · Structură</em> = BA + șarpantă (fără țiglă/PV). · <em>3 · Acoperiș</em> = doar coamă/solbanc/căpriori + centuri E. · Clear≥255 · 30° PV.";
+        "<strong>A1.195:</strong> default <em>Ansamblu P+E</em>. Filtre: subsol fără șarpantă · curte cu puț · acoperiș fără stâlpi full.";
       document.getElementById("meta")?.after(tip);
     }
     document.getElementById("btnClosed").onclick = () => {
@@ -913,6 +1084,10 @@
     document.getElementById("btnStruct").onclick = () => setLevel("structura");
     document.getElementById("btnStructWalls").onclick = () => setLevel("structura_pereti");
     document.getElementById("btnRoof").onclick = () => setLevel("acoperis");
+    document.getElementById("btnFoundations").onclick = () => {
+      showFoundations = !showFoundations;
+      setLevel(levelMode);
+    };
     document.getElementById("btnCut").onclick = () => {
       cutaway = !cutaway;
       setLevel(levelMode);
