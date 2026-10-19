@@ -2841,6 +2841,10 @@ function main() {
           z0_m: zB - floorThB,
           z1_m: zB,
           color: floorColor[r.id] || "#5a6268",
+          site_layer: "finisaj",
+          level: "subsol",
+          category: "finisaj",
+          room_id: r.id,
           label: `FF subsol ${r.id}`,
         });
       }

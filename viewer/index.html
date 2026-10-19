@@ -321,31 +321,18 @@
       planOrtho = on;
       document.getElementById("btnPlanOrtho")?.classList.toggle("active", on);
       if (on) {
+        // A1.202: proiecția NU schimbă vederea activă (Curte/Împrejmuire/Structură rămân)
         if (sectionId) {
           sectionId = null;
           syncSectionButtons();
           removeSectionHelper();
           setSectionDims("");
+          applySectionPlanes(clipPlanes.zOnly || []);
         }
         useCamera(orthoCam);
-        if (
-          levelMode === "both" ||
-          levelMode === "structura" ||
-          levelMode === "structura_pereti" ||
-          levelMode === "acoperis" ||
-          levelMode === "imprejmuire" ||
-          levelMode === "curte"
-        ) {
-          setLevel("parter");
-        } else {
-          setLevel(levelMode);
-        }
+        setLevel(levelMode); // reafișează același nivel, nu forțează parter
         framePlanTop();
-        setViewHint(
-          "Plan ortografic — vedere de sus. Nivel: " +
-            (levelMode === "subsol" ? "subsol" : levelMode === "etaj" ? "etaj" : "parter") +
-            "."
-        );
+        setViewHint("Plan ortografic — vedere de sus · view: " + levelMode + ".");
       } else {
         useCamera(perspCam);
         setViewHint("");
@@ -357,7 +344,15 @@
           ? subsolObjs
           : levelMode === "etaj"
             ? etajObjs
-            : parterObjs;
+            : levelMode === "curte"
+              ? curteObjs
+              : levelMode === "imprejmuire"
+                ? fenceObjs
+                : levelMode === "structura" || levelMode === "structura_pereti"
+                  ? structObjs
+                  : levelMode === "acoperis"
+                    ? [...roofTimberObjs, ...roofShellObjs]
+                    : parterObjs;
       const box = new THREE.Box3();
       for (const o of objs) {
         if (o.visible) box.expandByObject(o);
@@ -792,7 +787,33 @@
       obj.userData.layer_umplutura = isUmpluturaMesh(m);
       obj.userData.is_foundation = isFoundationMesh(m);
       obj.userData.is_basement_space = isBasementSpaceMesh(m);
-      obj.userData.is_basement_floor = id.startsWith("subsol_pardoseala");
+      obj.userData.is_basement_floor =
+        id.startsWith("subsol_pardoseala") ||
+        (id.startsWith("pardoseala_") && zMid < -0.5);
+      // A1.202: nivel + categorie explicite (nu ghici doar din zMid greșit)
+      const zEtajFf = volume.meta.z_etaj_ff_m ?? H;
+      let levelTag = "parter";
+      if (obj.userData.is_basement_floor || zMid < -0.2 || id.startsWith("subsol_") || id.startsWith("put_reten_") || id.startsWith("fundatie_") || id.startsWith("usa_magazie") || id.startsWith("usa_ct_") || id.startsWith("usa_beci"))
+        levelTag = "subsol";
+      else if (zMid >= zEtajFf - 0.25 || /_e$|_e_e$|_L1$/.test(id) || id.includes("_etaj"))
+        levelTag = "etaj";
+      else if (/_p$|_p_p$|_L0$/.test(id)) levelTag = "parter";
+      obj.userData.level = levelTag;
+      obj.userData.category =
+        m.site_layer ||
+        (isFoundationMesh(m)
+          ? "structura"
+          : isColumnMesh(m) || isStructuraMesh(m)
+            ? "structura"
+            : isUmpluturaMesh(m)
+              ? "zidarie"
+              : id.startsWith("sticla_") || id.startsWith("toc_") || id.startsWith("usa_panou_")
+                ? "tamplarie"
+                : id.startsWith("mobil") || id.startsWith("masa") || id.startsWith("scaun")
+                  ? "mobilier"
+                  : id.startsWith("pardoseala") || id.startsWith("subsol_pardoseala")
+                    ? "finisaj"
+                    : "necunoscut");
 
       if (isFacadeLimitOnly(m) || isCurteOnly(m)) {
         obj.visible = false;
@@ -800,17 +821,15 @@
       }
       if (id.startsWith("curte_engleza_") || id.startsWith("subsol_curte_engleza")) {
         alwaysObjs.push(obj);
-        // și în bucket curte (deja via isCurteMesh)
         continue;
       }
       if (id.startsWith("fatada_scara_") || id.startsWith("soclu_fatada_scara_")) {
-        // P + E: bucket după cotă (închidere P vs solid/lamele E)
-        if (zMid >= (volume.meta.z_etaj_ff_m || H) - 0.2) etajObjs.push(obj);
+        if (levelTag === "etaj") etajObjs.push(obj);
         else parterObjs.push(obj);
         continue;
       }
       if (id.startsWith("sticla_") || id.startsWith("toc_") || id.startsWith("usa_panou_")) {
-        if (zMid >= (volume.meta.z_etaj_ff_m || H) - 0.2) etajObjs.push(obj);
+        if (levelTag === "etaj") etajObjs.push(obj);
         else parterObjs.push(obj);
         continue;
       }
@@ -833,9 +852,15 @@
         id === "podest_se_placa"
       ) {
         sharedFloorObjs.push(obj);
-      } else if (isBasementSpaceMesh(m) || isFoundationMesh(m)) {
+      } else if (
+        obj.userData.is_basement_floor ||
+        isBasementSpaceMesh(m) ||
+        isFoundationMesh(m) ||
+        levelTag === "subsol"
+      ) {
+        // A1.202: pardoseli beci → subsol (nu parter via zMid)
         subsolObjs.push(obj);
-      } else if (zMid >= H - 0.05) etajObjs.push(obj);
+      } else if (levelTag === "etaj" || zMid >= zEtajFf - 0.05) etajObjs.push(obj);
       else parterObjs.push(obj);
     }
     const meshCountEl = document.getElementById("meshCount");
@@ -867,42 +892,54 @@
       // S1: vertical cut through stair shaft (constant site Y ≈ mid puț) → plane on Z
       beci: {
         label: "S1 Acces beci",
-        // keep -Z side (looking toward decreasing site-Y / north of cut)
+        // Plane: site Y ≈ midY → Three Z = -midY; normal +Z
         plane: () => {
-          const midY = 12.9; // site y ~ palier/scară
+          const midY = 12.9;
           return new THREE.Plane(new THREE.Vector3(0, 0, 1), midY);
         },
         view: () => {
-          controls.target.set(7.2, 0.2, -12.5);
-          camera.position.set(14, 3.5, -12.5);
+          // A1.202: cameră PERPENDICULARĂ pe planul de tăiere (nu paralel)
+          const midY = 12.9;
+          const t = new THREE.Vector3(7.2, 0.4, -midY);
+          controls.target.copy(t);
+          camera.position.set(t.x, t.y, t.z + 14);
+          camera.up.set(0, 1, 0);
+          camera.lookAt(t);
         },
-        dims: "Clear beci: FF −250 → soffit −30 = 220 cm (grinzi S flush A1.194). Traseu: curte → −95 → scară → −250 → ușă A6.",
+        dims: "Clear beci: FF −250 → soffit −30 = 220 cm. Traseu: curte → −95 → scară → −250 → ușă A6.",
       },
-      // S2: cut through A6 / casa scării (constant site X)
       scara: {
         label: "S2 Casa scării",
         plane: () => {
-          const xCut = 5.85; // între A6 și puț
+          const xCut = 5.85;
           return new THREE.Plane(new THREE.Vector3(-1, 0, 0), xCut);
         },
         view: () => {
-          controls.target.set(6.2, 2.0, -11.5);
-          camera.position.set(6.2, 4.5, -3.5);
+          const xCut = 5.85;
+          const t = new THREE.Vector3(xCut, 2.0, -11.5);
+          controls.target.copy(t);
+          // normal (−1,0,0) → cameră pe −X față de plan
+          camera.position.set(xCut - 12, t.y, t.z);
+          camera.up.set(0, 1, 0);
+          camera.lookAt(t);
         },
-        dims: "Secțiune pe scară P↔E + podeste. Clear sub grindă P ≥255 · FF→FF 307.",
+        dims: "Secțiune scară P↔E + podeste. Clear sub grindă P ≥255 · FF→FF 307.",
       },
-      // S3: through heated rooms mid N–S
       camere: {
         label: "S3 Camere + acoperiș",
         plane: () => {
-          const yCut = 11.2; // ~ living mid
+          const yCut = 11.2;
           return new THREE.Plane(new THREE.Vector3(0, 0, 1), yCut);
         },
         view: () => {
-          controls.target.set(5.0, 2.5, -11.0);
-          camera.position.set(16, 5, -11.0);
+          const yCut = 11.2;
+          const t = new THREE.Vector3(4.5, 2.8, -yCut);
+          controls.target.copy(t);
+          camera.position.set(t.x, t.y, t.z + 16);
+          camera.up.set(0, 1, 0);
+          camera.lookAt(t);
         },
-        dims: "Înălțimi: clear sub grindă 255 · sub placă 280 · sub fals 274 · FF→FF 307. Acoperiș 30°.",
+        dims: "P: clear 255/280/274 · FF→FF 307. Beci: clear 220 (nu confunda cu P).",
       },
     };
 
@@ -984,10 +1021,26 @@
       /* legacy no-op — replaced by setSection */
     }
 
+    function clampBoxToClipY(b) {
+      // După clipping Z pe nivel: încadrează doar banda vizibilă (nu stâlpi full-height)
+      if (!clipPlanes.zOnly?.length) return b;
+      let yMin = -Infinity;
+      let yMax = Infinity;
+      for (const pl of clipPlanes.zOnly) {
+        if (pl.normal.y < -0.5) yMax = Math.min(yMax, pl.constant); // y ≤ zMax
+        if (pl.normal.y > 0.5) yMin = Math.max(yMin, -pl.constant); // y ≥ zMin
+      }
+      b.min.y = Math.max(b.min.y, yMin);
+      b.max.y = Math.min(b.max.y, yMax);
+      return b;
+    }
     function frameObjects(objs) {
       const box = new THREE.Box3();
       for (const o of objs) {
-        if (o.visible) box.expandByObject(o);
+        if (!o.visible) continue;
+        const b = new THREE.Box3().setFromObject(o);
+        clampBoxToClipY(b);
+        if (b.min.y <= b.max.y && !b.isEmpty()) box.union(b);
       }
       if (box.isEmpty()) return;
       const c = box.getCenter(new THREE.Vector3());
@@ -1423,17 +1476,50 @@
       // Without exact toSite inverse, match by opening/column ids primarily; room hit uses mesh name heuristics
       return { ew, ns, cnw };
     }
-    function describeMesh(name) {
+    function levelFromMeshName(name, fallback) {
+      if (!name) return fallback || "parter";
+      if (name.startsWith("subsol_") || name.startsWith("put_reten_") || name.startsWith("fundatie_") || name.startsWith("usa_beci") || name.startsWith("usa_magazie") || name.startsWith("usa_ct_"))
+        return "subsol";
+      if (/_L1\b|_e$|_e_e$|_etaj/.test(name)) return "etaj";
+      if (/_L0\b|_p$|_p_p$/.test(name)) return "parter";
+      return fallback || "parter";
+    }
+    function matchRoomForMesh(name, levelTag) {
+      const rooms = selectPack?.rooms || [];
+      const bas = selectPack?.basement_rooms || [];
+      if (levelTag === "subsol") {
+        return bas.find((r) => name.includes(r.id)) || bas.find((r) => name.includes(r.id.replace(/_/g, "")));
+      }
+      const want = levelTag === "etaj" ? 1 : 0;
+      // prefer exact level match; avoid dormitor_e → dormitor parter
+      const hits = rooms.filter((r) => name.includes(r.id) && r.level === want);
+      if (hits.length) return hits[0];
+      return rooms.find((r) => name.includes(r.id) && r.level === want) || null;
+    }
+    function describeMesh(name, meshObj) {
       const lv = selectPack?.levels_cm || {};
+      const levelTag = meshObj?.userData?.level || levelFromMeshName(name);
+      const cat = meshObj?.userData?.category || "";
       if (!name) return null;
-      if (name.startsWith("gol_") || name.startsWith("usa_")) {
-        const oid = name.replace(/^gol_/, "").replace(/^usa_/, "");
-        const o =
-          (selectPack?.openings || []).find((x) => x.id === oid || name.includes(x.id)) ||
-          (selectPack?.openings || []).find((x) => name.includes(x.id));
+      const levelBadge =
+        "<div style='opacity:.85'>Nivel: <strong>" +
+        levelTag +
+        "</strong>" +
+        (cat ? " · " + cat : "") +
+        "</div>";
+      if (name.startsWith("gol_") || name.startsWith("usa_") || name.startsWith("toc_") || name.startsWith("sticla_") || name.startsWith("usa_panou_")) {
+        const oid = name
+          .replace(/^gol_/, "")
+          .replace(/^usa_panou_/, "")
+          .replace(/^usa_/, "")
+          .replace(/^toc_/, "")
+          .replace(/^sticla_/, "")
+          .replace(/_L[01](_\d+)?$/, "");
+        const o = (selectPack?.openings || []).find((x) => x.id === oid || name.includes(x.id));
         if (o) {
           return (
-            "<div><strong>Gol / ușă</strong> <code>" +
+            levelBadge +
+            "<div><strong>Gol / tâmplărie</strong> <code>" +
             o.id +
             "</code></div>" +
             "<div>Gol montaj: <strong>" +
@@ -1451,83 +1537,112 @@
           );
         }
       }
-      if (name.startsWith("stalp_") || name.includes("C_")) {
+      if (name.startsWith("stalp_") || /C_[A-Z0-9_]+/.test(name)) {
         const cid = (selectPack?.columns || []).find((c) => name.includes(c.id));
         if (cid) {
+          const z0 = meshObj?.userData?.z0;
+          const z1 = meshObj?.userData?.z1;
+          const hCm =
+            z0 != null && z1 != null ? Math.round((z1 - z0) * 100) : null;
           return (
+            levelBadge +
             "<div><strong>Stâlp</strong> <code>" +
             cid.id +
             "</code></div>" +
             "<div>Secțiune: <strong>" +
             cid.section_cm +
             "</strong>" +
-            (cid.protrusion_cm != null ? " · proem. în cameră " + cid.protrusion_cm + " cm" : "") +
+            (cid.protrusion_cm != null ? " · proem. " + cid.protrusion_cm + " cm" : "") +
+            (hCm != null ? " · H mesh ≈ " + hCm + " cm" : "") +
             "</div>" +
-            (cid.thermal ? "<div>Thermal: " + cid.thermal + "</div>" : "") +
             (cid.note ? "<div style='opacity:.8'>" + cid.note + "</div>" : "") +
             "<div style='opacity:.75;margin-top:.25rem'>Contact geometric ≠ verificare rezistență.</div>"
           );
         }
       }
-      if (name.includes("grinda") || name.includes("centura") || name.includes("B_")) {
+      if (name.includes("grinda") || name.includes("centura") || /B_[A-Z0-9_]+/.test(name)) {
+        const z0 = meshObj?.userData?.z0;
+        const z1 = meshObj?.userData?.z1;
+        const hCm = z0 != null && z1 != null ? Math.round((z1 - z0) * 100) : null;
+        const soffit = z0 != null ? Math.round(z0 * 100) : null;
+        const top = z1 != null ? Math.round(z1 * 100) : null;
         return (
+          levelBadge +
           "<div><strong>Grindă / centură</strong> <code>" +
           name +
           "</code></div>" +
-          "<div>Clear sub grindă P: <strong>" +
-          (lv.clear_under_beam ?? 255) +
-          " cm</strong> · drop tipic " +
-          (lv.beam_drop ?? 25) +
-          " cm</div>" +
-          "<div>Beci clear: <strong>" +
-          (lv.basement_clear ?? 220) +
-          " cm</strong> (S flush)</div>"
+          (hCm != null
+            ? "<div>Secțiune mesh: <strong>h ≈ " +
+              hCm +
+              " cm</strong> · intrados z≈" +
+              soffit +
+              " · extrados z≈" +
+              top +
+              " cm</div>"
+            : "") +
+          (levelTag === "subsol"
+            ? "<div>Clear beci sub grindă/placă: <strong>" +
+              (lv.basement_clear ?? 220) +
+              " cm</strong></div>"
+            : "<div>Clear P (context): sub grindă " +
+              (lv.clear_under_beam ?? 255) +
+              " · drop tipic " +
+              (lv.beam_drop ?? 25) +
+              " cm</div>")
         );
       }
-      // Floor / room finishes — try match by id fragment
-      const roomId = (selectPack?.rooms || [])
-        .concat(selectPack?.basement_rooms || [])
-        .find((r) => name.includes(r.id));
+      const roomId = matchRoomForMesh(name, levelTag);
       if (roomId) {
+        const isBas = levelTag === "subsol" || roomId.level < 0;
         return (
+          levelBadge +
           "<div><strong>" +
           (roomId.label || roomId.id) +
           "</strong> · " +
-          (roomId.level_name || "") +
+          (roomId.level_name || levelTag) +
           "</div>" +
           "<div>Util net: <strong>" +
-          roomId.net_m2 +
+          (roomId.net_m2 ?? "—") +
           " m²</strong>" +
           (roomId.column_protrusion_m2
-            ? " (proem. stâlpi −" + roomId.column_protrusion_m2 + " m²)"
+            ? " (proem. −" + roomId.column_protrusion_m2 + " m²)"
             : "") +
           "</div>" +
           (roomId.dims_cm
-            ? "<div>Gabarit: " +
-              roomId.dims_cm.dx +
-              " × " +
-              roomId.dims_cm.dy +
-              " cm</div>"
+            ? "<div>Gabarit: " + roomId.dims_cm.dx + " × " + roomId.dims_cm.dy + " cm</div>"
             : "") +
-          "<div>Clear: sub grindă " +
-          (lv.clear_under_beam ?? 255) +
-          " · sub placă " +
-          (lv.clear_under_slab ?? 280) +
-          " · fals " +
-          (lv.clear_to_false_ceiling ?? 274) +
-          " cm</div>"
+          (isBas
+            ? "<div>Clear beci: <strong>" +
+              (lv.basement_clear ?? 220) +
+              " cm</strong> (FF −250 → soffit −30) — nu 255/280/274 de pe P</div>"
+            : "<div>Clear " +
+              (levelTag === "etaj" ? "etaj" : "parter") +
+              ": sub grindă " +
+              (lv.clear_under_beam ?? 255) +
+              " · sub placă " +
+              (lv.clear_under_slab ?? 280) +
+              " · fals " +
+              (lv.clear_to_false_ceiling ?? 274) +
+              " cm</div>")
         );
       }
       return (
+        levelBadge +
         "<div><code>" +
         name +
         "</code></div>" +
-        "<div>FF→FF " +
-        (lv.ff_to_ff ?? 307) +
-        " · clear grindă " +
-        (lv.clear_under_beam ?? 255) +
-        " cm</div>"
+        (levelTag === "subsol"
+          ? "<div>Clear beci " + (lv.basement_clear ?? 220) + " cm</div>"
+          : "<div>FF→FF " + (lv.ff_to_ff ?? 307) + " · clear grindă " + (lv.clear_under_beam ?? 255) + " cm</div>")
       );
+    }
+    function pointSurvivesClip(pt) {
+      const planes = clipPlanes.active || [];
+      for (const pl of planes) {
+        // Three.js: discard if distance < 0
+        if (pl.distanceToPoint(pt) < -1e-4) return false;
+      }
+      return true;
     }
     function onCanvasClick(ev) {
       const rect = canvas.getBoundingClientRect();
@@ -1535,7 +1650,14 @@
       pointer.y = -((ev.clientY - rect.top) / rect.height) * 2 + 1;
       raycaster.setFromCamera(pointer, camera);
       const hits = raycaster.intersectObjects(root.children, true);
-      const hit = hits.find((h) => h.object?.visible && h.object.name && h.object.name !== "section_helper");
+      // A1.202: ignoră intersecții pe partea tăiată a ClipPlane
+      const hit = hits.find(
+        (h) =>
+          h.object?.visible &&
+          h.object.name &&
+          h.object.name !== "section_helper" &&
+          pointSurvivesClip(h.point)
+      );
       if (!hit) {
         clearSelectionHighlight();
         setSelectHtml("Click pe un element în 3D (cameră / gol / stâlp / grindă).");
@@ -1544,7 +1666,7 @@
       let obj = hit.object;
       while (obj && !obj.name && obj.parent) obj = obj.parent;
       highlightObj(obj);
-      const html = describeMesh(obj.name);
+      const html = describeMesh(obj.name, obj);
       setSelectHtml(html || "<code>" + obj.name + "</code>");
     }
     canvas.addEventListener("click", onCanvasClick);

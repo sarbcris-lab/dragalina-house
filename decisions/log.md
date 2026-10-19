@@ -1,5 +1,17 @@
 # Jurnal decizii
 
+## 2026-10-19 — A1.202: viewer — clasificare / selecție / cote / secțiuni ⊥
+
+Debate acceptat (runda prezentare): **fără** schimbare amenajare/amprentă.
+1. Pardoseli beci → bucket **subsol** (nu parter).
+2. Select: nivel din id/z · cameră pe nivel corect · CT beci ≠ clear 255 P.
+3. Grindă: h/intrados din mesh, nu doar heights globale.
+4. Plan orto **păstrează** view-ul activ.
+5. S1–S3: cameră **perpendiculară** pe planul de tăiere.
+6. Click: ignoră hit-uri pe partea clipată.
+7. Încadrare: clamp pe banda Z clipată.
+Deschis: fețe de secțiune umplute · site_layer pe toate mesh-urile · views complete §4 · planuri §6–7.
+
 ## 2026-10-19 — A1.201: fațadă E — geam real + închidere scară P
 
 - **Geamuri:** toc antracit + sticlă (`toc_*` / `sticla_*`) pentru geam/terasă/glisante — nu doar gol cyan.

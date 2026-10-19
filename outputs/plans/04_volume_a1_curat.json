@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_a1_curat",
-    "generated": "2026-10-19T20:12:52.617Z",
+    "generated": "2026-10-19T20:19:08.870Z",
     "status": "3D_A1_CURAT_AMENAJARE",
     "source_plan": "data/building/v47_a1_study.json",
     "a1_architecture": "data/building/a1_architecture.json",
@@ -43238,6 +43238,10 @@
       "z0_m": -2.65,
       "z1_m": -2.5,
       "color": "#4f7f94",
+      "site_layer": "finisaj",
+      "level": "subsol",
+      "category": "finisaj",
+      "room_id": "camera_tehnica",
       "label": "FF subsol camera_tehnica"
     },
     {
@@ -43268,6 +43272,10 @@
       "z0_m": -2.65,
       "z1_m": -2.5,
       "color": "#9a8458",
+      "site_layer": "finisaj",
+      "level": "subsol",
+      "category": "finisaj",
+      "room_id": "depozit_subsol",
       "label": "FF subsol depozit_subsol"
     },
     {
@@ -43298,6 +43306,10 @@
       "z0_m": -2.65,
       "z1_m": -2.5,
       "color": "#d4a84a",
+      "site_layer": "finisaj",
+      "level": "subsol",
+      "category": "finisaj",
+      "room_id": "magazie_subsol",
       "label": "FF subsol magazie_subsol"
     },
     {
