@@ -1,5 +1,17 @@
 # Jurnal decizii
 
+## 2026-10-20 — A1.215: generator 3D consecvent (goluri / stâlpi / placă)
+
+Fără redesenare compartimentări sau schemă structurală. Doar `build_v47_3d` + clarificări date.
+
+1. **Goluri:** solide sub / montanți / deasupra (nu Shape hole pe toată H; fără overflow ±1 cm).
+2. **Straturi pe stâlpi:** beton→exterior; `adeziv_etics` păstrat (nu filtrare generică `adeziv`).
+3. **Fețe stâlp ↔ `walls_cm`:** nu `structure_box` S; nord split A1/A4 @ X565; `wallOutward` pe orientare (nu x=0 ⇒ vest pe ziduri N/S).
+4. **Placă:** `structural_footprint_cm` muchie beton 658,8×838,8; pachet muchie finit−beton; bandă fațadă soffit→FF etaj.
+5. **C_SW_TERASA:** `z0_cm: -2` (fără S ⇒ nu −3,10 beci).
+6. **B_E_S:** 15 cm = BA flush X680 (`finish_pack_cm: 0`); clear scară neschimbat.
+7. **Util/finit:** 38,5951 / 37,1366 m² · 680×860 — neschimbate.
+
 ## 2026-10-20 — A1.214: scoate zid vest + SUNC terasă
 
 1. **Vest terasă:** înapoi la **parapet h105** (fără zid plin A5u).

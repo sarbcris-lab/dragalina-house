@@ -3212,6 +3212,15 @@
         "bandă scară rece (doar puț R2)"
       ]
     },
+    "structural_footprint_cm": {
+      "x0": 10,
+      "y0": 10,
+      "x1": 668.8,
+      "y1": 848.8,
+      "ew": 658.8,
+      "ns": 838.8,
+      "note": "A1.215: muchie beton ≈ extrema EB20 (stâlpi C_NW@10 / C_NE față E@668.8 / sud@848.8). Anvelopa finită rămâne 680×860; pachetul muchie = ETICS/klinker, nu BA."
+    },
     "pit_cm": {
       "x0": 564.3,
       "x1": 664.3,
@@ -3480,7 +3489,9 @@
         "status": "PROVIZORIU_A1_207_TERASA_ROOF",
         "on_heated_box": false,
         "thermal": "outdoor_terrace",
-        "note": "A1.207: reazem acoperiș pe terasă · FE confirmă · fără S"
+        "z0_cm": -2,
+        "foundation_depth_cm": 50,
+        "note": "A1.207/215: reazem acoperiș pe terasă · FE confirmă · fără S · z0 local (nu cota beci −310)"
       }
     ],
     "beams": [
@@ -3683,7 +3694,12 @@
           "C_S_INTRARE_E"
         ],
         "role": "blade_wall_S2",
-        "note": "A1.210 S2: lamă BA 15 cm pe finit Dragalina X665 — look randare; FE confirmă"
+        "blade_semantics": "BA_flush_finished_X680",
+        "concrete_dx_cm": 15,
+        "finish_pack_cm": 0,
+        "to_finished_x_cm": 680,
+        "stair_clear_note": "față V lamă = X665; clear scară față de A6/puț neschimbat (finisaj 0)",
+        "note": "A1.210/215 S2: cei 15 cm = BA până la finit Dragalina X680 (look randare). Fără pachet A2 pe lamă (finish_pack_cm=0). FE confirmă."
       },
       {
         "id": "B_S_SE",
