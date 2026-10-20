@@ -58,11 +58,11 @@
 <line x1="80" y1="330" x2="80" y2="346" stroke="#111" stroke-width="1.6"/>
 <line x1="620.4800000000001" y1="330" x2="620.4800000000001" y2="346" stroke="#111" stroke-width="1.6"/>
 <text x="350.24000000000007" y="326" text-anchor="middle" font-size="16" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">225,2</text>
-<text x="350.24000000000007" y="364" text-anchor="middle" font-size="11" fill="#333" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">parapet după pier+podest</text>
+<text x="350.24000000000007" y="364" text-anchor="middle" font-size="11" fill="#333" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">parapet lamă S2 (după lamele)</text>
 <text x="80" y="386" text-anchor="middle" font-size="10" fill="#666" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Y973,5</text>
 <text x="2416.4" y="386" text-anchor="middle" font-size="10" fill="#666" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Y0</text>
 <text x="80" y="400" font-size="14" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">Segmente (cm) — fațadă est</text>
-<text x="80" y="426" font-size="12" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif" fill="#222">S→N: 225,2 (parapet după pier+podest) · 129,6 (lamele L129.6 H210) · 168,7 (zid plin palier) · 40 (C_E_PAL = mid) · 84,8 (plin) · 220,4 (GEAM LIVING) · 74,8 (plin) · 30 (zid N)</text>
+<text x="80" y="426" font-size="12" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif" fill="#222">S→N: 225,2 (parapet lamă S2 (după lamele)) · 129,6 (lamele L129.6 H210) · 168,7 (zid plin palier) · 40 (C_E_PAL = mid) · 84,8 (plin) · 220,4 (GEAM LIVING) · 74,8 (plin) · 30 (zid N)</text>
 <text x="80" y="452" font-size="12" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">plin N→geam = Y104,8 − Y30 = 74,8</text>
 <text x="80" y="470" font-size="12" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">geam L = 220,4 · H = 150 · prag = 90</text>
 <text x="80" y="488" font-size="12" fill="#222" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">plin geam→C_E_PAL = 84,8 (C_E_GEAM_S scos)</text>
