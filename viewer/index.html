@@ -513,6 +513,7 @@
       return mesh;
     }
 
+    try {
     // /viewer fără slash → relative ./data cade pe /data (404); păstrează query
     if (/\/viewer$/i.test(location.pathname)) {
       location.replace(`/viewer/${location.search}${location.hash}`);
@@ -520,22 +521,21 @@
     }
     // Site = doar modelul A1 curat (FRAME scos din UI)
     const volFile = "/viewer/data/volume_a1.json";
+    const warnEl = document.getElementById("warning");
+    const setWarn = (t) => {
+      if (warnEl) warnEl.textContent = t;
+    };
+    setWarn("Încărcare volum…");
     const volRes = await fetch(`${volFile}?t=${Date.now()}`, { cache: "no-store" });
     if (!volRes.ok) {
-      document.getElementById("warning").textContent = `Nu pot încărca ${volFile} (${volRes.status}).`;
+      setWarn(`Nu pot încărca ${volFile} (${volRes.status}).`);
       throw new Error(`volume fetch ${volRes.status}`);
     }
     const volume = await volRes.json();
     const title = "Dragalina 131 · A1 curat";
     document.title = title;
     document.getElementById("viewTitle").textContent = title;
-    document.getElementById("warning").textContent = volume.meta.warning || volume.meta.status;
-    const bs = document.getElementById("btnStruct");
-    const bw = document.getElementById("btnStructWalls");
-    const br = document.getElementById("btnRoof");
-    if (bs) bs.textContent = "1 · Structură";
-    if (bw) bw.textContent = "2 · + Pereți";
-    if (br) br.textContent = "3 · Acoperiș";
+    setWarn(`Construire mesh-uri 0/${(volume.meshes || []).length}…`);
     const env = volume.meta.envelope_m || {};
     document.getElementById("meta").innerHTML = `
       <div><strong>Model:</strong> ${volume.meta.id}</div>
@@ -769,16 +769,28 @@
       return m.curte_only === true || (m.id || "").startsWith("curte_zona_");
     }
 
-    for (const m of volume.meshes) {
+    const meshList = volume.meshes || [];
+    const yieldUi = () => new Promise((r) => requestAnimationFrame(() => r()));
+    for (let mi = 0; mi < meshList.length; mi++) {
+      const m = meshList[mi];
+      if (mi % 40 === 0) {
+        setWarn(`Construire mesh-uri ${mi}/${meshList.length}…`);
+        await yieldUi();
+      }
       const li = document.createElement("li");
       li.textContent = m.id;
       list.appendChild(li);
 
       let obj;
-      if (m.type === "extrude") obj = makeExtrude(m);
-      else if (m.type === "ribbon") obj = makeRibbon(m);
-      else if (m.type === "triangles") obj = makeTriangles(m);
-      else continue;
+      try {
+        if (m.type === "extrude") obj = makeExtrude(m);
+        else if (m.type === "ribbon") obj = makeRibbon(m);
+        else if (m.type === "triangles") obj = makeTriangles(m);
+        else continue;
+      } catch (meshErr) {
+        console.warn("mesh skip", m.id, meshErr);
+        continue;
+      }
 
       obj.name = m.id;
       obj.userData.imprejmuire_only = isFacadeLimitOnly(m);
@@ -890,7 +902,8 @@
       else parterObjs.push(obj);
     }
     const meshCountEl = document.getElementById("meshCount");
-    if (meshCountEl) meshCountEl.textContent = String(volume.meshes.length);
+    if (meshCountEl) meshCountEl.textContent = String(meshList.length);
+    setWarn(volume.meta.warning || volume.meta.status || `OK · ${meshList.length} mesh-uri`);
 
     function setGate(state) {
       for (const o of gateClosed) o.visible = state === "closed";
@@ -1697,9 +1710,6 @@
         "<strong>A1.205:</strong> Acoperiș Exterior|Șarpantă|Pod · filtre structură · checklist verificare.";
       document.getElementById("meta")?.after(tip);
     }
-    function isRoofishMode(m) {
-      return m === "acoperis" || m === "acoperis_sarpanta" || m === "acoperis_pod";
-    }
     document.getElementById("btnClosed").onclick = () => {
       if (levelMode === "structura" || levelMode === "structura_pereti" || isRoofishMode(levelMode)) return;
       setGate("closed");
@@ -2117,6 +2127,18 @@
         if (window.matchMedia("(max-width: 860px)").matches && el.tagName === "A") setPanelOpen(false);
       });
     });
+
+    } catch (err) {
+      if (err && err.message === "redirect /viewer/") throw err;
+      console.error(err);
+      const w = document.getElementById("warning");
+      if (w) {
+        w.innerHTML =
+          "<strong>Eroare la încărcare:</strong> " +
+          (err && err.message ? err.message : String(err)) +
+          '<br/><a href="/outputs/plans/" style="color:#fff">Deschide planurile</a>';
+      }
+    }
 
     function frame() {
       resize();

@@ -163,7 +163,6 @@
       transform-origin: 0 0;
       will-change: transform;
     }
-    .viewport object,
     .viewport img {
       display: block;
       width: auto;
@@ -173,6 +172,7 @@
       box-shadow: 0 12px 40px rgba(0,0,0,0.45);
       pointer-events: none;
       user-select: none;
+      -webkit-user-drag: none;
     }
     details.notes {
       position: absolute;
@@ -253,10 +253,9 @@
       </div>
       <div class="stage" id="stage" tabindex="0" aria-label="Plan — trage pentru deplasare, rotiță pentru zoom">
         <div class="viewport" id="viewport">
-          <object id="planObj" data="a1_plan_parter.svg" type="image/svg+xml" title="Plan A1">
-            <img id="planImg" src="a1_plan_parter.svg" alt="Plan A1" />
-          </object>
+          <img id="planImg" src="a1_plan_parter.svg" alt="Plan A1" draggable="false" />
         </div>
+        <div id="loadMsg" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(232,239,233,0.55);font-size:0.9rem;pointer-events:none;z-index:2">Încărcare plan…</div>
         <details class="notes">
           <summary>Note studiu (extinde)</summary>
           <div class="body">
@@ -284,8 +283,8 @@
 
     const stage = document.getElementById("stage");
     const viewport = document.getElementById("viewport");
-    const planObj = document.getElementById("planObj");
     const planImg = document.getElementById("planImg");
+    const loadMsg = document.getElementById("loadMsg");
     const openSvg = document.getElementById("openSvg");
     const zoomLabel = document.getElementById("zoomLabel");
     const legendList = document.getElementById("legendList");
@@ -312,7 +311,6 @@
     }
 
     function applyModeFilter() {
-      // Studiu: filtre CSS pe SVG rasterizat în object — opacitate pe viewport
       if (mode === "cote") {
         viewport.style.filter = "contrast(1.15) saturate(0.55) brightness(1.05)";
       } else if (mode === "structura") {
@@ -323,36 +321,67 @@
     }
 
     function fit() {
-      const sw = stage.clientWidth;
-      const sh = stage.clientHeight;
+      const sw = stage.clientWidth || window.innerWidth;
+      const sh = stage.clientHeight || window.innerHeight * 0.7;
       const pad = 24;
-      const sx = (sw - pad * 2) / natural.w;
-      const sy = (sh - pad * 2) / natural.h;
-      scale = Math.max(0.15, Math.min(sx, sy, 2.5));
-      tx = (sw - natural.w * scale) / 2;
-      ty = (sh - natural.h * scale) / 2;
+      const nw = Math.max(natural.w, 1);
+      const nh = Math.max(natural.h, 1);
+      const sx = (sw - pad * 2) / nw;
+      const sy = (sh - pad * 2) / nh;
+      scale = Math.max(0.12, Math.min(sx, sy, 3));
+      tx = (sw - nw * scale) / 2;
+      ty = (sh - nh * scale) / 2;
       applyTransform();
     }
 
-    function measureNatural() {
-      return new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => {
-          natural = { w: img.naturalWidth || 1200, h: img.naturalHeight || 900 };
-          resolve();
-        };
-        img.onerror = () => resolve();
-        img.src = src + (src.includes("?") ? "&" : "?") + "t=" + Date.now();
-      });
+    function measureFromSvgText(text) {
+      const vb = /viewBox\s*=\s*"([^"]+)"/i.exec(text);
+      const wAttr = /<svg[^>]*\swidth\s*=\s*"([\d.]+)"/i.exec(text);
+      const hAttr = /<svg[^>]*\sheight\s*=\s*"([\d.]+)"/i.exec(text);
+      if (vb) {
+        const p = vb[1].trim().split(/[\s,]+/).map(Number);
+        if (p.length === 4 && p[2] > 0 && p[3] > 0) return { w: p[2], h: p[3] };
+      }
+      if (wAttr && hAttr) return { w: +wAttr[1], h: +hAttr[1] };
+      return null;
     }
 
     async function loadPlan(nextSrc, legendKey) {
       src = nextSrc;
       openSvg.href = src;
-      planObj.data = src;
-      planImg.src = src;
-      await measureNatural();
+      if (loadMsg) {
+        loadMsg.style.display = "flex";
+        loadMsg.textContent = "Încărcare plan…";
+      }
+      const bust = src + (src.includes("?") ? "&" : "?") + "t=" + Date.now();
+      try {
+        const res = await fetch(bust, { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const text = await res.text();
+        const dim = measureFromSvgText(text);
+        if (dim) natural = dim;
+        const blob = new Blob([text], { type: "image/svg+xml" });
+        const url = URL.createObjectURL(blob);
+        await new Promise((resolve, reject) => {
+          planImg.onload = () => {
+            if (planImg.naturalWidth > 0) natural = { w: planImg.naturalWidth, h: planImg.naturalHeight };
+            resolve();
+          };
+          planImg.onerror = () => reject(new Error("img decode"));
+          planImg.src = url;
+        });
+      } catch (err) {
+        console.error(err);
+        planImg.src = bust;
+        await new Promise((r) => {
+          planImg.onload = r;
+          planImg.onerror = r;
+        });
+        if (planImg.naturalWidth > 0) natural = { w: planImg.naturalWidth, h: planImg.naturalHeight };
+        if (loadMsg) loadMsg.textContent = "Nu pot încărca SVG — încearcă „SVG full”.";
+      }
       fit();
+      if (loadMsg) loadMsg.style.display = "none";
       setLegend(legendKey || "parter");
     }
 

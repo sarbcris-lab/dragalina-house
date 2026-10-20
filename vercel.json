@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "buildCommand": "npm run volume:a1",
+  "buildCommand": "node -e \"console.log('static deploy — volume prebuilt')\"",
   "installCommand": "npm install --ignore-scripts",
   "outputDirectory": ".",
   "headers": [
