@@ -284,6 +284,7 @@ function main() {
           furniture_cm: a1.furniture_cm,
           heights_cm: a1.heights_cm,
           envelope_cm: a1.envelope_cm,
+          parapets_cm: a1.parapets_cm,
         };
       }
     }
@@ -307,6 +308,7 @@ function main() {
       if (a1Amenajare.envelope_cm?.ew) {
         v47.envelope_cm = { ...v47.envelope_cm, ...a1Amenajare.envelope_cm };
       }
+      if (a1Amenajare.parapets_cm?.length) v47.parapets_cm = a1Amenajare.parapets_cm;
       v47.amenajare_source = "a1_architecture";
     }
   }
@@ -1885,7 +1887,94 @@ function main() {
     }
   }
 
-  // —— Fațadă est scară A1.210 S2: lamă BA pe Dragalina · plin → lamele → parapet (fără pier)
+  /** A1.213: SUNC / jalousie orizontal — ramă + lamele stivuite pe Z */
+  function pushSuncJalousie(out, opts) {
+    const {
+      idPrefix,
+      x,
+      y,
+      dx,
+      dy,
+      z0_m,
+      z1_m,
+      bladeFaceCm = 12.5,
+      bladeThCm = 1.4,
+      frameSideCm = 8,
+      frameTbCm = 5,
+      modules = 1,
+      alongY = true,
+      label = "SUNC",
+    } = opts;
+    const H = Math.max(0.05, z1_m - z0_m);
+    const face = m(bladeFaceCm);
+    const th = m(Math.max(bladeThCm, 1));
+    const fs = m(frameSideCm);
+    const ft = m(frameTbCm);
+    const clearH = Math.max(face, H - 2 * ft);
+    const nBlades = Math.max(2, opts.nBlades ?? Math.round(clearH / face));
+    const pitch = clearH / nBlades;
+    const col = "#2a2a2a";
+    const frameCol = "#1a1a1a";
+    const nMod = Math.max(1, modules | 0);
+    const span = alongY ? dy : dx;
+    const modSpan = span / nMod;
+    for (let mi = 0; mi < nMod; mi++) {
+      const y0 = alongY ? y + mi * modSpan : y;
+      const x0 = alongY ? x : x + mi * modSpan;
+      const dyM = alongY ? modSpan : dy;
+      const dxM = alongY ? dx : modSpan;
+      const idM = nMod > 1 ? `${idPrefix}_m${mi}` : idPrefix;
+      // ramă: 4 benzi pe contur (în plan)
+      const strips = alongY
+        ? [
+            { x: x0, y: y0, dx: dxM, dy: frameSideCm, role: "N" },
+            { x: x0, y: y0 + dyM - frameSideCm, dx: dxM, dy: frameSideCm, role: "S" },
+            { x: x0, y: y0 + frameSideCm, dx: Math.min(3, dxM), dy: dyM - 2 * frameSideCm, role: "depth" },
+          ]
+        : [
+            { x: x0, y: y0, dx: frameSideCm, dy: dyM, role: "W" },
+            { x: x0 + dxM - frameSideCm, y: y0, dx: frameSideCm, dy: dyM, role: "E" },
+            { x: x0 + frameSideCm, y: y0, dx: dxM - 2 * frameSideCm, dy: Math.min(3, dyM), role: "depth" },
+          ];
+      strips.forEach((s, si) => {
+        if (s.dx < 0.5 || s.dy < 0.5) return;
+        out.push({
+          id: `${idM}_frame_${si}`,
+          type: "extrude",
+          polygon: rectPoly(s.x, s.y, s.dx, s.dy),
+          z0_m,
+          z1_m,
+          color: frameCol,
+          site_layer: "finisaj",
+          group: "tamplarie",
+          label: `${label} ramă`,
+        });
+      });
+      // lamele orizontale: bandă pe planul golului, stivuite pe Z
+      const bx = alongY ? x0 : x0 + frameSideCm;
+      const by = alongY ? y0 + frameSideCm : y0;
+      const bdx = alongY ? dxM : Math.max(2, dxM - 2 * frameSideCm);
+      const bdy = alongY ? Math.max(2, dyM - 2 * frameSideCm) : dyM;
+      for (let i = 0; i < nBlades; i++) {
+        const zb = z0_m + ft + i * pitch + (pitch - face) * 0.35;
+        out.push({
+          id: `${idM}_blade_${i}`,
+          type: "extrude",
+          polygon: rectPoly(bx, by, bdx, bdy),
+          z0_m: zb,
+          z1_m: zb + Math.min(face * 0.85, pitch * 0.75),
+          color: col,
+          opacity: 0.92,
+          site_layer: "finisaj",
+          group: "tamplarie",
+          label: `${label} lamelă ${i + 1}/${nBlades} (${bladeFaceCm} cm)`,
+        });
+      }
+      void th;
+    }
+  }
+
+  // —— Fațadă est scară A1.210/213 S2: lamă BA · SUNC jalousie · parapet
   {
     const solidE = st.stair_solid_e;
     const jal = st.stair_jaluzele_e;
@@ -1905,35 +1994,23 @@ function main() {
       });
     }
     if (jal?.dx > 0 && jal?.dy > 0) {
-      const z0 = zEtaj + m(jal.z0_above_ff_cm ?? 30);
-      const z1 = zEtaj + m(jal.z1_above_ff_cm ?? jal.h_cm ?? 240);
-      const nBlades = Math.max(8, Math.round(jal.dy / 12));
-      const gap = jal.dy / nBlades;
-      const bladeT = Math.min(2.5, gap * 0.35);
-      for (let i = 0; i < nBlades; i++) {
-        const yB = jal.y + i * gap + (gap - bladeT) / 2;
-        meshes.push({
-          id: `fatada_scara_lamele_${i}`,
-          type: "extrude",
-          polygon: rectPoly(jal.x, yB, jal.dx, bladeT),
-          z0_m: z0,
-          z1_m: z1,
-          color: "#2a2a2a",
-          site_layer: "finisaj",
-          label: `Lamele est scară (${i + 1}/${nBlades}) L${jal.dy} H${jal.h_cm || 210} — plan etaj`,
-        });
-      }
-      // cadru gol (vizibil pe plan ca stroke dashed)
-      meshes.push({
-        id: "fatada_scara_lamele_cadru",
-        type: "extrude",
-        polygon: rectPoly(jal.x, jal.y, Math.min(3, jal.dx), jal.dy),
-        z0_m: z0,
-        z1_m: z1,
-        color: "#1a1a1a",
-        opacity: 0.35,
-        site_layer: "finisaj",
-        label: `Gol lamele L${jal.dy} — reper plan etaj`,
+      // A1.213: SUNC jalousie orizontal (implicit) pe gol scară
+      pushSuncJalousie(meshes, {
+        idPrefix: "fatada_scara_sunc",
+        x: jal.x,
+        y: jal.y,
+        dx: jal.dx,
+        dy: jal.dy,
+        z0_m: zEtaj + m(jal.z0_above_ff_cm ?? 30),
+        z1_m: zEtaj + m(jal.z1_above_ff_cm ?? jal.h_cm ?? 240),
+        bladeFaceCm: jal.blade_face_cm ?? 12.5,
+        bladeThCm: jal.blade_th_cm ?? 1.4,
+        frameSideCm: jal.frame_side_cm ?? 8,
+        frameTbCm: jal.frame_tb_cm ?? 5,
+        nBlades: jal.n_blades,
+        modules: 1,
+        alongY: true,
+        label: "SUNC scară est",
       });
     }
     if (pierArh) {
@@ -2000,6 +2077,34 @@ function main() {
         site_layer: "anvelopa",
         label: "Soclu E scară P",
       });
+    }
+  }
+
+  // A1.213: SUNC pe sud terasă (P+E) — vest rămâne zid plin
+  {
+    const louvers = st.outdoor_louvers_cm || [];
+    for (const L of louvers) {
+      if (!(L.dx > 0 && L.dy > 0)) continue;
+      const lvls = L.levels || [0];
+      for (const lev of lvls) {
+        const zFf = lev === 0 ? zParter : zEtaj;
+        pushSuncJalousie(meshes, {
+          idPrefix: `${L.id}`,
+          x: L.x,
+          y: L.y,
+          dx: L.dx,
+          dy: L.dy,
+          z0_m: zFf + m(L.z0_above_ff_cm ?? 105),
+          z1_m: zFf + m(L.z1_above_ff_cm ?? 255),
+          bladeFaceCm: L.blade_face_cm ?? 12.5,
+          bladeThCm: L.blade_th_cm ?? 1.4,
+          frameSideCm: L.frame_side_cm ?? 8,
+          frameTbCm: L.frame_tb_cm ?? 5,
+          modules: L.modules ?? 1,
+          alongY: L.dy >= L.dx,
+          label: `SUNC ${L.id}`,
+        });
+      }
     }
   }
 
@@ -2287,16 +2392,16 @@ function main() {
         group: "fatada_goluri",
         label: o.id,
       });
-      // Tâmplărie vizibilă: toc + sticlă pe fața EXTERIOARĂ (A1.207 — nu îngropată în klinker)
+      // Tâmplărie: sticlă pe fața EXTERIOARĂ a golului (nu pe muchia întregii anvelope)
+      // A1.211: bug A1.207 — dorm_terasa era împinsă la Y≈ns (pe parapet); doar golurile pe hotar folosesc ew/ns.
       if (isWin || isTerraceDoor) {
         const ft = 5; // cm toc
         const alongY = ody >= odx; // geam_est: dy lung pe fațadă E
-        const glassTh = 5; // cm — lamelă vizibilă în afara anvelopei
-        const midX = ox + odx / 2;
-        const midY = oy + ody / 2;
-        const faceEast = alongY && midX > ewCm * 0.45;
-        const faceWest = alongY && midX <= ewCm * 0.45;
-        const faceSouth = !alongY && midY > nsCm * 0.45;
+        const glassTh = 5;
+        const onEnvE = alongY && ox + odx >= ewCm - 40;
+        const onEnvW = alongY && ox <= 40;
+        const onEnvS = !alongY && oy + ody >= nsCm - 40;
+        const onEnvN = !alongY && oy <= 40;
         let gx;
         let gy;
         let gdx;
@@ -2304,25 +2409,35 @@ function main() {
         if (alongY) {
           gy = oy + ft;
           gdy = Math.max(4, ody - 2 * ft);
-          if (faceEast) {
-            // în afara klinkerului (anvelopă finit + 3 cm)
-            gx = Math.max(ox + odx, ewCm) + 3;
+          if (onEnvE) {
+            gx = Math.max(ox + odx, ewCm) + 2;
             gdx = glassTh;
-          } else if (faceWest) {
-            gx = Math.min(ox, 0) - glassTh - 3;
+          } else if (onEnvW) {
+            gx = Math.min(ox, 0) - glassTh - 2;
+            gdx = glassTh;
+          } else if (ox + odx / 2 > ewCm * 0.45) {
+            // perete E interior (ex. terasa_est): pe fața E a golului
+            gx = ox + odx - 1;
             gdx = glassTh;
           } else {
-            gx = ox + ft * 0.35;
-            gdx = Math.max(4, odx - ft * 0.7);
+            gx = ox + 1 - glassTh;
+            gdx = glassTh;
           }
         } else {
           gx = ox + ft;
           gdx = Math.max(4, odx - 2 * ft);
-          if (faceSouth) {
-            gy = Math.max(oy + ody, nsCm) + 3;
+          if (onEnvS) {
+            gy = Math.max(oy + ody, nsCm) + 2;
+            gdy = glassTh;
+          } else if (onEnvN) {
+            gy = Math.min(oy, 0) - glassTh - 2;
+            gdy = glassTh;
+          } else if (oy + ody / 2 > nsCm * 0.45) {
+            // perete S intermediar (dorm→terasă): pe fața S a zidului, NU pe parapet
+            gy = oy + ody - 1;
             gdy = glassTh;
           } else {
-            gy = Math.min(oy, 0) - glassTh - 3;
+            gy = oy + 1 - glassTh;
             gdy = glassTh;
           }
         }

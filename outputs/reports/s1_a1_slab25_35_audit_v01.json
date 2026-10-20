@@ -1,0 +1,469 @@
+{
+  "meta": {
+    "id": "s1_a1_slab25_35_audit_v01",
+    "generated": "2026-10-20T10:31:54.695Z",
+    "status": "audit_ordin — NU proiect semnat"
+  },
+  "geometry": {
+    "L_s": 2.9179999999999997,
+    "L_w": 3.045,
+    "L_beam_W": 1.435999999999999,
+    "L_beam_S": 2.725
+  },
+  "loads_note": "q_Ed crește cu h (greutate proprie placă)",
+  "pure_cantilever": {
+    "south": {
+      "15": {
+        "label": "consolă sud L=2.92",
+        "L_m": 2.918,
+        "h_cm": 15,
+        "q_Ed": 12.68,
+        "M_kNm_m": 54,
+        "V_kN_m": 37,
+        "As_mm2_m": 1104,
+        "mu": 0.207,
+        "L_over_d": 23.3,
+        "delta_cr_mm": 27.6,
+        "lim180_mm": 16.2,
+        "flex_ok": true,
+        "sls_ok": false,
+        "Ld_ok": false,
+        "shear_ok": true,
+        "pass": false
+      },
+      "20": {
+        "label": "consolă sud L=2.92",
+        "L_m": 2.918,
+        "h_cm": 20,
+        "q_Ed": 14.37,
+        "M_kNm_m": 61.2,
+        "V_kN_m": 41.9,
+        "As_mm2_m": 893,
+        "mu": 0.12,
+        "L_over_d": 16.7,
+        "delta_cr_mm": 12.1,
+        "lim180_mm": 16.2,
+        "flex_ok": true,
+        "sls_ok": true,
+        "Ld_ok": false,
+        "shear_ok": true,
+        "pass": false
+      },
+      "25": {
+        "label": "consolă sud L=2.92",
+        "L_m": 2.918,
+        "h_cm": 25,
+        "q_Ed": 16.06,
+        "M_kNm_m": 68.4,
+        "V_kN_m": 46.9,
+        "As_mm2_m": 776,
+        "mu": 0.081,
+        "L_over_d": 13,
+        "delta_cr_mm": 6.7,
+        "lim180_mm": 16.2,
+        "flex_ok": true,
+        "sls_ok": true,
+        "Ld_ok": false,
+        "shear_ok": true,
+        "pass": false
+      },
+      "30": {
+        "label": "consolă sud L=2.92",
+        "L_m": 2.918,
+        "h_cm": 30,
+        "q_Ed": 17.74,
+        "M_kNm_m": 75.5,
+        "V_kN_m": 51.8,
+        "As_mm2_m": 702,
+        "mu": 0.06,
+        "L_over_d": 10.6,
+        "delta_cr_mm": 4.2,
+        "lim180_mm": 16.2,
+        "flex_ok": true,
+        "sls_ok": true,
+        "Ld_ok": false,
+        "shear_ok": true,
+        "pass": false
+      },
+      "35": {
+        "label": "consolă sud L=2.92",
+        "L_m": 2.918,
+        "h_cm": 35,
+        "q_Ed": 19.43,
+        "M_kNm_m": 82.7,
+        "V_kN_m": 56.7,
+        "As_mm2_m": 651,
+        "mu": 0.047,
+        "L_over_d": 9,
+        "delta_cr_mm": 2.8,
+        "lim180_mm": 16.2,
+        "flex_ok": true,
+        "sls_ok": true,
+        "Ld_ok": true,
+        "shear_ok": true,
+        "pass": true
+      }
+    },
+    "west": {
+      "15": {
+        "label": "consolă vest L=3.05",
+        "L_m": 3.045,
+        "h_cm": 15,
+        "q_Ed": 12.68,
+        "M_kNm_m": 58.8,
+        "V_kN_m": 38.6,
+        "As_mm2_m": 1202,
+        "mu": 0.226,
+        "L_over_d": 24.4,
+        "delta_cr_mm": 32.7,
+        "lim180_mm": 16.9,
+        "flex_ok": true,
+        "sls_ok": false,
+        "Ld_ok": false,
+        "shear_ok": true,
+        "pass": false
+      },
+      "20": {
+        "label": "consolă vest L=3.05",
+        "L_m": 3.045,
+        "h_cm": 20,
+        "q_Ed": 14.37,
+        "M_kNm_m": 66.6,
+        "V_kN_m": 43.8,
+        "As_mm2_m": 973,
+        "mu": 0.131,
+        "L_over_d": 17.4,
+        "delta_cr_mm": 14.4,
+        "lim180_mm": 16.9,
+        "flex_ok": true,
+        "sls_ok": true,
+        "Ld_ok": false,
+        "shear_ok": true,
+        "pass": false
+      },
+      "25": {
+        "label": "consolă vest L=3.05",
+        "L_m": 3.045,
+        "h_cm": 25,
+        "q_Ed": 16.06,
+        "M_kNm_m": 74.4,
+        "V_kN_m": 48.9,
+        "As_mm2_m": 846,
+        "mu": 0.088,
+        "L_over_d": 13.5,
+        "delta_cr_mm": 7.9,
+        "lim180_mm": 16.9,
+        "flex_ok": true,
+        "sls_ok": true,
+        "Ld_ok": false,
+        "shear_ok": true,
+        "pass": false
+      },
+      "30": {
+        "label": "consolă vest L=3.05",
+        "L_m": 3.045,
+        "h_cm": 30,
+        "q_Ed": 17.74,
+        "M_kNm_m": 82.3,
+        "V_kN_m": 54,
+        "As_mm2_m": 764,
+        "mu": 0.065,
+        "L_over_d": 11.1,
+        "delta_cr_mm": 5,
+        "lim180_mm": 16.9,
+        "flex_ok": true,
+        "sls_ok": true,
+        "Ld_ok": false,
+        "shear_ok": true,
+        "pass": false
+      },
+      "35": {
+        "label": "consolă vest L=3.05",
+        "L_m": 3.045,
+        "h_cm": 35,
+        "q_Ed": 19.43,
+        "M_kNm_m": 90.1,
+        "V_kN_m": 59.2,
+        "As_mm2_m": 708,
+        "mu": 0.051,
+        "L_over_d": 9.4,
+        "delta_cr_mm": 3.4,
+        "lim180_mm": 16.9,
+        "flex_ok": true,
+        "sls_ok": true,
+        "Ld_ok": true,
+        "shear_ok": true,
+        "pass": true
+      }
+    }
+  },
+  "with_L_beams_no_C_SW": {
+    "15": {
+      "B_W": {
+        "label": "B_W cant",
+        "L_m": 1.436,
+        "section": "30×40",
+        "M_kNm": 26.5,
+        "V_kN": 36.9,
+        "As_mm2": 193,
+        "mu": 0.043,
+        "delta_cr_mm": 0.7,
+        "lim_mm": 8,
+        "pass": true
+      },
+      "B_S": {
+        "label": "B_S cant",
+        "L_m": 2.725,
+        "section": "30×40",
+        "M_kNm": 95.4,
+        "V_kN": 70,
+        "As_mm2": 696,
+        "mu": 0.156,
+        "delta_cr_mm": 9.5,
+        "lim_mm": 15.1,
+        "pass": true
+      },
+      "panel": {
+        "label": "panou între grinzi",
+        "L_m": 1.436,
+        "h_cm": 15,
+        "M_kNm_m": 3.27,
+        "L_over_d": 11.5,
+        "delta_cr_mm": 0.2,
+        "lim_mm": 5.7,
+        "pass": true
+      }
+    },
+    "25": {
+      "B_W": {
+        "label": "B_W cant",
+        "L_m": 1.436,
+        "section": "30×40",
+        "M_kNm": 32.1,
+        "V_kN": 44.6,
+        "As_mm2": 234,
+        "mu": 0.052,
+        "delta_cr_mm": 0.9,
+        "lim_mm": 8,
+        "pass": true
+      },
+      "B_S": {
+        "label": "B_S cant",
+        "L_m": 2.725,
+        "section": "30×40",
+        "M_kNm": 115.4,
+        "V_kN": 84.7,
+        "As_mm2": 843,
+        "mu": 0.188,
+        "delta_cr_mm": 11.5,
+        "lim_mm": 15.1,
+        "pass": true
+      },
+      "panel": {
+        "label": "panou între grinzi",
+        "L_m": 1.436,
+        "h_cm": 25,
+        "M_kNm_m": 4.14,
+        "L_over_d": 6.4,
+        "delta_cr_mm": 0,
+        "lim_mm": 5.7,
+        "pass": true
+      }
+    },
+    "35": {
+      "B_W": {
+        "label": "B_W cant",
+        "L_m": 1.436,
+        "section": "30×40",
+        "M_kNm": 37.6,
+        "V_kN": 52.4,
+        "As_mm2": 275,
+        "mu": 0.061,
+        "delta_cr_mm": 1,
+        "lim_mm": 8,
+        "pass": true
+      },
+      "B_S": {
+        "label": "B_S cant",
+        "L_m": 2.725,
+        "section": "30×40",
+        "M_kNm": 135.5,
+        "V_kN": 99.4,
+        "As_mm2": 989,
+        "mu": 0.221,
+        "delta_cr_mm": 13.5,
+        "lim_mm": 15.1,
+        "pass": false
+      },
+      "panel": {
+        "label": "panou între grinzi",
+        "L_m": 1.436,
+        "h_cm": 35,
+        "M_kNm_m": 5.01,
+        "L_over_d": 4.4,
+        "delta_cr_mm": 0,
+        "lim_mm": 5.7,
+        "pass": true
+      }
+    }
+  },
+  "from_Y645": {
+    "25": {
+      "label": "consolă din B_Y645",
+      "L_m": 2.918,
+      "h_cm": 25,
+      "q_Ed": 16.06,
+      "M_kNm_m": 68.4,
+      "V_kN_m": 46.9,
+      "As_mm2_m": 776,
+      "mu": 0.081,
+      "L_over_d": 13,
+      "delta_cr_mm": 6.7,
+      "lim180_mm": 16.2,
+      "flex_ok": true,
+      "sls_ok": true,
+      "Ld_ok": false,
+      "shear_ok": true,
+      "pass": false
+    },
+    "35": {
+      "label": "consolă din B_Y645",
+      "L_m": 2.918,
+      "h_cm": 35,
+      "q_Ed": 19.43,
+      "M_kNm_m": 82.7,
+      "V_kN_m": 56.7,
+      "As_mm2_m": 651,
+      "mu": 0.047,
+      "L_over_d": 9,
+      "delta_cr_mm": 2.8,
+      "lim180_mm": 16.2,
+      "flex_ok": true,
+      "sls_ok": true,
+      "Ld_ok": true,
+      "shear_ok": true,
+      "pass": true
+    }
+  },
+  "clear_impact": [
+    {
+      "h_cm": 25,
+      "delta_vs_15": 10,
+      "if_keep_FF": {
+        "clear_under_slab": 270,
+        "clear_under_beam_if_beam_grows": 245,
+        "note": "dacă cobori sofitul plăcii cu +Δh"
+      },
+      "if_keep_clear_255": {
+        "ff_to_ff_new": 317,
+        "building_taller_cm": 10,
+        "note": "ridici etajul / total H"
+      }
+    },
+    {
+      "h_cm": 35,
+      "delta_vs_15": 20,
+      "if_keep_FF": {
+        "clear_under_slab": 260,
+        "clear_under_beam_if_beam_grows": 235,
+        "note": "dacă cobori sofitul plăcii cu +Δh"
+      },
+      "if_keep_clear_255": {
+        "ff_to_ff_new": 327,
+        "building_taller_cm": 20,
+        "note": "ridici etajul / total H"
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": "C_SW_TERASA",
+      "role": "colț terasă + acoperiș",
+      "enerva": "vizual colț; fundație fără S",
+      "at15_with_beams": "util dacă vrei grinzi ușoare",
+      "at25_pure_slab": "încă necesar SAU grinzi L",
+      "at35_pure_slab": "POATE DISPARE (placă consolă)",
+      "at25_with_Lbeams": "POATE DISPARE (+ FE acoperiș)",
+      "keep_if": "acoperiș pe colț fără alt reazem; zid vest pe stâlp (A1.212)"
+    },
+    {
+      "id": "B_W_TERASA / B_S_TERASA",
+      "role": "contur terasă",
+      "enerva": "drop sub sofit / vizual",
+      "at35_pure_slab": "pot DISPARE dacă placă 35 consolă + FE (sau rămân ca bordură mică)",
+      "at25_with_Lbeams": "RĂMÂN ca L (consolă) — esențiale fără stâlp @25",
+      "keep_if": "placă 15–25 fără stâlp"
+    },
+    {
+      "id": "C_S_INTRARE_W",
+      "role": "intrare / ax mid sud",
+      "enerva": "în circulație terasă/intrare",
+      "at35_pure_slab": "NU dispare ușor — B_X_MID + B_Y820 + acoperiș/intrare",
+      "keep_if": "cadru principal sud"
+    },
+    {
+      "id": "C_S_DORM_E",
+      "role": "colț dorm/terasă E",
+      "enerva": "lângă ușă terasă",
+      "at35_pure_slab": "NU — B_Y645 + B_X_MID",
+      "keep_if": "cutie încălzită"
+    },
+    {
+      "id": "C_W_DORM",
+      "role": "colț V dorm",
+      "enerva": "pe fațadă V",
+      "at35_pure_slab": "NU — B_W + B_Y645; reazem nord consolă terasă",
+      "keep_if": "întotdeauna pe cutie"
+    },
+    {
+      "id": "B_X_MID",
+      "role": "axă mid N–S",
+      "enerva": "poate trece peste living/buc",
+      "at25_house": "cu placă 25 pe casă, span ~3–3,5 m încă vrea axă sau grinzi; NU dispare doar din terasă",
+      "at35_house": "posibil span mai mare — FE; tot nu e legat de C_SW",
+      "keep_if": "cutie 5×8 m"
+    },
+    {
+      "id": "B_E_S lamă S2 15",
+      "role": "fațadă Dragalina scară",
+      "enerva": "clear scară (deja rezolvat ca lamă)",
+      "verdict": "NU dispare — lock look A1.210; nu e stâlp în clear"
+    },
+    {
+      "id": "C_CASA_SCARA",
+      "role": "separator A6",
+      "enerva": "lângă ușă etaj",
+      "verdict": "NU dispare — scară + A6"
+    },
+    {
+      "id": "B_Y_EDGE_INVERTED",
+      "role": "întoarsă beci",
+      "enerva": "sub palier",
+      "verdict": "NU dispare din placă terasă — alt sistem"
+    },
+    {
+      "id": "C_E_LAMELE",
+      "role": "pier ARH",
+      "enerva": "era în clear",
+      "verdict": "DEJA SCOAS din cadru (A1.210 S2)"
+    }
+  ],
+  "verdict": {
+    "slab25_pure": {
+      "south": false,
+      "west": false,
+      "text": "Placă 25 consolă pură pe ~2,9–3,0 m: FAIL (L/d și/sau δ). Stâlpul SAU grinzi L rămân necesare."
+    },
+    "slab35_pure": {
+      "south": true,
+      "west": true,
+      "text": "Placă 35 consolă pură: PASS pe ordin pe ambele direcții — C_SW + eventual B_W/B_S pot ieși (FE acoperiș + nod)."
+    },
+    "slab25_Lbeams": {
+      "pass": true,
+      "text": "Placă 25 + L-grinzi 30×40 fără C_SW: pe ordin ca la studiu anterior (etrieri pe B_S) — stâlpul poate ieși; grinzile rămân."
+    },
+    "clear_conflict": "Placă +10/+20 cm lovește clear 255 sau ridică FF→FF — HARD lock A1.180. Fără debate pe clear, 35 pe toată casa e scumpă.",
+    "recommendation": "Dacă obiectivul e DOAR fără C_SW: (A) păstrează placă 15 + stâlp (A1.212) SAU (B) placă 15 + L-grinzi fără stâlp + FE acoperiș SAU (C) placă locală terasă 25–30 cu grinzi + FE — nu neapărat 35 global. 35 consolă pură = tehnic pe ordin, conflict clear/cost. Alte stâlpi de cadru (intrare, dorm, mid, casa scară, lamă S2) NU dispar din cauza plăcii terasă."
+  }
+}

@@ -20,7 +20,7 @@
       "basement_rule": "Plan subsol A1.165–168 = input S1; conflict structură → remesh retenție/cadre, nu P/E.",
       "next_round": "S1 structură — decisions/s1_from_a1_v01.md"
     },
-    "generated": "2026-10-20T06:24:10.474Z",
+    "generated": "2026-10-20T06:25:06.058Z",
     "brief": "decisions/brief_A0_v01.md",
     "site": "data/building/a0_site.json",
     "source_walls": "v47 remap 680×860 — grosimi catalog A1/A2/A7/A8",
@@ -1604,7 +1604,7 @@
       ],
       "gap": false,
       "catalog_id": "A5",
-      "note": "A1.117: vest până la N sud (Y955.5); colț SV pe sud"
+      "note": "A1.214: parapet vest h105 (fără zid plin) · pe fața stâlpilor X10"
     },
     {
       "id": "terasa_parapet_sud_etaj",
@@ -1629,8 +1629,9 @@
       "levels": [
         1
       ],
-      "note": "A1.117: vest până la N sud (Y840.7); colț SV pe sud",
-      "catalog_id": "A5"
+      "gap": false,
+      "catalog_id": "A5",
+      "note": "A1.214: parapet vest etaj h105 (fără zid plin)"
     },
     {
       "id": "terasa_parapet_est_neacoperit",
@@ -2527,9 +2528,8 @@
     "s1_handoff": {
       "doc": "decisions/s1_from_a1_v01.md",
       "envelope_report": "outputs/reports/s1_basement_envelope_from_a1_v01.md",
-      "frame_mesh": "A1.174: cadre pe axe A1 (build_a1_structure) — FRAME STALE",
-      "first_task": "remesh BA pe envelope A1 — DONE geometric; FE urmează",
-      "structure_study": "structure_a1_study_cm"
+      "frame_mesh": "A1.170: build_v47_3d citește basement din a1_architecture (nu hol_subsol V47)",
+      "first_task": "reten_mesh_vs_a1 — DONE overlay 3D; FE mesh JSON încă de sync"
     },
     "structure_box": {
       "x0": 30,
@@ -2953,14 +2953,15 @@
       "note": "A1.61/210: clear N = față S mid; E = față int. lamă S2"
     },
     "stair_east_seq": {
-      "note": "A1.210 S2: plin palier → lamele → parapet (fără C_E_LAMELE)",
+      "note": "A1.213: plin palier → SUNC jalousie orizontal → parapet (fără C_E_LAMELE)",
       "y_lamele_0": 618.7,
       "y_lamele_1": 748.3,
       "lamele_L_cm": 129.6,
       "lamele_H_cm": 210,
+      "lamele_system": "SUNC_electric_jalousie_horizontal",
       "lamele_z0_above_ff_cm": 30,
       "lamele_z1_above_ff_cm": 240,
-      "vs_geam": "top≈lintou geam (FF+240); bot FF+30 (sub prag 90)",
+      "vs_geam": "top≈lintou geam (FF+240); bot FF+30 = 60 cm sub prag living 90",
       "blade_cm": {
         "th": 15,
         "x": 665,
@@ -2985,8 +2986,23 @@
       "h_cm": 210,
       "z0_above_ff_cm": 30,
       "z1_above_ff_cm": 240,
-      "note": "gol lamele L=129.6 H=210 în lamă S2 (z30→240)"
+      "system": "SUNC_electric_jalousie",
+      "orient": "horizontal",
+      "blade_face_cm": 12.5,
+      "blade_th_cm": 1.4,
+      "frame_side_cm": 8,
+      "frame_tb_cm": 5,
+      "n_blades": 16,
+      "product_ref": "suncgroup electric outdoor louver · blade 125×13.6 · W≤1500 L≤3000",
+      "vs_geam_est": {
+        "sill_above_ff_cm": 90,
+        "lintel_above_ff_cm": 240,
+        "lamele_bot_below_sill_cm": 60,
+        "lamele_top_vs_lintel": "≈aliniat FF+240"
+      },
+      "note": "A1.213 LIVE: SUNC orizontal ~16 lamele + ramă pe gol scară L129.6 H210"
     },
+    "outdoor_louvers_cm": [],
     "stair_parapet_e": {
       "x": 665,
       "y": 748.3,

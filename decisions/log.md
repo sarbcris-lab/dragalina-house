@@ -1,5 +1,24 @@
 # Jurnal decizii
 
+## 2026-10-20 — A1.214: scoate zid vest + SUNC terasă
+
+1. **Vest terasă:** înapoi la **parapet h105** (fără zid plin A5u).
+2. **Sud terasă:** **fără** SUNC (`outdoor_louvers_cm` gol).
+3. **Est scară:** SUNC jalousie **rămâne** (A1.213).
+
+## 2026-10-20 — A1.213: SUNC jalousie LIVE (scară + sud terasă)
+
+1. **Est scară:** gol L129,6×H210 = **SUNC orizontal** ~16 lamele 12,5 cm + ramă (nu 3 fins Belgian).
+2. **Sud terasă P+E:** SUNC deasupra parapet 105 → clear 255 · **2 module** × ≤150 cm. *(retras A1.214)*
+3. **Vest:** zid plin A5u. *(retras A1.214 → parapet 105)*
+4. Ref produs: blade 125×13,6 · W≤1500 · L≤3000 · orientare orizontală.
+
+## 2026-10-20 — A1.212: stâlp SW + zid vest neizolat + 3 lamele
+
+1. **C_SW_TERASA** rămâne **30×30** (P+E).
+2. **Zid vest terasă înalt** casă→stâlp: BA **15 cm**, **fără izolație** (A5u), fața V @ **X10** (= fața V stâlp; nu spre hotar). h≈**255** (clear sub grindă). Sud de stâlp: parapet jos 105 pe neacoperit.
+3. **Lamele est scară:** **3** pe L=129,6 (ca randare Belgian), face ≈**5 cm**, pitch ≈43 — nu 11×2,5. Bot FF+30 = **60 cm sub** prag geam living (90); top ≈ lintou FF+240.
+
 ## 2026-10-20 — A1.210 S2: lamă beton scară↔Dragalina (lock look)
 
 Beneficiar: **S2 OK** — look randare Belgian, nu stâlp/grindă în clear.

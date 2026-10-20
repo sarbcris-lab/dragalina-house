@@ -128,6 +128,19 @@
       ],
       "note": "doar parapete (parapets_cm); NU pe terasa_est (acela e A1)"
     },
+    "A5u": {
+      "id": "A5u",
+      "name": "Zid terasă outdoor neizolat",
+      "applies": ["terasa_zid_vest_inalt", "terasa_zid_vest_inalt_etaj"],
+      "thickness_finished_mm": 150,
+      "insulation": false,
+      "layers_interior_to_exterior_mm": [
+        { "id": "tencuiala_int", "name": "tencuială față terasă", "th_mm": 8 },
+        { "id": "miez_ba15", "name": "beton armat / zidărie BA", "th_mm": 134 },
+        { "id": "tencuiala_ext", "name": "tencuială față vest", "th_mm": 8 }
+      ],
+      "note": "A1.212: terasă rece — FĂRĂ vată/ETICS; aliniat X10 cu C_SW; ~15 cm finit"
+    },
     "A6": {
       "id": "A6",
       "name": "Separator casă caldă ↔ scară rece",
