@@ -1,5 +1,13 @@
 # Jurnal decizii
 
+## 2026-10-20 — A1.205: acoperiș 3 views + filtre structură + verify §5
+
+Debate prezentare rundă 4:
+1. Acoperiș · **Exterior** | **Șarpantă** | **Pod** (bandă Z + S3 fără a forța Ansamblu).
+2. Structură: filtre pe categorii (fundații/stâlpi/grinzi/plăci/scări/șarpantă).
+3. Verificare statică `verify_a1_viewer_a1205` 28/28 + checklist capturi desktop/mobil.
+Deschis: bifarea checklist-ului pe device real (WebGL).
+
 ## 2026-10-19 — A1.204: planuri page §6 + situație §7
 
 Debate prezentare rundă 3 (fără amenajare/amprentă):

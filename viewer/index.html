@@ -168,9 +168,19 @@
         <button type="button" id="btnCurte">Curte</button>
         <button type="button" id="btnStruct">1 · Structură</button>
         <button type="button" id="btnStructWalls">2 · + Pereți</button>
-        <button type="button" id="btnRoof">3 · Acoperiș</button>
+        <button type="button" id="btnRoof">Acoperiș · Exterior</button>
+        <button type="button" id="btnRoofTimber">Acoperiș · Șarpantă</button>
+        <button type="button" id="btnRoofAttic">Acoperiș · Pod</button>
         <button type="button" id="btnFoundations">Fundații</button>
         <button type="button" id="btnPlanOrtho">Plan orto</button>
+      </div>
+      <div class="row" id="rowStructFilters" hidden>
+        <button type="button" class="structFilter active" data-sf="fundatii">Fundații</button>
+        <button type="button" class="structFilter active" data-sf="stalpi">Stâlpi</button>
+        <button type="button" class="structFilter active" data-sf="grinzi">Grinzi</button>
+        <button type="button" class="structFilter active" data-sf="placi">Plăci</button>
+        <button type="button" class="structFilter active" data-sf="scari">Scări</button>
+        <button type="button" class="structFilter active" data-sf="sarpanta">Șarpantă</button>
       </div>
       <div class="row" id="rowSections">
         <button type="button" id="btnSecOff" class="active">Secțiune off</button>
@@ -568,6 +578,14 @@
     };
     let showFoundations = false;
     const clipPlanes = { active: [], zOnly: [] };
+    const structFilter = {
+      fundatii: true,
+      stalpi: true,
+      grinzi: true,
+      placi: true,
+      scari: true,
+      sarpanta: true,
+    };
 
     function isImprejmuireMesh(m) {
       const id = m.id || "";
@@ -1054,8 +1072,19 @@
         useCamera(perspCam);
       }
       if (id === "beci") setLevel("subsol");
-      else if (id === "scara" || id === "camere") setLevel("both");
-      else {
+      else if (id === "scara" || id === "camere") {
+        // păstrează Acoperiș·Pod / Structură dacă deja active
+        if (
+          levelMode !== "acoperis_pod" &&
+          levelMode !== "structura" &&
+          levelMode !== "structura_pereti" &&
+          !isRoofishMode(levelMode)
+        ) {
+          setLevel("both");
+        } else {
+          applySectionPlanes(clipPlanes.zOnly || []);
+        }
+      } else {
         applySectionPlanes(clipPlanes.zOnly || []);
       }
       if (id && sectionPresets[id]) {
@@ -1112,6 +1141,8 @@
         "btnStruct",
         "btnStructWalls",
         "btnRoof",
+        "btnRoofTimber",
+        "btnRoofAttic",
       ]) {
         document.getElementById(id)?.classList.toggle("active", false);
       }
@@ -1127,6 +1158,72 @@
     }
     function isRoofShell(n) {
       return n.startsWith("acoperis_apa_") || n.startsWith("acoperis_fronton_") || n.startsWith("pv_");
+    }
+    function isRoofishMode(m) {
+      return m === "acoperis" || m === "acoperis_sarpanta" || m === "acoperis_pod";
+    }
+    function structCategoryOf(n) {
+      if (!n) return null;
+      if (n.startsWith("subsol_fg_") || n.startsWith("fundatie_")) return "fundatii";
+      if (
+        n.startsWith("stalp_") ||
+        n.startsWith("subsol_pier_") ||
+        n.startsWith("subsol_stalp_") ||
+        n.startsWith("parter_stalp_") ||
+        n.startsWith("etaj_stalp_")
+      )
+        return "stalpi";
+      if (
+        n.startsWith("parter_grinda_") ||
+        n.startsWith("etaj_grinda_") ||
+        n.startsWith("subsol_grinda_") ||
+        n.startsWith("parter_centura_") ||
+        n.startsWith("etaj_centura_") ||
+        n.includes("grinda")
+      )
+        return "grinzi";
+      if (
+        n === "etaj_placa_structura" ||
+        n === "palier_superior_placa" ||
+        n === "palier_superior" ||
+        n === "podest_se_placa" ||
+        n === "subsol_intrados_placa" ||
+        n.includes("placa")
+      )
+        return "placi";
+      if (
+        n.startsWith("subsol_scara") ||
+        n.startsWith("structura_rampa") ||
+        n.startsWith("structura_r2_") ||
+        n.startsWith("structura_r180_") ||
+        n.startsWith("treapta_") ||
+        n.startsWith("acces_treapta_") ||
+        n.startsWith("subsol_palier") ||
+        n.startsWith("subsol_racord_") ||
+        n === "put_scara_beci_sub_r2"
+      )
+        return "scari";
+      if (isRoofTimber(n) || isRoofShell(n)) return "sarpanta";
+      if (n.startsWith("subsol_reten_") || n.startsWith("put_reten_")) return "grinzi";
+      return "grinzi";
+    }
+    function applyStructCategoryFilter() {
+      const row = document.getElementById("rowStructFilters");
+      const showRow = levelMode === "structura" || levelMode === "structura_pereti";
+      if (row) row.hidden = !showRow;
+      if (!showRow) return;
+      for (const o of structObjs) {
+        const cat = structCategoryOf(o.name || "");
+        if (!cat) continue;
+        if (!structFilter[cat]) o.visible = false;
+      }
+      for (const o of foundationObjs) {
+        if (!structFilter.fundatii) o.visible = false;
+        else if (showFoundations && levelMode.startsWith("structura")) o.visible = true;
+      }
+      for (const btn of document.querySelectorAll(".structFilter")) {
+        btn.classList.toggle("active", !!structFilter[btn.dataset.sf]);
+      }
     }
 
     function setClip(zMin, zMax) {
@@ -1222,7 +1319,9 @@
         mode === "curte" ||
         mode === "structura" ||
         mode === "structura_pereti" ||
-        mode === "acoperis"
+        mode === "acoperis" ||
+        mode === "acoperis_sarpanta" ||
+        mode === "acoperis_pod"
       ) {
         hideAllMeshes();
         let layer = [];
@@ -1306,7 +1405,7 @@
             o.visible = !isRoofShell(n);
           }
           for (const o of foundationObjs) o.visible = showFoundations;
-          setViewHint("Structură BA + șarpantă (fără învelitoare). Fundații = toggle.");
+          setViewHint("Structură BA + șarpantă (fără învelitoare). Filtre categorii mai jos · Fundații = toggle.");
         } else if (mode === "structura_pereti") {
           layer = [...structObjs, ...umpluturaObjs];
           for (const o of structObjs) o.visible = !isRoofShell(o.name || "");
@@ -1318,9 +1417,8 @@
             }
           }
           for (const o of foundationObjs) o.visible = showFoundations;
-          setViewHint("Coordonare: beton opac, zidărie/finisaj semi-transparente.");
+          setViewHint("Coordonare: beton opac, zidărie/finisaj semi-transparente. Filtre structură active.");
         } else if (mode === "acoperis") {
-          // doar șarpantă + învelitoare — FĂRĂ stâlpi pe toată înălțimea
           for (const o of roofTimberObjs) {
             o.visible = true;
             layer.push(o);
@@ -1336,9 +1434,63 @@
               layer.push(o);
             }
           }
-          setViewHint("Acoperiș: șarpantă + învelitoare/PV. Fără stâlpi full-height.");
+          setViewHint("Acoperiș · Exterior — învelitoare/PV + șarpantă. Fără stâlpi full-height.");
+        } else if (mode === "acoperis_sarpanta") {
+          for (const o of roofTimberObjs) {
+            o.visible = true;
+            layer.push(o);
+          }
+          for (const o of structObjs) {
+            const n = o.name || "";
+            if (n.startsWith("etaj_centura_")) {
+              o.visible = true;
+              layer.push(o);
+            }
+          }
+          setViewHint("Acoperiș · Șarpantă — lemn aparent (fără învelitoare/PV). Click căpriori pentru cote.");
+        } else if (mode === "acoperis_pod") {
+          for (const o of roofTimberObjs) {
+            o.visible = true;
+            layer.push(o);
+          }
+          for (const o of roofShellObjs) {
+            o.visible = true;
+            if (o.material && "opacity" in o.material) {
+              o.userData._op = o.material.opacity;
+              o.material.transparent = true;
+              o.material.opacity = 0.22;
+            }
+            layer.push(o);
+          }
+          for (const o of structObjs) {
+            const n = o.name || "";
+            if (n.startsWith("etaj_centura_") || n === "etaj_placa_structura") {
+              o.visible = true;
+              layer.push(o);
+            }
+          }
+          for (const o of etajObjs) {
+            const n = o.name || "";
+            if (n.startsWith("zid_") || n.startsWith("pardoseala_")) {
+              o.visible = true;
+              if (o.material && "opacity" in o.material) {
+                o.userData._op = o.material.opacity;
+                o.material.transparent = true;
+                o.material.opacity = 0.18;
+              }
+              layer.push(o);
+            }
+          }
+          setClip(Z.ffE + 0.8, 9.2);
+          setViewHint("Acoperiș · Pod — bandă Z peste etaj + S3 opțional. Clear pod / lemn vizibil din camere.");
         }
-        if (mode === "structura" || mode === "structura_pereti" || mode === "acoperis") {
+        if (
+          mode === "structura" ||
+          mode === "structura_pereti" ||
+          mode === "acoperis" ||
+          mode === "acoperis_sarpanta" ||
+          mode === "acoperis_pod"
+        ) {
           for (const o of gateClosed) o.visible = false;
           for (const o of gateOpen) o.visible = false;
         } else if (mode !== "imprejmuire") {
@@ -1351,7 +1503,10 @@
         document.getElementById("btnStruct")?.classList.toggle("active", mode === "structura");
         document.getElementById("btnStructWalls")?.classList.toggle("active", mode === "structura_pereti");
         document.getElementById("btnRoof")?.classList.toggle("active", mode === "acoperis");
+        document.getElementById("btnRoofTimber")?.classList.toggle("active", mode === "acoperis_sarpanta");
+        document.getElementById("btnRoofAttic")?.classList.toggle("active", mode === "acoperis_pod");
         applyFoundationVisibility();
+        applyStructCategoryFilter();
         applySectionPlanes(clipPlanes.zOnly || []);
         if (planOrtho) framePlanTop();
         else frameObjects(layer);
@@ -1527,6 +1682,7 @@
       document.getElementById("btnSubsol").classList.toggle("active", mode === "subsol");
       document.getElementById("btnSubsolAcces")?.classList.toggle("active", mode === "subsol_acces");
       applyFoundationVisibility();
+      applyStructCategoryFilter(); // ascunde filtrele când nu e Structură
       applySectionPlanes(clipPlanes.zOnly || []);
       if (planOrtho) framePlanTop();
     }
@@ -1538,15 +1694,18 @@
       tip.className = "meta";
       tip.style.color = "#e8a87c";
       tip.innerHTML =
-        "<strong>A1.204:</strong> Planuri — pan/zoom/încadrează · situație + fundații sit.";
+        "<strong>A1.205:</strong> Acoperiș Exterior|Șarpantă|Pod · filtre structură · checklist verificare.";
       document.getElementById("meta")?.after(tip);
     }
+    function isRoofishMode(m) {
+      return m === "acoperis" || m === "acoperis_sarpanta" || m === "acoperis_pod";
+    }
     document.getElementById("btnClosed").onclick = () => {
-      if (levelMode === "structura" || levelMode === "structura_pereti" || levelMode === "acoperis") return;
+      if (levelMode === "structura" || levelMode === "structura_pereti" || isRoofishMode(levelMode)) return;
       setGate("closed");
     };
     document.getElementById("btnOpen").onclick = () => {
-      if (levelMode === "structura" || levelMode === "structura_pereti" || levelMode === "acoperis") return;
+      if (levelMode === "structura" || levelMode === "structura_pereti" || isRoofishMode(levelMode)) return;
       setGate("open");
     };
     document.getElementById("btnBoth").onclick = () => setLevel("both");
@@ -1560,10 +1719,29 @@
     document.getElementById("btnStruct").onclick = () => setLevel("structura");
     document.getElementById("btnStructWalls").onclick = () => setLevel("structura_pereti");
     document.getElementById("btnRoof").onclick = () => setLevel("acoperis");
+    document.getElementById("btnRoofTimber").onclick = () => setLevel("acoperis_sarpanta");
+    document.getElementById("btnRoofAttic").onclick = () => {
+      // Pod + tăiere S3 fără a forța Ansamblu (setSection("camere") ar apela setLevel("both"))
+      setLevel("acoperis_pod");
+      sectionId = "camere";
+      syncSectionButtons();
+      applySectionPlanes(clipPlanes.zOnly || []);
+      sectionPresets.camere.view();
+      controls.update();
+      setViewHint("Acoperiș · Pod — bandă Z + secțiune S3 ⊥. Șarpantă vizibilă din camere.");
+    };
     document.getElementById("btnFoundations").onclick = () => {
       showFoundations = !showFoundations;
       setLevel(levelMode);
     };
+    for (const btn of document.querySelectorAll(".structFilter")) {
+      btn.addEventListener("click", () => {
+        const key = btn.dataset.sf;
+        if (!key || !(key in structFilter)) return;
+        structFilter[key] = !structFilter[key];
+        setLevel(levelMode);
+      });
+    }
     document.getElementById("btnPlanOrtho").onclick = () => setPlanOrtho(!planOrtho);
     document.getElementById("btnSecOff").onclick = () => setSection(null);
     document.getElementById("btnSecBeci").onclick = () => setSection("beci");
