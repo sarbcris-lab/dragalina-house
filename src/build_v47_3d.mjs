@@ -389,7 +389,10 @@ function main() {
     if (fp) return rectPoly(fp.x0 ?? 0, fp.y0 ?? 0, fp.ew, fp.ns);
     return rectPoly(0, 0, ewCm, nsCm);
   };
-  /** Pachet muchie finit − beton (doar anvelopă, fără a muta stâlpii). */
+  /**
+   * Muchie finit−beton: straturi catalog pe zonă (nu volum generic).
+   * E/S încălzit → A2; N încălzit → A1; N scară X≥565 → A4; V → A1.
+   */
   function pushFinishedEdgePack(z0, z1, idPrefix) {
     const fp = structFp || a1StructFp;
     if (!fp || z1 <= z0 + 0.02) return;
@@ -397,27 +400,129 @@ function main() {
     const y0 = fp.y0 ?? 0;
     const x1 = fp.x1 ?? x0 + (fp.ew || 0);
     const y1 = fp.y1 ?? y0 + (fp.ns || 0);
-    const bands = [
-      { id: "e", x: x1, y: y0, dx: Math.max(0.05, ewCm - x1), dy: y1 - y0 },
-      { id: "w", x: 0, y: y0, dx: Math.max(0.05, x0), dy: y1 - y0 },
-      { id: "n", x: 0, y: 0, dx: ewCm, dy: Math.max(0.05, y0) },
-      { id: "s", x: 0, y: y1, dx: ewCm, dy: Math.max(0.05, nsCm - y1) },
+    const zones = [
+      { id: "e", outward: "east", cat: "A2", face: x1, along0: y0, along1: y1, budget: ewCm - x1 },
+      { id: "w", outward: "west", cat: "A1", face: x0, along0: y0, along1: y1, budget: x0 },
+      { id: "s", outward: "south", cat: "A2", face: y1, along0: x0, along1: x1, budget: nsCm - y1 },
     ];
-    for (const b of bands) {
-      if (b.dx < 0.05 || b.dy < 0.05) continue;
-      meshes.push({
-        id: `${idPrefix}_${b.id}`,
-        type: "extrude",
-        polygon: rectPoly(b.x, b.y, b.dx, b.dy),
-        z0_m: z0,
-        z1_m: z1,
-        color: "#c4b8a8",
-        opacity: 0.55,
-        site_layer: "anvelopa",
-        group: "fatada",
-        label: `muchie finit−beton ${b.id} (pachet fațadă; nu BA)`,
+    // Nord: split A1 / A4 @ X565
+    const nSplit = 565;
+    zones.push({
+      id: "n_heated",
+      outward: "north",
+      cat: "A1",
+      face: y0,
+      along0: x0,
+      along1: Math.min(x1, nSplit),
+      budget: y0,
+    });
+    if (x1 > nSplit) {
+      zones.push({
+        id: "n_cold",
+        outward: "north",
+        cat: "A4",
+        face: y0,
+        along0: Math.max(x0, nSplit),
+        along1: x1,
+        budget: y0,
       });
     }
+    for (const z of zones) {
+      if (z.along1 - z.along0 < 1 || z.budget < 0.5) continue;
+      const layers = layersFromOutside(z.cat).filter(
+        (L) =>
+          !/caramida|eb20|tencuiala_int|finisare_vopsea|faianata|adeziv_faianata/i.test(L.id || "")
+      );
+      // beton → exterior
+      const stack = [...layers].reverse();
+      let accMm = 0;
+      let conflict = false;
+      for (const L of stack) {
+        const thMm = L.th_mm || 0;
+        if (thMm < 0.05) continue;
+        const thCm = thMm / 10;
+        if (accMm / 10 + thCm > z.budget + 0.05) {
+          conflict = true;
+          break;
+        }
+        const aCm = accMm / 10;
+        const bCm = aCm + thCm;
+        accMm += thMm;
+        let x;
+        let y;
+        let dx;
+        let dy;
+        const span = z.along1 - z.along0;
+        if (z.outward === "east") {
+          x = z.face + aCm;
+          dx = thCm;
+          y = z.along0;
+          dy = span;
+        } else if (z.outward === "west") {
+          x = z.face - bCm;
+          dx = thCm;
+          y = z.along0;
+          dy = span;
+        } else if (z.outward === "south") {
+          y = z.face + aCm;
+          dy = thCm;
+          x = z.along0;
+          dx = span;
+        } else {
+          y = z.face - bCm;
+          dy = thCm;
+          x = z.along0;
+          dx = span;
+        }
+        meshes.push({
+          id: `${idPrefix}_${z.id}_${L.id}`,
+          type: "extrude",
+          polygon: rectPoly(x, y, dx, dy),
+          z0_m: z0,
+          z1_m: z1,
+          color: LAYER_COLORS[L.id] || "#c4b8a8",
+          opacity: /vata/i.test(L.id || "") ? 0.85 : 0.95,
+          site_layer: "anvelopa",
+          group: "fatada",
+          wall_layer: L.id,
+          catalog_id: z.cat,
+          label: `muchie ${z.id} [${z.cat}]: ${L.name || L.id}`,
+        });
+      }
+      if (conflict) {
+        meshes.push({
+          id: `${idPrefix}_${z.id}_CONFLICT`,
+          type: "extrude",
+          polygon: rectPoly(
+            z.outward === "east" || z.outward === "west" ? z.face : z.along0,
+            z.outward === "north" || z.outward === "south" ? z.face : z.along0,
+            2,
+            2
+          ),
+          z0_m: z0,
+          z1_m: z1,
+          color: "#e74c3c",
+          opacity: 0.4,
+          site_layer: "anvelopa",
+          label: `CONFLICT muchie ${z.id}: pachet ${z.cat} > rezervă ${z.budget.toFixed(1)} cm`,
+          facade_conflict: true,
+        });
+      }
+    }
+  }
+  /** Hole strict în interiorul footprint-ului (margine → omit / clip, nu hole invalid). */
+  function interiorSlabHole(x, y, dx, dy, fp, marginCm = 1) {
+    if (!fp) return rectHole(x, y, dx, dy);
+    const fx0 = (fp.x0 ?? 0) + marginCm;
+    const fy0 = (fp.y0 ?? 0) + marginCm;
+    const fx1 = (fp.x1 ?? (fp.x0 ?? 0) + (fp.ew || 0)) - marginCm;
+    const fy1 = (fp.y1 ?? (fp.y0 ?? 0) + (fp.ns || 0)) - marginCm;
+    const hx0 = Math.max(x, fx0);
+    const hy0 = Math.max(y, fy0);
+    const hx1 = Math.min(x + dx, fx1);
+    const hy1 = Math.min(y + dy, fy1);
+    if (hx1 - hx0 < 2 || hy1 - hy0 < 2) return null;
+    return rectHole(hx0, hy0, hx1 - hx0, hy1 - hy0);
   }
   const COL_BETON = isFrameStudy
     ? frameStudy.column_section_hypothesis_cm?.through_wall_cm ??
@@ -557,7 +662,8 @@ function main() {
     if (w.x <= eps) return "west";
     if (Math.abs(w.x + w.dx - ewCm) <= eps) return "east";
     if (w.thermal === "house_stair_separator" || /buc_est/i.test(w.id || "")) return "east";
-    if (/terasa_est/i.test(w.id || "")) return "east";
+    // terasa_est: încăperi E, terasă V → exterior = vest
+    if (/terasa_est/i.test(w.id || "")) return "west";
     return w.x + w.dx / 2 > ewCm / 2 ? "east" : "west";
   }
   function isHeatedExteriorWall(w) {
@@ -567,7 +673,7 @@ function main() {
     if (w.assembly && /EB20|ISOVER|FASSADE|20_sono/i.test(w.assembly)) return true;
     // contur încălzit: nu banda scară X565–680 pe nord
     if (w.id === "nord") return true; // layered doar pe segmentul încălzit — vezi split
-    return ["vest", "est_living", "sud_bucatarie", "dormitor_sud"].includes(w.id);
+    return ["vest", "est_living", "sud_bucatarie", "dormitor_sud", "terasa_est"].includes(w.id);
   }
   function expandWallOutward(w, outward, trueThCm) {
     const oldTh = outward === "north" || outward === "south" ? w.dy : w.dx;
@@ -579,18 +685,50 @@ function main() {
     if (outward === "west") return { ...w, x: w.x - grow, dx: oldTh + grow, _trueThCm: trueThCm };
     return { ...w, dx: oldTh + grow, _trueThCm: trueThCm }; // east
   }
-  /** Gol = fereastră (solbanc + înălțime), nu doar marker plan. */
+  /** Tip gol: explicit > role/system > id (nu „glisante” ⇒ fereastră). */
+  function openingKind(o) {
+    if (o.kind) return o.kind;
+    if (o.type && o.type !== "hinged" && o.type !== "sliding") return o.type;
+    if (o.role === "dressing" || o.role === "furniture") return "passage";
+    if (o.role === "wall_void" || o.system === "gol_zid") return "wall_void";
+    if (o.role === "entrance") return "door";
+    if ((o.id || "").includes("geam") || /ferestr/i.test(o.id || "")) return "window";
+    if (o.system === "glisante" && o.role === "dressing") return "passage";
+    if (o.system === "batanta" || o.system === "glisante" || o.leaf || o.leaves) return "door";
+    return "opening";
+  }
   function openingIsWindow(o) {
-    return (
-      (o.id || "").includes("geam") ||
-      o.kind === "window" ||
-      o.type === "window" ||
-      /glisant|ferestr/i.test(o.id || "")
-    );
+    const k = openingKind(o);
+    return k === "window" || ((o.id || "").includes("geam") && k !== "door" && k !== "passage");
+  }
+  function openingWallHostIds(o) {
+    const raw =
+      o.wall_host ||
+      o.access_check?.wall_host ||
+      o.host_wall_id ||
+      null;
+    if (!raw) return [];
+    return String(raw)
+      .split(/[;,]/)
+      .map((s) => s.trim().split(/\s+/)[0])
+      .filter((s) => s && !/gol|Y\d/i.test(s));
+  }
+  /** AABB ∩: gol trebuie să intersecteze peretele în plan (nu doar pe lungime). */
+  function openingIntersectsWallXY(o, w, minOverlapCm = 4) {
+    const ox0 = o.x;
+    const oy0 = o.y;
+    const ox1 = o.x + (o.dx || 8);
+    const oy1 = o.y + (o.dy || 8);
+    const ix0 = Math.max(ox0, w.x);
+    const iy0 = Math.max(oy0, w.y);
+    const ix1 = Math.min(ox1, w.x + w.dx);
+    const iy1 = Math.min(oy1, w.y + w.dy);
+    return ix1 - ix0 >= minOverlapCm && iy1 - iy0 >= minOverlapCm;
   }
   /** Interval Z al golului pe nivelul curent (m), clampat în [zFf, zWall1]. */
   function openingVerticalRangeM(o, zFf, zWall1) {
-    if (o.role === "wall_void" || o.system === "gol_zid") {
+    const kind = openingKind(o);
+    if (kind === "wall_void") {
       return { z0: zFf, z1: zWall1 };
     }
     const isWin = openingIsWindow(o);
@@ -610,7 +748,7 @@ function main() {
     return { z0, z1 };
   }
   /**
-   * Goluri pe strat: intervale pe axa lungă + cote Z (fără hole Shape pe XY).
+   * Goluri pe strat: wall_host + ∩ XY + intervale pe axa lungă + cote Z.
    * Conturul rămâne înăuntrul stratului (fără ±1 cm overflow).
    */
   function openingsCuttingWallLayer(w, outward, lx, ly, ldx, ldy, zFf, zWall1, levelIdx) {
@@ -618,6 +756,10 @@ function main() {
     for (const o of v47.openings_cm || []) {
       if (o.removed) continue;
       if (o.levels && !o.levels.includes(levelIdx)) continue;
+      const hosts = openingWallHostIds(o);
+      if (hosts.length && !hosts.includes(w.id)) continue;
+      if (!hosts.length && !openingIntersectsWallXY(o, w)) continue;
+      if (hosts.length && !openingIntersectsWallXY(o, w, 2)) continue;
       const ox0 = o.x;
       const oy0 = o.y;
       const ox1 = o.x + (o.dx || 8);
@@ -625,17 +767,11 @@ function main() {
       const vz = openingVerticalRangeM(o, zFf, zWall1);
       if (!vz) continue;
       if (outward === "east" || outward === "west") {
-        if (oy1 <= ly + 0.5 || oy0 >= ly + ldy - 0.5) continue;
-        if (outward === "east" && ox1 < w.x - 2) continue;
-        if (outward === "west" && ox0 > w.x + w.dx + 2) continue;
         const a0 = Math.max(ly + 0.05, oy0);
         const a1 = Math.min(ly + ldy - 0.05, oy1);
         if (a1 - a0 < 8) continue;
         cuts.push({ along0: a0, along1: a1, z0: vz.z0, z1: vz.z1, id: o.id });
       } else {
-        if (ox1 <= lx + 0.5 || ox0 >= lx + ldx - 0.5) continue;
-        if (outward === "south" && oy0 < w.y - 2) continue;
-        if (outward === "north" && oy1 > w.y + w.dy + 2) continue;
         const a0 = Math.max(lx + 0.05, ox0);
         const a1 = Math.min(lx + ldx - 0.05, ox1);
         if (a1 - a0 < 8) continue;
@@ -643,6 +779,19 @@ function main() {
       }
     }
     return cuts;
+  }
+  /** Reunește intervale Z [z0,z1] sortate. */
+  function mergeZVoids(intervals) {
+    if (!intervals.length) return [];
+    const sorted = [...intervals].sort((a, b) => a[0] - b[0]);
+    const out = [[sorted[0][0], sorted[0][1]]];
+    for (let i = 1; i < sorted.length; i++) {
+      const [a, b] = sorted[i];
+      const last = out[out.length - 1];
+      if (a <= last[1] + 0.01) last[1] = Math.max(last[1], b);
+      else out.push([a, b]);
+    }
+    return out;
   }
   /** Strat de perete = solide sub / lateral / deasupra golului (nu hole pe toată înălțimea). */
   function pushWallLayerSolids(base, outward, x, y, dx, dy, z0, z1, cuts) {
@@ -673,20 +822,24 @@ function main() {
       const a0 = uniq[i];
       const a1 = uniq[i + 1];
       if (a1 - a0 < 0.08) continue;
-      const hit = cuts.find((c) => a0 >= c.along0 - 0.02 && a1 <= c.along1 + 0.02);
+      const hits = cuts.filter((c) => a0 >= c.along0 - 0.02 && a1 <= c.along1 + 0.02);
       const sx = alongY ? x : a0;
       const sy = alongY ? a0 : y;
       const sdx = alongY ? dx : a1 - a0;
       const sdy = alongY ? a1 - a0 : dy;
-      if (!hit) {
+      if (!hits.length) {
         pushOne(`${base.id}_s${i}`, sx, sy, sdx, sdy, z0, z1);
         continue;
       }
-      // sub gol (parapet / solbanc)
-      pushOne(`${base.id}_s${i}_bot`, sx, sy, sdx, sdy, z0, hit.z0);
-      // deasupra golului (buiandrug / închidere)
-      pushOne(`${base.id}_s${i}_top`, sx, sy, sdx, sdy, hit.z1, z1);
-      // pe înălțimea golului: nimic pe această bandă = gol; montanții sunt benzile laterale fără hit
+      // reuniune goluri pe Z (nu doar primul .find)
+      const voids = mergeZVoids(hits.map((h) => [h.z0, h.z1]));
+      let cursor = z0;
+      let part = 0;
+      for (const [vz0, vz1] of voids) {
+        pushOne(`${base.id}_s${i}_p${part++}`, sx, sy, sdx, sdy, cursor, vz0);
+        cursor = vz1;
+      }
+      pushOne(`${base.id}_s${i}_p${part}`, sx, sy, sdx, sdy, cursor, z1);
     }
   }
   function pushLayeredExteriorWall(w, z0, z1, suffix, opts = {}) {
@@ -1171,54 +1324,7 @@ function main() {
       });
     }
 
-    // Bandă fațadă pe grosimea plăcii+buildup (soffit P → FF E): doar stratul exterior
-    if (level === 0 && architectureOnly) {
-      const zBand0 = a1Structure?.levels_cm?.slab_soffit_etaj != null
-        ? m(a1Structure.levels_cm.slab_soffit_etaj)
-        : z1;
-      const zBand1 = zEtaj;
-      if (zBand1 > zBand0 + 0.02) {
-        for (const w of v47.walls_cm) {
-          if (w.removed || w.kind !== "ext") continue;
-          if (w.thermal === "house_stair_separator") continue;
-          if (!isHeatedExteriorWall(w) && w.id !== "nord" && w.id !== "nord_cold_stair") continue;
-          const outward = wallOutward(w);
-          const cat = resolveWallCatalogId(w, { outward });
-          const outer = layersFromOutside(cat)[0];
-          if (!outer) continue;
-          const thCm = Math.max(0.05, (outer.th_mm || 5) / 10);
-          let x = w.x;
-          let y = w.y;
-          let dx = w.dx;
-          let dy = w.dy;
-          if (outward === "east") {
-            x = w.x + w.dx - thCm;
-            dx = thCm;
-          } else if (outward === "west") {
-            dx = thCm;
-          } else if (outward === "south") {
-            y = w.y + w.dy - thCm;
-            dy = thCm;
-          } else {
-            dy = thCm;
-          }
-          meshes.push({
-            id: `banda_placa_fatada_${w.id}_${outer.id}`,
-            type: "extrude",
-            polygon: rectPoly(x, y, dx, dy),
-            z0_m: zBand0,
-            z1_m: zBand1,
-            color: LAYER_COLORS[outer.id] || "#c4b8a8",
-            opacity: 0.95,
-            site_layer: "anvelopa",
-            group: "fatada",
-            wall_layer: outer.id,
-            catalog_id: cat,
-            label: `bandă placă ${w.id}: ${outer.name || outer.id} (+${Math.round(zBand0 * 100)}→+${Math.round(zBand1 * 100)})`,
-          });
-        }
-      }
-    }
+    // Bandă placă: acoperită de muchie_placa_* pe straturi (fără overlap generic)
 
     for (const f of v47.furniture_cm) {
       if (f.levels && !f.levels.includes(level)) continue;
@@ -2538,12 +2644,10 @@ function main() {
     const odx = Math.max(o.dx, 8);
     const ody = Math.max(o.dy, 8);
     const poly = rectPoly(ox, oy, odx, ody);
-    const isWin =
-      o.id.includes("geam") ||
-      o.kind === "window" ||
-      o.type === "window" ||
-      /glisant|ferestr/i.test(o.id || "");
-    const isTerraceDoor = /terasa|glisant/i.test(o.id || "");
+    const oKind = openingKind(o);
+    const isWin = openingIsWindow(o);
+    const isTerraceDoor =
+      oKind === "door" && /terasa|intrare_parter|buc_terasa/i.test(o.id || "");
     const sill =
       o.sill_cm != null
         ? m(o.sill_cm)
@@ -3903,22 +4007,50 @@ function main() {
       // Placă structurală unică: 15 cm din soffit (−30→−15). Sandwich-ul de mai jos
       // nu mai adaugă un al doilea strat „structural” pe același interval.
       const slabStructTh = m(ht.structural_slab_cm ?? abs.floor_slab_th_cm ?? 15);
-      meshes.push({
-        id: "subsol_intrados_placa",
-        type: "extrude",
-        polygon: slabStructPoly(),
-        holes: bm.open_shaft_under_ramp2 ? [shaftHole] : [],
-        z0_m: zSoffit,
-        z1_m: zSoffit + slabStructTh,
-        color: "#8b8680",
-        opacity: 0.45,
-        site_layer: "structura",
-        label: isFrameStudy
-          ? `placă structurală ${Math.round(slabStructTh * 100)} cm pe muchie beton (${structFp?.ew}×${structFp?.ns}; ETICS afară; gol sub r2)`
-          : architectureOnly && a1StructFp
-            ? `placă structurală ${Math.round(slabStructTh * 100)} cm pe muchie beton ${a1StructFp.ew}×${a1StructFp.ns} (gol sub r2)`
-            : `placă structurală ${Math.round(slabStructTh * 100)} cm (−30→−15; gol sub r2)`,
-      });
+      {
+        const fpBasement = structFp || a1StructFp;
+        const basementHoles = [];
+        if (bm.open_shaft_under_ramp2) {
+          const pitBm = a1Structure?.pit_cm || a1Basement?.stair?.pit;
+          let clipped = null;
+          if (pitBm) {
+            clipped = interiorSlabHole(
+              pitBm.x0,
+              pitBm.y0,
+              pitBm.x1 - pitBm.x0,
+              pitBm.y1 - pitBm.y0,
+              fpBasement
+            );
+          }
+          if (!clipped && shaftRef?.dx != null) {
+            clipped = interiorSlabHole(
+              shaftRef.x,
+              shaftRef.y,
+              shaftRef.dx,
+              shaftRef.dy,
+              fpBasement
+            );
+          }
+          if (clipped) basementHoles.push(clipped);
+          else if (shaftHole) basementHoles.push(shaftHole);
+        }
+        meshes.push({
+          id: "subsol_intrados_placa",
+          type: "extrude",
+          polygon: slabStructPoly(),
+          holes: basementHoles,
+          z0_m: zSoffit,
+          z1_m: zSoffit + slabStructTh,
+          color: "#8b8680",
+          opacity: 0.45,
+          site_layer: "structura",
+          label: isFrameStudy
+            ? `placă structurală ${Math.round(slabStructTh * 100)} cm pe muchie beton (${structFp?.ew}×${structFp?.ns}; ETICS afară; gol sub r2)`
+            : architectureOnly && a1StructFp
+              ? `placă structurală ${Math.round(slabStructTh * 100)} cm pe muchie beton ${a1StructFp.ew}×${a1StructFp.ns} (gol clipat în footprint)`
+              : `placă structurală ${Math.round(slabStructTh * 100)} cm (−30→−15; gol sub r2)`,
+        });
+      }
       if (architectureOnly) {
         pushFinishedEdgePack(zSoffit, zSoffit + slabStructTh, "muchie_placa_subsol");
       }
@@ -4475,7 +4607,10 @@ function main() {
             : `A1 S1 ${c.id} ${c.section_cm || `${c.dx}×${c.dy}`} — FE confirmă`,
           sOnly ? "#5a8f6a" : "#7a9e6a"
         );
-        if (hasP && hasE) colHoles.push(rectHole(c.x, c.y, c.dx, c.dy));
+        if (hasP && hasE) {
+          const h = interiorSlabHole(c.x, c.y, c.dx, c.dy, a1StructFp || a1Structure?.structural_footprint_cm);
+          if (h) colHoles.push(h);
+        }
       }
       for (const b of a1Beams) {
         const lv = b.levels || [];
@@ -4553,10 +4688,11 @@ function main() {
         }
       }
       const pitA1 = a1Structure?.pit_cm || a1Basement?.stair?.pit;
+      const fpSlab = a1StructFp || a1Structure?.structural_footprint_cm;
       const etajSlabHoleA1 = pitA1
-        ? rectHole(pitA1.x0, pitA1.y0, pitA1.x1 - pitA1.x0, pitA1.y1 - pitA1.y0)
-        : rectHoleInside(r2.x + 2, r2.y + 2, r2.dx - 4, Math.min(r2.dy, nsCm - r2.y) - 4) ||
-          rectHole(r2.x + 5, r2.y + 5, r2.dx - 10, Math.min(r2.dy, nsCm - r2.y) - 10);
+        ? interiorSlabHole(pitA1.x0, pitA1.y0, pitA1.x1 - pitA1.x0, pitA1.y1 - pitA1.y0, fpSlab)
+        : interiorSlabHole(r2.x + 2, r2.y + 2, r2.dx - 4, Math.min(r2.dy, nsCm - r2.y) - 4, fpSlab) ||
+          rectHoleInside(r2.x + 2, r2.y + 2, r2.dx - 4, Math.min(r2.dy, nsCm - r2.y) - 4);
       meshes.push({
         id: "etaj_placa_structura",
         type: "extrude",
@@ -4567,9 +4703,9 @@ function main() {
         color: "#8b8680",
         opacity: 0.5,
         site_layer: "structura",
-        label: `A1 S1 placă ${Math.round(slabThA1 * 100)} cm pe muchie beton (gol puț; FE confirmă)`,
+        label: `A1 S1 placă ${Math.round(slabThA1 * 100)} cm pe muchie beton (gol puț clipat în footprint; FE confirmă)`,
       });
-      // Muchie finit−beton pe grosimea plăcii + buildup până la FF etaj
+      // Muchie finit−beton pe grosimea plăcii + buildup până la FF etaj (straturi reale)
       pushFinishedEdgePack(slabZ0A1, zEtaj, "muchie_placa_etaj");
       // Fațadă pe stâlpi: fețe asociate pereților reali (nu structure_box S)
       {
@@ -4641,6 +4777,7 @@ function main() {
             bands.push({
               ...spec,
               wall_id: best.id,
+              wall: best,
               catalog: catalogForWallFace(best, spec),
             });
           }
@@ -4652,21 +4789,49 @@ function main() {
           for (const band of bands) {
             // beton → exterior: reverse pe lista exterior→interior
             const layers = [...a1ColumnOutsideLayers(band.catalog)].reverse();
-            let accMm = 0;
+            // rezervă = față finită perete gazdă − față beton stâlp (nu 680×860 global)
+            const wHost = band.wall;
+            let finishFace = null;
+            if (wHost) {
+              if (band.outward === "east") finishFace = wHost.x + wHost.dx;
+              else if (band.outward === "west") finishFace = wHost.x;
+              else if (band.outward === "south") finishFace = wHost.y + wHost.dy;
+              else finishFace = wHost.y;
+            }
             const faceBudgetCm =
-              band.outward === "east"
-                ? Math.max(0, ewCm - band.face)
-                : band.outward === "west"
-                  ? Math.max(0, band.face)
-                  : band.outward === "south"
-                    ? Math.max(0, nsCm - band.face)
-                    : Math.max(0, band.face);
+              finishFace != null
+                ? Math.max(0, Math.abs(finishFace - band.face))
+                : band.outward === "east"
+                  ? Math.max(0, ewCm - band.face)
+                  : band.outward === "west"
+                    ? Math.max(0, band.face)
+                    : band.outward === "south"
+                      ? Math.max(0, nsCm - band.face)
+                      : Math.max(0, band.face);
+            const packSumCm = layers.reduce((s, L) => s + (L.th_mm || 0) / 10, 0);
+            // flush cu finit perete → pachetul e pe zid, nu pe stâlp
+            if (faceBudgetCm < 0.5) continue;
+            if (packSumCm > faceBudgetCm + 0.15) {
+              meshes.push({
+                id: `col_facade_${c.id}_${band.outward}_CONFLICT`,
+                type: "extrude",
+                polygon: rectPoly(c.x, c.y, Math.max(2, c.dx), Math.max(2, c.dy)),
+                z0_m: zCol0,
+                z1_m: zTopE,
+                color: "#e74c3c",
+                opacity: 0.35,
+                site_layer: "anvelopa",
+                facade_conflict: true,
+                label: `CONFLICT ${c.id} ${band.outward}←${band.wall_id}: pachet ${packSumCm.toFixed(1)} cm > rezervă ${faceBudgetCm.toFixed(1)} cm — fără clamp`,
+              });
+              continue; // nu micșora straturile
+            }
+            let accMm = 0;
             for (const L of layers) {
               const thMm = L.th_mm || 0;
               if (thMm < 0.05) continue;
-              if (accMm / 10 >= faceBudgetCm - 0.05) break;
               const aCm = accMm / 10;
-              const bCm = Math.min(faceBudgetCm, (accMm + thMm) / 10);
+              const bCm = (accMm + thMm) / 10;
               accMm += thMm;
               let x;
               let y;

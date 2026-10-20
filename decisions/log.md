@@ -1,5 +1,15 @@
 # Jurnal decizii
 
+## 2026-10-20 — A1.216: audit post-215 (goluri host, terasă, placă, muchie)
+
+1. **Goluri:** `wall_host` + ∩ XY; reuniune Z (nu `.find`); `geam_est` nu mai taie `perete_comun_est`.
+2. **`terasa_est`:** layered A1, outward **vest**; uși `intrare_parter` / `buc_terasa_etaj` decupate.
+3. **Placă:** holes clipate în `structural_footprint` (puț/stâlpi pe muchie).
+4. **Stâlpi:** `faceBudget` = finit `wall_host`; conflict fără clamp.
+5. **Muchie:** straturi catalog pe zonă; fără `banda_placa` overlap.
+6. **`build_a1_structure`:** păstrează footprint / z0 C_SW / blade B_E_S.
+7. **Tipuri:** `kind` explicit; `nisa_glisante_dorm` ≠ fereastră; select-pack clear **100.7**.
+
 ## 2026-10-20 — A1.215: generator 3D consecvent (goluri / stâlpi / placă)
 
 Fără redesenare compartimentări sau schemă structurală. Doar `build_v47_3d` + clarificări date.

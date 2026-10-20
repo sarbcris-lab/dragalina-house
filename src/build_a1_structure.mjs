@@ -111,20 +111,27 @@ byId.C_SW_TERASA = {
   status: "PROVIZORIU_A1_207_TERASA_ROOF",
   note: "colț SV terasă acoperită — reazem solbanc/streșină; fără beci sub terasă",
 };
-columns.push({
-  id: "C_SW_TERASA",
-  x: byId.C_SW_TERASA.x,
-  y: byId.C_SW_TERASA.y,
-  dx: 30,
-  dy: 30,
-  section_cm: "30×30",
-  levels: PE,
-  continuous_through_floor: true,
-  status: "PROVIZORIU_A1_207_TERASA_ROOF",
-  on_heated_box: false,
-  thermal: "outdoor_terrace",
-  note: "A1.207: reazem acoperiș pe terasă · FE confirmă · fără S",
-});
+{
+  const prevSw = a1.structure_a1_study_cm?.columns?.find((c) => c.id === "C_SW_TERASA") || {};
+  columns.push({
+    id: "C_SW_TERASA",
+    x: byId.C_SW_TERASA.x,
+    y: byId.C_SW_TERASA.y,
+    dx: 30,
+    dy: 30,
+    section_cm: "30×30",
+    levels: PE,
+    continuous_through_floor: true,
+    status: "PROVIZORIU_A1_207_TERASA_ROOF",
+    on_heated_box: false,
+    thermal: "outdoor_terrace",
+    z0_cm: prevSw.z0_cm ?? -2,
+    foundation_depth_cm: prevSw.foundation_depth_cm ?? 50,
+    note:
+      prevSw.note ||
+      "A1.207/215: reazem acoperiș pe terasă · FE confirmă · fără S · z0 local (nu cota beci −310)",
+  });
+}
 
 const beams = [
   // —— Inel / axe pe cutia încălzită
@@ -200,6 +207,8 @@ const beams = [
   const bladeX = a1.stair_cm?.s2_blade?.x ?? ew - bladeTh;
   const y0 = ePal.y + ePal.dy; // sud mid / N palier scară
   const y1 = sInE.y + sInE.dy;
+  const prevBlade =
+    a1.structure_a1_study_cm?.beams?.find((b) => b.id === "B_E_S") || {};
   beams.push({
     id: "B_E_S",
     x: bladeX,
@@ -209,7 +218,16 @@ const beams = [
     levels: PE,
     supports: ["C_E_PAL", "C_S_INTRARE_E"],
     role: "blade_wall_S2",
-    note: `A1.210 S2: lamă BA ${bladeTh} cm pe finit Dragalina X${bladeX} — look randare; FE confirmă`,
+    blade_semantics: prevBlade.blade_semantics || "BA_flush_finished_X680",
+    concrete_dx_cm: prevBlade.concrete_dx_cm ?? bladeTh,
+    finish_pack_cm: prevBlade.finish_pack_cm ?? 0,
+    to_finished_x_cm: prevBlade.to_finished_x_cm ?? bladeX + bladeTh,
+    stair_clear_note:
+      prevBlade.stair_clear_note ||
+      `față V lamă = X${bladeX}; clear scară față de A6/puț (finisaj ${prevBlade.finish_pack_cm ?? 0})`,
+    note:
+      prevBlade.note ||
+      `A1.210/215 S2: cei ${bladeTh} cm = BA până la finit Dragalina X${bladeX + bladeTh} (look randare). Fără pachet A2 pe lamă (finish_pack_cm=0). FE confirmă.`,
   });
   const x0 = sInE.x + sInE.dx;
   const x1 = bladeX + bladeTh; // pe finit
@@ -263,8 +281,24 @@ const structure = {
     },
   ],
   note:
-    "A1.210 S2: lamă E scară 15 cm pe Dragalina; B_E_S = lamă (nu centură 30 în clear). FRAME V47 = STALE.",
+    "A1.210/215 S2: lamă E scară 15 cm pe Dragalina; B_E_S = lamă (nu centură 30 în clear). FRAME V47 = STALE.",
   structure_box_cm: { ...box },
+  structural_footprint_cm: (() => {
+    const prev = a1.structure_a1_study_cm?.structural_footprint_cm;
+    if (prev?.ew && prev?.ns) return { ...prev };
+    const ew = a1.envelope_cm?.ew ?? 680;
+    const ns = a1.envelope_cm?.ns ?? 860;
+    // muchie beton ≈ extrema EB20 (A2 inset 11.2 E/S; A1 inset 10 N/V)
+    return {
+      x0: 10,
+      y0: 10,
+      x1: ew - 11.2,
+      y1: ns - 11.2,
+      ew: ew - 11.2 - 10,
+      ns: ns - 11.2 - 10,
+      note: "A1.215: muchie beton ≈ extrema EB20; ETICS/klinker până la finit. Păstrat la regen structure.",
+    };
+  })(),
   pit_cm: pit
     ? {
         x0: pit.x0,
