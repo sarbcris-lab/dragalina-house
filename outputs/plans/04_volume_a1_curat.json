@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_a1_curat",
-    "generated": "2026-10-19T20:19:08.870Z",
+    "generated": "2026-10-20T05:22:16.907Z",
     "status": "3D_A1_CURAT_AMENAJARE",
     "source_plan": "data/building/v47_a1_study.json",
     "a1_architecture": "data/building/a1_architecture.json",
@@ -64,7 +64,7 @@
     "exterior_wall_section_svg": "outputs/plans/35_v47_a1_exterior_wall_section.svg",
     "exterior_wall_klinker_section_svg": "outputs/plans/35b_v47_a2_klinker_wall_section.svg",
     "layers_enriched": true,
-    "layers_enriched_at": "2026-10-19T20:28:46.268Z"
+    "layers_enriched_at": "2026-10-20T05:22:16.910Z"
   },
   "site": {
     "polygon_metrics": {
@@ -20665,41 +20665,6 @@
       "level": "parter"
     },
     {
-      "id": "pardoseala_scara_p_p",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.1088,
-          "y": 12.376
-        },
-        {
-          "x": 8.2647,
-          "y": 12.4255
-        },
-        {
-          "x": 8.4203,
-          "y": 8.7908
-        },
-        {
-          "x": 7.2643,
-          "y": 8.7413
-        },
-        {
-          "x": 7.1088,
-          "y": 12.376
-        }
-      ],
-      "z0_m": 0.36,
-      "z1_m": 0.48,
-      "color": "#dde6e9",
-      "label": "SCARĂ p (FF=sus)",
-      "opacity": 0.92,
-      "site_layer": "finisaj",
-      "group": "pardoseli",
-      "category": "finisaj",
-      "level": "parter"
-    },
-    {
       "id": "zid_est_living_placaj_klinker_p",
       "type": "extrude",
       "polygon": [
@@ -29438,41 +29403,6 @@
       "color": "#dfe8d8",
       "label": "TERASĂ etaj FF",
       "site_layer": "finisaj",
-      "category": "finisaj",
-      "level": "etaj"
-    },
-    {
-      "id": "pardoseala_scara_e_e",
-      "type": "extrude",
-      "polygon": [
-        {
-          "x": 7.0383,
-          "y": 13.6742
-        },
-        {
-          "x": 8.1832,
-          "y": 13.7232
-        },
-        {
-          "x": 8.3943,
-          "y": 8.7897
-        },
-        {
-          "x": 7.2493,
-          "y": 8.7407
-        },
-        {
-          "x": 7.0383,
-          "y": 13.6742
-        }
-      ],
-      "z0_m": 3.4299999999999997,
-      "z1_m": 3.55,
-      "color": "#dde6e9",
-      "label": "SCARĂ e (FF=sus)",
-      "opacity": 0.92,
-      "site_layer": "finisaj",
-      "group": "pardoseli",
       "category": "finisaj",
       "level": "etaj"
     },
@@ -38764,6 +38694,21 @@
           "x": 1.4068,
           "y": 13.6335,
           "z": 8.836
+        },
+        {
+          "x": 1.2243,
+          "y": 17.9296,
+          "z": 6.35
+        },
+        {
+          "x": 1.5924,
+          "y": 9.3244,
+          "z": 6.35
+        },
+        {
+          "x": 1.408,
+          "y": 13.6335,
+          "z": 8.836
         }
       ],
       "faces": [
@@ -38771,14 +38716,49 @@
           0,
           1,
           2
+        ],
+        [
+          3,
+          5,
+          4
+        ],
+        [
+          0,
+          2,
+          5
+        ],
+        [
+          0,
+          5,
+          3
+        ],
+        [
+          1,
+          4,
+          5
+        ],
+        [
+          1,
+          5,
+          2
+        ],
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          0,
+          4,
+          1
         ]
       ],
-      "color": "#5a4236",
-      "label": "Fronton vest",
-      "site_layer": "structura",
+      "color": "#d4cfc4",
+      "label": "Fronton vest — tencuială (A1), grosime studiu",
+      "site_layer": "anvelopa",
       "z0_m": 6.35,
       "z1_m": 8.836,
-      "category": "acoperis",
+      "category": "zidarie",
       "level": "etaj"
     },
     {
@@ -38799,6 +38779,21 @@
           "x": 8.411,
           "y": 9.6161,
           "z": 6.35
+        },
+        {
+          "x": 8.0416,
+          "y": 18.2212,
+          "z": 6.35
+        },
+        {
+          "x": 8.2254,
+          "y": 13.9252,
+          "z": 8.836
+        },
+        {
+          "x": 8.4098,
+          "y": 9.6161,
+          "z": 6.35
         }
       ],
       "faces": [
@@ -38806,14 +38801,141 @@
           0,
           1,
           2
+        ],
+        [
+          3,
+          5,
+          4
+        ],
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          0,
+          4,
+          1
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          4,
+          5
+        ],
+        [
+          0,
+          2,
+          5
+        ],
+        [
+          0,
+          5,
+          3
         ]
       ],
-      "color": "#5a4236",
-      "label": "Fronton est (Dragalina)",
-      "site_layer": "structura",
+      "color": "#b55238",
+      "label": "Fronton est — cărămidă aparentă (A2/Ströher studiu)",
+      "site_layer": "anvelopa",
       "z0_m": 6.35,
       "z1_m": 8.836,
+      "category": "zidarie",
+      "level": "etaj"
+    },
+    {
+      "id": "acoperis_sofit_N",
+      "type": "triangles",
+      "vertices": [
+        {
+          "x": 1.2233,
+          "y": 17.9293,
+          "z": 6.33
+        },
+        {
+          "x": 8.0426,
+          "y": 18.2211,
+          "z": 6.33
+        },
+        {
+          "x": 8.0428,
+          "y": 18.2178,
+          "z": 6.33
+        },
+        {
+          "x": 1.2234,
+          "y": 17.926,
+          "z": 6.33
+        }
+      ],
+      "faces": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ]
+      ],
+      "color": "#c4b49a",
+      "label": "Sofit streșină N (închidere vizuală pod)",
+      "site_layer": "finisaj",
+      "z0_m": 6.33,
+      "z1_m": 6.33,
       "category": "acoperis",
+      "opacity": 0.92,
+      "level": "etaj"
+    },
+    {
+      "id": "acoperis_sofit_S",
+      "type": "triangles",
+      "vertices": [
+        {
+          "x": 1.5914,
+          "y": 9.3246,
+          "z": 6.33
+        },
+        {
+          "x": 1.5913,
+          "y": 9.3279,
+          "z": 6.33
+        },
+        {
+          "x": 8.4107,
+          "y": 9.6196,
+          "z": 6.33
+        },
+        {
+          "x": 8.4108,
+          "y": 9.6163,
+          "z": 6.33
+        }
+      ],
+      "faces": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ]
+      ],
+      "color": "#c4b49a",
+      "label": "Sofit streșină S (închidere vizuală pod)",
+      "site_layer": "finisaj",
+      "z0_m": 6.33,
+      "z1_m": 6.33,
+      "category": "acoperis",
+      "opacity": 0.92,
       "level": "etaj"
     },
     {
@@ -47467,7 +47589,7 @@
       "color": "#6e6a64",
       "opacity": 0.98,
       "site_layer": "structura",
-      "label": "A1.194: retenție E puț 15.7 cm — outer@680 (fără overflow Dragalina)",
+      "label": "A1.194: retenție E puț 15.7 cm — outer@680",
       "category": "structura",
       "level": "subsol"
     },

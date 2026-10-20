@@ -839,7 +839,8 @@ function main() {
 
     const etajOv = v47.etaj_room_overrides_cm || {};
     for (const r of v47.rooms_cm) {
-      if (r.id === "scara") continue;
+      // A1.206: puț scară = trepte/podeste, NU placă FF pe toată amprenta (acoperea rampele)
+      if (r.id === "scara" || /^scara_/.test(r.id || "")) continue;
       const onLevel = !r.levels || r.levels.includes(level);
       const etajFoot = level === 1 && etajOv[r.id];
       if (!onLevel && !etajFoot) continue;
@@ -1168,27 +1169,90 @@ function main() {
       `Acoperiș apa S — ~${pitchDeg.toFixed(0)}°, coamă EW 6,8 m`
     );
   }
-  // Frontoane W / E (închidere fronton)
+  // Frontoane W / E — volum cu grosime (nu triunghi subțire); E = klinker aparent (A2)
   {
-    const nW = siteVert(x0r, y0r, eaveZ);
-    const sW = siteVert(x0r, y1r, eaveZ);
-    const rW = siteVert(x0r, ridgeY, ridgeZ);
-    const nE = siteVert(x1r, y0r, eaveZ);
-    const sE = siteVert(x1r, y1r, eaveZ);
-    const rE = siteVert(x1r, ridgeY, ridgeZ);
+    const thF = m(12); // grosime studiu ~12 cm (placaj + suport)
+    const nW0 = siteVert(x0r, y0r, eaveZ);
+    const sW0 = siteVert(x0r, y1r, eaveZ);
+    const rW0 = siteVert(x0r, ridgeY, ridgeZ);
+    const nW1 = siteVert(x0r + thF, y0r, eaveZ);
+    const sW1 = siteVert(x0r + thF, y1r, eaveZ);
+    const rW1 = siteVert(x0r + thF, ridgeY, ridgeZ);
     pushTriMesh(
       "acoperis_fronton_W",
-      [nW, sW, rW],
-      [[0, 1, 2]],
-      "#5a4236",
-      "Fronton vest"
+      [nW0, sW0, rW0, nW1, sW1, rW1],
+      [
+        [0, 1, 2],
+        [3, 5, 4],
+        [0, 2, 5],
+        [0, 5, 3],
+        [1, 4, 5],
+        [1, 5, 2],
+        [0, 3, 4],
+        [0, 4, 1],
+      ],
+      "#d4cfc4",
+      "Fronton vest — tencuială (A1), grosime studiu",
+      { site_layer: "anvelopa", category: "zidarie" }
     );
+    const nE0 = siteVert(x1r, y0r, eaveZ);
+    const sE0 = siteVert(x1r, y1r, eaveZ);
+    const rE0 = siteVert(x1r, ridgeY, ridgeZ);
+    const nE1 = siteVert(x1r - thF, y0r, eaveZ);
+    const sE1 = siteVert(x1r - thF, y1r, eaveZ);
+    const rE1 = siteVert(x1r - thF, ridgeY, ridgeZ);
     pushTriMesh(
       "acoperis_fronton_E",
-      [nE, rE, sE],
-      [[0, 1, 2]],
-      "#5a4236",
-      "Fronton est (Dragalina)"
+      [nE0, rE0, sE0, nE1, rE1, sE1],
+      [
+        [0, 1, 2],
+        [3, 5, 4],
+        [0, 3, 4],
+        [0, 4, 1],
+        [2, 1, 4],
+        [2, 4, 5],
+        [0, 2, 5],
+        [0, 5, 3],
+      ],
+      "#b55238",
+      "Fronton est — cărămidă aparentă (A2/Ströher studiu)",
+      { site_layer: "anvelopa", category: "zidarie" }
+    );
+  }
+  // Sofit streșină N/S — închide vederea în pod de sub streșină (nu e detaliu jgheab)
+  {
+    const soffH = m(2);
+    const inset = m(2);
+    // bandă sub apa, lângă streșină
+    const n0 = siteVert(x0r + inset, y0r + inset, eaveZ - soffH);
+    const n1 = siteVert(x1r - inset, y0r + inset, eaveZ - soffH);
+    const n2 = siteVert(x1r - inset, y0r + m(35), eaveZ - soffH);
+    const n3 = siteVert(x0r + inset, y0r + m(35), eaveZ - soffH);
+    pushTriMesh(
+      "acoperis_sofit_N",
+      [n0, n1, n2, n3],
+      [
+        [0, 1, 2],
+        [0, 2, 3],
+      ],
+      "#c4b49a",
+      "Sofit streșină N (închidere vizuală pod)",
+      { site_layer: "finisaj", category: "acoperis", opacity: 0.92 }
+    );
+    const s0 = siteVert(x0r + inset, y1r - inset, eaveZ - soffH);
+    const s1 = siteVert(x1r - inset, y1r - inset, eaveZ - soffH);
+    const s2 = siteVert(x1r - inset, y1r - m(35), eaveZ - soffH);
+    const s3 = siteVert(x0r + inset, y1r - m(35), eaveZ - soffH);
+    pushTriMesh(
+      "acoperis_sofit_S",
+      [s0, s3, s2, s1],
+      [
+        [0, 1, 2],
+        [0, 2, 3],
+      ],
+      "#c4b49a",
+      "Sofit streșină S (închidere vizuală pod)",
+      { site_layer: "finisaj", category: "acoperis", opacity: 0.92 }
     );
   }
   // PV pe ambele ape (inset, deasupra învelitorii)

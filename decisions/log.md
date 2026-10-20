@@ -1,5 +1,15 @@
 # Jurnal decizii
 
+## 2026-10-20 — A1.206: scară fără placă pe rampe · fronton/sofit · răspuns consolă
+
+Observații din capturi viewer (nu schimbă amenajarea):
+1. **Plăci pe rampe:** `pardoseala_scara_p/e` acoperea puțul — **eliminate** (trepte rămân).
+2. **Fronton E:** volum + culoare cărămidă aparentă (A2); W = tencuială.
+3. **Sofit N/S:** închide vederea în pod de sub streșină (studiu, nu jgheab).
+4. **Consolă căpriori:** streșină pe solbanc/centură; EC5 util ~0,69 + uplift we — **nu** e grindă liberă fără reazem; lipsea sofitul vizual.
+5. **Geam living:** există pe **est** (`sticla_geam_est_*`); din vest/sud nu se văd.
+6. **Puț:** închidere P + lamele E există; lateral/spate + gabarit cap încă de rafinat — **deschis**.
+
 ## 2026-10-20 — A1.205: acoperiș 3 views + filtre structură + verify §5
 
 Debate prezentare rundă 4:
