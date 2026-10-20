@@ -867,6 +867,21 @@ function main() {
         const ty = tl?.y ?? r.y;
         const tdx = tl?.dx ?? r.dx;
         const tdy = tl?.dy ?? r.dy;
+        // A1.207: placă BA continuous cu casa (sub finisaj) — terasa e în anvelopă, nu consolă „liberă”
+        const slabThTer = m(15);
+        const roofY1 = v47.roof_cm?.covers_cm?.y1 ?? nsCm;
+        meshes.push({
+          id: `placa_terasa_structura_${suffix}`,
+          type: "extrude",
+          polygon: rectPoly(tx, ty, tdx, Math.min(tdy, roofY1 - ty)),
+          z0_m: zFf - floorTh - slabThTer,
+          z1_m: zFf - floorTh,
+          color: "#8b8680",
+          opacity: 0.88,
+          site_layer: "structura",
+          category: "structura",
+          label: `Placă BA terasă ${suffix.toUpperCase()} — continuous cu casa (A1.207; FE confirmă)`,
+        });
         meshes.push({
           id: `${r.id}_${suffix}`,
           type: "extrude",
@@ -1169,15 +1184,16 @@ function main() {
       `Acoperiș apa S — ~${pitchDeg.toFixed(0)}°, coamă EW 6,8 m`
     );
   }
-  // Frontoane W / E — volum cu grosime (nu triunghi subțire); E = klinker aparent (A2)
+  // Frontoane W / E — volum cu grosime + ușor în afara apei (vizibil pe Casă); E = klinker aparent (A2)
   {
-    const thF = m(12); // grosime studiu ~12 cm (placaj + suport)
-    const nW0 = siteVert(x0r, y0r, eaveZ);
-    const sW0 = siteVert(x0r, y1r, eaveZ);
-    const rW0 = siteVert(x0r, ridgeY, ridgeZ);
-    const nW1 = siteVert(x0r + thF, y0r, eaveZ);
-    const sW1 = siteVert(x0r + thF, y1r, eaveZ);
-    const rW1 = siteVert(x0r + thF, ridgeY, ridgeZ);
+    const thF = m(18); // A1.207: ~18 cm placaj+suport — citibil pe fațadă
+    const proud = m(2); // 2 cm în afara muchiei acoperișului
+    const nW0 = siteVert(x0r - proud, y0r, eaveZ);
+    const sW0 = siteVert(x0r - proud, y1r, eaveZ);
+    const rW0 = siteVert(x0r - proud, ridgeY, ridgeZ);
+    const nW1 = siteVert(x0r - proud + thF, y0r, eaveZ);
+    const sW1 = siteVert(x0r - proud + thF, y1r, eaveZ);
+    const rW1 = siteVert(x0r - proud + thF, ridgeY, ridgeZ);
     pushTriMesh(
       "acoperis_fronton_W",
       [nW0, sW0, rW0, nW1, sW1, rW1],
@@ -1195,12 +1211,12 @@ function main() {
       "Fronton vest — tencuială (A1), grosime studiu",
       { site_layer: "anvelopa", category: "zidarie" }
     );
-    const nE0 = siteVert(x1r, y0r, eaveZ);
-    const sE0 = siteVert(x1r, y1r, eaveZ);
-    const rE0 = siteVert(x1r, ridgeY, ridgeZ);
-    const nE1 = siteVert(x1r - thF, y0r, eaveZ);
-    const sE1 = siteVert(x1r - thF, y1r, eaveZ);
-    const rE1 = siteVert(x1r - thF, ridgeY, ridgeZ);
+    const nE0 = siteVert(x1r + proud, y0r, eaveZ);
+    const sE0 = siteVert(x1r + proud, y1r, eaveZ);
+    const rE0 = siteVert(x1r + proud, ridgeY, ridgeZ);
+    const nE1 = siteVert(x1r + proud - thF, y0r, eaveZ);
+    const sE1 = siteVert(x1r + proud - thF, y1r, eaveZ);
+    const rE1 = siteVert(x1r + proud - thF, ridgeY, ridgeZ);
     pushTriMesh(
       "acoperis_fronton_E",
       [nE0, rE0, sE0, nE1, rE1, sE1],
@@ -1214,46 +1230,99 @@ function main() {
         [0, 2, 5],
         [0, 5, 3],
       ],
-      "#b55238",
+      "#c45a3a",
       "Fronton est — cărămidă aparentă (A2/Ströher studiu)",
       { site_layer: "anvelopa", category: "zidarie" }
     );
   }
-  // Sofit streșină N/S — închide vederea în pod de sub streșină (nu e detaliu jgheab)
+  // Sofit / plafon sub acoperiș — terasă + casa scării (nu doar bandă streșină)
   {
-    const soffH = m(2);
-    const inset = m(2);
-    // bandă sub apa, lângă streșină
-    const n0 = siteVert(x0r + inset, y0r + inset, eaveZ - soffH);
-    const n1 = siteVert(x1r - inset, y0r + inset, eaveZ - soffH);
-    const n2 = siteVert(x1r - inset, y0r + m(35), eaveZ - soffH);
-    const n3 = siteVert(x0r + inset, y0r + m(35), eaveZ - soffH);
-    pushTriMesh(
-      "acoperis_sofit_N",
-      [n0, n1, n2, n3],
-      [
-        [0, 1, 2],
-        [0, 2, 3],
-      ],
-      "#c4b49a",
-      "Sofit streșină N (închidere vizuală pod)",
-      { site_layer: "finisaj", category: "acoperis", opacity: 0.92 }
-    );
-    const s0 = siteVert(x0r + inset, y1r - inset, eaveZ - soffH);
-    const s1 = siteVert(x1r - inset, y1r - inset, eaveZ - soffH);
-    const s2 = siteVert(x1r - inset, y1r - m(35), eaveZ - soffH);
-    const s3 = siteVert(x0r + inset, y1r - m(35), eaveZ - soffH);
-    pushTriMesh(
-      "acoperis_sofit_S",
-      [s0, s3, s2, s1],
-      [
-        [0, 1, 2],
-        [0, 2, 3],
-      ],
-      "#c4b49a",
-      "Sofit streșină S (închidere vizuală pod)",
-      { site_layer: "finisaj", category: "acoperis", opacity: 0.92 }
-    );
+    const soffZ = eaveZ - m(8);
+    const inset = 2; // cm local
+    // streșină N (bandă)
+    {
+      const n0 = siteVert(x0r + inset, y0r + inset, soffZ);
+      const n1 = siteVert(x1r - inset, y0r + inset, soffZ);
+      const n2 = siteVert(x1r - inset, y0r + 40, soffZ);
+      const n3 = siteVert(x0r + inset, y0r + 40, soffZ);
+      pushTriMesh(
+        "acoperis_sofit_N",
+        [n0, n1, n2, n3],
+        [
+          [0, 1, 2],
+          [0, 2, 3],
+        ],
+        "#c4b49a",
+        "Sofit streșină N",
+        { site_layer: "finisaj", category: "acoperis", opacity: 0.95 }
+      );
+    }
+    // plafon terasă acoperită (P+E outdoor sub streșină S)
+    const terr =
+      (v47.rooms_cm || []).find((r) => r.id === "terasa_p" || r.id === "terasa") ||
+      null;
+    const tl = v47.terrace_by_level?.[0] || terr;
+    if (tl) {
+      const tx0 = tl.x ?? 8;
+      const ty0 = tl.y ?? 674;
+      const tx1 = tx0 + (tl.dx ?? 336);
+      const ty1 = Math.min(y1r - inset, ty0 + (tl.dy ?? 180));
+      const t0 = siteVert(tx0, ty0, soffZ);
+      const t1 = siteVert(tx1, ty0, soffZ);
+      const t2 = siteVert(tx1, ty1, soffZ);
+      const t3 = siteVert(tx0, ty1, soffZ);
+      pushTriMesh(
+        "acoperis_plafon_terasa",
+        [t0, t1, t2, t3],
+        [
+          [0, 1, 2],
+          [0, 2, 3],
+        ],
+        "#b8a888",
+        "Plafon sub acoperiș — terasă acoperită (A1.207)",
+        { site_layer: "finisaj", category: "acoperis", opacity: 0.96 }
+      );
+    }
+    // plafon casa scării / bandă rece est sub acoperiș (X cutie→est, Y palier→streșină)
+    {
+      const sx0 = 534.3;
+      const sx1 = x1r - inset;
+      const sy0 = 470;
+      const sy1 = y1r - inset;
+      const s0 = siteVert(sx0, sy0, soffZ);
+      const s1 = siteVert(sx1, sy0, soffZ);
+      const s2 = siteVert(sx1, sy1, soffZ);
+      const s3 = siteVert(sx0, sy1, soffZ);
+      pushTriMesh(
+        "acoperis_plafon_casa_scara",
+        [s0, s1, s2, s3],
+        [
+          [0, 1, 2],
+          [0, 2, 3],
+        ],
+        "#b8a888",
+        "Plafon sub acoperiș — casa scării (A1.207)",
+        { site_layer: "finisaj", category: "acoperis", opacity: 0.96 }
+      );
+    }
+    // rest streșină S (bucătărie / intrare) — bandă până la plafonul terasei/scării
+    {
+      const s0 = siteVert(x0r + inset, y1r - inset, soffZ);
+      const s1 = siteVert(x1r - inset, y1r - inset, soffZ);
+      const s2 = siteVert(x1r - inset, y1r - 40, soffZ);
+      const s3 = siteVert(x0r + inset, y1r - 40, soffZ);
+      pushTriMesh(
+        "acoperis_sofit_S",
+        [s0, s3, s2, s1],
+        [
+          [0, 1, 2],
+          [0, 2, 3],
+        ],
+        "#c4b49a",
+        "Sofit streșină S",
+        { site_layer: "finisaj", category: "acoperis", opacity: 0.95 }
+      );
+    }
   }
   // PV pe ambele ape (inset, deasupra învelitorii)
   if (roofMeta.pv?.both_pitches !== false) {
@@ -2220,15 +2289,45 @@ function main() {
         group: "fatada_goluri",
         label: o.id,
       });
-      // Tâmplărie vizibilă: toc + sticlă (geam / terasă glisantă)
+      // Tâmplărie vizibilă: toc + sticlă pe fața EXTERIOARĂ (A1.207 — nu îngropată în klinker)
       if (isWin || isTerraceDoor) {
         const ft = 5; // cm toc
         const alongY = ody >= odx; // geam_est: dy lung pe fațadă E
-        // sticlă inset
-        const gx = alongY ? ox + ft * 0.35 : ox + ft;
-        const gy = alongY ? oy + ft : oy + ft * 0.35;
-        const gdx = alongY ? Math.max(4, odx - ft * 0.7) : Math.max(4, odx - 2 * ft);
-        const gdy = alongY ? Math.max(4, ody - 2 * ft) : Math.max(4, ody - ft * 0.7);
+        const glassTh = 5; // cm — lamelă vizibilă în afara anvelopei
+        const midX = ox + odx / 2;
+        const midY = oy + ody / 2;
+        const faceEast = alongY && midX > ewCm * 0.45;
+        const faceWest = alongY && midX <= ewCm * 0.45;
+        const faceSouth = !alongY && midY > nsCm * 0.45;
+        let gx;
+        let gy;
+        let gdx;
+        let gdy;
+        if (alongY) {
+          gy = oy + ft;
+          gdy = Math.max(4, ody - 2 * ft);
+          if (faceEast) {
+            // în afara klinkerului (anvelopă finit + 3 cm)
+            gx = Math.max(ox + odx, ewCm) + 3;
+            gdx = glassTh;
+          } else if (faceWest) {
+            gx = Math.min(ox, 0) - glassTh - 3;
+            gdx = glassTh;
+          } else {
+            gx = ox + ft * 0.35;
+            gdx = Math.max(4, odx - ft * 0.7);
+          }
+        } else {
+          gx = ox + ft;
+          gdx = Math.max(4, odx - 2 * ft);
+          if (faceSouth) {
+            gy = Math.max(oy + ody, nsCm) + 3;
+            gdy = glassTh;
+          } else {
+            gy = Math.min(oy, 0) - glassTh - 3;
+            gdy = glassTh;
+          }
+        }
         meshes.push({
           id: `sticla_${o.id}_L${level}`,
           type: "extrude",
@@ -2236,8 +2335,9 @@ function main() {
           z0_m: z0 + 0.02,
           z1_m: z1 - 0.02,
           color: GLASS_TINT,
-          opacity: 0.45,
+          opacity: 0.62,
           site_layer: "finisaj",
+          category: "tamplarie",
           group: "tamplarie",
           label: `sticlă ${o.id}`,
         });

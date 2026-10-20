@@ -1,13 +1,13 @@
 # S1 — geometrie cadre pe A1 (v01)
 
-**Status:** studiu geometric · **neconstruibil** · 2026-10-19  
+**Status:** studiu geometric · **neconstruibil** · 2026-10-20  
 **Sursă:** `a1_architecture.columns_cm` + cutie/puț  
 **Fișier:** `structure_a1_study_cm` / `data/building/a1_structure_study.json`
 
 ## Cutie
 X **30–534.3** × Y **30–820**
 
-## Stâlpi (10)
+## Stâlpi (11)
 | id | x | y | dx×dy | levels | pe cutie |
 |----|---|---|-------|--------|----------|
 | C_NW | 10 | 10 | 30×30 | S+P+E | da |
@@ -20,16 +20,19 @@ X **30–534.3** × Y **30–820**
 | C_CASA_SCARA | 524.3 | 550 | 30×40 | S+P+E | da |
 | C_S_INTRARE_W | 312.5 | 818.8 | 40×30 | S+P+E | da |
 | C_S_INTRARE_E | 524.3 | 818.8 | 30×30 | S+P+E | da |
+| C_SW_TERASA | 10 | 818.8 | 30×30 | P+E | nu |
 
-## Grinzi (12)
+## Grinzi (14)
 | id | supports | levels | note |
 |----|----------|--------|------|
 | B_N | C_NW, C_N_MID | S+P+E | centură N pe cutie (C_NW–C_N_MID) |
 | B_N_TO_NE | C_N_MID, C_NE | P+E | centură N est → C_NE (banda scară / fațadă E) |
 | B_W | C_NW, C_W_MID, C_W_DORM | S+P+E | centură V pe cutie |
+| B_W_TERASA | C_W_DORM, C_SW_TERASA | P+E | A1.207: centură V pe terasă acoperită (fără S — cutie exclude excavare sub terasă) |
 | B_X_MID | C_N_MID, C_S_DORM_E, C_S_INTRARE_W | S+P+E | axă mid N–S (C_N_MID–C_S_DORM_E–C_S_INTRARE_W) |
 | B_CASA_SCARA | C_CASA_SCARA, C_S_INTRARE_E | S+P+E | separator est cutie (= A6) C_CASA_SCARA→intrare E |
 | B_Y645 | C_W_DORM, C_S_DORM_E | S+P+E | sud dorm pe cutie |
+| B_S_TERASA | C_SW_TERASA, C_S_INTRARE_W | P+E | A1.207: grindă sud terasă acoperită — reazem solbanc S (X vest→intrare) |
 | B_Y820 | C_S_INTRARE_W, C_S_INTRARE_E | S+P+E | sud intrare pe cutie (Y≈820) |
 | B_Y410 | C_W_MID, C_E_PAL | P+E | legătură mid W→E_PAL (peste cutie + scară) |
 | B_E | C_NE, C_E_PAL | P+E | centură E fațadă (C_NE–C_E_PAL) |

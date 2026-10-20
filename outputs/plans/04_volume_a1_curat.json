@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "volume_a1_curat",
-    "generated": "2026-10-20T05:22:16.907Z",
+    "generated": "2026-10-20T05:41:04.096Z",
     "status": "3D_A1_CURAT_AMENAJARE",
     "source_plan": "data/building/v47_a1_study.json",
     "a1_architecture": "data/building/a1_architecture.json",
@@ -64,7 +64,7 @@
     "exterior_wall_section_svg": "outputs/plans/35_v47_a1_exterior_wall_section.svg",
     "exterior_wall_klinker_section_svg": "outputs/plans/35b_v47_a2_klinker_wall_section.svg",
     "layers_enriched": true,
-    "layers_enriched_at": "2026-10-20T05:22:16.910Z"
+    "layers_enriched_at": "2026-10-20T05:41:04.099Z"
   },
   "site": {
     "polygon_metrics": {
@@ -20632,6 +20632,40 @@
       "level": "parter"
     },
     {
+      "id": "placa_terasa_structura_p",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5116,
+          "y": 11.1857
+        },
+        {
+          "x": 4.9085,
+          "y": 11.331
+        },
+        {
+          "x": 4.9881,
+          "y": 9.4697
+        },
+        {
+          "x": 1.5912,
+          "y": 9.3244
+        },
+        {
+          "x": 1.5116,
+          "y": 11.1857
+        }
+      ],
+      "z0_m": 0.21,
+      "z1_m": 0.36,
+      "color": "#8b8680",
+      "opacity": 0.88,
+      "site_layer": "structura",
+      "category": "structura",
+      "label": "Placă BA terasă P — continuous cu casa (A1.207; FE confirmă)",
+      "level": "parter"
+    },
+    {
       "id": "terasa_p_p",
       "type": "extrude",
       "polygon": [
@@ -29371,6 +29405,40 @@
       "site_layer": "finisaj",
       "group": "pardoseli",
       "category": "finisaj",
+      "level": "etaj"
+    },
+    {
+      "id": "placa_terasa_structura_e",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5116,
+          "y": 11.1857
+        },
+        {
+          "x": 4.8085,
+          "y": 11.3267
+        },
+        {
+          "x": 4.8877,
+          "y": 9.4784
+        },
+        {
+          "x": 1.5907,
+          "y": 9.3374
+        },
+        {
+          "x": 1.5116,
+          "y": 11.1857
+        }
+      ],
+      "z0_m": 3.28,
+      "z1_m": 3.4299999999999997,
+      "color": "#8b8680",
+      "opacity": 0.88,
+      "site_layer": "structura",
+      "category": "structura",
+      "label": "Placă BA terasă E — continuous cu casa (A1.207; FE confirmă)",
       "level": "etaj"
     },
     {
@@ -38681,32 +38749,32 @@
       "type": "triangles",
       "vertices": [
         {
-          "x": 1.2231,
+          "x": 1.2229,
           "y": 17.9295,
           "z": 6.35
         },
         {
-          "x": 1.5912,
+          "x": 1.591,
           "y": 9.3244,
           "z": 6.35
         },
         {
-          "x": 1.4068,
-          "y": 13.6335,
+          "x": 1.4066,
+          "y": 13.6334,
           "z": 8.836
         },
         {
-          "x": 1.2243,
+          "x": 1.2247,
           "y": 17.9296,
           "z": 6.35
         },
         {
-          "x": 1.5924,
-          "y": 9.3244,
+          "x": 1.5928,
+          "y": 9.3245,
           "z": 6.35
         },
         {
-          "x": 1.408,
+          "x": 1.4084,
           "y": 13.6335,
           "z": 8.836
         }
@@ -38766,32 +38834,32 @@
       "type": "triangles",
       "vertices": [
         {
-          "x": 8.0428,
+          "x": 8.043,
           "y": 18.2213,
           "z": 6.35
         },
         {
-          "x": 8.2266,
+          "x": 8.2268,
           "y": 13.9252,
           "z": 8.836
         },
         {
-          "x": 8.411,
-          "y": 9.6161,
+          "x": 8.4112,
+          "y": 9.6162,
           "z": 6.35
         },
         {
-          "x": 8.0416,
+          "x": 8.0412,
           "y": 18.2212,
           "z": 6.35
         },
         {
-          "x": 8.2254,
-          "y": 13.9252,
+          "x": 8.225,
+          "y": 13.9251,
           "z": 8.836
         },
         {
-          "x": 8.4098,
+          "x": 8.4094,
           "y": 9.6161,
           "z": 6.35
         }
@@ -38838,7 +38906,7 @@
           3
         ]
       ],
-      "color": "#b55238",
+      "color": "#c45a3a",
       "label": "Fronton est — cărămidă aparentă (A2/Ströher studiu)",
       "site_layer": "anvelopa",
       "z0_m": 6.35,
@@ -38851,24 +38919,24 @@
       "type": "triangles",
       "vertices": [
         {
-          "x": 1.2233,
-          "y": 17.9293,
-          "z": 6.33
+          "x": 1.2439,
+          "y": 17.9104,
+          "z": 6.27
         },
         {
-          "x": 8.0426,
-          "y": 18.2211,
-          "z": 6.33
+          "x": 8.0237,
+          "y": 18.2004,
+          "z": 6.27
         },
         {
-          "x": 8.0428,
-          "y": 18.2178,
-          "z": 6.33
+          "x": 8.0399,
+          "y": 17.8208,
+          "z": 6.27
         },
         {
-          "x": 1.2234,
-          "y": 17.926,
-          "z": 6.33
+          "x": 1.2601,
+          "y": 17.5307,
+          "z": 6.27
         }
       ],
       "faces": [
@@ -38884,12 +38952,104 @@
         ]
       ],
       "color": "#c4b49a",
-      "label": "Sofit streșină N (închidere vizuală pod)",
+      "label": "Sofit streșină N",
       "site_layer": "finisaj",
-      "z0_m": 6.33,
-      "z1_m": 6.33,
+      "z0_m": 6.27,
+      "z1_m": 6.27,
       "category": "acoperis",
-      "opacity": 0.92,
+      "opacity": 0.95,
+      "level": "etaj"
+    },
+    {
+      "id": "acoperis_plafon_terasa",
+      "type": "triangles",
+      "vertices": [
+        {
+          "x": 1.5116,
+          "y": 11.1857,
+          "z": 6.27
+        },
+        {
+          "x": 4.9085,
+          "y": 11.331,
+          "z": 6.27
+        },
+        {
+          "x": 4.9873,
+          "y": 9.4897,
+          "z": 6.27
+        },
+        {
+          "x": 1.5904,
+          "y": 9.3444,
+          "z": 6.27
+        }
+      ],
+      "faces": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ]
+      ],
+      "color": "#b8a888",
+      "label": "Plafon sub acoperiș — terasă acoperită (A1.207)",
+      "site_layer": "finisaj",
+      "z0_m": 6.27,
+      "z1_m": 6.27,
+      "category": "acoperis",
+      "opacity": 0.96,
+      "level": "etaj"
+    },
+    {
+      "id": "acoperis_plafon_casa_scara",
+      "type": "triangles",
+      "vertices": [
+        {
+          "x": 6.7621,
+          "y": 13.4622,
+          "z": 6.27
+        },
+        {
+          "x": 8.2237,
+          "y": 13.5247,
+          "z": 6.27
+        },
+        {
+          "x": 8.3902,
+          "y": 9.6353,
+          "z": 6.27
+        },
+        {
+          "x": 6.9285,
+          "y": 9.5727,
+          "z": 6.27
+        }
+      ],
+      "faces": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ]
+      ],
+      "color": "#b8a888",
+      "label": "Plafon sub acoperiș — casa scării (A1.207)",
+      "site_layer": "finisaj",
+      "z0_m": 6.27,
+      "z1_m": 6.27,
+      "category": "acoperis",
+      "opacity": 0.96,
       "level": "etaj"
     },
     {
@@ -38897,24 +39057,24 @@
       "type": "triangles",
       "vertices": [
         {
-          "x": 1.5914,
-          "y": 9.3246,
-          "z": 6.33
+          "x": 1.6104,
+          "y": 9.3452,
+          "z": 6.27
         },
         {
-          "x": 1.5913,
-          "y": 9.3279,
-          "z": 6.33
+          "x": 1.5942,
+          "y": 9.7249,
+          "z": 6.27
         },
         {
-          "x": 8.4107,
-          "y": 9.6196,
-          "z": 6.33
+          "x": 8.374,
+          "y": 10.0149,
+          "z": 6.27
         },
         {
-          "x": 8.4108,
-          "y": 9.6163,
-          "z": 6.33
+          "x": 8.3902,
+          "y": 9.6353,
+          "z": 6.27
         }
       ],
       "faces": [
@@ -38930,12 +39090,12 @@
         ]
       ],
       "color": "#c4b49a",
-      "label": "Sofit streșină S (închidere vizuală pod)",
+      "label": "Sofit streșină S",
       "site_layer": "finisaj",
-      "z0_m": 6.33,
-      "z1_m": 6.33,
+      "z0_m": 6.27,
+      "z1_m": 6.27,
       "category": "acoperis",
-      "opacity": 0.92,
+      "opacity": 0.95,
       "level": "etaj"
     },
     {
@@ -43320,34 +43480,34 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.61,
-          "y": 11.5255
+          "x": 2.703,
+          "y": 9.3549
         },
         {
-          "x": 4.0088,
-          "y": 11.5853
+          "x": 4.1017,
+          "y": 9.4148
         },
         {
-          "x": 4.0206,
-          "y": 11.3085
+          "x": 4.1038,
+          "y": 9.3648
         },
         {
-          "x": 2.6219,
-          "y": 11.2487
+          "x": 2.7051,
+          "y": 9.305
         },
         {
-          "x": 2.61,
-          "y": 11.5255
+          "x": 2.703,
+          "y": 9.3549
         }
       ],
       "z0_m": 0.5,
       "z1_m": 2.56,
       "color": "#6eb0d4",
-      "opacity": 0.45,
+      "opacity": 0.62,
       "site_layer": "finisaj",
+      "category": "tamplarie",
       "group": "tamplarie",
       "label": "sticlă dorm_terasa",
-      "category": "tamplarie",
       "level": "parter"
     },
     {
@@ -43526,34 +43686,34 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 2.61,
-          "y": 11.5255
+          "x": 2.703,
+          "y": 9.3549
         },
         {
-          "x": 4.0088,
-          "y": 11.5853
+          "x": 4.1017,
+          "y": 9.4148
         },
         {
-          "x": 4.0206,
-          "y": 11.3085
+          "x": 4.1038,
+          "y": 9.3648
         },
         {
-          "x": 2.6219,
-          "y": 11.2487
+          "x": 2.7051,
+          "y": 9.305
         },
         {
-          "x": 2.61,
-          "y": 11.5255
+          "x": 2.703,
+          "y": 9.3549
         }
       ],
       "z0_m": 3.57,
       "z1_m": 5.630000000000001,
       "color": "#6eb0d4",
-      "opacity": 0.45,
+      "opacity": 0.62,
       "site_layer": "finisaj",
+      "category": "tamplarie",
       "group": "tamplarie",
       "label": "sticlă dorm_terasa",
-      "category": "tamplarie",
       "level": "etaj"
     },
     {
@@ -43872,34 +44032,34 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.7695,
-          "y": 17.1106
+          "x": 8.0937,
+          "y": 17.1244
         },
         {
-          "x": 8.0333,
-          "y": 17.1219
+          "x": 8.1437,
+          "y": 17.1266
         },
         {
-          "x": 8.1232,
-          "y": 15.0198
+          "x": 8.2336,
+          "y": 15.0245
         },
         {
-          "x": 7.8595,
-          "y": 15.0085
+          "x": 8.1837,
+          "y": 15.0224
         },
         {
-          "x": 7.7695,
-          "y": 17.1106
+          "x": 8.0937,
+          "y": 17.1244
         }
       ],
       "z0_m": 1.4,
       "z1_m": 2.86,
       "color": "#6eb0d4",
-      "opacity": 0.45,
+      "opacity": 0.62,
       "site_layer": "finisaj",
+      "category": "tamplarie",
       "group": "tamplarie",
       "label": "sticlă geam_est",
-      "category": "tamplarie",
       "level": "parter"
     },
     {
@@ -44078,34 +44238,34 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 7.7695,
-          "y": 17.1106
+          "x": 8.0937,
+          "y": 17.1244
         },
         {
-          "x": 8.0333,
-          "y": 17.1219
+          "x": 8.1437,
+          "y": 17.1266
         },
         {
-          "x": 8.1232,
-          "y": 15.0198
+          "x": 8.2336,
+          "y": 15.0245
         },
         {
-          "x": 7.8595,
-          "y": 15.0085
+          "x": 8.1837,
+          "y": 15.0224
         },
         {
-          "x": 7.7695,
-          "y": 17.1106
+          "x": 8.0937,
+          "y": 17.1244
         }
       ],
       "z0_m": 4.47,
       "z1_m": 5.930000000000001,
       "color": "#6eb0d4",
-      "opacity": 0.45,
+      "opacity": 0.62,
       "site_layer": "finisaj",
+      "category": "tamplarie",
       "group": "tamplarie",
       "label": "sticlă geam_est",
-      "category": "tamplarie",
       "level": "etaj"
     },
     {
@@ -44284,34 +44444,34 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 4.7549,
-          "y": 11.2344
+          "x": 8.3392,
+          "y": 11.3877
         },
         {
-          "x": 5.0187,
-          "y": 11.2456
+          "x": 8.3891,
+          "y": 11.3898
         },
         {
-          "x": 5.053,
-          "y": 10.4464
+          "x": 8.4234,
+          "y": 10.5906
         },
         {
-          "x": 4.7892,
-          "y": 10.4351
+          "x": 8.3734,
+          "y": 10.5884
         },
         {
-          "x": 4.7549,
-          "y": 11.2344
+          "x": 8.3392,
+          "y": 11.3877
         }
       ],
       "z0_m": 3.57,
       "z1_m": 5.630000000000001,
       "color": "#6eb0d4",
-      "opacity": 0.45,
+      "opacity": 0.62,
       "site_layer": "finisaj",
+      "category": "tamplarie",
       "group": "tamplarie",
       "label": "sticlă buc_terasa_etaj",
-      "category": "tamplarie",
       "level": "etaj"
     },
     {
@@ -44700,34 +44860,34 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.697,
-          "y": 15.0396
+          "x": 1.5693,
+          "y": 18.0244
         },
         {
-          "x": 3.3955,
-          "y": 15.1123
+          "x": 3.2678,
+          "y": 18.0971
         },
         {
-          "x": 3.3974,
-          "y": 15.0673
+          "x": 3.2699,
+          "y": 18.0471
         },
         {
-          "x": 1.6989,
-          "y": 14.9947
+          "x": 1.5715,
+          "y": 17.9745
         },
         {
-          "x": 1.697,
-          "y": 15.0396
+          "x": 1.5693,
+          "y": 18.0244
         }
       ],
       "z0_m": 1.4,
       "z1_m": 2.86,
       "color": "#6eb0d4",
-      "opacity": 0.45,
+      "opacity": 0.62,
       "site_layer": "finisaj",
+      "category": "tamplarie",
       "group": "tamplarie",
       "label": "sticlă nisa_glisante_dorm",
-      "category": "tamplarie",
       "level": "parter"
     },
     {
@@ -44906,34 +45066,34 @@
       "type": "extrude",
       "polygon": [
         {
-          "x": 1.697,
-          "y": 15.0396
+          "x": 1.5693,
+          "y": 18.0244
         },
         {
-          "x": 3.3955,
-          "y": 15.1123
+          "x": 3.2678,
+          "y": 18.0971
         },
         {
-          "x": 3.3974,
-          "y": 15.0673
+          "x": 3.2699,
+          "y": 18.0471
         },
         {
-          "x": 1.6989,
-          "y": 14.9947
+          "x": 1.5715,
+          "y": 17.9745
         },
         {
-          "x": 1.697,
-          "y": 15.0396
+          "x": 1.5693,
+          "y": 18.0244
         }
       ],
       "z0_m": 4.47,
       "z1_m": 5.930000000000001,
       "color": "#6eb0d4",
-      "opacity": 0.45,
+      "opacity": 0.62,
       "site_layer": "finisaj",
+      "category": "tamplarie",
       "group": "tamplarie",
       "label": "sticlă nisa_glisante_dorm",
-      "category": "tamplarie",
       "level": "etaj"
     },
     {
@@ -49015,6 +49175,40 @@
       "level": "parter"
     },
     {
+      "id": "stalp_a1_C_SW_TERASA",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.673,
+          "y": 9.7533
+        },
+        {
+          "x": 1.9727,
+          "y": 9.7661
+        },
+        {
+          "x": 1.9855,
+          "y": 9.4664
+        },
+        {
+          "x": 1.6858,
+          "y": 9.4536
+        },
+        {
+          "x": 1.673,
+          "y": 9.7533
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 6.35,
+      "color": "#7a9e6a",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "A1 S1 C_SW_TERASA 30×30 — FE confirmă",
+      "category": "structura",
+      "level": "parter"
+    },
+    {
       "id": "parter_centura_B_N",
       "type": "extrude",
       "polygon": [
@@ -49219,6 +49413,74 @@
       "level": "etaj"
     },
     {
+      "id": "parter_centura_B_W_TERASA",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5987,
+          "y": 11.4877
+        },
+        {
+          "x": 1.8985,
+          "y": 11.5005
+        },
+        {
+          "x": 1.9855,
+          "y": 9.4664
+        },
+        {
+          "x": 1.6858,
+          "y": 9.4536
+        },
+        {
+          "x": 1.5987,
+          "y": 11.4877
+        }
+      ],
+      "z0_m": 3.0300000000000002,
+      "z1_m": 3.43,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "A1.207: centură V pe terasă acoperită (fără S — cutie exclude excavare sub terasă)",
+      "category": "structura",
+      "level": "etaj"
+    },
+    {
+      "id": "etaj_centura_B_W_TERASA",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5987,
+          "y": 11.4877
+        },
+        {
+          "x": 1.8985,
+          "y": 11.5005
+        },
+        {
+          "x": 1.9855,
+          "y": 9.4664
+        },
+        {
+          "x": 1.6858,
+          "y": 9.4536
+        },
+        {
+          "x": 1.5987,
+          "y": 11.4877
+        }
+      ],
+      "z0_m": 5.949999999999999,
+      "z1_m": 6.35,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "A1.207: centură V pe terasă acoperită (fără S — cutie exclude excavare sub terasă)",
+      "category": "structura",
+      "level": "etaj"
+    },
+    {
       "id": "parter_centura_B_X_MID",
       "type": "extrude",
       "polygon": [
@@ -49419,6 +49681,74 @@
       "opacity": 0.95,
       "site_layer": "structura",
       "label": "sud dorm pe cutie",
+      "category": "structura",
+      "level": "etaj"
+    },
+    {
+      "id": "parter_centura_B_S_TERASA",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.673,
+          "y": 9.7533
+        },
+        {
+          "x": 5.0949,
+          "y": 9.8997
+        },
+        {
+          "x": 5.1077,
+          "y": 9.5999
+        },
+        {
+          "x": 1.6858,
+          "y": 9.4536
+        },
+        {
+          "x": 1.673,
+          "y": 9.7533
+        }
+      ],
+      "z0_m": 3.0300000000000002,
+      "z1_m": 3.43,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "A1.207: grindă sud terasă acoperită — reazem solbanc S (X vest→intrare)",
+      "category": "structura",
+      "level": "etaj"
+    },
+    {
+      "id": "etaj_centura_B_S_TERASA",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.673,
+          "y": 9.7533
+        },
+        {
+          "x": 5.0949,
+          "y": 9.8997
+        },
+        {
+          "x": 5.1077,
+          "y": 9.5999
+        },
+        {
+          "x": 1.6858,
+          "y": 9.4536
+        },
+        {
+          "x": 1.673,
+          "y": 9.7533
+        }
+      ],
+      "z0_m": 5.949999999999999,
+      "z1_m": 6.35,
+      "color": "#5a554e",
+      "opacity": 0.95,
+      "site_layer": "structura",
+      "label": "A1.207: grindă sud terasă acoperită — reazem solbanc S (X vest→intrare)",
       "category": "structura",
       "level": "etaj"
     },
@@ -49792,7 +50122,7 @@
       "color": "#5a8f6a",
       "opacity": 0.95,
       "site_layer": "structura",
-      "label": "A1.194: grindă întoarsă ușă→put_reten_e (fără pier în clear scară)",
+      "label": "A1.194: grindă întoarsă ușă→put_reten_e (fără C_SHAFT_E_PIER — clear scară 100)",
       "category": "structura",
       "level": "subsol"
     },
@@ -50062,6 +50392,28 @@
           {
             "x": 6.8113,
             "y": 9.9731
+          }
+        ],
+        [
+          {
+            "x": 1.673,
+            "y": 9.7533
+          },
+          {
+            "x": 1.6858,
+            "y": 9.4536
+          },
+          {
+            "x": 1.9855,
+            "y": 9.4664
+          },
+          {
+            "x": 1.9727,
+            "y": 9.7661
+          },
+          {
+            "x": 1.673,
+            "y": 9.7533
           }
         ]
       ],
@@ -51292,6 +51644,228 @@
       "wall_layer": "vata_isover_fassade",
       "catalog_id": "A2",
       "label": "C_S_INTRARE_E [A2 south]: vată minerală fațadă",
+      "category": "zidarie",
+      "level": "parter"
+    },
+    {
+      "id": "col_facade_C_SW_TERASA_west_placaj_klinker",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.658,
+          "y": 9.7526
+        },
+        {
+          "x": 1.673,
+          "y": 9.7533
+        },
+        {
+          "x": 1.6858,
+          "y": 9.4536
+        },
+        {
+          "x": 1.6708,
+          "y": 9.4529
+        },
+        {
+          "x": 1.658,
+          "y": 9.7526
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 6.35,
+      "color": "#c4a882",
+      "opacity": 0.97,
+      "site_layer": "anvelopa",
+      "group": "fatada",
+      "wall_layer": "placaj_klinker",
+      "catalog_id": "A2",
+      "label": "C_SW_TERASA [A2 west]: adeziv + Ströher Riegel 50",
+      "category": "zidarie",
+      "level": "parter"
+    },
+    {
+      "id": "col_facade_C_SW_TERASA_west_strat_armat",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.653,
+          "y": 9.7524
+        },
+        {
+          "x": 1.658,
+          "y": 9.7526
+        },
+        {
+          "x": 1.6708,
+          "y": 9.4529
+        },
+        {
+          "x": 1.6658,
+          "y": 9.4527
+        },
+        {
+          "x": 1.653,
+          "y": 9.7524
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 6.35,
+      "color": "#a8b0b8",
+      "opacity": 0.97,
+      "site_layer": "anvelopa",
+      "group": "fatada",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A2",
+      "label": "C_SW_TERASA [A2 west]: strat armat ceramic Weber",
+      "category": "zidarie",
+      "level": "parter"
+    },
+    {
+      "id": "col_facade_C_SW_TERASA_west_vata_isover_fassade",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.5731,
+          "y": 9.749
+        },
+        {
+          "x": 1.653,
+          "y": 9.7524
+        },
+        {
+          "x": 1.6658,
+          "y": 9.4527
+        },
+        {
+          "x": 1.5859,
+          "y": 9.4493
+        },
+        {
+          "x": 1.5731,
+          "y": 9.749
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 6.35,
+      "color": "#e2d18a",
+      "opacity": 0.85,
+      "site_layer": "anvelopa",
+      "group": "fatada",
+      "wall_layer": "vata_isover_fassade",
+      "catalog_id": "A2",
+      "label": "C_SW_TERASA [A2 west]: vată minerală fațadă",
+      "category": "zidarie",
+      "level": "parter"
+    },
+    {
+      "id": "col_facade_C_SW_TERASA_south_placaj_klinker",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6858,
+          "y": 9.4536
+        },
+        {
+          "x": 1.9855,
+          "y": 9.4664
+        },
+        {
+          "x": 1.9862,
+          "y": 9.4514
+        },
+        {
+          "x": 1.6865,
+          "y": 9.4386
+        },
+        {
+          "x": 1.6858,
+          "y": 9.4536
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 6.35,
+      "color": "#c4a882",
+      "opacity": 0.97,
+      "site_layer": "anvelopa",
+      "group": "fatada",
+      "wall_layer": "placaj_klinker",
+      "catalog_id": "A2",
+      "label": "C_SW_TERASA [A2 south]: adeziv + Ströher Riegel 50",
+      "category": "zidarie",
+      "level": "parter"
+    },
+    {
+      "id": "col_facade_C_SW_TERASA_south_strat_armat",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6865,
+          "y": 9.4386
+        },
+        {
+          "x": 1.9862,
+          "y": 9.4514
+        },
+        {
+          "x": 1.9864,
+          "y": 9.4464
+        },
+        {
+          "x": 1.6867,
+          "y": 9.4336
+        },
+        {
+          "x": 1.6865,
+          "y": 9.4386
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 6.35,
+      "color": "#a8b0b8",
+      "opacity": 0.97,
+      "site_layer": "anvelopa",
+      "group": "fatada",
+      "wall_layer": "strat_armat",
+      "catalog_id": "A2",
+      "label": "C_SW_TERASA [A2 south]: strat armat ceramic Weber",
+      "category": "zidarie",
+      "level": "parter"
+    },
+    {
+      "id": "col_facade_C_SW_TERASA_south_vata_isover_fassade",
+      "type": "extrude",
+      "polygon": [
+        {
+          "x": 1.6867,
+          "y": 9.4336
+        },
+        {
+          "x": 1.9864,
+          "y": 9.4464
+        },
+        {
+          "x": 1.9898,
+          "y": 9.3665
+        },
+        {
+          "x": 1.6901,
+          "y": 9.3536
+        },
+        {
+          "x": 1.6867,
+          "y": 9.4336
+        }
+      ],
+      "z0_m": -3.1,
+      "z1_m": 6.35,
+      "color": "#e2d18a",
+      "opacity": 0.85,
+      "site_layer": "anvelopa",
+      "group": "fatada",
+      "wall_layer": "vata_isover_fassade",
+      "catalog_id": "A2",
+      "label": "C_SW_TERASA [A2 south]: vată minerală fațadă",
       "category": "zidarie",
       "level": "parter"
     },

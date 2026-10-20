@@ -423,19 +423,26 @@
       const depth = Math.max(0.01, m.z1_m - m.z0_m);
       const geo = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: false });
       const isMosaic = m.finish === "mozaic" || m.id?.includes("mozaic") || m.id?.includes("soclu");
+      const isGlass = !!m.id?.startsWith("sticla_");
       const mat = new THREE.MeshStandardMaterial({
         color: m.color,
-        roughness: m.id?.startsWith("gol_") ? 0.15 : isMosaic ? 0.92 : 0.78,
-        metalness: m.id?.startsWith("gol_") ? 0.05 : isMosaic ? 0 : 0.02,
-        transparent: (m.opacity != null && m.opacity < 1) || !!m.id?.startsWith("gol_"),
-        opacity: m.opacity ?? (m.id?.startsWith("gol_") ? 0.4 : 1),
+        roughness: m.id?.startsWith("gol_") ? 0.15 : isGlass ? 0.12 : isMosaic ? 0.92 : 0.78,
+        metalness: m.id?.startsWith("gol_") ? 0.05 : isGlass ? 0.35 : isMosaic ? 0 : 0.02,
+        transparent: (m.opacity != null && m.opacity < 1) || !!m.id?.startsWith("gol_") || isGlass,
+        opacity: m.opacity ?? (m.id?.startsWith("gol_") ? 0.4 : isGlass ? 0.62 : 1),
         side: THREE.DoubleSide,
+        depthWrite: !isGlass,
       });
+      if (isGlass) {
+        mat.emissive = new THREE.Color(0x1a4058);
+        mat.emissiveIntensity = 0.22;
+      }
       const mesh = new THREE.Mesh(geo, mat);
       mesh.rotation.x = -Math.PI / 2;
       mesh.position.y = m.z0_m;
-      mesh.castShadow = !m.id?.startsWith("gol_") && !m.id?.startsWith("teren");
-      mesh.receiveShadow = true;
+      mesh.castShadow = !m.id?.startsWith("gol_") && !m.id?.startsWith("teren") && !isGlass;
+      mesh.receiveShadow = !isGlass;
+      if (isGlass) mesh.renderOrder = 4;
       return mesh;
     }
 
@@ -653,7 +660,13 @@
       );
     }
     function isRoofShellId(id) {
-      return id.startsWith("acoperis_apa_") || id.startsWith("acoperis_fronton_") || id.startsWith("pv_");
+      return (
+        id.startsWith("acoperis_apa_") ||
+        id.startsWith("acoperis_fronton_") ||
+        id.startsWith("acoperis_sofit_") ||
+        id.startsWith("acoperis_plafon_") ||
+        id.startsWith("pv_")
+      );
     }
     /** View „1 · Structură” = schelet BA + scări/circulație BA (beci, acces, rampe).
      *  Fără: teren, amprentă, gard/porți, țiglă/PV, paleți finisaj. */
@@ -1170,7 +1183,13 @@
       );
     }
     function isRoofShell(n) {
-      return n.startsWith("acoperis_apa_") || n.startsWith("acoperis_fronton_") || n.startsWith("pv_");
+      return (
+        n.startsWith("acoperis_apa_") ||
+        n.startsWith("acoperis_fronton_") ||
+        n.startsWith("acoperis_sofit_") ||
+        n.startsWith("acoperis_plafon_") ||
+        n.startsWith("pv_")
+      );
     }
     function isRoofishMode(m) {
       return m === "acoperis" || m === "acoperis_sarpanta" || m === "acoperis_pod";

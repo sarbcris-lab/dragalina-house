@@ -73,7 +73,7 @@ export function enrichMeshMeta(m) {
           : id.startsWith("alee_") || id.startsWith("auto_") || id.startsWith("curte_")
             ? "curte"
             : "curte");
-    } else if (/^(acoperis_apa_|acoperis_fronton_|pv_)/.test(id)) {
+    } else if (/^(acoperis_apa_|acoperis_fronton_|acoperis_sofit_|acoperis_plafon_|pv_)/.test(id)) {
       category = category || "acoperis";
       site_layer = site_layer || "finisaj";
     } else if (/^(parapet_)/.test(id)) {

@@ -2,7 +2,7 @@
   "status": "S1_STUDIU_GEOMETRIC",
   "system": "cadre_beton_armat",
   "declared_buildable": false,
-  "generated": "2026-10-19T20:01:29.833Z",
+  "generated": "2026-10-20T05:40:10.769Z",
   "source": {
     "architecture": "data/building/a1_architecture.json",
     "columns": "columns_cm (fără non-structurale)",
@@ -51,7 +51,7 @@
     "strip_width_cm": 60,
     "east_eccentric_inward": true,
     "status": "ipoteză_studiu_A1_200",
-    "note": "A1.200: B=200 cm pe geometrie inward (FS_s=1.13 FS_o=1.84). B minim pe geometrie inward + placă pe heel (fără pinten)",
+    "note": "A1.194: tălpi N/E/S excentrice spre interior (încadrare parcelă). Talpă 115 inward ≠ calc heel+umplutură — recalcul rundă 3.",
     "pad_by_column_cm": {
       "C_NW": 130,
       "C_N_MID": 165,
@@ -70,8 +70,8 @@
     "perimeter_strip_note": "mărit din 80 pentru FS alunecare/răsturnare caz hw10",
     "north_eccentric_inward": true,
     "south_eccentric_inward": true,
-    "perimeter_strip_drawn": "inward_toe0_heel_under_slab",
-    "perimeter_strip_calc_status": "VALIDATED_ON_DRAWN_GEOMETRY_ORDIN",
+    "perimeter_strip_drawn": "inward_no_heel_backfill",
+    "perimeter_strip_calc_status": "NOT_VALIDATED_FOR_DRAWN_GEOMETRY",
     "perimeter_strip_key_cm": 0,
     "perimeter_strip_calc_ref": "outputs/reports/s1_a1_footing_drawn_v01"
   },
@@ -96,7 +96,7 @@
     "basement_ff_cm": -250,
     "basement_soffit_cm": -30,
     "basement_beam_h_cm": 15,
-    "note": "A1.180: clear≥255 HARD. FF→FF=307. Placă 15. Grindă crit. 40.",
+    "note": "A1.180: clear≥255 HARD. FF→FF=307. Placă 15. Grindă crit. 40. · A1.194 beci: beam_h S=15 flush, clear 220",
     "basement_clear_under_beam_cm": 220,
     "basement_beam_note": "A1.194: S flush în placă (h=15); clear sub grindă = clear sub placă 220"
   },
@@ -286,6 +286,23 @@
       "on_heated_box": true,
       "thermal": null,
       "note": "Finit 680×860; stâlp pe extrema cărămizii (retras de pe finit); +10 în cameră."
+    },
+    {
+      "id": "C_SW_TERASA",
+      "x": 10,
+      "y": 818.8,
+      "dx": 30,
+      "dy": 30,
+      "section_cm": "30×30",
+      "levels": [
+        "P",
+        "E"
+      ],
+      "continuous_through_floor": true,
+      "status": "PROVIZORIU_A1_207_TERASA_ROOF",
+      "on_heated_box": false,
+      "thermal": "outdoor_terrace",
+      "note": "A1.207: reazem acoperiș pe terasă · FE confirmă · fără S"
     }
   ],
   "beams": [
@@ -341,6 +358,22 @@
       "note": "centură V pe cutie"
     },
     {
+      "id": "B_W_TERASA",
+      "x": 10,
+      "y": 645.2,
+      "dx": 30,
+      "dy": 203.5999999999999,
+      "levels": [
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_W_DORM",
+        "C_SW_TERASA"
+      ],
+      "note": "A1.207: centură V pe terasă acoperită (fără S — cutie exclude excavare sub terasă)"
+    },
+    {
       "id": "B_X_MID",
       "x": 312.4,
       "y": 10,
@@ -391,6 +424,22 @@
         "C_S_DORM_E"
       ],
       "note": "sud dorm pe cutie"
+    },
+    {
+      "id": "B_S_TERASA",
+      "x": 10,
+      "y": 818.8,
+      "dx": 342.5,
+      "dy": 30,
+      "levels": [
+        "P",
+        "E"
+      ],
+      "supports": [
+        "C_SW_TERASA",
+        "C_S_INTRARE_W"
+      ],
+      "note": "A1.207: grindă sud terasă acoperită — reazem solbanc S (X vest→intrare)"
     },
     {
       "id": "B_Y820",

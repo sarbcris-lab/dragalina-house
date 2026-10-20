@@ -99,6 +99,33 @@ const columns = colsIn
 const SPE = ["S", "P", "E"];
 const PE = ["P", "E"];
 
+// A1.207: reazem streșină pe terasa acoperită — B_W se oprea la C_W_DORM; solbanc S pe X0–312 fără stâlp/grindă.
+// Fără S (structure_box exclude excavare sub terasă). Secțiuni PROVIZORIU — FE confirmă.
+byId.C_SW_TERASA = {
+  id: "C_SW_TERASA",
+  x: byId.C_W_DORM.x,
+  y: byId.C_S_INTRARE_W.y,
+  dx: 30,
+  dy: 30,
+  section_cm: "30×30",
+  status: "PROVIZORIU_A1_207_TERASA_ROOF",
+  note: "colț SV terasă acoperită — reazem solbanc/streșină; fără beci sub terasă",
+};
+columns.push({
+  id: "C_SW_TERASA",
+  x: byId.C_SW_TERASA.x,
+  y: byId.C_SW_TERASA.y,
+  dx: 30,
+  dy: 30,
+  section_cm: "30×30",
+  levels: PE,
+  continuous_through_floor: true,
+  status: "PROVIZORIU_A1_207_TERASA_ROOF",
+  on_heated_box: false,
+  thermal: "outdoor_terrace",
+  note: "A1.207: reazem acoperiș pe terasă · FE confirmă · fără S",
+});
+
 const beams = [
   // —— Inel / axe pe cutia încălzită
   beamAlongX("B_N", ["C_NW", "C_N_MID"], byId.C_NW.y, byId.C_NW.dy, SPE, "centură N pe cutie (C_NW–C_N_MID)"),
@@ -111,6 +138,14 @@ const beams = [
     "centură N est → C_NE (banda scară / fațadă E)"
   ),
   beamAlongY("B_W", ["C_NW", "C_W_MID", "C_W_DORM"], byId.C_NW.x, byId.C_NW.dx, SPE, "centură V pe cutie"),
+  beamAlongY(
+    "B_W_TERASA",
+    ["C_W_DORM", "C_SW_TERASA"],
+    byId.C_W_DORM.x,
+    byId.C_W_DORM.dx,
+    PE,
+    "A1.207: centură V pe terasă acoperită (fără S — cutie exclude excavare sub terasă)"
+  ),
   beamAlongY(
     "B_X_MID",
     ["C_N_MID", "C_S_DORM_E", "C_S_INTRARE_W"],
@@ -128,6 +163,14 @@ const beams = [
     "separator est cutie (= A6) C_CASA_SCARA→intrare E"
   ),
   beamAlongX("B_Y645", ["C_W_DORM", "C_S_DORM_E"], byId.C_W_DORM.y, byId.C_W_DORM.dy, SPE, "sud dorm pe cutie"),
+  beamAlongX(
+    "B_S_TERASA",
+    ["C_SW_TERASA", "C_S_INTRARE_W"],
+    byId.C_SW_TERASA.y,
+    byId.C_SW_TERASA.dy,
+    PE,
+    "A1.207: grindă sud terasă acoperită — reazem solbanc S (X vest→intrare)"
+  ),
   beamAlongX(
     "B_Y820",
     ["C_S_INTRARE_W", "C_S_INTRARE_E"],

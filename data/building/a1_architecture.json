@@ -2555,8 +2555,9 @@
     "s1_handoff": {
       "doc": "decisions/s1_from_a1_v01.md",
       "envelope_report": "outputs/reports/s1_basement_envelope_from_a1_v01.md",
-      "frame_mesh": "A1.170: build_v47_3d citește basement din a1_architecture (nu hol_subsol V47)",
-      "first_task": "reten_mesh_vs_a1 — DONE overlay 3D; FE mesh JSON încă de sync"
+      "frame_mesh": "A1.174: cadre pe axe A1 (build_a1_structure) — FRAME STALE",
+      "first_task": "remesh BA pe envelope A1 — DONE geometric; FE urmează",
+      "structure_study": "structure_a1_study_cm"
     },
     "structure_box": {
       "x0": 30,
@@ -3185,7 +3186,7 @@
     "status": "S1_STUDIU_GEOMETRIC",
     "system": "cadre_beton_armat",
     "declared_buildable": false,
-    "generated": "2026-10-19T20:01:29.833Z",
+    "generated": "2026-10-20T05:40:10.769Z",
     "source": {
       "architecture": "data/building/a1_architecture.json",
       "columns": "columns_cm (fără non-structurale)",
@@ -3281,7 +3282,7 @@
       "basement_beam_h_cm": 15,
       "note": "A1.180: clear≥255 HARD. FF→FF=307. Placă 15. Grindă crit. 40. · A1.194 beci: beam_h S=15 flush, clear 220",
       "basement_clear_under_beam_cm": 220,
-      "basement_beam_note": "A1.194: grinzi S în grosimea plăcii (fără drop) → clear sub grindă = clear sub placă 220"
+      "basement_beam_note": "A1.194: S flush în placă (h=15); clear sub grindă = clear sub placă 220"
     },
     "clear_lock": {
       "min_cm": 255,
@@ -3469,6 +3470,23 @@
         "on_heated_box": true,
         "thermal": null,
         "note": "Finit 680×860; stâlp pe extrema cărămizii (retras de pe finit); +10 în cameră."
+      },
+      {
+        "id": "C_SW_TERASA",
+        "x": 10,
+        "y": 818.8,
+        "dx": 30,
+        "dy": 30,
+        "section_cm": "30×30",
+        "levels": [
+          "P",
+          "E"
+        ],
+        "continuous_through_floor": true,
+        "status": "PROVIZORIU_A1_207_TERASA_ROOF",
+        "on_heated_box": false,
+        "thermal": "outdoor_terrace",
+        "note": "A1.207: reazem acoperiș pe terasă · FE confirmă · fără S"
       }
     ],
     "beams": [
@@ -3524,6 +3542,22 @@
         "note": "centură V pe cutie"
       },
       {
+        "id": "B_W_TERASA",
+        "x": 10,
+        "y": 645.2,
+        "dx": 30,
+        "dy": 203.5999999999999,
+        "levels": [
+          "P",
+          "E"
+        ],
+        "supports": [
+          "C_W_DORM",
+          "C_SW_TERASA"
+        ],
+        "note": "A1.207: centură V pe terasă acoperită (fără S — cutie exclude excavare sub terasă)"
+      },
+      {
         "id": "B_X_MID",
         "x": 312.4,
         "y": 10,
@@ -3574,6 +3608,22 @@
           "C_S_DORM_E"
         ],
         "note": "sud dorm pe cutie"
+      },
+      {
+        "id": "B_S_TERASA",
+        "x": 10,
+        "y": 818.8,
+        "dx": 342.5,
+        "dy": 30,
+        "levels": [
+          "P",
+          "E"
+        ],
+        "supports": [
+          "C_SW_TERASA",
+          "C_S_INTRARE_W"
+        ],
+        "note": "A1.207: grindă sud terasă acoperită — reazem solbanc S (X vest→intrare)"
       },
       {
         "id": "B_Y820",
@@ -3671,7 +3721,7 @@
           "C_CASA_SCARA",
           "put_reten_e"
         ],
-        "note": "A1.194: grindă întoarsă ușă→put_reten_e (fără pier în clear scară)"
+        "note": "A1.194: grindă întoarsă ușă→put_reten_e (fără C_SHAFT_E_PIER — clear scară 100)"
       }
     ],
     "foundation_pad_adopt_cm": {
@@ -3691,9 +3741,7 @@
       "geo_131 Rc parcelă",
       "riser_beci_17_22 vs brief 16",
       "shaft_east_wall_15_7_FE_ok",
-      "footing_B200_FE_confirm_mu_water",
-      "footing_115_recalc_on_drawn_inward_geometry",
-      "shaft_east_wall_15_7_FE_ok"
+      "footing_B200_FE_confirm_mu_water"
     ]
   }
 }
