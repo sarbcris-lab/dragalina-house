@@ -20,7 +20,7 @@
       "basement_rule": "Plan subsol A1.165–168 = input S1; conflict structură → remesh retenție/cadre, nu P/E.",
       "next_round": "S1 structură — decisions/s1_from_a1_v01.md"
     },
-    "generated": "2026-10-19T20:36:23.477Z",
+    "generated": "2026-10-20T06:24:10.474Z",
     "brief": "decisions/brief_A0_v01.md",
     "site": "data/building/a0_site.json",
     "source_walls": "v47 remap 680×860 — grosimi catalog A1/A2/A7/A8",
@@ -995,34 +995,6 @@
       },
       "status": "PROVIZORIU_A0_caramida_pe_extrema",
       "note": "Finit 680×860; stâlp pe extrema cărămizii (retras de pe finit); +10 în cameră."
-    },
-    {
-      "id": "C_E_LAMELE",
-      "x": 660,
-      "y": 748.3,
-      "dx": 20,
-      "dy": 40,
-      "section_cm": "20×40",
-      "protrusion_into_room_cm": 0,
-      "brick_on_extreme_cm": 0,
-      "inset_from_finished_cm": 0,
-      "faces": {
-        "onN": false,
-        "onW": false,
-        "onE": true,
-        "onSEnv": false,
-        "onSDorm": false,
-        "onBucEst": false
-      },
-      "thermal": "cold_stair",
-      "no_etics": true,
-      "status": "PROVIZORIU_A1_scară_rece",
-      "note": "Est scară rece, sud de lamele; fără ETICS. Continuu P/E (→fundație dacă FE); secțiune studiu 20×40 — FE poate cere ≥30.",
-      "continuous_through_floor": true,
-      "levels": [
-        0,
-        1
-      ]
     }
   ],
   "rooms_cm": [
@@ -1274,7 +1246,7 @@
       ],
       "x": 562.8,
       "y": 450,
-      "dx": 114.6,
+      "dx": 102.2,
       "dy": 493.8,
       "floor": "#dde6e9"
     }
@@ -2789,7 +2761,7 @@
       "upper_landing": {
         "x": 564.3,
         "y": 800.7,
-        "dx": 114.6,
+        "dx": 102.2,
         "dy": 58,
         "z_ff_cm": -95,
         "note": "palier acces −95 (sud în puț / legătură curte)"
@@ -2797,7 +2769,7 @@
       "lower_landing": {
         "x": 564.3,
         "y": 490.7,
-        "dx": 114.6,
+        "dx": 102.2,
         "dy": 110,
         "z_ff_cm": -250,
         "note": "palier jos sub planșeu (N de puț deschis) + franj în puț"
@@ -2918,16 +2890,22 @@
     "risers_flight_330": 10,
     "tread_cm": 30,
     "width_clear_declared_legacy_cm": 105,
-    "width_clear_cm": 104.5,
-    "width_clear_at_pier_cm": 95.7,
-    "width_clear_note": "A1.132: clear A6→est finit ≈103,1; la C_E_LAMELE ≈95,7 — înainte de mână curentă/finisaje",
-    "parapet_thick_cm": 10,
+    "width_clear_cm": 100.7,
+    "width_clear_at_pier_cm": 100.7,
+    "width_clear_note": "A1.210 S2: clear A6→față int. lamă BA 15 cm pe finit Dragalina; fără C_E_LAMELE / fără B_E_S 30 în clear",
+    "parapet_thick_cm": 15,
     "band_x": 562.8,
-    "band_dx": 114.6,
+    "band_dx": 102.2,
     "podest_height_above_ff_cm": 145.44,
     "palier_sup_height_above_ff_cm": 307,
     "entry_connection": "PARTER: intrare din terasă (intrare_parter @ X330 Y680). ETAJ: intrare_etaj pe buc_est Y475–565 de pe palier_superior.",
-    "note": "A1.199: palier N@mid · clear scară 104.5/95.7 (A6→est / la pier) · 19×16.16=307 FF↔FF",
+    "s2_blade": {
+      "th_cm": 15,
+      "x": 665,
+      "outer_x": 680,
+      "note": "lamă beton + klinker pe finit — look randare Belgian"
+    },
+    "note": "A1.210 S2: lamă E 15 cm · clear 100.7 · 19×16.16=307 FF↔FF",
     "flight_180": {
       "covered": false,
       "going_length_cm": 240,
@@ -2968,14 +2946,14 @@
     "palier_superior": {
       "x": 562.8,
       "y": 450,
-      "dx": 104.6,
+      "dx": 102.2,
       "dy": 138.7,
       "z_above_ff_cm": 307,
-      "section_note": "105×139 clear · bandă ~115×139 · +307",
-      "note": "A1.61: clear N = față S mid (C_E_PAL/C_W_MID); sud = N R2"
+      "section_note": "101 clear · lamă 15 · +307",
+      "note": "A1.61/210: clear N = față S mid; E = față int. lamă S2"
     },
     "stair_east_seq": {
-      "note": "plin palier → lamele → pier40 → parapet pe podest",
+      "note": "A1.210 S2: plin palier → lamele → parapet (fără C_E_LAMELE)",
       "y_lamele_0": 618.7,
       "y_lamele_1": 748.3,
       "lamele_L_cm": 129.6,
@@ -2983,45 +2961,45 @@
       "lamele_z0_above_ff_cm": 30,
       "lamele_z1_above_ff_cm": 240,
       "vs_geam": "top≈lintou geam (FF+240); bot FF+30 (sub prag 90)",
-      "pier": {
-        "dx": 20,
-        "dy": 40,
-        "y": 748.3,
-        "note": "după lamele"
+      "blade_cm": {
+        "th": 15,
+        "x": 665,
+        "outer": 680
       },
       "y_podest_n": 858.7,
       "y_podest_s": 973.5
     },
     "stair_solid_e": {
-      "x": 667.4,
+      "x": 665,
       "y": 450,
-      "dx": 10,
+      "dx": 15,
       "dy": 168.7,
-      "note": "zid plin pe palier + prima treaptă R2 — protecție"
+      "material": "BA_blade_S2",
+      "note": "A1.210 S2: lamă BA plin pe palier + prima treaptă R2"
     },
     "stair_jaluzele_e": {
-      "x": 667.4,
+      "x": 665,
       "y": 618.7,
-      "dx": 10,
+      "dx": 15,
       "dy": 129.6,
       "h_cm": 210,
       "z0_above_ff_cm": 30,
       "z1_above_ff_cm": 240,
-      "note": "gol lamele L=129.6 H=210 (z30→240) — a 2-a treaptă"
+      "note": "gol lamele L=129.6 H=210 în lamă S2 (z30→240)"
     },
     "stair_parapet_e": {
-      "x": 667.4,
-      "y": 788.3,
-      "dx": 10,
-      "dy": 185.2,
+      "x": 665,
+      "y": 748.3,
+      "dx": 15,
+      "dy": 225.2,
       "h_cm": 90,
-      "note": "parapet de la sud pier pe est podest"
+      "note": "A1.210 S2: parapet continuu după lamele (fără pier)"
     },
     "stair_parapet_podest_s": {
       "x": 562.8,
-      "y": 963.5,
+      "y": 958.5,
       "dx": 114.6,
-      "dy": 10,
+      "dy": 15,
       "h_cm": 90,
       "note": "parapet sud podest"
     },
@@ -3186,7 +3164,7 @@
     "status": "S1_STUDIU_GEOMETRIC",
     "system": "cadre_beton_armat",
     "declared_buildable": false,
-    "generated": "2026-10-20T05:40:10.769Z",
+    "generated": "2026-10-20T06:24:10.530Z",
     "source": {
       "architecture": "data/building/a1_architecture.json",
       "columns": "columns_cm (fără non-structurale)",
@@ -3195,11 +3173,11 @@
     "non_structural_from_columns_cm": [
       {
         "id": "C_E_LAMELE",
-        "reason": "pilastru/fațadă scară rece (lamele) — nu reazem de cadru; rămâne în ARH",
-        "section_cm": "20×40"
+        "reason": "A1.210 S2: scos din ARH — look randare = lamă continuă fără pier",
+        "section_cm": "removed_S2"
       }
     ],
-    "note": "Geometrie pe axe A1 — nu capacitate. C_E_LAMELE exclus din cadru. FRAME V47 = STALE.",
+    "note": "A1.210 S2: lamă E scară 15 cm pe Dragalina; B_E_S = lamă (nu centură 30 în clear). FRAME V47 = STALE.",
     "structure_box_cm": {
       "x0": 30,
       "x1": 534.3,
@@ -3676,9 +3654,9 @@
       },
       {
         "id": "B_E_S",
-        "x": 638.8,
+        "x": 665,
         "y": 450,
-        "dx": 30,
+        "dx": 15,
         "dy": 398.79999999999995,
         "levels": [
           "P",
@@ -3688,13 +3666,14 @@
           "C_E_PAL",
           "C_S_INTRARE_E"
         ],
-        "note": "centură E sud scară — reazeme C_E_PAL + nod SE cu B_S_SE (fără C_E_LAMELE)"
+        "role": "blade_wall_S2",
+        "note": "A1.210 S2: lamă BA 15 cm pe finit Dragalina X665 — look randare; FE confirmă"
       },
       {
         "id": "B_S_SE",
         "x": 554.3,
         "y": 818.8,
-        "dx": 114.5,
+        "dx": 125.70000000000005,
         "dy": 30,
         "levels": [
           "P",
@@ -3702,9 +3681,9 @@
         ],
         "supports": [
           "C_S_INTRARE_E",
-          "C_E_PAL"
+          "B_E_S"
         ],
-        "note": "închidere SE pe C_S_INTRARE_E↔C_E_PAL — C_E_LAMELE = doar ARH/fațadă"
+        "note": "A1.210 S2: închidere SE → lamă Dragalina (nu C_E_PAL în clear)"
       },
       {
         "id": "B_Y_EDGE_INVERTED",
@@ -3737,7 +3716,7 @@
       "C_S_INTRARE_E": 90
     },
     "open_items": [
-      "FE numeric pe schema fără C_E_LAMELE (span B_E_S / B_S_SE)",
+      "FE numeric lamă S2 B_E_S 15 cm + B_S_SE pe finit Dragalina",
       "geo_131 Rc parcelă",
       "riser_beci_17_22 vs brief 16",
       "shaft_east_wall_15_7_FE_ok",

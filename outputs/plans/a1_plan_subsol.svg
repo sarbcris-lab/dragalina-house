@@ -79,8 +79,8 @@
 <text x="1420.745" y="1943.405" text-anchor="middle" font-size="9" font-weight="600" fill="#1565c0" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">S deschis → curte</text>
 <rect x="1313.245" y="1345.7050000000002" width="215" height="580.5" fill="#b8d4f0" fill-opacity="0.35" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="6 3"/>
 <text x="1420.745" y="1375.805" text-anchor="middle" font-size="10" font-weight="600" fill="#0d47a1" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">PUȚ R2 (deschis)</text>
-<rect x="1313.245" y="1135.0049999999999" width="246.39" height="236.5" fill="#5a7388" fill-opacity="0.45" stroke="#1a1a1a" stroke-width="1.4"/>
-<text x="1436.4399999999998" y="1253.255" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">PALIER −250</text>
+<rect x="1313.245" y="1135.0049999999999" width="219.73" height="236.5" fill="#5a7388" fill-opacity="0.45" stroke="#1a1a1a" stroke-width="1.4"/>
+<text x="1423.11" y="1253.255" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">PALIER −250</text>
 <rect x="1313.245" y="1371.505" width="215" height="430" fill="#5a7388" fill-opacity="0.55" stroke="#1a1a1a" stroke-width="1.5"/>
 <line x1="1313.245" y1="1425.255" x2="1528.245" y2="1425.255" stroke="#fff" stroke-opacity="0.5" stroke-width="1"/>
 <line x1="1313.245" y1="1479.005" x2="1528.245" y2="1479.005" stroke="#fff" stroke-opacity="0.5" stroke-width="1"/>
@@ -91,8 +91,8 @@
 <line x1="1313.245" y1="1747.755" x2="1528.245" y2="1747.755" stroke="#fff" stroke-opacity="0.5" stroke-width="1"/>
 <text x="1420.745" y="1577.905" text-anchor="middle" font-size="10" font-weight="700" fill="#0d1b2a" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">SCARĂ BECI ↓N</text>
 <text x="1420.745" y="1608.005" text-anchor="middle" font-size="8" font-weight="600" fill="#0d1b2a" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">clear 100 · 9×17,2</text>
-<rect x="1313.245" y="1801.505" width="246.39" height="124.69999999999999" fill="#7a8a9a" fill-opacity="0.4" stroke="#1a1a1a" stroke-width="1.3"/>
-<text x="1436.4399999999998" y="1863.855" text-anchor="middle" font-size="9" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">PALIER −95</text>
+<rect x="1313.245" y="1801.505" width="219.73" height="124.69999999999999" fill="#7a8a9a" fill-opacity="0.4" stroke="#1a1a1a" stroke-width="1.3"/>
+<text x="1423.11" y="1863.855" text-anchor="middle" font-size="9" font-weight="700" fill="#111" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">PALIER −95</text>
 <rect x="1248.745" y="1145.7549999999999" width="70.09" height="215" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
 <text x="1235.8449999999998" y="1253.255" text-anchor="end" font-size="9" font-weight="600" fill="#0d47a1" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">ușă→magazie</text>
 <rect x="830.785" y="338" width="26.875" height="193.5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.4"/>
@@ -121,8 +121,6 @@
 <rect x="771.875" y="1840.4199999999998" width="86" height="64.5" fill="none" stroke="#111" stroke-width="1"/>
 <rect x="1227.245" y="1840.4199999999998" width="64.5" height="64.5" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
 <rect x="1227.245" y="1840.4199999999998" width="64.5" height="64.5" fill="none" stroke="#111" stroke-width="1"/>
-<rect x="1519" y="1688.8449999999998" width="43" height="86" fill="url(#patConcrete)" stroke="#222" stroke-width="0.45"/>
-<rect x="1519" y="1688.8449999999998" width="43" height="86" fill="none" stroke="#111" stroke-width="1"/>
 <rect x="166.865" y="185.565" width="43" height="86" fill="#7b1fa2" fill-opacity="0.35" stroke="#4a148c" stroke-width="1.6" stroke-dasharray="5 3"/>
 <text x="188.365" y="228.56499999999997" text-anchor="middle" font-size="8" font-weight="700" fill="#4a148c" font-family="IBM Plex Sans,Segoe UI,Arial,sans-serif">DROP</text>
 <rect x="787.785" y="146.865" width="43" height="86" fill="#7b1fa2" fill-opacity="0.35" stroke="#4a148c" stroke-width="1.6" stroke-dasharray="5 3"/>

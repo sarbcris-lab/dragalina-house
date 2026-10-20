@@ -1885,15 +1885,13 @@ function main() {
     }
   }
 
-  // —— Fațadă est scară (ca plan etaj A1): plin → lamele → pier → parapet ——
-  // Plan: stair_solid_e / stair_jaluzele_e (gol albastru) / C_E_LAMELE / stair_parapet_*
-  // 3D: lamele = lamele metal antracit (style_target); pier ARH ≠ cadru FE.
+  // —— Fațadă est scară A1.210 S2: lamă BA pe Dragalina · plin → lamele → parapet (fără pier)
   {
     const solidE = st.stair_solid_e;
     const jal = st.stair_jaluzele_e;
     const parapE = st.stair_parapet_e;
     const parapS = st.stair_parapet_podest_s;
-    const pierArh = a1Columns?.find((c) => c.id === "C_E_LAMELE");
+    const pierArh = a1Columns?.find((c) => c.id === "C_E_LAMELE"); // S2: absent
     if (solidE?.dx > 0 && solidE?.dy > 0) {
       meshes.push({
         id: "fatada_scara_solid_e",
@@ -1901,9 +1899,9 @@ function main() {
         polygon: rectPoly(solidE.x, solidE.y, solidE.dx, solidE.dy),
         z0_m: zEtaj,
         z1_m: zEtaj + m(jal?.z1_above_ff_cm ?? 240),
-        color: "#8a939e",
-        site_layer: "anvelopa",
-        label: "Zid plin est scară (palier + 1ª treaptă) — ca plan etaj",
+        color: "#7a9e6a",
+        site_layer: "structura",
+        label: "A1.210 S2: lamă BA plin est scară (palier) — look Dragalina",
       });
     }
     if (jal?.dx > 0 && jal?.dy > 0) {
@@ -1957,9 +1955,9 @@ function main() {
         polygon: rectPoly(parapE.x, parapE.y, parapE.dx, parapE.dy),
         z0_m: zPod,
         z1_m: zPod + m(parapE.h_cm || 90),
-        color: "#8a939e",
-        site_layer: "anvelopa",
-        label: "Parapet est podest (după pier) — ca plan",
+        color: "#7a9e6a",
+        site_layer: "structura",
+        label: "A1.210 S2: parapet lamă est (continuu după lamele)",
       });
     }
     if (parapS?.dx > 0 && parapS?.dy > 0) {
@@ -1988,9 +1986,9 @@ function main() {
         polygon: rectPoly(xE, y0, dxE, dyP),
         z0_m: 0,
         z1_m: zEtaj,
-        color: "#7a838c",
-        site_layer: "anvelopa",
-        label: "Zid E scară parter — închidere spre Dragalina (A1.201)",
+        color: "#7a9e6a",
+        site_layer: "structura",
+        label: "A1.210 S2: lamă E scară P — închidere Dragalina",
       });
       meshes.push({
         id: "soclu_fatada_scara_est_p",

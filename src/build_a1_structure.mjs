@@ -191,24 +191,28 @@ const beams = [
   beamAlongY("B_E", ["C_NE", "C_E_PAL"], byId.C_NE.x, byId.C_NE.dx, PE, "centură E fațadă (C_NE–C_E_PAL)"),
 ];
 
-// Închidere SE: C_E_PAL ↓ + C_S_INTRARE_E → (colț pe grinzi, fără pier lamele)
+// A1.210 S2: lamă BA pe finit Dragalina (înlocuiește B_E_S 30 cm în clear scară)
 {
   const ePal = byId.C_E_PAL;
   const sInE = byId.C_S_INTRARE_E;
-  const y0 = ePal.y + ePal.dy;
+  const ew = a1.envelope_cm?.ew ?? 680;
+  const bladeTh = a1.stair_cm?.s2_blade?.th_cm ?? 15;
+  const bladeX = a1.stair_cm?.s2_blade?.x ?? ew - bladeTh;
+  const y0 = ePal.y + ePal.dy; // sud mid / N palier scară
   const y1 = sInE.y + sInE.dy;
   beams.push({
     id: "B_E_S",
-    x: ePal.x,
+    x: bladeX,
     y: y0,
-    dx: ePal.dx,
+    dx: bladeTh,
     dy: y1 - y0,
     levels: PE,
     supports: ["C_E_PAL", "C_S_INTRARE_E"],
-    note: "centură E sud scară — reazeme C_E_PAL + nod SE cu B_S_SE (fără C_E_LAMELE)",
+    role: "blade_wall_S2",
+    note: `A1.210 S2: lamă BA ${bladeTh} cm pe finit Dragalina X${bladeX} — look randare; FE confirmă`,
   });
   const x0 = sInE.x + sInE.dx;
-  const x1 = ePal.x + ePal.dx;
+  const x1 = bladeX + bladeTh; // pe finit
   beams.push({
     id: "B_S_SE",
     x: x0,
@@ -216,8 +220,8 @@ const beams = [
     dx: x1 - x0,
     dy: sInE.dy,
     levels: PE,
-    supports: ["C_S_INTRARE_E", "C_E_PAL"],
-    note: "închidere SE pe C_S_INTRARE_E↔C_E_PAL — C_E_LAMELE = doar ARH/fațadă",
+    supports: ["C_S_INTRARE_E", "B_E_S"],
+    note: "A1.210 S2: închidere SE → lamă Dragalina (nu C_E_PAL în clear)",
   });
 }
 
@@ -254,14 +258,12 @@ const structure = {
   non_structural_from_columns_cm: [
     {
       id: "C_E_LAMELE",
-      reason: "pilastru/fațadă scară rece (lamele) — nu reazem de cadru; rămâne în ARH",
-      section_cm: byId.C_E_LAMELE
-        ? `${byId.C_E_LAMELE.dx}×${byId.C_E_LAMELE.dy}`
-        : "20×40",
+      reason: "A1.210 S2: scos din ARH — look randare = lamă continuă fără pier",
+      section_cm: "removed_S2",
     },
   ],
   note:
-    "Geometrie pe axe A1 — nu capacitate. C_E_LAMELE exclus din cadru. FRAME V47 = STALE.",
+    "A1.210 S2: lamă E scară 15 cm pe Dragalina; B_E_S = lamă (nu centură 30 în clear). FRAME V47 = STALE.",
   structure_box_cm: { ...box },
   pit_cm: pit
     ? {
@@ -343,7 +345,7 @@ const structure = {
     return Object.keys(prev).length ? prev : undefined;
   })(),
   open_items: [
-    "FE numeric pe schema fără C_E_LAMELE (span B_E_S / B_S_SE)",
+    "FE numeric lamă S2 B_E_S 15 cm + B_S_SE pe finit Dragalina",
     "geo_131 Rc parcelă",
     "riser_beci_17_22 vs brief 16",
     "shaft_east_wall_15_7_FE_ok",

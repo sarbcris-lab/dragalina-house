@@ -2,7 +2,7 @@
   "status": "S1_STUDIU_GEOMETRIC",
   "system": "cadre_beton_armat",
   "declared_buildable": false,
-  "generated": "2026-10-20T05:40:10.769Z",
+  "generated": "2026-10-20T06:24:10.530Z",
   "source": {
     "architecture": "data/building/a1_architecture.json",
     "columns": "columns_cm (fără non-structurale)",
@@ -11,11 +11,11 @@
   "non_structural_from_columns_cm": [
     {
       "id": "C_E_LAMELE",
-      "reason": "pilastru/fațadă scară rece (lamele) — nu reazem de cadru; rămâne în ARH",
-      "section_cm": "20×40"
+      "reason": "A1.210 S2: scos din ARH — look randare = lamă continuă fără pier",
+      "section_cm": "removed_S2"
     }
   ],
-  "note": "Geometrie pe axe A1 — nu capacitate. C_E_LAMELE exclus din cadru. FRAME V47 = STALE.",
+  "note": "A1.210 S2: lamă E scară 15 cm pe Dragalina; B_E_S = lamă (nu centură 30 în clear). FRAME V47 = STALE.",
   "structure_box_cm": {
     "x0": 30,
     "x1": 534.3,
@@ -492,9 +492,9 @@
     },
     {
       "id": "B_E_S",
-      "x": 638.8,
+      "x": 665,
       "y": 450,
-      "dx": 30,
+      "dx": 15,
       "dy": 398.79999999999995,
       "levels": [
         "P",
@@ -504,13 +504,14 @@
         "C_E_PAL",
         "C_S_INTRARE_E"
       ],
-      "note": "centură E sud scară — reazeme C_E_PAL + nod SE cu B_S_SE (fără C_E_LAMELE)"
+      "role": "blade_wall_S2",
+      "note": "A1.210 S2: lamă BA 15 cm pe finit Dragalina X665 — look randare; FE confirmă"
     },
     {
       "id": "B_S_SE",
       "x": 554.3,
       "y": 818.8,
-      "dx": 114.5,
+      "dx": 125.70000000000005,
       "dy": 30,
       "levels": [
         "P",
@@ -518,9 +519,9 @@
       ],
       "supports": [
         "C_S_INTRARE_E",
-        "C_E_PAL"
+        "B_E_S"
       ],
-      "note": "închidere SE pe C_S_INTRARE_E↔C_E_PAL — C_E_LAMELE = doar ARH/fațadă"
+      "note": "A1.210 S2: închidere SE → lamă Dragalina (nu C_E_PAL în clear)"
     },
     {
       "id": "B_Y_EDGE_INVERTED",
@@ -553,7 +554,7 @@
     "C_S_INTRARE_E": 90
   },
   "open_items": [
-    "FE numeric pe schema fără C_E_LAMELE (span B_E_S / B_S_SE)",
+    "FE numeric lamă S2 B_E_S 15 cm + B_S_SE pe finit Dragalina",
     "geo_131 Rc parcelă",
     "riser_beci_17_22 vs brief 16",
     "shaft_east_wall_15_7_FE_ok",

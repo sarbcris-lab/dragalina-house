@@ -1,5 +1,14 @@
 # Jurnal decizii
 
+## 2026-10-20 — A1.210 S2: lamă beton scară↔Dragalina (lock look)
+
+Beneficiar: **S2 OK** — look randare Belgian, nu stâlp/grindă în clear.
+1. **Lamă BA 15 cm** pe finit EW (X665–680) pe banda scară: plin → lamele → parapet.
+2. **Fără** `C_E_LAMELE` (pier). **Fără** `B_E_S` 30 cm în ochiul scării — `B_E_S` = lamă pe finit.
+3. Clear A6→față int. lamă ≈ **100,7 cm** (înainte ~74,5 la fața grinzii / 95,7 @pier).
+4. `C_E_PAL` rămâne pe mid/living (B_E, B_Y410); nu coboară centură grasă pe sud scară.
+5. FE confirmă lamă + B_S_SE pe finit. Amenajare camere neatinsă.
+
 ## 2026-10-20 — A1.206: scară fără placă pe rampe · fronton/sofit · răspuns consolă
 
 Observații din capturi viewer (nu schimbă amenajarea):

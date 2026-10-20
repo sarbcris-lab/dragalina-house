@@ -36,12 +36,12 @@ X **30–534.3** × Y **30–820**
 | B_Y820 | C_S_INTRARE_W, C_S_INTRARE_E | S+P+E | sud intrare pe cutie (Y≈820) |
 | B_Y410 | C_W_MID, C_E_PAL | P+E | legătură mid W→E_PAL (peste cutie + scară) |
 | B_E | C_NE, C_E_PAL | P+E | centură E fațadă (C_NE–C_E_PAL) |
-| B_E_S | C_E_PAL, C_S_INTRARE_E | P+E | centură E sud scară — reazeme C_E_PAL + nod SE cu B_S_SE (fără C_E_LAMELE) |
-| B_S_SE | C_S_INTRARE_E, C_E_PAL | P+E | închidere SE pe C_S_INTRARE_E↔C_E_PAL — C_E_LAMELE = doar ARH/fațadă |
+| B_E_S | C_E_PAL, C_S_INTRARE_E | P+E | A1.210 S2: lamă BA 15 cm pe finit Dragalina X665 — look randare; FE confirmă |
+| B_S_SE | C_S_INTRARE_E, B_E_S | P+E | A1.210 S2: închidere SE → lamă Dragalina (nu C_E_PAL în clear) |
 | B_Y_EDGE_INVERTED | C_CASA_SCARA, put_reten_e | S_inverted | A1.194: grindă întoarsă ușă→put_reten_e (fără C_SHAFT_E_PIER — clear scară 100) |
 
 ## Deschis
-- FE numeric pe schema fără C_E_LAMELE (span B_E_S / B_S_SE)
+- FE numeric lamă S2 B_E_S 15 cm + B_S_SE pe finit Dragalina
 - geo_131 Rc parcelă
 - riser_beci_17_22 vs brief 16
 - shaft_east_wall_15_7_FE_ok

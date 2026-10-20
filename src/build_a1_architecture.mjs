@@ -540,7 +540,8 @@ pushA8(
  *   (în V47 era levels: doar S; pe plan P/E nu are ce căuta).
  */
 /** C_E_GEAM_S scos — stâlp pe R2 (zona rece) ulterior. */
-const SKIP_COLUMNS = new Set(["C_SE", "C_SHAFT_E_PIER", "C_E_GEAM_S"]);
+/** A1.210 S2: C_E_LAMELE scos — look randare = lamă continuă, fără pier după lamele. */
+const SKIP_COLUMNS = new Set(["C_SE", "C_SHAFT_E_PIER", "C_E_GEAM_S", "C_E_LAMELE"]);
 /** Față vest perete buc_est (aliniament V47 / ușă etaj). */
 const BUC_EST_X = BUC_EST_X0;
 const BUC_EST_TH = TH.A6;
@@ -1077,7 +1078,9 @@ const stSrc = src.stair_cm || {};
 const stairBandX = mx(stSrc.band_x ?? 565);
 const stairBandDx = mdx(stSrc.band_dx ?? 115);
 const stairClearDx = mdx(stSrc.width_clear_cm ?? 105);
-const stairParapetDx = mdx(stSrc.parapet_thick_cm ?? 10);
+/** A1.210 S2: lamă beton pe Dragalina (scară) — look randare; nu piele 10 + grindă 30 în clear. */
+const S2_BLADE_TH_CM = 15;
+const stairParapetDx = S2_BLADE_TH_CM;
 /**
  * A1.36/199: +1 treaptă la baza R1; **19 ridicări** pe FF→FF **307** (clear255).
  * R1: 9↑ / 8×30 going; R2: 10↑ / 9×30; podest ≈+145.4; palier +307.
@@ -1119,11 +1122,13 @@ const yPier1 = +(yPier0 + PIER_DY).toFixed(1);
 const podSrc0 = stSrc.podest_se ? mapRect(stSrc.podest_se) : null;
 const podSouthY = podSrc0 ? +(podSrc0.y + podSrc0.dy).toFixed(1) : +(yPier1 + 115).toFixed(1);
 
-/** A1.132: clear scară măsurat pe geometrie — nu declara 105 uniform. */
+/** A1.132/210: clear scară = A6 → față int. lamă Dragalina (S2). */
 const STAIR_A6_EAST_X = +(BUC_EST_X0 + TH.A6).toFixed(1); // ~564,3
-const STAIR_PIER_X = 660; // C_E_LAMELE față V (după push pier)
-const STAIR_CLEAR_AT_PIER_CM = +(STAIR_PIER_X - STAIR_A6_EAST_X).toFixed(1); // 95,7
-const STAIR_CLEAR_A6_TO_EST_CM = +(EW - INSET_TO_BRICK_A2 - STAIR_A6_EAST_X).toFixed(1); // ~103,1 pe finit EB20
+const STAIR_BLADE_X = +(EW - S2_BLADE_TH_CM).toFixed(1); // 665 — flush pe finit 680
+const STAIR_CLEAR_A6_TO_BLADE_CM = +(STAIR_BLADE_X - STAIR_A6_EAST_X).toFixed(1); // ~100,7
+/** @deprecated A1.210: fără pier; păstrat alias = clear lamă */
+const STAIR_CLEAR_AT_PIER_CM = STAIR_CLEAR_A6_TO_BLADE_CM;
+const STAIR_CLEAR_A6_TO_EST_CM = STAIR_CLEAR_A6_TO_BLADE_CM;
 
 const stair = {
   riser_cm: STAIR_RISER_CM,
@@ -1133,17 +1138,23 @@ const stair = {
   tread_cm: STAIR_TREAD_CM,
   /** Nominal vechi — NU folosi ca clear peste tot. */
   width_clear_declared_legacy_cm: stSrc.width_clear_cm ?? 105,
-  width_clear_cm: STAIR_CLEAR_A6_TO_EST_CM,
-  width_clear_at_pier_cm: STAIR_CLEAR_AT_PIER_CM,
+  width_clear_cm: STAIR_CLEAR_A6_TO_BLADE_CM,
+  width_clear_at_pier_cm: STAIR_CLEAR_A6_TO_BLADE_CM,
   width_clear_note:
-    "A1.132: clear A6→est finit ≈103,1; la C_E_LAMELE ≈95,7 — înainte de mână curentă/finisaje",
-  parapet_thick_cm: stSrc.parapet_thick_cm ?? 10,
+    "A1.210 S2: clear A6→față int. lamă BA 15 cm pe finit Dragalina; fără C_E_LAMELE / fără B_E_S 30 în clear",
+  parapet_thick_cm: S2_BLADE_TH_CM,
   band_x: stairBandX,
-  band_dx: stairBandDx,
+  band_dx: +(STAIR_BLADE_X - stairBandX).toFixed(1),
   podest_height_above_ff_cm: STAIR_PODEST_Z,
   palier_sup_height_above_ff_cm: STAIR_PALIER_Z,
   entry_connection: stSrc.entry_connection,
-  note: `A1.199: palier N@mid · clear scară ${STAIR_CLEAR_A6_TO_EST_CM}/${STAIR_CLEAR_AT_PIER_CM} (A6→est / la pier) · ${STAIR_TOTAL_RISERS}×${STAIR_RISER_CM}=${STAIR_PALIER_Z} FF↔FF`,
+  s2_blade: {
+    th_cm: S2_BLADE_TH_CM,
+    x: STAIR_BLADE_X,
+    outer_x: EW,
+    note: "lamă beton + klinker pe finit — look randare Belgian",
+  },
+  note: `A1.210 S2: lamă E ${S2_BLADE_TH_CM} cm · clear ${STAIR_CLEAR_A6_TO_BLADE_CM} · ${STAIR_TOTAL_RISERS}×${STAIR_RISER_CM}=${STAIR_PALIER_Z} FF↔FF`,
   flight_180: (() => {
     if (!stSrc.flight_180) return undefined;
     const raw = mapRect(stSrc.flight_180);
@@ -1188,28 +1199,30 @@ const stair = {
   palier_superior: {
     x: stairBandX,
     y: palierY,
-    dx: stairClearDx,
+    dx: +(STAIR_BLADE_X - stairBandX).toFixed(1),
     dy: palierDy,
     z_above_ff_cm: STAIR_PALIER_Z,
-    section_note: `${Math.round(stairClearDx)}×${Math.round(palierDy)} clear · bandă ~${Math.round(stairBandDx)}×${Math.round(palierDy)} · +${STAIR_PALIER_Z}`,
-    note: "A1.61: clear N = față S mid (C_E_PAL/C_W_MID); sud = N R2",
+    section_note: `${Math.round(STAIR_CLEAR_A6_TO_BLADE_CM)} clear · lamă ${S2_BLADE_TH_CM} · +${STAIR_PALIER_Z}`,
+    note: "A1.61/210: clear N = față S mid; E = față int. lamă S2",
   },
   ...(() => {
-    const xE = +(stairBandX + stairClearDx).toFixed(1);
-    const dx = stairParapetDx;
+    // A1.210 S2: lamă pe finit EW; plin → lamele → parapet (fără pier)
+    const xE = STAIR_BLADE_X;
+    const dx = S2_BLADE_TH_CM;
     const lameleDy = LAMELE_L_TARGET;
-    const podN = podSrc0 ? podSrc0.y : yPier1;
+    const yAfterLamele = yPier0; // fost start pier — acum start parapet
+    const podN = podSrc0 ? podSrc0.y : yAfterLamele;
     return {
       stair_east_seq: {
-        note: "plin palier → lamele → pier40 → parapet pe podest",
+        note: "A1.210 S2: plin palier → lamele → parapet (fără C_E_LAMELE)",
         y_lamele_0: yLamele0,
-        y_lamele_1: yPier0,
+        y_lamele_1: yAfterLamele,
         lamele_L_cm: lameleDy,
         lamele_H_cm: LAMELE_H,
         lamele_z0_above_ff_cm: LAMELE_Z0,
         lamele_z1_above_ff_cm: LAMELE_Z1,
         vs_geam: `top≈lintou geam (FF+${LAMELE_Z1}); bot FF+${LAMELE_Z0} (sub prag ${GEAM_SILL_CM})`,
-        pier: { dx: PIER_DX, dy: PIER_DY, y: yPier0, note: "după lamele" },
+        blade_cm: { th: S2_BLADE_TH_CM, x: xE, outer: EW },
         y_podest_n: podN,
         y_podest_s: podSouthY,
       },
@@ -1218,7 +1231,8 @@ const stair = {
         y: palierY,
         dx,
         dy: +(yLamele0 - palierY).toFixed(1),
-        note: "zid plin pe palier + prima treaptă R2 — protecție",
+        material: "BA_blade_S2",
+        note: "A1.210 S2: lamă BA plin pe palier + prima treaptă R2",
       },
       stair_jaluzele_e: {
         x: xE,
@@ -1228,15 +1242,15 @@ const stair = {
         h_cm: LAMELE_H,
         z0_above_ff_cm: LAMELE_Z0,
         z1_above_ff_cm: LAMELE_Z1,
-        note: `gol lamele L=${lameleDy} H=${LAMELE_H} (z${LAMELE_Z0}→${LAMELE_Z1}) — a 2-a treaptă`,
+        note: `gol lamele L=${lameleDy} H=${LAMELE_H} în lamă S2 (z${LAMELE_Z0}→${LAMELE_Z1})`,
       },
       stair_parapet_e: {
         x: xE,
-        y: yPier1,
+        y: yAfterLamele,
         dx,
-        dy: +(podSouthY - yPier1).toFixed(1),
+        dy: +(podSouthY - yAfterLamele).toFixed(1),
         h_cm: 90,
-        note: "parapet de la sud pier pe est podest",
+        note: "A1.210 S2: parapet continuu după lamele (fără pier)",
       },
       stair_parapet_podest_s: podSrc0
         ? {
@@ -1248,13 +1262,6 @@ const stair = {
             note: "parapet sud podest",
           }
         : undefined,
-      _pier_e_lamele: {
-        id: "C_E_LAMELE",
-        x: +(EW - PIER_DX).toFixed(1),
-        y: yPier0,
-        dx: PIER_DX,
-        dy: PIER_DY,
-      },
     };
   })(),
   entry_steps: (() => {
@@ -4787,7 +4794,7 @@ function eastFacadeDetailSvg() {
       ? { y0: pier.y, y1: +(pier.y + pier.dy).toFixed(1), label: "C_E_LAMELE", kind: "col" }
       : null,
     parapetE
-      ? { y0: parapetE.y, y1: yParapet1, label: "parapet după pier+podest", kind: "stair" }
+      ? { y0: parapetE.y, y1: yParapet1, label: "parapet lamă S2 (după lamele)", kind: "stair" }
       : { y0: yR2_1, y1: ySudInt, label: "la sud finit", kind: "solid" },
   ].filter(Boolean)
     .map((s) => ({
